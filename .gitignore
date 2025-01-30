@@ -1,0 +1,7 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+*.translation
+addons/godot-git-plugin
+# Rider
+.idea/
