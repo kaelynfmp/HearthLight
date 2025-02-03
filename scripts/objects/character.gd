@@ -31,3 +31,6 @@ func _physics_process(delta: float) -> void:
 		self.velocity = Vector2.ZERO
 
 	move_and_slide()
+
+
+	
