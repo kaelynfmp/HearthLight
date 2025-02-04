@@ -18,14 +18,12 @@ func insert(item: Item):
 	var found: bool = false
 	if !item_slots.is_empty():
 		for slot in item_slots:
-			if slot.stack_size < item.max_stack:
-				slot.stack_size += 1
+			if (slot.increment()):
 				found = true
 				break
 	if !found:
 		var empty_slots = slots.filter(func(slot): return slot.item == null)
 		if !empty_slots.is_empty():
-			empty_slots[0].item = item
-			empty_slots[0].stack_size = 1
+			empty_slots[0].initialize(item)
 	
 	update.emit()
