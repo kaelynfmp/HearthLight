@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ble6qtbbs8hof"]
+
+[ext_resource type="Script" path="res://scripts/objects/marker.gd" id="1_8w0gy"]
+
+[node name="Marker" type="Node2D"]
+top_level = true
+y_sort_enabled = true
+scale = Vector2(4, 4)
+script = ExtResource("1_8w0gy")
