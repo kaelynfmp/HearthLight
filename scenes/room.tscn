@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://gfvpt16hdue1"]
+[gd_scene load_steps=9 format=4 uid="uid://gfvpt16hdue1"]
 
 [ext_resource type="TileSet" uid="uid://r7x82rdaw80h" path="res://resources/tilesets/room.tres" id="1_lwtf6"]
 [ext_resource type="Script" path="res://scripts/environment/tile_layers.gd" id="1_suw4i"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://b353v4ogg13io" path="res://scenes/character.tscn" id="3_aubfo"]
 [ext_resource type="Script" path="res://scripts/objects/character.gd" id="3_jp7id"]
 [ext_resource type="PackedScene" uid="uid://ooc6jx4dihku" path="res://scenes/marker.tscn" id="4_mnrrm"]
+[ext_resource type="Resource" uid="uid://b1gb7sbupakg4" path="res://resources/character/inventory.tres" id="6_kcpka"]
+[ext_resource type="PackedScene" uid="uid://c6g34by20r0qc" path="res://scenes/inventory/inventory.tscn" id="8_p13u3"]
 
 [node name="Room" type="Node2D"]
 y_sort_enabled = true
@@ -122,6 +124,7 @@ tile_set = ExtResource("1_lwtf6")
 
 [node name="Character" parent="Tilemap" instance=ExtResource("3_aubfo")]
 script = ExtResource("3_jp7id")
+inventory = ExtResource("6_kcpka")
 
 [node name="Grid" type="Polygon2D" parent="Tilemap"]
 modulate = Color(1, 1, 1, 0.419608)
@@ -135,13 +138,17 @@ texture_offset = Vector2(128, 0)
 polygon = PackedVector2Array(-1408, 0, 0, -704, 1408, 0, 0, 704)
 metadata/_edit_lock_ = true
 
-[node name="HUD" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="Inventory" type="Control" parent="HUD"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Inventory" parent="HUD" instance=ExtResource("8_p13u3")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -845.0
+offset_top = -334.5
+offset_right = 845.0
+offset_bottom = 334.5
+grow_horizontal = 2
+grow_vertical = 2

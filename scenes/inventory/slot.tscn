@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5605c3ehaw25"]
+
+[ext_resource type="Script" path="res://scripts/gui/inventory/slot.gd" id="1_n8mqj"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mnql3"]
+size = Vector2(200, 200)
+
+[node name="Slot" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(200, 200)
+offset_right = 24.0
+offset_bottom = 24.0
+script = ExtResource("1_n8mqj")
+
+[node name="Background" type="Sprite2D" parent="."]
+self_modulate = Color(0.441, 0.8082, 0.9, 1)
+texture = SubResource("PlaceholderTexture2D_mnql3")
+centered = false
+
+[node name="ItemContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 200.0
+
+[node name="ItemPanel" type="Panel" parent="ItemContainer"]
+layout_mode = 2
+
+[node name="Item" type="Sprite2D" parent="ItemContainer/ItemPanel"]
+
+[node name="Stack" type="Label" parent="ItemContainer/ItemPanel"]
+layout_mode = 0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+text = "999"
+horizontal_alignment = 2
+vertical_alignment = 2

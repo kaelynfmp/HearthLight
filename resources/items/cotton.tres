@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://scripts/resources/item.gd" id="1_u4brp"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mvjxn"]
-size = Vector2(16, 16)
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_psojh"]
+size = Vector2(150, 150)
 
 [resource]
 script = ExtResource("1_u4brp")
-sprite = SubResource("PlaceholderTexture2D_mvjxn")
+texture = SubResource("PlaceholderTexture2D_psojh")
 name = "Cotton"
 description = ""
-maxStack = 999
+max_stack = 4
 price = 10
