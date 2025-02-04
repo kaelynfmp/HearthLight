@@ -29,6 +29,7 @@ version_control/autoload_on_startup=true
 
 folder_colors={
 "res://addons/": "gray",
+"res://export/": "gray",
 "res://resources/": "blue",
 "res://resources/sprites/": "teal",
 "res://resources/tilesets/": "green",

@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://m1v51t3xgjie" path="res://resources/sprites/gridloop.png" id="2_eajwq"]
 [ext_resource type="PackedScene" uid="uid://b353v4ogg13io" path="res://scenes/character.tscn" id="3_aubfo"]
 [ext_resource type="Script" path="res://scripts/objects/character.gd" id="3_jp7id"]
-[ext_resource type="PackedScene" uid="uid://ble6qtbbs8hof" path="res://scenes/marker.tscn" id="4_mnrrm"]
+[ext_resource type="PackedScene" uid="uid://ooc6jx4dihku" path="res://scenes/marker.tscn" id="4_mnrrm"]
 
 [node name="Room" type="Node2D"]
 y_sort_enabled = true

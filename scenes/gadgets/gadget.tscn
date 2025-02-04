@@ -8,7 +8,7 @@ y_sort_enabled = true
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(-6.11111, -22.0748)
 scale = Vector2(0.611111, 0.563525)
-polygon = PackedVector2Array(100, 9, 70.6316, -81.2429, 14, -110, -34, -89, -80, 8, 14, 73)
+polygon = PackedVector2Array(150.727, 16.1036, 50.9091, -54.8781, -130.727, 48.0454, -29.2727, 122.576)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_8usb6")
