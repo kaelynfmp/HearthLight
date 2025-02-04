@@ -1,10 +1,14 @@
-[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://c82decsqfayei"]
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://c82decsqfayei"]
 
 [ext_resource type="Script" path="res://scripts/resources/item.gd" id="1_u4brp"]
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mvjxn"]
+size = Vector2(16, 16)
+
 [resource]
 script = ExtResource("1_u4brp")
-name = ""
-desc = ""
-maxStack = 0
-price = 0
+sprite = SubResource("PlaceholderTexture2D_mvjxn")
+name = "Cotton"
+description = ""
+maxStack = 999
+price = 10
