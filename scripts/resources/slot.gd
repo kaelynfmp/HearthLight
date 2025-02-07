@@ -64,7 +64,3 @@ func decrement(amount: int = 1) -> bool:
 func initialize(p_item: Item, p_quantity: int = 1):
 	item = p_item
 	quantity = p_quantity
-	
-### Matches two seperate slots to see if they are the same
-func slot_match(slot: Slot):
-	return slot.quantity == quantity and slot.item == item

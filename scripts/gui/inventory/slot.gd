@@ -59,6 +59,14 @@ func _on_gui_input(event:InputEvent) -> void:
 					# The mouse needs to still be on the slot for it to want to drop it
 					drop_slot_cursor()
 				just_half_stacked = false # On release of right click, after trying to drop the first time
+		elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			# Wheel up adds items
+			if event.is_pressed():
+				drop_slot_cursor(true)
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			# Wheel down takes
+			if event.is_pressed():
+				pull_slot_cursor(true)
 				
 ### Swap the current slot with the cursor slot
 func swap_slots_cursor():
@@ -83,8 +91,8 @@ func merge_slots_cursor():
 		swap_slots_cursor()
 	
 ### Drop one item from cursor into slot
-func drop_slot_cursor():
-	if (just_half_stacked):
+func drop_slot_cursor(bypass: bool = false):
+	if (just_half_stacked and not bypass):
 		return
 	if cursor_slot().item != null and (slot.item == null or slot.item == cursor_slot().item):
 		# If there is an item on your cursor when, place exactly one into the slot
@@ -95,6 +103,19 @@ func drop_slot_cursor():
 			cursor_slot().decrement()
 		update()
 		GameManager.get_cursor().update_slot()
+		
+### Take one item from slot into cursor
+func pull_slot_cursor(bypass: bool = false):
+	if (just_half_stacked and not bypass):
+		return
+	if cursor_slot().item == null or (cursor_slot().item == slot.item and not slot.item == null):
+		# If you either have nothing, or have the item you're trying to steal (and it exists)
+		cursor_slot().item = slot.item # It will always either be empty or the item already anyways
+		if (cursor_slot().increment() == 0): # No remainder
+			slot.decrement()
+		update()
+		GameManager.get_cursor().update_slot()
+	
 		
 ### Pick up half of the stack in the slot
 func half_slot_cursor_pickup():
@@ -113,7 +134,7 @@ func half_slot_cursor_pickup():
 			slot.decrement(ceil(temp_quantity/2))
 			cursor_slot().item = slot.item
 			# There hopefully shouldn't ever possibly be a remainder condition but, just in case
-			var remainder: int = cursor_slot().increment(floor(temp_quantity/2))
+			var remainder: int = cursor_slot().increment(ceil(temp_quantity/2))
 			slot.increment(remainder)
 			update()
 			GameManager.get_cursor().update_slot()
