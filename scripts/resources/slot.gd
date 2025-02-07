@@ -6,6 +6,8 @@ class_name Slot
 
 extends Resource
 
+signal update
+
 ## The [Item] that this slot represents. Can have multiple.
 @export var item: Item :
 	get:
@@ -51,6 +53,8 @@ func increment(amount: int = 1) -> int:
 		return amount # nothing was put in
 	var remainder: int      = starting_value + amount - item.max_stack
 	quantity += amount
+	
+	update.emit()
 	return max(remainder, 0)
 
 ## Decrements the amount of items in the slot by specified amount, default 1
@@ -58,9 +62,14 @@ func decrement(amount: int = 1) -> bool:
 	if (amount > quantity):
 		return true
 	quantity -= amount
+	update.emit()
 	return item != null # returns whether the item still exists after decrementing
 	
 ## Initializes the slot with an item and a stack size, default 1
 func initialize(p_item: Item, p_quantity: int = 1):
 	item = p_item
 	quantity = p_quantity
+	update.emit()
+	if item == null:
+		return 0
+	return max(quantity - item.max_stack, 0)

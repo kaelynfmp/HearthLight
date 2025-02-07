@@ -13,8 +13,6 @@ func _ready() -> void:
 func update_slots():
 	for i in range(min(inventory.slots.size(), slots.size())):
 		slots[i].set_slot(inventory.slots[i])
-		
-
 	
 func _process(_delta: float):
 	visible = is_open
