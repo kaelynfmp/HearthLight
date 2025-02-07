@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://l6lptv3o5juw"]
+
+[ext_resource type="Script" path="res://scripts/gui/inventory/slot.gd" id="1_28phl"]
+[ext_resource type="Script" path="res://scenes/cursor.gd" id="1_gghae"]
+
+[node name="Cursor" type="Node2D"]
+z_index = 4096
+script = ExtResource("1_gghae")
+
+[node name="Slot" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(200, 200)
+offset_right = 24.0
+offset_bottom = 24.0
+mouse_filter = 2
+script = ExtResource("1_28phl")
+
+[node name="ItemContainer" type="CenterContainer" parent="Slot"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 200.0
+mouse_filter = 2
+
+[node name="ItemPanel" type="Panel" parent="Slot/ItemContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Item" type="Sprite2D" parent="Slot/ItemContainer/ItemPanel"]
+
+[node name="Stack" type="Label" parent="Slot/ItemContainer/ItemPanel"]
+layout_mode = 0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+text = "999"
+horizontal_alignment = 2
+vertical_alignment = 2

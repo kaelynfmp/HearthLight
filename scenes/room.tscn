@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://gfvpt16hdue1"]
+[gd_scene load_steps=10 format=4 uid="uid://gfvpt16hdue1"]
 
 [ext_resource type="TileSet" uid="uid://r7x82rdaw80h" path="res://resources/tilesets/room.tres" id="1_lwtf6"]
 [ext_resource type="Script" path="res://scripts/environment/tile_layers.gd" id="1_suw4i"]
@@ -8,9 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://ooc6jx4dihku" path="res://scenes/marker.tscn" id="4_mnrrm"]
 [ext_resource type="Resource" uid="uid://b1gb7sbupakg4" path="res://resources/character/inventory.tres" id="6_kcpka"]
 [ext_resource type="PackedScene" uid="uid://c6g34by20r0qc" path="res://scenes/inventory/inventory.tscn" id="8_p13u3"]
+[ext_resource type="PackedScene" uid="uid://l6lptv3o5juw" path="res://scenes/cursor.tscn" id="9_6c5mx"]
 
-[node name="Room" type="Node2D"]
-y_sort_enabled = true
+[node name="Room" type="Node"]
 
 [node name="Tilemap" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -152,3 +152,5 @@ offset_right = 845.0
 offset_bottom = 334.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Cursor" parent="HUD" instance=ExtResource("9_6c5mx")]

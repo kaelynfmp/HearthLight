@@ -20,20 +20,24 @@ extends Resource
 var prev_max_stack: int = 0
 
 ## The amount of items that are currently stored in this slot, to a max of [member Item.max_stack]
-var stack_size: int :
+var quantity: int :
 	set(value):
 		# Validates to ensure an item can never get over its max
 		if item != null:
-			stack_size = clamp(value, 0, item.max_stack)
+			quantity = clamp(value, 0, item.max_stack)
+			if quantity == 0:
+				item = null
+		else:
+			quantity = 0
 
-func _init(p_item = null, p_stack_size = 0):
+func _init(p_item = null, p_quantity = 0):
 	item = p_item
-	stack_size = p_stack_size
+	quantity = p_quantity
 	
 func _get_property_list() -> Array[Dictionary]:
 	return [
 		{
-			name = "stack_size",
+			name = "quantity",
 			type = TYPE_INT,
 			hint = PROPERTY_HINT_RANGE,
 			hint_string = "0, {max}, 1".format({"max": 0 if item == null else item.max_stack})
@@ -41,12 +45,26 @@ func _get_property_list() -> Array[Dictionary]:
 	]
 	
 ## Increments the amount of items in the slot by specified amount, default 1
-func increment(amount: int = 1) -> bool:
-	var starting_value: int = stack_size
-	stack_size += amount
-	return starting_value != stack_size
+func increment(amount: int = 1) -> int:
+	var starting_value: int = quantity
+	if item == null:
+		return amount # nothing was put in
+	var remainder: int      = starting_value + amount - item.max_stack
+	quantity += amount
+	return max(remainder, 0)
+
+## Decrements the amount of items in the slot by specified amount, default 1
+func decrement(amount: int = 1) -> bool:
+	if (amount > quantity):
+		return true
+	quantity -= amount
+	return item != null # returns whether the item still exists after decrementing
 	
 ## Initializes the slot with an item and a stack size, default 1
-func initialize(p_item: Item, p_stack_size: int = 1):
+func initialize(p_item: Item, p_quantity: int = 1):
 	item = p_item
-	stack_size = p_stack_size
+	quantity = p_quantity
+	
+### Matches two seperate slots to see if they are the same
+func slot_match(slot: Slot):
+	return slot.quantity == quantity and slot.item == item

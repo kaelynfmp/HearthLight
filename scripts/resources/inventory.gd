@@ -18,7 +18,7 @@ func insert(item: Item):
 	var found: bool = false
 	if !item_slots.is_empty():
 		for slot in item_slots:
-			if (slot.increment()):
+			if (slot.increment() == 0): # No remainder
 				found = true
 				break
 	if !found:
