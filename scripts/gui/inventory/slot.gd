@@ -6,9 +6,9 @@ extends Panel
 var slot: Slot
 
 var mouse_over: bool = false
-### If you are currently holding right click to make a 'line'
+## If you are currently holding right click to make a 'line'
 var rmb_line: bool = false
-### If your current mouse input involved attempting to pull out a half stack
+## If your current mouse input involved attempting to pull out a half stack
 var just_half_stacked: bool = false
 
 func update():
@@ -28,6 +28,8 @@ func update():
 		item_sprite.visible = false
 		stack_number.visible = false
 
+## On mouse entered, it will check to see if it can distribute slots, pick up slotsor if it can start placing with
+## right click
 func _on_mouse_entered() -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		if Input.is_action_pressed("modifier"):
@@ -51,13 +53,14 @@ func _on_mouse_entered() -> void:
 		
 	mouse_over = true
 	
+## On mouse exit, it will add to the original slot if dragged off from right click for distribution purposes
 func _on_mouse_exited() -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) and !rmb_line:
 		# Will add one to the original slot if dragged off
 		drop_slot_cursor()
 	mouse_over = false
 	
-### On click, do inventory management
+## On click, do inventory management
 func _on_gui_input(event:InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
@@ -95,7 +98,7 @@ func _on_gui_input(event:InputEvent) -> void:
 			if event.is_pressed():
 				pull_slot_cursor(true)
 				
-### Swap the current slot with the cursor slot
+## Swap the current slot with the cursor slot
 func swap_slots_cursor(bypass: bool = false):
 	if slot.item != cursor_slot().item or bypass:
 		var temp_item: Item    = cursor_slot().item
@@ -105,7 +108,7 @@ func swap_slots_cursor(bypass: bool = false):
 	else:
 		merge_slots_cursor()
 	
-### Merge the current slot with the cursor slot
+## Merge the current slot with the cursor slot
 func merge_slots_cursor() -> void:
 	if slot.item == cursor_slot().item:
 		var remainder: int = slot.increment(cursor_slot().quantity)
@@ -117,7 +120,7 @@ func merge_slots_cursor() -> void:
 	else:
 		swap_slots_cursor()
 	
-### Drop one item from cursor into slot
+## Drop one item from cursor into slot
 func drop_slot_cursor(bypass: bool = false) -> void:
 	if (just_half_stacked and not bypass):
 		return
@@ -129,7 +132,7 @@ func drop_slot_cursor(bypass: bool = false) -> void:
 		# If the stack isn't maxed, put one in
 			cursor_slot().decrement()
 		
-### Take one item from slot into cursor
+## Take one item from slot into cursor
 func pull_slot_cursor(bypass: bool = false) -> void:
 	if (just_half_stacked and not bypass):
 		return
@@ -140,7 +143,7 @@ func pull_slot_cursor(bypass: bool = false) -> void:
 			slot.decrement()
 	
 		
-### Pick up half of the stack in the slot
+## Pick up half of the stack in the slot
 func half_slot_cursor_pickup() -> void:
 	if cursor_slot().item != null and slot.item != cursor_slot().item:
 		if slot.item == null:
@@ -162,7 +165,7 @@ func half_slot_cursor_pickup() -> void:
 	else:
 		just_half_stacked = false
 		
-### Returns the globally defined slot that belongs to the cursor
+## Returns the globally defined slot that belongs to the cursor
 func cursor_slot() -> Slot:
 	return GameManager.cursor.slot
 			

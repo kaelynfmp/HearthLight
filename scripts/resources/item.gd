@@ -8,7 +8,7 @@ extends Resource
 @export var texture: Texture2D
 ## Name of the item as it appears in-game.
 @export var name: String
-## In-game description of item.
+## In-game description of the item.
 @export_multiline var description: String
 
 @export_category("Properties")

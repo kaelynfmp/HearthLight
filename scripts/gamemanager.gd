@@ -47,21 +47,21 @@ func send_to_inventory(slot: Slot):
 func set_cursor(setting_cursor: Node2D):
 	cursor = setting_cursor
 	
-### Appends to the slot distributor, which is a list of currently dragged over slots, and will balance out how many items
-### are in them all, with a total quantity and an item
+## Appends to the slot distributor, which is a list of currently dragged over slots, and will balance out how many items
+## are in them all, with a total quantity and an item
 func initialize_slot_distributor(total: int, item: Item):
 	slot_distributor.total = total
 	slot_distributor.item = item
 
-### Appends to the slot distributor, which is a list of currently dragged over slots, and will balance out how many items
-### are in them all
+## Appends to the slot distributor, which is a list of currently dragged over slots, and will balance out how many items
+## are in them all
 func append_slot_distributor(slot: Slot, add: int = 0):
 	if slot not in slot_distributor.slots:
 		slot_distributor.total += add
 		slot_distributor.slots.append(slot)
 		distribute_slots()
 	
-### Distributes the slots evenly among every slot in the slot distributor
+## Distributes the slots evenly among every slot in the slot distributor
 func distribute_slots() -> void:
 	var remainder = slot_distributor.total
 	slot_distributor.distributed.resize(slot_distributor.slots.size())
@@ -76,8 +76,8 @@ func distribute_slots() -> void:
 					slot_distributor.slots[subindex].initialize(slot_distributor.item, slot_distributor.distributed[subindex])
 				return
 	
-### Clears the slot distributor, which is a list of currently dragged over slots, and will balance out how many items
-### are in them all
+## Clears the slot distributor, which is a list of currently dragged over slots, and will balance out how many items
+## are in them all
 func clear_slot_distributor():
 	slot_distributor.total = 0
 	slot_distributor.item = null
