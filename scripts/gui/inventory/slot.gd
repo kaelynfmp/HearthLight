@@ -98,7 +98,7 @@ func _on_gui_input(event:InputEvent) -> void:
 ### Swap the current slot with the cursor slot
 func swap_slots_cursor(bypass: bool = false):
 	if slot.item != cursor_slot().item or bypass:
-		if not slot.locked:
+		if slot.can_insert(cursor_slot().item):
 			var temp_item: Item    = cursor_slot().item
 			var temp_quantity: int = cursor_slot().quantity
 			cursor_slot().initialize(slot.item, slot.quantity)
@@ -109,7 +109,7 @@ func swap_slots_cursor(bypass: bool = false):
 ### Merge the current slot with the cursor slot
 func merge_slots_cursor() -> void:
 	if slot.item == cursor_slot().item:
-		if slot.locked:
+		if not slot.can_insert(slot.item):
 			var remainder: int = cursor_slot().increment(slot.quantity)
 			slot.decrement(slot.quantity - remainder)
 		else:
@@ -127,8 +127,8 @@ func drop_slot_cursor(bypass: bool = false) -> void:
 	if (just_half_stacked and not bypass):
 		return
 	if cursor_slot().item != null and (slot.item == null or slot.item == cursor_slot().item):
-		if slot.locked:
-			var remainder: int = cursor_slot().increment()
+		if not slot.can_insert(cursor_slot().item):
+			var remainder: int = cursor_slot().increment(slot.quantity)
 			slot.decrement(1 - remainder)
 		else:
 			# If there is an item on your cursor when, place exactly one into the slot

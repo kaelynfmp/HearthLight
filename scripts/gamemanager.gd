@@ -10,6 +10,8 @@ var inventories: Array[Inventory] = []
 
 var slot_distributor: Dictionary = {"total": 0, "item": null, "slots": [], "distributed": []} 
 
+const MAX: int = 999999999999999999
+
 func _ready() -> void:
 	pass
 	
@@ -56,7 +58,7 @@ func initialize_slot_distributor(total: int, item: Item):
 ### Appends to the slot distributor, which is a list of currently dragged over slots, and will balance out how many items
 ### are in them all
 func append_slot_distributor(slot: Slot, add: int = 0) -> bool:
-	if slot not in slot_distributor.slots and not slot.locked:
+	if slot not in slot_distributor.slots and slot.can_insert(slot_distributor.item):
 		slot_distributor.total += add
 		slot_distributor.slots.append(slot)
 		distribute_slots()

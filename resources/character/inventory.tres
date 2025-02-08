@@ -1,126 +1,175 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=27 format=3 uid="uid://b1gb7sbupakg4"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=28 format=3 uid="uid://b1gb7sbupakg4"]
 
 [ext_resource type="Script" path="res://scripts/resources/slot.gd" id="2_57fq4"]
 [ext_resource type="Script" path="res://scripts/resources/inventory.gd" id="2_v7s4q"]
+[ext_resource type="Script" path="res://scripts/resources/item.gd" id="3_23jol"]
 
 [sub_resource type="Resource" id="Resource_2ebfp"]
 script = ExtResource("2_57fq4")
 locked = false
+filter = Array[ExtResource("3_23jol")]([])
+bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_ihm3d"]
 script = ExtResource("2_57fq4")
 locked = false
+filter = Array[ExtResource("3_23jol")]([])
+bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_2pfqq"]
 script = ExtResource("2_57fq4")
-locked = null
+locked = false
+filter = Array[ExtResource("3_23jol")]([])
+bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_bmtpm"]
 script = ExtResource("2_57fq4")
-locked = null
+locked = false
+filter = Array[ExtResource("3_23jol")]([])
+bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_482cp"]
 script = ExtResource("2_57fq4")
-locked = null
+locked = false
+filter = Array[ExtResource("3_23jol")]([])
+bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_0wf3g"]
 script = ExtResource("2_57fq4")
-locked = null
+locked = false
+filter = Array[ExtResource("3_23jol")]([])
+bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_5m8ay"]
 script = ExtResource("2_57fq4")
-locked = null
+locked = false
+filter = Array[ExtResource("3_23jol")]([])
+bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_r14wu"]
 script = ExtResource("2_57fq4")
-locked = null
+locked = false
+filter = Array[ExtResource("3_23jol")]([])
+bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_anewh"]
 script = ExtResource("2_57fq4")
-locked = null
+locked = false
+filter = Array[ExtResource("3_23jol")]([])
+bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_rbm8n"]
 script = ExtResource("2_57fq4")
-locked = null
+locked = false
+filter = Array[ExtResource("3_23jol")]([])
+bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_pv1j2"]
 script = ExtResource("2_57fq4")
-locked = null
+locked = false
+filter = Array[ExtResource("3_23jol")]([])
+bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_4xrq3"]
 script = ExtResource("2_57fq4")
-locked = null
+locked = false
+filter = Array[ExtResource("3_23jol")]([])
+bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_176oo"]
 script = ExtResource("2_57fq4")
-locked = null
+locked = false
+filter = Array[ExtResource("3_23jol")]([])
+bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_nnbsl"]
 script = ExtResource("2_57fq4")
-locked = null
+locked = false
+filter = Array[ExtResource("3_23jol")]([])
+bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_ikf74"]
 script = ExtResource("2_57fq4")
-locked = null
+locked = false
+filter = Array[ExtResource("3_23jol")]([])
+bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_o7g7b"]
 script = ExtResource("2_57fq4")
-locked = null
+locked = false
+filter = Array[ExtResource("3_23jol")]([])
+bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_m4cxl"]
 script = ExtResource("2_57fq4")
-locked = null
+locked = false
+filter = Array[ExtResource("3_23jol")]([])
+bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_8vgm8"]
 script = ExtResource("2_57fq4")
-locked = null
+locked = false
+filter = Array[ExtResource("3_23jol")]([])
+bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_khlt8"]
 script = ExtResource("2_57fq4")
-locked = null
+locked = false
+filter = Array[ExtResource("3_23jol")]([])
+bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_ktclp"]
 script = ExtResource("2_57fq4")
-locked = null
+locked = false
+filter = Array[ExtResource("3_23jol")]([])
+bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_wvi37"]
 script = ExtResource("2_57fq4")
-locked = null
+locked = false
+filter = Array[ExtResource("3_23jol")]([])
+bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_1txle"]
 script = ExtResource("2_57fq4")
-locked = null
+locked = false
+filter = Array[ExtResource("3_23jol")]([])
+bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_y3hek"]
 script = ExtResource("2_57fq4")
-locked = null
+locked = false
+filter = Array[ExtResource("3_23jol")]([])
+bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_vw7ak"]
 script = ExtResource("2_57fq4")
-locked = null
+locked = false
+filter = Array[ExtResource("3_23jol")]([])
+bypass_stack = false
 quantity = 0
 
 [resource]
