@@ -10,8 +10,5 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	position = get_global_mouse_position()
 	
-func get_slot():
-	return slot
-	
 func update_slot():
 	slot_panel.update()

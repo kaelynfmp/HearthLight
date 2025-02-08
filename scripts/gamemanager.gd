@@ -47,9 +47,6 @@ func send_to_inventory(slot: Slot):
 func set_cursor(setting_cursor: Node2D):
 	cursor = setting_cursor
 	
-func get_cursor():
-	return cursor
-	
 ### Appends to the slot distributor, which is a list of currently dragged over slots, and will balance out how many items
 ### are in them all, with a total quantity and an item
 func initialize_slot_distributor(total: int, item: Item):

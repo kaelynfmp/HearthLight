@@ -14,7 +14,7 @@ func _init(p_slots: Array[Slot] = []):
 	slots = p_slots
 	GameManager.inventory_changed.connect(on_inventory_changed)
 
-func insert(item: Item, amount=1):
+func insert(item: Item, amount=1) -> bool:
 	var item_slots: Array = slots.filter(func(slot): return slot.item == item)
 	var found: bool       = false
 	if !item_slots.is_empty():

@@ -5,11 +5,11 @@ extends Panel
 
 var slot: Slot
 
-var mouse_over = false
+var mouse_over: bool = false
 ### If you are currently holding right click to make a 'line'
-var rmb_line = false
+var rmb_line: bool = false
 ### If your current mouse input involved attempting to pull out a half stack
-var just_half_stacked = false
+var just_half_stacked: bool = false
 
 func update():
 	if slot != null:
@@ -106,7 +106,7 @@ func swap_slots_cursor(bypass: bool = false):
 		merge_slots_cursor()
 	
 ### Merge the current slot with the cursor slot
-func merge_slots_cursor():
+func merge_slots_cursor() -> void:
 	if slot.item == cursor_slot().item:
 		var remainder: int = slot.increment(cursor_slot().quantity)
 		if remainder == cursor_slot().quantity:
@@ -118,7 +118,7 @@ func merge_slots_cursor():
 		swap_slots_cursor()
 	
 ### Drop one item from cursor into slot
-func drop_slot_cursor(bypass: bool = false):
+func drop_slot_cursor(bypass: bool = false) -> void:
 	if (just_half_stacked and not bypass):
 		return
 	if cursor_slot().item != null and (slot.item == null or slot.item == cursor_slot().item):
@@ -130,7 +130,7 @@ func drop_slot_cursor(bypass: bool = false):
 			cursor_slot().decrement()
 		
 ### Take one item from slot into cursor
-func pull_slot_cursor(bypass: bool = false):
+func pull_slot_cursor(bypass: bool = false) -> void:
 	if (just_half_stacked and not bypass):
 		return
 	if cursor_slot().item == null or (cursor_slot().item == slot.item and not slot.item == null):
@@ -141,7 +141,7 @@ func pull_slot_cursor(bypass: bool = false):
 	
 		
 ### Pick up half of the stack in the slot
-func half_slot_cursor_pickup():
+func half_slot_cursor_pickup() -> void:
 	if cursor_slot().item != null and slot.item != cursor_slot().item:
 		if slot.item == null:
 			# If it's nothing, do nothing to prepare for the drop later
@@ -164,7 +164,7 @@ func half_slot_cursor_pickup():
 		
 ### Returns the globally defined slot that belongs to the cursor
 func cursor_slot() -> Slot:
-	return GameManager.get_cursor().get_slot()
+	return GameManager.cursor.slot
 			
 func set_slot(setting_slot: Slot):
 	if slot:
@@ -172,6 +172,3 @@ func set_slot(setting_slot: Slot):
 	slot = setting_slot
 	slot.update.connect(update)
 	update()
-
-func get_slot():
-	return slot
