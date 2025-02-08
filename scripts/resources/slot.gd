@@ -17,6 +17,8 @@ signal update
 		return item
 	set(value):
 		item = value
+		if value == null:
+			decrement(quantity)
 		notify_property_list_changed()
 
 var prev_max_stack: int = 0

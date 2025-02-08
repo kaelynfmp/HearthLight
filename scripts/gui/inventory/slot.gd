@@ -29,12 +29,26 @@ func update():
 		stack_number.visible = false
 
 func _on_mouse_entered() -> void:
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		if Input.is_action_pressed("modifier"):
+			GameManager.send_to_inventory(slot)
+		else:
+			if cursor_slot().item == null:
+				# Distribute
+				if slot.item == null:
+					GameManager.append_slot_distributor(slot)
+				elif slot.item == GameManager.slot_distributor.item:
+					GameManager.append_slot_distributor(slot, slot.quantity)
+			elif cursor_slot().item == slot.item:
+				# Absorb item
+				slot.initialize(cursor_slot().item, cursor_slot().increment(slot.quantity))
+				# If the cursor slot can't fit it, the slot will keep whatever remains
+		
+	elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		# slide to add one
 		drop_slot_cursor()
 		rmb_line = true
-	if Input.is_action_pressed("modifier") and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		GameManager.send_to_inventory(slot)
+		
 	mouse_over = true
 	
 func _on_mouse_exited() -> void:
@@ -46,14 +60,21 @@ func _on_mouse_exited() -> void:
 ### On click, do inventory management
 func _on_gui_input(event:InputEvent) -> void:
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+		if event.button_index == MOUSE_BUTTON_LEFT:
 			# If the items arent both null, OR if you left click, swap the items
-			if Input.is_action_pressed("modifier"):
-				GameManager.send_to_inventory(slot)
-				pass
+			if event.is_pressed():
+				if Input.is_action_pressed("modifier"):
+					GameManager.send_to_inventory(slot)
+					pass
+				else:
+					if cursor_slot().item != null and slot.item == null:
+						GameManager.initialize_slot_distributor(cursor_slot().quantity, cursor_slot().item)
+						GameManager.append_slot_distributor(slot)
+						cursor_slot().item = null
+					elif cursor_slot().item != null or slot.item != null:
+						swap_slots_cursor()
 			else:
-				if cursor_slot().item != null or slot.item != null:
-					swap_slots_cursor()
+				GameManager.clear_slot_distributor()
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
 			rmb_line = false
 			# Since we previously check to see that the item slot isn't swappable, this will always work

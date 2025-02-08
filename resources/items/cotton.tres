@@ -10,5 +10,5 @@ script = ExtResource("1_u4brp")
 texture = SubResource("PlaceholderTexture2D_psojh")
 name = "Cotton"
 description = ""
-max_stack = 4
+max_stack = 10
 price = 10
