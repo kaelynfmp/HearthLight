@@ -19,6 +19,8 @@ signal update
 		item = value
 		if value == null:
 			decrement(quantity)
+		else:
+			quantity = max(quantity, 1)
 		notify_property_list_changed()
 
 ## Whether or not this slot is locked to inputs.
@@ -26,7 +28,7 @@ signal update
 @export var locked: bool
 
 ## Filter of items that can only be in this slot
-@export var filter: Array[Item]
+@export var item_filter: Array[Item]
 
 ## Whether or not the items max stack limit is bypassed
 @export var bypass_stack: bool
@@ -38,7 +40,7 @@ var quantity: int :
 	set(value):
 		# Validates to ensure an item can never get over its max
 		if item != null:
-			quantity = clamp(value, 0, item.max_stack if not bypass_stack else GameManager.MAX)
+			quantity = clamp(value, 0, item.max_stack if not bypass_stack else GameManager.Items.MAX)
 			if quantity == 0:
 				item = null
 		else:
@@ -55,8 +57,8 @@ func _get_property_list() -> Array[Dictionary]:
 			name = "quantity",
 			type = TYPE_INT,
 			hint = PROPERTY_HINT_RANGE,
-			hint_string = "0, {max}, 1".format({"max": 0 if item == null else (item.max_stack if not bypass_stack else GameManager.MAX)})
-		},
+			hint_string = "0, {max}, 1".format({"max": 0 if item == null else (item.max_stack if not bypass_stack else GameManager.Items.MAX)})
+		}
 	]
 	
 ## Increments the amount of items in the slot by specified amount, default 1
@@ -96,5 +98,5 @@ func can_insert(check_item: Item = null) -> bool:
 	if locked:
 		return false
 	if check_item != null:
-		return (check_item not in filter)
+		return (check_item not in item_filter)
 	return true

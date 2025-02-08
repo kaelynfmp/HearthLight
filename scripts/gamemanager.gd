@@ -10,7 +10,11 @@ var inventories: Array[Inventory] = []
 
 var slot_distributor: Dictionary = {"total": 0, "item": null, "slots": [], "distributed": []} 
 
-const MAX: int = 999999999999999999
+enum Items {
+	MAX = 999999999999999999,
+	MAX_STACK = 999,
+	DEFAULT_STACK = 100
+}
 
 func _ready() -> void:
 	pass

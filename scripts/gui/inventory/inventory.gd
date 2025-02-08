@@ -18,8 +18,4 @@ func _process(_delta: float):
 	visible = is_open
 	
 func on_inventory_changed():
-	var string = ""
-	for slot in inventory.slots:
-		string += str(slot.quantity) + ", "
-	print(string)
 	is_open = !is_open
