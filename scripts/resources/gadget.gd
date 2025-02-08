@@ -22,8 +22,12 @@ extends Resource
 @export var inputs: int
 ## The amount of outputs this gadget can produce
 @export var outputs: int
+## The amount of time it takes to process a recipe
+@export var process_time: float
 
-func _init(p_texture: Texture2D = null, p_name: String = "", p_description: String = "", p_item: Item = null, p_inventory: Inventory = null, p_produces: bool = false, p_inputs: int = 0, p_outputs: int = 0):
+func _init(p_texture: Texture2D = null, p_name: String = "", p_description: String = "", p_item: Item = null, \
+		   p_inventory: Inventory = null, p_produces: bool = false, p_inputs: int = 0, p_outputs: int = 0, \
+		   p_process_time: float = 0.0):
 	texture = p_texture
 	name = p_name
 	description = p_description
@@ -32,3 +36,4 @@ func _init(p_texture: Texture2D = null, p_name: String = "", p_description: Stri
 	produces = p_produces
 	inputs = p_inputs
 	outputs = p_outputs
+	process_time = p_process_time

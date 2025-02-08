@@ -55,11 +55,13 @@ func initialize_slot_distributor(total: int, item: Item):
 
 ### Appends to the slot distributor, which is a list of currently dragged over slots, and will balance out how many items
 ### are in them all
-func append_slot_distributor(slot: Slot, add: int = 0):
-	if slot not in slot_distributor.slots:
+func append_slot_distributor(slot: Slot, add: int = 0) -> bool:
+	if slot not in slot_distributor.slots and not slot.locked:
 		slot_distributor.total += add
 		slot_distributor.slots.append(slot)
 		distribute_slots()
+		return true
+	return false
 	
 ### Distributes the slots evenly among every slot in the slot distributor
 func distribute_slots() -> void:
@@ -68,7 +70,6 @@ func distribute_slots() -> void:
 	slot_distributor.distributed.fill(0)
 	while remainder > 0:
 		for index: int in range(slot_distributor.slots.size()):
-			print(remainder)
 			slot_distributor.distributed[index] += 1
 			remainder -= 1
 			if remainder == 0:

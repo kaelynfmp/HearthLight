@@ -5,98 +5,122 @@
 
 [sub_resource type="Resource" id="Resource_2ebfp"]
 script = ExtResource("2_57fq4")
+locked = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_ihm3d"]
 script = ExtResource("2_57fq4")
+locked = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_2pfqq"]
 script = ExtResource("2_57fq4")
+locked = null
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_bmtpm"]
 script = ExtResource("2_57fq4")
+locked = null
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_482cp"]
 script = ExtResource("2_57fq4")
+locked = null
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_0wf3g"]
 script = ExtResource("2_57fq4")
+locked = null
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_5m8ay"]
 script = ExtResource("2_57fq4")
+locked = null
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_r14wu"]
 script = ExtResource("2_57fq4")
+locked = null
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_anewh"]
 script = ExtResource("2_57fq4")
+locked = null
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_rbm8n"]
 script = ExtResource("2_57fq4")
+locked = null
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_pv1j2"]
 script = ExtResource("2_57fq4")
+locked = null
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_4xrq3"]
 script = ExtResource("2_57fq4")
+locked = null
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_176oo"]
 script = ExtResource("2_57fq4")
+locked = null
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_nnbsl"]
 script = ExtResource("2_57fq4")
+locked = null
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_ikf74"]
 script = ExtResource("2_57fq4")
+locked = null
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_o7g7b"]
 script = ExtResource("2_57fq4")
+locked = null
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_m4cxl"]
 script = ExtResource("2_57fq4")
+locked = null
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_8vgm8"]
 script = ExtResource("2_57fq4")
+locked = null
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_khlt8"]
 script = ExtResource("2_57fq4")
+locked = null
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_ktclp"]
 script = ExtResource("2_57fq4")
+locked = null
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_wvi37"]
 script = ExtResource("2_57fq4")
+locked = null
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_1txle"]
 script = ExtResource("2_57fq4")
+locked = null
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_y3hek"]
 script = ExtResource("2_57fq4")
+locked = null
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_vw7ak"]
 script = ExtResource("2_57fq4")
+locked = null
 quantity = 0
 
 [resource]
