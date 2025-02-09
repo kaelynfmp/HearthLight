@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://b5r8qyahtr3r1"]
+
+[node name="Control" type="Control"]
+custom_minimum_size = Vector2(1920, 329)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -751.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 326.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 193.0
+offset_top = 127.0
+offset_right = 657.0
+offset_bottom = 196.0
+theme_override_font_sizes/font_size = 50
+text = "Sender"
+
+[node name="Label2" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 772.0
+offset_top = 127.0
+offset_right = 1236.0
+offset_bottom = 196.0
+theme_override_font_sizes/font_size = 50
+text = "Subject line"
+
+[node name="Label3" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 1145.0
+offset_top = 127.0
+offset_right = 1609.0
+offset_bottom = 196.0
+theme_override_font_sizes/font_size = 50
+text = "Start of email....."

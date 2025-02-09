@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://de20noymjuwfb"]
+
+[ext_resource type="PackedScene" uid="uid://bchsomrab1tv0" path="res://scenes/Computer Scenes/buyable_item.tscn" id="1_slib6"]
+
+[node name="ShopCategory" type="Control"]
+clip_contents = true
+custom_minimum_size = Vector2(1920, 656)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 656.0
+
+[node name="Category Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 45
+text = "Category"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00104275
+anchor_top = 0.103343
+anchor_right = 0.997914
+anchor_bottom = 0.993921
+offset_bottom = -3.05176e-05
+horizontal_scroll_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="BuyableItem" parent="ScrollContainer/HBoxContainer" instance=ExtResource("1_slib6")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="BuyableItem2" parent="ScrollContainer/HBoxContainer" instance=ExtResource("1_slib6")]
+layout_mode = 2
+
+[node name="BuyableItem3" parent="ScrollContainer/HBoxContainer" instance=ExtResource("1_slib6")]
+layout_mode = 2
+
+[node name="BuyableItem4" parent="ScrollContainer/HBoxContainer" instance=ExtResource("1_slib6")]
+layout_mode = 2
+
+[node name="BuyableItem5" parent="ScrollContainer/HBoxContainer" instance=ExtResource("1_slib6")]
+layout_mode = 2
