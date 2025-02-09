@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6pmbvf4gf2rj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6wuq"]
+bg_color = Color(0.800595, 0.479971, 0.666914, 1)
+
+[node name="Control" type="Control"]
+custom_minimum_size = Vector2(325, 100)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1595.0
+offset_bottom = -980.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(325, 100)
+layout_mode = 0
+offset_right = 325.0
+offset_bottom = 100.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_j6wuq")
+text = "Inbox"
