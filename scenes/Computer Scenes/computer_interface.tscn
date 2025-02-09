@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2wlmdehxae41"]
+[gd_scene load_steps=4 format=3 uid="uid://c2wlmdehxae41"]
 
-[ext_resource type="Script" path="res://scenes/Computer Scenes/inbox_ui.gd" id="1_4oeih"]
 [ext_resource type="PackedScene" uid="uid://b5r8qyahtr3r1" path="res://scenes/Computer Scenes/view_email_button.tscn" id="1_ip337"]
 [ext_resource type="PackedScene" uid="uid://c6pmbvf4gf2rj" path="res://scenes/Computer Scenes/inbox_buttons.tscn" id="2_k1btw"]
 [ext_resource type="PackedScene" uid="uid://de20noymjuwfb" path="res://scenes/Computer Scenes/shop_category.tscn" id="3_mi23s"]
@@ -12,7 +11,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_4oeih")
 
 [node name="Sites" type="TabContainer" parent="."]
 layout_mode = 1
