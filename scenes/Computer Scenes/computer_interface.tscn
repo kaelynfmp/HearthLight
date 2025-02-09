@@ -20,9 +20,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 42
-current_tab = 0
+current_tab = 1
 
 [node name="Emails Tab" type="TabBar" parent="Sites"]
+visible = false
 layout_mode = 2
 drag_to_rearrange_enabled = true
 metadata/_tab_index = 0
@@ -71,40 +72,30 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Botsy Tab" type="TabBar" parent="Sites"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Sites/Botsy Tab"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 3.0
-offset_top = 104.0
-offset_right = 11.0
-offset_bottom = 104.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.993248, 1.00258)
+layout_mode = 0
+offset_right = 1917.0
+offset_bottom = 1008.0
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Sites/Botsy Tab/ScrollContainer"]
 layout_mode = 2
 
-[node name="Padding" type="Control" parent="Sites/Botsy Tab/ScrollContainer/VBoxContainer"]
+[node name="TopMargin" type="Control" parent="Sites/Botsy Tab/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
 [node name="ShopCategory" parent="Sites/Botsy Tab/ScrollContainer/VBoxContainer" instance=ExtResource("3_mi23s")]
+clip_contents = false
 layout_mode = 2
 
 [node name="ShopCategory2" parent="Sites/Botsy Tab/ScrollContainer/VBoxContainer" instance=ExtResource("3_mi23s")]
 layout_mode = 2
 
-[node name="ShopCategory3" parent="Sites/Botsy Tab/ScrollContainer/VBoxContainer" instance=ExtResource("3_mi23s")]
-layout_mode = 2
-
-[node name="Padding2" type="Control" parent="Sites/Botsy Tab/ScrollContainer/VBoxContainer"]
+[node name="Margin" type="Control" parent="Sites/Botsy Tab/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
