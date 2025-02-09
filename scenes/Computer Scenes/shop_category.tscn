@@ -4,48 +4,49 @@
 
 [node name="ShopCategory" type="Control"]
 clip_contents = true
-custom_minimum_size = Vector2(1920, 656)
+custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 656.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Category Label" type="Label" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 29.0
+offset_top = 31.0
+offset_right = 223.0
+offset_bottom = 94.0
 theme_override_font_sizes/font_size = 45
 text = "Category"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.00104275
-anchor_top = 0.103343
-anchor_right = 0.997914
-anchor_bottom = 0.993921
-offset_bottom = -3.05176e-05
-horizontal_scroll_mode = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
-layout_direction = 2
-layout_mode = 2
+[node name="GridContainer" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(0, 1080)
+layout_mode = 0
+offset_left = 83.0
+offset_top = 111.0
+offset_right = 2095.0
+offset_bottom = 1285.0
+scale = Vector2(0.88, 0.84)
 size_flags_horizontal = 6
+size_flags_vertical = 6
+columns = 4
 
-[node name="BuyableItem" parent="ScrollContainer/HBoxContainer" instance=ExtResource("1_slib6")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="BuyableItem2" parent="ScrollContainer/HBoxContainer" instance=ExtResource("1_slib6")]
+[node name="BuyableItem" parent="GridContainer" instance=ExtResource("1_slib6")]
 layout_mode = 2
 
-[node name="BuyableItem3" parent="ScrollContainer/HBoxContainer" instance=ExtResource("1_slib6")]
+[node name="BuyableItem2" parent="GridContainer" instance=ExtResource("1_slib6")]
 layout_mode = 2
 
-[node name="BuyableItem4" parent="ScrollContainer/HBoxContainer" instance=ExtResource("1_slib6")]
+[node name="BuyableItem3" parent="GridContainer" instance=ExtResource("1_slib6")]
 layout_mode = 2
 
-[node name="BuyableItem5" parent="ScrollContainer/HBoxContainer" instance=ExtResource("1_slib6")]
+[node name="BuyableItem4" parent="GridContainer" instance=ExtResource("1_slib6")]
+layout_mode = 2
+
+[node name="BuyableItem5" parent="GridContainer" instance=ExtResource("1_slib6")]
+layout_mode = 2
+
+[node name="BuyableItem6" parent="GridContainer" instance=ExtResource("1_slib6")]
 layout_mode = 2

@@ -5,17 +5,10 @@
 [node name="BuyableItem" type="Control"]
 custom_minimum_size = Vector2(500, 550)
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -275.0
-offset_right = 250.0
-offset_bottom = 323.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 500.0
+offset_bottom = 598.0
+scale = Vector2(0.8, 0.800001)
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
@@ -27,9 +20,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -250.0
-offset_top = -250.0
+offset_top = -299.0
 offset_right = 250.0
-offset_bottom = 300.0
+offset_bottom = 251.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -40,25 +33,43 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -230.0
-offset_right = 200.0
-offset_bottom = 170.0
+offset_left = -166.0
+offset_top = -223.75
+offset_right = 166.0
+offset_bottom = 87.25
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_3hqlb")
 
-[node name="Label" type="Label" parent="Panel/TextureRect"]
+[node name="Description" type="Label" parent="Panel/TextureRect"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -199.0
-offset_top = 31.0
-offset_right = 201.0
-offset_bottom = 66.0
+offset_left = -187.25
+offset_top = 17.7497
+offset_right = 186.75
+offset_bottom = 90.7497
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "An item. that does stuff. and stuff..."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Price" type="Label" parent="Panel/TextureRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -198.5
+offset_top = 105.25
+offset_right = 201.5
+offset_bottom = 140.25
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 25
