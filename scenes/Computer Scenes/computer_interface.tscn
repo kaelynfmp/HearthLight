@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2wlmdehxae41"]
+[gd_scene load_steps=5 format=3 uid="uid://c2wlmdehxae41"]
 
+[ext_resource type="Script" path="res://scenes/Computer Scenes/inbox_ui.gd" id="1_4oeih"]
 [ext_resource type="PackedScene" uid="uid://b5r8qyahtr3r1" path="res://scenes/Computer Scenes/view_email_button.tscn" id="1_ip337"]
 [ext_resource type="PackedScene" uid="uid://c6pmbvf4gf2rj" path="res://scenes/Computer Scenes/inbox_buttons.tscn" id="2_k1btw"]
 [ext_resource type="PackedScene" uid="uid://de20noymjuwfb" path="res://scenes/Computer Scenes/shop_category.tscn" id="3_mi23s"]
@@ -11,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_4oeih")
 
 [node name="Sites" type="TabContainer" parent="."]
 layout_mode = 1
@@ -28,23 +30,23 @@ layout_mode = 2
 drag_to_rearrange_enabled = true
 metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Sites/Emails Tab"]
+[node name="InboxButtonsList" type="VBoxContainer" parent="Sites/Emails Tab"]
 layout_mode = 0
 offset_left = 55.0
 offset_top = 195.0
 offset_right = 382.0
 offset_bottom = 607.0
 
-[node name="InboxButtons" parent="Sites/Emails Tab/VBoxContainer" instance=ExtResource("2_k1btw")]
+[node name="InboxButtons" parent="Sites/Emails Tab/InboxButtonsList" instance=ExtResource("2_k1btw")]
 layout_mode = 2
 
-[node name="InboxButtons2" parent="Sites/Emails Tab/VBoxContainer" instance=ExtResource("2_k1btw")]
+[node name="InboxButtons2" parent="Sites/Emails Tab/InboxButtonsList" instance=ExtResource("2_k1btw")]
 layout_mode = 2
 
-[node name="InboxButtons3" parent="Sites/Emails Tab/VBoxContainer" instance=ExtResource("2_k1btw")]
+[node name="InboxButtons3" parent="Sites/Emails Tab/InboxButtonsList" instance=ExtResource("2_k1btw")]
 layout_mode = 2
 
-[node name="InboxButtons4" parent="Sites/Emails Tab/VBoxContainer" instance=ExtResource("2_k1btw")]
+[node name="InboxButtons4" parent="Sites/Emails Tab/InboxButtonsList" instance=ExtResource("2_k1btw")]
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Sites/Emails Tab"]
@@ -56,19 +58,19 @@ offset_bottom = 1335.0
 scale = Vector2(0.720001, 0.72)
 horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Sites/Emails Tab/ScrollContainer"]
+[node name="EmailsListContainer" type="VBoxContainer" parent="Sites/Emails Tab/ScrollContainer"]
 layout_mode = 2
 
-[node name="Email" parent="Sites/Emails Tab/ScrollContainer/VBoxContainer" instance=ExtResource("1_ip337")]
+[node name="Email" parent="Sites/Emails Tab/ScrollContainer/EmailsListContainer" instance=ExtResource("1_ip337")]
 layout_mode = 2
 
-[node name="Email2" parent="Sites/Emails Tab/ScrollContainer/VBoxContainer" instance=ExtResource("1_ip337")]
+[node name="Email2" parent="Sites/Emails Tab/ScrollContainer/EmailsListContainer" instance=ExtResource("1_ip337")]
 layout_mode = 2
 
-[node name="Email3" parent="Sites/Emails Tab/ScrollContainer/VBoxContainer" instance=ExtResource("1_ip337")]
+[node name="Email3" parent="Sites/Emails Tab/ScrollContainer/EmailsListContainer" instance=ExtResource("1_ip337")]
 layout_mode = 2
 
-[node name="Email4" parent="Sites/Emails Tab/ScrollContainer/VBoxContainer" instance=ExtResource("1_ip337")]
+[node name="Email4" parent="Sites/Emails Tab/ScrollContainer/EmailsListContainer" instance=ExtResource("1_ip337")]
 layout_mode = 2
 
 [node name="Botsy Tab" type="TabBar" parent="Sites"]
@@ -82,20 +84,20 @@ offset_bottom = 1008.0
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Sites/Botsy Tab/ScrollContainer"]
+[node name="ShopCategoriesListContainer" type="VBoxContainer" parent="Sites/Botsy Tab/ScrollContainer"]
 layout_mode = 2
 
-[node name="TopMargin" type="Control" parent="Sites/Botsy Tab/ScrollContainer/VBoxContainer"]
+[node name="TopMargin" type="Control" parent="Sites/Botsy Tab/ScrollContainer/ShopCategoriesListContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="ShopCategory" parent="Sites/Botsy Tab/ScrollContainer/VBoxContainer" instance=ExtResource("3_mi23s")]
+[node name="ShopCategory" parent="Sites/Botsy Tab/ScrollContainer/ShopCategoriesListContainer" instance=ExtResource("3_mi23s")]
 clip_contents = false
 layout_mode = 2
 
-[node name="ShopCategory2" parent="Sites/Botsy Tab/ScrollContainer/VBoxContainer" instance=ExtResource("3_mi23s")]
+[node name="ShopCategory2" parent="Sites/Botsy Tab/ScrollContainer/ShopCategoriesListContainer" instance=ExtResource("3_mi23s")]
 layout_mode = 2
 
-[node name="Margin" type="Control" parent="Sites/Botsy Tab/ScrollContainer/VBoxContainer"]
+[node name="Margin" type="Control" parent="Sites/Botsy Tab/ScrollContainer/ShopCategoriesListContainer"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
