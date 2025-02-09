@@ -44,6 +44,7 @@ folder_colors={
 "res://scenes/gadgets/": "orange",
 "res://scenes/inventory/": "red",
 "res://scripts/": "red",
+"res://scripts/computer/": "blue",
 "res://scripts/environment/": "pink",
 "res://scripts/gui/": "purple",
 "res://scripts/gui/inventory/": "orange",
