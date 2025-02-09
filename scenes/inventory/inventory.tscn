@@ -1,0 +1,107 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6g34by20r0qc"]
+
+[ext_resource type="Script" path="res://scripts/gui/inventory/inventory.gd" id="1_esbpf"]
+[ext_resource type="PackedScene" uid="uid://c5605c3ehaw25" path="res://scenes/inventory/slot.tscn" id="2_80pyi"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_o5cix"]
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1691.0
+offset_bottom = 669.0
+script = ExtResource("1_esbpf")
+
+[node name="Background" type="NinePatchRect" parent="."]
+self_modulate = Color(0.186222, 0.207495, 0.199233, 1)
+layout_mode = 0
+offset_right = 1691.0
+offset_bottom = 669.0
+texture = SubResource("PlaceholderTexture2D_o5cix")
+
+[node name="Slots" type="GridContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -814.0
+offset_top = -304.0
+offset_right = 814.0
+offset_bottom = 304.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 8
+
+[node name="Slot" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+layout_mode = 2
+
+[node name="Slot2" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+layout_mode = 2
+
+[node name="Slot3" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+layout_mode = 2
+
+[node name="Slot4" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+layout_mode = 2
+
+[node name="Slot5" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+layout_mode = 2
+
+[node name="Slot6" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+layout_mode = 2
+
+[node name="Slot7" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+layout_mode = 2
+
+[node name="Slot8" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+layout_mode = 2
+
+[node name="Slot9" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+layout_mode = 2
+
+[node name="Slot10" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+layout_mode = 2
+
+[node name="Slot11" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+layout_mode = 2
+
+[node name="Slot12" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+layout_mode = 2
+
+[node name="Slot13" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+layout_mode = 2
+
+[node name="Slot14" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+layout_mode = 2
+
+[node name="Slot15" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+layout_mode = 2
+
+[node name="Slot16" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+layout_mode = 2
+
+[node name="Slot17" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+layout_mode = 2
+
+[node name="Slot18" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+layout_mode = 2
+
+[node name="Slot19" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+layout_mode = 2
+
+[node name="Slot20" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+layout_mode = 2
+
+[node name="Slot21" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+layout_mode = 2
+
+[node name="Slot22" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+layout_mode = 2
+
+[node name="Slot23" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+layout_mode = 2
+
+[node name="Slot24" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+layout_mode = 2

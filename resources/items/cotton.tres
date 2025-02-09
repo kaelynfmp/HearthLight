@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://c82decsqfayei"]
+
+[ext_resource type="Script" path="res://scripts/resources/item.gd" id="1_u4brp"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_psojh"]
+size = Vector2(150, 150)
+
+[resource]
+script = ExtResource("1_u4brp")
+texture = SubResource("PlaceholderTexture2D_psojh")
+name = "Cotton"
+description = ""
+max_stack = 10
+price = 10
