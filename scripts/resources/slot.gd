@@ -19,7 +19,19 @@ signal update
 		item = value
 		if value == null:
 			decrement(quantity)
+		else:
+			quantity = max(quantity, 1)
 		notify_property_list_changed()
+
+## Whether or not this slot is locked to inputs.
+## NOTE: This slot can still be taken from, but not input into.
+@export var locked: bool
+
+## Filter of items that can only be in this slot
+@export var item_filter: Array[Item]
+
+## Whether or not the items max stack limit is bypassed
+@export var bypass_stack: bool
 
 var prev_max_stack: int = 0
 
@@ -28,15 +40,16 @@ var quantity: int :
 	set(value):
 		# Validates to ensure an item can never get over its max
 		if item != null:
-			quantity = clamp(value, 0, item.max_stack)
+			quantity = clamp(value, 0, item.max_stack if not bypass_stack else GameManager.Items.MAX)
 			if quantity == 0:
 				item = null
 		else:
 			quantity = 0
 
-func _init(p_item = null, p_quantity = 0):
+func _init(p_item: Item = null, p_quantity: int = 0, p_locked: bool = false):
 	item = p_item
 	quantity = p_quantity
+	locked = p_locked
 	
 func _get_property_list() -> Array[Dictionary]:
 	return [
@@ -44,20 +57,22 @@ func _get_property_list() -> Array[Dictionary]:
 			name = "quantity",
 			type = TYPE_INT,
 			hint = PROPERTY_HINT_RANGE,
-			hint_string = "0, {max}, 1".format({"max": 0 if item == null else item.max_stack})
-		},
+			hint_string = "0, {max}, 1".format({"max": 0 if item == null else (item.max_stack if not bypass_stack else GameManager.Items.MAX)})
+		}
 	]
 	
 ## Increments the amount of items in the slot by specified amount, default 1
-func increment(amount: int = 1) -> int:
-	var starting_value: int = quantity
-	if item == null:
-		return amount # nothing was put in
-	var remainder: int      = starting_value + amount - item.max_stack
-	quantity += amount
-	
-	update.emit()
-	return max(remainder, 0)
+func increment(amount: int = 1, bypass: bool = false) -> int:
+	if can_insert() and not bypass:
+		var starting_value: int = quantity
+		if item == null:
+			return amount # nothing was put in
+		var remainder: int      = starting_value + amount - item.max_stack
+		quantity += amount
+		
+		update.emit()
+		return max(remainder, 0)
+	return amount
 
 ## Decrements the amount of items in the slot by specified amount, default 1
 func decrement(amount: int = 1) -> bool:
@@ -68,10 +83,20 @@ func decrement(amount: int = 1) -> bool:
 	return item != null # returns whether the item still exists after decrementing
 	
 ## Initializes the slot with an item and a stack size, default 1
-func initialize(p_item: Item, p_quantity: int = 1):
-	item = p_item
-	quantity = p_quantity
-	update.emit()
-	if item == null:
-		return 0
-	return max(quantity - item.max_stack, 0)
+func initialize(p_item: Item, p_quantity: int = 1, bypass: bool = false) -> int:
+	if can_insert(p_item) and not bypass:
+		item = p_item
+		quantity = p_quantity
+		update.emit()
+		if item == null:
+			return 0
+		return max(quantity - item.max_stack, 0)
+	return p_quantity
+	
+## Whether the item is either locked or the item is not in the filter
+func can_insert(check_item: Item = null) -> bool:
+	if locked:
+		return false
+	if check_item != null:
+		return (check_item not in item_filter)
+	return true

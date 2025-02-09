@@ -13,12 +13,12 @@ extends Resource
 
 @export_category("Properties")
 ## Maximum amount of items that can be stored in one inventory slot.
-@export_range(1, 999) var max_stack: int
+@export_range(1, GameManager.Items.MAX_STACK) var max_stack: int = GameManager.Items.DEFAULT_STACK
 ## Price of an item if you were to sell it as junk. Purchase prices are determined algorithmically based off of this value.
-@export_range(0, 999999999999999999) var price: int
+@export_range(0, GameManager.Items.MAX) var price: int
 
 ## Initialization of the default values
-func _init(p_texture = null, p_name = "", p_desc = "", p_max_stack = 999, p_price = 0):
+func _init(p_texture = null, p_name = "", p_desc = "", p_max_stack = GameManager.Items.DEFAULT_STACK, p_price = 0):
 	texture = p_texture
 	name = p_name
 	description = p_desc

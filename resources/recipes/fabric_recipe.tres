@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=9 format=3 uid="uid://drnnbha7vb1ho"]
+
+[ext_resource type="Script" path="res://scripts/resources/item.gd" id="1_ttuhh"]
+[ext_resource type="Resource" uid="uid://b1benml8tln26" path="res://resources/gadgets/wheel.tres" id="1_w3bnt"]
+[ext_resource type="Script" path="res://scripts/resources/recipe.gd" id="2_l4tvo"]
+[ext_resource type="Script" path="res://scripts/resources/slot.gd" id="2_srkqm"]
+[ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="3_40bce"]
+[ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="5_d6oqo"]
+
+[sub_resource type="Resource" id="Resource_y7i4n"]
+script = ExtResource("2_srkqm")
+item = ExtResource("3_40bce")
+locked = false
+item_filter = Array[ExtResource("1_ttuhh")]([])
+bypass_stack = false
+quantity = 5
+
+[sub_resource type="Resource" id="Resource_yumyf"]
+script = ExtResource("2_srkqm")
+item = ExtResource("5_d6oqo")
+locked = false
+item_filter = Array[ExtResource("1_ttuhh")]([])
+bypass_stack = false
+quantity = 1
+
+[resource]
+script = ExtResource("2_l4tvo")
+gadget = ExtResource("1_w3bnt")
+inputs = Array[ExtResource("2_srkqm")]([SubResource("Resource_y7i4n")])
+outputs = Array[ExtResource("2_srkqm")]([SubResource("Resource_yumyf")])
+processing_multiplier = 1.0

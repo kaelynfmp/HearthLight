@@ -15,7 +15,7 @@ func _init(p_slots: Array[Slot] = []):
 	GameManager.inventory_changed.connect(on_inventory_changed)
 
 func insert(item: Item, amount=1) -> bool:
-	var item_slots: Array = slots.filter(func(slot): return slot.item == item)
+	var item_slots: Array = slots.filter(func(slot): return (slot.item == item and not slot.locked))
 	var found: bool       = false
 	if !item_slots.is_empty():
 		for slot in item_slots:
@@ -26,7 +26,7 @@ func insert(item: Item, amount=1) -> bool:
 			else:
 				amount = remainder
 	if !found:
-		var empty_slots: Array = slots.filter(func(slot): return slot.item == null)
+		var empty_slots: Array = slots.filter(func(slot): return (slot.item == null and not slot.locked))
 		if !empty_slots.is_empty():
 			for empty_slot in empty_slots:
 				var remainder = empty_slot.initialize(item, amount)
