@@ -1,43 +1,107 @@
-[gd_scene format=3 uid="uid://b5r8qyahtr3r1"]
+[gd_scene load_steps=5 format=3 uid="uid://b5r8qyahtr3r1"]
 
-[node name="Control" type="Control"]
-custom_minimum_size = Vector2(1920, 329)
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -751.0
-grow_horizontal = 2
-grow_vertical = 2
+[ext_resource type="Script" path="res://scenes/Computer Scenes/emaildisplay.gd" id="1_cc22d"]
 
-[node name="Panel" type="Panel" parent="."]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tpgae"]
+bg_color = Color(0.700707, 0.59704, 0.72163, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qmtjh"]
+bg_color = Color(0.678532, 0.225584, 0.240335, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_egw1w"]
+bg_color = Color(0.293422, 0.699237, 0.358543, 1)
+
+[node name="EmailButton" type="Button" node_paths=PackedStringArray("sender_label", "subject_label", "sender_dropdown", "subject_dropdown", "blurb_label", "content", "expand_panel")]
+custom_minimum_size = Vector2(1920, 300)
+offset_right = 1921.0
+offset_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_cc22d")
+sender_label = NodePath("Sender")
+subject_label = NodePath("Subject")
+sender_dropdown = NodePath("Panel/SenderDropdown")
+subject_dropdown = NodePath("Panel/SubjectDropdown")
+blurb_label = NodePath("Blurb")
+content = NodePath("Panel/Content")
+expand_panel = NodePath("Panel")
+
+[node name="Sender" type="Label" parent="."]
 layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 326.0
-
-[node name="Sender" type="Label" parent="Panel"]
-layout_mode = 0
-offset_left = 193.0
-offset_top = 127.0
-offset_right = 657.0
-offset_bottom = 196.0
+offset_left = 67.0
+offset_top = 119.0
+offset_right = 531.0
+offset_bottom = 188.0
 theme_override_font_sizes/font_size = 50
 text = "Sender"
 
-[node name="Subject" type="Label" parent="Panel"]
+[node name="Subject" type="Label" parent="."]
 layout_mode = 0
-offset_left = 772.0
-offset_top = 127.0
-offset_right = 1236.0
-offset_bottom = 196.0
+offset_left = 575.0
+offset_top = 117.0
+offset_right = 1039.0
+offset_bottom = 186.0
 theme_override_font_sizes/font_size = 50
 text = "Subject line"
 
-[node name="Blurb" type="Label" parent="Panel"]
+[node name="Blurb" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1145.0
-offset_top = 127.0
-offset_right = 1609.0
-offset_bottom = 196.0
+offset_left = 1435.0
+offset_top = 117.0
+offset_right = 1899.0
+offset_bottom = 186.0
 theme_override_font_sizes/font_size = 50
 text = "Start of email....."
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_top = 300.0
+offset_right = 1920.0
+offset_bottom = 1082.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tpgae")
+
+[node name="Content" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 138.0
+offset_right = 1827.0
+offset_bottom = 775.0
+theme_override_font_sizes/font_size = 30
+text = "This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. "
+autowrap_mode = 3
+
+[node name="SenderDropdown" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 47.0
+offset_right = 744.0
+offset_bottom = 102.0
+theme_override_font_sizes/font_size = 40
+text = "Sender"
+autowrap_mode = 3
+
+[node name="SubjectDropdown" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 769.0
+offset_top = 47.0
+offset_right = 1788.0
+offset_bottom = 160.0
+theme_override_font_sizes/font_size = 40
+text = "Subject but this is a very long subject yes ok cool"
+autowrap_mode = 3
+
+[node name="Decline" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 795.0
+offset_top = 607.0
+offset_right = 929.0
+offset_bottom = 726.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_qmtjh")
+
+[node name="Accept" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 1033.0
+offset_top = 607.0
+offset_right = 1167.0
+offset_bottom = 726.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_egw1w")
