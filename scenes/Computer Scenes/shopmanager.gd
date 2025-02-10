@@ -1,17 +1,16 @@
 extends Node
 
-var emails: Array = []  # Stores all emails
+var emails: Array = [] 
 @onready var categories_list_container: Node = $ScrollContainer/ShopCategoriesListContainer
 @export var item_button_scene: PackedScene
 
-# Change the variable name to avoid conflict with the class name
-@export var item_class : Resource  # Set the type to Resource so it can hold the class
+@export var item_class : Resource 
 
-# Function to add emails
+
 func add_item(sender: String, subject: String, contents: String):
 	pass
-	#var item = item_class.new()  # Create an email object
-	#emails.append(email)  # Add to list
+	#var item = item_class.new()  
+	#emails.append(email) 
 	#display_email(email)  # Add to UI
 
 # adds items to shop ui

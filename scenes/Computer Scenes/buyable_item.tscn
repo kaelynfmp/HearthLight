@@ -57,13 +57,13 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -217.0
-offset_top = 23.75
+offset_top = 16.0
 offset_right = 221.0
-offset_bottom = 96.75
+offset_bottom = 127.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 25
-text = "An item that does a lot of stuff. It can call your mom"
+text = "An item that does a lot of stuff. It can do the coolest things. All of the things."
 horizontal_alignment = 1
 autowrap_mode = 3
 
