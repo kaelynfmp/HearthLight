@@ -44,58 +44,42 @@ func place_boundaries(layer, exclusions=[]):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	var mouse_pos = get_local_mouse_position()
-	var cell_pos = base_layer.local_to_map(mouse_pos)
-	if cell_pos:
-		var lowest_layer = get_lowest_available_tile(cell_pos)
-		var index = lowest_layer["layer_relative_index"]
-		var lowest = lowest_layer["layer_name"]
-		if lowest != "":
-			marker.position = base_layer.map_to_local(cell_pos)
-			marker.z_index = 11 - index
+	if GameManager.is_placing_gadget:
+		var mouse_pos = get_local_mouse_position()
+		var cell_pos = base_layer.local_to_map(mouse_pos)
+		if cell_pos:
+			if (is_base_available(cell_pos)):
+				marker.position = base_layer.map_to_local(cell_pos)
+				marker.z_index = 0
+				marker.visible = true
+			else:
+				marker.visible = false
+	else:
+		marker.visible = false
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+	if GameManager.is_placing_gadget and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		spawnObject()
 		
-func get_lowest_available_tile(cell_pos: Vector2i) -> Dictionary:
+func is_base_available(cell_pos: Vector2i) -> bool:
 	
 	var lowest = ""
 	var lowest_index = 0
-	#for i in range(len(layers) - 1, -1, -1):
-		#var layer_name = layers[i].get_name()
-		#if cell_pos in tile_map[layer_name]:
-			#if (i > 0) and (cell_pos + Vector2i(-1, -1)) not in tile_map[layers[i - 1].get_name()]:
-				#lowest = layer_name
-				#index = i
-				#break
-			#elif i == 0:
-				#lowest = layer_name
-				#index = i
-	#for index in range(len()):
-		#var layer_name = 
-	return {"layer_name": lowest, "layer_relative_index": lowest_index}
+	if cell_pos in tile_map["Base"]:
+		if (cell_pos + Vector2i(-1, -1)) not in tile_map["Layer 1"]:
+			return true
+	return false
 
 func spawnObject() -> void:
 	# Check if in used tile
 	var mouse_pos = get_local_mouse_position()
 	var cell_pos = base_layer.local_to_map(mouse_pos)
-	var lowest_layer = get_lowest_available_tile(cell_pos)
-	var lowest = lowest_layer["layer_name"]
-	var index = lowest_layer["layer_relative_index"]
-
-	if lowest != "":
-		#print(lowest)
+	if (is_base_available(cell_pos)):
 		var gadget = load("res://scenes/gadgets/gadget.tscn")
 		var instance = gadget.instantiate()
 		instance.set_name("Gadget")
-		instance.z_index = 11 - index
+		instance.z_index = 1
 		instance.position = base_layer.map_to_local(cell_pos)
-		var layer = find_child(lowest)
-		layer.add_child(instance)
-		var layer_occupied_index = 10 - index
-		var layer_occupied_name = "Layer %d"% (layer_occupied_index + 1)
-		if layer_occupied_name not in tile_map:
-			tile_map[layer_occupied_name] = []
+		$Base.add_child(instance)
+		var layer_occupied_name = "Layer 1"
 		tile_map[layer_occupied_name].append(cell_pos + Vector2i(-1, -1))
-		#print("Placed")

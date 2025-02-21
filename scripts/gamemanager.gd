@@ -7,6 +7,7 @@ signal inventory_changed
 # Temp
 @export var is_placing_gadget: bool = false
 
+
 var cursor:Node2D
 
 var inventories: Array[Inventory] = []
