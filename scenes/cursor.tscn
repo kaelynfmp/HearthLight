@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://l6lptv3o5juw"]
 
 [ext_resource type="Script" path="res://scripts/gui/inventory/slot.gd" id="1_28phl"]
-[ext_resource type="Script" path="res://scenes/cursor.gd" id="1_gghae"]
+[ext_resource type="Script" path="res://scripts/gui/cursor.gd" id="1_gghae"]
 
 [node name="Cursor" type="Node2D"]
 z_index = 4096

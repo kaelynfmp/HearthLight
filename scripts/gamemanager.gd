@@ -2,7 +2,10 @@ extends Node
 
 signal inventory_changed
 
-@export var inventory:bool = false
+@export var inventory: bool = false
+
+# Temp
+@export var is_placing_gadget: bool = false
 
 var cursor:Node2D
 
@@ -22,6 +25,9 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("inventory"):
 		change_inventory()
+		
+	elif Input.is_action_just_pressed("toggle_placing_mode"):
+		is_placing_gadget = !is_placing_gadget
 
 func change_inventory():
 	if inventory:

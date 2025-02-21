@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://gfvpt16hdue1"]
+[gd_scene load_steps=11 format=4 uid="uid://gfvpt16hdue1"]
 
 [ext_resource type="TileSet" uid="uid://r7x82rdaw80h" path="res://resources/tilesets/room.tres" id="1_lwtf6"]
 [ext_resource type="Script" path="res://scripts/environment/tile_layers.gd" id="1_suw4i"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://b1gb7sbupakg4" path="res://resources/character/inventory.tres" id="6_kcpka"]
 [ext_resource type="PackedScene" uid="uid://c6g34by20r0qc" path="res://scenes/inventory/inventory.tscn" id="8_p13u3"]
 [ext_resource type="PackedScene" uid="uid://l6lptv3o5juw" path="res://scenes/cursor.tscn" id="9_6c5mx"]
+[ext_resource type="Script" path="res://scripts/gui/temp_placing_mode.gd" id="10_8csei"]
 
 [node name="Room" type="Node"]
 
@@ -154,3 +155,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Cursor" parent="HUD" instance=ExtResource("9_6c5mx")]
+
+[node name="TempPlacingMode" type="RichTextLabel" parent="HUD"]
+offset_right = 133.0
+offset_bottom = 40.0
+text = "Placing Mode"
+fit_content = true
+scroll_active = false
+script = ExtResource("10_8csei")
