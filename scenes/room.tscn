@@ -158,7 +158,7 @@ grow_vertical = 2
 [node name="Cursor" parent="HUD" instance=ExtResource("9_6c5mx")]
 
 [node name="TempPlacingMode" type="RichTextLabel" parent="HUD"]
-offset_right = 133.0
+offset_right = 375.0
 offset_bottom = 40.0
 text = "Placing Mode"
 fit_content = true
