@@ -12,6 +12,7 @@ slots = Array[ExtResource("3_1chgp")]([])
 
 [node name="Gadget" type="StaticBody2D"]
 y_sort_enabled = true
+input_pickable = true
 script = ExtResource("1_3434e")
 output_inventory = SubResource("Resource_7bxlh")
 
@@ -38,3 +39,7 @@ scale = Vector2(0.125, 0.125)
 fill_mode = 4
 texture_under = ExtResource("2_sd4ea")
 texture_progress = ExtResource("3_cumj0")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

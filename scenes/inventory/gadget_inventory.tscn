@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5duv1bmvg74c"]
+
+[ext_resource type="Script" path="res://scripts/gui/inventory/inventory.gd" id="1_jd4cj"]
+[ext_resource type="Script" path="res://scripts/gui/inventory/slot.gd" id="2_qfple"]
+
+[node name="GadgetInventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jd4cj")
+
+[node name="Background" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Slots" type="GridContainer" parent="Background"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Slot" type="Control" parent="Background/Slots"]
+layout_mode = 2
+script = ExtResource("2_qfple")
+
+[node name="Slot2" type="Control" parent="Background/Slots"]
+layout_mode = 2
+script = ExtResource("2_qfple")
