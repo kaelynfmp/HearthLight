@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy2rh66qq0462"]
+
+[ext_resource type="PackedScene" uid="uid://bpgllt54k68mw" path="res://addons/recipe_tree/recipe_cable.tscn" id="1_omvv2"]
+
+[node name="RecipeNode" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Cable" parent="." instance=ExtResource("1_omvv2")]
