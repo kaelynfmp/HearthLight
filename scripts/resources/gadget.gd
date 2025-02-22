@@ -12,7 +12,7 @@ extends Resource
 @export_multiline var description: String
 
 @export_category("Properties")
-## Item corresponding ot the gadget for inventory usage
+## Item corresponding to the gadget for inventory usage
 @export var item: Item
 ## Inventory that belongs to the gadget
 @export var inventory: Inventory
