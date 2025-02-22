@@ -5,9 +5,11 @@ extends StaticBody2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Sprite2D.texture = gadget_stats.texture
-	pass # Replace with function body.
+	$Timer.wait_time = gadget_stats.process_time
+	$Timer.start()
+	$TextureProgressBar.visible = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	$TextureProgressBar.value = 100 - ($Timer.time_left / $Timer.wait_time) * 100
