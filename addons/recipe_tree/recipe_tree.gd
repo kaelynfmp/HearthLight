@@ -8,8 +8,6 @@ var gadget_strings:PackedStringArray
 var gadgets:Array[Gadget]
 var item_strings:PackedStringArray
 var items:Array[Item]
-var valid_gadget_nodes:Array[GadgetEditorNode]
-var valid_item_nodes:Array[ItemEditorNode]
 var properties:RecipeTreeProperties = preload("res://addons/recipe_tree/recipe_tree_properties.tres")
 enum TYPE {
 	RECIPE, GADGET, ITEM
@@ -40,8 +38,6 @@ func load_recipes() -> void:
 			new_recipe.gadget_node = null
 			properties.recipe_nodes.append(new_recipe)
 			save_properties()
-	valid_gadget_nodes.clear()
-	valid_item_nodes.clear()
 	for index in range(properties.recipe_nodes.size()):
 		# validate if recipe exists
 		var recipe_node:RecipeEditorNode = properties.recipe_nodes[index]
@@ -84,15 +80,6 @@ func load_recipes() -> void:
 						properties.item_nodes.append(new_item)
 						recipe_node.output_item_nodes.append(new_item)
 						save_properties()
-		# create list of valid gadgets and items
-		valid_gadget_nodes.append(recipe_node.gadget_node)
-		for item_node:ItemEditorNode in recipe_node.input_item_nodes:
-			valid_item_nodes.append(item_node)
-		for item_node:ItemEditorNode in recipe_node.output_item_nodes:
-			valid_item_nodes.append(item_node)
-	# re-validate now that valid lists have been made
-	validate_gadgets()
-	validate_items()
 
 func load_gadgets() -> void:
 	gadget_strings.clear()
@@ -107,7 +94,7 @@ func validate_gadgets() -> void:
 	var remove_gadgets:Array = []
 	for index in range(properties.gadget_nodes.size()):
 		var gadget_node:GadgetEditorNode = properties.gadget_nodes[index]
-		if gadget_node.gadget not in gadgets or gadget_node not in valid_gadget_nodes:
+		if gadget_node.gadget not in gadgets:
 			# if the gadget isn't a resoruce, or if it isn't valid (the recipe no longer exists)
 			gadget_node.clear()
 			remove_gadgets.append(index)
@@ -129,7 +116,7 @@ func validate_items() -> void:
 	var remove_items:Array = []
 	for index in range(properties.item_nodes.size()):
 		var item_node:ItemEditorNode = properties.item_nodes[index]
-		if item_node.item not in items or item_node not in valid_item_nodes:
+		if item_node.item not in items:
 			# if the item isn't a resource, or if it isn't valid (the recipe no longer exists)
 			item_node.clear()
 			remove_items.append(index) # can't remove while iterating through list
