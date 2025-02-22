@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="RecipeTreeProperties" load_steps=13 format=3 uid="uid://bayqmo2156mc4"]
+
+[ext_resource type="Script" path="res://addons/recipe_tree/gadget_editor_node.gd" id="1_5e5y2"]
+[ext_resource type="Script" path="res://addons/recipe_tree/recipe_tree_properties.gd" id="2_e0emm"]
+[ext_resource type="Script" path="res://addons/recipe_tree/recipe_editor_node.gd" id="2_hx4k4"]
+[ext_resource type="Resource" uid="uid://b1benml8tln26" path="res://resources/gadgets/wheel.tres" id="2_iulyt"]
+[ext_resource type="Script" path="res://addons/recipe_tree/item_editor_node.gd" id="3_xi7dl"]
+[ext_resource type="Resource" uid="uid://drnnbha7vb1ho" path="res://resources/recipes/fabric_recipe.tres" id="4_7o6i3"]
+[ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="5_cjmv7"]
+[ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="5_na7c0"]
+
+[sub_resource type="Resource" id="Resource_g2tl8"]
+script = ExtResource("1_5e5y2")
+gadget = ExtResource("2_iulyt")
+x = 0
+y = 0
+
+[sub_resource type="Resource" id="Resource_q5nwd"]
+script = ExtResource("3_xi7dl")
+item = ExtResource("5_na7c0")
+x = 0
+y = 0
+
+[sub_resource type="Resource" id="Resource_bex3i"]
+script = ExtResource("3_xi7dl")
+item = ExtResource("5_cjmv7")
+x = 0
+y = 0
+
+[sub_resource type="Resource" id="Resource_ihqei"]
+script = ExtResource("2_hx4k4")
+recipe = ExtResource("4_7o6i3")
+x = 100
+y = 100
+gadget_node = SubResource("Resource_g2tl8")
+input_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_q5nwd")])
+output_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_bex3i")])
+
+[resource]
+script = ExtResource("2_e0emm")
+recipe_nodes = Array[ExtResource("2_hx4k4")]([SubResource("Resource_ihqei")])
+gadget_nodes = Array[ExtResource("1_5e5y2")]([SubResource("Resource_g2tl8")])
+item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_q5nwd"), SubResource("Resource_bex3i")])
