@@ -63,7 +63,6 @@ func _get_property_list() -> Array[Dictionary]:
 	
 ## Increments the amount of items in the slot by specified amount, default 1
 func increment(amount: int = 1, bypass: bool = false) -> int:
-	print("inc", amount)
 	if can_insert() and not bypass:
 		var starting_value: int = quantity
 		if item == null:
@@ -85,7 +84,6 @@ func decrement(amount: int = 1) -> bool:
 	
 ## Initializes the slot with an item and a stack size, default 1
 func initialize(p_item: Item, p_quantity: int = 1, bypass: bool = false) -> int:
-	print("initialize ", p_quantity)
 	if can_insert(p_item) and not bypass:
 		item = p_item
 		quantity = p_quantity
