@@ -19,17 +19,20 @@ func _ready() -> void:
 	$Timer.timeout.connect(add_item_to_inventory)
 	$TextureProgressBar.visible = false
 	$TextureProgressBar.value = 0
-	$Timer.start()
+	$TextureProgressBar.max_value = $Timer.wait_time
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if is_holding:
-		$Timer.paused = false
+		$TextureProgressBar.value += 1*delta
 	else:
-		$Timer.paused = true
+		$TextureProgressBar.value -= .8*delta
 		
-	$TextureProgressBar.value = 100 - ($Timer.time_left / $Timer.wait_time) * 100
+	if $TextureProgressBar.value >= $TextureProgressBar.max_value:
+		add_item_to_inventory()
+		$TextureProgressBar.value = 0
+	#$TextureProgressBar.value = 100 - ($Timer.time_left / $Timer.wait_time) * 100
 	
 func add_item_to_inventory() -> void:
 	var item: Item = load("res://resources/items/cotton.tres")
