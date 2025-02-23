@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cy2rh66qq0462"]
+[gd_scene load_steps=5 format=3 uid="uid://cy2rh66qq0462"]
 
-[ext_resource type="PackedScene" uid="uid://bpgllt54k68mw" path="res://addons/recipe_tree/recipe_cable.tscn" id="1_omvv2"]
+[ext_resource type="PackedScene" uid="uid://c88opsp0c7nm" path="res://scenes/ui_base.tscn" id="1_2yn8q"]
+[ext_resource type="PackedScene" uid="uid://c5605c3ehaw25" path="res://scenes/inventory/slot.tscn" id="2_3qwl6"]
+[ext_resource type="Texture2D" uid="uid://bpk81ck7j3l2c" path="res://resources/sprites/progressbar.png" id="3_r57nn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ed2hv"]
 
 [node name="RecipeNode" type="Control"]
 layout_mode = 3
@@ -10,4 +14,49 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Cable" parent="." instance=ExtResource("1_omvv2")]
+[node name="UI Base" parent="." instance=ExtResource("1_2yn8q")]
+layout_mode = 1
+scale_factor = 0.25
+
+[node name="Contained" type="HBoxContainer" parent="UI Base"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -394.5
+offset_top = -100.0
+offset_right = 394.5
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="UI Base/Contained"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Slot" parent="UI Base/Contained/PanelContainer2" instance=ExtResource("2_3qwl6")]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UI Base/Contained"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ed2hv")
+
+[node name="Slot2" parent="UI Base/Contained/PanelContainer" instance=ExtResource("2_3qwl6")]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="PanelContainer3" type="PanelContainer" parent="UI Base/Contained"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Slot3" parent="UI Base/Contained/PanelContainer3" instance=ExtResource("2_3qwl6")]
+layout_mode = 2
+
+[node name="Creates" type="TextureRect" parent="UI Base/Contained"]
+layout_mode = 2
+texture = ExtResource("3_r57nn")
+stretch_mode = 3

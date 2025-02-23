@@ -1,4 +1,4 @@
-﻿class_name RecipeTreeProperties
+class_name RecipeTreeProperties
 
 extends Resource
 

@@ -1,7 +1,7 @@
-extends Panel
+extends PanelContainer
 
-@onready var item_sprite: Sprite2D = $ItemContainer/ItemPanel/Item
-@onready var stack_number: Label = $ItemContainer/ItemPanel/Stack
+@onready var item_sprite: Sprite2D = $SlotPanel/ItemContainer/ItemPanel/Item
+@onready var stack_number: Label = $SlotPanel/Stack
 
 var slot: Slot
 
@@ -44,22 +44,22 @@ func _on_mouse_entered() -> void:
 			elif cursor_slot().item == slot.item:
 				# Absorb item
 				slot.initialize(cursor_slot().item, cursor_slot().increment(slot.quantity))
-				# If the cursor slot can't fit it, the slot will keep whatever remains
-		
+		# If the cursor slot can't fit it, the slot will keep whatever remains
+
 	elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		# slide to add one
 		drop_slot_cursor()
 		rmb_line = true
-		
+
 	mouse_over = true
-	
+
 ## On mouse exit, it will add to the original slot if dragged off from right click for distribution purposes
 func _on_mouse_exited() -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) and !rmb_line:
 		# Will add one to the original slot if dragged off
 		drop_slot_cursor()
 	mouse_over = false
-	
+
 ## On click, do inventory management
 func _on_gui_input(event:InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -97,7 +97,7 @@ func _on_gui_input(event:InputEvent) -> void:
 			# Wheel down takes
 			if event.is_pressed():
 				pull_slot_cursor(true)
-				
+
 ## Swap the current slot with the cursor slot
 func swap_slots_cursor(bypass: bool = false):
 	if slot.item != cursor_slot().item or bypass:
@@ -108,7 +108,7 @@ func swap_slots_cursor(bypass: bool = false):
 			slot.initialize(temp_item, temp_quantity)
 	else:
 		merge_slots_cursor()
-	
+
 ## Merge the current slot with the cursor slot
 func merge_slots_cursor() -> void:
 	if slot.item == cursor_slot().item:
@@ -124,7 +124,7 @@ func merge_slots_cursor() -> void:
 			cursor_slot().decrement(cursor_slot().quantity - remainder)
 	else:
 		swap_slots_cursor()
-	
+
 ## Drop one item from cursor into slot
 func drop_slot_cursor(bypass: bool = false) -> void:
 	if (just_half_stacked and not bypass):
@@ -134,24 +134,22 @@ func drop_slot_cursor(bypass: bool = false) -> void:
 			var remainder: int = cursor_slot().increment(slot.quantity)
 			slot.decrement(1 - remainder)
 		else:
-			# If there is an item on your cursor when, place exactly one into the slot
+			# If there is an item on your cursor when you click, place exactly one into the slot
 			# It also ensures that the slot is either empty or populated with something stackable
-			slot.item = cursor_slot().item # It will always either be empty or the item already anyways
-			if (slot.increment() == 0): # No remainder
-			# If the stack isn't maxed, put one in
+			if (slot.initialize(cursor_slot().item) == 0): # No remainder
+				# If the stack isn't maxed, put one in
 				cursor_slot().decrement()
-		
+
 ## Take one item from slot into cursor
 func pull_slot_cursor(bypass: bool = false) -> void:
 	if (just_half_stacked and not bypass):
 		return
 	if cursor_slot().item == null or (cursor_slot().item == slot.item and not slot.item == null):
-		# If you either have nothing, or have the item you're trying to steal (and it exists)
-		cursor_slot().item = slot.item # It will always either be empty or the item already anyways
-		if (cursor_slot().increment() == 0): # No remainder
+		# If you either have nothing, or have the item you're trying to take (and it exists)
+		if (cursor_slot().initialize(slot.item) == 0): # No remainder
 			slot.decrement()
-	
-		
+
+
 ## Pick up half of the stack in the slot
 func half_slot_cursor_pickup() -> void:
 	if cursor_slot().item != null and slot.item != cursor_slot().item:
@@ -167,17 +165,16 @@ func half_slot_cursor_pickup() -> void:
 		else:
 			var temp_quantity: float = float(slot.quantity)
 			slot.decrement(ceil(temp_quantity/2))
-			cursor_slot().item = slot.item
 			# There hopefully shouldn't ever possibly be a remainder condition but, just in case
-			var remainder: int = cursor_slot().increment(ceil(temp_quantity/2))
+			var remainder: int = cursor_slot().initialize(slot.item, ceil(temp_quantity/2))
 			slot.increment(remainder)
 	else:
 		just_half_stacked = false
-		
+
 ## Returns the globally defined slot that belongs to the cursor
 func cursor_slot() -> Slot:
 	return GameManager.cursor.slot
-			
+
 func set_slot(setting_slot: Slot):
 	if slot:
 		slot.update.disconnect(update)

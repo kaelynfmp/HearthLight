@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var slot: Slot = preload("res://resources/character/cursorslot.tres")
-@onready var slot_panel:Panel = $Slot
+@onready var slot_panel:PanelContainer = $Slot
 
 func _ready() -> void:
 	GameManager.set_cursor(self)

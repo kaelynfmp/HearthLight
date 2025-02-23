@@ -16,12 +16,15 @@ point_count = 2
 script = ExtResource("1_cwhcs")
 
 [node name="Origin" type="MeshInstance2D" parent="."]
+position = Vector2(395, 337)
 mesh = SubResource("SphereMesh_6qk32")
 
 [node name="Curve" type="Path2D" parent="."]
+position = Vector2(0, -1)
 curve = SubResource("Curve2D_ec0h6")
 
 [node name="Line" type="Line2D" parent="."]
 
 [node name="End" type="MeshInstance2D" parent="."]
+position = Vector2(534, 421)
 mesh = SubResource("SphereMesh_6qk32")
