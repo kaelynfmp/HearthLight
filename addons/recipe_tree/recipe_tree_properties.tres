@@ -9,34 +9,35 @@
 [ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="5_cjmv7"]
 [ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="5_na7c0"]
 
-[sub_resource type="Resource" id="Resource_g2tl8"]
+[sub_resource type="Resource" id="Resource_a5shk"]
 script = ExtResource("1_5e5y2")
 gadget = ExtResource("2_iulyt")
-x = 2320
-y = -700
+x = -740
+y = 80
 
-[sub_resource type="Resource" id="Resource_q5nwd"]
+[sub_resource type="Resource" id="Resource_8vxem"]
 script = ExtResource("3_xi7dl")
 item = ExtResource("5_na7c0")
-x = -100
-y = -880
+x = -520
+y = -540
 
-[sub_resource type="Resource" id="Resource_bex3i"]
+[sub_resource type="Resource" id="Resource_8b5dr"]
 script = ExtResource("3_xi7dl")
 item = ExtResource("5_cjmv7")
-x = 2420
-y = 240
+x = -520
+y = 620
 
-[sub_resource type="Resource" id="Resource_kp0lv"]
+[sub_resource type="Resource" id="Resource_hpeo7"]
 script = ExtResource("2_hx4k4")
 recipe = ExtResource("4_7o6i3")
-x = 280
-y = -280
-input_item_nodes = Array[ExtResource("3_xi7dl")]([])
-output_item_nodes = Array[ExtResource("3_xi7dl")]([])
+x = 60
+y = -180
+gadget_node = SubResource("Resource_a5shk")
+input_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_8vxem")])
+output_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_8b5dr")])
 
 [resource]
 script = ExtResource("2_e0emm")
-recipe_nodes = Array[ExtResource("2_hx4k4")]([SubResource("Resource_kp0lv")])
-gadget_nodes = Array[ExtResource("1_5e5y2")]([SubResource("Resource_g2tl8")])
-item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_q5nwd"), SubResource("Resource_bex3i")])
+recipe_nodes = Array[ExtResource("2_hx4k4")]([SubResource("Resource_hpeo7")])
+gadget_nodes = Array[ExtResource("1_5e5y2")]([SubResource("Resource_a5shk")])
+item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_8vxem"), SubResource("Resource_8b5dr")])

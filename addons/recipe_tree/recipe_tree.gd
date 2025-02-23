@@ -22,16 +22,71 @@ func _enter_tree() -> void:
 	control = preload("res://addons/recipe_tree/recipe_tree.tscn").instantiate()
 	add_control_to_container(CONTAINER_CANVAS_EDITOR_SIDE_RIGHT, control)
 	graph_edit = control.find_child("GraphEdit")
+	graph_edit.connection_request.connect(_on_request)
 	recipe_node = load("res://addons/recipe_tree/recipe_node.tscn")
 	gadget_node = load("res://addons/recipe_tree/gadget_node.tscn")
 	item_node = load("res://addons/recipe_tree/item_node.tscn")
 	load_recipes()
 	EditorInterface.get_resource_filesystem().filesystem_changed.connect(load_recipes)
 	
+func _on_request(from, from_port, to, to_port):
+	graph_edit.connect_node(str(from), from_port, str(to), to_port)
+
 func _process(_delta:float) -> void:
 	populate_nodes("recipe_node", properties.recipe_nodes, recipe_node)
 	populate_nodes("gadget_node", properties.gadget_nodes, gadget_node)
 	populate_nodes("item_node", properties.item_nodes, item_node)
+	var graph_nodes:Array = graph_edit.get_children().filter(func(child): return child is GraphNode)
+	for node in graph_nodes:
+		if "recipe_node" in node:
+			var connections:Array = graph_edit.get_connection_list().filter(func(connection): return connection.from_node == node.get_name())
+			var found_inputs:Array
+			var found_outputs:Array
+			var found_gadgets:Array
+			if node.get_input_port_count() >= node.recipe_node.recipe.inputs.size() + node.recipe_node.output_item_nodes.size() + 1:
+			# If this isn't true, then the nodes have yet to be initialized, so no point in doing anything involving them
+				for connection in connections:
+					var from_node:Node = graph_edit.find_child(connection.from_node)
+					if "item_node" not in from_node or from_node.item_node == null:
+						if "gadget_node" not in from_node or from_node.gadget_node == null: continue
+						if from_node.gadget_node != node.recipe_node.gadget_node:
+							graph_edit.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
+						else:
+							found_gadgets.append(from_node.gadget_node)
+					else:
+						if from_node.item_node not in node.recipe_node.input_nodes and from_node.item_node not in node.recipe_node.output_nodes:
+							graph_edit.disconnect_node(connection.from_node, connection.from_port, connection.from_node, connection.from_port)
+						elif from_node.item_node in node.recipe_node.input_item_nodes:
+							found_inputs.append(from_node.item_node)
+						elif from_node.item_node in node.recipe_node.output_item_nodes:
+							found_outputs.append(from_node.item_node)
+				
+				for index in range(node.recipe_node.input_item_nodes.size()):
+					# Connect all nodes that are connected in the resource
+					var input = node.recipe_node.input_item_nodes[index]
+					var connectable:Array = graph_edit.get_children().filter(func(child_node): return "item_node" in child_node and child_node.item_node == input)
+					if connectable.is_empty(): continue
+					var to_connect = connectable[0]
+					if input not in found_inputs:
+						graph_edit.connect_node(to_connect.get_name(), 0, node.get_name(), index)
+	
+				var gadget = node.recipe_node.gadget_node
+				var gadget_connectable:Array = graph_edit.get_children().filter(func(child_node): return "gadget_node" in child_node and child_node.gadget_node == gadget)
+				if !gadget_connectable.is_empty():
+					var to_connect = gadget_connectable[0]
+					if gadget not in found_gadgets:
+						graph_edit.connect_node(to_connect.get_name(), 0, node.get_name(), node.recipe_node.recipe.inputs.size())
+				
+				for index in range(node.recipe_node.output_item_nodes.size()):
+					var output = node.recipe_node.output_item_nodes[index]
+					var connectable:Array = graph_edit.get_children().filter(func(child_node): return "item_node" in child_node and child_node.item_node == output)
+					if connectable.is_empty(): continue
+					var to_connect = connectable[0]
+					if output not in found_outputs:
+						# Cumulative, so plus input nodes size. Plus 1 to account for gadget
+						graph_edit.connect_node(to_connect.get_name(), 0, node.get_name(), index + node.recipe_node.recipe.inputs.size() + 1)
+
+		
 
 ## Arbitrarily populate nodes with a given variable name for subnode (recipe_node, graph_node, item_node)
 ## and a list of the property nodes that correspond, and finally with the scene that will be made

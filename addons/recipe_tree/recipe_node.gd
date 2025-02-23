@@ -7,7 +7,7 @@ signal moved(to:Vector2, recipe_node:RecipeEditorNode)
 
 func _ready() -> void:
 	pass
-	
+
 func _process(_delta: float) -> void:
 	if recipe_node != null:
 		if recipe_node.recipe == null:
@@ -16,12 +16,17 @@ func _process(_delta: float) -> void:
 		if contained != null:
 			# Slots work by determining how many slots a graphnode has by how many Control node children they have
 			# . . . there is a reason this is getting reworked soon.
+			var re_init_slots:bool = false # this is going to go through, and if it ever gets set to true, then
+			# everything past it is going to need to re-initialize their orders. this is, of course, because slots
+			# are /in order/, so you need to reconstruct the order every time you add to it
+			# . . . for some reason.
 			var input_slot_nodes:Array = get_children().filter(func(child): return "InputSlot" in child.get_name())
 			if input_slot_nodes.size() != recipe_node.recipe.inputs.size():
+				re_init_slots = true
 				for child in input_slot_nodes:
 					remove_child(child)
 			var input_children:Array = contained.get_children().filter(func(child): return "Input" in child.get_name())
-			if recipe_node.recipe.inputs.size() != input_children.size():
+			if re_init_slots or recipe_node.recipe.inputs.size() != input_children.size():
 				# If the amount of children that are contained (only accounting for ones that have 'input' in the name) aren't
 				# equal to the correct amount of inputs in the recipe
 				for child:PanelContainer in input_children:
@@ -49,21 +54,26 @@ func _process(_delta: float) -> void:
 						new_slot.size_flags_vertical = SIZE_SHRINK_CENTER
 					contained.add_child(new_slot)
 					contained.move_child(new_slot, index)
-			var gadget_children:Array = get_children().filter(func(child): return "GadgetGraphSlot" in child.get_name())
-			if gadget_children.is_empty():
+			var gadget_slot_nodes:Array = get_children().filter(func(child): return "GadgetGraphSlot" in child.get_name())
+			if re_init_slots or gadget_slot_nodes.is_empty():
+				re_init_slots = true
+				for child in gadget_slot_nodes:
+					remove_child(child)
 				var new_node = Control.new()
 				new_node.set_name("GadgetGraphSlot")
 				new_node.custom_minimum_size = slot_distance # Distance between slots
 				add_child(new_node)
 				# + 1 here because we're ignoring index 0 because it's my UI node
 				# Also + input size because it is cumulative
-				set_slot(recipe_node.recipe.inputs.size() + 1, false, 0, Color(), true, 1, Color.hex(0xffae76ff), null, load("res://addons/recipe_tree/output_slot.tres"))
+				set_slot(recipe_node.recipe.inputs.size() + 1, true, 1, Color.hex(0xffae76ff), false, 0, Color(), load("res://addons/recipe_tree/input_slot.tres"))
+
 			var output_slot_nodes:Array = get_children().filter(func(child): return "OutputSlot" in child.get_name())
-			if output_slot_nodes.size() != recipe_node.recipe.outputs.size():
+			if re_init_slots or output_slot_nodes.size() != recipe_node.recipe.outputs.size():
+				re_init_slots = true
 				for child in output_slot_nodes:
 					remove_child(child)
 			var output_children:Array = contained.get_children().filter(func(child): return "Output" in child.get_name())
-			if recipe_node.recipe.outputs.size() != output_children.size():
+			if re_init_slots or recipe_node.recipe.outputs.size() != output_children.size():
 				# If the amount of children that are contained (only accounting for ones that have 'input' in the name) aren't
 				# equal to the correct amount of inputs in the recipe
 				for child:PanelContainer in output_children:
@@ -77,7 +87,7 @@ func _process(_delta: float) -> void:
 					add_child(new_node)
 					# Index + 2 here because we're ignoring index 0 because it's my UI node, and the gadget node is in the middle
 					# Also + input size because it is cumulative
-					set_slot(index + 2 + recipe_node.recipe.inputs.size(), false, 0, Color(), true, 2, Color.hex(0x76ff9aff), null, load("res://addons/recipe_tree/output_slot.tres"))
+					set_slot(index + 2 + recipe_node.recipe.inputs.size(), true, 0, Color.hex(0x76ff9aff), false, 0, Color(), load("res://addons/recipe_tree/input_slot.tres"))
 
 					var output:Slot = outputs[index]
 					var new_slot:PanelContainer = load("res://scenes/inventory/output_slot.tscn").instantiate()
@@ -101,6 +111,9 @@ func _process(_delta: float) -> void:
 						new_slot.item = recipe_node.recipe.gadget.item
 						gadget_slot.set_slot(new_slot)
 						gadget_slot.update()
-						
+			if re_init_slots:
+				var graph_edit:GraphEdit = get_parent()
+				graph_edit.clear_connections() # Re-analyze the connections since the slots changed
+
 func _on_dragged(from:Vector2, to:Vector2) -> void:
 	moved.emit(to, recipe_node)

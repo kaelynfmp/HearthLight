@@ -32,6 +32,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+grid_pattern = 1
+right_disconnects = true
+zoom = 0.7
+zoom_min = 0.1
+zoom_max = 0.7
+show_arrange_button = false
 
 [node name="Button Overlay" type="Panel" parent="GraphEdit"]
 z_index = 2

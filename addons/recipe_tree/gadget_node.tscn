@@ -12,10 +12,10 @@ gradient = SubResource("Gradient_3fidg")
 radius = 20.0
 height = 40.0
 
-[sub_resource type="MeshTexture" id="MeshTexture_kju0d"]
+[sub_resource type="MeshTexture" id="MeshTexture_yrt0c"]
 mesh = SubResource("SphereMesh_6ucxi")
 base_texture = SubResource("GradientTexture1D_nl2u2")
-image_size = Vector2(20, 40)
+image_size = Vector2(-20, 40)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_eel5e"]
 size = Vector2(200, 200)
@@ -25,14 +25,14 @@ offset_right = 236.0
 offset_bottom = 255.0
 size_flags_vertical = 4
 title = "Gadget"
-slot/0/left_enabled = true
-slot/0/left_type = 1
+slot/0/left_enabled = false
+slot/0/left_type = 0
 slot/0/left_color = Color(1, 0.682353, 0.462745, 1)
-slot/0/left_icon = SubResource("MeshTexture_kju0d")
-slot/0/right_enabled = false
-slot/0/right_type = 0
-slot/0/right_color = Color(1, 1, 1, 1)
-slot/0/right_icon = null
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 1
+slot/0/right_color = Color(1, 0.682353, 0.462745, 1)
+slot/0/right_icon = SubResource("MeshTexture_yrt0c")
 slot/0/draw_stylebox = true
 script = ExtResource("1_3ryx3")
 
