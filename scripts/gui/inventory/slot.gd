@@ -136,7 +136,8 @@ func drop_slot_cursor(bypass: bool = false) -> void:
 		else:
 			# If there is an item on your cursor when you click, place exactly one into the slot
 			# It also ensures that the slot is either empty or populated with something stackable
-			if (slot.initialize(cursor_slot().item) == 0): # No remainder
+			if (slot.initialize(cursor_slot().item, slot.quantity + 1) == 0): # No remainder
+				# We initialize here instead of incrementing becasue we need to ensure the item is correct if it's empty
 				# If the stack isn't maxed, put one in
 				cursor_slot().decrement()
 
@@ -146,7 +147,8 @@ func pull_slot_cursor(bypass: bool = false) -> void:
 		return
 	if cursor_slot().item == null or (cursor_slot().item == slot.item and not slot.item == null):
 		# If you either have nothing, or have the item you're trying to take (and it exists)
-		if (cursor_slot().initialize(slot.item) == 0): # No remainder
+		if (cursor_slot().initialize(slot.item, cursor_slot().quantity + 1) == 0): # No remainder
+			# We initialize here instead of incrementing becasue we need to ensure the item is correct if it's empty
 			slot.decrement()
 
 
