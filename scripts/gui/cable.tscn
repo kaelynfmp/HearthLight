@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bpgllt54k68mw"]
 
-[ext_resource type="Script" path="res://addons/recipe_tree/cable.gd" id="1_cwhcs"]
+[ext_resource type="Script" path="res://scripts/gui/cable.gd" id="1_240sm"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_6qk32"]
 radius = 15.0
@@ -13,7 +13,7 @@ _data = {
 point_count = 2
 
 [node name="Cable" type="Node2D"]
-script = ExtResource("1_cwhcs")
+script = ExtResource("1_240sm")
 
 [node name="Origin" type="MeshInstance2D" parent="."]
 position = Vector2(395, 337)

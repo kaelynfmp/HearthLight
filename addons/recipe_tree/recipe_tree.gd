@@ -12,13 +12,63 @@ var properties:RecipeTreeProperties = preload("res://addons/recipe_tree/recipe_t
 enum TYPE {
 	RECIPE, GADGET, ITEM
 }
+@onready var graph_edit:GraphEdit
+@onready var recipe_node:PackedScene
+@onready var gadget_node:PackedScene
+@onready var item_node:PackedScene
+
 
 func _enter_tree() -> void:
 	control = preload("res://addons/recipe_tree/recipe_tree.tscn").instantiate()
 	add_control_to_container(CONTAINER_CANVAS_EDITOR_SIDE_RIGHT, control)
+	graph_edit = control.find_child("GraphEdit")
+	recipe_node = load("res://addons/recipe_tree/recipe_node.tscn")
+	gadget_node = load("res://addons/recipe_tree/gadget_node.tscn")
+	item_node = load("res://addons/recipe_tree/item_node.tscn")
 	load_recipes()
 	EditorInterface.get_resource_filesystem().filesystem_changed.connect(load_recipes)
 	
+func _process(_delta:float) -> void:
+	populate_nodes("recipe_node", properties.recipe_nodes, recipe_node)
+	populate_nodes("gadget_node", properties.gadget_nodes, gadget_node)
+	populate_nodes("item_node", properties.item_nodes, item_node)
+
+## Arbitrarily populate nodes with a given variable name for subnode (recipe_node, graph_node, item_node)
+## and a list of the property nodes that correspond, and finally with the scene that will be made
+func populate_nodes(node_var_name:String, property_nodes:Array, new_node_type:PackedScene):
+	var nodes:Array = graph_edit.get_children().filter(func(child): return node_var_name in child)
+	var remove_nodes:Array
+	for node:GraphNode in nodes:
+	# If there is a recipe node that shouldn't be in there, remove it
+		if node.get(node_var_name) not in property_nodes:
+			remove_nodes.append(node) # So that the for loop doesn't get disrupted by removal
+	
+	for node in remove_nodes:
+		node.moved.disconnect(node_moved)
+		graph_edit.remove_child(node)
+	
+	for node in property_nodes:
+	# Consequently, if there is a node missing, add it
+		if graph_edit.get_children().filter(func(child): return node_var_name in child and child.get(node_var_name) == node).is_empty():
+	# If the graph_edit doesn't contain a node which is the node we're looking at inside of it
+			var new_node:GraphNode = new_node_type.instantiate()
+			new_node.position_offset = Vector2(node.x, node.y)
+			new_node.set(node_var_name, node)
+			new_node.moved.connect(node_moved)
+			graph_edit.add_child(new_node)
+
+func node_moved(to:Vector2, node) -> void:
+	var changed_node
+	if node is RecipeEditorNode:
+		changed_node = properties.recipe_nodes[properties.recipe_nodes.find(node)]
+	elif node is GadgetEditorNode:
+		changed_node = properties.gadget_nodes[properties.gadget_nodes.find(node)]
+	elif node is ItemEditorNode:
+		changed_node = properties.item_nodes[properties.item_nodes.find(node)]
+	changed_node.x = to.x
+	changed_node.y = to.y
+	save_properties()
+
 func load_recipes() -> void:
 	recipe_strings.clear()
 	recipes.clear()
@@ -58,16 +108,17 @@ func load_recipes() -> void:
 				save_properties()
 		if !recipe.inputs.is_empty():
 			for slot:Slot in recipe.inputs:
-				var item:Item = slot.item
-				if item in items:
-					if properties.item_nodes.filter(func(item_node): return item_node.item == item).is_empty():
-						var new_item:ItemEditorNode = ItemEditorNode.new()
-						new_item.x = 0
-						new_item.y = 0
-						new_item.item = item
-						properties.item_nodes.append(new_item)
-						recipe_node.input_item_nodes.append(new_item)
-						save_properties()
+				if slot != null:
+					var item:Item = slot.item
+					if item in items:
+						if properties.item_nodes.filter(func(item_node): return item_node.item == item).is_empty():
+							var new_item:ItemEditorNode = ItemEditorNode.new()
+							new_item.x = 0
+							new_item.y = 0
+							new_item.item = item
+							properties.item_nodes.append(new_item)
+							recipe_node.input_item_nodes.append(new_item)
+							save_properties()
 		if !recipe.outputs.is_empty():
 			for slot:Slot in recipe.outputs:
 				var item:Item = slot.item

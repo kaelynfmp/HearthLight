@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpmjijr118rvi"]
+
+[ext_resource type="Script" path="res://addons/recipe_tree/gadget_node.gd" id="1_3ryx3"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_eel5e"]
+size = Vector2(200, 200)
+
+[node name="GadgetNode" type="GraphNode"]
+offset_right = 236.0
+offset_bottom = 255.0
+size_flags_vertical = 4
+title = "Gadget"
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("1_3ryx3")
+
+[node name="GadgetImage" type="TextureRect" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+texture = SubResource("PlaceholderTexture2D_eel5e")
+stretch_mode = 5
+
+[connection signal="dragged" from="." to="." method="_on_dragged"]

@@ -12,26 +12,26 @@
 [sub_resource type="Resource" id="Resource_g2tl8"]
 script = ExtResource("1_5e5y2")
 gadget = ExtResource("2_iulyt")
-x = 0
-y = 0
+x = 220
+y = -1360
 
 [sub_resource type="Resource" id="Resource_q5nwd"]
 script = ExtResource("3_xi7dl")
 item = ExtResource("5_na7c0")
-x = 0
-y = 0
+x = 240
+y = -720
 
 [sub_resource type="Resource" id="Resource_bex3i"]
 script = ExtResource("3_xi7dl")
 item = ExtResource("5_cjmv7")
-x = 0
-y = 0
+x = 2580
+y = -740
 
 [sub_resource type="Resource" id="Resource_kp0lv"]
 script = ExtResource("2_hx4k4")
 recipe = ExtResource("4_7o6i3")
-x = 100
-y = 100
+x = 560
+y = -1280
 input_item_nodes = Array[ExtResource("3_xi7dl")]([])
 output_item_nodes = Array[ExtResource("3_xi7dl")]([])
 

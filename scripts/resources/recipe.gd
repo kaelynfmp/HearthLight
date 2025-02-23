@@ -19,17 +19,29 @@ extends Resource
 				add_gadget_filter(slot.item)
 		var index: int = 0
 		for item in items:
-			var matching: Array = inputs.filter(func(slot): return slot.item == item)
+			var matching: Array = inputs.filter(func(slot): if slot != null: return slot.item == item)
 			if matching.is_empty():
 				items.remove_at(index)
 				remove_gadget_filter(item)
 			index += 1
 		return inputs
+	set(value):
+		for index in range(value.size()):
+			if value[index] == null:
+				# load an empty slot if array is ever appended
+				value[index] = load("res://scripts/resources/slot.gd").new()
+		inputs = value
 
 var items: Array[Item] = []
 
 ## Outputs of this recipe
-@export var outputs: Array[Slot]
+@export var outputs: Array[Slot]:
+	set(value):
+		for index in range(value.size()):
+			if value[index] == null:
+				# load an empty slot if array is ever appended
+				value[index] = load("res://scripts/resources/slot.gd").new()
+		outputs = value
 ## Processing time multiplier of this recipe
 @export var processing_multiplier: float = 1.0
 

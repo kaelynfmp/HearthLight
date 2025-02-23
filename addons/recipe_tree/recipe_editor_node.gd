@@ -11,11 +11,13 @@ extends Resource
 		gadget_node = value
 		if gadget_node != null:
 			gadget_node.cleared.connect(clear_gadget_node)
+		changed.emit()
 var prev_input_item_nodes_size:int = 0
 @export var input_item_nodes:Array[ItemEditorNode]:
 	get:
 		if prev_input_item_nodes_size != input_item_nodes.size():
 			prev_input_item_nodes_size = input_item_nodes.size()
+			changed.emit()
 			for item_node in input_item_nodes:
 				if item_node != null:
 					item_node.cleared.connect(clear_input_item_node)

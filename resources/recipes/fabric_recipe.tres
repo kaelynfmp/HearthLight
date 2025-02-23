@@ -10,7 +10,7 @@
 [sub_resource type="Resource" id="Resource_y7i4n"]
 script = ExtResource("2_srkqm")
 item = ExtResource("3_40bce")
-locked = false
+locked = true
 item_filter = Array[ExtResource("1_ttuhh")]([])
 bypass_stack = false
 quantity = 5
@@ -18,7 +18,7 @@ quantity = 5
 [sub_resource type="Resource" id="Resource_yumyf"]
 script = ExtResource("2_srkqm")
 item = ExtResource("5_d6oqo")
-locked = false
+locked = true
 item_filter = Array[ExtResource("1_ttuhh")]([])
 bypass_stack = false
 quantity = 1

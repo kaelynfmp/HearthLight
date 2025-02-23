@@ -1,9 +1,7 @@
+@tool
 extends PanelContainer
 
-@onready var item_sprite: Sprite2D = $SlotPanel/ItemContainer/ItemPanel/Item
-@onready var stack_number: Label = $SlotPanel/Stack
-
-var slot: Slot
+@export var slot: Slot
 
 var mouse_over: bool = false
 ## If you are currently holding right click to make a 'line'
@@ -12,6 +10,8 @@ var rmb_line: bool = false
 var just_half_stacked: bool = false
 
 func update():
+	var item_sprite:Sprite2D = find_child("Item", true)
+	var stack_number:Label = find_child("Stack", true)
 	if slot != null:
 		if !slot.item:
 			item_sprite.visible = false
@@ -31,6 +31,8 @@ func update():
 ## On mouse entered, it will check to see if it can distribute slots, pick up slotsor if it can start placing with
 ## right click
 func _on_mouse_entered() -> void:
+	if cursor_slot() == null:
+		return
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		if Input.is_action_pressed("modifier"):
 			GameManager.send_to_inventory(slot)
@@ -55,6 +57,8 @@ func _on_mouse_entered() -> void:
 
 ## On mouse exit, it will add to the original slot if dragged off from right click for distribution purposes
 func _on_mouse_exited() -> void:
+	if cursor_slot() == null:
+		return
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) and !rmb_line:
 		# Will add one to the original slot if dragged off
 		drop_slot_cursor()
@@ -62,6 +66,8 @@ func _on_mouse_exited() -> void:
 
 ## On click, do inventory management
 func _on_gui_input(event:InputEvent) -> void:
+	if cursor_slot() == null:
+		return
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			# If the items arent both null, OR if you left click, swap the items
@@ -175,11 +181,15 @@ func half_slot_cursor_pickup() -> void:
 
 ## Returns the globally defined slot that belongs to the cursor
 func cursor_slot() -> Slot:
-	return GameManager.cursor.slot
+	if "cursor" in GameManager:
+		# This wouldn't be true if this is being done in the editor
+		return GameManager.cursor.slot
+	return null
 
 func set_slot(setting_slot: Slot):
 	if slot:
-		slot.update.disconnect(update)
+		slot.changed.disconnect(update)
 	slot = setting_slot
-	slot.update.connect(update)
+	if slot != null:
+		slot.changed.connect(update)
 	update()

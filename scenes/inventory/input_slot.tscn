@@ -1,9 +1,15 @@
-[gd_scene format=3 uid="uid://fl3ygsg5b5m6"]
+[gd_scene load_steps=3 format=3 uid="uid://fl3ygsg5b5m6"]
 
-[node name="InputSlot" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[ext_resource type="PackedScene" uid="uid://c5605c3ehaw25" path="res://scenes/inventory/slot.tscn" id="1_djv2w"]
+[ext_resource type="Texture2D" uid="uid://cy4o24bpi4gf5" path="res://resources/sprites/inputslot.png" id="2_sq5u0"]
+
+[node name="InputSlot" instance=ExtResource("1_djv2w")]
+size_flags_vertical = 4
+
+[node name="InputBG" type="TextureRect" parent="." index="1"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 8
+mouse_filter = 2
+texture = ExtResource("2_sq5u0")
+stretch_mode = 2

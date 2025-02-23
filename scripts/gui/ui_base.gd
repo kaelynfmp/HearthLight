@@ -1,3 +1,4 @@
+@tool
 extends Control
 
 @export var scale_factor:float = 1

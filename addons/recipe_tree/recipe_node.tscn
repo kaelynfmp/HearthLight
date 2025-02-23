@@ -1,62 +1,124 @@
-[gd_scene load_steps=5 format=3 uid="uid://cy2rh66qq0462"]
+[gd_scene load_steps=11 format=3 uid="uid://cy2rh66qq0462"]
 
 [ext_resource type="PackedScene" uid="uid://c88opsp0c7nm" path="res://scenes/ui_base.tscn" id="1_2yn8q"]
+[ext_resource type="Script" path="res://addons/recipe_tree/recipe_node.gd" id="1_7ldq0"]
 [ext_resource type="PackedScene" uid="uid://c5605c3ehaw25" path="res://scenes/inventory/slot.tscn" id="2_3qwl6"]
 [ext_resource type="Texture2D" uid="uid://bpk81ck7j3l2c" path="res://resources/sprites/progressbar.png" id="3_r57nn"]
+[ext_resource type="Texture2D" uid="uid://3jvjtjeikwlj" path="res://resources/sprites/gadgetslot.png" id="4_7gsv1"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ed2hv"]
+[sub_resource type="Theme" id="Theme_1l7p2"]
+default_font_size = 40
 
-[node name="RecipeNode" type="Control"]
-layout_mode = 3
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q76ad"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4el5v"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+shadow_color = Color(1, 1, 1, 0.145098)
+shadow_size = 1
+shadow_offset = Vector2(23, -50)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_50fyo"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rfahj"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="RecipeNode" type="GraphNode"]
+z_index = 1
+offset_right = 1833.0
+offset_bottom = 1047.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = SubResource("Theme_1l7p2")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_q76ad")
+theme_override_styles/panel_selected = SubResource("StyleBoxFlat_4el5v")
+theme_override_styles/titlebar = SubResource("StyleBoxFlat_50fyo")
+theme_override_styles/titlebar_selected = SubResource("StyleBoxFlat_rfahj")
+selected = true
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("1_7ldq0")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="UIBase" parent="Control" instance=ExtResource("1_2yn8q")]
+z_index = -1
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -55.0
+offset_right = 0.0
+offset_bottom = 944.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="UI Base" parent="." instance=ExtResource("1_2yn8q")]
+[node name="GadgetControl" type="Control" parent="Control/UIBase"]
 layout_mode = 1
-scale_factor = 0.25
+anchor_left = 0.236
+anchor_right = 1.0
+anchor_bottom = 0.783
+offset_left = 1201.58
+offset_top = 71.0
+offset_right = -51.0
+offset_bottom = -557.217
+grow_horizontal = 0
 
-[node name="Contained" type="HBoxContainer" parent="UI Base"]
+[node name="ScaleManager" type="Node2D" parent="Control/UIBase/GadgetControl"]
+scale = Vector2(0.5, 0.5)
+
+[node name="GadgetSlot" parent="Control/UIBase/GadgetControl/ScaleManager" instance=ExtResource("2_3qwl6")]
+offset_right = 316.0
+offset_bottom = 310.0
+
+[node name="TextureRect" type="TextureRect" parent="Control/UIBase/GadgetControl/ScaleManager/GadgetSlot"]
+texture_filter = 2
+layout_mode = 2
+texture = ExtResource("4_7gsv1")
+
+[node name="Contained" type="HBoxContainer" parent="Control/UIBase"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -394.5
-offset_top = -100.0
-offset_right = 394.5
-offset_bottom = 100.0
+offset_left = -473.5
+offset_top = -257.0
+offset_right = 503.5
+offset_bottom = 257.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
 
-[node name="PanelContainer2" type="PanelContainer" parent="UI Base/Contained"]
+[node name="StartingCreatesGap" type="Control" parent="Control/UIBase/Contained"]
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_horizontal = 3
+mouse_filter = 2
 
-[node name="Slot" parent="UI Base/Contained/PanelContainer2" instance=ExtResource("2_3qwl6")]
+[node name="Creates" type="TextureRect" parent="Control/UIBase/Contained"]
+texture_filter = 1
 layout_mode = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="UI Base/Contained"]
-custom_minimum_size = Vector2(0, 500)
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_ed2hv")
-
-[node name="Slot2" parent="UI Base/Contained/PanelContainer" instance=ExtResource("2_3qwl6")]
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="PanelContainer3" type="PanelContainer" parent="UI Base/Contained"]
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="Slot3" parent="UI Base/Contained/PanelContainer3" instance=ExtResource("2_3qwl6")]
-layout_mode = 2
-
-[node name="Creates" type="TextureRect" parent="UI Base/Contained"]
-layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("3_r57nn")
 stretch_mode = 3
+
+[node name="EndingCreatesGap" type="Control" parent="Control/UIBase/Contained"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Node2D" type="Node2D" parent="Control/UIBase"]
+
+[connection signal="dragged" from="." to="." method="_on_dragged"]

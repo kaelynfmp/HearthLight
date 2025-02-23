@@ -4,16 +4,21 @@ class_name Inventory
 
 extends Resource
 
-signal update
-
 ## Array of [Slot]s. Each slot contains the item, and how many of it per slot.
-@export var slots: Array[Slot]
+@export var slots: Array[Slot]:
+	set(value):
+		for index in range(value.size()):
+			# load an empty slot if array is ever appended
+			if value[index] == null:
+				value[index] = load("res://scripts/resources/slot.gd").new()
+		slots = value
 
 ## Initialization of the default values
 func _init(p_slots: Array[Slot] = []):
 	slots = p_slots
 	GameManager.inventory_changed.connect(on_inventory_changed)
 
+## Attempts to insert [Item]s, going into the earliest available [Slot]s
 func insert(item: Item, amount=1) -> bool:
 	var item_slots: Array = slots.filter(func(slot): return (slot.item == item and not slot.locked))
 	var found: bool       = false
@@ -37,7 +42,7 @@ func insert(item: Item, amount=1) -> bool:
 		else:
 			return false
 	
-	update.emit()
+	changed.emit()
 	return true
 	
 func on_inventory_changed():
