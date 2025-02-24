@@ -142,8 +142,7 @@ func show_email_details(email: Email, email_button: Button):
 	
 func order_accept(email: Email):
 	var order = email.attached_order
-	order.is_accepted = true
-	order.responded = true
+	OrderManager.accept_order(order)
 	print("Accepted order")
 	# TODO: possibly move to "in progress"
 	change_email_category(email, "orders")
