@@ -1,9 +1,8 @@
 extends Node
-class_name OrderManager
 var orders: Array = []
 var accepted_orders: Array = []
 var rejected_orders: Array = []
-
+@onready var inventory: Inventory = preload("res://resources/character/inventory.tres")
 @export var order_folder : String = "res://resources/orders/"
 @export var order_class : Resource
 
@@ -43,10 +42,11 @@ func check_fulfillment(order: Order):
 	pass
 
 func reward_player(order: Order):
-	pass
-
-# Called when the node enters the scene tree for the first time.
-
+	for i in range(0,len(order.rewards)):
+		var item = order.rewards[i]
+		var qty = order.rewards_quantities[i]
+		inventory.insert(item, qty) #TODO: verify
+		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

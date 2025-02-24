@@ -19,8 +19,6 @@ var current_inbox_button: Button = null
 @export var email_folder : String = "res://resources/emails/"
 @export var email_class : Resource
 
-@export var order_manager: OrderManager
-
 var buttoncolor : String = "#e255aa"
 var selectedbuttoncolor : String = "#cc7aaa"
 
@@ -148,12 +146,13 @@ func order_accept(email: Email):
 	order.responded = true
 	print("Accepted order")
 	# TODO: possibly move to "in progress"
+	change_email_category(email, "orders")
+	display_category_emails(current_category)
 	# TODO: check order fulfillment
 	
 func order_reject(email: Email):
 	var order = email.attached_order
-	email.attached_order.is_accepted = false
-	order.responded = true
+	OrderManager.reject_order(order)
 	print("Rejected order")
 	# move inbox
 	change_email_category(email, "archive")
