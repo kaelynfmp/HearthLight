@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Order" load_steps=3 format=3 uid="uid://hqegir1wr6ur"]
+
+[ext_resource type="Script" path="res://scripts/resources/order.gd" id="1_gipnw"]
+[ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="1_yrjei"]
+
+[resource]
+script = ExtResource("1_gipnw")
+order_id = 1
+is_completed = false
+is_accepted = false
+required_items = Array[Resource]([ExtResource("1_yrjei")])
+required_quantities = Array[int]([1])
+rewards = Array[Resource]([])
+rewards_quantities = Array[Resource]([])

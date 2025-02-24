@@ -1,6 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5r8qyahtr3r1"]
+[gd_scene load_steps=6 format=3 uid="uid://b5r8qyahtr3r1"]
 
 [ext_resource type="Script" path="res://scenes/Computer Scenes/emaildisplay.gd" id="1_cc22d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_agju5"]
+bg_color = Color(0.886275, 0.333333, 0.666667, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tpgae"]
 bg_color = Color(0.700707, 0.59704, 0.72163, 1)
@@ -16,7 +19,7 @@ custom_minimum_size = Vector2(1920, 300)
 offset_right = 1921.0
 offset_bottom = 1080.0
 size_flags_horizontal = 3
-size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_agju5")
 script = ExtResource("1_cc22d")
 sender_label = NodePath("Sender")
 subject_label = NodePath("Subject")

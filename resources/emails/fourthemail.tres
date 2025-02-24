@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Email" load_steps=2 format=3 uid="uid://c1mwauwjcgay5"]
+
+[ext_resource type="Script" path="res://scripts/resources/email.gd" id="1_h11nt"]
+
+[resource]
+script = ExtResource("1_h11nt")
+sender = "Testerson McTester"
+subject = "Subject and tstuff"
+contents = "This email is an order and should not show for a while"
+day = 1
+hour = 9
+minute = 30
+category = "orders"
+is_read = false
