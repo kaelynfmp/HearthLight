@@ -44,7 +44,6 @@ texture_progress = ExtResource("3_cumj0")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_wrwcu")
-volume_db = 12.0
 autoplay = true
 parameters/looping = false
 
