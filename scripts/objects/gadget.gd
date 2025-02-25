@@ -10,16 +10,23 @@ var character: Node2D
 
 var base_layer: Node2D
 
+var age: String
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	character = get_parent().get_parent().get_parent().find_child("Character")
 	base_layer = get_parent()
+	age = gadget_stats.gadget_age
 	$Sprite2D.texture = gadget_stats.texture
 	$Timer.wait_time = gadget_stats.process_time
 	$Timer.timeout.connect(add_item_to_inventory)
 	$TextureProgressBar.visible = false
 	$TextureProgressBar.value = 0
 	$TextureProgressBar.max_value = $Timer.wait_time
+
+	$AudioStreamPlayer2D.set_stream(gadget_stats.ambient_sound)
+	$AudioStreamPlayer2D.play()
+	print($AudioStreamPlayer2D.stream)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -59,7 +66,15 @@ func detect_nearby() -> bool:
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if detect_nearby() and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed: # Replace with function body.
 		is_holding = true
-		$AudioStreamPlayer2D.stream_paused = false
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.is_pressed():
 		is_holding = false
-		$AudioStreamPlayer2D.stream_paused = true
+	play_sound()
+
+func play_sound() -> void:
+	if age == "Primitive":
+		if is_holding:
+			$AudioStreamPlayer2D.stream_paused = false
+			#print("play")
+		else:
+			$AudioStreamPlayer2D.stream_paused = true
+			#print("pause")
