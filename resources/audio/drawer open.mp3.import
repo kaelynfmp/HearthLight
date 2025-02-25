@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bttgk8sdaqcnj"
+path="res://.godot/imported/drawer open.mp3-e12629a639e50174a521638d4aa5be0a.mp3str"
+
+[deps]
+
+source_file="res://resources/audio/drawer open.mp3"
+dest_files=["res://.godot/imported/drawer open.mp3-e12629a639e50174a521638d4aa5be0a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

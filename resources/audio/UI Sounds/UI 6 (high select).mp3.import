@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dybblw8yxqlit"
+path="res://.godot/imported/UI 6 (high select).mp3-437eb3970056d0ede41605a2d996c61c.mp3str"
+
+[deps]
+
+source_file="res://resources/audio/UI Sounds/UI 6 (high select).mp3"
+dest_files=["res://.godot/imported/UI 6 (high select).mp3-437eb3970056d0ede41605a2d996c61c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

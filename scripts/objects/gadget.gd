@@ -59,5 +59,7 @@ func detect_nearby() -> bool:
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if detect_nearby() and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed: # Replace with function body.
 		is_holding = true
+		$AudioStreamPlayer2D.stream_paused = false
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.is_pressed():
 		is_holding = false
+		$AudioStreamPlayer2D.stream_paused = true
