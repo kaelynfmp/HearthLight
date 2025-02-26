@@ -12,8 +12,8 @@
 [sub_resource type="Resource" id="Resource_r7bfh"]
 script = ExtResource("1_5e5y2")
 gadget = ExtResource("2_iulyt")
-x = -520
-y = -100
+x = -440
+y = -220
 
 [sub_resource type="Resource" id="Resource_hprkk"]
 script = ExtResource("3_xi7dl")
@@ -21,11 +21,11 @@ item = ExtResource("5_na7c0")
 x = -240
 y = -700
 
-[sub_resource type="Resource" id="Resource_tw2nb"]
+[sub_resource type="Resource" id="Resource_nov4m"]
 script = ExtResource("3_xi7dl")
 item = ExtResource("5_5ebsr")
-x = -140
-y = 480
+x = -240
+y = 200
 
 [sub_resource type="Resource" id="Resource_x54xe"]
 script = ExtResource("2_hx4k4")
@@ -34,10 +34,10 @@ x = 380
 y = -220
 gadget_node = SubResource("Resource_r7bfh")
 input_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_hprkk")])
-output_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_tw2nb")])
+output_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_nov4m")])
 
 [resource]
 script = ExtResource("2_e0emm")
 recipe_nodes = Array[ExtResource("2_hx4k4")]([SubResource("Resource_x54xe")])
 gadget_nodes = Array[ExtResource("1_5e5y2")]([SubResource("Resource_r7bfh")])
-item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_hprkk"), SubResource("Resource_tw2nb")])
+item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_hprkk"), SubResource("Resource_nov4m")])

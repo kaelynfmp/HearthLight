@@ -26,6 +26,7 @@ size = Vector2i(121, 100)
 allow_search = false
 item_count = 2
 item_0/text = "Create new..."
+item_0/disabled = true
 item_1/id = 1
 item_1/separator = true
 
@@ -33,5 +34,6 @@ item_1/separator = true
 size = Vector2i(121, 100)
 item_count = 2
 item_0/text = "Create new..."
+item_0/disabled = true
 item_1/id = 1
 item_1/separator = true
