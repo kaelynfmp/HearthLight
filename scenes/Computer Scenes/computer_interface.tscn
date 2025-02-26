@@ -1,0 +1,140 @@
+[gd_scene load_steps=14 format=3 uid="uid://c2wlmdehxae41"]
+
+[ext_resource type="Script" path="res://scenes/Computer Scenes/computer_manager.gd" id="1_1cjce"]
+[ext_resource type="PackedScene" uid="uid://b5r8qyahtr3r1" path="res://scenes/Computer Scenes/view_email_button.tscn" id="1_ip337"]
+[ext_resource type="Script" path="res://scenes/Computer Scenes/email_manager.gd" id="1_stx68"]
+[ext_resource type="PackedScene" uid="uid://c6pmbvf4gf2rj" path="res://scenes/Computer Scenes/inbox_buttons.tscn" id="2_k1btw"]
+[ext_resource type="PackedScene" uid="uid://de20noymjuwfb" path="res://scenes/Computer Scenes/shop_category.tscn" id="3_mi23s"]
+[ext_resource type="Script" path="res://scripts/resources/email.gd" id="3_sa1xx"]
+[ext_resource type="Script" path="res://scenes/Computer Scenes/shop_manager.gd" id="5_tq53l"]
+[ext_resource type="Script" path="res://scripts/order_manager.gd" id="5_wwlms"]
+[ext_resource type="Script" path="res://scripts/resources/order.gd" id="6_luoch"]
+[ext_resource type="PackedScene" uid="uid://bchsomrab1tv0" path="res://scenes/Computer Scenes/buyable_item.tscn" id="6_q6ffq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0hhal"]
+bg_color = Color(0.736431, 0.60548, 0.604873, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2qdu6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n53si"]
+bg_color = Color(0.710655, 0.252932, 0.341096, 1)
+
+[node name="ComputerInterface" type="Control" node_paths=PackedStringArray("currency_label", "exit_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1cjce")
+currency_label = NodePath("Currency Label")
+exit_button = NodePath("Close Button")
+
+[node name="Sites" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 42
+current_tab = 1
+
+[node name="Emails" type="TabBar" parent="Sites"]
+visible = false
+layout_mode = 2
+drag_to_rearrange_enabled = true
+script = ExtResource("1_stx68")
+email_button_scene = ExtResource("1_ip337")
+inbox_button_scene = ExtResource("2_k1btw")
+email_class = ExtResource("3_sa1xx")
+metadata/_tab_index = 0
+
+[node name="InboxButtonsList" type="VBoxContainer" parent="Sites/Emails"]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 186.0
+offset_right = 382.0
+offset_bottom = 598.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Sites/Emails"]
+layout_mode = 0
+offset_left = 431.0
+offset_top = 185.0
+offset_right = 2359.0
+offset_bottom = 1331.0
+scale = Vector2(0.720001, 0.72)
+horizontal_scroll_mode = 0
+script = ExtResource("5_wwlms")
+order_class = ExtResource("6_luoch")
+
+[node name="EmailsListContainer" type="VBoxContainer" parent="Sites/Emails/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Sites/Emails"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 32.0
+offset_right = 1739.0
+offset_bottom = 97.0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_0hhal")
+text = "   email.com"
+vertical_alignment = 1
+
+[node name="Botsy" type="TabBar" parent="Sites"]
+layout_mode = 2
+script = ExtResource("5_tq53l")
+item_button_scene = ExtResource("6_q6ffq")
+shop_category_scene = ExtResource("3_mi23s")
+metadata/_tab_index = 1
+
+[node name="Label2" type="Label" parent="Sites/Botsy"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 32.0
+offset_right = 1739.0
+offset_bottom = 97.0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_0hhal")
+text = "   botsy.com"
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Sites/Botsy"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 120.0
+offset_right = 1878.0
+offset_bottom = 1008.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="ShopCategoriesListContainer" type="VBoxContainer" parent="Sites/Botsy/ScrollContainer"]
+layout_mode = 2
+
+[node name="Currency Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1522.0
+offset_top = 8.0
+offset_right = 1803.0
+offset_bottom = 91.0
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_2qdu6")
+text = "$1000000"
+
+[node name="Close Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1819.0
+offset_top = 8.0
+offset_right = 1918.0
+offset_bottom = 91.0
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_n53si")
+text = "X"
