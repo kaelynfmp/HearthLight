@@ -165,7 +165,7 @@ item_filter = Array[ExtResource("3_n2jsp")]([])
 bypass_stack = false
 quantity = 0
 
-[sub_resource type="Resource" id="Resource_vw7ak"]
+[sub_resource type="Resource" id="Resource_527vk"]
 script = ExtResource("2_57fq4")
 locked = false
 item_filter = Array[ExtResource("3_n2jsp")]([])
@@ -175,4 +175,4 @@ quantity = 0
 [resource]
 resource_name = "Inventory"
 script = ExtResource("2_v7s4q")
-slots = Array[ExtResource("2_57fq4")]([SubResource("Resource_2ebfp"), SubResource("Resource_ihm3d"), SubResource("Resource_2pfqq"), SubResource("Resource_bmtpm"), SubResource("Resource_482cp"), SubResource("Resource_0wf3g"), SubResource("Resource_5m8ay"), SubResource("Resource_r14wu"), SubResource("Resource_anewh"), SubResource("Resource_rbm8n"), SubResource("Resource_pv1j2"), SubResource("Resource_4xrq3"), SubResource("Resource_176oo"), SubResource("Resource_nnbsl"), SubResource("Resource_ikf74"), SubResource("Resource_o7g7b"), SubResource("Resource_m4cxl"), SubResource("Resource_8vgm8"), SubResource("Resource_khlt8"), SubResource("Resource_ktclp"), SubResource("Resource_wvi37"), SubResource("Resource_1txle"), SubResource("Resource_y3hek"), SubResource("Resource_vw7ak")])
+slots = Array[ExtResource("2_57fq4")]([SubResource("Resource_2ebfp"), SubResource("Resource_ihm3d"), SubResource("Resource_2pfqq"), SubResource("Resource_bmtpm"), SubResource("Resource_482cp"), SubResource("Resource_0wf3g"), SubResource("Resource_5m8ay"), SubResource("Resource_r14wu"), SubResource("Resource_anewh"), SubResource("Resource_rbm8n"), SubResource("Resource_pv1j2"), SubResource("Resource_4xrq3"), SubResource("Resource_176oo"), SubResource("Resource_nnbsl"), SubResource("Resource_ikf74"), SubResource("Resource_o7g7b"), SubResource("Resource_m4cxl"), SubResource("Resource_8vgm8"), SubResource("Resource_khlt8"), SubResource("Resource_ktclp"), SubResource("Resource_wvi37"), SubResource("Resource_1txle"), SubResource("Resource_y3hek"), SubResource("Resource_527vk")])

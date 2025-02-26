@@ -6,7 +6,7 @@ extends Control
 var is_open: bool = false
 
 func _ready() -> void:
-	inventory.update.connect(update_slots)
+	inventory.changed.connect(update_slots)
 	update_slots()
 	GameManager.inventory_changed.connect(on_inventory_changed)
 	

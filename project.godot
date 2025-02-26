@@ -30,6 +30,10 @@ window/stretch/mode="canvas_items"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/recipe_tree/plugin.cfg")
+
 [file_customization]
 
 folder_colors={

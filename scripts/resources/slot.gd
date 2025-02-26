@@ -6,14 +6,16 @@ class_name Slot
 
 extends Resource
 
-signal update
-
 ## The [Item] that this slot represents. Can have multiple.
 @export var item: Item :
 	get:
+		if Engine.is_editor_hint() and item != null:
+			if !item.changed.is_connected(item_changed):
+				item.changed.connect(item_changed)
 		if item != null and item.max_stack != prev_max_stack:
 			notify_property_list_changed()
 			prev_max_stack = item.max_stack
+			changed.emit()
 		return item
 	set(value):
 		item = value
@@ -21,6 +23,7 @@ signal update
 			decrement(quantity)
 		else:
 			quantity = max(quantity, 1)
+		changed.emit()
 		notify_property_list_changed()
 
 ## Whether or not this slot is locked to inputs.
@@ -44,7 +47,9 @@ var quantity: int :
 			if quantity == 0:
 				item = null
 		else:
-			quantity = 0
+			if !Engine.is_editor_hint():
+				quantity = 0
+		changed.emit()
 
 func _init(p_item: Item = null, p_quantity: int = 0, p_locked: bool = false):
 	item = p_item
@@ -70,7 +75,7 @@ func increment(amount: int = 1, bypass: bool = false) -> int:
 		var remainder: int      = starting_value + amount - item.max_stack
 		quantity += amount
 		
-		update.emit()
+		changed.emit()
 		return max(remainder, 0)
 	return amount
 
@@ -79,7 +84,7 @@ func decrement(amount: int = 1) -> bool:
 	if (amount > quantity):
 		return true
 	quantity -= amount
-	update.emit()
+	changed.emit()
 	return item != null # returns whether the item still exists after decrementing
 	
 ## Initializes the slot with an item and a stack size, default 1
@@ -87,7 +92,7 @@ func initialize(p_item: Item, p_quantity: int = 1, bypass: bool = false) -> int:
 	if can_insert(p_item) and not bypass:
 		item = p_item
 		quantity = p_quantity
-		update.emit()
+		changed.emit()
 		if item == null:
 			return 0
 		return max(quantity - item.max_stack, 0)
@@ -100,3 +105,6 @@ func can_insert(check_item: Item = null) -> bool:
 	if check_item != null:
 		return (check_item not in item_filter)
 	return true
+	
+func item_changed():
+	changed.emit()

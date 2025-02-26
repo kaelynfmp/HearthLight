@@ -2,41 +2,57 @@
 
 [ext_resource type="Script" path="res://scripts/gui/inventory/slot.gd" id="1_n8mqj"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mnql3"]
-size = Vector2(200, 200)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_do0su"]
 
-[node name="Slot" type="Panel"]
-self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(200, 200)
-offset_right = 24.0
-offset_bottom = 24.0
+[node name="Slot" type="PanelContainer"]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_do0su")
 script = ExtResource("1_n8mqj")
 
-[node name="Background" type="Sprite2D" parent="."]
-self_modulate = Color(0.441, 0.8082, 0.9, 1)
-texture = SubResource("PlaceholderTexture2D_mnql3")
-centered = false
-
-[node name="ItemContainer" type="CenterContainer" parent="."]
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 200.0
-
-[node name="ItemPanel" type="Panel" parent="ItemContainer"]
+[node name="SlotPanel" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+z_index = 1
 layout_mode = 2
+mouse_filter = 2
 
-[node name="Item" type="Sprite2D" parent="ItemContainer/ItemPanel"]
-
-[node name="Stack" type="Label" parent="ItemContainer/ItemPanel"]
-layout_mode = 0
+[node name="ItemContainer" type="CenterContainer" parent="SlotPanel"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = -100.0
 offset_top = -100.0
 offset_right = 100.0
 offset_bottom = 100.0
-text = "999"
-horizontal_alignment = 2
-vertical_alignment = 2
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ItemPanel" type="Panel" parent="SlotPanel/ItemContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Item" type="Sprite2D" parent="SlotPanel/ItemContainer/ItemPanel"]
+z_index = 5
+z_as_relative = false
+
+[node name="Stack" type="Label" parent="SlotPanel"]
+visible = false
+z_index = 3
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -91.0
+offset_top = -63.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

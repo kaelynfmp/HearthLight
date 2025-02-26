@@ -1,39 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://l6lptv3o5juw"]
+[gd_scene load_steps=3 format=3 uid="uid://cq8nmdt2gxyse"]
 
-[ext_resource type="Script" path="res://scripts/gui/inventory/slot.gd" id="1_28phl"]
-[ext_resource type="Script" path="res://scripts/gui/cursor.gd" id="1_gghae"]
+[ext_resource type="Script" path="res://scripts/gui/inventory/cursor.gd" id="1_87ihb"]
+[ext_resource type="PackedScene" uid="uid://c5605c3ehaw25" path="res://scenes/inventory/slot.tscn" id="2_08svr"]
 
 [node name="Cursor" type="Node2D"]
 z_index = 4096
-script = ExtResource("1_gghae")
+script = ExtResource("1_87ihb")
 
-[node name="Slot" type="Panel" parent="."]
-self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(200, 200)
-offset_right = 24.0
-offset_bottom = 24.0
-mouse_filter = 2
-script = ExtResource("1_28phl")
-
-[node name="ItemContainer" type="CenterContainer" parent="Slot"]
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 200.0
+[node name="Slot" parent="." instance=ExtResource("2_08svr")]
 mouse_filter = 2
 
-[node name="ItemPanel" type="Panel" parent="Slot/ItemContainer"]
+[node name="ColorRect" type="ColorRect" parent="Slot"]
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 mouse_filter = 2
-
-[node name="Item" type="Sprite2D" parent="Slot/ItemContainer/ItemPanel"]
-
-[node name="Stack" type="Label" parent="Slot/ItemContainer/ItemPanel"]
-layout_mode = 0
-offset_left = -100.0
-offset_top = -100.0
-offset_right = 100.0
-offset_bottom = 100.0
-text = "999"
-horizontal_alignment = 2
-vertical_alignment = 2
+color = Color(1, 1, 1, 0)

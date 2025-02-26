@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scripts/resources/item.gd" id="1_645j0"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yyo8x"]
+size = Vector2(60, 60)
 
 [resource]
 script = ExtResource("1_645j0")
