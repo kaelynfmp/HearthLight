@@ -45,6 +45,7 @@ func reward_player(order: Order):
 	for i in range(0,len(order.rewards)):
 		var item = order.rewards[i]
 		var qty = order.rewards_quantities[i]
+		GameManager.add_currency(order.currency_reward)
 		inventory.insert(item, qty) #TODO: verify
 		
 

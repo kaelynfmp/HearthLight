@@ -11,8 +11,10 @@ var responded: bool = false
 @export_category("Order Requirements")
 @export var required_items: Array[Resource] = []
 @export var required_quantities: Array[int] = []
+@export var currency_reward = 0
 @export var rewards: Array[Resource] = []
 @export var rewards_quantities: Array[Resource] = []
+
 # should ensure that the array size matches up sometime in the future
 
 # Called when the node enters the scene tree for the first time.
