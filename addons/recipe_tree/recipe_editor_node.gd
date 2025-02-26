@@ -30,7 +30,8 @@ var prev_input_item_nodes_size:int = 0
 			for index in range(input_item_nodes.size()):
 				var item_node:ItemEditorNode = input_item_nodes[index]
 				if recipe != null:
-					recipe.inputs[index].item = item_node.item
+					if recipe.inputs.size() > index:
+						recipe.inputs[index].item = item_node.item
 				if item_node != null:
 					if !item_node.cleared.is_connected(clear_input_item_node):
 						item_node.cleared.connect(clear_input_item_node)
