@@ -4,13 +4,13 @@
 [ext_resource type="Script" path="res://scripts/resources/gadget.gd" id="1_s808j"]
 [ext_resource type="Script" path="res://scripts/resources/slot.gd" id="2_myy7m"]
 [ext_resource type="Script" path="res://scripts/resources/item.gd" id="3_cf36v"]
-[ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="4_7yqoi"]
+[ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="4_7v6ci"]
 [ext_resource type="Texture2D" uid="uid://cwi4fc6b360oh" path="res://resources/sprites/sewing_machine.png" id="6_q6rig"]
 
 [sub_resource type="Resource" id="Resource_mns7h"]
 script = ExtResource("2_myy7m")
 locked = false
-item_filter = Array[ExtResource("3_cf36v")]([ExtResource("4_7yqoi")])
+item_filter = Array[ExtResource("3_cf36v")]([ExtResource("4_7v6ci")])
 bypass_stack = false
 quantity = 0
 

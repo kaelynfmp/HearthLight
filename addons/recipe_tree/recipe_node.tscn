@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cy2rh66qq0462"]
+[gd_scene load_steps=14 format=3 uid="uid://cy2rh66qq0462"]
 
 [ext_resource type="PackedScene" uid="uid://c88opsp0c7nm" path="res://scenes/ui_base.tscn" id="1_2yn8q"]
 [ext_resource type="Script" path="res://addons/recipe_tree/recipe_node.gd" id="1_7ldq0"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://c5605c3ehaw25" path="res://scenes/inventory/slot.tscn" id="2_3qwl6"]
 [ext_resource type="Texture2D" uid="uid://bpk81ck7j3l2c" path="res://resources/sprites/progressbar.png" id="3_r57nn"]
 [ext_resource type="Texture2D" uid="uid://3jvjtjeikwlj" path="res://resources/sprites/gadgetslot.png" id="4_7gsv1"]
+[ext_resource type="Texture2D" uid="uid://bfa2gd4mip243" path="res://addons/recipe_tree/trash_can.png" id="7_vmfh2"]
+[ext_resource type="Texture2D" uid="uid://dgfutqbacjngj" path="res://addons/recipe_tree/trash_can_pressed.png" id="8_hif45"]
 
 [sub_resource type="Theme" id="Theme_1l7p2"]
 default_font_size = 40
@@ -40,7 +42,7 @@ slot/0/left_enabled = false
 slot/0/left_type = 0
 slot/0/left_color = Color(1, 1, 1, 1)
 slot/0/left_icon = null
-slot/0/right_enabled = true
+slot/0/right_enabled = false
 slot/0/right_type = 0
 slot/0/right_color = Color(1, 1, 1, 1)
 slot/0/right_icon = ExtResource("1_s40qa")
@@ -122,4 +124,23 @@ mouse_filter = 2
 
 [node name="Node2D" type="Node2D" parent="UIControl/UIBase"]
 
+[node name="DeleteButton" type="TextureButton" parent="UIControl/UIBase"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 13.0
+offset_top = -38.0
+offset_right = 65.0
+offset_bottom = 39.0
+grow_horizontal = 0
+texture_normal = ExtResource("7_vmfh2")
+texture_pressed = ExtResource("8_hif45")
+texture_hover = ExtResource("7_vmfh2")
+texture_disabled = ExtResource("7_vmfh2")
+texture_focused = ExtResource("7_vmfh2")
+ignore_texture_size = true
+stretch_mode = 4
+
 [connection signal="dragged" from="." to="." method="_on_dragged"]
+[connection signal="pressed" from="UIControl/UIBase/DeleteButton" to="." method="_on_delete_button_pressed"]

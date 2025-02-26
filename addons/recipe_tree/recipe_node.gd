@@ -4,6 +4,7 @@ extends GraphNode
 @onready var recipe_node:RecipeEditorNode
 var slot_distance:Vector2 = Vector2(100, 100)
 signal moved(to:Vector2, recipe_node:RecipeEditorNode)
+signal kill(node:GraphNode)
 
 func _ready() -> void:
 	pass
@@ -103,17 +104,28 @@ func _process(_delta: float) -> void:
 						new_slot.size_flags_vertical = SIZE_SHRINK_CENTER
 					contained.add_child(new_slot)
 					contained.move_child(new_slot, starting_index + index)
-			if recipe_node.recipe.gadget != null:
-				var gadget_slot:PanelContainer = find_child("GadgetSlot", true)
-				if gadget_slot != null:
-					if gadget_slot.slot == null or gadget_slot.slot.item != recipe_node.recipe.gadget.item:
-						var new_slot = load("res://scripts/resources/slot.gd").new()
-						new_slot.item = recipe_node.recipe.gadget.item
-						gadget_slot.set_slot(new_slot)
-						gadget_slot.update()
+			var gadget_slot:PanelContainer = find_child("GadgetSlot", true)
+			if gadget_slot != null:
+				var item_to_compare:Item
+				if recipe_node.recipe.gadget == null:
+					item_to_compare = null
+				else:
+					item_to_compare = recipe_node.recipe.gadget.item
+				if gadget_slot.slot == null or gadget_slot.slot.item != item_to_compare:
+					var new_slot = load("res://scripts/resources/slot.gd").new()
+					new_slot.item = item_to_compare
+					gadget_slot.set_slot(new_slot)
+					gadget_slot.update()
 			if re_init_slots:
 				var graph_edit:GraphEdit = get_parent()
 				graph_edit.clear_connections() # Re-analyze the connections since the slots changed
 
 func _on_dragged(from:Vector2, to:Vector2) -> void:
 	moved.emit(to, recipe_node)
+
+func _on_delete_button_pressed() -> void:
+	kill.emit(self)
+	var dir: DirAccess = DirAccess.open("res://resources/recipes")
+	dir.remove(recipe_node.recipe.get_path())
+	moved.emit(Vector2.ZERO, recipe_node) # Sends the move signal to tell the recipe tree immediately to check if it is alive
+	EditorInterface.get_resource_filesystem().scan()

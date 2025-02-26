@@ -2,10 +2,16 @@
 extends GraphNode
 
 @onready var gadget_node:GadgetEditorNode
+@onready var close_button:PackedScene
+
 signal moved(to:Vector2, gadget_node:GadgetEditorNode)
+signal kill(node:GraphNode)
 
 func _ready() -> void:
-	pass
+	close_button = load("res://addons/recipe_tree/close_button.tscn")
+	var close_node:TextureButton = close_button.instantiate()
+	get_titlebar_hbox().add_child(close_node)
+	close_node.pressed.connect(close_pressed)
 
 func _process(_delta: float) -> void:
 	if gadget_node == null: return
@@ -14,6 +20,9 @@ func _process(_delta: float) -> void:
 		$GadgetImage.texture = gadget_node.gadget.texture
 	if title != gadget_node.gadget.name:
 		title = gadget_node.gadget.name
+	
+func close_pressed():
+	kill.emit(self)
 	
 func _on_dragged(from:Vector2, to:Vector2) -> void:
 	moved.emit(to, gadget_node)

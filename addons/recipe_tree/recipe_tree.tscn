@@ -1,20 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://c621mcgxrdurj"]
+[gd_scene load_steps=2 format=3 uid="uid://c621mcgxrdurj"]
 
 [sub_resource type="Theme" id="Theme_83u6j"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p3aye"]
-bg_color = Color(0, 0, 0, 0.568627)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k1adr"]
-bg_color = Color(0, 0, 0, 0)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
 
 [node name="RecipeTree" type="Control"]
 layout_mode = 3
@@ -38,42 +24,3 @@ zoom = 0.7
 zoom_min = 0.1
 zoom_max = 0.7
 show_arrange_button = false
-
-[node name="Button Overlay" type="Panel" parent="GraphEdit"]
-z_index = 2
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -157.0
-offset_top = -118.0
-offset_right = 156.0
-offset_bottom = -40.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_p3aye")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GraphEdit/Button Overlay"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -47.0
-offset_top = -15.5
-offset_right = 47.0
-offset_bottom = 15.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="AddRecipe" type="Button" parent="GraphEdit/Button Overlay/HBoxContainer"]
-z_index = 1
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_styles/normal = SubResource("StyleBoxFlat_k1adr")
-text = "Add Recipe"
-
-[connection signal="pressed" from="GraphEdit/Button Overlay/HBoxContainer/AddRecipe" to="." method="_on_add_recipe_pressed"]
