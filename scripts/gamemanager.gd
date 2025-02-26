@@ -33,6 +33,10 @@ var game_time = {
 	"segment": "morning"
 }
 var in_computer: bool
+var shop_dict = {
+	"resources": [],
+	"gadgets": []
+}
 
 func _ready() -> void:
 	start_time = Time.get_ticks_msec()
