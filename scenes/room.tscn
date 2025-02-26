@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ooc6jx4dihku" path="res://scenes/marker.tscn" id="4_mnrrm"]
 [ext_resource type="Resource" uid="uid://b1gb7sbupakg4" path="res://resources/character/inventory.tres" id="6_kcpka"]
 [ext_resource type="PackedScene" uid="uid://c6g34by20r0qc" path="res://scenes/inventory/inventory.tscn" id="8_p13u3"]
-[ext_resource type="PackedScene" uid="uid://l6lptv3o5juw" path="res://scenes/cursor.tscn" id="9_6c5mx"]
+[ext_resource type="PackedScene" uid="uid://cq8nmdt2gxyse" path="res://scenes/cursor.tscn" id="9_6c5mx"]
 [ext_resource type="Script" path="res://scripts/gui/temp_placing_mode.gd" id="10_8csei"]
 
 [node name="Room" type="Node"]

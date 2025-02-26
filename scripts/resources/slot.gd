@@ -9,9 +9,13 @@ extends Resource
 ## The [Item] that this slot represents. Can have multiple.
 @export var item: Item :
 	get:
+		if Engine.is_editor_hint() and item != null:
+			if !item.changed.is_connected(item_changed):
+				item.changed.connect(item_changed)
 		if item != null and item.max_stack != prev_max_stack:
 			notify_property_list_changed()
 			prev_max_stack = item.max_stack
+			changed.emit()
 		return item
 	set(value):
 		item = value
@@ -101,3 +105,6 @@ func can_insert(check_item: Item = null) -> bool:
 	if check_item != null:
 		return (check_item not in item_filter)
 	return true
+	
+func item_changed():
+	changed.emit()

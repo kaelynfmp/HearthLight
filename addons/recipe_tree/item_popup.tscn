@@ -5,6 +5,10 @@
 [node name="PopUp" instance=ExtResource("1_hh01k")]
 title = "Add Resource"
 
+[node name="Control" parent="." index="1"]
+offset_right = 596.0
+offset_bottom = 396.0
+
 [node name="Label" parent="Control" index="0"]
 text = "Name of Resource"
 

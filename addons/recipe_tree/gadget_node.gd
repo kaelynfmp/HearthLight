@@ -15,9 +15,11 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if gadget_node == null: return
-	if gadget_node.gadget == null: return
+	if gadget_node.gadget == null:
+		$GadgetImage.texture = null
+		return
 	if $GadgetImage.texture != gadget_node.gadget.texture:
-		$GadgetImage.texture = gadget_node.gadget.texture
+		$GadgetImage.set_texture(gadget_node.gadget.texture)
 	if title != gadget_node.gadget.name:
 		title = gadget_node.gadget.name
 	

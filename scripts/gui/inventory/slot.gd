@@ -18,7 +18,7 @@ func update():
 			stack_number.visible = false
 		else:
 			item_sprite.visible = true
-			item_sprite.texture = slot.item.texture
+			item_sprite.set_texture(slot.item.texture)
 			if slot.quantity > 1:
 				stack_number.visible = true
 				stack_number.text = str(slot.quantity)

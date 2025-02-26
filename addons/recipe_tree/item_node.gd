@@ -17,7 +17,7 @@ func _process(_delta: float) -> void:
 	if item_node == null: return
 	if item_node.item == null: return
 	if $ItemImage.texture != item_node.item.texture:
-		$ItemImage.texture = item_node.item.texture
+		$ItemImage.set_texture(item_node.item.texture)
 	if title != item_node.item.name:
 		title = item_node.item.name
 

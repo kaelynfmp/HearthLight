@@ -33,6 +33,8 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="Item" type="Sprite2D" parent="SlotPanel/ItemContainer/ItemPanel"]
+z_index = 5
+z_as_relative = false
 
 [node name="Stack" type="Label" parent="SlotPanel"]
 visible = false
