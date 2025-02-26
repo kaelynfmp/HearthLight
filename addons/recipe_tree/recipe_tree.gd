@@ -156,11 +156,24 @@ func _process(_delta:float) -> void:
 		if node.get_input_port_count() == node.recipe_node.recipe.inputs.size() + node.recipe_node.recipe.outputs.size() + 1:
 		# If this isn't true, then the nodes have yet to be initialized, so no point in doing anything involving them
 			var remove_inputs:Array[int]
-
+		
 			for index in range(node.recipe_node.input_item_nodes.size()):
-				var input = node.recipe_node.input_item_nodes[index]
+				var input:ItemEditorNode = node.recipe_node.input_item_nodes[index]
 				# Validate that the item exists
 				if input not in properties.item_nodes:
+					remove_inputs.append(index)
+					continue
+
+				# If the input does not actually belong to the recipe, remove it
+				# manual find because find isnt working on typed array
+				var found_index:int = -1
+				for jndex in range(node.recipe_node.recipe.inputs.size()):
+					var item = node.recipe_node.recipe.inputs[jndex].item
+					if item == input.item:
+						found_index = jndex
+						break
+
+				if found_index == -1:
 					remove_inputs.append(index)
 					continue
 
@@ -191,6 +204,19 @@ func _process(_delta:float) -> void:
 				# Validate that the item exists		
 				if output not in properties.item_nodes:
 					remove_inputs.append(index)
+					continue
+
+				# If the input does not actually belong to the recipe, remove it
+				# manual find because find isnt working on typed array
+				var found_index:int = -1
+				for jndex in range(node.recipe_node.recipe.outputs.size()):
+					var item = node.recipe_node.recipe.outputs[jndex].item
+					if item == output.item:
+						found_index = jndex
+						break
+				
+				if found_index == -1:
+					remove_outputs.append(index)
 					continue
 
 				# Connect all nodes that are connected in the resource
@@ -227,7 +253,7 @@ func populate_nodes(node_var_name:String, property_nodes:Array, new_node_type:Pa
 	var nodes:Array = graph_edit.get_children().filter(func(child): return node_var_name in child)
 	var remove_nodes:Array
 	for node:GraphNode in nodes:
-	# If there is a recipe node that shouldn't be in there, remove it
+	# If there is a node that shouldn't be in there, remove it
 		if node.get(node_var_name) not in property_nodes:
 			remove_nodes.append(node) # So that the for loop doesn't get disrupted by removal
 	
