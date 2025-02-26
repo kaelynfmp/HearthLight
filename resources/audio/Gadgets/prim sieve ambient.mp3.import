@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://chyuosb2550ag"
+path="res://.godot/imported/prim sieve ambient.mp3-3751d431cb4c340a7b5f979d50d0a30a.mp3str"
+
+[deps]
+
+source_file="res://resources/audio/Gadgets/prim sieve ambient.mp3"
+dest_files=["res://.godot/imported/prim sieve ambient.mp3-3751d431cb4c340a7b5f979d50d0a30a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

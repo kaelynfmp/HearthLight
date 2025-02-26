@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bi2ci58kojoel"
+path="res://.godot/imported/UI 7 (error 2).mp3-37c6703d26b52a6950a26b75d19044e1.mp3str"
+
+[deps]
+
+source_file="res://resources/audio/UI Sounds/UI 7 (error 2).mp3"
+dest_files=["res://.godot/imported/UI 7 (error 2).mp3-37c6703d26b52a6950a26b75d19044e1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

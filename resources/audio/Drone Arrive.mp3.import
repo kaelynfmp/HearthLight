@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://doydrk83nj8g0"
+path="res://.godot/imported/Drone Arrive.mp3-659146d0a52eef7e1f8c428a7356c696.mp3str"
+
+[deps]
+
+source_file="res://resources/audio/Drone Arrive.mp3"
+dest_files=["res://.godot/imported/Drone Arrive.mp3-659146d0a52eef7e1f8c428a7356c696.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
