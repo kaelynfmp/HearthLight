@@ -9,8 +9,8 @@ extends Resource
 ## Gadget this recipe uses
 @export var gadget: Gadget:
 	get():
-		var new_inputs:int = 0
-		var new_outputs:int = 0
+		var new_inputs:int = 1
+		var new_outputs:int = 1
 		if gadget != null:
 			new_inputs = gadget.inputs
 			new_outputs = gadget.outputs

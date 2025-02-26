@@ -102,23 +102,74 @@ func _on_request(from, from_port, to, to_port) -> void:
 	var to_connect_node:GraphNode = graph_edit.get_children().filter(func(child): return child.name == from)[0]
 	valid = connections.is_empty()
 	if valid:
-		if to_port < node.recipe_node.recipe.inputs.size():
-			# Input
-			if node.recipe_node.input_item_nodes.find(to_connect_node.item_node) != -1: return
-			node.recipe_node.input_item_nodes.append(to_connect_node.item_node)
-		elif to_port == node.recipe_node.recipe.inputs.size():
-			# Gadget
-			node.recipe_node.gadget_node = to_connect_node.gadget_node
+		connect_nodes(from, from_port, to, to_port, node, to_connect_node)
+	else:
+		var to_disconnect_node:GraphNode = graph_edit.get_children().filter(func(child): return child.name == from)[0]
+		
+		var gadget_node:bool
+		var stored_recipe_inputs:Array[Slot]
+		var stored_recipe_outputs:Array[Slot]
+		var stored_recipe_input_nodes:Array[ItemEditorNode]
+		var stored_recipe_output_nodes:Array[ItemEditorNode]
+		if to_port == node.recipe_node.recipe.inputs.size():
+			gadget_node = true
+			stored_recipe_inputs = node.recipe_node.recipe.inputs.duplicate()
+			stored_recipe_outputs = node.recipe_node.recipe.outputs.duplicate()
+			stored_recipe_input_nodes = node.recipe_node.input_item_nodes.duplicate()
+			stored_recipe_output_nodes = node.recipe_node.output_item_nodes.duplicate()
+		# to port will changed after disconnect so this needs to be manual
+		disconnect_nodes(from, from_port, to, to_port, node, to_disconnect_node)
+		# Hotswap
+		if !gadget_node:
+			if to_port < node.recipe_node.recipe.inputs.size():
+				# Input
+				var find_node = node.recipe_node.input_item_nodes.find(to_disconnect_node.item_node)
+				if find_node != 1:
+					graph_edit.disconnect_node(node.recipe_node.input_item_nodes[find_node].get_name(), from_port, to, to_port)
+					node.recipe_node.clear_input_item_node(node.recipe_node.input_item_nodes[find_node])
+					save_properties()
+			else:
+				# Output
+				var find_node = node.recipe_node.output_item_nodes.find(to_disconnect_node.item_node)
+				if find_node != 1:
+					graph_edit.disconnect_node(node.recipe_node.output_item_nodes[find_node].get_name(), from_port, to, to_port)
+					node.recipe_node.clear_output_item_node(node.recipe_node.output_item_nodes[find_node])
+					save_properties()
+			connect_nodes(from, from_port, to, to_port, node, to_connect_node)
 		else:
-			# Output
-			if node.recipe_node.output_item_nodes.find(to_connect_node.item_node) != -1: return
-			node.recipe_node.output_item_nodes.append(to_connect_node.item_node)
-		graph_edit.connect_node(str(from), from_port, str(to), to_port)
-		save_properties()
+			# Gadget
+			var find_node = node.recipe_node.gadget_node
+			if find_node != null:
+				graph_edit.disconnect_node(node.recipe_node.gadget_node.get_name(), from_port, to, node.recipe_node.recipe.inputs.size())
+				node.recipe_node.clear_gadget_node()
+			save_properties()
+			connect_nodes(from, from_port, to, to_connect_node.gadget_node.gadget.inputs, node, to_connect_node, true)
+			# Fixes bug where for whatever reason gadget hotswap doesn't update inputs
+			node.queue_free()
+			node.recipe_node.recipe.inputs = stored_recipe_inputs
+			node.recipe_node.recipe.outputs = stored_recipe_outputs
+			node.recipe_node.input_item_nodes = stored_recipe_input_nodes
+			node.recipe_node.output_item_nodes = stored_recipe_output_nodes
+			save_properties()
+		
+		
+		
+func connect_nodes(from, from_port, to, to_port, node, to_connect_node, gadget_node=false) -> void:
+	if to_port < node.recipe_node.recipe.inputs.size() and not gadget_node:
+		# Input
+		if node.recipe_node.input_item_nodes.find(to_connect_node.item_node) != -1: return
+		node.recipe_node.input_item_nodes.append(to_connect_node.item_node)
+	elif to_port == node.recipe_node.recipe.inputs.size() or gadget_node:
+		# Gadget
+		node.recipe_node.gadget_node = to_connect_node.gadget_node
+	elif not gadget_node:
+		# Output
+		if node.recipe_node.output_item_nodes.find(to_connect_node.item_node) != -1: return
+		node.recipe_node.output_item_nodes.append(to_connect_node.item_node)
+	graph_edit.connect_node(str(from), from_port, str(to), to_port)
+	save_properties()
 	
-func _on_disconnect_request(from, from_port, to, to_port) -> void:
-	var node:GraphNode = graph_edit.get_children().filter(func(child): return child.name == to)[0] # Unique nameness means this is the recipe node we want
-	var to_disconnect_node:GraphNode = graph_edit.get_children().filter(func(child): return child.name == from)[0]
+func disconnect_nodes(from, from_port, to, to_port, node, to_disconnect_node):
 	if to_port < node.recipe_node.recipe.inputs.size():
 		# Input
 		var find_node = node.recipe_node.input_item_nodes.find(to_disconnect_node.item_node)
@@ -126,9 +177,22 @@ func _on_disconnect_request(from, from_port, to, to_port) -> void:
 			node.recipe_node.clear_input_item_node(node.recipe_node.input_item_nodes[find_node])
 	elif to_port == node.recipe_node.recipe.inputs.size():
 		# Gadget
+		var stored_recipe_inputs:Array[Slot]
+		var stored_recipe_outputs:Array[Slot]
+		var stored_recipe_input_nodes:Array[ItemEditorNode]
+		var stored_recipe_output_nodes:Array[ItemEditorNode]
+		if to_port == node.recipe_node.recipe.inputs.size():
+			stored_recipe_inputs = node.recipe_node.recipe.inputs.duplicate()
+			stored_recipe_outputs = node.recipe_node.recipe.outputs.duplicate()
+			stored_recipe_input_nodes = node.recipe_node.input_item_nodes.duplicate()
+			stored_recipe_output_nodes = node.recipe_node.output_item_nodes.duplicate()
 		var find_node = node.recipe_node.gadget_node
 		if find_node != null:
 			node.recipe_node.clear_gadget_node()
+			node.recipe_node.recipe.inputs = stored_recipe_inputs
+			node.recipe_node.recipe.outputs = stored_recipe_outputs
+			node.recipe_node.input_item_nodes = stored_recipe_input_nodes
+			node.recipe_node.output_item_nodes = stored_recipe_output_nodes
 	else:
 		# Output
 		var find_node = node.recipe_node.output_item_nodes.find(to_disconnect_node.item_node)
@@ -136,6 +200,12 @@ func _on_disconnect_request(from, from_port, to, to_port) -> void:
 			node.recipe_node.clear_output_item_node(node.recipe_node.output_item_nodes[find_node])
 	graph_edit.disconnect_node(from, from_port, to, to_port)
 	save_properties()
+	
+func _on_disconnect_request(from, from_port, to, to_port) -> void:
+	var node:GraphNode = graph_edit.get_children().filter(func(child): return child.name == to)[0] # Unique nameness means this is the recipe node we want
+	var to_disconnect_node:GraphNode = graph_edit.get_children().filter(func(child): return child.name == from)[0]
+	disconnect_nodes(from, from_port, to, to_port, node, to_disconnect_node)
+	
 
 func _process(_delta:float) -> void:
 	populate_nodes("recipe_node", properties.recipe_nodes, recipe_node)
@@ -239,12 +309,20 @@ func _process(_delta:float) -> void:
 					else:
 						found_gadgets.append(from_node.gadget_node)
 				else:
-					if from_node.item_node not in node.recipe_node.input_item_nodes and from_node.item_node not in node.recipe_node.output_item_nodes:
-						graph_edit.disconnect_node(connection.from_node, connection.from_port, connection.from_node, connection.from_port)
-					elif from_node.item_node in node.recipe_node.input_item_nodes:
-						found_inputs.append(from_node.item_node)
-					elif from_node.item_node in node.recipe_node.output_item_nodes:
-						found_outputs.append(from_node.item_node)
+					if from_node.item_node == null:
+						graph_edit.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
+					if connection.to_port < node.recipe_node.recipe.inputs.size():
+						# Input
+						if from_node.item_node not in node.recipe_node.input_item_nodes:
+							graph_edit.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
+					elif connection.to_port == node.recipe_node.recipe.inputs.size():
+						# Gadget
+						if from_node.gadget_node != node.recipe_node.gadget_node:
+							graph_edit.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
+					else:
+						# Output
+						if from_node.item_node not in node.recipe_node.output_item_nodes:
+							graph_edit.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
 		
 
 ## Arbitrarily populate nodes with a given variable name for subnode (recipe_node, graph_node, item_node)

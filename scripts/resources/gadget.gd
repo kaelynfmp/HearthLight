@@ -29,14 +29,26 @@ var prev_item_texture
 					item.changed.emit()
 					prev_item_texture = null
 		return item
-## Inventory that belongs to the gadget
-@export var inventory: Inventory
+## Initial inventory that belongs to the gadget
+@export var inventory: Inventory :
+	get():
+		if inventory == null:
+			inventory = load("res://scripts/resources/inventory.gd").new()
+		return inventory
 ## Whether or not this gadget can have recipes
 @export var produces: bool
 ## The amount of inputs a recipe from this gadget can take
-@export var inputs: int
+@export var inputs: int:
+	get():
+		if inventory.slots.size() != inputs + outputs:
+			var temp_inventory_slots:Array[Slot] = inventory.slots.duplicate()
+			temp_inventory_slots.resize(inputs + outputs)
+			inventory.slots = temp_inventory_slots
+		return max(1, inputs)
 ## The amount of outputs this gadget can produce
-@export var outputs: int
+@export var outputs: int:
+	get():
+		return max(1, outputs)
 ## The amount of time it takes to process a recipe
 @export var process_time: float
 ## The sound that play when the gadget is started
