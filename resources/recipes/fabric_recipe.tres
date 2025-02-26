@@ -1,31 +1,31 @@
 [gd_resource type="Resource" script_class="Recipe" load_steps=9 format=3 uid="uid://drnnbha7vb1ho"]
 
-[ext_resource type="Script" path="res://scripts/resources/item.gd" id="1_ttuhh"]
-[ext_resource type="Resource" uid="uid://b1benml8tln26" path="res://resources/gadgets/wheel.tres" id="1_w3bnt"]
+[ext_resource type="Resource" uid="uid://b1benml8tln26" path="res://resources/gadgets/wheel.tres" id="1_14xxv"]
+[ext_resource type="Script" path="res://scripts/resources/item.gd" id="2_elrjj"]
 [ext_resource type="Script" path="res://scripts/resources/recipe.gd" id="2_l4tvo"]
 [ext_resource type="Script" path="res://scripts/resources/slot.gd" id="2_srkqm"]
-[ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="3_qci06"]
-[ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="5_wpy6e"]
+[ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="3_ygt1q"]
+[ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="5_i7ldg"]
 
-[sub_resource type="Resource" id="Resource_3pree"]
+[sub_resource type="Resource" id="Resource_o0gwi"]
 script = ExtResource("2_srkqm")
-item = ExtResource("3_qci06")
+item = ExtResource("3_ygt1q")
 locked = false
-item_filter = Array[ExtResource("1_ttuhh")]([])
+item_filter = Array[ExtResource("2_elrjj")]([])
 bypass_stack = false
-quantity = 1
+quantity = 5
 
-[sub_resource type="Resource" id="Resource_s5qy8"]
+[sub_resource type="Resource" id="Resource_w8oka"]
 script = ExtResource("2_srkqm")
-item = ExtResource("5_wpy6e")
+item = ExtResource("5_i7ldg")
 locked = false
-item_filter = Array[ExtResource("1_ttuhh")]([])
+item_filter = Array[ExtResource("2_elrjj")]([])
 bypass_stack = false
 quantity = 1
 
 [resource]
 script = ExtResource("2_l4tvo")
-gadget = ExtResource("1_w3bnt")
-inputs = Array[ExtResource("2_srkqm")]([SubResource("Resource_3pree")])
-outputs = Array[ExtResource("2_srkqm")]([SubResource("Resource_s5qy8")])
+gadget = ExtResource("1_14xxv")
+inputs = Array[ExtResource("2_srkqm")]([SubResource("Resource_o0gwi")])
+outputs = Array[ExtResource("2_srkqm")]([SubResource("Resource_w8oka")])
 processing_multiplier = 1.0

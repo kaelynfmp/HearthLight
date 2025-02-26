@@ -1,16 +1,16 @@
-[gd_resource type="Resource" script_class="Gadget" load_steps=12 format=3 uid="uid://b1benml8tln26"]
+[gd_resource type="Resource" script_class="Gadget" load_steps=11 format=3 uid="uid://b1benml8tln26"]
 
 [ext_resource type="Script" path="res://scripts/resources/inventory.gd" id="1_8iuif"]
 [ext_resource type="Script" path="res://scripts/resources/gadget.gd" id="1_s808j"]
 [ext_resource type="Script" path="res://scripts/resources/slot.gd" id="2_myy7m"]
 [ext_resource type="Script" path="res://scripts/resources/item.gd" id="3_cf36v"]
-[ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="4_7v6ci"]
+[ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="4_v60lg"]
 [ext_resource type="Texture2D" uid="uid://cwi4fc6b360oh" path="res://resources/sprites/sewing_machine.png" id="6_q6rig"]
 
 [sub_resource type="Resource" id="Resource_mns7h"]
 script = ExtResource("2_myy7m")
 locked = false
-item_filter = Array[ExtResource("3_cf36v")]([ExtResource("4_7v6ci")])
+item_filter = Array[ExtResource("3_cf36v")]([ExtResource("4_v60lg")])
 bypass_stack = false
 quantity = 0
 
@@ -25,12 +25,9 @@ quantity = 0
 script = ExtResource("1_8iuif")
 slots = Array[ExtResource("2_myy7m")]([SubResource("Resource_mns7h"), SubResource("Resource_7k3h2")])
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ta21u"]
-size = Vector2(50, 20)
-
 [sub_resource type="Resource" id="Resource_yf71g"]
 script = ExtResource("3_cf36v")
-texture = SubResource("PlaceholderTexture2D_ta21u")
+texture = ExtResource("6_q6rig")
 name = "Spinning Wheel"
 description = "Item for Spinning Wheel gadget"
 max_stack = 100

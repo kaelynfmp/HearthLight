@@ -1,3 +1,4 @@
+
 @tool
 extends GraphNode
 
@@ -6,8 +7,10 @@ var slot_distance:Vector2 = Vector2(100, 100)
 signal moved(to:Vector2, recipe_node:RecipeEditorNode)
 signal kill(node:GraphNode)
 
+@onready var spinbox:PackedScene
+
 func _ready() -> void:
-	pass
+	spinbox = load("res://addons/recipe_tree/spin_box.tscn")
 
 func _process(_delta: float) -> void:
 	if recipe_node != null:
@@ -46,6 +49,12 @@ func _process(_delta: float) -> void:
 					new_slot.set_slot(input)
 					new_slot.update()
 					new_slot.set_name("InputSlot" + str(index))
+					var spinbox:SpinBox = spinbox.instantiate()
+					spinbox.slot = input
+					spinbox.set_value(input.quantity)
+					spinbox.connect_slot()
+					new_slot.find_child("Stack").set_z_index(-1)
+					new_slot.find_child("SlotPanel").add_child(spinbox)
 					if inputs.size() >= 3:
 						if index % 2 == 1:
 							new_slot.size_flags_vertical = SIZE_SHRINK_BEGIN
@@ -95,6 +104,12 @@ func _process(_delta: float) -> void:
 					new_slot.set_slot(output)
 					new_slot.update()
 					new_slot.set_name("OutputSlot" + str(index))
+					var spinbox:SpinBox = spinbox.instantiate()
+					spinbox.slot = output
+					spinbox.set_value(output.quantity)
+					spinbox.connect_slot()
+					new_slot.find_child("Stack").set_z_index(-1)
+					new_slot.find_child("SlotPanel").add_child(spinbox)
 					if outputs.size() >= 3:
 						if index % 2 == 1:
 							new_slot.size_flags_vertical = SIZE_SHRINK_BEGIN
@@ -129,3 +144,6 @@ func _on_delete_button_pressed() -> void:
 	dir.remove(recipe_node.recipe.get_path())
 	moved.emit(Vector2.ZERO, recipe_node) # Sends the move signal to tell the recipe tree immediately to check if it is alive
 	EditorInterface.get_resource_filesystem().scan()
+	
+func _on_node_selected() -> void:
+	EditorInterface.edit_resource(recipe_node.recipe)

@@ -44,3 +44,4 @@ texture = SubResource("PlaceholderTexture2D_eel5e")
 stretch_mode = 5
 
 [connection signal="dragged" from="." to="." method="_on_dragged"]
+[connection signal="node_selected" from="." to="." method="_on_node_selected"]

@@ -1,3 +1,4 @@
+@tool
 @icon("res://resources/resource-icons/inventory.svg")
 
 class_name Inventory
@@ -16,7 +17,8 @@ extends Resource
 ## Initialization of the default values
 func _init(p_slots: Array[Slot] = []):
 	slots = p_slots
-	GameManager.inventory_changed.connect(on_inventory_changed)
+	if !Engine.is_editor_hint():
+		GameManager.inventory_changed.connect(on_inventory_changed)
 
 ## Attempts to insert [Item]s, going into the earliest available [Slot]s
 func insert(item: Item, amount=1) -> bool:
@@ -46,5 +48,6 @@ func insert(item: Item, amount=1) -> bool:
 	return true
 	
 func on_inventory_changed():
-	if GameManager.inventory:
-		GameManager.add_inventory(self)
+	if !Engine.is_editor_hint():
+		if GameManager.inventory:
+			GameManager.add_inventory(self)

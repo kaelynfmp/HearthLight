@@ -43,7 +43,8 @@ var quantity: int :
 			if quantity == 0:
 				item = null
 		else:
-			quantity = 0
+			if !Engine.is_editor_hint():
+				quantity = 0
 		changed.emit()
 
 func _init(p_item: Item = null, p_quantity: int = 0, p_locked: bool = false):

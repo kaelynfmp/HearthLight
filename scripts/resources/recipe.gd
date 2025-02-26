@@ -7,13 +7,32 @@ class_name Recipe
 extends Resource
 
 ## Gadget this recipe uses
-@export var gadget: Gadget
+@export var gadget: Gadget:
+	get():
+		var new_inputs:int = 0
+		var new_outputs:int = 0
+		if gadget != null:
+			new_inputs = gadget.inputs
+			new_outputs = gadget.outputs
+		if new_inputs != inputs.size():
+			# Resizing does not trigger the setter, so you need to resize a copied array,
+			# and then set the entire array. Why.
+			var temp_inputs:Array = inputs.duplicate()
+			temp_inputs.resize(new_inputs)
+			inputs = temp_inputs
+		if new_outputs != outputs.size():
+			# Resizing does not trigger the setter, so you need to resize a copied array,
+			# and then set the entire array. Why.
+			var temp_outputs:Array = outputs.duplicate()
+			temp_outputs.resize(new_outputs)
+			outputs = temp_outputs
+		return gadget
 ## Inputs this recipe takes
 @export var inputs: Array[Slot]:
 	get():
 		for slot in inputs:
 			if slot == null:
-				continue
+				slot = load("res://scripts/resources/slot.gd").new()
 			if slot.item != null and slot.item not in items:
 				items.append(slot.item)
 				add_gadget_filter(slot.item)

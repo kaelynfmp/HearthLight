@@ -26,3 +26,6 @@ func close_pressed():
 	
 func _on_dragged(from:Vector2, to:Vector2) -> void:
 	moved.emit(to, gadget_node)
+
+func _on_node_selected() -> void:
+	EditorInterface.edit_resource(gadget_node.gadget)

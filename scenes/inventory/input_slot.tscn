@@ -6,6 +6,9 @@
 [node name="InputSlot" instance=ExtResource("1_djv2w")]
 size_flags_vertical = 4
 
+[node name="Stack" parent="SlotPanel" index="1"]
+visible = true
+
 [node name="InputBG" type="TextureRect" parent="." index="1"]
 texture_filter = 1
 layout_mode = 2
