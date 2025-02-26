@@ -33,6 +33,9 @@ extends Resource
 		for slot in inputs:
 			if slot == null:
 				slot = load("res://scripts/resources/slot.gd").new()
+			if Engine.is_editor_hint():
+				if slot.item != null and !slot.changed.is_connected(slot_changed):
+					slot.changed.connect(slot_changed)
 			if slot.item != null and slot.item not in items:
 				items.append(slot.item)
 				add_gadget_filter(slot.item)
@@ -55,6 +58,12 @@ var items: Array[Item] = []
 
 ## Outputs of this recipe
 @export var outputs: Array[Slot]:
+	get():
+		if Engine.is_editor_hint():
+			for slot in outputs:
+				if slot.item != null and !slot.changed.is_connected(slot_changed):
+					slot.changed.connect(slot_changed)
+		return outputs
 	set(value):
 		for index in range(value.size()):
 			if value[index] == null:
@@ -96,3 +105,7 @@ func remove_gadget_filter(item):
 					gadget_resource.set("inventory", gadget.inventory)
 					ResourceSaver.save(gadget, gadget.get_path())
 					gadget.take_over_path(gadget.get_path())
+
+func slot_changed():
+	ResourceSaver.save(self, get_path())
+	take_over_path(get_path())
