@@ -21,12 +21,11 @@ icon = ExtResource("1_y1dxf")
 alignment = 2
 expand_icon = true
 
-[node name="Add Item" type="PopupMenu" parent="."]
+[node name="Add Resource" type="PopupMenu" parent="."]
 size = Vector2i(121, 100)
 allow_search = false
 item_count = 2
 item_0/text = "Create new..."
-item_0/disabled = true
 item_1/id = 1
 item_1/separator = true
 
@@ -34,6 +33,5 @@ item_1/separator = true
 size = Vector2i(121, 100)
 item_count = 2
 item_0/text = "Create new..."
-item_0/disabled = true
 item_1/id = 1
 item_1/separator = true

@@ -1,43 +1,43 @@
 [gd_resource type="Resource" script_class="RecipeTreeProperties" load_steps=13 format=3 uid="uid://bayqmo2156mc4"]
 
 [ext_resource type="Script" path="res://addons/recipe_tree/gadget_editor_node.gd" id="1_5e5y2"]
+[ext_resource type="Resource" uid="uid://b1benml8tln26" path="res://resources/gadgets/wheel.tres" id="2_70wi3"]
 [ext_resource type="Script" path="res://addons/recipe_tree/recipe_tree_properties.gd" id="2_e0emm"]
 [ext_resource type="Script" path="res://addons/recipe_tree/recipe_editor_node.gd" id="2_hx4k4"]
-[ext_resource type="Resource" uid="uid://b1benml8tln26" path="res://resources/gadgets/wheel.tres" id="2_s7lri"]
 [ext_resource type="Script" path="res://addons/recipe_tree/item_editor_node.gd" id="3_xi7dl"]
-[ext_resource type="Resource" uid="uid://drnnbha7vb1ho" path="res://resources/recipes/fabric_recipe.tres" id="4_7o6i3"]
-[ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="4_pmsmg"]
-[ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="5_urw2f"]
+[ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="4_lhqeo"]
+[ext_resource type="Resource" uid="uid://drnnbha7vb1ho" path="res://resources/recipes/fabric_recipe.tres" id="4_o7308"]
+[ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="5_pyano"]
 
-[sub_resource type="Resource" id="Resource_vdh5b"]
+[sub_resource type="Resource" id="Resource_ast0i"]
 script = ExtResource("1_5e5y2")
-gadget = ExtResource("2_s7lri")
-x = 760
-y = -1660
+gadget = ExtResource("2_70wi3")
+x = -880
+y = 320
 
-[sub_resource type="Resource" id="Resource_yq7eh"]
+[sub_resource type="Resource" id="Resource_p2qba"]
 script = ExtResource("3_xi7dl")
-item = ExtResource("4_pmsmg")
-x = 1020
-y = -2120
+item = ExtResource("4_lhqeo")
+x = -740
+y = -140
 
-[sub_resource type="Resource" id="Resource_yar81"]
+[sub_resource type="Resource" id="Resource_o22c4"]
 script = ExtResource("3_xi7dl")
-item = ExtResource("5_urw2f")
-x = 960
-y = -1280
+item = ExtResource("5_pyano")
+x = -580
+y = 720
 
-[sub_resource type="Resource" id="Resource_x54xe"]
+[sub_resource type="Resource" id="Resource_w5180"]
 script = ExtResource("2_hx4k4")
-recipe = ExtResource("4_7o6i3")
-x = 1820
-y = -1940
-gadget_node = SubResource("Resource_vdh5b")
-input_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_yq7eh")])
-output_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_yar81")])
+recipe = ExtResource("4_o7308")
+x = 0
+y = 0
+gadget_node = SubResource("Resource_ast0i")
+input_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_p2qba")])
+output_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_o22c4")])
 
 [resource]
 script = ExtResource("2_e0emm")
-recipe_nodes = Array[ExtResource("2_hx4k4")]([SubResource("Resource_x54xe")])
-gadget_nodes = Array[ExtResource("1_5e5y2")]([SubResource("Resource_vdh5b")])
-item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_yq7eh"), SubResource("Resource_yar81")])
+recipe_nodes = Array[ExtResource("2_hx4k4")]([SubResource("Resource_w5180")])
+gadget_nodes = Array[ExtResource("1_5e5y2")]([SubResource("Resource_ast0i")])
+item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_p2qba"), SubResource("Resource_o22c4")])

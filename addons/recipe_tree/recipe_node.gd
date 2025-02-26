@@ -40,6 +40,7 @@ func _process(_delta: float) -> void:
 				for index in range(inputs.size()):
 					var new_node = Control.new()
 					new_node.set_name("InputSlot" + str(index))
+					new_node.set_mouse_filter(MOUSE_FILTER_IGNORE)
 					new_node.custom_minimum_size = slot_distance # Distance between slots
 					add_child(new_node)
 					# Index + 1 here because we're ignoring index 0 because it's my UI node lol
@@ -71,6 +72,7 @@ func _process(_delta: float) -> void:
 					remove_child(child)
 				var new_node = Control.new()
 				new_node.set_name("GadgetGraphSlot")
+				new_node.set_mouse_filter(MOUSE_FILTER_IGNORE)
 				new_node.custom_minimum_size = slot_distance # Distance between slots
 				add_child(new_node)
 				# + 1 here because we're ignoring index 0 because it's my UI node
@@ -91,9 +93,10 @@ func _process(_delta: float) -> void:
 				var starting_index:int = contained.get_child_count()
 				var outputs:Array[Slot] = recipe_node.recipe.outputs
 				for index in range(outputs.size()):
-					var new_node = Control.new()
+					var new_node:Control = Control.new()
 					new_node.set_name("OutputSlot" + str(index))
 					new_node.custom_minimum_size = slot_distance # Distance between slots
+					new_node.set_mouse_filter(MOUSE_FILTER_IGNORE)
 					add_child(new_node)
 					# Index + 2 here because we're ignoring index 0 because it's my UI node, and the gadget node is in the middle
 					# Also + input size because it is cumulative

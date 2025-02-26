@@ -15,14 +15,15 @@ height = 40.0
 [sub_resource type="MeshTexture" id="MeshTexture_yrt0c"]
 mesh = SubResource("SphereMesh_6ucxi")
 base_texture = SubResource("GradientTexture1D_nl2u2")
-image_size = Vector2(-20, 40)
+image_size = Vector2(-20, 0)
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_eel5e"]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_c47km"]
 size = Vector2(200, 200)
 
 [node name="GadgetNode" type="GraphNode"]
+custom_minimum_size = Vector2(265, 265)
 offset_right = 236.0
-offset_bottom = 255.0
+offset_bottom = 265.0
 size_flags_vertical = 4
 title = "Gadget"
 slot/0/left_enabled = false
@@ -37,10 +38,12 @@ slot/0/draw_stylebox = true
 script = ExtResource("1_3ryx3")
 
 [node name="GadgetImage" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
-texture = SubResource("PlaceholderTexture2D_eel5e")
+texture = SubResource("PlaceholderTexture2D_c47km")
+expand_mode = 1
 stretch_mode = 5
 
 [connection signal="dragged" from="." to="." method="_on_dragged"]

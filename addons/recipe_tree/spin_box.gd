@@ -11,6 +11,9 @@ func _enter_tree() -> void:
 	line_edit.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
 	line_edit.add_theme_stylebox_override("read_only", StyleBoxEmpty.new())
 
+func _process(_delta: float):
+	visible = slot.item != null
+
 func connect_slot():
 	slot.changed.connect(update_value)
 

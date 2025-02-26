@@ -1,23 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://c621mcgxrdurj"]
+[gd_scene format=3 uid="uid://c621mcgxrdurj"]
 
-[sub_resource type="Theme" id="Theme_83u6j"]
-
-[node name="RecipeTree" type="Control"]
-layout_mode = 3
+[node name="GraphEdit" type="GraphEdit"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_83u6j")
-
-[node name="GraphEdit" type="GraphEdit" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 grid_pattern = 1
 right_disconnects = true
 zoom = 0.7

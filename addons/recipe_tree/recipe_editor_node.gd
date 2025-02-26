@@ -64,6 +64,13 @@ func _init(p_recipe:Recipe = null, p_x:int = 0, p_y:int = 0, p_gadget_node:Gadge
 func clear_gadget_node() -> void:
 	gadget_node.cleared.disconnect(clear_gadget_node)
 	gadget_node = null
+	# We also clear all of the item nodes, as clearing the gadget removes all inputs and outputs
+	for item_node in input_item_nodes:
+		item_node.cleared.disconnect(clear_input_item_node)
+	input_item_nodes.clear()
+	for item_node in output_item_nodes:
+		item_node.cleared.disconnect(clear_output_item_node)
+	output_item_nodes.clear()
 	
 func clear_input_item_node(item_node) -> void:
 	input_item_nodes[input_item_nodes.find(item_node)].cleared.disconnect(clear_input_item_node)

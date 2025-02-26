@@ -18,31 +18,44 @@ var properties:RecipeTreeProperties = preload("res://addons/recipe_tree/recipe_t
 enum TYPE {
 	RECIPE, GADGET, ITEM
 }
-@onready var graph_edit:GraphEdit
-@onready var recipe_node:PackedScene
-@onready var gadget_node:PackedScene
-@onready var item_node:PackedScene
-@onready var menu:PackedScene
-@onready var menu_node:MenuBar
+
+var graph_edit:GraphEdit
+var menu_node:MenuBar
+
+var recipe_node:PackedScene
+var gadget_node:PackedScene
+var item_node:PackedScene
+var menu:PackedScene
+var recipe_popup_scene:PackedScene
+var item_popup_scene:PackedScene
+var gadget_popup_scene:PackedScene
+
+var recipe_popup:PopupPanel
+var item_popup:PopupPanel
+var gadget_popup:PopupPanel
 
 func _enter_tree() -> void:
-	control = preload("res://addons/recipe_tree/recipe_tree.tscn").instantiate()
-	add_control_to_container(CONTAINER_CANVAS_EDITOR_SIDE_RIGHT, control)
-	
-	graph_edit = control.find_child("GraphEdit")
-	graph_edit.connection_request.connect(_on_request)
-	graph_edit.disconnection_request.connect(_on_disconnect_request)
-	
 	recipe_node = load("res://addons/recipe_tree/recipe_node.tscn")
 	gadget_node = load("res://addons/recipe_tree/gadget_node.tscn")
 	item_node = load("res://addons/recipe_tree/item_node.tscn")
-	
 	menu = load("res://addons/recipe_tree/recipe_menu.tscn")
+	recipe_popup_scene = load("res://addons/recipe_tree/recipe_popup.tscn")
+	item_popup_scene = load("res://addons/recipe_tree/item_popup.tscn")
+	gadget_popup_scene = load("res://addons/recipe_tree/gadget_popup.tscn")
+	
+	control = preload("res://addons/recipe_tree/recipe_tree.tscn").instantiate()
+	EditorInterface.get_editor_main_screen().add_child(control)
+	control.hide()
+	
+	graph_edit = control
+	graph_edit.connection_request.connect(_on_request)
+	graph_edit.disconnection_request.connect(_on_disconnect_request)
+	
 	menu_node = menu.instantiate()
 	graph_edit.get_menu_hbox().add_child(menu_node)
 	menu_node.find_child("AddRecipe").pressed.connect(_add_recipe)
 
-	item_menu = menu_node.find_child("Add Item")
+	item_menu = menu_node.find_child("Add Resource")
 	gadget_menu = menu_node.find_child("Add Gadget")
 
 	populate_menu_gadgets()
@@ -50,25 +63,36 @@ func _enter_tree() -> void:
 
 	item_menu.index_pressed.connect(item_menu_pressed)
 	gadget_menu.index_pressed.connect(gadget_menu_pressed)
-
 	load_recipes()
 	EditorInterface.get_resource_filesystem().filesystem_changed.connect(load_recipes)
 
-func _add_recipe():
-	var new_recipe:Recipe = Recipe.new()
-	var files:Array[String] = []
-	var dir:DirAccess = DirAccess.open("res://resources/recipes")
-	dir.list_dir_begin()
-	var file:String = dir.get_next()
-	while file != '':
-		if "generated_recipe" in file:
-			files.append(file)
-		file = dir.get_next()
+func _has_main_screen() -> bool:
+	return true
+	
+func _make_visible(visible):
+	control.visible = visible
 
-	new_recipe.set_name("generated_recipe" + str(files.size() + 1))
+func _get_plugin_name() -> String:
+	return "Recipe Tree"
+
+func _get_plugin_icon() -> Texture2D:
+	return EditorInterface.get_editor_theme().get_icon("GraphEdit", "EditorIcons")
+
+func _add_recipe():
+	recipe_popup = recipe_popup_scene.instantiate()
+	control.add_child(recipe_popup)
+	recipe_popup.show()
+	recipe_popup.find_child("Confirm", true).pressed.connect(add_named_recipe)
+
+func add_named_recipe():
+	var recipe_name:String = "generated"
+	recipe_name = recipe_popup.find_child("Name").get_text()
+	var new_recipe:Recipe = Recipe.new()
+	new_recipe.set_name(recipe_name + "_recipe")
 	var path:String = "res://resources/recipes/" + new_recipe.get_name() + ".tres"
 	ResourceSaver.save(new_recipe, path)
 	new_recipe.take_over_path(path)
+	recipe_popup.hide()
 
 func _on_request(from, from_port, to, to_port) -> void:
 	# If that node already has a connection, we should not be able to connect to it
@@ -118,10 +142,10 @@ func _process(_delta:float) -> void:
 	populate_nodes("gadget_node", properties.gadget_nodes, gadget_node)
 	populate_nodes("item_node", properties.item_nodes, item_node)
 	if (prev_items != items):
-		prev_items = items
+		prev_items = items.duplicate()
 		populate_menu_items()
 	if (prev_gadgets != gadgets):
-		prev_gadgets = gadgets
+		prev_gadgets = gadgets.duplicate()
 		populate_menu_gadgets()
 	var graph_nodes:Array = graph_edit.get_children().filter(func(child): return child is GraphNode and "recipe_node" in child)
 	for node in graph_nodes:
@@ -392,7 +416,6 @@ func populate_menu_items():
 	for item:Item in items:
 		item_menu.add_item(item.name)
 		
-	
 func populate_menu_gadgets():
 	clear_menu(gadget_menu)
 
@@ -400,23 +423,66 @@ func populate_menu_gadgets():
 		gadget_menu.add_item(gadget.name)
 		
 func item_menu_pressed(index:int):
-	var item = items.filter(func(item): return item.name == item_menu.get_item_text(index))[0]
-	add_item(item)
+	if index == 0:
+		item_popup = item_popup_scene.instantiate()
+		control.add_child(item_popup)
+		item_popup.show()
+		item_popup.find_child("Confirm", true).pressed.connect(add_named_item)
+	else:
+		var item = items.filter(func(item): return item.name == item_menu.get_item_text(index))[0]
+		add_item(item)
 	
 func gadget_menu_pressed(index:int):
-	var gadget = gadgets.filter(func(gadget): return gadget.name == gadget_menu.get_item_text(index))[0]
-	add_gadget(gadget)
+	if index == 0:
+		gadget_popup = gadget_popup_scene.instantiate()
+		control.add_child(gadget_popup)
+		gadget_popup.show()
+		gadget_popup.find_child("Confirm", true).pressed.connect(add_named_gadget)
+	else:
+		var gadget = gadgets.filter(func(gadget): return gadget.name == gadget_menu.get_item_text(index))[0]
+		add_gadget(gadget)
+
+func add_named_item():
+	var item_name:String = "generated_item"
+	item_name = item_popup.find_child("Name").get_text()
+	var new_item:Item = Item.new()
+	new_item.set_name(item_name)
+	new_item.name = item_name
+	var path:String = "res://resources/items/" + new_item.get_name() + ".tres"
+	ResourceSaver.save(new_item, path)
+	new_item.take_over_path(path)
+	add_item(new_item)
+	item_popup.hide()	
+	load_items()
 	
+func add_named_gadget():
+	var gadget_name:String = "generated_gadget"
+	gadget_name = gadget_popup.find_child("Name").get_text()
+	var new_gadget:Gadget = Gadget.new()
+	new_gadget.set_name(gadget_name)
+	new_gadget.name = gadget_name
+	new_gadget.item = Item.new()
+	var path:String = "res://resources/gadgets/" + new_gadget.get_name() + ".tres"
+	ResourceSaver.save(new_gadget, path)
+	new_gadget.take_over_path(path)
+	add_gadget(new_gadget)
+	gadget_popup.hide()
+	load_gadgets()
+
 func clear_menu(menu):
-	for index in menu.get_item_count():
+	var to_remove:Array[int]
+	for index in range(menu.get_item_count()):
 		if index > 1:
 			# Clear all except the first two, which are Create new... and a seperator
-			menu.remove_item(index)
+			to_remove.append(index)
+			
+	for index in range(to_remove.size()):
+		var remove_index:int = to_remove[index]
+		menu.remove_item(remove_index - index)
 
 func save_properties() -> void:
 	ResourceSaver.save(properties, properties.get_path())
 	properties.take_over_path(properties.get_path())
 
 func _exit_tree() -> void:
-	remove_control_from_container(CONTAINER_CANVAS_EDITOR_SIDE_RIGHT, control)
 	control.free()

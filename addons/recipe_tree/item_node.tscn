@@ -8,8 +8,9 @@
 size = Vector2(200, 200)
 
 [node name="ItemNode" type="GraphNode"]
-offset_right = 9.0
-offset_bottom = 55.0
+custom_minimum_size = Vector2(265, 265)
+offset_right = 236.0
+offset_bottom = 265.0
 title = "Item"
 slot/0/left_enabled = false
 slot/0/left_type = 2
@@ -28,6 +29,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 texture = SubResource("PlaceholderTexture2D_kfnbd")
+expand_mode = 1
 stretch_mode = 5
 
 [connection signal="dragged" from="." to="." method="_on_dragged"]
