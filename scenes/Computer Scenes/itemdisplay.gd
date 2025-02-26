@@ -10,7 +10,7 @@ extends Button
 func set_item(new_item: Item):
 	item = new_item
 	name_label.text = item.name
-	price_label.text = str(item.price)
+	price_label.text = "$"+str(item.price)
 	item_image.texture = item.texture
 
 func set_limited_text(input_text: String, limit: int = 16) -> String:
