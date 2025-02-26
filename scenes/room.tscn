@@ -152,8 +152,6 @@ offset_left = -845.0
 offset_top = -334.5
 offset_right = 845.0
 offset_bottom = 334.5
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Cursor" parent="HUD" instance=ExtResource("9_6c5mx")]
 

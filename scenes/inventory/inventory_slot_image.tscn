@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bb280u280s66w"]
+
+[ext_resource type="Texture2D" uid="uid://dgmoc6decec52" path="res://resources/sprites/inventory/inventory_slot.png" id="1_u8is2"]
+
+[node name="InventorySlotImage" type="TextureRect"]
+texture_filter = 1
+texture = ExtResource("1_u8is2")

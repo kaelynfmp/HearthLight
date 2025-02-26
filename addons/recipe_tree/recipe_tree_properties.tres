@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RecipeTreeProperties" load_steps=14 format=3 uid="uid://bayqmo2156mc4"]
+[gd_resource type="Resource" script_class="RecipeTreeProperties" load_steps=13 format=3 uid="uid://bayqmo2156mc4"]
 
 [ext_resource type="Script" path="res://addons/recipe_tree/gadget_editor_node.gd" id="1_5e5y2"]
 [ext_resource type="Resource" uid="uid://b1benml8tln26" path="res://resources/gadgets/wheel.tres" id="2_70wi3"]
@@ -27,17 +27,11 @@ item = ExtResource("4_lhqeo")
 x = -920
 y = -480
 
-[sub_resource type="Resource" id="Resource_b7m6f"]
-script = ExtResource("3_xi7dl")
-item = ExtResource("4_lhqeo")
-x = -960
-y = -820
-
 [sub_resource type="Resource" id="Resource_7rlni"]
 script = ExtResource("2_hx4k4")
 recipe = ExtResource("8_rb41w")
-x = -160
-y = -200
+x = -340
+y = -420
 gadget_node = SubResource("Resource_gsbeb")
 input_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_lxf7n")])
 output_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_o22c4")])
@@ -46,4 +40,4 @@ output_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_o22c4")
 script = ExtResource("2_e0emm")
 recipe_nodes = Array[ExtResource("2_hx4k4")]([SubResource("Resource_7rlni")])
 gadget_nodes = Array[ExtResource("1_5e5y2")]([SubResource("Resource_gsbeb")])
-item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_o22c4"), SubResource("Resource_lxf7n"), SubResource("Resource_b7m6f")])
+item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_o22c4"), SubResource("Resource_lxf7n")])
