@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Email" load_steps=2 format=3 uid="uid://sc3eyh2thm3t"]
+
+[ext_resource type="Script" path="res://scripts/resources/email.gd" id="1_l8p6f"]
+
+[resource]
+script = ExtResource("1_l8p6f")
+sender = "Testerson McTester"
+subject = "Hello... I am testing this email functionality"
+contents = "Hello good sir
+I am in need of"
+day = 1
+hour = 8
+minute = 0
+category = "orders"
+is_read = false

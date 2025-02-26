@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/Computer Scenes/shop_category.gd" id="1_pmo2h"]
 [ext_resource type="PackedScene" uid="uid://bchsomrab1tv0" path="res://scenes/Computer Scenes/buyable_item.tscn" id="1_slib6"]
 
-[node name="Category Label" type="Label" node_paths=PackedStringArray("category_label", "item_container")]
+[node name="Category Label" type="Label" node_paths=PackedStringArray("category_label")]
 custom_minimum_size = Vector2(1920, 1080)
 offset_top = 5.0
 offset_right = 500.0
@@ -11,9 +11,8 @@ offset_bottom = 68.0
 theme_override_font_sizes/font_size = 45
 text = "Category"
 script = ExtResource("1_pmo2h")
-selected_category = "items"
+selected_category = "gadgets"
 category_label = NodePath(".")
-item_container = NodePath("GridContainer")
 item_button_scene = ExtResource("1_slib6")
 
 [node name="GridContainer" type="GridContainer" parent="."]
@@ -27,3 +26,21 @@ scale = Vector2(0.88, 0.84)
 size_flags_horizontal = 6
 size_flags_vertical = 6
 columns = 4
+
+[node name="BuyableItem3" parent="GridContainer" instance=ExtResource("1_slib6")]
+layout_mode = 2
+
+[node name="BuyableItem4" parent="GridContainer" instance=ExtResource("1_slib6")]
+layout_mode = 2
+
+[node name="BuyableItem5" parent="GridContainer" instance=ExtResource("1_slib6")]
+layout_mode = 2
+
+[node name="BuyableItem6" parent="GridContainer" instance=ExtResource("1_slib6")]
+layout_mode = 2
+
+[node name="BuyableItem7" parent="GridContainer" instance=ExtResource("1_slib6")]
+layout_mode = 2
+
+[node name="BuyableItem8" parent="GridContainer" instance=ExtResource("1_slib6")]
+layout_mode = 2

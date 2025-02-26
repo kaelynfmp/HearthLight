@@ -14,7 +14,8 @@ func set_email(new_email: Email):
 	email = new_email
 	sender_label.text = set_limited_text(email.sender)
 	subject_label.text = set_limited_text(email.subject, 28)
-	blurb_label.text = set_limited_text(email.contents)
+	
+	blurb_label.text = set_limited_text(email.contents.split("\n")[0])
 	sender_dropdown.text = email.sender
 	subject_dropdown.text = email.subject
 	content.text = email.contents
