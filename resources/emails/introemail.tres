@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://cof21obwyvl4v"]
+
+[ext_resource type="Script" path="res://scripts/resources/email.gd" id="1_16060"]
+[ext_resource type="Resource" uid="uid://hqegir1wr6ur" path="res://resources/orders/order1.tres" id="1_sjloe"]
+
+[resource]
+script = ExtResource("1_16060")
+sender = "The Sharks"
+subject = "Pay us back!!"
+contents = "1st email testing yuppp"
+day = 1
+hour = 8
+minute = 0
+category = "main"
+is_read = false
+attached_order = ExtResource("1_sjloe")
+email_preview_line = 1

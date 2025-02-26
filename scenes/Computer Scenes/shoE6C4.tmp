@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://de20noymjuwfb"]
+
+[ext_resource type="Script" path="res://scenes/Computer Scenes/shop_category.gd" id="1_pmo2h"]
+[ext_resource type="PackedScene" uid="uid://bchsomrab1tv0" path="res://scenes/Computer Scenes/buyable_item.tscn" id="1_slib6"]
+
+[node name="Category Label" type="Label" node_paths=PackedStringArray("category_label", "item_container")]
+custom_minimum_size = Vector2(1920, 1080)
+offset_top = 5.0
+offset_right = 500.0
+offset_bottom = 68.0
+theme_override_font_sizes/font_size = 45
+text = "Category"
+script = ExtResource("1_pmo2h")
+selected_category = "items"
+category_label = NodePath(".")
+item_container = NodePath("GridContainer")
+item_button_scene = ExtResource("1_slib6")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(0, 1080)
+layout_mode = 0
+offset_left = 83.0
+offset_top = 90.0
+offset_right = 2095.0
+offset_bottom = 1264.0
+scale = Vector2(0.88, 0.84)
+size_flags_horizontal = 6
+size_flags_vertical = 6
+columns = 4

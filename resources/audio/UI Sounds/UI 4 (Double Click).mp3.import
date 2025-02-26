@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ci0rnna55mhjl"
+path="res://.godot/imported/UI 4 (Double Click).mp3-0b58f2cd095cb1a18d37a446e3aae575.mp3str"
+
+[deps]
+
+source_file="res://resources/audio/UI Sounds/UI 4 (Double Click).mp3"
+dest_files=["res://.godot/imported/UI 4 (Double Click).mp3-0b58f2cd095cb1a18d37a446e3aae575.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

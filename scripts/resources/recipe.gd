@@ -1,4 +1,4 @@
-﻿@tool
+@tool
 
 @icon("res://resources/resource-icons/recipe.svg")
 

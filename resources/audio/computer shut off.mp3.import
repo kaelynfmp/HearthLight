@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d0xc2y5ug21fu"
+path="res://.godot/imported/computer shut off.mp3-8f3c0f6ecc32f8ceb9db7fbe4528c645.mp3str"
+
+[deps]
+
+source_file="res://resources/audio/computer shut off.mp3"
+dest_files=["res://.godot/imported/computer shut off.mp3-8f3c0f6ecc32f8ceb9db7fbe4528c645.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

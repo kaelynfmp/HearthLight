@@ -8,11 +8,13 @@ extends Resource
 @export var texture: Texture2D
 ## Name of the gadget as it appears in-game.
 @export var name: String
+## Age of the gadget (Primitive | Industrial | Electrical | Cyber)
+@export var gadget_age: String
 ## In-game description of the gadget.
 @export_multiline var description: String
 
 @export_category("Properties")
-## Item corresponding ot the gadget for inventory usage
+## Item corresponding to the gadget for inventory usage
 @export var item: Item
 ## Inventory that belongs to the gadget
 @export var inventory: Inventory
@@ -24,10 +26,16 @@ extends Resource
 @export var outputs: int
 ## The amount of time it takes to process a recipe
 @export var process_time: float
+## The sound that play when the gadget is started
+@export var start_sound: AudioStream
+## The sound that play during the gadget progress
+@export var ambient_sound: AudioStream
+## The sound that play when the gadget is stopped
+@export var stop_sound: AudioStream
 
 func _init(p_texture: Texture2D = null, p_name: String = "", p_description: String = "", p_item: Item = null, \
 		   p_inventory: Inventory = null, p_produces: bool = false, p_inputs: int = 0, p_outputs: int = 0, \
-		   p_process_time: float = 0.0):
+		   p_process_time: float = 0.0, start_sound: AudioStream = null, ambient_sound: AudioStream = null, stop_sound: AudioStream = null):
 	texture = p_texture
 	name = p_name
 	description = p_description
@@ -37,3 +45,6 @@ func _init(p_texture: Texture2D = null, p_name: String = "", p_description: Stri
 	inputs = p_inputs
 	outputs = p_outputs
 	process_time = p_process_time
+	start_sound = start_sound
+	ambient_sound = ambient_sound
+	stop_sound = stop_sound

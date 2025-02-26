@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://bchsomrab1tv0"]
+
+[ext_resource type="Texture2D" uid="uid://b44kbp322i3y" path="res://resources/sprites/testimg.png" id="1_3hqlb"]
+[ext_resource type="Script" path="res://scenes/Computer Scenes/itemdisplay.gd" id="1_3js1n"]
+[ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="2_hye8o"]
+[ext_resource type="PackedScene" uid="uid://bj67g16p1cic7" path="res://scenes/Computer Scenes/item_buy_popup.tscn" id="3_a38nv"]
+
+[node name="ItemButton" type="Button" node_paths=PackedStringArray("name_label", "price_label", "item_image")]
+custom_minimum_size = Vector2(500, 550)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = -460.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3js1n")
+item = ExtResource("2_hye8o")
+name_label = NodePath("Image/Name")
+price_label = NodePath("Image/Price")
+item_image = NodePath("Image")
+popup_scene = ExtResource("3_a38nv")
+
+[node name="Image" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -134.0
+offset_top = -179.0
+offset_right = 134.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_3hqlb")
+
+[node name="Name" type="Label" parent="Image"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -217.0
+offset_top = 48.0
+offset_right = 221.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "The Item"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Price" type="Label" parent="Image"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -198.5
+offset_top = 106.0
+offset_right = 201.5
+offset_bottom = 141.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "$10000000000000000000"
+horizontal_alignment = 1

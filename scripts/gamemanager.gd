@@ -2,7 +2,11 @@ extends Node
 
 signal inventory_changed
 
-@export var inventory:bool = false
+@export var inventory: bool = false
+
+# Temp
+@export var is_placing_gadget: bool = false
+
 
 var cursor:Node2D
 
@@ -16,12 +20,44 @@ enum Items {
 	DEFAULT_STACK = 100
 }
 
+var currency: int = 20
+signal currency_updated(new_amount)
+
+var start_time: int
+var current_time: int
+var seconds_elapsed: float
+var day_hours = 18
+var time_scale = 480 # 1 irl second is 480 game seconds for 2 minutes/day, 16h day
+var time_scaled_seconds: int
+var game_time = {
+	"day": 1,
+	"hour": 8,
+	"minute": 0,
+	"second": 0,
+	"segment": "morning"
+}
+var in_computer: bool
+var shop_dict = {
+	"resources": [],
+	"gadgets": []
+}
+
 func _ready() -> void:
-	pass
+	start_time = Time.get_ticks_msec()
+	seconds_elapsed = 0
 	
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("inventory"):
 		change_inventory()
+	elif Input.is_action_just_pressed("toggle_placing_mode"):
+		is_placing_gadget = !is_placing_gadget
+	
+	# time tracking
+	var current_time = Time.get_ticks_msec()
+	var milliseconds_elapsed = current_time - start_time
+	seconds_elapsed = milliseconds_elapsed / 1000
+	time_scaled_seconds = seconds_elapsed*time_scale
+	update_time(time_scaled_seconds)
 
 func change_inventory():
 	if inventory:
@@ -89,3 +125,44 @@ func clear_slot_distributor():
 	slot_distributor.total = 0
 	slot_distributor.item = null
 	slot_distributor.slots = []
+
+func add_currency(amount: int):
+	currency += amount
+	currency_updated.emit(currency)
+	
+func subtract_currency(amount: int) -> bool:
+	if currency >= amount:
+		currency -= amount
+		currency_updated.emit(currency)
+		return true  # successful purchare
+	return false  # not enough money for purchase
+
+func update_time(in_game_seconds):
+	#print("Game Seconds: %s" % in_game_seconds)	
+	game_time["hour"] = int(in_game_seconds / 3600) + 8
+	game_time["minute"] = int((in_game_seconds % 3600) / 60)
+	game_time["second"] = int(in_game_seconds % 60)
+	
+	# count days
+	if (game_time["hour"] == day_hours + 6): 
+		game_time["day"] += 1
+		game_time["hour"] = 8
+		game_time["minute"] = 0
+		game_time["second"] = 0
+		start_time = Time.get_ticks_msec()
+	
+	# update day segment aka morning, afternoon etc
+	if (8 <= game_time["hour"] and game_time["hour"] < 12):
+		game_time["segment"] = "morning"
+	elif (12 <= game_time["hour"] and game_time["hour"] < 16):
+		game_time["segment"] = "afternoon"
+	elif (16 <= game_time["hour"] and game_time["hour"] < 20):
+		game_time["segment"] = "evening"
+	else: # game time > 20
+		game_time["segment"] = "night"
+	
+	# testing
+	#if (game_time["minute"]): # prints on the hour
+		#print("IRL Seconds elapsed: ", seconds_elapsed)
+		#print("Game Seconds: %s" % in_game_seconds)	
+		#print("Game Time: %d Days, %dH %dM %dS" % [game_time["day"], game_time["hour"], game_time["minute"], game_time["second"]])

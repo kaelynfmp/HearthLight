@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bj625v46yn487"
+path="res://.godot/imported/earned money 1.mp3-55e0cda95710b93aa3a1325bf68ce420.mp3str"
+
+[deps]
+
+source_file="res://resources/audio/Money/earned money 1.mp3"
+dest_files=["res://.godot/imported/earned money 1.mp3-55e0cda95710b93aa3a1325bf68ce420.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,9 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4jwdbd2el2ca"]
+[gd_scene load_steps=7 format=3 uid="uid://c4jwdbd2el2ca"]
 
-[ext_resource type="Texture2D" uid="uid://cwi4fc6b360oh" path="res://resources/sprites/sewing_machine.png" id="1_8usb6"]
+[ext_resource type="Script" path="res://scripts/objects/gadget.gd" id="1_3434e"]
+[ext_resource type="Script" path="res://scripts/resources/inventory.gd" id="2_7k8xy"]
+[ext_resource type="Texture2D" uid="uid://d177rnqmevtb0" path="res://resources/sprites/progress_circle_back.png" id="2_sd4ea"]
+[ext_resource type="Script" path="res://scripts/resources/slot.gd" id="3_1chgp"]
+[ext_resource type="Texture2D" uid="uid://ccdr42qmkpfj2" path="res://resources/sprites/progress_circle_front.png" id="3_cumj0"]
+
+[sub_resource type="Resource" id="Resource_7bxlh"]
+script = ExtResource("2_7k8xy")
+slots = Array[ExtResource("3_1chgp")]([])
 
 [node name="Gadget" type="StaticBody2D"]
 y_sort_enabled = true
+input_pickable = true
+script = ExtResource("1_3434e")
+output_inventory = SubResource("Resource_7bxlh")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(-6.11111, -22.0748)
@@ -11,5 +22,29 @@ scale = Vector2(0.611111, 0.563525)
 polygon = PackedVector2Array(150.727, 16.1036, 50.9091, -54.8781, -130.727, 48.0454, -29.2727, 122.576)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_8usb6")
 offset = Vector2(0, -32)
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+visible = false
+z_index = 10
+y_sort_enabled = true
+offset_left = -32.0
+offset_top = -200.0
+offset_right = 480.0
+offset_bottom = 312.0
+scale = Vector2(0.125, 0.125)
+step = 0.0
+fill_mode = 4
+texture_under = ExtResource("2_sd4ea")
+texture_progress = ExtResource("3_cumj0")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = 6.0
+autoplay = true
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
