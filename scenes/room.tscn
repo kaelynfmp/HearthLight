@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=4 uid="uid://gfvpt16hdue1"]
 
 [ext_resource type="TileSet" uid="uid://r7x82rdaw80h" path="res://resources/tilesets/room.tres" id="1_lwtf6"]
-[ext_resource type="Script" path="res://scripts/environment/tile_layers.gd" id="1_suw4i"]
+[ext_resource type="Script" path="res://scripts/tile_layers.gd" id="1_suw4i"]
 [ext_resource type="Texture2D" uid="uid://m1v51t3xgjie" path="res://resources/sprites/gridloop.png" id="2_eajwq"]
 [ext_resource type="PackedScene" uid="uid://b353v4ogg13io" path="res://scenes/character.tscn" id="3_aubfo"]
 [ext_resource type="Script" path="res://scripts/objects/character.gd" id="3_jp7id"]
