@@ -6,6 +6,8 @@ signal pause_changed
 signal update_gadgets
 signal take_cursor(Slot)
 
+@onready var computer_gadget:Gadget = load("res://resources/gadgets/computer.tres")
+
 var inventory: bool = false:
 	set(value):
 		inventory = value
@@ -100,12 +102,14 @@ func _process(_delta: float) -> void:
 	time_scaled_seconds = seconds_elapsed*time_scale
 	update_time(time_scaled_seconds)
 
+## Load all recipes in the filesystem
 func load_recipes():
 	update_recipes.emit()
 	load_path("res://resources/recipes", Load_Type.RECIPE)
 	for recipe_string:String in recipe_strings:
 		recipes.append(load(recipe_string))
-		
+
+## Load all gadgets in the filesystem
 func load_gadgets():
 	update_gadgets.emit()
 	load_path("res://resources/gadgets", Load_Type.GADGET)
@@ -114,6 +118,7 @@ func load_gadgets():
 		gadgets.append(curr_gadget)
 		gadget_items[curr_gadget.item] = curr_gadget
 
+## Loads a path and then appends the path's contents to strings
 func load_path(path:String, type:int):
 	var dir: DirAccess = DirAccess.open(path)
 	if dir:
@@ -136,6 +141,7 @@ func load_path(path:String, type:int):
 		assert(dir != null, "Directory not found! Should be at 'res://resources/" +
 		("recipes" if type == Load_Type.RECIPE else "gadgets" if type == Load_Type.GADGET else "items") + "'")
 
+## Changes whether the inventory is open or not
 func change_inventory():
 	if inventory:
 		inventory = false
@@ -150,9 +156,11 @@ func change_inventory():
 		inventory = true
 	inventory_open_state_changed.emit()
 
+## Adds an inventory to the master list
 func add_inventory(p_inventory: Inventory):
 	inventories.append(p_inventory)
 
+## Attempts to send a slot to the nearest inventory, and will spread them out among multiple if necessary to send it all
 func send_to_inventory(slot: Slot):
 	var went_somewhere: bool = false
 	var home_inventory: Inventory
@@ -169,6 +177,7 @@ func send_to_inventory(slot: Slot):
 		slot.decrement(slot.quantity)
 		home_inventory.insert(temp_slot.item, temp_slot.quantity)
 
+## Sets the cursor object
 func set_cursor(setting_cursor: Node2D):
 	cursor = setting_cursor
 	
@@ -208,6 +217,7 @@ func set_gadget(p_gadget:StaticBody2D) -> void:
 	if !inventory:
 		change_inventory()
 		
+## Gets the current gadget that corresponds to the item held in the cursor
 func get_gadget_from_cursor() -> Gadget:
 	if !cursor.slot or !cursor.slot.item:
 		return null
@@ -231,6 +241,7 @@ func subtract_currency(amount: int) -> bool:
 		return true  # successful purchare
 	return false  # not enough money for purchase
 
+## Picks up a gadget and puts it into the cursor
 func pickup_gadget(_gadget:Gadget) -> bool:
 	if cursor != null and cursor.slot != null and cursor.slot.item == null:
 		if !inventory:
@@ -241,6 +252,10 @@ func pickup_gadget(_gadget:Gadget) -> bool:
 		cursor.slot.initialize(_gadget.item)
 		return true
 	return false
+	
+func unique_gadget_interaction(gadget:Gadget):
+	if gadget == computer_gadget:
+		pass
 
 func update_time(in_game_seconds):
 	#print("Game Seconds: %s" % in_game_seconds)	

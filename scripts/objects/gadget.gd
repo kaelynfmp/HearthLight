@@ -2,7 +2,7 @@ extends StaticBody2D
 
 signal removing(layer_occupied_name:String, cell_pos:Vector2i)
 
-var gadget_stats:Gadget
+@export var gadget_stats:Gadget
 @onready var audio_player:AudioStreamPlayer2D = find_child("AudioStreamPlayer")
 
 @onready var sprite:Sprite2D = find_child("Sprite")
@@ -147,7 +147,10 @@ func detect_nearby() -> bool:
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if detect_nearby() and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		if !initial_click:
-			GameManager.set_gadget(self)
+			if gadget_stats.produces:
+				GameManager.set_gadget(self)
+			else:
+				GameManager.unique_gadget_interaction(gadget_stats)
 	elif detect_nearby() and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 		if GameManager.pickup_gadget(gadget_stats):
 			removing.emit(layer_occupied_name, cell_pos)

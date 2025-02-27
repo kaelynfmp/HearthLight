@@ -68,7 +68,7 @@ void fragment() {
 		float edge = TEXTURE_PIXEL_SIZE.x * thickness * 2.0;
 		uv = uv + uv * edge;
 		uv += vec2(0.5);
-		
+
 		// Apply outline.
 		vec4 newColor = texture(TEXTURE, uv);
 		if (newColor.a <= tolerance || border(uv)) {
@@ -111,8 +111,8 @@ polygon = PackedVector2Array(450, 0, 0, -300, -450, 0, 0, 300)
 
 [node name="Sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_p5k61")
-scale = Vector2(0.9, 0.9)
-offset = Vector2(0, -178)
+scale = Vector2(0.7, 0.7)
+offset = Vector2(0, -218)
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0

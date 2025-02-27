@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="Gadget" load_steps=10 format=3 uid="uid://ccitfm40o5ju2"]
+
+[ext_resource type="Script" path="res://scripts/resources/inventory.gd" id="1_grp8q"]
+[ext_resource type="Script" path="res://scripts/resources/slot.gd" id="2_uarw1"]
+[ext_resource type="Script" path="res://scripts/resources/item.gd" id="3_d0u8u"]
+[ext_resource type="Texture2D" uid="uid://cak6jvdv7f2j1" path="res://resources/sprites/computerBlock.png" id="4_2lmon"]
+[ext_resource type="Script" path="res://scripts/resources/gadget.gd" id="4_uwl5i"]
+
+[sub_resource type="Resource" id="Resource_wbeyk"]
+script = ExtResource("2_uarw1")
+locked = false
+item_filter = Array[ExtResource("3_d0u8u")]([])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_v1x0k"]
+script = ExtResource("2_uarw1")
+locked = false
+item_filter = Array[ExtResource("3_d0u8u")]([])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_t5uwu"]
+script = ExtResource("1_grp8q")
+slots = Array[ExtResource("2_uarw1")]([SubResource("Resource_wbeyk"), SubResource("Resource_v1x0k")])
+
+[sub_resource type="Resource" id="Resource_q0wfo"]
+script = ExtResource("3_d0u8u")
+texture = ExtResource("4_2lmon")
+name = "Computer"
+description = "Your personal computer! Thank goodness the tech revolution a few years back brought back the look of CRTs! Of course, it's actually a turbo-spectrometer in there. Darn. Gimmick products suck."
+max_stack = 100
+price = 0
+
+[resource]
+resource_name = "computer"
+script = ExtResource("4_uwl5i")
+texture = ExtResource("4_2lmon")
+name = "Computer"
+age = 3
+description = "Your personal computer! Thank goodness the tech revolution a few years back brought back the look of CRTs! Of course, it's actually a turbo-spectrometer in there. Darn. Gimmick products suck."
+item = SubResource("Resource_q0wfo")
+inventory = SubResource("Resource_t5uwu")
+produces = false
+inputs = 1
+outputs = 1
+process_time = 0.0

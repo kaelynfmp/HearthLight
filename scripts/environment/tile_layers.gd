@@ -27,6 +27,8 @@ func _ready() -> void:
 			# account for verticality of next layer
 			cur_exclusions[idx] -= Vector2i(layer.z_index, layer.z_index)
 		place_boundaries(layer, cur_exclusions)
+		
+	spawnObject(GameManager.computer_gadget, Vector2i(-6, -5))
 
 func place_boundaries(layer, exclusions=[]):
 	var used = layer.get_used_cells()
@@ -64,7 +66,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			GameManager.change_inventory()
 		
 func is_base_available(cell_pos: Vector2i) -> bool:
-	
 	var lowest = ""
 	var lowest_index = 0
 	if cell_pos in tile_map["Base"]:
@@ -72,10 +73,13 @@ func is_base_available(cell_pos: Vector2i) -> bool:
 			return true
 	return false
 
-func spawnObject(gadget: Gadget) -> bool:
+## Spawns a provided gadget onto the tilemap
+func spawnObject(gadget: Gadget, _cell_pos:Vector2i = Vector2i(-99, -99)) -> bool:
 	# Check if in used tile
 	var mouse_pos = get_local_mouse_position()
 	var cell_pos = base_layer.local_to_map(mouse_pos)
+	if _cell_pos != Vector2i(-99, -99):
+		cell_pos = _cell_pos
 	if (is_base_available(cell_pos)):
 		var gadget_scene = load("res://scenes/gadgets/gadget.tscn")
 		var instance = gadget_scene.instantiate()
