@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://dynvawdp111sl"]
+
+[ext_resource type="Script" path="res://scripts/resources/email.gd" id="1_jvolh"]
+[ext_resource type="Resource" uid="uid://caa34u6h1gre6" path="res://resources/orders/fabricforgrinderorder.tres" id="1_kymxr"]
+
+[resource]
+script = ExtResource("1_jvolh")
+sender = "James"
+subject = "I need some fabric!"
+contents = "I need some fabric for my new shirt. I'll even give you a grinder in exchange!"
+category = "main"
+day = 2
+hour = 18
+minute = 0
+is_read = false
+attached_order = ExtResource("1_kymxr")

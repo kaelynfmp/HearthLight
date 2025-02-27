@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://r3prgkwmqlck"]
+
+[ext_resource type="Script" path="res://scripts/resources/email.gd" id="1_fr4g4"]
+[ext_resource type="Resource" uid="uid://cj4g8hp2eg7tg" path="res://resources/orders/oreforstoveorder.tres" id="1_o7yho"]
+
+[resource]
+script = ExtResource("1_fr4g4")
+sender = "Arnold"
+subject = "Every good house has a stove!"
+contents = "I predict you are in need of one. I'm looking for some ore to use on my stove. I'll give you one of my extra stoves in exchange!"
+category = "main"
+day = 3
+hour = 10
+minute = 0
+is_read = false
+attached_order = ExtResource("1_o7yho")

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://dmneq4jdepfsq"]
+
+[ext_resource type="Script" path="res://scripts/resources/email.gd" id="1_0hjw5"]
+[ext_resource type="Resource" uid="uid://7c34mxd5jua7" path="res://resources/orders/metalformoneyorder.tres" id="1_ns5xo"]
+
+[resource]
+script = ExtResource("1_0hjw5")
+sender = "Sir Billionaire"
+subject = "I need metal. NOW."
+contents = "I don't care. Get it to me. If you do, I'll give you $9999 dollars. Or don't. Your choice, I guess."
+category = "main"
+day = 3
+hour = 16
+minute = 0
+is_read = false
+attached_order = ExtResource("1_ns5xo")
