@@ -9,7 +9,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	currency_label.text = "$"+str(GameManager.currency)
+	currency_label.text = "      "+str(GameManager.currency)
 
 func _close_computer():
 	if parent_node:

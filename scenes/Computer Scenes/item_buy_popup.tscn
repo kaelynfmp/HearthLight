@@ -14,10 +14,10 @@ z_index = 51
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1027.0
-offset_top = -1272.0
-offset_right = -1027.0
-offset_bottom = -1272.0
+offset_left = -1021.0
+offset_top = -1275.0
+offset_right = -1021.0
+offset_bottom = -1275.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.04, 1.04)
@@ -48,10 +48,10 @@ grow_vertical = 2
 
 [node name="Name" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 1668.0
-offset_top = 487.0
-offset_right = 2076.0
-offset_bottom = 656.0
+offset_left = 1367.31
+offset_top = 492.308
+offset_right = 2430.31
+offset_bottom = 661.308
 theme_override_font_sizes/font_size = 70
 text = "Item Name"
 horizontal_alignment = 1
@@ -74,13 +74,15 @@ offset_top = 618.0
 offset_right = 2002.0
 offset_bottom = 843.0
 texture = ExtResource("1_p7i7f")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Cost" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 2052.0
-offset_top = 1066.0
-offset_right = 2460.0
-offset_bottom = 1235.0
+offset_left = 2051.92
+offset_top = 1198.08
+offset_right = 2459.92
+offset_bottom = 1367.08
 theme_override_font_sizes/font_size = 70
 text = "Cost"
 horizontal_alignment = 1
@@ -105,10 +107,10 @@ flat = true
 
 [node name="Qty" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 1385.0
-offset_top = 1072.0
-offset_right = 1793.0
-offset_bottom = 1241.0
+offset_left = 1338.46
+offset_top = 1193.27
+offset_right = 1746.46
+offset_bottom = 1362.27
 theme_override_font_sizes/font_size = 70
 text = "Qty"
 horizontal_alignment = 1

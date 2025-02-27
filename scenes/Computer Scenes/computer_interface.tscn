@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c2wlmdehxae41"]
+[gd_scene load_steps=17 format=3 uid="uid://c2wlmdehxae41"]
 
 [ext_resource type="Script" path="res://scenes/Computer Scenes/computer_manager.gd" id="1_1cjce"]
 [ext_resource type="PackedScene" uid="uid://b5r8qyahtr3r1" path="res://scenes/Computer Scenes/view_email_button.tscn" id="1_ip337"]
@@ -10,19 +10,21 @@
 [ext_resource type="Script" path="res://scripts/order_manager.gd" id="5_wwlms"]
 [ext_resource type="Script" path="res://scripts/resources/order.gd" id="6_luoch"]
 [ext_resource type="PackedScene" uid="uid://bchsomrab1tv0" path="res://scenes/Computer Scenes/buyable_item.tscn" id="6_q6ffq"]
+[ext_resource type="Texture2D" uid="uid://cu638rts4nfa2" path="res://resources/sprites/computer/computerBalance.png" id="11_n3nyj"]
 [ext_resource type="Texture2D" uid="uid://clcmg5me835w8" path="res://resources/sprites/computer/computerClose.png" id="11_u2wnv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ga7bm"]
 bg_color = Color(0.470588, 0.145098, 0.588235, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0hhal"]
-bg_color = Color(0.736431, 0.60548, 0.604873, 1)
+bg_color = Color(0.572549, 0.239216, 0.690196, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2qdu6"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xtmmj"]
+texture = ExtResource("11_n3nyj")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n53si"]
 bg_color = Color(0.710655, 0.252932, 0.341096, 1)
@@ -133,13 +135,13 @@ layout_mode = 2
 
 [node name="Currency Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1522.0
-offset_top = 8.0
-offset_right = 1803.0
-offset_bottom = 91.0
+offset_left = 1433.0
+offset_top = 10.0
+offset_right = 1812.0
+offset_bottom = 93.0
 theme_override_font_sizes/font_size = 60
-theme_override_styles/normal = SubResource("StyleBoxFlat_2qdu6")
-text = "$1000000"
+theme_override_styles/normal = SubResource("StyleBoxTexture_xtmmj")
+text = "      1000000"
 
 [node name="Close Button" type="Button" parent="."]
 layout_mode = 0
