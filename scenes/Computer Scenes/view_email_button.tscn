@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5r8qyahtr3r1"]
+[gd_scene load_steps=8 format=3 uid="uid://b5r8qyahtr3r1"]
 
 [ext_resource type="Script" path="res://scenes/Computer Scenes/emaildisplay.gd" id="1_cc22d"]
+[ext_resource type="Texture2D" uid="uid://dph2wxrwua005" path="res://resources/sprites/computer/computerCancel.png" id="2_kcjoy"]
+[ext_resource type="Texture2D" uid="uid://cwxs2j52xgre8" path="res://resources/sprites/computer/computerAccept.png" id="3_jjpv2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_agju5"]
 bg_color = Color(0.886275, 0.333333, 0.666667, 1)
@@ -100,6 +102,8 @@ offset_top = 607.0
 offset_right = 929.0
 offset_bottom = 726.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_qmtjh")
+icon = ExtResource("2_kcjoy")
+flat = true
 
 [node name="Accept" type="Button" parent="Panel"]
 layout_mode = 0
@@ -108,3 +112,5 @@ offset_top = 607.0
 offset_right = 1167.0
 offset_bottom = 726.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_egw1w")
+icon = ExtResource("3_jjpv2")
+flat = true
