@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://gfvpt16hdue1"]
+[gd_scene load_steps=10 format=4 uid="uid://gfvpt16hdue1"]
 
 [ext_resource type="TileSet" uid="uid://r7x82rdaw80h" path="res://resources/tilesets/room.tres" id="1_lwtf6"]
 [ext_resource type="Script" path="res://scripts/environment/tile_layers.gd" id="1_suw4i"]

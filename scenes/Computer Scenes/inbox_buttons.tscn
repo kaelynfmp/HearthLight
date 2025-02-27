@@ -4,13 +4,15 @@
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r7ntb"]
 texture = ExtResource("1_unc2n")
+modulate_color = Color(0.796243, 0.796243, 0.796243, 1)
 
 [node name="Button" type="Button"]
 z_index = 2
 custom_minimum_size = Vector2(325, 100)
 offset_right = 325.0
 offset_bottom = 100.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_r7ntb")
+theme_override_styles/focus = SubResource("StyleBoxTexture_r7ntb")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_r7ntb")
 text = "test"
 flat = true
 

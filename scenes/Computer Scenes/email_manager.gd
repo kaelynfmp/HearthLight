@@ -28,6 +28,11 @@ func _ready():
 	print(emails)
 	display_category_emails(current_category) # default view to "main"
 
+func _process(delta: float) -> void:
+	for key in categorized_emails:
+		for email in categorized_emails[key]:
+			print(email.sender, email.category)
+
 func create_inbox_buttons():
 	for category in categorized_emails.keys():
 		if categorized_emails[category].size() >= 0:
@@ -114,12 +119,21 @@ func display_email_button(email: Email):
 	
 	var accept_button = email_button.find_child("Accept")
 	var reject_button = email_button.find_child("Decline")
+	var fulfill_button = email_button.find_child("Fulfill")
 	# order accept/reject
 	if email.attached_order and !email.attached_order.responded:
 		if accept_button:
 			accept_button.pressed.connect(func(): order_accept(email))
 		if reject_button:
 			reject_button.pressed.connect(func(): order_reject(email))
+	elif email.attached_order.responded and email.attached_order.is_accepted and not email.attached_order.is_completed:
+		fulfill_button.visible = true
+		accept_button.visible = false
+		reject_button.visible = false
+		fulfill_button.pressed.connect(func(): OrderManager.fulfill_order(email.attached_order))
+		#change_email_category(email, "archive")
+		#display_category_emails(current_category)
+		
 	else: # no attached order OR order has been responded to
 		accept_button.visible = false
 		reject_button.visible = false

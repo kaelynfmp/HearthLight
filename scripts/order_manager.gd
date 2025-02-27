@@ -42,10 +42,16 @@ func archive_order(order: Order): # unfulfilled by due date OR rejected
 func fulfill_order(order: Order) -> bool:
 	
 	#check fulfillment ability
+	if check_fulfillment_ability(order):
+		var required_items = order.required_items
+		var required_qtys = order.required_quantities
+		for i in range(len(order.required_items)):
+			remove_items_from_inventory(required_items[i],required_qtys[i])
+		reward_player(order)
 	# if true:
 	# remove items
 	# reward player
-	# archive order
+	# TODO: archive order
 	
 	# if false:
 	return false
@@ -66,8 +72,8 @@ func check_fulfillment_ability(order: Order) -> bool:
 			return false
 	return true
 
-func remove_items_from_inventory():
-	pass
+func remove_items_from_inventory(item: Item, qty: int):
+	inventory.remove_items(item,qty)
 
 func reward_player(order: Order):
 	if len(order.rewards) > 0:

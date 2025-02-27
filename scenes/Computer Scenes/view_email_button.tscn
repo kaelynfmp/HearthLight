@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://b5r8qyahtr3r1"]
+[gd_scene load_steps=12 format=3 uid="uid://b5r8qyahtr3r1"]
 
 [ext_resource type="Script" path="res://scenes/Computer Scenes/emaildisplay.gd" id="1_cc22d"]
 [ext_resource type="Texture2D" uid="uid://b3f53pdbhlfkg" path="res://resources/sprites/emails/emailPreview.png" id="2_ikcrj"]
 [ext_resource type="Texture2D" uid="uid://dph2wxrwua005" path="res://resources/sprites/computer/computerCancel.png" id="2_kcjoy"]
 [ext_resource type="Texture2D" uid="uid://cwxs2j52xgre8" path="res://resources/sprites/computer/computerAccept.png" id="3_jjpv2"]
 [ext_resource type="Texture2D" uid="uid://dnvrhn4af2nix" path="res://resources/sprites/emails/emailDropdown.png" id="3_n2822"]
+[ext_resource type="Texture2D" uid="uid://brioxpexvl23w" path="res://resources/sprites/emails/emailButton.png" id="6_xo1sp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6whkr"]
 bg_color = Color(1, 1, 1, 0)
@@ -17,6 +18,8 @@ bg_color = Color(0.678532, 0.225584, 0.240335, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_egw1w"]
 bg_color = Color(0.293422, 0.699237, 0.358543, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ys1cn"]
 
 [node name="EmailButton" type="Button" node_paths=PackedStringArray("sender_label", "subject_label", "sender_dropdown", "subject_dropdown", "blurb_label", "content", "expand_panel")]
 custom_minimum_size = Vector2(1920, 300)
@@ -122,3 +125,19 @@ offset_bottom = 883.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_egw1w")
 icon = ExtResource("3_jjpv2")
 flat = true
+
+[node name="Fulfill" type="Button" parent="Panel"]
+visible = false
+layout_mode = 0
+offset_left = 1625.0
+offset_top = 796.0
+offset_right = 1857.0
+offset_bottom = 872.0
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxTexture_ys1cn")
+text = "Fulfill"
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/Fulfill"]
+position = Vector2(118, 38)
+scale = Vector2(0.862162, 0.968468)
+texture = ExtResource("6_xo1sp")
