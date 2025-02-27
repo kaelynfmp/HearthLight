@@ -75,9 +75,12 @@ func load_emails():
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while file_name != "":
+			if file_name.ends_with(".remap"):
+				file_name = file_name.trim_suffix(".remap")
 			if file_name.ends_with(".tres"):
 				var email_path = email_folder + file_name
 				var email = load(email_path)
+				print(email)
 				if email and email is Email:
 					emails.append(email)
 					categorized_emails[email.category].append(email)
@@ -95,13 +98,10 @@ func change_email_category(email: Email, new_category: String):
 	categorized_emails[new_category].append(email)
 	
 func is_email_time_reached(email: Email) -> bool:
-	var game_time = GameManager.game_time 
-	print(game_time)
-	print(email.day,"D ", email.hour, "H ", email.minute, "M")
+	var game_time = GameManager.game_time
 	if email.day <= game_time["day"]: # day is right/has passed
 		if email.hour <= game_time["hour"]: # hour is right/has passed
 			if email.minute <= game_time["minute"]:
-				print(email.contents, " is ready to be displayed!")
 				return true
 	
 	return false

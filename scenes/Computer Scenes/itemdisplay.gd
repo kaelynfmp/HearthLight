@@ -25,5 +25,5 @@ func _ready() -> void:
 func _show_popup():
 	var popup = popup_scene.instantiate()
 	popup.set_item_buy(item)
-	get_tree().current_scene.add_child(popup) 
+	get_tree().current_scene.find_child("HUD", true).add_child(popup) 
 	

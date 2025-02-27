@@ -9,6 +9,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	currency_label.text = "       "+str(GameManager.currency)
+	GameManager.in_computer = GameManager.computer_visible
 
 func _close_computer():
 	GameManager.change_computer_visibility()

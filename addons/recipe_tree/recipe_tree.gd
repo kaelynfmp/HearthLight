@@ -452,18 +452,21 @@ func load_path(path:String, type:int) -> void:
 		dir.list_dir_begin()
 		var file_name: String = dir.get_next()
 		while file_name != "":
-			if dir.current_is_dir():
-				load_path(dir.get_current_dir(), type)
-			else:
-				var full_path:String = path + "/" + file_name
-				if type == TYPE.RECIPE:
-					recipe_strings.append(full_path)
-				elif type == TYPE.GADGET:
-					gadget_strings.append(full_path)
-				elif type == TYPE.ITEM:
-					item_strings.append(full_path)
-			# found recipe
-			file_name = dir.get_next()
+			if file_name.ends_with(".remap"):
+				file_name = file_name.trim_suffix(".remap")
+			if file_name.ends_with(".tres"):
+				if dir.current_is_dir():
+					load_path(dir.get_current_dir(), type)
+				else:
+					var full_path:String = path + "/" + file_name
+					if type == TYPE.RECIPE:
+						recipe_strings.append(full_path)
+					elif type == TYPE.GADGET:
+						gadget_strings.append(full_path)
+					elif type == TYPE.ITEM:
+						item_strings.append(full_path)
+				# found recipe
+				file_name = dir.get_next()
 	else:
 		assert(dir != null, "Directory not found! Should be at 'res://resources/" +
 		("recipes" if type == TYPE.RECIPE else "gadgets" if type == TYPE.GADGET else "items") + "'")

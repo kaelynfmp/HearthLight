@@ -15,7 +15,6 @@ func set_category(category: String):
 	folder = "res://resources/items/"
 	if len(shop_dict[category]) == 0:
 		load_items()
-	print(shop_dict[category])
 	for item in shop_dict[category]:
 		display_items(item)
 
@@ -30,6 +29,8 @@ func load_items():
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while file_name != "":
+			if file_name.ends_with(".remap"):
+				file_name = file_name.trim_suffix(".remap")
 			if file_name.ends_with(".tres"):
 				var item_path = folder + file_name
 				var item = load(item_path)

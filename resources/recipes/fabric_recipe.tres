@@ -13,7 +13,7 @@ item = ExtResource("3_grmhl")
 locked = false
 item_filter = Array[ExtResource("3_frhr7")]([])
 bypass_stack = false
-quantity = 5
+quantity = 1
 
 [sub_resource type="Resource" id="Resource_2wxql"]
 script = ExtResource("2_srkqm")

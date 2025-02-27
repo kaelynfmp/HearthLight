@@ -45,6 +45,9 @@ var prev_item_texture
 			var temp_inventory_slots:Array[Slot] = inventory.slots.duplicate()
 			temp_inventory_slots.resize(inputs + outputs)
 			inventory.slots = temp_inventory_slots
+			for index in range(inventory.slots.size()):
+				var slot = inventory.slots[index]
+				slot.locked = index >= inputs
 		return max(1, inputs)
 ## The amount of outputs this gadget can produce
 @export var outputs: int:
