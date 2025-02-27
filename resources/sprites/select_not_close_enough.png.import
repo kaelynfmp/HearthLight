@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gi6my3ydg3ke"
-path="res://.godot/imported/gadget_selection.png-cf4d9f532a9b0147be0713ab3b2bf51b.ctex"
+uid="uid://h8f8jxxayi7x"
+path="res://.godot/imported/select_not_close_enough.png-250402c9742abac7d8cc700414cee208.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/sprites/gui/gear/gadget_selection.png"
-dest_files=["res://.godot/imported/gadget_selection.png-cf4d9f532a9b0147be0713ab3b2bf51b.ctex"]
+source_file="res://resources/sprites/select_not_close_enough.png"
+dest_files=["res://.godot/imported/select_not_close_enough.png-250402c9742abac7d8cc700414cee208.ctex"]
 
 [params]
 
