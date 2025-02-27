@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="RecipeTreeProperties" load_steps=41 format=3 uid="uid://bayqmo2156mc4"]
 
 [ext_resource type="Script" path="res://addons/recipe_tree/gadget_editor_node.gd" id="1_5e5y2"]
-[ext_resource type="Resource" path="res://resources/gadgets/wheel.tres" id="2_70wi3"]
+[ext_resource type="Resource" uid="uid://b1benml8tln26" path="res://resources/gadgets/wheel.tres" id="2_70wi3"]
 [ext_resource type="Script" path="res://addons/recipe_tree/recipe_tree_properties.gd" id="2_e0emm"]
 [ext_resource type="Script" path="res://addons/recipe_tree/recipe_editor_node.gd" id="2_hx4k4"]
 [ext_resource type="Resource" uid="uid://cutk2mxl7dhrh" path="res://resources/gadgets/plant.tres" id="3_d1v0y"]
@@ -44,8 +44,8 @@ y = 1040
 [sub_resource type="Resource" id="Resource_5t4gc"]
 script = ExtResource("1_5e5y2")
 gadget = ExtResource("5_odkxj")
-x = -740
-y = 2080
+x = -600
+y = 1860
 
 [sub_resource type="Resource" id="Resource_ycsiu"]
 script = ExtResource("1_5e5y2")
@@ -74,8 +74,8 @@ y = -1980
 [sub_resource type="Resource" id="Resource_nos87"]
 script = ExtResource("3_xi7dl")
 item = ExtResource("8_3ht0r")
-x = -820
-y = -1640
+x = -840
+y = -1620
 
 [sub_resource type="Resource" id="Resource_lashh"]
 script = ExtResource("3_xi7dl")
