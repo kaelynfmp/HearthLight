@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://gfvpt16hdue1"]
+[gd_scene load_steps=12 format=4 uid="uid://gfvpt16hdue1"]
 
 [ext_resource type="TileSet" uid="uid://r7x82rdaw80h" path="res://resources/tilesets/room.tres" id="1_lwtf6"]
 [ext_resource type="Script" path="res://scripts/environment/tile_layers.gd" id="1_suw4i"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c6g34by20r0qc" path="res://scenes/inventory/inventory.tscn" id="8_p13u3"]
 [ext_resource type="PackedScene" uid="uid://cq8nmdt2gxyse" path="res://scenes/cursor.tscn" id="9_6c5mx"]
 [ext_resource type="Script" path="res://scripts/gui/temp_placing_mode.gd" id="10_8csei"]
+[ext_resource type="Script" path="res://scenes/computer_open.gd" id="11_juawt"]
 
 [node name="Room" type="Node"]
 
@@ -164,3 +165,10 @@ text = "Placing Mode"
 fit_content = true
 scroll_active = false
 script = ExtResource("10_8csei")
+
+[node name="Control" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("11_juawt")

@@ -13,8 +13,9 @@ func set_category(category: String):
 	selected_category = category
 	category_label.text = selected_category.capitalize()
 	folder = "res://resources/items/"
-	load_items()
-	print(items)
+	if len(shop_dict[category]) == 0:
+		load_items()
+	print(shop_dict[category])
 	for item in shop_dict[category]:
 		display_items(item)
 
@@ -33,9 +34,10 @@ func load_items():
 				var item_path = folder + file_name
 				var item = load(item_path)
 				if item and item is Item:
-					if item.name.to_lower() in base_resources:
+					print("Loaded item")
+					if item.name.to_lower() in base_resources and item not in shop_dict["resources"]:
 						shop_dict["resources"].append(item)
-					elif item.name.to_lower() in gadget_show:
+					elif item.name.to_lower() in gadget_show and item not in shop_dict["resources"]:
 						shop_dict["gadgets"].append(item)
 					else:
 						pass

@@ -51,3 +51,9 @@ func on_inventory_changed():
 	if !Engine.is_editor_hint():
 		if GameManager.inventory:
 			GameManager.add_inventory(self)
+func get_item_quantity(item: Item) -> int:
+	var quantity:int = 0
+	for slot in slots:
+		if slot.item == item:
+			quantity += slot.quantity
+	return quantity

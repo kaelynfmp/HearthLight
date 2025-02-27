@@ -24,12 +24,18 @@ corner_radius_bottom_left = 20
 bg_color = Color(0.710655, 0.252932, 0.341096, 1)
 
 [node name="ComputerInterface" type="Control" node_paths=PackedStringArray("currency_label", "exit_button")]
+z_index = 50
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_right = 0.005
+offset_left = -1911.0
+offset_top = -1682.0
+offset_right = -5.6
+offset_bottom = -602.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2, 2)
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_1cjce")
 currency_label = NodePath("Currency Label")
 exit_button = NodePath("Close Button")

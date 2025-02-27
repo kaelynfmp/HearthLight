@@ -7,16 +7,17 @@
 bg_color = Color(0.336859, 0.193585, 0.420663, 1)
 
 [node name="ItemBuyPopup" type="Panel" node_paths=PackedStringArray("item_name", "item_desc", "item_picture", "cost_label", "number_label", "minus_button", "plus_button", "buy_button", "decline_button")]
+z_index = 51
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 462.0
-offset_top = 224.0
-offset_right = 462.0
-offset_bottom = 224.0
+offset_left = -1027.0
+offset_top = -1272.0
+offset_right = -1027.0
+offset_bottom = -1272.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.52, 0.52)
+scale = Vector2(1.04, 1.04)
 theme_override_styles/panel = SubResource("StyleBoxFlat_a3scx")
 script = ExtResource("1_cmwl6")
 item_name = NodePath("Panel/Name")
@@ -35,10 +36,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -915.0
-offset_top = -446.0
-offset_right = 892.0
-offset_bottom = 580.0
+offset_left = -895.193
+offset_top = -434.616
+offset_right = 911.807
+offset_bottom = 591.384
 grow_horizontal = 2
 grow_vertical = 2
 

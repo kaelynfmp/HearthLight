@@ -5,7 +5,7 @@ var shop_dict = GameManager.shop_dict
 @onready var categories_list_container: Node = $ScrollContainer/ShopCategoriesListContainer
 @export var item_button_scene: PackedScene
 @export var shop_category_scene: PackedScene
-
+var loaded_items = false
 var item_class : Resource
 var item_folder : String = "res://resources/items/"
 
