@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://lxvyxcteq6eq"]
+
+[ext_resource type="Script" path="res://scripts/resources/item.gd" id="1_ak8q7"]
+
+[resource]
+script = ExtResource("1_ak8q7")
+name = "Dust"
+description = "Powdered stone. It's easier to make out the reflective specks now that it's been ground up."
+max_stack = 100
+price = 0
