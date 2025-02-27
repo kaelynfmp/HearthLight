@@ -2,7 +2,7 @@ extends StaticBody2D
 
 signal removing(layer_occupied_name:String, cell_pos:Vector2i)
 
-@onready var gadget_stats:Gadget = load("res://resources/gadgets/wheel.tres")
+var gadget_stats:Gadget
 @onready var audio_player:AudioStreamPlayer2D = find_child("AudioStreamPlayer")
 
 @onready var sprite:Sprite2D = find_child("Sprite")
@@ -18,6 +18,8 @@ var character: Node2D
 var base_layer: Node2D
 
 var age:int
+
+var initial_click:bool = true
 
 var progressing:bool = false
 var progress:float = 0
@@ -134,6 +136,7 @@ func _on_mouse_entered() -> void:
 	hovered = true
 
 func _on_mouse_exited() -> void:
+	initial_click = false
 	hovered = false
 
 func detect_nearby() -> bool:
@@ -143,11 +146,16 @@ func detect_nearby() -> bool:
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if detect_nearby() and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		GameManager.set_gadget(self)
+		if !initial_click:
+			GameManager.set_gadget(self)
 	elif detect_nearby() and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 		if GameManager.pickup_gadget(gadget_stats):
 			removing.emit(layer_occupied_name, cell_pos)
 			queue_free()
+	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.is_pressed():
+		if initial_click:
+			if event.is_released():
+				initial_click = false
 
 func play_sound() -> void:
 	if progressing:

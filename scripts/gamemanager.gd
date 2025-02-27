@@ -201,6 +201,11 @@ func set_gadget(p_gadget:StaticBody2D) -> void:
 	gadget = p_gadget
 	if !inventory:
 		change_inventory()
+		
+func get_gadget_from_cursor() -> Gadget:
+	if !cursor.slot or !cursor.slot.item:
+		return null
+	return gadget_items[cursor.slot.item]
 	
 ## Clears the slot distributor, which is a list of currently dragged over slots, and will balance out how many items
 ## are in them all

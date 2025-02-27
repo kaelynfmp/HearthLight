@@ -59,7 +59,7 @@ func _process(_delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if GameManager.is_placing_gadget and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		if spawnObject():
+		if spawnObject(GameManager.get_gadget_from_cursor()):
 			GameManager.cursor.slot.decrement()
 			GameManager.change_inventory()
 		
@@ -72,16 +72,17 @@ func is_base_available(cell_pos: Vector2i) -> bool:
 			return true
 	return false
 
-func spawnObject() -> bool:
+func spawnObject(gadget: Gadget) -> bool:
 	# Check if in used tile
 	var mouse_pos = get_local_mouse_position()
 	var cell_pos = base_layer.local_to_map(mouse_pos)
 	if (is_base_available(cell_pos)):
-		var gadget = load("res://scenes/gadgets/gadget.tscn")
-		var instance = gadget.instantiate()
+		var gadget_scene = load("res://scenes/gadgets/gadget.tscn")
+		var instance = gadget_scene.instantiate()
 		instance.set_name("Gadget")
 		instance.z_index = 1
 		instance.position = base_layer.map_to_local(cell_pos)
+		instance.gadget_stats = gadget
 		var layer_occupied_name:String = "Layer 1"
 		instance.layer_occupied_name = layer_occupied_name
 		instance.cell_pos = cell_pos + Vector2i(-1, -1)
