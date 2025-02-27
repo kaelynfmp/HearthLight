@@ -14,3 +14,4 @@ required_quantities = Array[int]([2])
 currency_reward = 10
 rewards = Array[Resource]([ExtResource("2_v48g1")])
 rewards_quantities = Array[int]([1])
+

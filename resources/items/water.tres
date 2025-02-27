@@ -1,12 +1,11 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://ksn672of5whf"]
 
 [ext_resource type="Script" path="res://scripts/resources/item.gd" id="1_602me"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_247ae"]
+[ext_resource type="Texture2D" uid="uid://djvbg0m04mhjr" path="res://resources/sprites/water.png" id="2_3yvfi"]
 
 [resource]
 script = ExtResource("1_602me")
-texture = SubResource("PlaceholderTexture2D_247ae")
+texture = ExtResource("2_3yvfi")
 name = "Water"
 description = "Fresh water. Hopefully."
 max_stack = 100
