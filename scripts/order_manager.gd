@@ -25,15 +25,17 @@ func load_orders():
 		
 		
 func accept_order(order: Order):
-	give_player_starting_items(order)
-	order.is_accepted = true
-	order.responded = true
-	accepted_orders.append(order)
+	if !order.responded:
+		give_player_starting_items(order)
+		order.is_accepted = true
+		order.responded = true
+		accepted_orders.append(order)
 
 func reject_order(order: Order):
-	order.is_accepted = false
-	order.responded = true
-	rejected_orders.append(order)
+	if !order.responded:
+		order.is_accepted = false
+		order.responded = true
+		rejected_orders.append(order)
 
 func check_due(order: Order):
 	pass
@@ -85,6 +87,8 @@ func reward_player(order: Order):
 	if len(order.rewards) > 0:
 		for i in range(0,len(order.rewards)):
 			var item = order.rewards[i]
+			if item is Gadget:
+				item = item.item
 			var qty = order.rewards_quantities[i]
 			GameManager.add_currency(order.currency_reward)
 			inventory.insert(item, qty)
@@ -93,6 +97,8 @@ func give_player_starting_items(order: Order):
 	if len(order.given_items)>0:
 		for i in range(0,len(order.given_items)):
 			var item = order.given_items[i]
+			if item is Gadget:
+				item = item.item
 			var qty = order.given_quantities[i]
 			inventory.insert(item, qty)
 

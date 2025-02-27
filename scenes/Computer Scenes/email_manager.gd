@@ -70,17 +70,18 @@ func display_category_emails(category: String):
 
 func load_emails():
 	# load all email resources
-	var dir = DirAccess.open(email_folder)
+	var dir:DirAccess = DirAccess.open(email_folder)
+	print(email_folder)
 	if dir != null:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
+		print(file_name)
 		while file_name != "":
 			if file_name.ends_with(".remap"):
 				file_name = file_name.trim_suffix(".remap")
 			if file_name.ends_with(".tres"):
 				var email_path = email_folder + file_name
 				var email = load(email_path)
-				print(email)
 				if email and email is Email:
 					emails.append(email)
 					categorized_emails[email.category].append(email)

@@ -123,6 +123,8 @@ func load_gadgets():
 	load_path("res://resources/gadgets", Load_Type.GADGET)
 	for gadget_string:String in gadget_strings:
 		var curr_gadget:Gadget = load(gadget_string)
+		print(gadget_string)
+		print(curr_gadget)
 		gadgets.append(curr_gadget)
 		gadget_items[curr_gadget.item] = curr_gadget
 
@@ -142,11 +144,13 @@ func load_path(path:String, type:int):
 				if type == Load_Type.RECIPE:
 					recipe_strings.append(full_path)
 				elif type == Load_Type.GADGET:
+					print(full_path)
 					gadget_strings.append(full_path)
 				elif type == Load_Type.ITEM:
 					item_strings.append(full_path)
 			# found recipe
 			file_name = dir.get_next()
+		dir.list_dir_end()
 	else:
 		assert(dir != null, "Directory not found! Should be at 'res://resources/" +
 		("recipes" if type == Load_Type.RECIPE else "gadgets" if type == Load_Type.GADGET else "items") + "'")

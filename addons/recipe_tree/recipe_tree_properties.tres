@@ -39,14 +39,14 @@ y = -1300
 [sub_resource type="Resource" id="Resource_hh24p"]
 script = ExtResource("1_5e5y2")
 gadget = ExtResource("4_e1cam")
-x = -620
+x = -740
 y = 1040
 
 [sub_resource type="Resource" id="Resource_5t4gc"]
 script = ExtResource("1_5e5y2")
 gadget = ExtResource("5_odkxj")
-x = -600
-y = 1860
+x = -560
+y = 2040
 
 [sub_resource type="Resource" id="Resource_ycsiu"]
 script = ExtResource("1_5e5y2")

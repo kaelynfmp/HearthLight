@@ -3,7 +3,6 @@ extends Label
 @export var category_label: Label
 @export var items: Array = []
 var base_resources: Array = ["seed", "water", "rock"]
-var gadget_show: Array = ["hand_grinder_item", "plant_item", "sieve_item","wheel_item", "wood_stove_item"]
 var shop_dict = GameManager.shop_dict
 var folder : String
 @export var item_container: Node
@@ -14,7 +13,7 @@ func set_category(category: String):
 	category_label.text = selected_category.capitalize()
 	folder = "res://resources/items/"
 	if len(shop_dict[category]) == 0:
-		load_items()
+		load_items(category)
 	for item in shop_dict[category]:
 		display_items(item)
 
@@ -23,27 +22,40 @@ func set_category(category: String):
 func _ready() -> void:
 	pass
 
-func load_items():
-	var dir = DirAccess.open(folder)
-	if dir != null:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if file_name.ends_with(".remap"):
-				file_name = file_name.trim_suffix(".remap")
-			if file_name.ends_with(".tres"):
-				var item_path = folder + file_name
-				var item = load(item_path)
-				if item and item is Item:
-					print("Loaded item")
-					if item.name.to_lower() in base_resources and item not in shop_dict["resources"]:
-						shop_dict["resources"].append(item)
-					elif item_path.get_file().get_basename() in gadget_show and item not in shop_dict["gadgets"]:
-						shop_dict["gadgets"].append(item)
-					else:
-						pass
-			file_name = dir.get_next()
-		dir.list_dir_end()
+func load_items(category):
+	if category == "resources":
+		var dir = DirAccess.open(folder)
+		if dir != null:
+			dir.list_dir_begin()
+			var file_name = dir.get_next()
+			while file_name != "":
+				if file_name.ends_with(".remap"):
+					file_name = file_name.trim_suffix(".remap")
+				if file_name.ends_with(".tres"):
+					var item_path = folder + file_name
+					var item = load(item_path)
+					if item and item is Item:
+						if item.name.to_lower() in base_resources and item not in shop_dict["resources"]:
+							shop_dict["resources"].append(item)
+				file_name = dir.get_next()
+			dir.list_dir_end()
+	else:
+		folder = "res://resources/gadgets/"
+		var dir2 = DirAccess.open(folder)
+		if dir2 != null:
+			dir2.list_dir_begin()
+			var file_name = dir2.get_next()
+			while file_name != "":
+				if file_name.ends_with(".remap"):
+					file_name = file_name.trim_suffix(".remap")
+				if file_name.ends_with(".tres"):
+					var gadget_path = folder + file_name
+					var gadget = load(gadget_path)
+					if gadget and gadget is Gadget and gadget.produces:
+						if gadget.item not in shop_dict["gadgets"]:
+							shop_dict["gadgets"].append(gadget.item)
+				file_name = dir2.get_next()
+			dir2.list_dir_end()
 
 
 func display_items(item: Item):
