@@ -10,7 +10,7 @@ var rmb_line: bool = false
 var just_half_stacked: bool = false
 
 func update():
-	var item_sprite:Sprite2D = find_child("Item", true)
+	var item_sprite:TextureRect = find_child("Item", true)
 	var stack_number:Label = find_child("Stack", true)
 	if slot != null:
 		if !slot.item:
@@ -188,7 +188,8 @@ func cursor_slot() -> Slot:
 
 func set_slot(setting_slot: Slot):
 	if slot:
-		slot.changed.disconnect(update)
+		if slot.changed.is_connected(update):
+			slot.changed.disconnect(update)
 	slot = setting_slot
 	if slot != null:
 		slot.changed.connect(update)

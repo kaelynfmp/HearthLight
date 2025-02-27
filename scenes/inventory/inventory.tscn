@@ -1,230 +1,226 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6g34by20r0qc"]
+[gd_scene load_steps=12 format=3 uid="uid://c6g34by20r0qc"]
 
 [ext_resource type="Script" path="res://scripts/gui/inventory/inventory.gd" id="1_esbpf"]
-[ext_resource type="PackedScene" uid="uid://c5605c3ehaw25" path="res://scenes/inventory/slot.tscn" id="2_80pyi"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_o5cix"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1ic8a"]
-size = Vector2(200, 200)
+[ext_resource type="Texture2D" uid="uid://bmp10s6qtnd16" path="res://resources/sprites/inventory/inventory_frame.png" id="2_ru07y"]
+[ext_resource type="Texture2D" uid="uid://botr66ydaifxg" path="res://resources/sprites/inventory/inventory_bg.png" id="3_17kni"]
+[ext_resource type="Texture2D" uid="uid://1d4bc6losgyn" path="res://resources/sprites/inventory/inventory_bottom_tile.png" id="4_acfa3"]
+[ext_resource type="Script" path="res://scenes/inventory/slots.gd" id="5_s5ptj"]
+[ext_resource type="PackedScene" uid="uid://cfa834km6u0o5" path="res://scenes/inventory/inventory_slot.tscn" id="6_andm5"]
+[ext_resource type="Texture2D" uid="uid://rwnpo84ldki" path="res://resources/sprites/inventory/inventory_top_right_tile.png" id="8_gy5i1"]
+[ext_resource type="Texture2D" uid="uid://dq7m6fqe4qqf7" path="res://resources/sprites/inventory/inventory_bottom_left_bar.png" id="8_hxy1f"]
+[ext_resource type="Texture2D" uid="uid://d230y3xc0ll2v" path="res://resources/sprites/inventory/inventory_top.png" id="9_7fmjv"]
+[ext_resource type="Texture2D" uid="uid://cx7rqtwwi6ub3" path="res://resources/sprites/inventory/inventory_bottom_right_frame.png" id="9_hyo3a"]
+[ext_resource type="Texture2D" uid="uid://dtvqlumr8212s" path="res://resources/sprites/inventory/inventory_bottom_right_bar.png" id="10_wnb6k"]
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 1691.0
-offset_bottom = 669.0
+offset_right = 0.599976
+size_flags_horizontal = 8
+size_flags_vertical = 0
 script = ExtResource("1_esbpf")
 
 [node name="Background" type="NinePatchRect" parent="."]
-self_modulate = Color(0.186222, 0.207495, 0.199233, 1)
-layout_mode = 0
-offset_right = 1691.0
-offset_bottom = 669.0
-texture = SubResource("PlaceholderTexture2D_o5cix")
-
-[node name="Slots" type="GridContainer" parent="Background"]
+texture_filter = 1
+custom_minimum_size = Vector2(1845, 381)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -814.0
-offset_top = -304.0
-offset_right = 814.0
-offset_bottom = 304.0
+offset_left = -933.0
+offset_top = -602.0
+offset_right = 933.0
+offset_bottom = 602.0
 grow_horizontal = 2
 grow_vertical = 2
-columns = 8
+texture = ExtResource("2_ru07y")
+region_rect = Rect2(0, 0, 1845.09, 1225.16)
+patch_margin_left = 97
+patch_margin_top = 132
+patch_margin_right = 57
+patch_margin_bottom = 104
 
-[node name="Slot" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+[node name="Gradient" type="TextureRect" parent="Background"]
+z_index = -1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 97.0
+offset_top = 130.0
+offset_right = -57.0
+offset_bottom = -249.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_17kni")
+expand_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="BottomFakeSlotTile" type="TextureRect" parent="Background"]
+z_index = -1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 97.0
+offset_top = -249.0
+offset_right = -57.0
+offset_bottom = -104.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_acfa3")
+stretch_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Slots" type="HFlowContainer" parent="Background"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 97.0
+offset_top = 130.0
+offset_right = -14.0
+offset_bottom = 1230.0
+grow_horizontal = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+script = ExtResource("5_s5ptj")
+metadata/_edit_lock_ = true
+
+[node name="InventorySlot" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="InventorySlotBG" type="TextureRect" parent="Background/Slots/Slot"]
-modulate = Color(0.463333, 0.08, 1, 1)
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_1ic8a")
-
-[node name="Slot2" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+[node name="InventorySlot2" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="InventorySlotBG" type="TextureRect" parent="Background/Slots/Slot2"]
-modulate = Color(0.463333, 0.08, 1, 1)
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_1ic8a")
-
-[node name="Slot3" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+[node name="InventorySlot3" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="InventorySlotBG" type="TextureRect" parent="Background/Slots/Slot3"]
-modulate = Color(0.463333, 0.08, 1, 1)
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_1ic8a")
-
-[node name="Slot4" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+[node name="InventorySlot4" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="InventorySlotBG" type="TextureRect" parent="Background/Slots/Slot4"]
-modulate = Color(0.463333, 0.08, 1, 1)
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_1ic8a")
-
-[node name="Slot5" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+[node name="InventorySlot5" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="InventorySlotBG" type="TextureRect" parent="Background/Slots/Slot5"]
-modulate = Color(0.463333, 0.08, 1, 1)
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_1ic8a")
-
-[node name="Slot6" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+[node name="InventorySlot6" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="InventorySlotBG" type="TextureRect" parent="Background/Slots/Slot6"]
-modulate = Color(0.463333, 0.08, 1, 1)
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_1ic8a")
-
-[node name="Slot7" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+[node name="InventorySlot7" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="InventorySlotBG" type="TextureRect" parent="Background/Slots/Slot7"]
-modulate = Color(0.463333, 0.08, 1, 1)
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_1ic8a")
-
-[node name="Slot8" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+[node name="InventorySlot8" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="InventorySlotBG" type="TextureRect" parent="Background/Slots/Slot8"]
-modulate = Color(0.463333, 0.08, 1, 1)
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_1ic8a")
-
-[node name="Slot9" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+[node name="InventorySlot9" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="InventorySlotBG" type="TextureRect" parent="Background/Slots/Slot9"]
-modulate = Color(0.463333, 0.08, 1, 1)
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_1ic8a")
-
-[node name="Slot10" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+[node name="InventorySlot10" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="InventorySlotBG" type="TextureRect" parent="Background/Slots/Slot10"]
-modulate = Color(0.463333, 0.08, 1, 1)
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_1ic8a")
-
-[node name="Slot11" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+[node name="InventorySlot11" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="InventorySlotBG" type="TextureRect" parent="Background/Slots/Slot11"]
-modulate = Color(0.463333, 0.08, 1, 1)
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_1ic8a")
-
-[node name="Slot12" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+[node name="InventorySlot12" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="InventorySlotBG" type="TextureRect" parent="Background/Slots/Slot12"]
-modulate = Color(0.463333, 0.08, 1, 1)
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_1ic8a")
-
-[node name="Slot13" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+[node name="InventorySlot13" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="InventorySlotBG" type="TextureRect" parent="Background/Slots/Slot13"]
-modulate = Color(0.463333, 0.08, 1, 1)
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_1ic8a")
-
-[node name="Slot14" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+[node name="InventorySlot14" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="InventorySlotBG" type="TextureRect" parent="Background/Slots/Slot14"]
-modulate = Color(0.463333, 0.08, 1, 1)
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_1ic8a")
-
-[node name="Slot15" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+[node name="InventorySlot15" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="InventorySlotBG" type="TextureRect" parent="Background/Slots/Slot15"]
-modulate = Color(0.463333, 0.08, 1, 1)
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_1ic8a")
-
-[node name="Slot16" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+[node name="InventorySlot16" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="InventorySlotBG" type="TextureRect" parent="Background/Slots/Slot16"]
-modulate = Color(0.463333, 0.08, 1, 1)
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_1ic8a")
-
-[node name="Slot17" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+[node name="InventorySlot17" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="InventorySlotBG" type="TextureRect" parent="Background/Slots/Slot17"]
-modulate = Color(0.463333, 0.08, 1, 1)
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_1ic8a")
-
-[node name="Slot18" parent="Background/Slots" instance=ExtResource("2_80pyi")]
+[node name="InventorySlot18" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="InventorySlotBG" type="TextureRect" parent="Background/Slots/Slot18"]
-modulate = Color(0.463333, 0.08, 1, 1)
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_1ic8a")
+[node name="TopFakeSlotTile" type="TextureRect" parent="Background"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 97.0
+offset_top = 70.0
+offset_right = -57.0
+offset_bottom = 122.0
+grow_horizontal = 2
+size_flags_vertical = 0
+texture = ExtResource("8_gy5i1")
+stretch_mode = 1
+metadata/_edit_lock_ = true
 
-[node name="Slot19" parent="Background/Slots" instance=ExtResource("2_80pyi")]
-layout_mode = 2
+[node name="TopBar" type="NinePatchRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 97.0
+offset_top = 38.0
+offset_right = -57.0
+offset_bottom = 127.0
+grow_horizontal = 2
+texture = ExtResource("9_7fmjv")
+region_rect = Rect2(0, 0, 1710, 89.2035)
+patch_margin_left = 825
+patch_margin_top = 89
+patch_margin_right = 143
+metadata/_edit_lock_ = true
 
-[node name="InventorySlotBG" type="TextureRect" parent="Background/Slots/Slot19"]
-modulate = Color(0.463333, 0.08, 1, 1)
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_1ic8a")
+[node name="BottomLeftBar" type="TextureRect" parent="Background"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 97.0
+offset_top = -160.0
+offset_right = 229.0
+offset_bottom = -104.0
+grow_vertical = 0
+texture = ExtResource("8_hxy1f")
+metadata/_edit_lock_ = true
 
-[node name="Slot20" parent="Background/Slots" instance=ExtResource("2_80pyi")]
-layout_mode = 2
+[node name="BottomRightFrame" type="TextureRect" parent="Background"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -766.0
+offset_top = -168.0
+offset_right = -57.0
+offset_bottom = -104.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("9_hyo3a")
+metadata/_edit_lock_ = true
 
-[node name="InventorySlotBG" type="TextureRect" parent="Background/Slots/Slot20"]
-modulate = Color(0.463333, 0.08, 1, 1)
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_1ic8a")
-
-[node name="Slot21" parent="Background/Slots" instance=ExtResource("2_80pyi")]
-layout_mode = 2
-
-[node name="InventorySlotBG" type="TextureRect" parent="Background/Slots/Slot21"]
-modulate = Color(0.463333, 0.08, 1, 1)
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_1ic8a")
-
-[node name="Slot22" parent="Background/Slots" instance=ExtResource("2_80pyi")]
-layout_mode = 2
-
-[node name="InventorySlotBG" type="TextureRect" parent="Background/Slots/Slot22"]
-modulate = Color(0.463333, 0.08, 1, 1)
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_1ic8a")
-
-[node name="Slot23" parent="Background/Slots" instance=ExtResource("2_80pyi")]
-layout_mode = 2
-
-[node name="InventorySlotBG" type="TextureRect" parent="Background/Slots/Slot23"]
-modulate = Color(0.463333, 0.08, 1, 1)
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_1ic8a")
-
-[node name="Slot24" parent="Background/Slots" instance=ExtResource("2_80pyi")]
-layout_mode = 2
-
-[node name="InventorySlotBG" type="TextureRect" parent="Background/Slots/Slot24"]
-modulate = Color(0.463333, 0.08, 1, 1)
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_1ic8a")
+[node name="BottomRightBar" type="TextureRect" parent="Background"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -578.0
+offset_top = -137.0
+offset_right = -60.0
+offset_bottom = -78.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("10_wnb6k")
+metadata/_edit_lock_ = true

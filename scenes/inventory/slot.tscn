@@ -1,8 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5605c3ehaw25"]
+[gd_scene load_steps=5 format=3 uid="uid://c5605c3ehaw25"]
 
 [ext_resource type="Script" path="res://scripts/gui/inventory/slot.gd" id="1_n8mqj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_do0su"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_na6x3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ayq3h"]
 
 [node name="Slot" type="PanelContainer"]
 theme_override_styles/panel = SubResource("StyleBoxEmpty_do0su")
@@ -14,12 +18,14 @@ z_index = 1
 layout_mode = 2
 mouse_filter = 2
 
-[node name="ItemContainer" type="CenterContainer" parent="SlotPanel"]
+[node name="ItemContainer" type="PanelContainer" parent="SlotPanel"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = -100.0
 offset_top = -100.0
 offset_right = 100.0
@@ -27,18 +33,25 @@ offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_na6x3")
 
 [node name="ItemPanel" type="Panel" parent="SlotPanel/ItemContainer"]
 layout_mode = 2
 mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ayq3h")
 
-[node name="Item" type="Sprite2D" parent="SlotPanel/ItemContainer/ItemPanel"]
-z_index = 5
-z_as_relative = false
+[node name="Item" type="TextureRect" parent="SlotPanel/ItemContainer/ItemPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Stack" type="Label" parent="SlotPanel"]
 visible = false
-z_index = 3
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0

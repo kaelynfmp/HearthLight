@@ -1,0 +1,65 @@
+[gd_resource type="Resource" script_class="Gadget" load_steps=16 format=3 uid="uid://bcp8nvhpucopi"]
+
+[ext_resource type="AudioStream" uid="uid://chyuosb2550ag" path="res://resources/audio/Gadgets/prim sieve ambient.mp3" id="1_xkn3o"]
+[ext_resource type="Script" path="res://scripts/resources/inventory.gd" id="2_ulwbv"]
+[ext_resource type="Script" path="res://scripts/resources/slot.gd" id="3_q2vfb"]
+[ext_resource type="Script" path="res://scripts/resources/item.gd" id="4_23boe"]
+[ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="5_073jg"]
+[ext_resource type="Script" path="res://scripts/resources/gadget.gd" id="5_eflns"]
+[ext_resource type="Resource" uid="uid://lxvyxcteq6eq" path="res://resources/items/dust.tres" id="6_ee0md"]
+[ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="7_djx8y"]
+[ext_resource type="Texture2D" uid="uid://ni5q0u43gvlx" path="res://resources/sprites/sievePrimitive.png" id="8_aq334"]
+
+[sub_resource type="Resource" id="Resource_0cyra"]
+script = ExtResource("3_q2vfb")
+locked = false
+item_filter = Array[ExtResource("4_23boe")]([ExtResource("6_ee0md"), ExtResource("5_073jg"), ExtResource("7_djx8y")])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_tda3d"]
+script = ExtResource("3_q2vfb")
+locked = false
+item_filter = Array[ExtResource("4_23boe")]([ExtResource("6_ee0md"), ExtResource("5_073jg"), ExtResource("7_djx8y")])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_msd4d"]
+script = ExtResource("3_q2vfb")
+locked = false
+item_filter = Array[ExtResource("4_23boe")]([ExtResource("6_ee0md"), ExtResource("5_073jg"), ExtResource("7_djx8y")])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_peunc"]
+script = ExtResource("3_q2vfb")
+locked = false
+item_filter = Array[ExtResource("4_23boe")]([ExtResource("6_ee0md"), ExtResource("5_073jg"), ExtResource("7_djx8y")])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_xngkc"]
+script = ExtResource("2_ulwbv")
+slots = Array[ExtResource("3_q2vfb")]([SubResource("Resource_0cyra"), SubResource("Resource_tda3d"), SubResource("Resource_msd4d"), SubResource("Resource_peunc")])
+
+[sub_resource type="Resource" id="Resource_lb38k"]
+script = ExtResource("4_23boe")
+texture = ExtResource("8_aq334")
+name = "Sieve"
+description = "You never thought you'd see one of these. This one probably belongs in a museum it's so old, but it'll get the job done."
+max_stack = 100
+price = 0
+
+[resource]
+script = ExtResource("5_eflns")
+texture = ExtResource("8_aq334")
+name = "Sieve"
+age = 0
+description = "You never thought you'd see one of these. This one probably belongs in a museum it's so old, but it'll get the job done."
+item = SubResource("Resource_lb38k")
+inventory = SubResource("Resource_xngkc")
+produces = false
+inputs = 3
+outputs = 1
+process_time = 10.0
+ambient_sound = ExtResource("1_xkn3o")
