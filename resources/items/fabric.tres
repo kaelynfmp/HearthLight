@@ -1,14 +1,10 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://cmrx5n40guwlg"]
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://cmrx5n40guwlg"]
 
 [ext_resource type="Script" path="res://scripts/resources/item.gd" id="1_645j0"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yyo8x"]
-size = Vector2(60, 60)
-
 [resource]
 script = ExtResource("1_645j0")
-texture = SubResource("PlaceholderTexture2D_yyo8x")
 name = "Fabric"
-description = "Fabric desc"
+description = "Quality fabric, unsullied by corpo hands."
 max_stack = 100
 price = 10

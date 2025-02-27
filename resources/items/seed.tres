@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://bjux8vbxnqlf8"]
+
+[ext_resource type="Script" path="res://scripts/resources/item.gd" id="1_igpg3"]
+
+[resource]
+script = ExtResource("1_igpg3")
+name = "Seed"
+description = "Plant this for Cotton!"
+max_stack = 100
+price = 0

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://gw88mo33lg1c"]
+
+[ext_resource type="Script" path="res://scripts/resources/item.gd" id="1_f21gf"]
+
+[resource]
+script = ExtResource("1_f21gf")
+name = "Ore"
+description = "Small amounts of raw metal that still need to be melted down into something useable."
+max_stack = 100
+price = 0
