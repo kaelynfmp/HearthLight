@@ -2,6 +2,8 @@ extends Node
 
 signal inventory_open_state_changed
 signal update_recipes
+signal update_gadgets
+signal take_cursor(Slot)
 
 var inventory: bool = false:
 	set(value):
@@ -10,9 +12,10 @@ var inventory: bool = false:
 			gadget = null
 var gadget:StaticBody2D
 
+var blur:bool = false
+
 # Temp
 var is_placing_gadget: bool = false
-
 
 var cursor:Node2D
 
@@ -61,17 +64,28 @@ var shop_dict: Dictionary = {
 }
 
 var recipes:Array[Recipe]
+var gadgets:Array[Gadget]
+var gadget_items:Dictionary
 
 func _ready() -> void:
 	start_time = Time.get_ticks_msec()
 	seconds_elapsed = 0
 	load_recipes()
+	load_gadgets()
 	
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("inventory"):
 		change_inventory()
-	elif Input.is_action_just_pressed("toggle_placing_mode"):
-		is_placing_gadget = !is_placing_gadget
+		
+	blur = inventory
+	is_placing_gadget = false
+	if cursor != null:
+		if cursor.slot != null:
+			if cursor.slot.item != null:
+				if cursor.slot.item in gadget_items:
+					blur = false
+					is_placing_gadget = true
+					
 	
 	# time tracking
 	current_time = Time.get_ticks_msec()
@@ -85,6 +99,14 @@ func load_recipes():
 	load_path("res://resources/recipes", Load_Type.RECIPE)
 	for recipe_string:String in recipe_strings:
 		recipes.append(load(recipe_string))
+		
+func load_gadgets():
+	update_gadgets.emit()
+	load_path("res://resources/gadgets", Load_Type.GADGET)
+	for gadget_string:String in gadget_strings:
+		var curr_gadget:Gadget = load(gadget_string)
+		gadgets.append(curr_gadget)
+		gadget_items[curr_gadget.item] = curr_gadget
 
 func load_path(path:String, type:int):
 	var dir: DirAccess = DirAccess.open(path)
@@ -112,6 +134,12 @@ func change_inventory():
 	if inventory:
 		inventory = false
 		inventories.clear()
+		if cursor != null:
+			if cursor.slot != null:
+				if cursor.slot.item != null:
+					take_cursor.emit(cursor.slot.duplicate())
+					cursor.slot.decrement(cursor.slot.quantity)
+					
 	else:
 		inventory = true
 	inventory_open_state_changed.emit()
@@ -171,7 +199,8 @@ func distribute_slots() -> void:
 ## Sets the currently selected gadget
 func set_gadget(p_gadget:StaticBody2D) -> void:
 	gadget = p_gadget
-	change_inventory()
+	if !inventory:
+		change_inventory()
 	
 ## Clears the slot distributor, which is a list of currently dragged over slots, and will balance out how many items
 ## are in them all
@@ -190,6 +219,17 @@ func subtract_currency(amount: int) -> bool:
 		currency_updated.emit(currency)
 		return true  # successful purchare
 	return false  # not enough money for purchase
+
+func pickup_gadget(_gadget:Gadget) -> bool:
+	if cursor != null and cursor.slot != null and cursor.slot.item == null:
+		if !inventory:
+			change_inventory()
+		for slot in _gadget.inventory.slots:
+			# Send it all away to any open inventories
+			send_to_inventory(slot)
+		cursor.slot.initialize(_gadget.item)
+		return true
+	return false
 
 func update_time(in_game_seconds):
 	#print("Game Seconds: %s" % in_game_seconds)	

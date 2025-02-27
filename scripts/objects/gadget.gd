@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+signal removing(layer_occupied_name:String, cell_pos:Vector2i)
+
 @onready var gadget_stats:Gadget = load("res://resources/gadgets/wheel.tres")
 @onready var audio_player:AudioStreamPlayer2D = find_child("AudioStreamPlayer")
 
@@ -17,12 +19,13 @@ var base_layer: Node2D
 
 var age:int
 
-var initial_click:bool = true
-
 var progressing:bool = false
 var progress:float = 0
 var selected_recipe:Recipe
 var recipe_taken = false
+
+var layer_occupied_name:String
+var cell_pos:Vector2i
 
 var primitive_selected:bool = false
 
@@ -140,12 +143,11 @@ func detect_nearby() -> bool:
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if detect_nearby() and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		if !initial_click:
-			GameManager.set_gadget(self)
-	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.is_pressed():
-		if initial_click:
-			if event.is_released():
-				initial_click = false
+		GameManager.set_gadget(self)
+	elif detect_nearby() and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+		if GameManager.pickup_gadget(gadget_stats):
+			removing.emit(layer_occupied_name, cell_pos)
+			queue_free()
 
 func play_sound() -> void:
 	if progressing:

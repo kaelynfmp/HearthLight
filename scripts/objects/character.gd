@@ -50,7 +50,7 @@ func _physics_process(_delta: float) -> void:
 	
 	# TEMP
 	if Input.is_action_just_pressed("ui_accept"):
-		var item: Item = load("res://resources/items/cotton.tres")
+		var item: Item = load("res://resources/gadgets/wheel.tres").item
 		collect(item)
 	
 ## 'Collects' a given item, placing it into the inventory on the nearest open slot

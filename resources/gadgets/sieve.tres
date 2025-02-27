@@ -47,7 +47,7 @@ script = ExtResource("4_23boe")
 texture = ExtResource("8_aq334")
 name = "Sieve"
 description = "You never thought you'd see one of these. This one probably belongs in a museum it's so old, but it'll get the job done."
-max_stack = 100
+max_stack = 1
 price = 0
 
 [resource]

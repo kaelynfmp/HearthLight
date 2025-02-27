@@ -3,11 +3,39 @@ extends PanelContainer
 
 @export var slot: Slot
 
+@onready var tooltip_control:Control = find_child("TooltipControl")
+@onready var tooltip:RichTextLabel = find_child("Tooltip", true)
+@onready var title:Label = find_child("Title", true)
+
 var mouse_over: bool = false
 ## If you are currently holding right click to make a 'line'
 var rmb_line: bool = false
 ## If your current mouse input involved attempting to pull out a half stack
 var just_half_stacked: bool = false
+
+var hover_timer:float = 0.0
+var hover_time:float = 0.7 # in seconds
+var fade_time:float = 0.05 # in seconds
+
+func _ready():
+	tooltip_control.set_modulate(Color(1, 1, 1, 0))
+
+func _process(delta: float) -> void:
+	if slot != null:
+		tooltip_control.visible = slot.item != null
+		tooltip_control.set_position(get_local_mouse_position() + Vector2(50, 50))
+		if slot.item != null:
+			tooltip.set_text(slot.item.description)
+			title.set_text(slot.item.name)
+		if mouse_over and slot.item != null:
+			var change_rate:float = delta / hover_time
+			hover_timer += change_rate
+			hover_timer = clamp(hover_timer, 0, 1.0)
+			if hover_timer >= 1.0:
+				tooltip_control.set_modulate(Color(1, 1, 1, lerp(tooltip_control.get_modulate().a, 1.0, delta / fade_time)))
+		else:
+			hover_timer = 0
+			tooltip_control.set_modulate(Color(1, 1, 1, lerp(tooltip_control.get_modulate().a, 0.0, delta / fade_time)))
 
 func update():
 	var item_sprite:TextureRect = find_child("Item", true)

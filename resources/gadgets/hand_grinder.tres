@@ -31,7 +31,7 @@ script = ExtResource("4_ivpgi")
 texture = ExtResource("6_m3fen")
 name = "Hand Crank Grinder"
 description = "In an age of advanced biomechanical engineering and hyper-optimized fabrication, there's something to be said for using your own human muscles to process materials. Until your arm starts hurting, that is."
-max_stack = 100
+max_stack = 1
 price = 0
 
 [resource]
