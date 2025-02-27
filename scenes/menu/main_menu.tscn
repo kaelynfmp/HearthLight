@@ -108,7 +108,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_hmkdj")
 text = "Start
 "
 
-[node name="Credit" type="Button" parent="MainMenuButtonContainers"]
+[node name="Credits" type="Button" parent="MainMenuButtonContainers"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
@@ -130,7 +130,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_haohg")
 theme_override_styles/hover = SubResource("StyleBoxTexture_s342v")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_k6w1a")
 theme_override_styles/normal = SubResource("StyleBoxTexture_hmkdj")
-text = "Credit"
+text = "Credits"
 
 [node name="Quit" type="Button" parent="MainMenuButtonContainers"]
 layout_mode = 2
@@ -225,11 +225,11 @@ Kaelyn"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VisualArtist2" type="Label" parent="CreditContainers"]
+[node name="Programmers" type="Label" parent="CreditContainers"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_ujjk6")
 theme_override_font_sizes/font_size = 36
-text = "Programmer
+text = "Programmers
 ravyn, Zhashe, Duc"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -246,6 +246,6 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_5npun")
 text = "Back"
 
 [connection signal="pressed" from="MainMenuButtonContainers/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="MainMenuButtonContainers/Credit" to="." method="_on_credit_pressed"]
+[connection signal="pressed" from="MainMenuButtonContainers/Credits" to="." method="_on_credit_pressed"]
 [connection signal="pressed" from="MainMenuButtonContainers/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="CreditContainers/Back" to="." method="_on_back_pressed"]
