@@ -5,3 +5,4 @@
 addons/godot-git-plugin
 # Rider
 .idea/
+/export/
