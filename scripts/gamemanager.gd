@@ -1,6 +1,6 @@
 extends Node
 
-signal inventory_changed
+signal inventory_open_state_changed
 
 @export var inventory: bool = false
 
@@ -65,7 +65,7 @@ func change_inventory():
 		inventories.clear()
 	else:
 		inventory = true
-	inventory_changed.emit()
+	inventory_open_state_changed.emit()
 
 func add_inventory(p_inventory: Inventory):
 	inventories.append(p_inventory)

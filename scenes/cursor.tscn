@@ -8,10 +8,11 @@ z_index = 4096
 script = ExtResource("1_87ihb")
 
 [node name="Slot" parent="." instance=ExtResource("2_08svr")]
+scale = Vector2(0.5, 0.5)
 mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="Slot"]
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(288, 275)
 layout_mode = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)

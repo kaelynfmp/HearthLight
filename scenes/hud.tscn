@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpie3rt8qmyxr"]
+
+[ext_resource type="PackedScene" uid="uid://c6g34by20r0qc" path="res://scenes/inventory/inventory.tscn" id="1_h8ipj"]
+[ext_resource type="Shader" path="res://scripts/shaders/blur.gdshader" id="2_0gell"]
+[ext_resource type="PackedScene" uid="uid://cq8nmdt2gxyse" path="res://scenes/cursor.tscn" id="2_wjdba"]
+[ext_resource type="Script" path="res://scripts/gui/temp_placing_mode.gd" id="3_twldf"]
+[ext_resource type="Script" path="res://scripts/gui/blur.gd" id="3_xnxa5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_drira"]
+shader = ExtResource("2_0gell")
+shader_parameter/strength = 1.569
+shader_parameter/mix_percentage = 0.062
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="TempPlacingMode" type="RichTextLabel" parent="."]
+offset_right = 375.0
+offset_bottom = 40.0
+text = "Placing Mode"
+fit_content = true
+scroll_active = false
+script = ExtResource("3_twldf")
+
+[node name="Blur" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_drira")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.141176)
+script = ExtResource("3_xnxa5")
+
+[node name="Inventory" parent="." instance=ExtResource("1_h8ipj")]
+z_index = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = 6.10352e-05
+offset_right = -192.0
+offset_bottom = 6.10352e-05
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Cursor" parent="." instance=ExtResource("2_wjdba")]

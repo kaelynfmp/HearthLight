@@ -8,10 +8,8 @@ func add_slots():
 		child.free()
 		
 	for slot in inventory.slots:
-		var new_scene:PanelContainer = load("res://scenes/inventory/slot.tscn").instantiate()
+		var new_scene:PanelContainer = load("res://scenes/inventory/inventory_slot.tscn").instantiate()
 		new_scene.slot = slot
-		var bg_image:TextureRect = load("res://scenes/inventory/inventory_slot_image.tscn").instantiate()
-		new_scene.add_child(bg_image)
 		add_child(new_scene)
 
 func _process(_delta: float) -> void:

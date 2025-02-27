@@ -18,7 +18,7 @@ extends Resource
 func _init(p_slots: Array[Slot] = []):
 	slots = p_slots
 	if !Engine.is_editor_hint():
-		GameManager.inventory_changed.connect(on_inventory_changed)
+		GameManager.inventory_open_state_changed.connect(on_inventory_open_state_changed)
 
 ## Attempts to insert [Item]s, going into the earliest available [Slot]s
 func insert(item: Item, amount=1) -> bool:
@@ -47,7 +47,7 @@ func insert(item: Item, amount=1) -> bool:
 	changed.emit()
 	return true
 	
-func on_inventory_changed():
+func on_inventory_open_state_changed():
 	if !Engine.is_editor_hint():
 		if GameManager.inventory:
 			GameManager.add_inventory(self)

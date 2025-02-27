@@ -1,12 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://c6g34by20r0qc"]
+[gd_scene load_steps=12 format=3 uid="uid://c6g34by20r0qc"]
 
 [ext_resource type="Script" path="res://scripts/gui/inventory/inventory.gd" id="1_esbpf"]
 [ext_resource type="Texture2D" uid="uid://bmp10s6qtnd16" path="res://resources/sprites/inventory/inventory_frame.png" id="2_ru07y"]
 [ext_resource type="Texture2D" uid="uid://botr66ydaifxg" path="res://resources/sprites/inventory/inventory_bg.png" id="3_17kni"]
 [ext_resource type="Texture2D" uid="uid://1d4bc6losgyn" path="res://resources/sprites/inventory/inventory_bottom_tile.png" id="4_acfa3"]
 [ext_resource type="Script" path="res://scenes/inventory/slots.gd" id="5_s5ptj"]
-[ext_resource type="PackedScene" uid="uid://c5605c3ehaw25" path="res://scenes/inventory/slot.tscn" id="6_8dhu3"]
-[ext_resource type="PackedScene" uid="uid://bb280u280s66w" path="res://scenes/inventory/inventory_slot_image.tscn" id="7_bjn36"]
+[ext_resource type="PackedScene" uid="uid://cfa834km6u0o5" path="res://scenes/inventory/inventory_slot.tscn" id="6_andm5"]
 [ext_resource type="Texture2D" uid="uid://rwnpo84ldki" path="res://resources/sprites/inventory/inventory_top_right_tile.png" id="8_gy5i1"]
 [ext_resource type="Texture2D" uid="uid://dq7m6fqe4qqf7" path="res://resources/sprites/inventory/inventory_bottom_left_bar.png" id="8_hxy1f"]
 [ext_resource type="Texture2D" uid="uid://d230y3xc0ll2v" path="res://resources/sprites/inventory/inventory_top.png" id="9_7fmjv"]
@@ -16,18 +15,22 @@
 [node name="Inventory" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+offset_right = 1847.0
+offset_bottom = 1220.0
 scale = Vector2(0.4, 0.4)
-size_flags_horizontal = 6
-size_flags_vertical = 6
+size_flags_horizontal = 8
+size_flags_vertical = 0
 script = ExtResource("1_esbpf")
+slide_in_speed = 10.0
 
 [node name="Background" type="NinePatchRect" parent="."]
 texture_filter = 1
 custom_minimum_size = Vector2(1845, 381)
 layout_mode = 1
-offset_top = 4.0
-offset_right = 1845.0
-offset_bottom = 1207.0
+offset_left = -1867.5
+offset_top = -600.0
+offset_right = -1.5
+offset_bottom = 604.0
 texture = ExtResource("2_ru07y")
 region_rect = Rect2(-0.085228, 0, 1845.09, 1225.16)
 patch_margin_left = 97
@@ -50,6 +53,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_17kni")
 expand_mode = 1
+metadata/_edit_lock_ = true
 
 [node name="BottomFakeSlotTile" type="TextureRect" parent="Background"]
 z_index = -1
@@ -67,6 +71,7 @@ grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("4_acfa3")
 stretch_mode = 1
+metadata/_edit_lock_ = true
 
 [node name="Slots" type="HFlowContainer" parent="Background"]
 z_index = -1
@@ -81,113 +86,60 @@ grow_horizontal = 2
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 script = ExtResource("5_s5ptj")
+metadata/_edit_lock_ = true
 
-[node name="Slot" parent="Background/Slots" instance=ExtResource("6_8dhu3")]
+[node name="InventorySlot" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="InventorySlotImage" parent="Background/Slots/Slot" instance=ExtResource("7_bjn36")]
+[node name="InventorySlot2" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="Slot2" parent="Background/Slots" instance=ExtResource("6_8dhu3")]
+[node name="InventorySlot3" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="InventorySlotImage" parent="Background/Slots/Slot2" instance=ExtResource("7_bjn36")]
+[node name="InventorySlot4" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="Slot3" parent="Background/Slots" instance=ExtResource("6_8dhu3")]
+[node name="InventorySlot5" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="InventorySlotImage" parent="Background/Slots/Slot3" instance=ExtResource("7_bjn36")]
+[node name="InventorySlot6" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="Slot4" parent="Background/Slots" instance=ExtResource("6_8dhu3")]
+[node name="InventorySlot7" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="InventorySlotImage" parent="Background/Slots/Slot4" instance=ExtResource("7_bjn36")]
+[node name="InventorySlot8" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="Slot5" parent="Background/Slots" instance=ExtResource("6_8dhu3")]
+[node name="InventorySlot9" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="InventorySlotImage" parent="Background/Slots/Slot5" instance=ExtResource("7_bjn36")]
+[node name="InventorySlot10" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="Slot6" parent="Background/Slots" instance=ExtResource("6_8dhu3")]
+[node name="InventorySlot11" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="InventorySlotImage" parent="Background/Slots/Slot6" instance=ExtResource("7_bjn36")]
+[node name="InventorySlot12" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="Slot7" parent="Background/Slots" instance=ExtResource("6_8dhu3")]
+[node name="InventorySlot13" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="InventorySlotImage" parent="Background/Slots/Slot7" instance=ExtResource("7_bjn36")]
+[node name="InventorySlot14" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="Slot8" parent="Background/Slots" instance=ExtResource("6_8dhu3")]
+[node name="InventorySlot15" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="InventorySlotImage" parent="Background/Slots/Slot8" instance=ExtResource("7_bjn36")]
+[node name="InventorySlot16" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="Slot9" parent="Background/Slots" instance=ExtResource("6_8dhu3")]
+[node name="InventorySlot17" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
-[node name="InventorySlotImage" parent="Background/Slots/Slot9" instance=ExtResource("7_bjn36")]
-layout_mode = 2
-
-[node name="Slot10" parent="Background/Slots" instance=ExtResource("6_8dhu3")]
-layout_mode = 2
-
-[node name="InventorySlotImage" parent="Background/Slots/Slot10" instance=ExtResource("7_bjn36")]
-layout_mode = 2
-
-[node name="Slot11" parent="Background/Slots" instance=ExtResource("6_8dhu3")]
-layout_mode = 2
-
-[node name="InventorySlotImage" parent="Background/Slots/Slot11" instance=ExtResource("7_bjn36")]
-layout_mode = 2
-
-[node name="Slot12" parent="Background/Slots" instance=ExtResource("6_8dhu3")]
-layout_mode = 2
-
-[node name="InventorySlotImage" parent="Background/Slots/Slot12" instance=ExtResource("7_bjn36")]
-layout_mode = 2
-
-[node name="Slot13" parent="Background/Slots" instance=ExtResource("6_8dhu3")]
-layout_mode = 2
-
-[node name="InventorySlotImage" parent="Background/Slots/Slot13" instance=ExtResource("7_bjn36")]
-layout_mode = 2
-
-[node name="Slot14" parent="Background/Slots" instance=ExtResource("6_8dhu3")]
-layout_mode = 2
-
-[node name="InventorySlotImage" parent="Background/Slots/Slot14" instance=ExtResource("7_bjn36")]
-layout_mode = 2
-
-[node name="Slot15" parent="Background/Slots" instance=ExtResource("6_8dhu3")]
-layout_mode = 2
-
-[node name="InventorySlotImage" parent="Background/Slots/Slot15" instance=ExtResource("7_bjn36")]
-layout_mode = 2
-
-[node name="Slot16" parent="Background/Slots" instance=ExtResource("6_8dhu3")]
-layout_mode = 2
-
-[node name="InventorySlotImage" parent="Background/Slots/Slot16" instance=ExtResource("7_bjn36")]
-layout_mode = 2
-
-[node name="Slot17" parent="Background/Slots" instance=ExtResource("6_8dhu3")]
-layout_mode = 2
-
-[node name="InventorySlotImage" parent="Background/Slots/Slot17" instance=ExtResource("7_bjn36")]
-layout_mode = 2
-
-[node name="Slot18" parent="Background/Slots" instance=ExtResource("6_8dhu3")]
-layout_mode = 2
-
-[node name="InventorySlotImage" parent="Background/Slots/Slot18" instance=ExtResource("7_bjn36")]
+[node name="InventorySlot18" parent="Background/Slots" instance=ExtResource("6_andm5")]
 layout_mode = 2
 
 [node name="TopFakeSlotTile" type="TextureRect" parent="Background"]
@@ -203,6 +155,7 @@ grow_horizontal = 2
 size_flags_vertical = 0
 texture = ExtResource("8_gy5i1")
 stretch_mode = 1
+metadata/_edit_lock_ = true
 
 [node name="TopBar" type="NinePatchRect" parent="Background"]
 layout_mode = 1
@@ -218,6 +171,7 @@ region_rect = Rect2(0, 0, 1710, 89.2035)
 patch_margin_left = 825
 patch_margin_top = 89
 patch_margin_right = 143
+metadata/_edit_lock_ = true
 
 [node name="BottomLeftBar" type="TextureRect" parent="Background"]
 texture_filter = 1
@@ -231,6 +185,7 @@ offset_right = 229.0
 offset_bottom = -104.0
 grow_vertical = 0
 texture = ExtResource("8_hxy1f")
+metadata/_edit_lock_ = true
 
 [node name="BottomRightFrame" type="TextureRect" parent="Background"]
 texture_filter = 1
@@ -247,6 +202,7 @@ offset_bottom = -104.0
 grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("9_hyo3a")
+metadata/_edit_lock_ = true
 
 [node name="BottomRightBar" type="TextureRect" parent="Background"]
 texture_filter = 1
@@ -263,3 +219,4 @@ offset_bottom = -78.0
 grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("10_wnb6k")
+metadata/_edit_lock_ = true
