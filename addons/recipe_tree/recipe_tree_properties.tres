@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RecipeTreeProperties" load_steps=14 format=3 uid="uid://bayqmo2156mc4"]
+[gd_resource type="Resource" script_class="RecipeTreeProperties" load_steps=13 format=3 uid="uid://bayqmo2156mc4"]
 
 [ext_resource type="Script" path="res://addons/recipe_tree/gadget_editor_node.gd" id="1_5e5y2"]
 [ext_resource type="Resource" uid="uid://b1benml8tln26" path="res://resources/gadgets/wheel.tres" id="2_70wi3"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://addons/recipe_tree/item_editor_node.gd" id="3_xi7dl"]
 [ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="4_lhqeo"]
 [ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="5_pyano"]
-[ext_resource type="Resource" uid="uid://drnnbha7vb1ho" path="res://resources/recipes/fabric_recipe.tres" id="8_rb41w"]
+[ext_resource type="Resource" uid="uid://drnnbha7vb1ho" path="res://resources/recipes/fabric_recipe.tres" id="7_wxbkn"]
 
 [sub_resource type="Resource" id="Resource_gsbeb"]
 script = ExtResource("1_5e5y2")
@@ -27,23 +27,17 @@ item = ExtResource("4_lhqeo")
 x = -920
 y = -480
 
-[sub_resource type="Resource" id="Resource_b7m6f"]
-script = ExtResource("3_xi7dl")
-item = ExtResource("4_lhqeo")
-x = -960
-y = -820
-
-[sub_resource type="Resource" id="Resource_7rlni"]
+[sub_resource type="Resource" id="Resource_xxos5"]
 script = ExtResource("2_hx4k4")
-recipe = ExtResource("8_rb41w")
-x = -160
-y = -200
+recipe = ExtResource("7_wxbkn")
+x = -240
+y = -500
 gadget_node = SubResource("Resource_gsbeb")
 input_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_lxf7n")])
 output_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_o22c4")])
 
 [resource]
 script = ExtResource("2_e0emm")
-recipe_nodes = Array[ExtResource("2_hx4k4")]([SubResource("Resource_7rlni")])
+recipe_nodes = Array[ExtResource("2_hx4k4")]([SubResource("Resource_xxos5")])
 gadget_nodes = Array[ExtResource("1_5e5y2")]([SubResource("Resource_gsbeb")])
-item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_o22c4"), SubResource("Resource_lxf7n"), SubResource("Resource_b7m6f")])
+item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_o22c4"), SubResource("Resource_lxf7n")])

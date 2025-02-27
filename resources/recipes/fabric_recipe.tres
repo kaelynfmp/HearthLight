@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Recipe" load_steps=9 format=3 uid="uid://drnnbha7vb1ho"]
 
-[ext_resource type="Resource" uid="uid://b1benml8tln26" path="res://resources/gadgets/wheel.tres" id="1_d62db"]
+[ext_resource type="Resource" uid="uid://b1benml8tln26" path="res://resources/gadgets/wheel.tres" id="1_dnk28"]
 [ext_resource type="Script" path="res://scripts/resources/recipe.gd" id="2_l4tvo"]
 [ext_resource type="Script" path="res://scripts/resources/slot.gd" id="2_srkqm"]
 [ext_resource type="Script" path="res://scripts/resources/item.gd" id="3_frhr7"]
@@ -25,7 +25,7 @@ quantity = 1
 
 [resource]
 script = ExtResource("2_l4tvo")
-gadget = ExtResource("1_d62db")
+gadget = ExtResource("1_dnk28")
 inputs = Array[ExtResource("2_srkqm")]([SubResource("Resource_xaqen")])
 outputs = Array[ExtResource("2_srkqm")]([SubResource("Resource_2wxql")])
 processing_multiplier = 1.0
