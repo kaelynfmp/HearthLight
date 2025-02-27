@@ -39,6 +39,8 @@ offset_bottom = 59.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_3hqlb")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Name" type="Label" parent="Image"]
 layout_mode = 1

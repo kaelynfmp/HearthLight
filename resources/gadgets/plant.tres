@@ -5,9 +5,10 @@
 [ext_resource type="Script" path="res://scripts/resources/slot.gd" id="3_lt256"]
 [ext_resource type="Script" path="res://scripts/resources/item.gd" id="4_u6bql"]
 [ext_resource type="Script" path="res://scripts/resources/gadget.gd" id="5_441cp"]
-[ext_resource type="Resource" uid="uid://bjux8vbxnqlf8" path="res://resources/items/seed.tres" id="5_oeelc"]
-[ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="6_yp1ak"]
+[ext_resource type="Resource" path="res://resources/items/seed.tres" id="5_oeelc"]
+[ext_resource type="Resource" path="res://resources/items/water.tres" id="6_yp1ak"]
 [ext_resource type="Texture2D" uid="uid://baooyamycki3w" path="res://resources/sprites/plantPrimitive.png" id="7_bjh1q"]
+[ext_resource type="Resource" uid="uid://boi6ceft7kv8i" path="res://resources/items/plant_item.tres" id="7_hfken"]
 
 [sub_resource type="Resource" id="Resource_6gsv3"]
 script = ExtResource("3_lt256")
@@ -34,21 +35,13 @@ quantity = 0
 script = ExtResource("2_csb3v")
 slots = Array[ExtResource("3_lt256")]([SubResource("Resource_6gsv3"), SubResource("Resource_mnq6w"), SubResource("Resource_tnt5q")])
 
-[sub_resource type="Resource" id="Resource_p2117"]
-script = ExtResource("4_u6bql")
-texture = ExtResource("7_bjh1q")
-name = "Probably a Cotton Plant"
-description = "The seeds for these things come in unmarked plastic baggies. You're not gonna ask where they come from."
-max_stack = 100
-price = 0
-
 [resource]
 script = ExtResource("5_441cp")
 texture = ExtResource("7_bjh1q")
 name = "Probably a Cotton Plant"
 gadget_age = "Primitive"
 description = "The seeds for these things come in unmarked plastic baggies. You're not gonna ask where they come from."
-item = SubResource("Resource_p2117")
+item = ExtResource("7_hfken")
 inventory = SubResource("Resource_nd5xr")
 produces = true
 inputs = 2

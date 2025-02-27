@@ -2,7 +2,7 @@ extends Label
 @export var selected_category: String
 @export var category_label: Label
 @export var items: Array = []
-var base_resources: Array = ["seed", "water", "rock", "cotton"]
+var base_resources: Array = ["seed", "water", "rock"]
 var gadget_show: Array = ["hand_grinder_item", "plant_item", "sieve_item","wheel_item", "wood_stove_item"]
 var shop_dict = GameManager.shop_dict
 var folder : String

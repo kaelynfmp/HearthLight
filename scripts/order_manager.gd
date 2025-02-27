@@ -48,6 +48,7 @@ func fulfill_order(order: Order) -> bool:
 	
 	# if false:
 	return false
+
 func check_fulfillment_ability(order: Order) -> bool:
 	var fulfilled_items = []
 	for i in range(len(order.required_items)):
@@ -72,8 +73,14 @@ func reward_player(order: Order):
 		var item = order.rewards[i]
 		var qty = order.rewards_quantities[i]
 		GameManager.add_currency(order.currency_reward)
-		inventory.insert(item, qty) #TODO: verify
-		
+		inventory.insert(item, qty)
+
+func give_player_starting_items(order: Order):
+	for i in range(0,len(order.rewards)):
+		var item = order.given_items[i]
+		var qty = order.given_quantities[i]
+		inventory.insert(item, qty)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

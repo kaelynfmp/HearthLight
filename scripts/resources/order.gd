@@ -7,13 +7,17 @@ extends Resource
 var is_completed: bool = false
 var is_accepted: bool = false
 var responded: bool = false
+@export var given_items: Array[Resource] = []
+@export var given_quantities: Array[int] = []
 
 @export_category("Order Requirements")
 @export var required_items: Array[Resource] = []
 @export var required_quantities: Array[int] = []
+
+@export_category("Order Rewards")
 @export var currency_reward = 0
 @export var rewards: Array[Resource] = []
-@export var rewards_quantities: Array[Resource] = []
+@export var rewards_quantities: Array[int] = []
 
 # should ensure that the array size matches up sometime in the future
 
