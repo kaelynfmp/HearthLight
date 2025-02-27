@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://bh4dl6b28jmhc"]
+
+[ext_resource type="Resource" uid="uid://ypmrp0dkke3k" path="res://resources/orders/cottonforwheelorder.tres" id="1_h377p"]
+[ext_resource type="Script" path="res://scripts/resources/email.gd" id="1_shk4p"]
+
+[resource]
+script = ExtResource("1_shk4p")
+sender = "Jenna Johnson"
+subject = "Want a wheel?"
+contents = "I will give you a spinning wheel in exchange for some cotton!"
+category = "main"
+day = 2
+hour = 8
+minute = 0
+is_read = false
+attached_order = ExtResource("1_h377p")

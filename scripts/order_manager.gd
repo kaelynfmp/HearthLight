@@ -43,11 +43,13 @@ func fulfill_order(order: Order) -> bool:
 	
 	#check fulfillment ability
 	if check_fulfillment_ability(order):
+		#GameManager.add_currency(50)
 		var required_items = order.required_items
 		var required_qtys = order.required_quantities
 		for i in range(len(order.required_items)):
 			remove_items_from_inventory(required_items[i],required_qtys[i])
 		reward_player(order)
+		GameManager.add_currency(50)
 		order.is_completed = true
 		return true
 	# if true:
