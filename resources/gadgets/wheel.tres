@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Gadget" load_steps=11 format=3 uid="uid://b1benml8tln26"]
+[gd_resource type="Resource" script_class="Gadget" load_steps=12 format=3 uid="uid://b1benml8tln26"]
 
 [ext_resource type="Script" path="res://scripts/resources/inventory.gd" id="1_8iuif"]
+[ext_resource type="AudioStream" uid="uid://d0txcb8yp7k8u" path="res://resources/audio/Gadgets/prim loom ambient.mp3" id="1_qgher"]
 [ext_resource type="Script" path="res://scripts/resources/gadget.gd" id="1_s808j"]
 [ext_resource type="Script" path="res://scripts/resources/slot.gd" id="2_myy7m"]
 [ext_resource type="Script" path="res://scripts/resources/item.gd" id="3_cf36v"]
@@ -45,3 +46,4 @@ produces = true
 inputs = 1
 outputs = 1
 process_time = 10.0
+ambient_sound = ExtResource("1_qgher")
