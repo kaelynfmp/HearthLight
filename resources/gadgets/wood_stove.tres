@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Gadget" load_steps=11 format=3 uid="uid://dospruqxgfufk"]
+[gd_resource type="Resource" script_class="Gadget" load_steps=12 format=3 uid="uid://dospruqxgfufk"]
 
 [ext_resource type="AudioStream" uid="uid://drusyl3idisq2" path="res://resources/audio/Gadgets/Wood Stove Ambient.mp3" id="1_aa2au"]
 [ext_resource type="Script" path="res://scripts/resources/inventory.gd" id="2_86a58"]
@@ -15,9 +15,16 @@ item_filter = Array[ExtResource("4_71v7c")]([ExtResource("5_b8tdd")])
 bypass_stack = false
 quantity = 0
 
+[sub_resource type="Resource" id="Resource_cqwqe"]
+script = ExtResource("3_8uasy")
+locked = false
+item_filter = Array[ExtResource("4_71v7c")]([ExtResource("5_b8tdd")])
+bypass_stack = false
+quantity = 0
+
 [sub_resource type="Resource" id="Resource_abta4"]
 script = ExtResource("2_86a58")
-slots = Array[ExtResource("3_8uasy")]([SubResource("Resource_ggt87")])
+slots = Array[ExtResource("3_8uasy")]([SubResource("Resource_ggt87"), SubResource("Resource_cqwqe")])
 
 [sub_resource type="Resource" id="Resource_3ujm2"]
 script = ExtResource("4_71v7c")
