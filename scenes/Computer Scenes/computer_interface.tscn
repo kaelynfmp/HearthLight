@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c2wlmdehxae41"]
+[gd_scene load_steps=15 format=3 uid="uid://c2wlmdehxae41"]
 
 [ext_resource type="Script" path="res://scenes/Computer Scenes/computer_manager.gd" id="1_1cjce"]
 [ext_resource type="PackedScene" uid="uid://b5r8qyahtr3r1" path="res://scenes/Computer Scenes/view_email_button.tscn" id="1_ip337"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/order_manager.gd" id="5_wwlms"]
 [ext_resource type="Script" path="res://scripts/resources/order.gd" id="6_luoch"]
 [ext_resource type="PackedScene" uid="uid://bchsomrab1tv0" path="res://scenes/Computer Scenes/buyable_item.tscn" id="6_q6ffq"]
+[ext_resource type="Texture2D" uid="uid://clcmg5me835w8" path="res://resources/sprites/computer/computerClose.png" id="11_u2wnv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0hhal"]
 bg_color = Color(0.736431, 0.60548, 0.604873, 1)
@@ -137,4 +138,6 @@ offset_right = 1918.0
 offset_bottom = 91.0
 theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxFlat_n53si")
-text = "X"
+icon = ExtResource("11_u2wnv")
+flat = true
+icon_alignment = 1
