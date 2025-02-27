@@ -132,7 +132,9 @@ func load_path(path:String, type:int):
 	if dir:
 		dir.list_dir_begin()
 		var file_name: String = dir.get_next()
-		while file_name != "" and "tres.remap" not in file_name:
+		while file_name != "":
+			if file_name.ends_with(".remap"):
+				file_name = file_name.trim_suffix(".remap")
 			if dir.current_is_dir():
 				load_path(dir.get_current_dir(), type)
 			else:
