@@ -45,5 +45,5 @@ inventory = SubResource("Resource_btxp5")
 produces = true
 inputs = 1
 outputs = 1
-process_time = 10.0
+process_time = 5.0
 ambient_sound = ExtResource("1_qgher")

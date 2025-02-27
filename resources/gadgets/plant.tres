@@ -53,5 +53,5 @@ inventory = SubResource("Resource_nd5xr")
 produces = true
 inputs = 2
 outputs = 1
-process_time = 10.0
+process_time = 1.0
 ambient_sound = ExtResource("1_20rc3")
