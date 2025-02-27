@@ -32,6 +32,7 @@ shader_parameter/scrollingTexture = ExtResource("10_ivqh4")
 [node name="HUD" type="CanvasLayer"]
 
 [node name="ComputerInterface" parent="." instance=ExtResource("1_8kako")]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

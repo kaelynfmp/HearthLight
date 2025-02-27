@@ -8,5 +8,5 @@ script = ExtResource("1_ak8q7")
 texture = ExtResource("2_chlvf")
 name = "Dust"
 description = "Powdered stone. It's easier to make out the reflective specks now that it's been ground up."
-max_stack = 100
-price = 0
+max_stack = 24
+price = 50

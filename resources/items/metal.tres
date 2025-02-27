@@ -8,5 +8,5 @@ script = ExtResource("1_qxnr1")
 texture = ExtResource("2_gkdtd")
 name = "Metal"
 description = "Useable metal. It's pure enough to hold its shape, but who knows how it'll hold up in an industrial setting."
-max_stack = 100
-price = 0
+max_stack = 24
+price = 1000

@@ -32,7 +32,7 @@ texture = ExtResource("5_7nj8d")
 name = "Spinning Wheel"
 description = "An old antique that most would consider useless. Knowledge on how to use it is all but lost to most people, but you managed to find an esoteric video guide with pulsating electronic music that explained how to use it."
 max_stack = 1
-price = 0
+price = 50
 
 [resource]
 script = ExtResource("1_s808j")

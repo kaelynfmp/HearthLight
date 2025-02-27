@@ -8,5 +8,5 @@ script = ExtResource("1_fl4s4")
 texture = ExtResource("2_1ooq3")
 name = "Rock"
 description = "A chunk of stone. There's small reflective glints in the light, but it seems to largely be useless minerals."
-max_stack = 100
-price = 0
+max_stack = 24
+price = 25

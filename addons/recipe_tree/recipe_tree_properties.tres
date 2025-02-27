@@ -75,7 +75,7 @@ y = -920
 [sub_resource type="Resource" id="Resource_0uxyg"]
 script = ExtResource("3_xi7dl")
 item = ExtResource("7_x6i4h")
-x = -760
+x = -740
 y = -1980
 
 [sub_resource type="Resource" id="Resource_nos87"]

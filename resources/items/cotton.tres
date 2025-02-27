@@ -8,5 +8,5 @@ script = ExtResource("1_u4brp")
 texture = ExtResource("2_ud60j")
 name = "Cotton"
 description = "A strange organic fiber. It's soft and absorbent, quite unlike any sort of fiber you've ever felt. Maybe you should make a new lab coat out of this stuff."
-max_stack = 10
-price = 10
+max_stack = 24
+price = 50

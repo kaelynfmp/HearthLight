@@ -40,7 +40,7 @@ texture = ExtResource("7_bjh1q")
 name = "Probably a Cotton Plant"
 description = "The seeds for these things come in unmarked plastic baggies. You're not gonna ask where they come from."
 max_stack = 1
-price = 0
+price = 25
 
 [resource]
 script = ExtResource("5_441cp")

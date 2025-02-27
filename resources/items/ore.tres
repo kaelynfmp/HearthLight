@@ -8,5 +8,5 @@ script = ExtResource("1_f21gf")
 texture = ExtResource("2_nk6t8")
 name = "Ore"
 description = "Small amounts of raw metal that still need to be melted down into something useable."
-max_stack = 100
-price = 0
+max_stack = 24
+price = 500
