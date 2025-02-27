@@ -24,7 +24,7 @@ func _process(_delta: float) -> void:
 			# everything past it is going to need to re-initialize their orders. this is, of course, because slots
 			# are /in order/, so you need to reconstruct the order every time you add to it
 			# . . . for some reason.
-			var input_slot_nodes:Array = get_children().filter(func(child): return "InputSlot" in child.get_name())
+			var input_slot_nodes:Array = get_children().filter(func(child): return "InSlot" in child.get_name())
 			if input_slot_nodes.size() != recipe_node.recipe.inputs.size():
 				re_init_slots = true
 				for child in input_slot_nodes:
@@ -39,7 +39,7 @@ func _process(_delta: float) -> void:
 				set_slot(0, false, 0, Color(), false, 0, Color())
 				for index in range(inputs.size()):
 					var new_node = Control.new()
-					new_node.set_name("InputSlot" + str(index))
+					new_node.set_name("InSlot" + str(index))
 					new_node.set_mouse_filter(MOUSE_FILTER_IGNORE)
 					new_node.custom_minimum_size = slot_distance # Distance between slots
 					add_child(new_node)
@@ -65,13 +65,13 @@ func _process(_delta: float) -> void:
 						new_slot.size_flags_vertical = SIZE_SHRINK_CENTER
 					contained.add_child(new_slot)
 					contained.move_child(new_slot, index)
-			var gadget_slot_nodes:Array = get_children().filter(func(child): return "GadgetGraphSlot" in child.get_name())
+			var gadget_slot_nodes:Array = get_children().filter(func(child): return "GadgGraphSlot" in child.get_name())
 			if re_init_slots or gadget_slot_nodes.is_empty():
 				re_init_slots = true
 				for child in gadget_slot_nodes:
 					remove_child(child)
 				var new_node = Control.new()
-				new_node.set_name("GadgetGraphSlot")
+				new_node.set_name("GadgGraphSlot")
 				new_node.set_mouse_filter(MOUSE_FILTER_IGNORE)
 				new_node.custom_minimum_size = slot_distance # Distance between slots
 				add_child(new_node)
@@ -79,7 +79,7 @@ func _process(_delta: float) -> void:
 				# Also + input size because it is cumulative
 				set_slot(recipe_node.recipe.inputs.size() + 1, true, 1, Color.hex(0xffae76ff), false, 0, Color(), load("res://addons/recipe_tree/input_slot.tres"))
 
-			var output_slot_nodes:Array = get_children().filter(func(child): return "OutputSlot" in child.get_name())
+			var output_slot_nodes:Array = get_children().filter(func(child): return "OutSlot" in child.get_name())
 			if re_init_slots or output_slot_nodes.size() != recipe_node.recipe.outputs.size():
 				re_init_slots = true
 				for child in output_slot_nodes:
@@ -94,7 +94,7 @@ func _process(_delta: float) -> void:
 				var outputs:Array[Slot] = recipe_node.recipe.outputs
 				for index in range(outputs.size()):
 					var new_node:Control = Control.new()
-					new_node.set_name("OutputSlot" + str(index))
+					new_node.set_name("OutSlot" + str(index))
 					new_node.custom_minimum_size = slot_distance # Distance between slots
 					new_node.set_mouse_filter(MOUSE_FILTER_IGNORE)
 					add_child(new_node)
