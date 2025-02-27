@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ooc6jx4dihku" path="res://scenes/marker.tscn" id="4_mnrrm"]
 [ext_resource type="Resource" uid="uid://b1gb7sbupakg4" path="res://resources/character/inventory.tres" id="6_kcpka"]
 [ext_resource type="PackedScene" uid="uid://bpie3rt8qmyxr" path="res://scenes/hud.tscn" id="8_s1rlv"]
+[ext_resource type="Script" path="res://scenes/computer_open.gd" id="9_uy75m"]
 
 [node name="Room" type="Node"]
 
@@ -141,3 +142,6 @@ polygon = PackedVector2Array(-1408, 0, 0, -704, 1408, 0, 0, 704)
 metadata/_edit_lock_ = true
 
 [node name="HUD" parent="." instance=ExtResource("8_s1rlv")]
+
+[node name="Node" type="Node" parent="HUD"]
+script = ExtResource("9_uy75m")
