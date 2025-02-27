@@ -7,9 +7,6 @@
 [node name="UI Base" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 1837.0
-offset_bottom = 999.0
-scale = Vector2(0.5, 0.5)
 
 [node name="Background" type="NinePatchRect" parent="."]
 texture_filter = 1

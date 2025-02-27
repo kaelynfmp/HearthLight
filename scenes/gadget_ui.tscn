@@ -1,0 +1,115 @@
+[gd_scene load_steps=9 format=3 uid="uid://dxa0at3wgkq8w"]
+
+[ext_resource type="PackedScene" uid="uid://c88opsp0c7nm" path="res://scenes/ui_base.tscn" id="1_edcws"]
+[ext_resource type="Texture2D" uid="uid://bpk81ck7j3l2c" path="res://resources/sprites/progressbar.png" id="2_1u2kl"]
+[ext_resource type="Shader" path="res://scripts/shaders/progress.gdshader" id="3_rt1dh"]
+[ext_resource type="Texture2D" uid="uid://c0pk0sgvaoktr" path="res://resources/sprites/progressbar_filled.png" id="4_a56a2"]
+
+[sub_resource type="Gradient" id="Gradient_oya0q"]
+colors = PackedColorArray(0.701961, 0.231373, 0.933333, 1, 0.933333, 0.223529, 0.560784, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_k3yj5"]
+gradient = SubResource("Gradient_oya0q")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fdo77"]
+shader = ExtResource("3_rt1dh")
+shader_parameter/progress = 0.5
+shader_parameter/background_color = Color(0.15, 0.243333, 0.5, 0)
+shader_parameter/wave_amplitude = 0.066
+shader_parameter/wave_frequency = 4.365
+shader_parameter/wave_speed = 3.387
+shader_parameter/particle_speed = 0.364
+shader_parameter/particle_lifetime = 4.047
+shader_parameter/particle_softness = 1.0
+shader_parameter/particle_spacing = 0.362
+shader_parameter/particle_offset = Vector2(0, 0)
+shader_parameter/particle_start_scale = Vector2(0.04, 0.04)
+shader_parameter/particle_end_scale = Vector2(0.01, 0.01)
+shader_parameter/particle_scale_randomness = 0.5
+shader_parameter/particle_amount = 15
+shader_parameter/image_dimension = Vector2(512, 512)
+shader_parameter/color_gradient = SubResource("GradientTexture1D_k3yj5")
+shader_parameter/mask_texture = ExtResource("4_a56a2")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7bgkg"]
+
+[node name="Gadget" instance=ExtResource("1_edcws")]
+
+[node name="Background" parent="." index="0"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -918.5
+offset_top = -499.5
+offset_right = 918.5
+offset_bottom = 499.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Contained" type="HBoxContainer" parent="Background" index="2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -488.0
+offset_top = -257.0
+offset_right = 489.0
+offset_bottom = 257.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="StartingCreatesGap" type="Control" parent="Background/Contained" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="CreatesContorl" type="Control" parent="Background/Contained" index="1"]
+layout_mode = 2
+
+[node name="Creates" type="TextureRect" parent="Background/Contained/CreatesContorl" index="0"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.5
+offset_top = -257.0
+offset_right = 86.5
+offset_bottom = 257.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_1u2kl")
+stretch_mode = 3
+
+[node name="CreatesProgress" type="TextureRect" parent="Background/Contained/CreatesContorl" index="1"]
+visible = false
+texture_filter = 1
+material = SubResource("ShaderMaterial_fdo77")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.5
+offset_top = -85.5
+offset_right = 86.5
+offset_bottom = 85.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("PlaceholderTexture2D_7bgkg")
+
+[node name="EndingCreatesGap" type="Control" parent="Background/Contained" index="2"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2

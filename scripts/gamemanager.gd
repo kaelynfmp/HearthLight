@@ -1,11 +1,17 @@
 extends Node
 
 signal inventory_open_state_changed
+signal update_recipes
 
-@export var inventory: bool = false
+var inventory: bool = false:
+	set(value):
+		inventory = value
+		if !value:
+			gadget = null
+var gadget:StaticBody2D
 
 # Temp
-@export var is_placing_gadget: bool = false
+var is_placing_gadget: bool = false
 
 
 var cursor:Node2D
@@ -20,16 +26,24 @@ enum Items {
 	DEFAULT_STACK = 100
 }
 
+enum Load_Type {
+	RECIPE, GADGET, ITEM
+}
+
+var recipe_strings:Array[String]
+var gadget_strings:Array[String]
+var item_strings:Array[String]
+
 var currency: int = 20
 signal currency_updated(new_amount)
 
 var start_time: int
 var current_time: int
 var seconds_elapsed: float
-var day_hours = 18
-var time_scale = 480 # 1 irl second is 480 game seconds for 2 minutes/day, 16h day
+var day_hours: int  = 18
+var time_scale: int       = 480 # 1 irl second is 480 game seconds for 2 minutes/day, 16h day
 var time_scaled_seconds: int
-var game_time = {
+var game_time: Dictionary = {
 	"day": 1,
 	"hour": 8,
 	"minute": 0,
@@ -37,14 +51,17 @@ var game_time = {
 	"segment": "morning"
 }
 var in_computer: bool
-var shop_dict = {
+var shop_dict: Dictionary = {
 	"resources": [],
 	"gadgets": []
 }
 
+var recipes:Array[Recipe]
+
 func _ready() -> void:
 	start_time = Time.get_ticks_msec()
 	seconds_elapsed = 0
+	load_recipes()
 	
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("inventory"):
@@ -53,11 +70,39 @@ func _process(_delta: float) -> void:
 		is_placing_gadget = !is_placing_gadget
 	
 	# time tracking
-	var current_time = Time.get_ticks_msec()
-	var milliseconds_elapsed = current_time - start_time
+	current_time = Time.get_ticks_msec()
+	var milliseconds_elapsed: int = current_time - start_time
 	seconds_elapsed = milliseconds_elapsed / 1000
 	time_scaled_seconds = seconds_elapsed*time_scale
 	update_time(time_scaled_seconds)
+
+func load_recipes():
+	update_recipes.emit()
+	load_path("res://resources/recipes", Load_Type.RECIPE)
+	for recipe_string:String in recipe_strings:
+		recipes.append(load(recipe_string))
+
+func load_path(path:String, type:int):
+	var dir: DirAccess = DirAccess.open(path)
+	if dir:
+		dir.list_dir_begin()
+		var file_name: String = dir.get_next()
+		while file_name != "":
+			if dir.current_is_dir():
+				load_path(dir.get_current_dir(), type)
+			else:
+				var full_path:String = path + "/" + file_name
+				if type == Load_Type.RECIPE:
+					recipe_strings.append(full_path)
+				elif type == Load_Type.GADGET:
+					gadget_strings.append(full_path)
+				elif type == Load_Type.ITEM:
+					item_strings.append(full_path)
+			# found recipe
+			file_name = dir.get_next()
+	else:
+		assert(dir != null, "Directory not found! Should be at 'res://resources/" +
+		("recipes" if type == Load_Type.RECIPE else "gadgets" if type == Load_Type.GADGET else "items") + "'")
 
 func change_inventory():
 	if inventory:
@@ -118,6 +163,11 @@ func distribute_slots() -> void:
 				for subindex: int in range(slot_distributor.slots.size()):
 					slot_distributor.slots[subindex].initialize(slot_distributor.item, slot_distributor.distributed[subindex])
 				return
+	
+## Sets the currently selected gadget
+func set_gadget(p_gadget:StaticBody2D) -> void:
+	gadget = p_gadget
+	change_inventory()
 	
 ## Clears the slot distributor, which is a list of currently dragged over slots, and will balance out how many items
 ## are in them all

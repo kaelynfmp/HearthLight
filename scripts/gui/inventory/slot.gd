@@ -188,7 +188,8 @@ func cursor_slot() -> Slot:
 
 func set_slot(setting_slot: Slot):
 	if slot:
-		slot.changed.disconnect(update)
+		if slot.changed.is_connected(update):
+			slot.changed.disconnect(update)
 	slot = setting_slot
 	if slot != null:
 		slot.changed.connect(update)

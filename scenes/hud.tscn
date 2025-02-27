@@ -1,15 +1,27 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpie3rt8qmyxr"]
+[gd_scene load_steps=13 format=3 uid="uid://bpie3rt8qmyxr"]
 
 [ext_resource type="PackedScene" uid="uid://c6g34by20r0qc" path="res://scenes/inventory/inventory.tscn" id="1_h8ipj"]
 [ext_resource type="Shader" path="res://scripts/shaders/blur.gdshader" id="2_0gell"]
 [ext_resource type="PackedScene" uid="uid://cq8nmdt2gxyse" path="res://scenes/cursor.tscn" id="2_wjdba"]
 [ext_resource type="Script" path="res://scripts/gui/temp_placing_mode.gd" id="3_twldf"]
 [ext_resource type="Script" path="res://scripts/gui/blur.gd" id="3_xnxa5"]
+[ext_resource type="Script" path="res://scripts/gui/inventories.gd" id="4_pacb3"]
+[ext_resource type="PackedScene" uid="uid://dxa0at3wgkq8w" path="res://scenes/gadget_ui.tscn" id="4_svta0"]
+[ext_resource type="Script" path="res://scripts/gui/gadget_ui.gd" id="7_y0wjn"]
+[ext_resource type="Script" path="res://scripts/gui/selected_gadget.gd" id="9_nhxen"]
+[ext_resource type="Shader" path="res://scripts/shaders/gadgetoutline.gdshader" id="9_o8g3w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_drira"]
 shader = ExtResource("2_0gell")
-shader_parameter/strength = 1.569
+shader_parameter/strength = 2.454
 shader_parameter/mix_percentage = 0.062
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hoa3s"]
+shader = ExtResource("9_o8g3w")
+shader_parameter/line_color = Vector4(0.93, 0.22, 0.56, 1)
+shader_parameter/line_thickness = 10.0
+shader_parameter/frequency = 15.0
+shader_parameter/phase_speed = 1.0
 
 [node name="HUD" type="CanvasLayer"]
 
@@ -32,20 +44,41 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.141176)
 script = ExtResource("3_xnxa5")
 
-[node name="Inventory" parent="." instance=ExtResource("1_h8ipj")]
+[node name="Inventories" type="VBoxContainer" parent="."]
 z_index = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -192.0
-offset_top = 6.10352e-05
-offset_right = -192.0
-offset_bottom = 6.10352e-05
+offset_left = -1024.0
+offset_top = -495.0
+offset_right = 1536.0
+offset_bottom = 2085.0
 grow_horizontal = 0
 grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+script = ExtResource("4_pacb3")
+slide_in_speed = 10.0
+
+[node name="Inventory" parent="Inventories" instance=ExtResource("1_h8ipj")]
+layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 6
+
+[node name="Gadget" parent="Inventories" instance=ExtResource("4_svta0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+script = ExtResource("7_y0wjn")
 
 [node name="Cursor" parent="." instance=ExtResource("2_wjdba")]
+
+[node name="SelectedGadget" type="TextureRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_hoa3s")
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("9_nhxen")

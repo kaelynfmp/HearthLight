@@ -20,6 +20,11 @@ func _process(_delta: float) -> void:
 		clamp(position.y,
 		camera_edges[1],
 		camera_edges[3]))
+	if GameManager.gadget != null:
+		# Center on gadget if gadget selected
+		camera_position = GameManager.gadget.position
+		camera_position.x += inventory_camera_offset / 2
+		camera_position.y += 540 - 32 # Buffer to make it look more centered
 	camera.set_global_position(camera_position)
 	for sprite:AnimatedSprite2D in $Sprite.get_children():
 		if velocity == Vector2.ZERO: continue
