@@ -1,8 +1,9 @@
 extends StaticBody2D
 
-@onready var gadget_stats = load("res://resources/gadgets/wheel.tres")
+@onready var gadget_stats:Gadget = load("res://resources/gadgets/wheel.tres")
+@onready var audio_player:AudioStreamPlayer2D = find_child("AudioStreamPlayer")
 
-@export var output_inventory: Inventory
+@export var inventory: Inventory
 
 @export var is_holding: bool = false
 
@@ -10,37 +11,90 @@ var character: Node2D
 
 var base_layer: Node2D
 
-var age: String
+var age:int
+
+var initial_click:bool = true
+
+var progressing:bool = false
+var progress:float = 0
+var selected_recipe:Recipe
+
+var primitive_selected:bool = false
+
+var recipes:Array[Recipe]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	inventory = gadget_stats.inventory.duplicate()
 	character = get_parent().get_parent().get_parent().find_child("Character")
 	base_layer = get_parent()
-	age = gadget_stats.gadget_age
-	$Sprite2D.texture = gadget_stats.texture
+	age = gadget_stats.age
+	$Sprite.texture = gadget_stats.texture
 	$Timer.wait_time = gadget_stats.process_time
 	$Timer.timeout.connect(add_item_to_inventory)
-	$TextureProgressBar.visible = false
-	$TextureProgressBar.value = 0
-	$TextureProgressBar.max_value = $Timer.wait_time
+	audio_player.set_stream(gadget_stats.ambient_sound)
+	update_recipes()
+	GameManager.update_recipes.connect(update_recipes)
 
-	$AudioStreamPlayer2D.set_stream(gadget_stats.ambient_sound)
-	$AudioStreamPlayer2D.play()
-	print($AudioStreamPlayer2D.stream)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if is_holding:
-		$TextureProgressBar.value += 1*delta
+func _physics_process(delta: float) -> void:
+	if !progressing or (!progressing and selected_recipe != null):
+		var checked_recipe:Recipe = check_for_valid_recipe()
+		if checked_recipe != null:
+			do_recipe(checked_recipe)
 	else:
-		$TextureProgressBar.value -= .8*delta
-		
-	if $TextureProgressBar.value >= $TextureProgressBar.max_value:
-		add_item_to_inventory()
-		$TextureProgressBar.value = 0
-	#$TextureProgressBar.value = 100 - ($Timer.time_left / $Timer.wait_time) * 100
+		var change_rate:float = delta / (gadget_stats.process_time * selected_recipe.processing_multiplier)
+		if age > GameManager.Age.PRIMITIVE or primitive_selected:
+			progress += change_rate
+		else:
+			progress -= change_rate
+		if progress >= 1:
+			finish_recipe()
+		if progress <= 0:
+			cancel_processing()
 	
+func update_recipes():
+	recipes.clear()
+	for recipe:Recipe in GameManager.recipes:
+		if recipe.gadget == gadget_stats:
+			recipes.append(recipe)
+		
+func check_for_valid_recipe() -> Recipe:
+	for recipe in recipes:
+		var inputs:Array[Slot] = inventory.slots.filter(func(slot): return !slot.locked)
+		var valid:int = 0
+		for input in recipe.inputs:
+			if inventory.get_item_quantity(input.item, true) >= input.quantity:
+				valid += 1
+		if valid == inputs.size():
+			# valid!
+			return recipe
+	selected_recipe = null
+	return null
+	
+func do_recipe(recipe:Recipe):
+	selected_recipe = recipe
+	if age > GameManager.Age.PRIMITIVE or primitive_selected:
+		start_progression()
+
+func start_progression():
+	for input in selected_recipe.inputs:
+		# We know that the recipe is valid, so we can just remove willy nilly
+		inventory.remove_items(input.item, input.quantity)
+	progressing = true
+	play_sound()
+	
+func finish_recipe():
+	for output in selected_recipe.outputs:
+		inventory.insert(output.item, output.quantity, true)
+	progress = 0.0
+	progressing = false
+	audio_player.stop()
+	
+func cancel_processing():
+	progress = 0.0
+	progressing = false
+	audio_player.stop()
+
 func add_item_to_inventory() -> void:
 	var item: Item = load("res://resources/items/cotton.tres")
 	collect(item)
@@ -51,30 +105,37 @@ func collect(item: Item):
 
 # Temporary highlight
 func _on_mouse_entered() -> void:
-	$TextureProgressBar.visible = true
-	$Sprite2D.self_modulate = Color(1.0, 1.0, 1.0, 0.5)
+	$Sprite.self_modulate = Color(1.0, 1.0, 1.0, 0.5)
 
 func _on_mouse_exited() -> void:
-	$TextureProgressBar.visible = false
-	$Sprite2D.self_modulate = Color(1.0, 1.0, 1.0, 1.0) # Replace with function body.
+	$Sprite.self_modulate = Color(1.0, 1.0, 1.0, 1.0) # Replace with function body.
 
 func detect_nearby() -> bool:
 	var character_cell_position: Vector2 = base_layer.local_to_map(character.global_position)
 	var gadget_cell_position: Vector2 = base_layer.local_to_map(global_position)
 	return character_cell_position.distance_squared_to(gadget_cell_position) <= 2.0
 
-func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if detect_nearby() and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed: # Replace with function body.
-		is_holding = true
+func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if detect_nearby() and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if !initial_click:
+			GameManager.set_gadget(self)
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.is_pressed():
-		is_holding = false
-	play_sound()
+		if initial_click:
+			if event.is_released():
+				initial_click = false
 
 func play_sound() -> void:
-	if age == "Primitive":
-		if is_holding:
-			$AudioStreamPlayer2D.stream_paused = false
-			#print("play")
-		else:
-			$AudioStreamPlayer2D.stream_paused = true
+	if progressing:
+		audio_player.play()
+	# TODO: implement later
+	#if age == "Primitive":
+	#	if is_holding:
+	#		audio_player.stream_paused = false
+	#		#print("play")
+	#	else:
+	#		audio_player.stream_paused = true
 			#print("pause")
+
+
+func _on_audio_stream_player_finished() -> void:
+	play_sound()

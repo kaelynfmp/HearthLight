@@ -68,7 +68,7 @@ func _get_property_list() -> Array[Dictionary]:
 	
 ## Increments the amount of items in the slot by specified amount, default 1
 func increment(amount: int = 1, bypass: bool = false) -> int:
-	if can_insert() and not bypass:
+	if can_insert() or bypass:
 		var starting_value: int = quantity
 		if item == null:
 			return amount # nothing was put in
@@ -89,7 +89,7 @@ func decrement(amount: int = 1) -> bool:
 	
 ## Initializes the slot with an item and a stack size, default 1
 func initialize(p_item: Item, p_quantity: int = 1, bypass: bool = false) -> int:
-	if can_insert(p_item) and not bypass:
+	if can_insert(p_item) or bypass:
 		item = p_item
 		quantity = p_quantity
 		changed.emit()
@@ -100,10 +100,14 @@ func initialize(p_item: Item, p_quantity: int = 1, bypass: bool = false) -> int:
 	
 ## Whether the item is either locked or the item is not in the filter
 func can_insert(check_item: Item = null) -> bool:
+	if check_item == null: # You can always insert nothing into a slot
+		return true
 	if locked:
 		return false
 	if check_item != null:
-		return (check_item not in item_filter)
+		if !item_filter.is_empty():
+			return (check_item in item_filter)
+		return true
 	return true
 	
 func item_changed():

@@ -10,7 +10,8 @@ extends Resource
 ## Name of the gadget as it appears in-game.
 @export var name: String
 ## Age of the gadget (Primitive | Industrial | Electrical | Cyber)
-@export var gadget_age: String
+enum Age {PRIMITIVE, INDUSTRIAL, ELECTRICAL, CYBER}
+@export var age: Age
 ## In-game description of the gadget.
 @export_multiline var description: String
 

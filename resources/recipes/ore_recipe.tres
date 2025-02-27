@@ -5,9 +5,9 @@
 [ext_resource type="Script" path="res://scripts/resources/item.gd" id="2_qg55f"]
 [ext_resource type="Script" path="res://scripts/resources/recipe.gd" id="3_lrpuw"]
 [ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="3_uta1k"]
-[ext_resource type="Resource" uid="uid://lxvyxcteq6eq" path="res://resources/items/dust.tres" id="5_thame"]
-[ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="6_jsupc"]
-[ext_resource type="Resource" uid="uid://gw88mo33lg1c" path="res://resources/items/ore.tres" id="7_qd1sw"]
+[ext_resource type="Resource" path="res://resources/items/dust.tres" id="5_thame"]
+[ext_resource type="Resource" path="res://resources/items/water.tres" id="6_jsupc"]
+[ext_resource type="Resource" path="res://resources/items/ore.tres" id="7_qd1sw"]
 
 [sub_resource type="Resource" id="Resource_1bhxn"]
 script = ExtResource("1_xx422")
