@@ -28,6 +28,11 @@ func _ready():
 	print(emails)
 	display_category_emails(current_category) # default view to "main"
 
+func _process(delta: float) -> void:
+	for key in categorized_emails:
+		for email in categorized_emails[key]:
+			print(email.sender, email.category)
+
 func create_inbox_buttons():
 	for category in categorized_emails.keys():
 		if categorized_emails[category].size() >= 0:
@@ -110,16 +115,30 @@ func display_email_button(email: Email):
 	email_list_container.add_child(email_button) 
 	
 	# make email read
-	is_read_color(email, email_button)
+	#is_read_color(email, email_button)
 	
 	var accept_button = email_button.find_child("Accept")
 	var reject_button = email_button.find_child("Decline")
+	var fulfill_button = email_button.find_child("Fulfill")
 	# order accept/reject
 	if email.attached_order and !email.attached_order.responded:
 		if accept_button:
 			accept_button.pressed.connect(func(): order_accept(email))
 		if reject_button:
 			reject_button.pressed.connect(func(): order_reject(email))
+	elif email.attached_order.responded and email.attached_order.is_accepted and not email.attached_order.is_completed:
+		fulfill_button.visible = true
+		accept_button.visible = false
+		reject_button.visible = false
+		fulfill_button.pressed.connect(func(): OrderManager.fulfill_order(email.attached_order))
+		#change_email_category(email, "orders")
+		#display_category_emails(current_category)
+	elif email.attached_order.is_completed:
+		change_email_category(email, "archive")
+		#display_category_emails(current_category)
+		fulfill_button.visible = false
+		accept_button.visible = false
+		reject_button.visible = false
 	else: # no attached order OR order has been responded to
 		accept_button.visible = false
 		reject_button.visible = false
@@ -132,7 +151,7 @@ func show_email_details(email: Email, email_button: Button):
 	print("Toggled panel visibility")
 	print("test")
 	email.is_read = true
-	is_read_color(email, email_button)
+	#is_read_color(email, email_button)
 	panel.visible = !panel.visible
 	if panel.visible:
 		email_button.custom_minimum_size = Vector2(1920,1080)
@@ -143,6 +162,7 @@ func show_email_details(email: Email, email_button: Button):
 func order_accept(email: Email):
 	var order = email.attached_order
 	OrderManager.accept_order(order)
+	OrderManager.give_player_starting_items(order)
 	print("Accepted order")
 	# TODO: possibly move to "in progress"
 	change_email_category(email, "orders")
@@ -157,8 +177,8 @@ func order_reject(email: Email):
 	change_email_category(email, "archive")
 	display_category_emails(current_category)
 	
-func is_read_color(email: Email, email_button: Button):
-	if email.is_read:
-		var style = StyleBoxFlat.new()
-		style.bg_color = Color(selectedbuttoncolor)
-		email_button.set("theme_override_styles/normal", style)
+#func is_read_color(email: Email, email_button: Button):
+	#if email.is_read:
+		#var style = StyleBoxFlat.new()
+		#style.bg_color = Color(selectedbuttoncolor)
+		#email_button.set("theme_override_styles/normal", style)

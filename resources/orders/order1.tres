@@ -1,12 +1,17 @@
-[gd_resource type="Resource" script_class="Order" load_steps=3 format=3 uid="uid://hqegir1wr6ur"]
+[gd_resource type="Resource" script_class="Order" load_steps=4 format=3 uid="uid://hqegir1wr6ur"]
 
 [ext_resource type="Script" path="res://scripts/resources/order.gd" id="1_gipnw"]
 [ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="1_yrjei"]
+[ext_resource type="Resource" path="res://resources/items/hand_grinder_item.tres" id="2_v48g1"]
 
 [resource]
 script = ExtResource("1_gipnw")
 order_id = 1
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
 required_items = Array[Resource]([ExtResource("1_yrjei")])
-required_quantities = Array[int]([1])
-rewards = Array[Resource]([])
-rewards_quantities = Array[Resource]([])
+required_quantities = Array[int]([2])
+currency_reward = 10
+rewards = Array[Resource]([ExtResource("2_v48g1")])
+rewards_quantities = Array[int]([1])
+

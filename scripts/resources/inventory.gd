@@ -81,3 +81,4 @@ func on_inventory_open_state_changed():
 	if !Engine.is_editor_hint():
 		if GameManager.inventory:
 			GameManager.add_inventory(self)
+			

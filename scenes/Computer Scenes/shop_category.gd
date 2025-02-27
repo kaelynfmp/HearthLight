@@ -2,8 +2,8 @@ extends Label
 @export var selected_category: String
 @export var category_label: Label
 @export var items: Array = []
-var base_resources: Array = ["seed", "water", "rock", "cotton"]
-var gadget_show: Array = []
+var base_resources: Array = ["seed", "water", "rock"]
+var gadget_show: Array = ["hand_grinder_item", "plant_item", "sieve_item","wheel_item", "wood_stove_item"]
 var shop_dict = GameManager.shop_dict
 var folder : String
 @export var item_container: Node
@@ -13,8 +13,9 @@ func set_category(category: String):
 	selected_category = category
 	category_label.text = selected_category.capitalize()
 	folder = "res://resources/items/"
-	load_items()
-	print(items)
+	if len(shop_dict[category]) == 0:
+		load_items()
+	print(shop_dict[category])
 	for item in shop_dict[category]:
 		display_items(item)
 
@@ -33,9 +34,10 @@ func load_items():
 				var item_path = folder + file_name
 				var item = load(item_path)
 				if item and item is Item:
-					if item.name.to_lower() in base_resources:
+					print("Loaded item")
+					if item.name.to_lower() in base_resources and item not in shop_dict["resources"]:
 						shop_dict["resources"].append(item)
-					elif item.name.to_lower() in gadget_show:
+					elif item_path.get_file().get_basename() in gadget_show and item not in shop_dict["gadgets"]:
 						shop_dict["gadgets"].append(item)
 					else:
 						pass

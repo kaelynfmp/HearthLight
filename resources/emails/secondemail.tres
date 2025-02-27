@@ -1,15 +1,23 @@
-[gd_resource type="Resource" script_class="Email" load_steps=2 format=3 uid="uid://sc3eyh2thm3t"]
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://sc3eyh2thm3t"]
 
 [ext_resource type="Script" path="res://scripts/resources/email.gd" id="1_l8p6f"]
+[ext_resource type="Resource" uid="uid://4mns6a0tb4qu" path="res://resources/orders/order2.tres" id="1_ya2nd"]
 
 [resource]
 script = ExtResource("1_l8p6f")
-sender = "Testerson McTester"
-subject = "Hello... I am testing this email functionality"
-contents = "Hello good sir
-I am in need of"
+sender = "Ernest Hayden"
+subject = "I can never trust those damn corporations"
+contents = "Good day,
+
+I am sending you this correspondence because I am in need of a service, and due to previous experiences, I am deeply uncomfortable with relaying on those treacherous corporations. A little birdie told me of your services, and at this point I am more than willing to abide by personal recommendations of unlicensed artisans than to trust those dastardly corporations with any more of my samples.
+
+All I require is for you to process the minerals that I will be sending you. I would do it myself, but I have much better things to do with my time if I can avoid it. It is however a simple request, and one that I should have every confidence in you doing, though please excuse me for my wariness given my previous experiences with the utter incompetence of supposed \"professionals.\"
+
+Yours truly,
+Ernest Hayden "
+category = "main"
 day = 1
 hour = 8
 minute = 0
-category = "orders"
 is_read = false
+attached_order = ExtResource("1_ya2nd")
