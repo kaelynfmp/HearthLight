@@ -8,5 +8,5 @@ script = ExtResource("1_602me")
 texture = ExtResource("2_3yvfi")
 name = "Water"
 description = "Fresh water. Hopefully."
-max_stack = 100
-price = 0
+max_stack = 24
+price = 5

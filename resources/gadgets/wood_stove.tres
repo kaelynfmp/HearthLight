@@ -33,7 +33,7 @@ texture = ExtResource("6_h4er4")
 name = "Wood Stove"
 description = "This thing would be a fire hazard if buildings were made of flammable materials. It's a good thing that hasn't been the case for decades."
 max_stack = 1
-price = 0
+price = 250
 
 [resource]
 script = ExtResource("5_eo3nv")
