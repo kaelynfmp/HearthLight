@@ -18,7 +18,7 @@ quantity = 0
 
 [sub_resource type="Resource" id="Resource_cqwqe"]
 script = ExtResource("3_8uasy")
-locked = false
+locked = true
 item_filter = Array[ExtResource("4_71v7c")]([ExtResource("5_b8tdd")])
 bypass_stack = false
 quantity = 0

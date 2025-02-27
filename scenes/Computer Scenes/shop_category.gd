@@ -15,7 +15,6 @@ func set_category(category: String):
 	folder = "res://resources/items/"
 	if len(shop_dict[category]) == 0:
 		load_items()
-	print(shop_dict[category])
 	for item in shop_dict[category]:
 		display_items(item)
 

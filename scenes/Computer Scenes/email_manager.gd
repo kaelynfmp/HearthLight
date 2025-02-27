@@ -95,13 +95,10 @@ func change_email_category(email: Email, new_category: String):
 	categorized_emails[new_category].append(email)
 	
 func is_email_time_reached(email: Email) -> bool:
-	var game_time = GameManager.game_time 
-	print(game_time)
-	print(email.day,"D ", email.hour, "H ", email.minute, "M")
+	var game_time = GameManager.game_time
 	if email.day <= game_time["day"]: # day is right/has passed
 		if email.hour <= game_time["hour"]: # hour is right/has passed
 			if email.minute <= game_time["minute"]:
-				print(email.contents, " is ready to be displayed!")
 				return true
 	
 	return false
