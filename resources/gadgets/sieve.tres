@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://scripts/resources/gadget.gd" id="5_eflns"]
 [ext_resource type="Resource" uid="uid://lxvyxcteq6eq" path="res://resources/items/dust.tres" id="6_ee0md"]
 [ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="7_djx8y"]
-[ext_resource type="Resource" uid="uid://c4j1nqqk75o65" path="res://resources/items/sieve_item.tres" id="8_6mq83"]
+[ext_resource type="Resource" path="res://resources/items/sieve_item.tres" id="8_6mq83"]
 [ext_resource type="Texture2D" uid="uid://ni5q0u43gvlx" path="res://resources/sprites/sievePrimitive.png" id="8_aq334"]
 
 [sub_resource type="Resource" id="Resource_0cyra"]
@@ -51,7 +51,7 @@ age = 0
 description = "You never thought you'd see one of these. This one probably belongs in a museum it's so old, but it'll get the job done."
 item = ExtResource("8_6mq83")
 inventory = SubResource("Resource_xngkc")
-produces = false
+produces = true
 inputs = 3
 outputs = 1
 process_time = 10.0
