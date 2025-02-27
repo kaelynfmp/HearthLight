@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://gw88mo33lg1c"]
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://gw88mo33lg1c"]
 
 [ext_resource type="Script" path="res://scripts/resources/item.gd" id="1_f21gf"]
+[ext_resource type="Texture2D" uid="uid://bwii6enoibw1y" path="res://resources/sprites/ore.png" id="2_nk6t8"]
 
 [resource]
 script = ExtResource("1_f21gf")
+texture = ExtResource("2_nk6t8")
 name = "Ore"
 description = "Small amounts of raw metal that still need to be melted down into something useable."
 max_stack = 100

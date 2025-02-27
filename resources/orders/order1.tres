@@ -8,5 +8,6 @@ script = ExtResource("1_gipnw")
 order_id = 1
 required_items = Array[Resource]([ExtResource("1_yrjei")])
 required_quantities = Array[int]([1])
+currency_reward = 0
 rewards = Array[Resource]([])
-rewards_quantities = Array[Resource]([])
+rewards_quantities = Array[int]([])
