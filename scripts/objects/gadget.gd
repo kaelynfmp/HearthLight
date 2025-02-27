@@ -6,8 +6,8 @@ signal removing(layer_occupied_name:String, cell_pos:Vector2i)
 @onready var audio_player:AudioStreamPlayer2D = find_child("AudioStreamPlayer")
 
 @onready var sprite:Sprite2D = find_child("Sprite")
-@onready var valid_selection:Image = Image.load_from_file("res://resources/sprites/select_close_enough.png")
-@onready var invalid_selection:Image = Image.load_from_file("res://resources/sprites/select_not_close_enough.png")
+@onready var valid_selection:CompressedTexture2D = load("res://scripts/shaders/close_enough_texture.tres")
+@onready var invalid_selection:CompressedTexture2D = load("res://scripts/shaders/not_close_enough_texture.tres")
 
 @export var inventory: Inventory
 
@@ -68,9 +68,9 @@ func _process(_delta: float) -> void:
 	if hovered:
 		sprite.material.set("shader_parameter/textureScale", Vector2.ONE)
 		if detect_nearby():
-			sprite.material.set("shader_parameter/scrollingTexture", ImageTexture.create_from_image(valid_selection))
+			sprite.material.set("shader_parameter/scrollingTexture", valid_selection)
 		else:
-			sprite.material.set("shader_parameter/scrollingTexture", ImageTexture.create_from_image(invalid_selection))
+			sprite.material.set("shader_parameter/scrollingTexture", invalid_selection)
 	else:
 		sprite.material.set("shader_parameter/textureScale", Vector2.ZERO)
 		pass

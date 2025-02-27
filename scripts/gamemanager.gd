@@ -94,7 +94,11 @@ func _process(_delta: float) -> void:
 	if cursor != null:
 		if cursor.slot != null:
 			if cursor.slot.item != null:
-				if cursor.slot.item in gadget_items:
+				var is_there:bool
+				for item in gadget_items:
+					if item.name == cursor.slot.item.name:
+						is_there = true
+				if is_there:
 					blur = false
 					is_placing_gadget = true
 					
@@ -128,7 +132,7 @@ func load_path(path:String, type:int):
 	if dir:
 		dir.list_dir_begin()
 		var file_name: String = dir.get_next()
-		while file_name != "":
+		while file_name != "" and "tres.remap" not in file_name:
 			if dir.current_is_dir():
 				load_path(dir.get_current_dir(), type)
 			else:
@@ -225,7 +229,10 @@ func set_gadget(p_gadget:StaticBody2D) -> void:
 func get_gadget_from_cursor() -> Gadget:
 	if !cursor.slot or !cursor.slot.item:
 		return null
-	return gadget_items[cursor.slot.item]
+	for item in gadget_items:
+		if item.name == cursor.slot.item.name:
+			return gadget_items[item]
+	return null
 	
 ## Clears the slot distributor, which is a list of currently dragged over slots, and will balance out how many items
 ## are in them all
