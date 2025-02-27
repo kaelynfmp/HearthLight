@@ -29,8 +29,8 @@ slots = Array[ExtResource("2_myy7m")]([SubResource("Resource_mns7h"), SubResourc
 [sub_resource type="Resource" id="Resource_sgo1y"]
 script = ExtResource("3_cf36v")
 texture = ExtResource("6_ge5ii")
-name = ""
-description = ""
+name = "Spinning Wheel"
+description = "Turn your cotton into silk with this!"
 max_stack = 100
 price = 0
 

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://cq5l4dfcn3c5t"]
+
+[ext_resource type="Script" path="res://scripts/resources/item.gd" id="1_fl4s4"]
+
+[resource]
+script = ExtResource("1_fl4s4")
+name = "Rock"
+description = "Crush this for Dust!"
+max_stack = 100
+price = 0
