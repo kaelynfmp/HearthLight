@@ -1,14 +1,22 @@
 extends Control
 
+signal is_paused
+
+var is_displayed = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GameManager.pause_changed.connect(_display)
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	visible = is_displayed
+	
+func _display() -> void:
+	print("Changed")
+	is_displayed = !is_displayed
 
 
 func _on_to_main_menu_pressed() -> void:
@@ -20,4 +28,4 @@ func _on_quit_pressed() -> void:
 
 
 func _on_resume_pressed() -> void:
-	pass # Replace with function body.
+	is_displayed = false

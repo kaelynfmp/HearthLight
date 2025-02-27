@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cssvbkam6eigr"]
+[gd_scene load_steps=9 format=3 uid="uid://biflar31oita2"]
 
 [ext_resource type="Script" path="res://scripts/menus/pause_menu.gd" id="1_hr5ih"]
 [ext_resource type="FontFile" uid="uid://cskltmfvwlc7g" path="res://resources/fonts/Audiowide-Regular.ttf" id="2_654oy"]
