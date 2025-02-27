@@ -13,9 +13,12 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	visible = is_displayed
+	if visible:
+		get_tree().paused = true
+	else:
+		get_tree().paused = false
 	
 func _display() -> void:
-	print("Changed")
 	is_displayed = !is_displayed
 
 

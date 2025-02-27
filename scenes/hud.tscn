@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://bpie3rt8qmyxr"]
+[gd_scene load_steps=16 format=3 uid="uid://bpie3rt8qmyxr"]
 
+[ext_resource type="PackedScene" uid="uid://c2wlmdehxae41" path="res://scenes/Computer Scenes/computer_interface.tscn" id="1_8kako"]
 [ext_resource type="PackedScene" uid="uid://c6g34by20r0qc" path="res://scenes/inventory/inventory.tscn" id="1_h8ipj"]
 [ext_resource type="Shader" path="res://scripts/shaders/blur.gdshader" id="2_0gell"]
 [ext_resource type="PackedScene" uid="uid://cq8nmdt2gxyse" path="res://scenes/cursor.tscn" id="2_wjdba"]
@@ -11,6 +12,7 @@
 [ext_resource type="Script" path="res://scripts/gui/selected_gadget.gd" id="9_nhxen"]
 [ext_resource type="Shader" path="res://scripts/shaders/gadgetoutline.gdshader" id="9_o8g3w"]
 [ext_resource type="Texture2D" uid="uid://gi6my3ydg3ke" path="res://resources/sprites/gui/gadget_selection.png" id="10_ivqh4"]
+[ext_resource type="PackedScene" path="res://scenes/menu/pause_menu.tscn" id="13_55orh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_drira"]
 shader = ExtResource("2_0gell")
@@ -29,6 +31,19 @@ shader_parameter/rounded = true
 shader_parameter/scrollingTexture = ExtResource("10_ivqh4")
 
 [node name="HUD" type="CanvasLayer"]
+
+[node name="ComputerInterface" parent="." instance=ExtResource("1_8kako")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -952.7
+offset_top = -540.0
+offset_right = 952.7
+offset_bottom = 540.0
+scale = Vector2(1, 1)
 
 [node name="TempPlacingMode" type="RichTextLabel" parent="."]
 offset_right = 375.0
@@ -87,3 +102,11 @@ offset_bottom = 40.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 script = ExtResource("9_nhxen")
+
+[node name="PauseMenu" parent="." instance=ExtResource("13_55orh")]
+process_mode = 3
+visible = false
+top_level = true
+z_index = 4096
+z_as_relative = false
+size_flags_horizontal = 4

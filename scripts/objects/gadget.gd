@@ -42,8 +42,6 @@ func _ready() -> void:
 	base_layer = get_parent()
 	age = gadget_stats.age
 	sprite.texture = gadget_stats.texture
-	$Timer.wait_time = gadget_stats.process_time
-	$Timer.timeout.connect(add_item_to_inventory)
 	audio_player.set_stream(gadget_stats.ambient_sound)
 	update_recipes()
 	GameManager.update_recipes.connect(update_recipes)

@@ -28,11 +28,6 @@ func _ready():
 	print(emails)
 	display_category_emails(current_category) # default view to "main"
 
-func _process(delta: float) -> void:
-	for key in categorized_emails:
-		for email in categorized_emails[key]:
-			print(email.sender, email.category)
-
 func create_inbox_buttons():
 	for category in categorized_emails.keys():
 		if categorized_emails[category].size() >= 0:

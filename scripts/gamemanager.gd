@@ -1,6 +1,7 @@
 extends Node
 
 signal inventory_open_state_changed
+signal computer_visibility_changed
 signal update_recipes
 signal pause_changed
 signal update_gadgets
@@ -14,6 +15,8 @@ var inventory: bool = false:
 		if !value:
 			gadget = null
 var gadget:StaticBody2D
+
+var computer_visible:bool = false
 
 var blur:bool = false
 
@@ -80,7 +83,8 @@ func _ready() -> void:
 	
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("inventory"):
-		change_inventory()
+		if !GameManager.computer_visible:
+			change_inventory()
 	elif Input.is_action_just_pressed("toggle_pause"):
 		pause = !pause
 		pause_changed.emit()
@@ -255,7 +259,12 @@ func pickup_gadget(_gadget:Gadget) -> bool:
 	
 func unique_gadget_interaction(gadget:Gadget):
 	if gadget == computer_gadget:
-		pass
+		change_computer_visibility()
+		
+func change_computer_visibility():
+	computer_visible = !computer_visible
+	computer_visibility_changed.emit()
+	
 
 func update_time(in_game_seconds):
 	#print("Game Seconds: %s" % in_game_seconds)	
