@@ -10,6 +10,7 @@ anchors_preset = 0
 
 [node name="Background" type="NinePatchRect" parent="."]
 texture_filter = 1
+layout_mode = 0
 offset_right = 1837.0
 offset_bottom = 999.0
 texture = ExtResource("1_psqoa")

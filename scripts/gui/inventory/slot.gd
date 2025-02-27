@@ -10,7 +10,7 @@ var rmb_line: bool = false
 var just_half_stacked: bool = false
 
 func update():
-	var item_sprite:Sprite2D = find_child("Item", true)
+	var item_sprite:TextureRect = find_child("Item", true)
 	var stack_number:Label = find_child("Stack", true)
 	if slot != null:
 		if !slot.item:

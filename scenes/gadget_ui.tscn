@@ -70,10 +70,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="CreatesContorl" type="Control" parent="Background/Contained" index="1"]
+[node name="CreatesControl" type="Control" parent="Background/Contained" index="1"]
 layout_mode = 2
 
-[node name="Creates" type="TextureRect" parent="Background/Contained/CreatesContorl" index="0"]
+[node name="Creates" type="TextureRect" parent="Background/Contained/CreatesControl" index="0"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -91,7 +91,7 @@ mouse_filter = 2
 texture = ExtResource("2_1u2kl")
 stretch_mode = 3
 
-[node name="CreatesProgress" type="TextureRect" parent="Background/Contained/CreatesContorl" index="1"]
+[node name="CreatesProgress" type="TextureRect" parent="Background/Contained/CreatesControl" index="1"]
 visible = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_fdo77")

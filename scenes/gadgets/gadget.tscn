@@ -13,7 +13,8 @@ scale = Vector2(0.611111, 0.563525)
 polygon = PackedVector2Array(150.727, 16.1036, 50.9091, -54.8781, -130.727, 48.0454, -29.2727, 122.576)
 
 [node name="Sprite" type="Sprite2D" parent="."]
-offset = Vector2(0, -32)
+scale = Vector2(0.25, 0.25)
+offset = Vector2(0, -128)
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0

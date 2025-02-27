@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c5605c3ehaw25" path="res://scenes/inventory/slot.tscn" id="1_s7flm"]
 [ext_resource type="Texture2D" uid="uid://mbmhxks1ea5v" path="res://resources/sprites/outputslot.png" id="2_wfht7"]
 
-[node name="Slot" instance=ExtResource("1_s7flm")]
+[node name="OutputSlot" instance=ExtResource("1_s7flm")]
 
 [node name="OutputBG" type="TextureRect" parent="." index="1"]
 texture_filter = 1
