@@ -25,13 +25,14 @@ var selectedbuttoncolor : String = "#cc7aaa"
 func _ready():
 	load_emails()
 	create_inbox_buttons()
-	print(emails)
+	#print(emails)
 	display_category_emails(current_category) # default view to "main"
 
 func _process(delta: float) -> void:
-	for key in categorized_emails:
-		for email in categorized_emails[key]:
-			print(email.sender, email.category)
+	pass
+	#for key in categorized_emails:
+		#for email in categorized_emails[key]:
+			#print(email.sender, email.category)
 
 func create_inbox_buttons():
 	for category in categorized_emails.keys():
@@ -130,7 +131,7 @@ func display_email_button(email: Email):
 		fulfill_button.visible = true
 		accept_button.visible = false
 		reject_button.visible = false
-		fulfill_button.pressed.connect(func(): OrderManager.fulfill_order(email.attached_order))
+		fulfill_button.pressed.connect(func(): fulfill_order(email))
 		#change_email_category(email, "orders")
 		#display_category_emails(current_category)
 	elif email.attached_order.is_completed:
@@ -176,6 +177,12 @@ func order_reject(email: Email):
 	# move inbox
 	change_email_category(email, "archive")
 	display_category_emails(current_category)
+	
+func fulfill_order(email: Email):
+	if OrderManager.fulfill_order(email.attached_order):
+		change_email_category(email, "archive")
+		display_category_emails(current_category)
+	
 	
 #func is_read_color(email: Email, email_button: Button):
 	#if email.is_read:
