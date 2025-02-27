@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="RecipeTreeProperties" load_steps=14 format=3 uid="uid://bayqmo2156mc4"]
 
 [ext_resource type="Script" path="res://addons/recipe_tree/gadget_editor_node.gd" id="1_5e5y2"]
-[ext_resource type="Resource" uid="uid://b1benml8tln26" path="res://resources/gadgets/wheel.tres" id="2_70wi3"]
+[ext_resource type="Resource" path="res://resources/gadgets/wheel.tres" id="2_70wi3"]
 [ext_resource type="Script" path="res://addons/recipe_tree/recipe_tree_properties.gd" id="2_e0emm"]
 [ext_resource type="Script" path="res://addons/recipe_tree/recipe_editor_node.gd" id="2_hx4k4"]
 [ext_resource type="Script" path="res://addons/recipe_tree/item_editor_node.gd" id="3_xi7dl"]
