@@ -1,11 +1,13 @@
 extends Control
 
+var rotation_speed:float = 10
 @onready var input_slot_scene:PackedScene = preload("res://scenes/inventory/input_slot.tscn")
 @onready var output_slot_scene:PackedScene = preload("res://scenes/inventory/output_slot.tscn")
 @onready var creates_progress:TextureRect = find_child("CreatesProgress", true)
+@onready var primitive_button:TextureButton = find_child("PrimitiveButton", true)
 var current_gadget:Gadget
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	visible = GameManager.gadget != null
 	if GameManager.gadget != null:
 		if current_gadget == null:
@@ -15,11 +17,19 @@ func _process(_delta: float) -> void:
 			creates_progress.material.set("shader_parameter/progress", GameManager.gadget.progress)
 		else:
 			creates_progress.visible = false
+		primitive_button.disabled = GameManager.gadget.selected_recipe == null
+		if primitive_button.disabled:
+			primitive_button.set_rotation(0)
+		GameManager.gadget.primitive_selected = primitive_button.is_pressed()
+		if primitive_button.is_pressed():
+			primitive_button.set_rotation(primitive_button.get_rotation() + rotation_speed * delta)
 	else:
 		current_gadget = null
 	
 func set_gadget(gadget:StaticBody2D):
+	primitive_button.set_rotation(0)
 	current_gadget = gadget.gadget_stats
+	primitive_button.visible = gadget.gadget_stats.age == GameManager.Age.PRIMITIVE
 	
 	var inputs:Array[Slot] = gadget.inventory.slots.filter(func(slot): return !slot.locked)
 	var outputs:Array[Slot] = gadget.inventory.slots.filter(func(slot): return slot.locked)

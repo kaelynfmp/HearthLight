@@ -11,13 +11,15 @@ var character: Node2D
 
 var base_layer: Node2D
 
-var age: String
+var age:int
 
 var initial_click:bool = true
 
 var progressing:bool = false
 var progress:float = 0
 var selected_recipe:Recipe
+
+var primitive_selected:bool = false
 
 var recipes:Array[Recipe]
 
@@ -26,7 +28,7 @@ func _ready() -> void:
 	inventory = gadget_stats.inventory.duplicate()
 	character = get_parent().get_parent().get_parent().find_child("Character")
 	base_layer = get_parent()
-	age = gadget_stats.gadget_age
+	age = gadget_stats.age
 	$Sprite.texture = gadget_stats.texture
 	$Timer.wait_time = gadget_stats.process_time
 	$Timer.timeout.connect(add_item_to_inventory)
@@ -35,16 +37,20 @@ func _ready() -> void:
 	GameManager.update_recipes.connect(update_recipes)
 
 func _physics_process(delta: float) -> void:
-	if !progressing:
+	if !progressing or (!progressing and selected_recipe != null):
 		var checked_recipe:Recipe = check_for_valid_recipe()
 		if checked_recipe != null:
 			do_recipe(checked_recipe)
 	else:
-		progress += delta / (gadget_stats.process_time * selected_recipe.processing_multiplier)
+		var change_rate:float = delta / (gadget_stats.process_time * selected_recipe.processing_multiplier)
+		if age > GameManager.Age.PRIMITIVE or primitive_selected:
+			progress += change_rate
+		else:
+			progress -= change_rate
 		if progress >= 1:
 			finish_recipe()
 		if progress <= 0:
-			cancel_recipe()
+			cancel_processing()
 	
 func update_recipes():
 	recipes.clear()
@@ -62,26 +68,29 @@ func check_for_valid_recipe() -> Recipe:
 		if valid == inputs.size():
 			# valid!
 			return recipe
+	selected_recipe = null
 	return null
 	
 func do_recipe(recipe:Recipe):
-	for input in recipe.inputs:
+	selected_recipe = recipe
+	if age > GameManager.Age.PRIMITIVE or primitive_selected:
+		start_progression()
+
+func start_progression():
+	for input in selected_recipe.inputs:
 		# We know that the recipe is valid, so we can just remove willy nilly
 		inventory.remove_items(input.item, input.quantity)
-	selected_recipe = recipe
 	progressing = true
 	play_sound()
 	
 func finish_recipe():
 	for output in selected_recipe.outputs:
 		inventory.insert(output.item, output.quantity, true)
-	selected_recipe = null
 	progress = 0.0
 	progressing = false
 	audio_player.stop()
 	
-func cancel_recipe():
-	selected_recipe = null
+func cancel_processing():
 	progress = 0.0
 	progressing = false
 	audio_player.stop()

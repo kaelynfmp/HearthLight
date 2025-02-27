@@ -30,6 +30,10 @@ enum Load_Type {
 	RECIPE, GADGET, ITEM
 }
 
+enum Age {
+	PRIMITIVE, INDUSTRIAL, ELECTRICAL, CYBER
+}
+
 var recipe_strings:Array[String]
 var gadget_strings:Array[String]
 var item_strings:Array[String]

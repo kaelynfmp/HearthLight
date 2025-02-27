@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bpie3rt8qmyxr"]
+[gd_scene load_steps=14 format=3 uid="uid://bpie3rt8qmyxr"]
 
 [ext_resource type="PackedScene" uid="uid://c6g34by20r0qc" path="res://scenes/inventory/inventory.tscn" id="1_h8ipj"]
 [ext_resource type="Shader" path="res://scripts/shaders/blur.gdshader" id="2_0gell"]
@@ -10,18 +10,23 @@
 [ext_resource type="Script" path="res://scripts/gui/gadget_ui.gd" id="7_y0wjn"]
 [ext_resource type="Script" path="res://scripts/gui/selected_gadget.gd" id="9_nhxen"]
 [ext_resource type="Shader" path="res://scripts/shaders/gadgetoutline.gdshader" id="9_o8g3w"]
+[ext_resource type="Texture2D" uid="uid://gi6my3ydg3ke" path="res://resources/sprites/gui/gear/gadget_selection.png" id="10_ivqh4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_drira"]
 shader = ExtResource("2_0gell")
 shader_parameter/strength = 2.454
-shader_parameter/mix_percentage = 0.062
+shader_parameter/mix_percentage = 0.024
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hoa3s"]
 shader = ExtResource("9_o8g3w")
-shader_parameter/line_color = Vector4(0.93, 0.22, 0.56, 1)
-shader_parameter/line_thickness = 10.0
-shader_parameter/frequency = 15.0
-shader_parameter/phase_speed = 1.0
+shader_parameter/textureScale = Vector2(1, 1)
+shader_parameter/angle = 45.0
+shader_parameter/textureSpeed = 0.226
+shader_parameter/thickness = 29.747
+shader_parameter/tolerance = 0.0
+shader_parameter/diagonals = true
+shader_parameter/rounded = true
+shader_parameter/scrollingTexture = ExtResource("10_ivqh4")
 
 [node name="HUD" type="CanvasLayer"]
 

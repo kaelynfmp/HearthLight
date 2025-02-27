@@ -1,9 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://dxa0at3wgkq8w"]
+[gd_scene load_steps=13 format=3 uid="uid://dxa0at3wgkq8w"]
 
 [ext_resource type="PackedScene" uid="uid://c88opsp0c7nm" path="res://scenes/ui_base.tscn" id="1_edcws"]
 [ext_resource type="Texture2D" uid="uid://bpk81ck7j3l2c" path="res://resources/sprites/progressbar.png" id="2_1u2kl"]
+[ext_resource type="Texture2D" uid="uid://dl2manigelkio" path="res://resources/sprites/gui/gear/normal.png" id="2_vuda5"]
 [ext_resource type="Shader" path="res://scripts/shaders/progress.gdshader" id="3_rt1dh"]
+[ext_resource type="Texture2D" uid="uid://byd0f2tce32li" path="res://resources/sprites/gui/gear/pressed.png" id="3_uiq0m"]
 [ext_resource type="Texture2D" uid="uid://c0pk0sgvaoktr" path="res://resources/sprites/progressbar_filled.png" id="4_a56a2"]
+[ext_resource type="Texture2D" uid="uid://v3mhxuklek42" path="res://resources/sprites/gui/gear/hover.png" id="4_vb1co"]
+[ext_resource type="Texture2D" uid="uid://ca24n44nxd7w1" path="res://resources/sprites/gui/gear/disabled.png" id="5_hu7k0"]
 
 [sub_resource type="Gradient" id="Gradient_oya0q"]
 colors = PackedColorArray(0.701961, 0.231373, 0.933333, 1, 0.933333, 0.223529, 0.560784, 1)
@@ -73,7 +77,24 @@ mouse_filter = 2
 [node name="CreatesControl" type="Control" parent="Background/Contained" index="1"]
 layout_mode = 2
 
-[node name="Creates" type="TextureRect" parent="Background/Contained/CreatesControl" index="0"]
+[node name="PrimitiveButton" type="TextureButton" parent="Background/Contained/CreatesControl" index="0"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -175.0
+offset_top = -139.0
+offset_right = 168.0
+offset_bottom = 212.0
+grow_horizontal = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(175, 168)
+texture_normal = ExtResource("2_vuda5")
+texture_pressed = ExtResource("3_uiq0m")
+texture_hover = ExtResource("4_vb1co")
+texture_disabled = ExtResource("5_hu7k0")
+
+[node name="Creates" type="TextureRect" parent="Background/Contained/CreatesControl" index="1"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -90,8 +111,9 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("2_1u2kl")
 stretch_mode = 3
+metadata/_edit_lock_ = true
 
-[node name="CreatesProgress" type="TextureRect" parent="Background/Contained/CreatesControl" index="1"]
+[node name="CreatesProgress" type="TextureRect" parent="Background/Contained/CreatesControl" index="2"]
 visible = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_fdo77")
@@ -113,3 +135,4 @@ texture = SubResource("PlaceholderTexture2D_7bgkg")
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
+metadata/_edit_lock_ = true
