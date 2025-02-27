@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b84yfg20mygxi"
-path="res://.godot/imported/computer.png-a2c370feedb23adf42311c76bc94d0b5.ctex"
+uid="uid://cu638rts4nfa2"
+path="res://.godot/imported/computerBalance.png-acc3d71d5679371be3dd658981ff6248.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/computer.png"
-dest_files=["res://.godot/imported/computer.png-a2c370feedb23adf42311c76bc94d0b5.ctex"]
+source_file="res://resources/sprites/computer/computerBalance.png"
+dest_files=["res://.godot/imported/computerBalance.png-acc3d71d5679371be3dd658981ff6248.ctex"]
 
 [params]
 

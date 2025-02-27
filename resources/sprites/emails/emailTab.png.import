@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnfh27xbaa2bl"
-path="res://.godot/imported/computer.png-4afb88f438d0fa1b4019fcd634b51e2f.ctex"
+uid="uid://crqkxwunroqpm"
+path="res://.godot/imported/emailTab.png-ec29884a6808dc5794c2d80130d83137.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/sprites/computer.png"
-dest_files=["res://.godot/imported/computer.png-4afb88f438d0fa1b4019fcd634b51e2f.ctex"]
+source_file="res://resources/sprites/emails/emailTab.png"
+dest_files=["res://.godot/imported/emailTab.png-ec29884a6808dc5794c2d80130d83137.ctex"]
 
 [params]
 
