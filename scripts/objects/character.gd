@@ -5,9 +5,27 @@ const SPEED:int = 1000
 ## The [Inventory] containing all of the players items.
 @export var inventory : Inventory
 
+@export var camera_edges:Array[int]
+@export var inventory_camera_offset:float
+
+@onready var camera:Camera2D = get_node("Camera")
+
 @onready var anim_tree:Node = get_node("AnimationTree")
 
 func _process(_delta: float) -> void:
+	var camera_position:Vector2 = Vector2(
+		clamp(position.x + (inventory_camera_offset if GameManager.inventory else 0.0),
+		camera_edges[0] + (inventory_camera_offset if GameManager.inventory else 0.0),
+		camera_edges[2] + (inventory_camera_offset if GameManager.inventory else 0.0)),
+		clamp(position.y,
+		camera_edges[1],
+		camera_edges[3]))
+	if GameManager.gadget != null:
+		# Center on gadget if gadget selected
+		camera_position = GameManager.gadget.position
+		camera_position.x += inventory_camera_offset / 2
+		camera_position.y += 540 - 32 # Buffer to make it look more centered
+	camera.set_global_position(camera_position)
 	for sprite:AnimatedSprite2D in $Sprite.get_children():
 		if velocity == Vector2.ZERO: continue
 		if round(abs(rad_to_deg(velocity.angle()))) == 90: continue
@@ -34,7 +52,7 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept"):
 		var item: Item = load("res://resources/items/cotton.tres")
 		collect(item)
-		
+	
 ## 'Collects' a given item, placing it into the inventory on the nearest open slot
 func collect(item: Item):
 	inventory.insert(item)

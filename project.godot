@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="FactaRoom"
-run/main_scene="res://scenes/room.tscn"
+run/main_scene="res://scenes/menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
 [autoload]
