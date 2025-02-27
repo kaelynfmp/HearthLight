@@ -2,6 +2,7 @@ extends Node
 
 signal inventory_open_state_changed
 signal update_recipes
+signal pause_changed
 signal update_gadgets
 signal take_cursor(Slot)
 
@@ -63,6 +64,8 @@ var shop_dict: Dictionary = {
 	"gadgets": []
 }
 
+var pause: bool = false
+
 var recipes:Array[Recipe]
 var gadgets:Array[Gadget]
 var gadget_items:Dictionary
@@ -76,6 +79,9 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("inventory"):
 		change_inventory()
+	elif Input.is_action_just_pressed("toggle_pause"):
+		pause = !pause
+		pause_changed.emit()
 		
 	blur = inventory
 	is_placing_gadget = false
