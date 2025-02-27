@@ -1,13 +1,11 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://c82decsqfayei"]
 
 [ext_resource type="Script" path="res://scripts/resources/item.gd" id="1_u4brp"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_psojh"]
-size = Vector2(150, 150)
+[ext_resource type="Texture2D" uid="uid://b76x0jq0i4v4y" path="res://resources/sprites/cotton.png" id="2_ud60j"]
 
 [resource]
 script = ExtResource("1_u4brp")
-texture = SubResource("PlaceholderTexture2D_psojh")
+texture = ExtResource("2_ud60j")
 name = "Cotton"
 description = "A strange organic fiber. It's soft and absorbent, quite unlike any sort of fiber you've ever felt. Maybe you should make a new lab coat out of this stuff."
 max_stack = 10
