@@ -1,7 +1,13 @@
 extends StaticBody2D
 
-@onready var gadget_stats:Gadget = load("res://resources/gadgets/wheel.tres")
+signal removing(layer_occupied_name:String, cell_pos:Vector2i)
+
+@export var gadget_stats:Gadget
 @onready var audio_player:AudioStreamPlayer2D = find_child("AudioStreamPlayer")
+
+@onready var sprite:Sprite2D = find_child("Sprite")
+@onready var valid_selection:Image = Image.load_from_file("res://resources/sprites/select_close_enough.png")
+@onready var invalid_selection:Image = Image.load_from_file("res://resources/sprites/select_not_close_enough.png")
 
 @export var inventory: Inventory
 
@@ -18,8 +24,14 @@ var initial_click:bool = true
 var progressing:bool = false
 var progress:float = 0
 var selected_recipe:Recipe
+var recipe_taken = false
+
+var layer_occupied_name:String
+var cell_pos:Vector2i
 
 var primitive_selected:bool = false
+
+var hovered:bool = false
 
 var recipes:Array[Recipe]
 
@@ -29,9 +41,7 @@ func _ready() -> void:
 	character = get_parent().get_parent().get_parent().find_child("Character")
 	base_layer = get_parent()
 	age = gadget_stats.age
-	$Sprite.texture = gadget_stats.texture
-	$Timer.wait_time = gadget_stats.process_time
-	$Timer.timeout.connect(add_item_to_inventory)
+	sprite.texture = gadget_stats.texture
 	audio_player.set_stream(gadget_stats.ambient_sound)
 	update_recipes()
 	GameManager.update_recipes.connect(update_recipes)
@@ -49,9 +59,22 @@ func _physics_process(delta: float) -> void:
 			progress -= change_rate
 		if progress >= 1:
 			finish_recipe()
-		if progress <= 0:
+		elif progress >= 0.5:
+			recipe_take()
+		elif progress <= 0:
 			cancel_processing()
 	
+func _process(_delta: float) -> void:
+	if hovered:
+		sprite.material.set("shader_parameter/textureScale", Vector2.ONE)
+		if detect_nearby():
+			sprite.material.set("shader_parameter/scrollingTexture", ImageTexture.create_from_image(valid_selection))
+		else:
+			sprite.material.set("shader_parameter/scrollingTexture", ImageTexture.create_from_image(invalid_selection))
+	else:
+		sprite.material.set("shader_parameter/textureScale", Vector2.ZERO)
+		pass
+		
 func update_recipes():
 	recipes.clear()
 	for recipe:Recipe in GameManager.recipes:
@@ -77,23 +100,26 @@ func do_recipe(recipe:Recipe):
 		start_progression()
 
 func start_progression():
-	for input in selected_recipe.inputs:
-		# We know that the recipe is valid, so we can just remove willy nilly
-		inventory.remove_items(input.item, input.quantity)
+	recipe_taken = false
 	progressing = true
 	play_sound()
 	
+func recipe_take():
+	for input in selected_recipe.inputs:
+		# We know that the recipe is valid, so we can just remove willy nilly
+		inventory.remove_items(input.item, input.quantity)
+	recipe_taken = true
+
 func finish_recipe():
 	for output in selected_recipe.outputs:
 		inventory.insert(output.item, output.quantity, true)
-	progress = 0.0
-	progressing = false
-	audio_player.stop()
+	cancel_processing()
 	
 func cancel_processing():
 	progress = 0.0
 	progressing = false
 	audio_player.stop()
+	recipe_taken = false
 
 func add_item_to_inventory() -> void:
 	var item: Item = load("res://resources/items/cotton.tres")
@@ -105,20 +131,28 @@ func collect(item: Item):
 
 # Temporary highlight
 func _on_mouse_entered() -> void:
-	$Sprite.self_modulate = Color(1.0, 1.0, 1.0, 0.5)
+	hovered = true
 
 func _on_mouse_exited() -> void:
-	$Sprite.self_modulate = Color(1.0, 1.0, 1.0, 1.0) # Replace with function body.
+	initial_click = false
+	hovered = false
 
 func detect_nearby() -> bool:
 	var character_cell_position: Vector2 = base_layer.local_to_map(character.global_position)
 	var gadget_cell_position: Vector2 = base_layer.local_to_map(global_position)
-	return character_cell_position.distance_squared_to(gadget_cell_position) <= 2.0
+	return character_cell_position.distance_squared_to(gadget_cell_position) <= 6.0
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if detect_nearby() and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		if !initial_click:
-			GameManager.set_gadget(self)
+			if gadget_stats.produces:
+				GameManager.set_gadget(self)
+			else:
+				GameManager.unique_gadget_interaction(gadget_stats)
+	elif detect_nearby() and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+		if GameManager.pickup_gadget(gadget_stats):
+			removing.emit(layer_occupied_name, cell_pos)
+			queue_free()
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.is_pressed():
 		if initial_click:
 			if event.is_released():

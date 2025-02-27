@@ -1,16 +1,17 @@
-[gd_scene load_steps=14 format=3 uid="uid://bpie3rt8qmyxr"]
+[gd_scene load_steps=15 format=3 uid="uid://bpie3rt8qmyxr"]
 
+[ext_resource type="PackedScene" uid="uid://c2wlmdehxae41" path="res://scenes/Computer Scenes/computer_interface.tscn" id="1_8kako"]
 [ext_resource type="PackedScene" uid="uid://c6g34by20r0qc" path="res://scenes/inventory/inventory.tscn" id="1_h8ipj"]
 [ext_resource type="Shader" path="res://scripts/shaders/blur.gdshader" id="2_0gell"]
 [ext_resource type="PackedScene" uid="uid://cq8nmdt2gxyse" path="res://scenes/cursor.tscn" id="2_wjdba"]
-[ext_resource type="Script" path="res://scripts/gui/temp_placing_mode.gd" id="3_twldf"]
 [ext_resource type="Script" path="res://scripts/gui/blur.gd" id="3_xnxa5"]
 [ext_resource type="Script" path="res://scripts/gui/inventories.gd" id="4_pacb3"]
 [ext_resource type="PackedScene" uid="uid://dxa0at3wgkq8w" path="res://scenes/gadget_ui.tscn" id="4_svta0"]
 [ext_resource type="Script" path="res://scripts/gui/gadget_ui.gd" id="7_y0wjn"]
 [ext_resource type="Script" path="res://scripts/gui/selected_gadget.gd" id="9_nhxen"]
 [ext_resource type="Shader" path="res://scripts/shaders/gadgetoutline.gdshader" id="9_o8g3w"]
-[ext_resource type="Texture2D" uid="uid://gi6my3ydg3ke" path="res://resources/sprites/gui/gear/gadget_selection.png" id="10_ivqh4"]
+[ext_resource type="Texture2D" uid="uid://gi6my3ydg3ke" path="res://resources/sprites/gui/gadget_selection.png" id="10_ivqh4"]
+[ext_resource type="PackedScene" path="res://scenes/menu/pause_menu.tscn" id="13_55orh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_drira"]
 shader = ExtResource("2_0gell")
@@ -30,13 +31,15 @@ shader_parameter/scrollingTexture = ExtResource("10_ivqh4")
 
 [node name="HUD" type="CanvasLayer"]
 
-[node name="TempPlacingMode" type="RichTextLabel" parent="."]
-offset_right = 375.0
-offset_bottom = 40.0
-text = "Placing Mode"
-fit_content = true
-scroll_active = false
-script = ExtResource("3_twldf")
+[node name="ComputerInterface" parent="." instance=ExtResource("1_8kako")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = 23.0
+offset_right = 48.0
+offset_bottom = 23.0
+scale = Vector2(0.95, 0.95)
 
 [node name="Blur" type="ColorRect" parent="."]
 visible = false
@@ -87,3 +90,11 @@ offset_bottom = 40.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 script = ExtResource("9_nhxen")
+
+[node name="PauseMenu" parent="." instance=ExtResource("13_55orh")]
+process_mode = 3
+visible = false
+top_level = true
+z_index = 4096
+z_as_relative = false
+size_flags_horizontal = 4

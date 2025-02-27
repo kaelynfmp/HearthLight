@@ -30,9 +30,9 @@ func _process(_delta: float) -> void:
 		if velocity == Vector2.ZERO: continue
 		if round(abs(rad_to_deg(velocity.angle()))) == 90: continue
 		if sign(cos(velocity.angle())) == -1:
-			sprite.flip_h = true;
-		elif sign(cos(velocity.angle())) == 1:
 			sprite.flip_h = false;
+		elif sign(cos(velocity.angle())) == 1:
+			sprite.flip_h = true;
 
 	if self.velocity == Vector2.ZERO:
 		anim_tree.get("parameters/playback").travel("Idle")
@@ -40,18 +40,14 @@ func _process(_delta: float) -> void:
 		anim_tree.get("parameters/playback").travel("Walk")
 
 func _physics_process(_delta: float) -> void:
-	var direction:Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	if direction:
-		self.velocity = direction * SPEED;
-	else:
-		self.velocity = Vector2.ZERO
-
-	move_and_slide()
+	if !GameManager.computer_visible:
+		var direction:Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+		if direction:
+			self.velocity = direction * SPEED;
+		else:
+			self.velocity = Vector2.ZERO
 	
-	# TEMP
-	if Input.is_action_just_pressed("ui_accept"):
-		var item: Item = load("res://resources/items/cotton.tres")
-		collect(item)
+		move_and_slide()
 	
 ## 'Collects' a given item, placing it into the inventory on the nearest open slot
 func collect(item: Item):
