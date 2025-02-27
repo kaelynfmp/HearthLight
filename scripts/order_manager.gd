@@ -23,6 +23,7 @@ func load_orders():
 		
 		
 func accept_order(order: Order):
+	give_player_starting_items(order)
 	order.is_accepted = true
 	order.responded = true
 	accepted_orders.append(order)

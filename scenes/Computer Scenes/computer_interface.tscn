@@ -139,9 +139,10 @@ offset_left = 1433.0
 offset_top = 10.0
 offset_right = 1812.0
 offset_bottom = 93.0
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxTexture_xtmmj")
-text = "      1000000"
+text = "       1000000"
+vertical_alignment = 1
 
 [node name="Close Button" type="Button" parent="."]
 layout_mode = 0
