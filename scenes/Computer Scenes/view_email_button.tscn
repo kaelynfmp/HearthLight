@@ -1,14 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5r8qyahtr3r1"]
+[gd_scene load_steps=10 format=3 uid="uid://b5r8qyahtr3r1"]
 
 [ext_resource type="Script" path="res://scenes/Computer Scenes/emaildisplay.gd" id="1_cc22d"]
+[ext_resource type="Texture2D" uid="uid://b3f53pdbhlfkg" path="res://resources/sprites/emails/emailPreview.png" id="2_ikcrj"]
 [ext_resource type="Texture2D" uid="uid://dph2wxrwua005" path="res://resources/sprites/computer/computerCancel.png" id="2_kcjoy"]
 [ext_resource type="Texture2D" uid="uid://cwxs2j52xgre8" path="res://resources/sprites/computer/computerAccept.png" id="3_jjpv2"]
+[ext_resource type="Texture2D" uid="uid://dnvrhn4af2nix" path="res://resources/sprites/emails/emailDropdown.png" id="3_n2822"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_agju5"]
-bg_color = Color(0.886275, 0.333333, 0.666667, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6whkr"]
+bg_color = Color(1, 1, 1, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tpgae"]
-bg_color = Color(0.700707, 0.59704, 0.72163, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t0k6g"]
+texture = ExtResource("3_n2822")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qmtjh"]
 bg_color = Color(0.678532, 0.225584, 0.240335, 1)
@@ -19,9 +21,9 @@ bg_color = Color(0.293422, 0.699237, 0.358543, 1)
 [node name="EmailButton" type="Button" node_paths=PackedStringArray("sender_label", "subject_label", "sender_dropdown", "subject_dropdown", "blurb_label", "content", "expand_panel")]
 custom_minimum_size = Vector2(1920, 300)
 offset_right = 1921.0
-offset_bottom = 1080.0
+offset_bottom = 190.0
 size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_agju5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6whkr")
 script = ExtResource("1_cc22d")
 sender_label = NodePath("Sender")
 subject_label = NodePath("Subject")
@@ -31,86 +33,92 @@ blurb_label = NodePath("Blurb")
 content = NodePath("Panel/Content")
 expand_panel = NodePath("Panel")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(961.5, 130.75)
+scale = Vector2(1.66406, 1.69463)
+texture = ExtResource("2_ikcrj")
+
 [node name="Sender" type="Label" parent="."]
 layout_mode = 0
 offset_left = 67.0
-offset_top = 119.0
+offset_top = 71.0
 offset_right = 531.0
-offset_bottom = 188.0
-theme_override_font_sizes/font_size = 50
+offset_bottom = 126.0
+theme_override_font_sizes/font_size = 40
 text = "Sender"
 
 [node name="Subject" type="Label" parent="."]
 layout_mode = 0
-offset_left = 575.0
-offset_top = 117.0
-offset_right = 1039.0
-offset_bottom = 186.0
-theme_override_font_sizes/font_size = 50
+offset_left = 623.0
+offset_top = 71.0
+offset_right = 1087.0
+offset_bottom = 140.0
+theme_override_font_sizes/font_size = 40
 text = "Subject line"
 
 [node name="Blurb" type="Label" parent="."]
+visible = false
 layout_mode = 0
-offset_left = 1435.0
-offset_top = 117.0
-offset_right = 1899.0
-offset_bottom = 186.0
+offset_left = 1132.0
+offset_top = 51.0
+offset_right = 1596.0
+offset_bottom = 120.0
 theme_override_font_sizes/font_size = 50
 text = "Start of email....."
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_top = 300.0
+offset_top = 150.0
 offset_right = 1920.0
-offset_bottom = 1082.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_tpgae")
+offset_bottom = 1073.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_t0k6g")
 
 [node name="Content" type="Label" parent="Panel"]
 layout_mode = 0
 offset_left = 102.0
-offset_top = 138.0
+offset_top = 246.0
 offset_right = 1827.0
-offset_bottom = 775.0
+offset_bottom = 883.0
 theme_override_font_sizes/font_size = 30
 text = "This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. "
 autowrap_mode = 3
 
 [node name="SenderDropdown" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 102.0
-offset_top = 47.0
-offset_right = 744.0
-offset_bottom = 102.0
+offset_left = 323.0
+offset_top = 168.0
+offset_right = 965.0
+offset_bottom = 223.0
 theme_override_font_sizes/font_size = 40
 text = "Sender"
 autowrap_mode = 3
 
 [node name="SubjectDropdown" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 769.0
-offset_top = 47.0
-offset_right = 1788.0
-offset_bottom = 160.0
+offset_left = 795.0
+offset_top = 168.0
+offset_right = 1814.0
+offset_bottom = 281.0
 theme_override_font_sizes/font_size = 40
 text = "Subject but this is a very long subject yes ok cool"
 autowrap_mode = 3
 
 [node name="Decline" type="Button" parent="Panel"]
 layout_mode = 0
-offset_left = 795.0
-offset_top = 607.0
-offset_right = 929.0
-offset_bottom = 726.0
+offset_left = 1596.0
+offset_top = 764.0
+offset_right = 1730.0
+offset_bottom = 883.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_qmtjh")
 icon = ExtResource("2_kcjoy")
 flat = true
 
 [node name="Accept" type="Button" parent="Panel"]
 layout_mode = 0
-offset_left = 1033.0
-offset_top = 607.0
-offset_right = 1167.0
-offset_bottom = 726.0
+offset_left = 1751.0
+offset_top = 764.0
+offset_right = 1885.0
+offset_bottom = 883.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_egw1w")
 icon = ExtResource("3_jjpv2")
 flat = true

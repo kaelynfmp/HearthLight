@@ -110,7 +110,7 @@ func display_email_button(email: Email):
 	email_list_container.add_child(email_button) 
 	
 	# make email read
-	is_read_color(email, email_button)
+	#is_read_color(email, email_button)
 	
 	var accept_button = email_button.find_child("Accept")
 	var reject_button = email_button.find_child("Decline")
@@ -132,7 +132,7 @@ func show_email_details(email: Email, email_button: Button):
 	print("Toggled panel visibility")
 	print("test")
 	email.is_read = true
-	is_read_color(email, email_button)
+	#is_read_color(email, email_button)
 	panel.visible = !panel.visible
 	if panel.visible:
 		email_button.custom_minimum_size = Vector2(1920,1080)
@@ -158,8 +158,8 @@ func order_reject(email: Email):
 	change_email_category(email, "archive")
 	display_category_emails(current_category)
 	
-func is_read_color(email: Email, email_button: Button):
-	if email.is_read:
-		var style = StyleBoxFlat.new()
-		style.bg_color = Color(selectedbuttoncolor)
-		email_button.set("theme_override_styles/normal", style)
+#func is_read_color(email: Email, email_button: Button):
+	#if email.is_read:
+		#var style = StyleBoxFlat.new()
+		#style.bg_color = Color(selectedbuttoncolor)
+		#email_button.set("theme_override_styles/normal", style)

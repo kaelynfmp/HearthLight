@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c2wlmdehxae41"]
+[gd_scene load_steps=16 format=3 uid="uid://c2wlmdehxae41"]
 
 [ext_resource type="Script" path="res://scenes/Computer Scenes/computer_manager.gd" id="1_1cjce"]
 [ext_resource type="PackedScene" uid="uid://b5r8qyahtr3r1" path="res://scenes/Computer Scenes/view_email_button.tscn" id="1_ip337"]
@@ -11,6 +11,9 @@
 [ext_resource type="Script" path="res://scripts/resources/order.gd" id="6_luoch"]
 [ext_resource type="PackedScene" uid="uid://bchsomrab1tv0" path="res://scenes/Computer Scenes/buyable_item.tscn" id="6_q6ffq"]
 [ext_resource type="Texture2D" uid="uid://clcmg5me835w8" path="res://resources/sprites/computer/computerClose.png" id="11_u2wnv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ga7bm"]
+bg_color = Color(0.470588, 0.145098, 0.588235, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0hhal"]
 bg_color = Color(0.736431, 0.60548, 0.604873, 1)
@@ -42,6 +45,7 @@ currency_label = NodePath("Currency Label")
 exit_button = NodePath("Close Button")
 
 [node name="Sites" type="TabContainer" parent="."]
+z_index = -10
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,10 +54,10 @@ offset_top = 27.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 42
-current_tab = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ga7bm")
+current_tab = 0
 
 [node name="Emails" type="TabBar" parent="Sites"]
-visible = false
 layout_mode = 2
 drag_to_rearrange_enabled = true
 script = ExtResource("1_stx68")
@@ -97,6 +101,7 @@ text = "   email.com"
 vertical_alignment = 1
 
 [node name="Botsy" type="TabBar" parent="Sites"]
+visible = false
 layout_mode = 2
 script = ExtResource("5_tq53l")
 item_button_scene = ExtResource("6_q6ffq")

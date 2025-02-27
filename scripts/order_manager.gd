@@ -69,17 +69,19 @@ func remove_items_from_inventory():
 	pass
 
 func reward_player(order: Order):
-	for i in range(0,len(order.rewards)):
-		var item = order.rewards[i]
-		var qty = order.rewards_quantities[i]
-		GameManager.add_currency(order.currency_reward)
-		inventory.insert(item, qty)
+	if len(order.rewards) > 0:
+		for i in range(0,len(order.rewards)):
+			var item = order.rewards[i]
+			var qty = order.rewards_quantities[i]
+			GameManager.add_currency(order.currency_reward)
+			inventory.insert(item, qty)
 
 func give_player_starting_items(order: Order):
-	for i in range(0,len(order.rewards)):
-		var item = order.given_items[i]
-		var qty = order.given_quantities[i]
-		inventory.insert(item, qty)
+	if len(order.given_items)>0:
+		for i in range(0,len(order.given_items)):
+			var item = order.given_items[i]
+			var qty = order.given_quantities[i]
+			inventory.insert(item, qty)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

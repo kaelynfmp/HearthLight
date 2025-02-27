@@ -7,7 +7,7 @@
 script = ExtResource("1_16060")
 sender = "Katheryn Elion"
 subject = "Goods?"
-contents = "hey, a little birdie told me that you've got yourself a cotton plant. any chance i could take some of that cotton off your hands? just grab it from the cotton plant and send it off in the drone. it'll know where to go, don't worry"
+contents = "hey, a little birdie told me that you've got yourself access to a cotton plant. any chance i could take some of that cotton off your hands? just grab it from the cotton plant and send it off in the drone. it'll know where to go, don't worry"
 category = "main"
 day = 1
 hour = 8
