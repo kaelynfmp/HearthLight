@@ -47,8 +47,7 @@ var prev_item_texture
 			inventory.slots = temp_inventory_slots
 			for index in range(inventory.slots.size()):
 				var slot = inventory.slots[index]
-				if index >= inputs:
-					slot.locked = true
+				slot.locked = index >= inputs
 		return max(1, inputs)
 ## The amount of outputs this gadget can produce
 @export var outputs: int:
