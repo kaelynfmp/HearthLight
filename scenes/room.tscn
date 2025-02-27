@@ -1,13 +1,14 @@
-[gd_scene load_steps=10 format=4 uid="uid://gfvpt16hdue1"]
+[gd_scene load_steps=11 format=4 uid="uid://gfvpt16hdue1"]
 
 [ext_resource type="TileSet" uid="uid://r7x82rdaw80h" path="res://resources/tilesets/room.tres" id="1_lwtf6"]
-[ext_resource type="Script" path="res://scripts/environment/tile_layers.gd" id="1_suw4i"]
+[ext_resource type="Script" path="res://scripts/tile_layers.gd" id="1_suw4i"]
 [ext_resource type="Texture2D" uid="uid://m1v51t3xgjie" path="res://resources/sprites/gridloop.png" id="2_eajwq"]
 [ext_resource type="PackedScene" uid="uid://b353v4ogg13io" path="res://scenes/character.tscn" id="3_aubfo"]
 [ext_resource type="Script" path="res://scripts/objects/character.gd" id="3_jp7id"]
 [ext_resource type="PackedScene" uid="uid://ooc6jx4dihku" path="res://scenes/marker.tscn" id="4_mnrrm"]
 [ext_resource type="Resource" uid="uid://b1gb7sbupakg4" path="res://resources/character/inventory.tres" id="6_kcpka"]
 [ext_resource type="PackedScene" uid="uid://bpie3rt8qmyxr" path="res://scenes/hud.tscn" id="8_s1rlv"]
+[ext_resource type="PackedScene" uid="uid://biflar31oita2" path="res://scenes/menu/pause_menu.tscn" id="9_abqaq"]
 [ext_resource type="Script" path="res://scenes/computer_open.gd" id="9_uy75m"]
 
 [node name="Room" type="Node"]
@@ -145,3 +146,6 @@ metadata/_edit_lock_ = true
 
 [node name="Node" type="Node" parent="HUD"]
 script = ExtResource("9_uy75m")
+
+[node name="PauseMenu" parent="HUD" instance=ExtResource("9_abqaq")]
+visible = false

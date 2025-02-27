@@ -2,6 +2,7 @@ extends Node
 
 signal inventory_open_state_changed
 signal update_recipes
+signal pause_changed
 
 var inventory: bool = false:
 	set(value):
@@ -60,6 +61,8 @@ var shop_dict: Dictionary = {
 	"gadgets": []
 }
 
+var pause: bool = false
+
 var recipes:Array[Recipe]
 
 func _ready() -> void:
@@ -72,6 +75,9 @@ func _process(_delta: float) -> void:
 		change_inventory()
 	elif Input.is_action_just_pressed("toggle_placing_mode"):
 		is_placing_gadget = !is_placing_gadget
+	elif Input.is_action_just_pressed("toggle_pause"):
+		pause = !pause
+		pause_changed.emit()
 	
 	# time tracking
 	current_time = Time.get_ticks_msec()
