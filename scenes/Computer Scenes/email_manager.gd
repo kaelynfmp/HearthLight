@@ -131,9 +131,14 @@ func display_email_button(email: Email):
 		accept_button.visible = false
 		reject_button.visible = false
 		fulfill_button.pressed.connect(func(): OrderManager.fulfill_order(email.attached_order))
-		#change_email_category(email, "archive")
+		#change_email_category(email, "orders")
 		#display_category_emails(current_category)
-		
+	elif email.attached_order.is_completed:
+		change_email_category(email, "archive")
+		#display_category_emails(current_category)
+		fulfill_button.visible = false
+		accept_button.visible = false
+		reject_button.visible = false
 	else: # no attached order OR order has been responded to
 		accept_button.visible = false
 		reject_button.visible = false

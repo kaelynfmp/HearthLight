@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://sc3eyh2thm3t"]
 
 [ext_resource type="Script" path="res://scripts/resources/email.gd" id="1_l8p6f"]
-[ext_resource type="Resource" uid="uid://bcfd6273tpfmn" path="res://resources/orders/order2.tres" id="1_ya2nd"]
+[ext_resource type="Resource" uid="uid://4mns6a0tb4qu" path="res://resources/orders/order2.tres" id="1_ya2nd"]
 
 [resource]
 script = ExtResource("1_l8p6f")
@@ -18,6 +18,6 @@ Ernest Hayden "
 category = "main"
 day = 1
 hour = 8
-minute = 30
+minute = 0
 is_read = false
 attached_order = ExtResource("1_ya2nd")

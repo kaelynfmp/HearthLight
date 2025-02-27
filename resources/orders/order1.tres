@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/resources/order.gd" id="1_gipnw"]
 [ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="1_yrjei"]
-[ext_resource type="Resource" uid="uid://ch7j0e7itemyd" path="res://resources/items/hand_grinder_item.tres" id="2_v48g1"]
+[ext_resource type="Resource" path="res://resources/items/hand_grinder_item.tres" id="2_v48g1"]
 
 [resource]
 script = ExtResource("1_gipnw")
@@ -11,6 +11,6 @@ given_items = Array[Resource]([])
 given_quantities = Array[int]([])
 required_items = Array[Resource]([ExtResource("1_yrjei")])
 required_quantities = Array[int]([2])
-currency_reward = 30
+currency_reward = 10
 rewards = Array[Resource]([ExtResource("2_v48g1")])
 rewards_quantities = Array[int]([1])
