@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_f21gf")
 name = "Ore"
-description = "Melt this for Ingot!"
+description = "Small amounts of raw metal that still need to be melted down into something useable."
 max_stack = 100
 price = 0

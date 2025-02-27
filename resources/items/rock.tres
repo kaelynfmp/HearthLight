@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_fl4s4")
 name = "Rock"
-description = "Crush this for Dust!"
+description = "A chunk of stone. There's small reflective glints in the light, but it seems to largely be useless minerals."
 max_stack = 100
 price = 0

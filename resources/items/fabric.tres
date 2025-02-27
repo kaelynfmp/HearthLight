@@ -9,6 +9,6 @@ size = Vector2(60, 60)
 script = ExtResource("1_645j0")
 texture = SubResource("PlaceholderTexture2D_yyo8x")
 name = "Fabric"
-description = "Fabric desc"
+description = "Quality fabric, unsullied by corpo hands."
 max_stack = 100
 price = 10

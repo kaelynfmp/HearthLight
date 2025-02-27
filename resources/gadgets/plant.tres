@@ -35,16 +35,16 @@ slots = Array[ExtResource("3_lt256")]([SubResource("Resource_6gsv3"), SubResourc
 
 [sub_resource type="Resource" id="Resource_p2117"]
 script = ExtResource("4_u6bql")
-name = "Plant"
-description = "Plant your seed here to grow it!"
+name = "Probably a Cotton Plant"
+description = "The seeds for these things come in unmarked plastic baggies. You're not gonna ask where they come from."
 max_stack = 100
 price = 0
 
 [resource]
 script = ExtResource("5_441cp")
-name = "Plant"
+name = "Probably a Cotton Plant"
 gadget_age = "Primitive"
-description = "Plant your seed here to grow it!"
+description = "The seeds for these things come in unmarked plastic baggies. You're not gonna ask where they come from."
 item = SubResource("Resource_p2117")
 inventory = SubResource("Resource_nd5xr")
 produces = true

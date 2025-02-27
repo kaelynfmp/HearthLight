@@ -20,16 +20,16 @@ slots = Array[ExtResource("3_e3h8r")]([SubResource("Resource_joxtl")])
 
 [sub_resource type="Resource" id="Resource_7ft7y"]
 script = ExtResource("4_ivpgi")
-name = "Hand Grinder"
-description = "Grind your rocks to get dust!"
+name = "Hand Crank Grinder"
+description = "In an age of advanced biomechanical engineering and hyper-optimized fabrication, there's something to be said for using your own human muscles to process materials. Until your arm starts hurting, that is."
 max_stack = 100
 price = 0
 
 [resource]
 script = ExtResource("5_ex550")
-name = "Hand Grinder"
+name = "Hand Crank Grinder"
 gadget_age = "Primitive"
-description = "Grind your rocks to get dust!"
+description = "In an age of advanced biomechanical engineering and hyper-optimized fabrication, there's something to be said for using your own human muscles to process materials. Until your arm starts hurting, that is."
 item = SubResource("Resource_7ft7y")
 inventory = SubResource("Resource_2faxo")
 produces = true

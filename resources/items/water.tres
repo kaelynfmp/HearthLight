@@ -8,6 +8,6 @@
 script = ExtResource("1_602me")
 texture = SubResource("PlaceholderTexture2D_247ae")
 name = "Water"
-description = "Just water!"
+description = "Fresh water. Hopefully."
 max_stack = 100
 price = 0

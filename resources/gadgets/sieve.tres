@@ -43,16 +43,16 @@ slots = Array[ExtResource("3_q2vfb")]([SubResource("Resource_0cyra"), SubResourc
 
 [sub_resource type="Resource" id="Resource_lb38k"]
 script = ExtResource("4_23boe")
-name = "Sieve"
-description = "Sieve your dust with water and silk, you may find metal!"
+name = "Antique Gold Pan"
+description = "You never thought you'd see one of these. This one probably belongs in a museum it's so old, but it'll get the job done."
 max_stack = 100
 price = 0
 
 [resource]
 script = ExtResource("5_eflns")
-name = "Sieve"
+name = "Antique Gold Pan"
 gadget_age = "Primitive"
-description = "Sieve your dust with water and silk, you may find metal!"
+description = "You never thought you'd see one of these. This one probably belongs in a museum it's so old, but it'll get the job done."
 item = SubResource("Resource_lb38k")
 inventory = SubResource("Resource_xngkc")
 produces = false

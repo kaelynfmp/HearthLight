@@ -22,7 +22,7 @@ slots = Array[ExtResource("3_8uasy")]([SubResource("Resource_ggt87")])
 [sub_resource type="Resource" id="Resource_3ujm2"]
 script = ExtResource("4_71v7c")
 name = "Wood Stove"
-description = "Melt your ore here for ingots!"
+description = "This thing would be a fire hazard if buildings were made of flammable materials. It's a good thing that hasn't been the case for decades."
 max_stack = 100
 price = 0
 
@@ -30,7 +30,7 @@ price = 0
 script = ExtResource("5_eo3nv")
 name = "Wood Stove"
 gadget_age = "Primitive"
-description = "Melt your ore here for ingots!"
+description = "This thing would be a fire hazard if buildings were made of flammable materials. It's a good thing that hasn't been the case for decades."
 item = SubResource("Resource_3ujm2")
 inventory = SubResource("Resource_abta4")
 produces = true
