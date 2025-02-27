@@ -60,10 +60,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -651.5
-offset_top = -256.5
-offset_right = 653.5
-offset_bottom = 257.5
+offset_left = -488.5
+offset_top = -257.0
+offset_right = 488.5
+offset_bottom = 257.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -75,7 +75,9 @@ size_flags_horizontal = 3
 mouse_filter = 2
 
 [node name="CreatesControl" type="Control" parent="Background/Contained" index="1"]
+custom_minimum_size = Vector2(173, 514)
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="PrimitiveButton" type="TextureButton" parent="Background/Contained/CreatesControl" index="0"]
 layout_mode = 1
