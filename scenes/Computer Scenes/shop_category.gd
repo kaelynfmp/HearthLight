@@ -3,7 +3,7 @@ extends Label
 @export var category_label: Label
 @export var items: Array = []
 var base_resources: Array = ["seed", "water", "rock", "cotton"]
-var gadget_show: Array = []
+var gadget_show: Array = ["hand_grinder_item", "plant_item", "sieve_item","wheel_item", "wood_stove_item"]
 var shop_dict = GameManager.shop_dict
 var folder : String
 @export var item_container: Node
@@ -37,7 +37,7 @@ func load_items():
 					print("Loaded item")
 					if item.name.to_lower() in base_resources and item not in shop_dict["resources"]:
 						shop_dict["resources"].append(item)
-					elif item.name.to_lower() in gadget_show and item not in shop_dict["resources"]:
+					elif item_path.get_file().get_basename() in gadget_show and item not in shop_dict["gadgets"]:
 						shop_dict["gadgets"].append(item)
 					else:
 						pass
