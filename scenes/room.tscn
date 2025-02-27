@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://gfvpt16hdue1"]
+[gd_scene load_steps=11 format=4 uid="uid://gfvpt16hdue1"]
 
 [ext_resource type="TileSet" uid="uid://r7x82rdaw80h" path="res://resources/tilesets/room.tres" id="1_lwtf6"]
 [ext_resource type="Script" path="res://scripts/tile_layers.gd" id="1_suw4i"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://b1gb7sbupakg4" path="res://resources/character/inventory.tres" id="6_kcpka"]
 [ext_resource type="PackedScene" uid="uid://bpie3rt8qmyxr" path="res://scenes/hud.tscn" id="8_s1rlv"]
 [ext_resource type="PackedScene" uid="uid://biflar31oita2" path="res://scenes/menu/pause_menu.tscn" id="9_abqaq"]
+[ext_resource type="Script" path="res://scenes/computer_open.gd" id="9_uy75m"]
 
 [node name="Room" type="Node"]
 
@@ -142,6 +143,9 @@ polygon = PackedVector2Array(-1408, 0, 0, -704, 1408, 0, 0, 704)
 metadata/_edit_lock_ = true
 
 [node name="HUD" parent="." instance=ExtResource("8_s1rlv")]
+
+[node name="Node" type="Node" parent="HUD"]
+script = ExtResource("9_uy75m")
 
 [node name="PauseMenu" parent="HUD" instance=ExtResource("9_abqaq")]
 visible = false

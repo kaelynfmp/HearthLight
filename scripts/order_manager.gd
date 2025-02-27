@@ -23,6 +23,7 @@ func load_orders():
 		
 		
 func accept_order(order: Order):
+	give_player_starting_items(order)
 	order.is_accepted = true
 	order.responded = true
 	accepted_orders.append(order)
@@ -38,16 +39,58 @@ func check_due(order: Order):
 func archive_order(order: Order): # unfulfilled by due date OR rejected
 	pass
 	
-func check_fulfillment(order: Order):
-	pass
+func fulfill_order(order: Order) -> bool:
+	
+	#check fulfillment ability
+	if check_fulfillment_ability(order):
+		var required_items = order.required_items
+		var required_qtys = order.required_quantities
+		for i in range(len(order.required_items)):
+			remove_items_from_inventory(required_items[i],required_qtys[i])
+		reward_player(order)
+		order.is_completed = true
+	# if true:
+	# remove items
+	# reward player
+	# TODO: archive order
+	
+	# if false:
+	return false
+
+func check_fulfillment_ability(order: Order) -> bool:
+	var fulfilled_items = []
+	for i in range(len(order.required_items)):
+		var current_item = order.required_items[i]
+		var current_qty = order.required_quantities[i]
+		var actual_qty = inventory.get_item_quantity(current_item)
+		if actual_qty >= current_qty:
+			#THIS ITEM can be fulfilled
+			fulfilled_items.append(true)
+		else:
+			fulfilled_items.append(false)
+	for item in fulfilled_items:
+		if item == false:
+			return false
+	return true
+
+func remove_items_from_inventory(item: Item, qty: int):
+	inventory.remove_items(item,qty)
 
 func reward_player(order: Order):
-	for i in range(0,len(order.rewards)):
-		var item = order.rewards[i]
-		var qty = order.rewards_quantities[i]
-		GameManager.add_currency(order.currency_reward)
-		inventory.insert(item, qty) #TODO: verify
-		
+	if len(order.rewards) > 0:
+		for i in range(0,len(order.rewards)):
+			var item = order.rewards[i]
+			var qty = order.rewards_quantities[i]
+			GameManager.add_currency(order.currency_reward)
+			inventory.insert(item, qty)
+
+func give_player_starting_items(order: Order):
+	if len(order.given_items)>0:
+		for i in range(0,len(order.given_items)):
+			var item = order.given_items[i]
+			var qty = order.given_quantities[i]
+			inventory.insert(item, qty)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

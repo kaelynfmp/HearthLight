@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://c4j1nqqk75o65"]
+
+[ext_resource type="Script" path="res://scripts/resources/item.gd" id="1_vcst1"]
+[ext_resource type="Texture2D" uid="uid://ni5q0u43gvlx" path="res://resources/sprites/sievePrimitive.png" id="2_pol31"]
+
+[resource]
+script = ExtResource("1_vcst1")
+texture = ExtResource("2_pol31")
+name = "Sieve"
+description = "You never thought you'd see one of these. This one probably belongs in a museum it's so old, but it'll get the job done."
+max_stack = 100
+price = 0

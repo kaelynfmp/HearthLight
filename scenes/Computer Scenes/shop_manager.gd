@@ -5,7 +5,7 @@ var shop_dict = GameManager.shop_dict
 @onready var categories_list_container: Node = $ScrollContainer/ShopCategoriesListContainer
 @export var item_button_scene: PackedScene
 @export var shop_category_scene: PackedScene
-
+var loaded_items = false
 var item_class : Resource
 var item_folder : String = "res://resources/items/"
 
@@ -45,6 +45,8 @@ func create_shop_categories():
 	for category_name in shop_dict.keys():
 		var shop_category = shop_category_scene.instantiate()
 		shop_category.set_category(category_name)
+		if category_name == "resources":
+			shop_category.custom_minimum_size = Vector2(1920,650)
 		#inbox_button.text = category.capitalize()
 		#inbox_button.pressed.connect(func(): display_category_emails(category)) 
 		categories_list_container.add_child(shop_category)

@@ -1,11 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6pmbvf4gf2rj"]
+[gd_scene load_steps=3 format=3 uid="uid://c6pmbvf4gf2rj"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6wuq"]
-bg_color = Color(0.886275, 0.333333, 0.666667, 1)
+[ext_resource type="Texture2D" uid="uid://brioxpexvl23w" path="res://resources/sprites/emails/emailButton.png" id="1_unc2n"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r7ntb"]
+texture = ExtResource("1_unc2n")
+modulate_color = Color(0.796243, 0.796243, 0.796243, 1)
 
 [node name="Button" type="Button"]
+z_index = 2
 custom_minimum_size = Vector2(325, 100)
 offset_right = 325.0
 offset_bottom = 100.0
-theme_override_styles/normal = SubResource("StyleBoxFlat_j6wuq")
-text = "Inbox"
+theme_override_styles/focus = SubResource("StyleBoxTexture_r7ntb")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_r7ntb")
+text = "test"
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(163, 51.25)
+scale = Vector2(0.881081, 0.95045)
+texture = ExtResource("1_unc2n")

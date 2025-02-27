@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bchsomrab1tv0" path="res://scenes/Computer Scenes/buyable_item.tscn" id="1_slib6"]
 
 [node name="Category Label" type="Label" node_paths=PackedStringArray("category_label", "item_container")]
-custom_minimum_size = Vector2(1920, 650)
+custom_minimum_size = Vector2(1920, 1080)
 offset_top = 5.0
 offset_right = 500.0
 offset_bottom = 68.0

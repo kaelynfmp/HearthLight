@@ -27,6 +27,13 @@ func _ready():
 	buy_button.connect("pressed", Callable(self, "_buy"))
 	decline_button.connect("pressed", Callable(self, "_close"))
 
+func _process(delta: float) -> void:
+	if GameManager.in_computer == false:
+		queue_free()
+
+func _close():
+	queue_free()
+
 func _buy():
 	if GameManager.subtract_currency(total_cost) == true: # successful purchase
 		queue_free()
@@ -43,8 +50,6 @@ func _buy():
 		# maybe show insufficient funds in future
 		# show buy button as unavailable if currency not enough? future goal
 
-func _close():
-	queue_free()
 
 func set_item_buy(new_item: Item):
 	item = new_item

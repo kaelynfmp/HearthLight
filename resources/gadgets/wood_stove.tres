@@ -4,8 +4,9 @@
 [ext_resource type="Script" path="res://scripts/resources/inventory.gd" id="2_86a58"]
 [ext_resource type="Script" path="res://scripts/resources/slot.gd" id="3_8uasy"]
 [ext_resource type="Script" path="res://scripts/resources/item.gd" id="4_71v7c"]
-[ext_resource type="Resource" uid="uid://gw88mo33lg1c" path="res://resources/items/ore.tres" id="5_b8tdd"]
+[ext_resource type="Resource" path="res://resources/items/ore.tres" id="5_b8tdd"]
 [ext_resource type="Script" path="res://scripts/resources/gadget.gd" id="5_eo3nv"]
+[ext_resource type="Resource" uid="uid://78mthu5eab7r" path="res://resources/items/wood_stove_item.tres" id="6_4gh03"]
 [ext_resource type="AudioStream" uid="uid://bmokqajud42do" path="res://resources/audio/Gadgets/Wood Stove Stop.mp3" id="6_5axel"]
 [ext_resource type="Texture2D" uid="uid://dvqlsoydwm5ek" path="res://resources/sprites/stovePrimitive.png" id="6_h4er4"]
 
@@ -27,21 +28,13 @@ quantity = 0
 script = ExtResource("2_86a58")
 slots = Array[ExtResource("3_8uasy")]([SubResource("Resource_ggt87"), SubResource("Resource_cqwqe")])
 
-[sub_resource type="Resource" id="Resource_3ujm2"]
-script = ExtResource("4_71v7c")
-texture = ExtResource("6_h4er4")
-name = "Wood Stove"
-description = "This thing would be a fire hazard if buildings were made of flammable materials. It's a good thing that hasn't been the case for decades."
-max_stack = 100
-price = 0
-
 [resource]
 script = ExtResource("5_eo3nv")
 texture = ExtResource("6_h4er4")
 name = "Wood Stove"
 age = 0
 description = "This thing would be a fire hazard if buildings were made of flammable materials. It's a good thing that hasn't been the case for decades."
-item = SubResource("Resource_3ujm2")
+item = ExtResource("6_4gh03")
 inventory = SubResource("Resource_abta4")
 produces = true
 inputs = 1
