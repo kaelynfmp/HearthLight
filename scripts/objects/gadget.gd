@@ -59,8 +59,6 @@ func _physics_process(delta: float) -> void:
 			progress -= change_rate
 		if progress >= 1:
 			finish_recipe()
-		elif progress >= 0.5:
-			recipe_take()
 		elif progress <= 0:
 			cancel_processing()
 	
@@ -111,6 +109,7 @@ func recipe_take():
 	recipe_taken = true
 
 func finish_recipe():
+	recipe_take()
 	for output in selected_recipe.outputs:
 		inventory.insert(output.item, output.quantity, true)
 	cancel_processing()

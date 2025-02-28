@@ -32,3 +32,4 @@ func _on_quit_pressed() -> void:
 
 func _on_resume_pressed() -> void:
 	is_displayed = false
+	GameManager.pause = false

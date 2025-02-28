@@ -12,6 +12,9 @@ const SPEED:int = 1000
 
 @onready var anim_tree:Node = get_node("AnimationTree")
 
+func _ready() -> void:
+	GameManager.player_inventory = inventory
+
 func _process(_delta: float) -> void:
 	var camera_position:Vector2 = Vector2(
 		clamp(position.x + (inventory_camera_offset if GameManager.inventory else 0.0),

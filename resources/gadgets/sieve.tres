@@ -60,4 +60,4 @@ inventory = SubResource("Resource_xngkc")
 produces = true
 inputs = 3
 outputs = 1
-process_time = 15.0
+process_time = 10.0

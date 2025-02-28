@@ -5,12 +5,16 @@
 
 [resource]
 script = ExtResource("1_fr4g4")
-sender = "Arnold"
-subject = "Every good house has a stove!"
-contents = "I predict you are in need of one. I'm looking for some ore to use on my stove. I'll give you one of my extra stoves in exchange!"
+sender = "Arnold Meedeum"
+subject = "Every good home has a [img=30px,center]res://resources/sprites/stovePrimitive.png[/img][b]stove[/b]!"
+contents = "I predict you are in need of one. I'm looking for precisely [i]one[/i] chunk of [img=30px,center]res://resources/sprites/ore.png[/img][b]ore[/b] to use on my [img=30px,center]res://resources/sprites/stovePrimitive.png[/img][b]stove[/b]. I'll give you one of my extra [img=30px,center]res://resources/sprites/stovePrimitive.png[/img][b]stoves[/b] in exchange!
+
+I am sensing you are getting to this section of the email with no knowledge of how to make ore. How predictable, it is quite complex. To make [img=30px,center]res://resources/sprites/ore.png[/img][b]ore[/b], you must put a [img=30px,center]res://resources/sprites/fabric.png[/img][b]fabric[/b] filter, raw [img=30px,center]res://resources/sprites/dust.png[/img][b]dust[/b], and of course [img=30px,center]res://resources/sprites/water.png[/img][b]water[/b] into a [img=30px,center]res://resources/sprites/sievePrimitive.png[/img][b]sieve[/b].
+
+I predict you will have no issues with this arrangement."
 category = "main"
-day = 3
-hour = 10
+day = 5
+hour = 8
 minute = 0
 is_read = false
 attached_order = ExtResource("1_o7yho")

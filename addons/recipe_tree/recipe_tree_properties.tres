@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="RecipeTreeProperties" load_steps=43 format=3 uid="uid://bayqmo2156mc4"]
 
 [ext_resource type="Script" path="res://addons/recipe_tree/gadget_editor_node.gd" id="1_5e5y2"]
-[ext_resource type="Resource" uid="uid://b1benml8tln26" path="res://resources/gadgets/wheel.tres" id="2_70wi3"]
+[ext_resource type="Resource" uid="uid://b1h4vs1btx62h" path="res://resources/gadgets/wheel.tres" id="2_70wi3"]
 [ext_resource type="Script" path="res://addons/recipe_tree/recipe_tree_properties.gd" id="2_e0emm"]
 [ext_resource type="Script" path="res://addons/recipe_tree/recipe_editor_node.gd" id="2_hx4k4"]
 [ext_resource type="Resource" uid="uid://cutk2mxl7dhrh" path="res://resources/gadgets/plant.tres" id="3_d1v0y"]
@@ -12,7 +12,7 @@
 [ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="5_pyano"]
 [ext_resource type="Resource" uid="uid://dospruqxgfufk" path="res://resources/gadgets/wood_stove.tres" id="6_n8q18"]
 [ext_resource type="Resource" uid="uid://ccitfm40o5ju2" path="res://resources/gadgets/computer.tres" id="7_aov6n"]
-[ext_resource type="Resource" uid="uid://drnnbha7vb1ho" path="res://resources/recipes/fabric_recipe.tres" id="7_wxbkn"]
+[ext_resource type="Resource" uid="uid://ck1vl0k07mkbf" path="res://resources/recipes/fabric_recipe.tres" id="7_wxbkn"]
 [ext_resource type="Resource" uid="uid://bjux8vbxnqlf8" path="res://resources/items/seed.tres" id="7_x6i4h"]
 [ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="8_3ht0r"]
 [ext_resource type="Resource" uid="uid://bv8nwf0qdvhvg" path="res://resources/recipes/cotton_recipe.tres" id="8_kf0bi"]
@@ -46,7 +46,7 @@ y = 1040
 script = ExtResource("1_5e5y2")
 gadget = ExtResource("5_odkxj")
 x = -560
-y = 2040
+y = 2060
 
 [sub_resource type="Resource" id="Resource_ycsiu"]
 script = ExtResource("1_5e5y2")

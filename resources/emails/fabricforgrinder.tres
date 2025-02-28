@@ -5,12 +5,14 @@
 
 [resource]
 script = ExtResource("1_jvolh")
-sender = "James"
-subject = "I need some fabric!"
-contents = "I need some fabric for my new shirt. I'll even give you a grinder in exchange!"
+sender = "James Jamington"
+subject = "I need some [img=30px,center]res://resources/sprites/fabric.png[/img][b]fabric[/b]!"
+contents = "I need [i]eight[/i] [img=30px,center]res://resources/sprites/fabric.png[/img][b]fabric[/b] for my new shirt. I'll even give you a [img=30px,center]res://resources/sprites/grinderPrimitive.png[/img][b]grinder[/b] I had lying around in the attic in exchange!
+
+I'm no expert, but I'm pretty sure you make [img=30px,center]res://resources/sprites/fabric.png[/img][b]fabric[/b] by putting [img=30px,center]res://resources/sprites/cotton.png[/img][b]cotton[/b] into a [img=30px,center]res://resources/sprites/loomPrimitive.png[/img][b]loom[/b]."
 category = "main"
-day = 2
-hour = 18
+day = 3
+hour = 8
 minute = 0
 is_read = false
 attached_order = ExtResource("1_kymxr")

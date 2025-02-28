@@ -42,3 +42,8 @@ func set_accepted(accepted: bool) -> void:
 	if accepted:
 		is_accepted = true
 		print("Order ", order_id, " accepted")
+
+func is_completable() -> bool:
+	if GameManager.player_inventory_has(required_items, required_quantities):
+		return true
+	return false

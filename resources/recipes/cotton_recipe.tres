@@ -30,7 +30,7 @@ item = ExtResource("6_kv0pa")
 locked = false
 item_filter = Array[ExtResource("2_uc7wd")]([])
 bypass_stack = false
-quantity = 1
+quantity = 2
 
 [resource]
 resource_name = "cotton_recipe"

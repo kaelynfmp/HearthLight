@@ -6,11 +6,13 @@
 [resource]
 script = ExtResource("1_7tvhl")
 sender = "Jon"
-subject = "Need a sieve?"
-contents = "I need some dust. Pronto. Quick. I'll give you a sieve for your hard work."
+subject = "Need a [img=30px,center]res://resources/sprites/sievePrimitive.png[/img][b]sieve[/b]?"
+contents = "I need some [img=30px,center]res://resources/sprites/dust.png[/img][b]dust[/b]. Lots of it. Probably . . . dunno, [i]eight[/i] handfuls? Pronto. Quick. I'll give you a [img=30px,center]res://resources/sprites/sievePrimitive.png[/img][b]sieve[/b] for your hard work. Even one less handful and you're done, bucko. I have big hands, too, and I [i]will[/i] be checking.
+
+Heh. Not that a chucklehead like you would even know how to put [img=30px,center]res://resources/sprites/rock.png[/img][b]rocks[/b] from [b]Botsy[/b] into a [img=30px,center]res://resources/sprites/grinderPrimitive.png[/img][b]grinder[/b]"
 category = "main"
-day = 2
-hour = 22
+day = 4
+hour = 8
 minute = 0
 is_read = false
 attached_order = ExtResource("1_lv5kb")

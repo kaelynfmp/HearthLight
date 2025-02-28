@@ -26,6 +26,7 @@ var is_placing_gadget: bool = false
 var cursor:Node2D
 
 var inventories: Array[Inventory] = []
+var player_inventory: Inventory
 
 var slot_distributor: Dictionary = {"total": 0, "item": null, "slots": [], "distributed": []} 
 
@@ -76,6 +77,7 @@ var gadgets:Array[Gadget]
 var gadget_items:Dictionary
 
 func _ready() -> void:
+	process_mode = PROCESS_MODE_ALWAYS
 	start_time = Time.get_ticks_msec()
 	seconds_elapsed = 0
 	load_recipes()
@@ -83,11 +85,19 @@ func _ready() -> void:
 	
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("inventory"):
-		if !GameManager.computer_visible:
-			change_inventory()
+		if !pause:
+			if !GameManager.computer_visible:
+				change_inventory()
+			else:
+				change_computer_visibility()
 	elif Input.is_action_just_pressed("toggle_pause"):
-		pause = !pause
-		pause_changed.emit()
+		if !GameManager.computer_visible and !inventory:
+			pause = !pause
+			pause_changed.emit()
+		elif GameManager.computer_visible:
+			change_computer_visibility()
+		else:
+			change_inventory()
 		
 	blur = inventory
 	is_placing_gadget = false
@@ -104,11 +114,12 @@ func _process(_delta: float) -> void:
 					
 	
 	# time tracking
-	current_time = Time.get_ticks_msec()
-	var milliseconds_elapsed: int = current_time - start_time
-	seconds_elapsed = milliseconds_elapsed / 1000
-	time_scaled_seconds = seconds_elapsed*time_scale
-	update_time(time_scaled_seconds)
+	if !pause:
+		current_time = Time.get_ticks_msec()
+		var milliseconds_elapsed: int = current_time - start_time
+		seconds_elapsed = milliseconds_elapsed / 1000
+		time_scaled_seconds = seconds_elapsed*time_scale
+		update_time(time_scaled_seconds)
 
 ## Load all recipes in the filesystem
 func load_recipes():
@@ -173,20 +184,25 @@ func add_inventory(p_inventory: Inventory):
 
 ## Attempts to send a slot to the nearest inventory, and will spread them out among multiple if necessary to send it all
 func send_to_inventory(slot: Slot):
-	var went_somewhere: bool = false
 	var home_inventory: Inventory
-	var temp_slot: Slot = slot.duplicate()
+	var temp_slot:Slot = slot.duplicate()
+	var starting_quantity = slot.duplicate().quantity
+	var starting_item = slot.duplicate().item
+	slot.decrement(starting_quantity)
 	for search_inventory in inventories:
 		if slot not in search_inventory.slots:
-			slot.decrement(slot.quantity)
-			went_somewhere = search_inventory.insert(temp_slot.item, temp_slot.quantity)
-			return
+			var remainder = search_inventory.insert(temp_slot.item, temp_slot.quantity)
+			temp_slot.decrement(temp_slot.quantity - remainder)
+			if temp_slot.quantity == 0:
+				break
 		else:
 			home_inventory = search_inventory
 
-	if !went_somewhere:
-		slot.decrement(slot.quantity)
-		home_inventory.insert(temp_slot.item, temp_slot.quantity)
+	if temp_slot.quantity > 0:
+		var remainder = home_inventory.insert(temp_slot.item, temp_slot.quantity)
+		temp_slot.decrement(temp_slot.quantity - remainder)
+
+	slot.initialize(starting_item, slot.quantity + temp_slot.quantity, true)
 
 ## Sets the cursor object
 func set_cursor(setting_cursor: Node2D):
@@ -268,16 +284,30 @@ func pickup_gadget(_gadget:Gadget) -> bool:
 		return true
 	return false
 	
-func unique_gadget_interaction(gadget:Gadget):
-	if gadget == computer_gadget:
+func unique_gadget_interaction(_gadget:Gadget):
+	if _gadget == computer_gadget:
 		change_computer_visibility()
 		
 func change_computer_visibility():
 	computer_visible = !computer_visible
 	computer_visibility_changed.emit()
 	
+func player_inventory_has(required_items:Array[Resource], required_quantities:Array[int]) -> bool:
+	if required_items.size() != required_quantities.size():
+		printerr("Fed incongruent required_items and required_quantities to player_inventory_has")
+	var loop_size = min(required_items.size(), required_quantities.size()) # If the arrays are misaligned, align to the smaller of the two
+	for index in range(loop_size):
+		var to_parse_item: Item
+		if required_items[index] is Gadget:
+			to_parse_item = required_items[index].item
+		else:
+			to_parse_item = required_items[index]
+		if player_inventory.get_item_quantity(to_parse_item) < required_quantities[index]:
+			return false
+	return true
 
 func update_time(in_game_seconds):
+	return # TODO: undisable. temporarily disabled for demo
 	#print("Game Seconds: %s" % in_game_seconds)	
 	game_time["hour"] = int(in_game_seconds / 3600) + 8
 	game_time["minute"] = int((in_game_seconds % 3600) / 60)

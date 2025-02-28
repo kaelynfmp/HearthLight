@@ -44,4 +44,4 @@ inventory = SubResource("Resource_abta4")
 produces = true
 inputs = 1
 outputs = 1
-process_time = 10.0
+process_time = 7.0

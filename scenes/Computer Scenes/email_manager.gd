@@ -119,24 +119,25 @@ func display_email_button(email: Email):
 	
 	var accept_button = email_button.find_child("Accept")
 	var reject_button = email_button.find_child("Decline")
-	var fulfill_button = email_button.find_child("Fulfill")
+	var fulfill_texture = email_button.find_child("FulfillTexture")
+	var fulfill_button = fulfill_texture.find_child("Fulfill")
 	# order accept/reject
-	if email.attached_order and !email.attached_order.responded:
+	if email.attached_order != null and !email.attached_order.responded:
 		if accept_button:
 			accept_button.pressed.connect(func(): order_accept(email))
 		if reject_button:
 			reject_button.pressed.connect(func(): order_reject(email))
-	elif email.attached_order.responded and email.attached_order.is_accepted and not email.attached_order.is_completed:
-		fulfill_button.visible = true
+	elif email.attached_order != null and email.attached_order.responded and email.attached_order.is_accepted and not email.attached_order.is_completed:
+		fulfill_texture.visible = true
 		accept_button.visible = false
 		reject_button.visible = false
 		fulfill_button.pressed.connect(func(): fulfill_order(email))
 		#change_email_category(email, "orders")
 		#display_category_emails(current_category)
-	elif email.attached_order.is_completed:
+	elif email.attached_order != null and email.attached_order.is_completed:
 		change_email_category(email, "archive")
 		#display_category_emails(current_category)
-		fulfill_button.visible = false
+		fulfill_texture.visible = false
 		accept_button.visible = false
 		reject_button.visible = false
 	else: # no attached order OR order has been responded to
@@ -177,6 +178,9 @@ func fulfill_order(email: Email):
 	if OrderManager.fulfill_order(email.attached_order):
 		change_email_category(email, "archive")
 		display_category_emails(current_category)
+		 # TODO: remove. temporarily advancing day every order that rewards you with something. The intro email was given an empty quantity to compensate
+		if !email.attached_order.rewards_quantities.is_empty():
+			GameManager.game_time["day"] += 1
 	
 	
 #func is_read_color(email: Email, email_button: Button):
