@@ -147,6 +147,7 @@ func load_path(path:String, type:int):
 					item_strings.append(full_path)
 			# found recipe
 			file_name = dir.get_next()
+		dir.list_dir_end()
 	else:
 		assert(dir != null, "Directory not found! Should be at 'res://resources/" +
 		("recipes" if type == Load_Type.RECIPE else "gadgets" if type == Load_Type.GADGET else "items") + "'")
@@ -226,6 +227,7 @@ func set_gadget(p_gadget:StaticBody2D) -> void:
 	gadget = p_gadget
 	if !inventory:
 		change_inventory()
+		inventories.append(p_gadget.inventory)
 		
 ## Gets the current gadget that corresponds to the item held in the cursor
 func get_gadget_from_cursor() -> Gadget:

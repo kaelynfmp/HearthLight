@@ -29,7 +29,7 @@ script = ExtResource("3_d0u8u")
 texture = ExtResource("4_2lmon")
 name = "Computer"
 description = "Your personal computer! Thank goodness the tech revolution a few years back brought back the look of CRTs! Of course, it's actually a turbo-spectrometer in there. Darn. Gimmick products suck."
-max_stack = 100
+max_stack = 1
 price = 0
 
 [resource]

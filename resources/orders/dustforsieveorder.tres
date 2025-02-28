@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Order" load_steps=4 format=3 uid="uid://bj1l5sln7j83t"]
 
 [ext_resource type="Resource" uid="uid://lxvyxcteq6eq" path="res://resources/items/dust.tres" id="1_gegmm"]
-[ext_resource type="Resource" path="res://resources/items/sieve_item.tres" id="2_ons3k"]
+[ext_resource type="Resource" uid="uid://bcp8nvhpucopi" path="res://resources/gadgets/sieve.tres" id="2_2tcu4"]
 [ext_resource type="Script" path="res://scripts/resources/order.gd" id="3_dl1y1"]
 
 [resource]
@@ -12,5 +12,5 @@ given_quantities = Array[int]([])
 required_items = Array[Resource]([ExtResource("1_gegmm")])
 required_quantities = Array[int]([1])
 currency_reward = 50
-rewards = Array[Resource]([ExtResource("2_ons3k")])
+rewards = Array[Resource]([ExtResource("2_2tcu4")])
 rewards_quantities = Array[int]([1])

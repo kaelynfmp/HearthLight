@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://scripts/gui/selected_gadget.gd" id="9_nhxen"]
 [ext_resource type="Shader" path="res://scripts/shaders/gadgetoutline.gdshader" id="9_o8g3w"]
 [ext_resource type="Texture2D" uid="uid://gi6my3ydg3ke" path="res://resources/sprites/gui/gadget_selection.png" id="10_ivqh4"]
-[ext_resource type="PackedScene" path="res://scenes/menu/pause_menu.tscn" id="13_55orh"]
+[ext_resource type="PackedScene" uid="uid://biflar31oita2" path="res://scenes/menu/pause_menu.tscn" id="13_55orh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_drira"]
 shader = ExtResource("2_0gell")
@@ -91,13 +91,11 @@ script = ExtResource("7_y0wjn")
 
 [node name="Cursor" parent="." instance=ExtResource("2_wjdba")]
 
-[node name="SelectedGadget" type="TextureRect" parent="."]
+[node name="SelectedGadget" type="Sprite2D" parent="."]
 visible = false
 material = SubResource("ShaderMaterial_hoa3s")
-offset_right = 40.0
-offset_bottom = 40.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
+scale = Vector2(0.7, 0.7)
+offset = Vector2(0, -218)
 script = ExtResource("9_nhxen")
 
 [node name="PauseMenu" parent="." instance=ExtResource("13_55orh")]

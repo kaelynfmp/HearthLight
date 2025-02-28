@@ -59,6 +59,7 @@ func update():
 ## On mouse entered, it will check to see if it can distribute slots, pick up slotsor if it can start placing with
 ## right click
 func _on_mouse_entered() -> void:
+	mouse_over = true
 	if cursor_slot() == null:
 		return
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
@@ -81,16 +82,14 @@ func _on_mouse_entered() -> void:
 		drop_slot_cursor()
 		rmb_line = true
 
-	mouse_over = true
-
 ## On mouse exit, it will add to the original slot if dragged off from right click for distribution purposes
 func _on_mouse_exited() -> void:
+	mouse_over = false
 	if cursor_slot() == null:
 		return
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) and !rmb_line:
 		# Will add one to the original slot if dragged off
 		drop_slot_cursor()
-	mouse_over = false
 
 ## On click, do inventory management
 func _on_gui_input(event:InputEvent) -> void:

@@ -467,6 +467,7 @@ func load_path(path:String, type:int) -> void:
 						item_strings.append(full_path)
 				# found recipe
 				file_name = dir.get_next()
+		dir.list_dir_end()
 	else:
 		assert(dir != null, "Directory not found! Should be at 'res://resources/" +
 		("recipes" if type == TYPE.RECIPE else "gadgets" if type == TYPE.GADGET else "items") + "'")
