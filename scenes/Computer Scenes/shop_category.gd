@@ -63,7 +63,6 @@ func display_items(item: Item):
 	item_button.set_item(item) 
 	#email_button.pressed.connect(func(): show_email_details(email, email_button))  #calls function on click
 	item_container.add_child(item_button)
-	print("Added item: ", item.name)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

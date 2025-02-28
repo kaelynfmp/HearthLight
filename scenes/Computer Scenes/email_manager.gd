@@ -71,11 +71,9 @@ func display_category_emails(category: String):
 func load_emails():
 	# load all email resources
 	var dir:DirAccess = DirAccess.open(email_folder)
-	print(email_folder)
 	if dir != null:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
-		print(file_name)
 		while file_name != "":
 			if file_name.ends_with(".remap"):
 				file_name = file_name.trim_suffix(".remap")
@@ -150,8 +148,6 @@ func display_email_button(email: Email):
 # Shows expanded email
 func show_email_details(email: Email, email_button: Button):
 	var panel = email_button.get_node("Panel")
-	print("Toggled panel visibility")
-	print("test")
 	email.is_read = true
 	#is_read_color(email, email_button)
 	panel.visible = !panel.visible
@@ -165,7 +161,6 @@ func order_accept(email: Email):
 	var order = email.attached_order
 	OrderManager.accept_order(order)
 	OrderManager.give_player_starting_items(order)
-	print("Accepted order")
 	# TODO: possibly move to "in progress"
 	change_email_category(email, "orders")
 	display_category_emails(current_category)
@@ -174,7 +169,6 @@ func order_accept(email: Email):
 func order_reject(email: Email):
 	var order = email.attached_order
 	OrderManager.reject_order(order)
-	print("Rejected order")
 	# move inbox
 	change_email_category(email, "archive")
 	display_category_emails(current_category)
