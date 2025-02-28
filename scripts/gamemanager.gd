@@ -227,6 +227,7 @@ func set_gadget(p_gadget:StaticBody2D) -> void:
 	gadget = p_gadget
 	if !inventory:
 		change_inventory()
+		inventories.append(p_gadget.inventory)
 		
 ## Gets the current gadget that corresponds to the item held in the cursor
 func get_gadget_from_cursor() -> Gadget:

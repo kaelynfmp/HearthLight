@@ -17,8 +17,6 @@ extends Resource
 ## Initialization of the default values
 func _init(p_slots: Array[Slot] = []):
 	slots = p_slots
-	if !Engine.is_editor_hint():
-		GameManager.inventory_open_state_changed.connect(on_inventory_open_state_changed)
 
 ## Attempts to insert [Item]s, going into the earliest available [Slot]s
 func insert(item: Item, amount=1, locked_only=false) -> bool:
@@ -76,9 +74,4 @@ func get_item_quantity(item: Item, locked_check=false) -> int:
 			quantity += slot.quantity
 
 	return quantity
-	
-func on_inventory_open_state_changed():
-	if !Engine.is_editor_hint():
-		if GameManager.inventory:
-			GameManager.add_inventory(self)
 			

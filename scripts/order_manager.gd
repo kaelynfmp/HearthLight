@@ -91,7 +91,6 @@ func reward_player(order: Order):
 			inventory.insert(item, qty)
 
 func give_player_starting_items(order: Order):
-	print("giving")
 	if len(order.given_items)>0:
 		for i in range(0,len(order.given_items)):
 			var item = order.given_items[i]
