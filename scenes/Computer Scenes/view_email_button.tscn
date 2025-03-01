@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b5r8qyahtr3r1"]
+[gd_scene load_steps=47 format=3 uid="uid://b5r8qyahtr3r1"]
 
 [ext_resource type="Script" path="res://scenes/Computer Scenes/emaildisplay.gd" id="1_cc22d"]
 [ext_resource type="Texture2D" uid="uid://b3f53pdbhlfkg" path="res://resources/sprites/emails/emailPreview.png" id="2_ikcrj"]
@@ -22,17 +22,63 @@
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t0k6g"]
 texture = ExtResource("3_n2822")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qmtjh"]
-bg_color = Color(0.678532, 0.225584, 0.240335, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1okg4"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_egw1w"]
-bg_color = Color(0.293422, 0.699237, 0.358543, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fno5u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eo2p3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eyiw5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7nvff"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3i616"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5rtja"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ykmdm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0jcor"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xyom5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g1453"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v5u2j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ta5hb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jthic"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x1stq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_03q13"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_to4yd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6t1up"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ab5kp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3gqkk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4oddd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aeq6b"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fysjm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ifi1y"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4gaj0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dsybb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sobk5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2w7bx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o12fq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vvuy3"]
 
@@ -171,7 +217,17 @@ offset_left = 1596.0
 offset_top = 764.0
 offset_right = 1730.0
 offset_bottom = 883.0
-theme_override_styles/normal = SubResource("StyleBoxFlat_qmtjh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1okg4")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_fno5u")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_eo2p3")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_eyiw5")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_7nvff")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3i616")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5rtja")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_ykmdm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_0jcor")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_xyom5")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_g1453")
 disabled = true
 icon = ExtResource("2_kcjoy")
 flat = true
@@ -182,7 +238,17 @@ offset_left = 1751.0
 offset_top = 764.0
 offset_right = 1885.0
 offset_bottom = 883.0
-theme_override_styles/normal = SubResource("StyleBoxFlat_egw1w")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_v5u2j")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_ta5hb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_jthic")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_x1stq")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_03q13")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_to4yd")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_6t1up")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_ab5kp")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3gqkk")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_4oddd")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_aeq6b")
 icon = ExtResource("3_jjpv2")
 flat = true
 
@@ -208,6 +274,10 @@ theme_override_font_sizes/font_size = 45
 theme_override_styles/focus = SubResource("StyleBoxEmpty_fysjm")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_ifi1y")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_4gaj0")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_dsybb")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_sobk5")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_2w7bx")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_o12fq")
 theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_vvuy3")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_ayc68")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_esskc")

@@ -289,6 +289,8 @@ func unique_gadget_interaction(_gadget:Gadget):
 		change_computer_visibility()
 		
 func change_computer_visibility():
+	if inventory:
+		change_inventory()
 	computer_visible = !computer_visible
 	computer_visibility_changed.emit()
 	

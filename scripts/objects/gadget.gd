@@ -47,6 +47,8 @@ func _ready() -> void:
 	GameManager.update_recipes.connect(update_recipes)
 
 func _physics_process(delta: float) -> void:
+	if GameManager.gadget == null:
+		primitive_selected = false
 	if !progressing or (!progressing and selected_recipe != null):
 		var checked_recipe:Recipe = check_for_valid_recipe()
 		if checked_recipe != null:
@@ -61,6 +63,8 @@ func _physics_process(delta: float) -> void:
 			finish_recipe()
 		elif progress <= 0:
 			cancel_processing()
+	if GameManager.inventory and GameManager.gadget == self and !detect_nearby():
+		GameManager.change_inventory()
 	
 func _process(_delta: float) -> void:
 	if hovered:
