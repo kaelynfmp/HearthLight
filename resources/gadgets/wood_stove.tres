@@ -46,6 +46,6 @@ inventory = SubResource("Resource_abta4")
 produces = true
 inputs = 1
 outputs = 1
-process_time = 7.0
+process_time = 6.0
 ambient_sound = ExtResource("1_xxyxl")
 stop_sound = ExtResource("8_f1ont")

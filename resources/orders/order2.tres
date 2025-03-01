@@ -11,6 +11,6 @@ given_items = Array[Resource]([ExtResource("1_6erdb")])
 given_quantities = Array[int]([2])
 required_items = Array[Resource]([ExtResource("2_pk5o2")])
 required_quantities = Array[int]([4])
-currency_reward = 30
+currency_reward = 100
 rewards = Array[Resource]([])
 rewards_quantities = Array[int]([])
