@@ -70,7 +70,7 @@ func display_category_emails(category: String):
 
 func load_emails():
 	# load all email resources
-	var dir = DirAccess.open(email_folder)
+	var dir:DirAccess = DirAccess.open(email_folder)
 	if dir != null:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
@@ -80,7 +80,6 @@ func load_emails():
 			if file_name.ends_with(".tres"):
 				var email_path = email_folder + file_name
 				var email = load(email_path)
-				print(email)
 				if email and email is Email:
 					emails.append(email)
 					categorized_emails[email.category].append(email)
@@ -120,24 +119,25 @@ func display_email_button(email: Email):
 	
 	var accept_button = email_button.find_child("Accept")
 	var reject_button = email_button.find_child("Decline")
-	var fulfill_button = email_button.find_child("Fulfill")
+	var fulfill_texture = email_button.find_child("FulfillTexture")
+	var fulfill_button = fulfill_texture.find_child("Fulfill")
 	# order accept/reject
-	if email.attached_order and !email.attached_order.responded:
+	if email.attached_order != null and !email.attached_order.responded:
 		if accept_button:
 			accept_button.pressed.connect(func(): order_accept(email))
 		if reject_button:
 			reject_button.pressed.connect(func(): order_reject(email))
-	elif email.attached_order.responded and email.attached_order.is_accepted and not email.attached_order.is_completed:
-		fulfill_button.visible = true
+	elif email.attached_order != null and email.attached_order.responded and email.attached_order.is_accepted and not email.attached_order.is_completed:
+		fulfill_texture.visible = true
 		accept_button.visible = false
 		reject_button.visible = false
 		fulfill_button.pressed.connect(func(): fulfill_order(email))
 		#change_email_category(email, "orders")
 		#display_category_emails(current_category)
-	elif email.attached_order.is_completed:
+	elif email.attached_order != null and email.attached_order.is_completed:
 		change_email_category(email, "archive")
 		#display_category_emails(current_category)
-		fulfill_button.visible = false
+		fulfill_texture.visible = false
 		accept_button.visible = false
 		reject_button.visible = false
 	else: # no attached order OR order has been responded to
@@ -149,8 +149,6 @@ func display_email_button(email: Email):
 # Shows expanded email
 func show_email_details(email: Email, email_button: Button):
 	var panel = email_button.get_node("Panel")
-	print("Toggled panel visibility")
-	print("test")
 	email.is_read = true
 	#is_read_color(email, email_button)
 	panel.visible = !panel.visible
@@ -164,7 +162,6 @@ func order_accept(email: Email):
 	var order = email.attached_order
 	OrderManager.accept_order(order)
 	OrderManager.give_player_starting_items(order)
-	print("Accepted order")
 	# TODO: possibly move to "in progress"
 	change_email_category(email, "orders")
 	display_category_emails(current_category)
@@ -173,7 +170,6 @@ func order_accept(email: Email):
 func order_reject(email: Email):
 	var order = email.attached_order
 	OrderManager.reject_order(order)
-	print("Rejected order")
 	# move inbox
 	change_email_category(email, "archive")
 	display_category_emails(current_category)
@@ -182,6 +178,9 @@ func fulfill_order(email: Email):
 	if OrderManager.fulfill_order(email.attached_order):
 		change_email_category(email, "archive")
 		display_category_emails(current_category)
+		 # TODO: remove. temporarily advancing day every order that rewards you with something. The intro email was given an empty quantity to compensate
+		if !email.attached_order.rewards_quantities.is_empty():
+			GameManager.game_time["day"] += 1
 	
 	
 #func is_read_color(email: Email, email_button: Button):

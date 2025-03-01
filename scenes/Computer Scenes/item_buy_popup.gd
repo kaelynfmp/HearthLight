@@ -36,13 +36,16 @@ func _close():
 
 func _buy():
 	if GameManager.subtract_currency(total_cost) == true: # successful purchase
-		queue_free()
 		# ADD ITEM TO INVENTORY
 		# insert(item: Item, amount=1)
 		#var player = get_tree().get_first_node_in_group("character")  # Find the player
-		if inventory.insert(item, quantity):
+		if inventory.can_insert(item, quantity) == 0:
+			inventory.insert(item, quantity)
+			queue_free()
 			return
 		else:
+			# TODO: proper error handling
+			GameManager.add_currency(total_cost)
 			print("Error inserting bought item into inventory")
 		
 	else:

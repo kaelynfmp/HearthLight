@@ -17,6 +17,8 @@ func update_slots():
 	
 func on_inventory_open_state_changed():
 	is_open = !is_open
+	if is_open:
+		GameManager.inventories.append(inventory)
 
 func on_take_cursor(slot:Slot):
 	inventory.insert(slot.item, slot.quantity)

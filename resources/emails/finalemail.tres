@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Email" load_steps=2 format=3 uid="uid://dnfk64uckrc13"]
+
+[ext_resource type="Script" path="res://scripts/resources/email.gd" id="1_c2rdq"]
+
+[resource]
+script = ExtResource("1_c2rdq")
+sender = "Loanne Sharck"
+subject = "Woah..."
+contents = "You've really been clearing out orders, huh! You've made a name for yourself! Welp, that's about all you'll get, for now. There was a guy that was going to give you a [b]conveyer belt[/b]. . . but they were dealt with.
+
+Congrats on all your progress! But . . . it'll never be enough. Don't forget that.
+
+[b]DEMO OVER[/b]
+
+[i]Thank you for playing![/i]"
+category = "main"
+day = 7
+hour = 8
+minute = 0
+is_read = false

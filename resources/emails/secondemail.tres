@@ -11,12 +11,12 @@ contents = "Good day,
 
 I am sending you this correspondence because I am in need of a service, and due to previous experiences, I am deeply uncomfortable with relaying on those treacherous corporations. A little birdie told me of your services, and at this point I am more than willing to abide by personal recommendations of unlicensed artisans than to trust those dastardly corporations with any more of my samples.
 
-All I require is for you to process the minerals that I will be sending you. I would do it myself, but I have much better things to do with my time if I can avoid it. It is however a simple request, and one that I should have every confidence in you doing, though please excuse me for my wariness given my previous experiences with the utter incompetence of supposed \"professionals.\"
+All I require is for you to process the [img=30px,center]res://resources/sprites/rock.png[/img][b]minerals[/b] that I will be sending you. I would do it myself, but I have much better things to do with my time if I can avoid it. It is however a simple request, and one that I should have every confidence in you doing, though please excuse me for my wariness given my previous experiences with the utter incompetence of supposed \"professionals.\"
 
 Yours truly,
 Ernest Hayden "
 category = "main"
-day = 1
+day = 4
 hour = 8
 minute = 0
 is_read = false

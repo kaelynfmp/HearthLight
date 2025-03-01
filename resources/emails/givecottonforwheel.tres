@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_shk4p")
 sender = "Jenna Johnson"
-subject = "Want a wheel?"
-contents = "I will give you a spinning wheel in exchange for some cotton!"
+subject = "Want a [img=30px,center]res://resources/sprites/loomPrimitive.png[/img][b]loom[b]?"
+contents = "I will give you a [img=30px,center]res://resources/sprites/loomPrimitive.png[/img][b]loom[/b] in exchange for [i]four[/i] [img=30px,center]res://resources/sprites/cotton.png[/img][b]cotton[/b]! Don't worry if you don't have enough [img=30px,center]res://resources/sprites/seeds.png[/img][b]seeds[/b] or [img=30px,center]res://resources/sprites/water.png[/img][b]water[/b] or whatever, [b]Botsy[/b] has like, everything these days!"
 category = "main"
 day = 2
 hour = 8

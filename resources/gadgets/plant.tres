@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="Gadget" load_steps=14 format=3 uid="uid://cutk2mxl7dhrh"]
 
-[ext_resource type="AudioStream" uid="uid://fvjtpam4ybkn" path="res://resources/audio/Gadgets/watering plant.mp3" id="1_20rc3"]
+[ext_resource type="AudioStream" uid="uid://fvjtpam4ybkn" path="res://resources/audio/Gadgets/watering plant.mp3" id="1_2r84d"]
 [ext_resource type="Script" path="res://scripts/resources/inventory.gd" id="2_csb3v"]
 [ext_resource type="Script" path="res://scripts/resources/slot.gd" id="3_lt256"]
 [ext_resource type="Script" path="res://scripts/resources/item.gd" id="4_u6bql"]
 [ext_resource type="Script" path="res://scripts/resources/gadget.gd" id="5_441cp"]
 [ext_resource type="Resource" uid="uid://bjux8vbxnqlf8" path="res://resources/items/seed.tres" id="5_oeelc"]
+[ext_resource type="Texture2D" uid="uid://baooyamycki3w" path="res://resources/sprites/plantPrimitive.png" id="6_x573d"]
 [ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="6_yp1ak"]
-[ext_resource type="Texture2D" uid="uid://baooyamycki3w" path="res://resources/sprites/plantPrimitive.png" id="7_bjh1q"]
 
 [sub_resource type="Resource" id="Resource_6gsv3"]
 script = ExtResource("3_lt256")
@@ -36,16 +36,16 @@ slots = Array[ExtResource("3_lt256")]([SubResource("Resource_6gsv3"), SubResourc
 
 [sub_resource type="Resource" id="Resource_p2117"]
 script = ExtResource("4_u6bql")
-texture = ExtResource("7_bjh1q")
-name = "Probably a Cotton Plant"
+texture = ExtResource("6_x573d")
+name = "Pot"
 description = "The seeds for these things come in unmarked plastic baggies. You're not gonna ask where they come from."
 max_stack = 1
 price = 25
 
 [resource]
 script = ExtResource("5_441cp")
-texture = ExtResource("7_bjh1q")
-name = "Probably a Cotton Plant"
+texture = ExtResource("6_x573d")
+name = "Pot"
 age = 0
 description = "The seeds for these things come in unmarked plastic baggies. You're not gonna ask where they come from."
 item = SubResource("Resource_p2117")
@@ -54,4 +54,4 @@ produces = true
 inputs = 2
 outputs = 1
 process_time = 1.0
-ambient_sound = ExtResource("1_20rc3")
+ambient_sound = ExtResource("1_2r84d")

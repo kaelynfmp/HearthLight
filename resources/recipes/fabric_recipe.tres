@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="Recipe" load_steps=9 format=3 uid="uid://drnnbha7vb1ho"]
+[gd_resource type="Resource" script_class="Recipe" load_steps=9 format=3 uid="uid://ck1vl0k07mkbf"]
 
-[ext_resource type="Resource" uid="uid://b1benml8tln26" path="res://resources/gadgets/wheel.tres" id="1_dnk28"]
+[ext_resource type="Resource" uid="uid://b1h4vs1btx62h" path="res://resources/gadgets/wheel.tres" id="1_dnk28"]
 [ext_resource type="Script" path="res://scripts/resources/recipe.gd" id="2_l4tvo"]
 [ext_resource type="Script" path="res://scripts/resources/slot.gd" id="2_srkqm"]
 [ext_resource type="Script" path="res://scripts/resources/item.gd" id="3_frhr7"]
@@ -21,7 +21,7 @@ item = ExtResource("5_kgd6c")
 locked = false
 item_filter = Array[ExtResource("3_frhr7")]([])
 bypass_stack = false
-quantity = 1
+quantity = 4
 
 [resource]
 script = ExtResource("2_l4tvo")

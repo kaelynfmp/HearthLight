@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bj67g16p1cic7"]
+[gd_scene load_steps=51 format=3 uid="uid://bj67g16p1cic7"]
 
 [ext_resource type="Script" path="res://scenes/Computer Scenes/item_buy_popup.gd" id="1_cmwl6"]
 [ext_resource type="Texture2D" uid="uid://b44kbp322i3y" path="res://resources/sprites/testimg.png" id="1_p7i7f"]
@@ -8,6 +8,94 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a3scx"]
 bg_color = Color(0.336859, 0.193585, 0.420663, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1g2mv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ttfo8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_llgvx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7g5ps"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q4f4a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tf7mm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mjcil"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wk3g5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f1kc6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2pt1w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rnw2n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7kxm2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_81oyx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_06erm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2wrdy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xse6i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0lpwo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k6v7x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mrmh4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_axbvb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nbxwu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fbeq8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fpg6m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ccu83"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mfcxg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6u6o2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pnx4f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5mf6f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5l6sj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c7dqu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qpl6b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nmku7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x4hvr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e3q01"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sjq1k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2sgud"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pr276"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5bm1q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_miyhc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uq48s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ffk8h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nyy6x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tpyco"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h62e1"]
 
 [node name="ItemBuyPopup" type="Panel" node_paths=PackedStringArray("item_name", "item_desc", "item_picture", "cost_label", "number_label", "minus_button", "plus_button", "buy_button", "decline_button")]
 z_index = 999
@@ -93,6 +181,17 @@ offset_left = 1955.0
 offset_top = 1350.0
 offset_right = 2106.0
 offset_bottom = 1469.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1g2mv")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_ttfo8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_llgvx")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_7g5ps")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_q4f4a")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_tf7mm")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_mjcil")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_wk3g5")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_f1kc6")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_2pt1w")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rnw2n")
 icon = ExtResource("3_b72uc")
 flat = true
 
@@ -102,6 +201,17 @@ offset_left = 1653.0
 offset_top = 1350.0
 offset_right = 1804.0
 offset_bottom = 1469.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7kxm2")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_81oyx")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_06erm")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_2wrdy")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_xse6i")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_0lpwo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_k6v7x")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_mrmh4")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_axbvb")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_nbxwu")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fbeq8")
 icon = ExtResource("4_hi044")
 flat = true
 
@@ -121,6 +231,17 @@ offset_left = -81.0
 offset_top = -2.0
 offset_right = 70.0
 offset_bottom = 117.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fpg6m")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_ccu83")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_mfcxg")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_6u6o2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_pnx4f")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_5mf6f")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5l6sj")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_c7dqu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_qpl6b")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_nmku7")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_x4hvr")
 flat = true
 
 [node name="Plus" type="Button" parent="Panel/Qty"]
@@ -129,6 +250,17 @@ offset_left = 335.0
 offset_top = -2.0
 offset_right = 486.0
 offset_bottom = 117.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_e3q01")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_sjq1k")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_2sgud")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_pr276")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_5bm1q")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_miyhc")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_uq48s")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_ffk8h")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_nyy6x")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_tpyco")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_h62e1")
 flat = true
 
 [node name="ShopQuantity" type="Sprite2D" parent="Panel/Qty"]

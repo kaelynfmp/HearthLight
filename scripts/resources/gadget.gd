@@ -8,12 +8,21 @@ extends Resource
 ## Texture that represents the sprite in-game.
 @export var texture: Texture2D
 ## Name of the gadget as it appears in-game.
-@export var name: String
+@export var name: String:
+	get():
+		if item != null:
+			item.name = name
+		return name
+		
 ## Age of the gadget (Primitive | Industrial | Electrical | Cyber)
 enum Age {PRIMITIVE, INDUSTRIAL, ELECTRICAL, CYBER}
 @export var age: Age
 ## In-game description of the gadget.
-@export_multiline var description: String
+@export_multiline var description: String:
+	get():
+		if item != null:
+			item.description = description
+		return description
 
 @export_category("Properties")
 ## Item corresponding to the gadget for inventory usage
