@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="Gadget" load_steps=11 format=3 uid="uid://ckrgha87ltstr"]
+[gd_resource type="Resource" script_class="Gadget" load_steps=12 format=3 uid="uid://ckrgha87ltstr"]
 
+[ext_resource type="AudioStream" uid="uid://bix4wlk8x4uvo" path="res://resources/audio/Gadgets/rock grinder ambient.mp3" id="1_eqy24"]
 [ext_resource type="Script" path="res://scripts/resources/inventory.gd" id="2_3fj74"]
 [ext_resource type="Script" path="res://scripts/resources/slot.gd" id="3_e3h8r"]
 [ext_resource type="Script" path="res://scripts/resources/item.gd" id="4_ivpgi"]
@@ -45,3 +46,4 @@ produces = true
 inputs = 1
 outputs = 1
 process_time = 6.0
+ambient_sound = ExtResource("1_eqy24")
