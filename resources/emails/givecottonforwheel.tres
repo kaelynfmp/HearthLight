@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://bh4dl6b28jmhc"]
 
 [ext_resource type="Resource" uid="uid://ypmrp0dkke3k" path="res://resources/orders/cottonforwheelorder.tres" id="1_h377p"]
-[ext_resource type="Script" path="res://scripts/resources/email.gd" id="1_shk4p"]
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_shk4p"]
 
 [resource]
 script = ExtResource("1_shk4p")

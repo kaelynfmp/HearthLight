@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="Recipe" load_steps=9 format=3 uid="uid://bynrrcyany4ha"]
 
 [ext_resource type="Resource" uid="uid://dospruqxgfufk" path="res://resources/gadgets/wood_stove.tres" id="1_2ll2a"]
-[ext_resource type="Script" path="res://scripts/resources/slot.gd" id="1_glxqv"]
-[ext_resource type="Script" path="res://scripts/resources/item.gd" id="2_k1dgh"]
-[ext_resource type="Script" path="res://scripts/resources/recipe.gd" id="3_bgo88"]
+[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="1_glxqv"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="2_k1dgh"]
+[ext_resource type="Script" uid="uid://nu8khenfb28n" path="res://scripts/resources/recipe.gd" id="3_bgo88"]
 [ext_resource type="Resource" uid="uid://gw88mo33lg1c" path="res://resources/items/ore.tres" id="3_uvw48"]
 [ext_resource type="Resource" uid="uid://bgmxpne1d7fis" path="res://resources/items/metal.tres" id="5_42oyg"]
 
