@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="Recipe" load_steps=11 format=3 uid="uid://bv8nwf0qdvhvg"]
 
-[ext_resource type="Script" path="res://scripts/resources/slot.gd" id="1_n0kaq"]
+[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="1_n0kaq"]
 [ext_resource type="Resource" uid="uid://cutk2mxl7dhrh" path="res://resources/gadgets/plant.tres" id="1_rukd6"]
-[ext_resource type="Script" path="res://scripts/resources/item.gd" id="2_uc7wd"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="2_uc7wd"]
 [ext_resource type="Resource" uid="uid://bjux8vbxnqlf8" path="res://resources/items/seed.tres" id="3_36rvr"]
-[ext_resource type="Script" path="res://scripts/resources/recipe.gd" id="3_kkl2c"]
+[ext_resource type="Script" uid="uid://nu8khenfb28n" path="res://scripts/resources/recipe.gd" id="3_kkl2c"]
 [ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="5_8cjoj"]
 [ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="6_kv0pa"]
 

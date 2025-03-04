@@ -148,7 +148,7 @@ func load_path(path:String, type:int):
 				file_name = file_name.trim_suffix(".remap")
 			if dir.current_is_dir():
 				load_path(dir.get_current_dir(), type)
-			else:
+			elif file_name.ends_with(".tres"):
 				var full_path:String = path + "/" + file_name
 				if type == Load_Type.RECIPE:
 					recipe_strings.append(full_path)

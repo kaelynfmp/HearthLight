@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://cdwmg5cnw3msy"]
 
-[ext_resource type="Script" path="res://scripts/resources/email.gd" id="1_7tvhl"]
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_7tvhl"]
 [ext_resource type="Resource" uid="uid://bj1l5sln7j83t" path="res://resources/orders/dustforsieveorder.tres" id="1_lv5kb"]
 
 [resource]

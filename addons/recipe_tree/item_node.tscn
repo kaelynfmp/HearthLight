@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://1hfwiu808da6"]
 
-[ext_resource type="Script" path="res://addons/recipe_tree/item_node.gd" id="1_bjkhg"]
+[ext_resource type="Script" uid="uid://xaaa4n215yb" path="res://addons/recipe_tree/item_node.gd" id="1_bjkhg"]
 [ext_resource type="Texture2D" uid="uid://ya3hxo1l73v4" path="res://addons/recipe_tree/input_slot.tres" id="1_fcild"]
 [ext_resource type="Texture2D" uid="uid://df5leiiji8qsy" path="res://addons/recipe_tree/output_slot.tres" id="2_6pqoj"]
 
