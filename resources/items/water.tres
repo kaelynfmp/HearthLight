@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://ksn672of5whf"]
 
-[ext_resource type="Script" path="res://scripts/resources/item.gd" id="1_602me"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="1_602me"]
 [ext_resource type="Texture2D" uid="uid://djvbg0m04mhjr" path="res://resources/sprites/water.png" id="2_3yvfi"]
 
 [resource]

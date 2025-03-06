@@ -451,7 +451,9 @@ func load_path(path:String, type:int) -> void:
 	if dir:
 		dir.list_dir_begin()
 		var file_name: String = dir.get_next()
-		while file_name != "":
+		while true:
+			if file_name == "":
+				break
 			if file_name.ends_with(".remap"):
 				file_name = file_name.trim_suffix(".remap")
 			if file_name.ends_with(".tres"):

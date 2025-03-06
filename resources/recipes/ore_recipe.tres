@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="Recipe" load_steps=13 format=3 uid="uid://56o6vjd0t4id"]
 
 [ext_resource type="Resource" uid="uid://bcp8nvhpucopi" path="res://resources/gadgets/sieve.tres" id="1_h76we"]
-[ext_resource type="Script" path="res://scripts/resources/slot.gd" id="1_xx422"]
-[ext_resource type="Script" path="res://scripts/resources/item.gd" id="2_qg55f"]
-[ext_resource type="Script" path="res://scripts/resources/recipe.gd" id="3_lrpuw"]
+[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="1_xx422"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="2_qg55f"]
+[ext_resource type="Script" uid="uid://nu8khenfb28n" path="res://scripts/resources/recipe.gd" id="3_lrpuw"]
 [ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="3_uta1k"]
 [ext_resource type="Resource" uid="uid://lxvyxcteq6eq" path="res://resources/items/dust.tres" id="5_thame"]
 [ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="6_jsupc"]

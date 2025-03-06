@@ -1,7 +1,11 @@
-[gd_resource type="Resource" script_class="Slot" load_steps=2 format=3 uid="uid://dib04lwiwr4ed"]
+[gd_resource type="Resource" script_class="Slot" load_steps=3 format=3 uid="uid://dib04lwiwr4ed"]
 
-[ext_resource type="Script" path="res://scripts/resources/slot.gd" id="1_f1lcx"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="1_3w21s"]
+[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="1_f1lcx"]
 
 [resource]
 script = ExtResource("1_f1lcx")
+locked = false
+item_filter = Array[ExtResource("1_3w21s")]([])
+bypass_stack = false
 quantity = 0

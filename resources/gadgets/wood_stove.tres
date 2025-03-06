@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="Gadget" load_steps=13 format=3 uid="uid://dospruqxgfufk"]
 
 [ext_resource type="AudioStream" uid="uid://drusyl3idisq2" path="res://resources/audio/Gadgets/Wood Stove Ambient.mp3" id="1_xxyxl"]
-[ext_resource type="Script" path="res://scripts/resources/inventory.gd" id="2_86a58"]
-[ext_resource type="Script" path="res://scripts/resources/slot.gd" id="3_8uasy"]
-[ext_resource type="Script" path="res://scripts/resources/item.gd" id="4_71v7c"]
+[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="2_86a58"]
+[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="3_8uasy"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="4_71v7c"]
 [ext_resource type="Resource" uid="uid://gw88mo33lg1c" path="res://resources/items/ore.tres" id="5_b8tdd"]
-[ext_resource type="Script" path="res://scripts/resources/gadget.gd" id="5_eo3nv"]
+[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="5_eo3nv"]
 [ext_resource type="Texture2D" uid="uid://dvqlsoydwm5ek" path="res://resources/sprites/stovePrimitive.png" id="5_h1ts8"]
 [ext_resource type="AudioStream" uid="uid://bmokqajud42do" path="res://resources/audio/Gadgets/Wood Stove Stop.mp3" id="8_f1ont"]
 

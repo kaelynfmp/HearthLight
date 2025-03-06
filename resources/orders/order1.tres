@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Order" load_steps=6 format=3 uid="uid://hqegir1wr6ur"]
 
 [ext_resource type="Resource" uid="uid://cutk2mxl7dhrh" path="res://resources/gadgets/plant.tres" id="1_e5kn6"]
-[ext_resource type="Script" path="res://scripts/resources/order.gd" id="1_gipnw"]
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_gipnw"]
 [ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="1_yrjei"]
 [ext_resource type="Resource" uid="uid://bjux8vbxnqlf8" path="res://resources/items/seed.tres" id="2_1dwrm"]
 [ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="3_wgu6f"]

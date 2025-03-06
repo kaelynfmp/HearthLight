@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d0p30yxn2catg"]
 
-[ext_resource type="Script" path="res://addons/recipe_tree/spin_box.gd" id="1_6jt4g"]
+[ext_resource type="Script" uid="uid://bmpitaxreo8wn" path="res://addons/recipe_tree/spin_box.gd" id="1_6jt4g"]
 
 [sub_resource type="Theme" id="Theme_yixar"]
 default_font_size = 50
