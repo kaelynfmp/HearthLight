@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Gadget" load_steps=9 format=3 uid="uid://cksgqh7imb27s"]
+[gd_resource type="Resource" script_class="Gadget" load_steps=10 format=3 uid="uid://cksgqh7imb27s"]
 
 [ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_inqyl"]
 [ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_nmkh0"]
@@ -24,14 +24,24 @@ quantity = 0
 script = ExtResource("1_inqyl")
 slots = Array[ExtResource("2_nmkh0")]([SubResource("Resource_n21an"), SubResource("Resource_inqyl")])
 
+[sub_resource type="Resource" id="Resource_nmkh0"]
+script = ExtResource("3_lf8tf")
+texture = ExtResource("4_rcdnk")
+name = "Conveyor Belt"
+description = "A conveyor belt"
+max_stack = 100
+price = 0
+metadata/_custom_type_script = "uid://by7jec2ew2vsl"
+
 [resource]
 script = ExtResource("5_owrvj")
 texture = ExtResource("4_rcdnk")
 name = "Conveyor Belt"
 age = 0
-description = ""
+description = "A conveyor belt"
+item = SubResource("Resource_nmkh0")
 inventory = SubResource("Resource_ggxxm")
-produces = false
+produces = true
 inputs = 1
 outputs = 1
 process_time = 0.0

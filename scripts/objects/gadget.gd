@@ -49,7 +49,7 @@ func create_new_inventory(num_inputs: int, num_outputs: int) -> Inventory:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	inventory = create_new_inventory(gadget_stats.inputs, gadget_stats.output)
+	inventory = create_new_inventory(gadget_stats.inputs, gadget_stats.outputs)
 	character = get_parent().get_parent().get_parent().find_child("Character")
 	base_layer = get_parent()
 	age = gadget_stats.age
