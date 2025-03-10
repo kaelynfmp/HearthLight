@@ -37,6 +37,9 @@ var hovered:bool = false
 
 var recipes:Array[Recipe]
 
+var rear_gadget: StaticBody2D
+var front_gadget: StaticBody2D
+
 func create_new_inventory(num_inputs: int, num_outputs: int) -> Inventory:
 	var inventory: Inventory = Inventory.new()
 	inventory.slots = []
@@ -66,17 +69,23 @@ func _physics_process(delta: float) -> void:
 	if !progressing or (!progressing and selected_recipe != null):
 		if gadget_stats.name == "Conveyor Belt":
 			do_transport()
-		var checked_recipe:Recipe = check_for_valid_recipe()
-		if checked_recipe != null:
-			do_recipe(checked_recipe)
+		else:
+			var checked_recipe:Recipe = check_for_valid_recipe()
+			if checked_recipe != null:
+				do_recipe(checked_recipe)
 	else:
-		var change_rate:float = delta / (gadget_stats.process_time * selected_recipe.processing_multiplier)
+		var change_rate:float = delta / (gadget_stats.process_time * \
+			selected_recipe.processing_multiplier if selected_recipe else 1)
 		if age > GameManager.Age.PRIMITIVE or primitive_selected:
 			progress += change_rate
 		else:
 			progress -= change_rate
 		if progress >= 1:
-			finish_recipe()
+			if gadget_stats.name != "Conveyor Belt":
+				finish_recipe()
+			else:
+				print("Time to finish")
+				finish_transport()
 		elif progress <= 0:
 			cancel_processing()
 	if GameManager.inventory and GameManager.gadget == self and !detect_nearby():
@@ -94,8 +103,31 @@ func _process(_delta: float) -> void:
 		pass
 		
 func do_transport():
-	var rear_gadget_pos = cell_pos + Vector2i(-1, 0)
+	var rear_gadget_pos: Vector2i = cell_pos + Vector2i(-1, 0)
+	rear_gadget = GameManager.room_map[rear_gadget_pos[0] + 6][rear_gadget_pos[1] + 5]
+	if rear_gadget != null:
+		if rear_gadget.inventory.slots[0].item:
+			start_progression_transport()
+			
+func start_progression_transport():
+	play_sound()
+	print("Start transporting")
+	progressing = true
 	
+func finish_transport():
+	print("Finish transporting")
+	pull_inventory()
+	cancel_processing()
+	
+func pull_inventory():
+	if rear_gadget:
+		var rear_inventory: Inventory = rear_gadget.inventory
+		for slot in rear_inventory.slots:
+			if slot.item != null:
+				var item: Item = slot.item
+				rear_inventory.remove_items(item, 1)
+				inventory.insert(item, 1)
+				
 		
 func update_recipes():
 	recipes.clear()
@@ -142,7 +174,8 @@ func cancel_processing():
 	progress = 0.0
 	progressing = false
 	audio_player.stop()
-	recipe_taken = false
+	if gadget_stats.name != "Conveyor Belt":
+		recipe_taken = false
 
 func add_item_to_inventory() -> void:
 	var item: Item = load("res://resources/items/cotton.tres")
