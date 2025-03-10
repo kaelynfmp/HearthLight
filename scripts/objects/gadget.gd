@@ -64,6 +64,8 @@ func _physics_process(delta: float) -> void:
 	if GameManager.gadget == null:
 		primitive_selected = false
 	if !progressing or (!progressing and selected_recipe != null):
+		if gadget_stats.name == "Conveyor Belt":
+			do_transport()
 		var checked_recipe:Recipe = check_for_valid_recipe()
 		if checked_recipe != null:
 			do_recipe(checked_recipe)
@@ -90,6 +92,10 @@ func _process(_delta: float) -> void:
 	else:
 		sprite.material.set("shader_parameter/textureScale", Vector2.ZERO)
 		pass
+		
+func do_transport():
+	var rear_gadget_pos = cell_pos + Vector2i(-1, 0)
+	
 		
 func update_recipes():
 	recipes.clear()

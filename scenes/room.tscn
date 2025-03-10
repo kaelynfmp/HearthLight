@@ -46,15 +46,13 @@ shader_parameter/slant = 0.2
 [node name="Background" type="Sprite2D" parent="."]
 texture_filter = 1
 material = SubResource("ShaderMaterial_4qjpb")
-position = Vector2(63.0001, -1042)
-scale = Vector2(166.563, 111.844)
+scale = Vector2(301.563, 207.721)
 texture = SubResource("GradientTexture2D_f28ma")
 
 [node name="Rain" type="Sprite2D" parent="."]
 texture_filter = 1
 material = SubResource("ShaderMaterial_4aq65")
-position = Vector2(63.0001, -1042)
-scale = Vector2(166.563, 111.844)
+scale = Vector2(301.406, 208.491)
 texture = SubResource("GradientTexture2D_f28ma")
 
 [node name="Tilemap" type="Node2D" parent="."]

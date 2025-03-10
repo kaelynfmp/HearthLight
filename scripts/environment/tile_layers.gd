@@ -90,6 +90,7 @@ func spawnObject(gadget: Gadget, _cell_pos:Vector2i = Vector2i(-99, -99)) -> boo
 		var layer_occupied_name:String = "Layer 1"
 		instance.layer_occupied_name = layer_occupied_name
 		instance.cell_pos = cell_pos
+		print(cell_pos)
 		instance.removing.connect(free_tile)
 		$Base.add_child(instance)
 		tile_map[layer_occupied_name].append(cell_pos + Vector2i(-1, -1))
