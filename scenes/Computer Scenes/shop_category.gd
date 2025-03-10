@@ -13,9 +13,9 @@ func set_category(category: String):
 	selected_category = category
 	category_label.text = selected_category.capitalize()
 	folder = "res://resources/items/"
-	if len(shop_dict[category]) == 0:
+	if len(GameManager.shop_dict[category]) == 0:
 		load_items(category)
-	for item in shop_dict[category]:
+	for item in GameManager.shop_dict[category]:
 		display_items(item)
 	
 
@@ -33,12 +33,14 @@ func load_items(category):
 					var item = load(item_path)
 					if item and item is Item:
 						if GameManager.is_debugging:
+							item = item.duplicate(true)
 							item.price = 0
-							if item not in shop_dict["resources"]:
+							if item not in GameManager.shop_dict["resources"]:
 								shop_dict["resources"].append(item)
 						
-						elif item.name.to_lower() in base_resources and item not in shop_dict["resources"]:
-							shop_dict["resources"].append(item)
+						elif item.name.to_lower() in base_resources and item not in GameManager.shop_dict["resources"]:
+
+							GameManager.shop_dict["resources"].append(item)
 				file_name = dir.get_next()
 			dir.list_dir_end()
 	else:
@@ -55,11 +57,11 @@ func load_items(category):
 					var gadget = load(gadget_path)
 					if GameManager.is_debugging:
 						gadget.item.price = 0
-						if gadget not in shop_dict["gadgets"]:
-							shop_dict["gadgets"].append(gadget.item)
+						if gadget not in GameManager.shop_dict["gadgets"]:
+							GameManager.shop_dict["gadgets"].append(gadget.item)
 					elif gadget and gadget is Gadget and gadget.produces:
-						if gadget.item not in shop_dict["gadgets"]:
-							shop_dict["gadgets"].append(gadget.item)
+						if gadget.item not in GameManager.shop_dict["gadgets"]:
+							GameManager.shop_dict["gadgets"].append(gadget.item)
 				file_name = dir2.get_next()
 			dir2.list_dir_end()
 

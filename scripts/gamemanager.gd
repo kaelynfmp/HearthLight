@@ -6,6 +6,7 @@ signal update_recipes
 signal pause_changed
 signal update_gadgets
 signal take_cursor(Slot)
+signal debug_mode_change
 
 @onready var computer_gadget:Gadget = load("res://resources/gadgets/computer.tres")
 
@@ -22,6 +23,8 @@ var blur:bool = false
 
 # Temp
 var is_placing_gadget: bool = false
+
+var is_debugging: bool = false
 
 var cursor:Node2D
 
@@ -108,6 +111,10 @@ func _process(_delta: float) -> void:
 			change_computer_visibility()
 		else:
 			change_inventory()
+			
+	elif Input.is_action_just_pressed("toggle_debug_mode"):
+		is_debugging = !is_debugging
+		debug_mode_change.emit()
 		
 	blur = inventory
 	is_placing_gadget = false
