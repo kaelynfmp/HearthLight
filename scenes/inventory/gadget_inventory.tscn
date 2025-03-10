@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://oqisw40b03tm"]
 
-[ext_resource type="Script" path="res://scripts/gui/inventory/inventory.gd" id="1_jd4cj"]
-[ext_resource type="Script" path="res://scripts/gui/inventory/slot.gd" id="2_qfple"]
+[ext_resource type="Script" uid="uid://cw5vc1ccqqf01" path="res://scripts/gui/inventory/inventory.gd" id="1_jd4cj"]
+[ext_resource type="Script" uid="uid://bsn56iwimnccg" path="res://scripts/gui/inventory/slot.gd" id="2_qfple"]
 
 [node name="GadgetInventory" type="Control"]
 layout_mode = 3

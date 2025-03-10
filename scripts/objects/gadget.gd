@@ -13,6 +13,8 @@ signal removing(layer_occupied_name:String, cell_pos:Vector2i)
 
 @export var is_holding: bool = false
 
+var location: Vector2i
+
 var character: Node2D
 
 var base_layer: Node2D

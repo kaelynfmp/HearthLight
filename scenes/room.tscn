@@ -1,15 +1,15 @@
 [gd_scene load_steps=15 format=4 uid="uid://gfvpt16hdue1"]
 
-[ext_resource type="Shader" path="res://scripts/shaders/rain.gdshader" id="1_1f3ag"]
+[ext_resource type="Shader" uid="uid://7r383w0xu0ql" path="res://scripts/shaders/rain.gdshader" id="1_1f3ag"]
 [ext_resource type="TileSet" uid="uid://r7x82rdaw80h" path="res://resources/tilesets/room.tres" id="1_lwtf6"]
-[ext_resource type="Script" path="res://scripts/environment/tile_layers.gd" id="1_suw4i"]
+[ext_resource type="Script" uid="uid://cm5vsm77un2s3" path="res://scripts/environment/tile_layers.gd" id="1_suw4i"]
 [ext_resource type="Texture2D" uid="uid://m1v51t3xgjie" path="res://resources/sprites/gridloop.png" id="2_eajwq"]
 [ext_resource type="PackedScene" uid="uid://b353v4ogg13io" path="res://scenes/character.tscn" id="3_aubfo"]
-[ext_resource type="Script" path="res://scripts/objects/character.gd" id="3_jp7id"]
+[ext_resource type="Script" uid="uid://ssdfp5qmbtpv" path="res://scripts/objects/character.gd" id="3_jp7id"]
 [ext_resource type="PackedScene" uid="uid://ooc6jx4dihku" path="res://scenes/marker.tscn" id="4_mnrrm"]
 [ext_resource type="Resource" uid="uid://b1gb7sbupakg4" path="res://resources/character/inventory.tres" id="6_kcpka"]
 [ext_resource type="PackedScene" uid="uid://bpie3rt8qmyxr" path="res://scenes/hud.tscn" id="8_s1rlv"]
-[ext_resource type="Shader" path="res://scripts/shaders/bg.gdshader" id="9_t227l"]
+[ext_resource type="Shader" uid="uid://c1k7h37pvve4h" path="res://scripts/shaders/bg.gdshader" id="9_t227l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4qjpb"]
 shader = ExtResource("9_t227l")

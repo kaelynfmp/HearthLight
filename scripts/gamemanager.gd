@@ -76,10 +76,20 @@ var recipes:Array[Recipe]
 var gadgets:Array[Gadget]
 var gadget_items:Dictionary
 
+var room_map = []
+
+func init_room_map():
+	for i in range(11):
+		var row = []
+		for j in range(11):
+			row.append(null)
+		room_map.append(row)
+
 func _ready() -> void:
 	process_mode = PROCESS_MODE_ALWAYS
 	start_time = Time.get_ticks_msec()
 	seconds_elapsed = 0
+	init_room_map()
 	load_recipes()
 	load_gadgets()
 	
@@ -244,6 +254,11 @@ func set_gadget(p_gadget:StaticBody2D) -> void:
 	if !inventory:
 		change_inventory()
 		inventories.append(p_gadget.inventory)
+	#elif len(inventories) >= 2:
+		#print("Well at least I tried")
+		#inventories.pop_back()
+		#print("First", len(inventories))
+		#inventory_open_state_changed.emit()
 		
 ## Gets the current gadget that corresponds to the item held in the cursor
 func get_gadget_from_cursor() -> Gadget:

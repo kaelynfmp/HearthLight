@@ -5,12 +5,14 @@ var rotation_speed:float = 10
 @onready var output_slot_scene:PackedScene = preload("res://scenes/inventory/output_slot.tscn")
 @onready var creates_progress:TextureRect = find_child("CreatesProgress", true)
 @onready var primitive_button:TextureButton = find_child("PrimitiveButton", true)
-var current_gadget:Gadget
+var current_gadget:StaticBody2D
 
 func _process(delta: float) -> void:
 	visible = GameManager.gadget != null
 	if GameManager.gadget != null:
-		if current_gadget == null:
+		if (current_gadget == null):
+			set_gadget(GameManager.gadget)
+		elif current_gadget != GameManager.gadget:
 			set_gadget(GameManager.gadget)
 		if GameManager.gadget.progressing:
 			creates_progress.visible = true
@@ -28,7 +30,7 @@ func _process(delta: float) -> void:
 	
 func set_gadget(gadget:StaticBody2D):
 	primitive_button.set_rotation(0)
-	current_gadget = gadget.gadget_stats
+	current_gadget = gadget
 	primitive_button.visible = gadget.gadget_stats.age == GameManager.Age.PRIMITIVE
 	
 	var inputs:Array[Slot] = gadget.inventory.slots.filter(func(slot): return !slot.locked)
