@@ -35,9 +35,21 @@ var hovered:bool = false
 
 var recipes:Array[Recipe]
 
+func create_new_inventory(num_inputs: int, num_outputs: int) -> Inventory:
+	var inventory: Inventory = Inventory.new()
+	inventory.slots = []
+	for i in range(num_inputs):
+		var slot: Slot = Slot.new()
+		inventory.slots.append(slot)
+	for i in range(num_outputs):
+		var slot: Slot = Slot.new()
+		slot.locked = true
+		inventory.slots.append(slot)
+	return inventory
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	inventory = gadget_stats.inventory.duplicate()
+	inventory = create_new_inventory(gadget_stats.inputs, gadget_stats.output)
 	character = get_parent().get_parent().get_parent().find_child("Character")
 	base_layer = get_parent()
 	age = gadget_stats.age
