@@ -1,6 +1,7 @@
 extends StaticBody2D
 
 signal removing(layer_occupied_name:String, cell_pos:Vector2i)
+signal spawn_item_on_top(cell_pos: Vector2i, item: Item)
 
 @export var gadget_stats:Gadget
 @onready var audio_player:AudioStreamPlayer2D = find_child("AudioStreamPlayer")
@@ -61,6 +62,8 @@ func _ready() -> void:
 	sprite.texture = gadget_stats.texture
 	audio_player.set_stream(gadget_stats.ambient_sound)
 	update_recipes()
+	if gadget_stats.name == "Conveyor Belt":
+		constant_linear_velocity = Vector2(200, 200)
 	GameManager.update_recipes.connect(update_recipes)
 
 func _physics_process(delta: float) -> void:
@@ -125,6 +128,8 @@ func pull_inventory():
 		for slot in rear_inventory.slots:
 			if slot.item != null:
 				var item: Item = slot.item
+				if rear_gadget.gadget_stats.name != "Conveyor Belt":
+					spawn_item_on_top.emit(cell_pos, item)
 				rear_inventory.remove_items(item, 1)
 				inventory.insert(item, 1)
 				
