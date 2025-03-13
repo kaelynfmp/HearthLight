@@ -1,21 +1,30 @@
-[gd_resource type="Resource" script_class="RecipeTreeProperties" load_steps=43 format=3 uid="uid://bayqmo2156mc4"]
+[gd_resource type="Resource" script_class="RecipeTreeProperties" load_steps=60 format=3 uid="uid://bayqmo2156mc4"]
 
 [ext_resource type="Script" uid="uid://chk8orxbmeds0" path="res://addons/resource_tree/gadget_editor_node.gd" id="1_5e5y2"]
+[ext_resource type="Script" uid="uid://72wdluf0sgvq" path="res://addons/resource_tree/email_editor_node.gd" id="1_qn33u"]
 [ext_resource type="Resource" uid="uid://b1h4vs1btx62h" path="res://resources/gadgets/wheel.tres" id="2_70wi3"]
+[ext_resource type="Resource" uid="uid://cdwmg5cnw3msy" path="res://resources/emails/dustforsieve.tres" id="2_ds5gw"]
 [ext_resource type="Script" uid="uid://72s4vlpmyvjo" path="res://addons/resource_tree/resource_tree_properties.gd" id="2_e0emm"]
 [ext_resource type="Script" uid="uid://c71bj8yw74134" path="res://addons/resource_tree/recipe_editor_node.gd" id="2_hx4k4"]
 [ext_resource type="Resource" uid="uid://cutk2mxl7dhrh" path="res://resources/gadgets/plant.tres" id="3_d1v0y"]
+[ext_resource type="Resource" uid="uid://dynvawdp111sl" path="res://resources/emails/fabricforgrinder.tres" id="3_ds5gw"]
 [ext_resource type="Script" uid="uid://ctnn0q4bapqqp" path="res://addons/resource_tree/item_editor_node.gd" id="3_xi7dl"]
 [ext_resource type="Resource" uid="uid://ckrgha87ltstr" path="res://resources/gadgets/hand_grinder.tres" id="4_e1cam"]
 [ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="4_lhqeo"]
+[ext_resource type="Resource" uid="uid://dnfk64uckrc13" path="res://resources/emails/finalemail.tres" id="4_syuws"]
+[ext_resource type="Resource" uid="uid://bh4dl6b28jmhc" path="res://resources/emails/givecottonforwheel.tres" id="5_gubxu"]
 [ext_resource type="Resource" uid="uid://bcp8nvhpucopi" path="res://resources/gadgets/sieve.tres" id="5_odkxj"]
 [ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="5_pyano"]
 [ext_resource type="Resource" uid="uid://dospruqxgfufk" path="res://resources/gadgets/wood_stove.tres" id="6_n8q18"]
+[ext_resource type="Resource" uid="uid://cof21obwyvl4v" path="res://resources/emails/introemail.tres" id="6_pmsyv"]
 [ext_resource type="Resource" uid="uid://ccitfm40o5ju2" path="res://resources/gadgets/computer.tres" id="7_aov6n"]
+[ext_resource type="Resource" uid="uid://dmneq4jdepfsq" path="res://resources/emails/metalformoney.tres" id="7_kmc8f"]
 [ext_resource type="Resource" uid="uid://ck1vl0k07mkbf" path="res://resources/recipes/fabric_recipe.tres" id="7_wxbkn"]
 [ext_resource type="Resource" uid="uid://bjux8vbxnqlf8" path="res://resources/items/seed.tres" id="7_x6i4h"]
 [ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="8_3ht0r"]
 [ext_resource type="Resource" uid="uid://bv8nwf0qdvhvg" path="res://resources/recipes/cotton_recipe.tres" id="8_kf0bi"]
+[ext_resource type="Resource" uid="uid://r3prgkwmqlck" path="res://resources/emails/oreforstove.tres" id="8_s82cm"]
+[ext_resource type="Resource" uid="uid://sc3eyh2thm3t" path="res://resources/emails/secondemail.tres" id="9_53ac7"]
 [ext_resource type="Resource" uid="uid://cq5l4dfcn3c5t" path="res://resources/items/rock.tres" id="10_tvqdm"]
 [ext_resource type="Resource" uid="uid://lxvyxcteq6eq" path="res://resources/items/dust.tres" id="11_awnmn"]
 [ext_resource type="Resource" uid="uid://bbdry6mb2qbxh" path="res://resources/recipes/dust_recipe.tres" id="12_f56e7"]
@@ -23,6 +32,94 @@
 [ext_resource type="Resource" uid="uid://bgmxpne1d7fis" path="res://resources/items/metal.tres" id="15_5dwtj"]
 [ext_resource type="Resource" uid="uid://56o6vjd0t4id" path="res://resources/recipes/ore_recipe.tres" id="16_cwixx"]
 [ext_resource type="Resource" uid="uid://bynrrcyany4ha" path="res://resources/recipes/ingot_recipe.tres" id="19_mx342"]
+
+[sub_resource type="Resource" id="Resource_syuws"]
+script = ExtResource("1_qn33u")
+email = ExtResource("2_ds5gw")
+x = 0
+y = 0
+prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([])
+order_input_nodes = Array[Resource]([])
+order_input_quantities = Array[int]([])
+order_output_nodes = Array[Resource]([])
+order_output_quantities = Array[int]([])
+
+[sub_resource type="Resource" id="Resource_gubxu"]
+script = ExtResource("1_qn33u")
+email = ExtResource("3_ds5gw")
+x = 0
+y = 0
+prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([])
+order_input_nodes = Array[Resource]([])
+order_input_quantities = Array[int]([])
+order_output_nodes = Array[Resource]([])
+order_output_quantities = Array[int]([])
+
+[sub_resource type="Resource" id="Resource_pmsyv"]
+script = ExtResource("1_qn33u")
+email = ExtResource("4_syuws")
+x = 0
+y = 0
+prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([])
+order_input_nodes = Array[Resource]([])
+order_input_quantities = Array[int]([])
+order_output_nodes = Array[Resource]([])
+order_output_quantities = Array[int]([])
+
+[sub_resource type="Resource" id="Resource_kmc8f"]
+script = ExtResource("1_qn33u")
+email = ExtResource("5_gubxu")
+x = 0
+y = 0
+prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([])
+order_input_nodes = Array[Resource]([])
+order_input_quantities = Array[int]([])
+order_output_nodes = Array[Resource]([])
+order_output_quantities = Array[int]([])
+
+[sub_resource type="Resource" id="Resource_s82cm"]
+script = ExtResource("1_qn33u")
+email = ExtResource("6_pmsyv")
+x = 0
+y = 0
+prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([])
+order_input_nodes = Array[Resource]([])
+order_input_quantities = Array[int]([])
+order_output_nodes = Array[Resource]([])
+order_output_quantities = Array[int]([])
+
+[sub_resource type="Resource" id="Resource_53ac7"]
+script = ExtResource("1_qn33u")
+email = ExtResource("7_kmc8f")
+x = 0
+y = 0
+prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([])
+order_input_nodes = Array[Resource]([])
+order_input_quantities = Array[int]([])
+order_output_nodes = Array[Resource]([])
+order_output_quantities = Array[int]([])
+
+[sub_resource type="Resource" id="Resource_l41o2"]
+script = ExtResource("1_qn33u")
+email = ExtResource("8_s82cm")
+x = 0
+y = 0
+prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([])
+order_input_nodes = Array[Resource]([])
+order_input_quantities = Array[int]([])
+order_output_nodes = Array[Resource]([])
+order_output_quantities = Array[int]([])
+
+[sub_resource type="Resource" id="Resource_j4adb"]
+script = ExtResource("1_qn33u")
+email = ExtResource("9_53ac7")
+x = 0
+y = 0
+prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([])
+order_input_nodes = Array[Resource]([])
+order_input_quantities = Array[int]([])
+order_output_nodes = Array[Resource]([])
+order_output_quantities = Array[int]([])
 
 [sub_resource type="Resource" id="Resource_gsbeb"]
 script = ExtResource("1_5e5y2")
@@ -158,3 +255,4 @@ script = ExtResource("2_e0emm")
 recipe_nodes = Array[ExtResource("2_hx4k4")]([SubResource("Resource_xxos5"), SubResource("Resource_bf7ox"), SubResource("Resource_qy74w"), SubResource("Resource_gl4sg"), SubResource("Resource_h1khb")])
 gadget_nodes = Array[ExtResource("1_5e5y2")]([SubResource("Resource_gsbeb"), SubResource("Resource_8w8ri"), SubResource("Resource_hh24p"), SubResource("Resource_5t4gc"), SubResource("Resource_ycsiu"), SubResource("Resource_vnq76")])
 item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_o22c4"), SubResource("Resource_lxf7n"), SubResource("Resource_0uxyg"), SubResource("Resource_nos87"), SubResource("Resource_lashh"), SubResource("Resource_xcrkp"), SubResource("Resource_pio1n"), SubResource("Resource_qo8go")])
+email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_syuws"), SubResource("Resource_gubxu"), SubResource("Resource_pmsyv"), SubResource("Resource_kmc8f"), SubResource("Resource_s82cm"), SubResource("Resource_53ac7"), SubResource("Resource_l41o2"), SubResource("Resource_j4adb")])

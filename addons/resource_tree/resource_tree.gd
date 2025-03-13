@@ -10,13 +10,15 @@ var item_strings:PackedStringArray
 var items:Array[Item]
 var prev_gadgets:Array[Gadget]
 var prev_items:Array[Item]
+var email_strings:PackedStringArray
+var emails:Array[Email]
 
 var gadget_menu:PopupMenu
 var item_menu:PopupMenu
 
 var properties:RecipeTreeProperties = preload("res://addons/resource_tree/resource_tree_properties.tres")
 enum TYPE {
-	RECIPE, GADGET, ITEM
+	RECIPE, GADGET, ITEM, EMAIL
 }
 
 var graph_edit:GraphEdit
@@ -369,6 +371,7 @@ func load_recipes() -> void:
 	load_path("res://resources/recipes", TYPE.RECIPE)
 	load_gadgets()
 	load_items()
+	load_emails()
 	if !recipe_strings.is_empty():
 		for recipe_string in recipe_strings:
 			recipes.append(load(recipe_string))
@@ -445,6 +448,33 @@ func validate_items() -> void:
 		properties.item_nodes.remove_at(remove_items[index] - index) # by minusing by the index, we account for the index shifting down every removal
 	if !remove_items.is_empty():
 		save_properties() # only save if items were removed, to avoid infinite loops
+
+func load_emails() -> void:
+	email_strings.clear()
+	emails.clear()
+	load_path("res://resources/emails", TYPE.EMAIL)
+	if !email_strings.is_empty():
+		for email_string in email_strings:
+			emails.append(load(email_string))
+	for email in emails:
+		if properties.email_nodes.filter(func(email_node): return email_node.email == email).is_empty():
+			# If there does not exist an email node for the given email
+			add_email(email)
+	for index in range(properties.email_nodes.size()):
+		# validate if email exists
+		var email_node:EmailEditorNode = properties.email_nodes[index]
+		var email:Email = email_node.email
+		if email not in emails:
+			properties.email_nodes.remove_at(index)
+			save_properties()
+			continue
+		if !email.prerequisite_emails.is_empty():
+			for prerequisite_email:Email in email.prerequisite_emails:
+				if prerequisite_email != null:
+					if prerequisite_email in emails:
+						if properties.email_nodes.filter(func(email_node): return email_node.email == prerequisite_email).is_empty():
+							recipe_node.email_nodes.append(add_email(email))
+							
 		
 func load_path(path:String, type:int) -> void:
 	var dir: DirAccess = DirAccess.open(path)
@@ -467,12 +497,14 @@ func load_path(path:String, type:int) -> void:
 						gadget_strings.append(full_path)
 					elif type == TYPE.ITEM:
 						item_strings.append(full_path)
+					elif type == TYPE.EMAIL:
+						email_strings.append(full_path)
 				# found recipe
 				file_name = dir.get_next()
 		dir.list_dir_end()
 	else:
 		assert(dir != null, "Directory not found! Should be at 'res://resources/" +
-		("recipes" if type == TYPE.RECIPE else "gadgets" if type == TYPE.GADGET else "items") + "'")
+		("recipes" if type == TYPE.RECIPE else "gadgets" if type == TYPE.GADGET else "items" if type == TYPE.ITEM else "emails") + "'")
 
 func add_recipe(_recipe:Recipe) -> RecipeEditorNode:
 	var new_recipe:RecipeEditorNode = RecipeEditorNode.new()
@@ -501,6 +533,15 @@ func add_item(item:Item) -> ItemEditorNode:
 	properties.item_nodes.append(new_item)
 	save_properties()
 	return new_item
+	
+func add_email(email:Email) -> EmailEditorNode:
+	var new_email:EmailEditorNode = EmailEditorNode.new()
+	new_email.x = 0
+	new_email.y = 0
+	new_email.email = email
+	properties.email_nodes.append(new_email)
+	save_properties()
+	return new_email
 	
 func remove_node(_node:GraphNode):
 	var connections:Array = graph_edit.get_connection_list().filter(func(connection): return connection.from_node == _node.get_name())
