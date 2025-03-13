@@ -10,6 +10,7 @@ var category: String
 # orders (active only/unopened), main (main lore), junk, social, archive (completed + declined orders)
 
 @export_category("Internal Details")
+@export var prerequisite_emails: Array[Email]
 @export_range(0, 30, 1) var day: int # min 0, max 30, step 1
 @export var hour: int
 @export var minute: int
