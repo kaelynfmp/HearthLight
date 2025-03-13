@@ -14,7 +14,7 @@ var prev_items:Array[Item]
 var gadget_menu:PopupMenu
 var item_menu:PopupMenu
 
-var properties:RecipeTreeProperties = preload("res://addons/recipe_tree/recipe_tree_properties.tres")
+var properties:RecipeTreeProperties = preload("res://addons/resource_tree/resource_tree_properties.tres")
 enum TYPE {
 	RECIPE, GADGET, ITEM
 }
@@ -35,15 +35,15 @@ var item_popup:PopupPanel
 var gadget_popup:PopupPanel
 
 func _enter_tree() -> void:
-	recipe_node = load("res://addons/recipe_tree/recipe_node.tscn")
-	gadget_node = load("res://addons/recipe_tree/gadget_node.tscn")
-	item_node = load("res://addons/recipe_tree/item_node.tscn")
-	menu = load("res://addons/recipe_tree/recipe_menu.tscn")
-	recipe_popup_scene = load("res://addons/recipe_tree/recipe_popup.tscn")
-	item_popup_scene = load("res://addons/recipe_tree/item_popup.tscn")
-	gadget_popup_scene = load("res://addons/recipe_tree/gadget_popup.tscn")
+	recipe_node = load("res://addons/resource_tree/recipe_node.tscn")
+	gadget_node = load("res://addons/resource_tree/gadget_node.tscn")
+	item_node = load("res://addons/resource_tree/item_node.tscn")
+	menu = load("res://addons/resource_tree/recipe_menu.tscn")
+	recipe_popup_scene = load("res://addons/resource_tree/recipe_popup.tscn")
+	item_popup_scene = load("res://addons/resource_tree/item_popup.tscn")
+	gadget_popup_scene = load("res://addons/resource_tree/gadget_popup.tscn")
 	
-	control = preload("res://addons/recipe_tree/recipe_tree.tscn").instantiate()
+	control = preload("res://addons/resource_tree/resource_tree.tscn").instantiate()
 	EditorInterface.get_editor_main_screen().add_child(control)
 	control.hide()
 	
@@ -73,7 +73,7 @@ func _make_visible(visible):
 	control.visible = visible
 
 func _get_plugin_name() -> String:
-	return "Recipe Tree"
+	return "Resource Tree"
 
 func _get_plugin_icon() -> Texture2D:
 	return EditorInterface.get_editor_theme().get_icon("GraphEdit", "EditorIcons")

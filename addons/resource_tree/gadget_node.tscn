@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dpmjijr118rvi"]
 
-[ext_resource type="Script" uid="uid://cja025xg4uvl0" path="res://addons/recipe_tree/gadget_node.gd" id="1_3ryx3"]
+[ext_resource type="Script" uid="uid://cja025xg4uvl0" path="res://addons/resource_tree/gadget_node.gd" id="1_3ryx3"]
 
 [sub_resource type="Gradient" id="Gradient_3fidg"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)

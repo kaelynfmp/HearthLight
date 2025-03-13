@@ -10,7 +10,7 @@ signal kill(node:GraphNode)
 @onready var spinbox:PackedScene
 
 func _ready() -> void:
-	spinbox = load("res://addons/recipe_tree/spin_box.tscn")
+	spinbox = load("res://addons/resource_tree/spin_box.tscn")
 
 func _process(_delta: float) -> void:
 	if recipe_node != null:
@@ -44,7 +44,7 @@ func _process(_delta: float) -> void:
 					new_node.custom_minimum_size = slot_distance # Distance between slots
 					add_child(new_node)
 					# Index + 1 here because we're ignoring index 0 because it's my UI node lol
-					set_slot(index + 1, true, 0, Color.hex(0xa576ffff), false, 0, Color(), load("res://addons/recipe_tree/input_slot.tres"))
+					set_slot(index + 1, true, 0, Color.hex(0xa576ffff), false, 0, Color(), load("res://addons/resource_tree/input_slot.tres"))
 					var input:Slot = inputs[index]
 					var new_slot:PanelContainer = load("res://scenes/inventory/input_slot.tscn").instantiate()
 					new_slot.set_slot(input)
@@ -77,7 +77,7 @@ func _process(_delta: float) -> void:
 				add_child(new_node)
 				# + 1 here because we're ignoring index 0 because it's my UI node
 				# Also + input size because it is cumulative
-				set_slot(recipe_node.recipe.inputs.size() + 1, true, 1, Color.hex(0xffae76ff), false, 0, Color(), load("res://addons/recipe_tree/input_slot.tres"))
+				set_slot(recipe_node.recipe.inputs.size() + 1, true, 1, Color.hex(0xffae76ff), false, 0, Color(), load("res://addons/resource_tree/input_slot.tres"))
 
 			var output_slot_nodes:Array = get_children().filter(func(child): return "OutSlot" in child.get_name())
 			if re_init_slots or output_slot_nodes.size() != recipe_node.recipe.outputs.size():
@@ -100,7 +100,7 @@ func _process(_delta: float) -> void:
 					add_child(new_node)
 					# Index + 2 here because we're ignoring index 0 because it's my UI node, and the gadget node is in the middle
 					# Also + input size because it is cumulative
-					set_slot(index + 2 + recipe_node.recipe.inputs.size(), true, 0, Color.hex(0x76ff9aff), false, 0, Color(), load("res://addons/recipe_tree/input_slot.tres"))
+					set_slot(index + 2 + recipe_node.recipe.inputs.size(), true, 0, Color.hex(0x76ff9aff), false, 0, Color(), load("res://addons/resource_tree/input_slot.tres"))
 
 					var output:Slot = outputs[index]
 					var new_slot:PanelContainer = load("res://scenes/inventory/output_slot.tscn").instantiate()

@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="RecipeTreeProperties" load_steps=43 format=3 uid="uid://bayqmo2156mc4"]
 
-[ext_resource type="Script" uid="uid://chk8orxbmeds0" path="res://addons/recipe_tree/gadget_editor_node.gd" id="1_5e5y2"]
+[ext_resource type="Script" uid="uid://chk8orxbmeds0" path="res://addons/resource_tree/gadget_editor_node.gd" id="1_5e5y2"]
 [ext_resource type="Resource" uid="uid://b1h4vs1btx62h" path="res://resources/gadgets/wheel.tres" id="2_70wi3"]
-[ext_resource type="Script" uid="uid://72s4vlpmyvjo" path="res://addons/recipe_tree/recipe_tree_properties.gd" id="2_e0emm"]
-[ext_resource type="Script" uid="uid://c71bj8yw74134" path="res://addons/recipe_tree/recipe_editor_node.gd" id="2_hx4k4"]
+[ext_resource type="Script" uid="uid://72s4vlpmyvjo" path="res://addons/resource_tree/resource_tree_properties.gd" id="2_e0emm"]
+[ext_resource type="Script" uid="uid://c71bj8yw74134" path="res://addons/resource_tree/recipe_editor_node.gd" id="2_hx4k4"]
 [ext_resource type="Resource" uid="uid://cutk2mxl7dhrh" path="res://resources/gadgets/plant.tres" id="3_d1v0y"]
-[ext_resource type="Script" uid="uid://ctnn0q4bapqqp" path="res://addons/recipe_tree/item_editor_node.gd" id="3_xi7dl"]
+[ext_resource type="Script" uid="uid://ctnn0q4bapqqp" path="res://addons/resource_tree/item_editor_node.gd" id="3_xi7dl"]
 [ext_resource type="Resource" uid="uid://ckrgha87ltstr" path="res://resources/gadgets/hand_grinder.tres" id="4_e1cam"]
 [ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="4_lhqeo"]
 [ext_resource type="Resource" uid="uid://bcp8nvhpucopi" path="res://resources/gadgets/sieve.tres" id="5_odkxj"]
@@ -57,8 +57,8 @@ y = 3180
 [sub_resource type="Resource" id="Resource_vnq76"]
 script = ExtResource("1_5e5y2")
 gadget = ExtResource("7_aov6n")
-x = 240
-y = -1980
+x = 260
+y = -2000
 
 [sub_resource type="Resource" id="Resource_o22c4"]
 script = ExtResource("3_xi7dl")
@@ -111,8 +111,8 @@ y = 3500
 [sub_resource type="Resource" id="Resource_xxos5"]
 script = ExtResource("2_hx4k4")
 recipe = ExtResource("7_wxbkn")
-x = 140
-y = -420
+x = 160
+y = -460
 gadget_node = SubResource("Resource_gsbeb")
 input_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_lxf7n")])
 output_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_o22c4")])
@@ -121,7 +121,7 @@ output_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_o22c4")
 script = ExtResource("2_hx4k4")
 recipe = ExtResource("8_kf0bi")
 x = 160
-y = -1440
+y = -1560
 gadget_node = SubResource("Resource_8w8ri")
 input_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_0uxyg"), SubResource("Resource_nos87")])
 output_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_lxf7n")])
@@ -129,8 +129,8 @@ output_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_lxf7n")
 [sub_resource type="Resource" id="Resource_qy74w"]
 script = ExtResource("2_hx4k4")
 recipe = ExtResource("12_f56e7")
-x = 120
-y = 600
+x = 140
+y = 560
 gadget_node = SubResource("Resource_hh24p")
 input_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_lashh")])
 output_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_xcrkp")])
@@ -138,17 +138,17 @@ output_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_xcrkp")
 [sub_resource type="Resource" id="Resource_gl4sg"]
 script = ExtResource("2_hx4k4")
 recipe = ExtResource("16_cwixx")
-x = 100
-y = 1600
+x = 120
+y = 1560
 gadget_node = SubResource("Resource_5t4gc")
-input_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_xcrkp"), SubResource("Resource_o22c4"), SubResource("Resource_nos87")])
+input_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_nos87"), SubResource("Resource_o22c4"), SubResource("Resource_xcrkp")])
 output_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_pio1n")])
 
 [sub_resource type="Resource" id="Resource_h1khb"]
 script = ExtResource("2_hx4k4")
 recipe = ExtResource("19_mx342")
-x = 120
-y = 2620
+x = 80
+y = 2660
 gadget_node = SubResource("Resource_ycsiu")
 input_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_pio1n")])
 output_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_qo8go")])

@@ -8,7 +8,7 @@ signal moved(to:Vector2, item_node:ItemEditorNode)
 signal kill
 
 func _ready() -> void:
-	close_button = load("res://addons/recipe_tree/close_button.tscn")
+	close_button = load("res://addons/resource_tree/close_button.tscn")
 	var close_node:TextureButton = close_button.instantiate()
 	get_titlebar_hbox().add_child(close_node)
 	close_node.pressed.connect(close_pressed)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bselj043c4bga"]
 
-[ext_resource type="Texture2D" uid="uid://dqxl86a2mb3fe" path="res://addons/recipe_tree/close.png" id="1_1er1j"]
-[ext_resource type="Texture2D" uid="uid://ddlwx7rf4h2uw" path="res://addons/recipe_tree/close_pressed.png" id="2_r1nw8"]
+[ext_resource type="Texture2D" uid="uid://dqxl86a2mb3fe" path="res://addons/resource_tree/close.png" id="1_1er1j"]
+[ext_resource type="Texture2D" uid="uid://ddlwx7rf4h2uw" path="res://addons/resource_tree/close_pressed.png" id="2_r1nw8"]
 
 [node name="CloseButton" type="TextureButton"]
 custom_minimum_size = Vector2(35, 33)
