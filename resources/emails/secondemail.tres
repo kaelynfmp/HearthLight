@@ -16,6 +16,7 @@ All I require is for you to process the [img=30px,center]res://resources/sprites
 Yours truly,
 Ernest Hayden "
 category = "main"
+prerequisite_emails = Array[ExtResource("1_l8p6f")]([])
 day = 4
 hour = 8
 minute = 0

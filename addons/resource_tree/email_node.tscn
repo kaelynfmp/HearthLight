@@ -1,9 +1,10 @@
-[gd_scene load_steps=32 format=3 uid="uid://c8ce3j60pfaxs"]
+[gd_scene load_steps=53 format=3 uid="uid://dn25n37cbk4p6"]
 
-[ext_resource type="Texture2D" uid="uid://b3f53pdbhlfkg" path="res://resources/sprites/emails/emailPreview.png" id="1_honka"]
-[ext_resource type="Texture2D" uid="uid://dnvrhn4af2nix" path="res://resources/sprites/emails/emailDropdown.png" id="2_bsp6a"]
-[ext_resource type="Texture2D" uid="uid://dph2wxrwua005" path="res://resources/sprites/computer/computerCancel.png" id="3_jigf7"]
-[ext_resource type="Texture2D" uid="uid://cwxs2j52xgre8" path="res://resources/sprites/computer/computerAccept.png" id="4_kik5e"]
+[ext_resource type="Texture2D" uid="uid://b3f53pdbhlfkg" path="res://resources/sprites/emails/emailPreview.png" id="1_1j7hc"]
+[ext_resource type="Script" uid="uid://dbrky7wchvte8" path="res://addons/resource_tree/email_node.gd" id="1_t2q0s"]
+[ext_resource type="Texture2D" uid="uid://dnvrhn4af2nix" path="res://resources/sprites/emails/emailDropdown.png" id="2_t2q0s"]
+[ext_resource type="Texture2D" uid="uid://dph2wxrwua005" path="res://resources/sprites/computer/computerCancel.png" id="3_2h2h1"]
+[ext_resource type="Texture2D" uid="uid://cwxs2j52xgre8" path="res://resources/sprites/computer/computerAccept.png" id="4_2hvs7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_honka"]
 
@@ -13,8 +14,48 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kik5e"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t2q0s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2h2h1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2hvs7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nndyg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sjhxk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d5xh2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7coub"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t3n0n"]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pg1eh"]
-texture = ExtResource("2_bsp6a")
+texture = ExtResource("2_t2q0s")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2crda"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rdwmc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4p1a2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_edwih"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vd82d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_88btd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4cv14"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1kg04"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w165h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t7cwc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_52cx8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bjt0m"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ejx20"]
 
@@ -76,17 +117,20 @@ slot/0/right_type = 0
 slot/0/right_color = Color(1, 1, 1, 1)
 slot/0/right_icon = null
 slot/0/draw_stylebox = true
+script = ExtResource("1_t2q0s")
 
 [node name="EmailContainer" type="Control" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="HeaderSprite" type="Sprite2D" parent="EmailContainer"]
 position = Vector2(961.5, 130.75)
 scale = Vector2(1.66406, 1.69463)
-texture = ExtResource("1_honka")
+texture = ExtResource("1_1j7hc")
 
 [node name="Sender" type="RichTextLabel" parent="EmailContainer"]
+layout_mode = 0
 offset_left = 67.0
 offset_top = 69.0
 offset_right = 531.0
@@ -97,10 +141,15 @@ theme_override_font_sizes/italics_font_size = 40
 theme_override_font_sizes/mono_font_size = 40
 theme_override_font_sizes/normal_font_size = 40
 theme_override_font_sizes/bold_font_size = 40
+theme_override_styles/fill = SubResource("StyleBoxEmpty_t2q0s")
+theme_override_styles/background = SubResource("StyleBoxEmpty_2h2h1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2hvs7")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nndyg")
 bbcode_enabled = true
 text = "Sender"
 
 [node name="Subject" type="RichTextLabel" parent="EmailContainer"]
+layout_mode = 0
 offset_left = 623.0
 offset_top = 77.0
 offset_right = 1216.0
@@ -111,6 +160,10 @@ theme_override_font_sizes/italics_font_size = 35
 theme_override_font_sizes/mono_font_size = 35
 theme_override_font_sizes/normal_font_size = 35
 theme_override_font_sizes/bold_font_size = 35
+theme_override_styles/fill = SubResource("StyleBoxEmpty_sjhxk")
+theme_override_styles/background = SubResource("StyleBoxEmpty_d5xh2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7coub")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_t3n0n")
 bbcode_enabled = true
 text = "Subject line"
 
@@ -140,6 +193,7 @@ offset_right = -16.0
 offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_pg1eh")
 
 [node name="Content" type="RichTextLabel" parent="EmailContainer/Panel"]
@@ -154,6 +208,10 @@ theme_override_font_sizes/italics_font_size = 30
 theme_override_font_sizes/mono_font_size = 30
 theme_override_font_sizes/normal_font_size = 30
 theme_override_font_sizes/bold_font_size = 30
+theme_override_styles/fill = SubResource("StyleBoxEmpty_2crda")
+theme_override_styles/background = SubResource("StyleBoxEmpty_rdwmc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4p1a2")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_edwih")
 bbcode_enabled = true
 text = "This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. "
 
@@ -161,7 +219,7 @@ text = "This is the email contents. This is the email contents. This is the emai
 layout_mode = 0
 offset_left = 323.0
 offset_top = 168.0
-offset_right = 965.0
+offset_right = 787.0
 offset_bottom = 253.0
 mouse_filter = 2
 theme_override_font_sizes/bold_italics_font_size = 40
@@ -169,6 +227,10 @@ theme_override_font_sizes/italics_font_size = 40
 theme_override_font_sizes/mono_font_size = 40
 theme_override_font_sizes/normal_font_size = 40
 theme_override_font_sizes/bold_font_size = 40
+theme_override_styles/fill = SubResource("StyleBoxEmpty_vd82d")
+theme_override_styles/background = SubResource("StyleBoxEmpty_88btd")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4cv14")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1kg04")
 bbcode_enabled = true
 text = "Sender"
 
@@ -177,13 +239,17 @@ layout_mode = 0
 offset_left = 795.0
 offset_top = 168.0
 offset_right = 1814.0
-offset_bottom = 281.0
+offset_bottom = 254.0
 mouse_filter = 2
 theme_override_font_sizes/bold_italics_font_size = 40
 theme_override_font_sizes/italics_font_size = 40
 theme_override_font_sizes/mono_font_size = 40
 theme_override_font_sizes/normal_font_size = 40
 theme_override_font_sizes/bold_font_size = 40
+theme_override_styles/fill = SubResource("StyleBoxEmpty_w165h")
+theme_override_styles/background = SubResource("StyleBoxEmpty_t7cwc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_52cx8")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bjt0m")
 bbcode_enabled = true
 text = "Subject but this is a very long subject yes ok cool"
 
@@ -205,7 +271,7 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_spiaa")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_fvsb0")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_cern5")
 disabled = true
-icon = ExtResource("3_jigf7")
+icon = ExtResource("3_2h2h1")
 flat = true
 
 [node name="Accept" type="Button" parent="EmailContainer/Panel"]
@@ -225,5 +291,8 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_uta7k")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_o00vc")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_s2ncr")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_c3eu6")
-icon = ExtResource("4_kik5e")
+icon = ExtResource("4_2hvs7")
 flat = true
+
+[connection signal="dragged" from="." to="." method="_on_dragged"]
+[connection signal="node_selected" from="." to="." method="_on_node_selected"]

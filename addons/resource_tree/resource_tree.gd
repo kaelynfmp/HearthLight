@@ -27,6 +27,7 @@ var menu_node:MenuBar
 var recipe_node:PackedScene
 var gadget_node:PackedScene
 var item_node:PackedScene
+var email_node:PackedScene
 var menu:PackedScene
 var recipe_popup_scene:PackedScene
 var item_popup_scene:PackedScene
@@ -40,6 +41,7 @@ func _enter_tree() -> void:
 	recipe_node = load("res://addons/resource_tree/recipe_node.tscn")
 	gadget_node = load("res://addons/resource_tree/gadget_node.tscn")
 	item_node = load("res://addons/resource_tree/item_node.tscn")
+	email_node = load("res://addons/resource_tree/email_node.tscn")
 	menu = load("res://addons/resource_tree/recipe_menu.tscn")
 	recipe_popup_scene = load("res://addons/resource_tree/recipe_popup.tscn")
 	item_popup_scene = load("res://addons/resource_tree/item_popup.tscn")
@@ -213,6 +215,7 @@ func _process(_delta:float) -> void:
 	populate_nodes("recipe_node", properties.recipe_nodes, recipe_node)
 	populate_nodes("gadget_node", properties.gadget_nodes, gadget_node)
 	populate_nodes("item_node", properties.item_nodes, item_node)
+	populate_nodes("email_node", properties.email_nodes, email_node)
 	if (prev_items != items):
 		prev_items = items.duplicate()
 		populate_menu_items()
@@ -325,6 +328,12 @@ func _process(_delta:float) -> void:
 						# Output
 						if from_node.item_node not in node.recipe_node.output_item_nodes:
 							graph_edit.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
+
+	graph_nodes = graph_edit.get_children().filter(func(child): return child is GraphNode and "graph_node" in child)
+	for node in graph_nodes:
+		var connections:Array = graph_edit.get_connection_list().filter(func(connection): return connection.to_node == node.get_name())
+		if node.get_input_port_count() == node.email_node.email.prerequisite_emails.size() + ((node.email_node.email.order.required_items.size() + node.email_node.email.order.given_items.size()) if node.email_node.email.order != null else 0) + 1:
+			pass
 		
 
 ## Arbitrarily populate nodes with a given variable name for subnode (recipe_node, graph_node, item_node)
@@ -361,6 +370,8 @@ func node_moved(to:Vector2, node) -> void:
 		changed_node = properties.gadget_nodes[properties.gadget_nodes.find(node)]
 	elif node is ItemEditorNode:
 		changed_node = properties.item_nodes[properties.item_nodes.find(node)]
+	elif node is EmailEditorNode:
+		changed_node = properties.email_nodes[properties.email_nodes.find(node)]
 	changed_node.x = to.x
 	changed_node.y = to.y
 	save_properties()

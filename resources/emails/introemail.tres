@@ -11,6 +11,7 @@ contents = "hey, a little birdie told me that you've got yourself access to a pl
 
 thanks a bunch!"
 category = "main"
+prerequisite_emails = Array[ExtResource("1_16060")]([])
 day = 1
 hour = 8
 minute = 0

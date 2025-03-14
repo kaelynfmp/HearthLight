@@ -16,6 +16,7 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 
 [autoload]
 
+Utility="*res://scripts/utility.gd"
 GameManager="*res://scripts/gamemanager.gd"
 OrderManager="*res://scripts/order_manager.gd"
 

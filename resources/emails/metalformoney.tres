@@ -6,9 +6,10 @@
 [resource]
 script = ExtResource("1_0hjw5")
 sender = "Sir Billionaire"
-subject = "I need [i]FIVE[/i] [img=30px,center]res://resources/sprites/metal.png[/img][b]metal[b]. NOW."
-contents = "I don't care. Get it to me. If you do, I'll give you $9999 dollars. Or don't. Your choice, I guess. [img=30px,center]res://resources/sprites/ore.png[/img][b]ore[/b]. Turn it into [img=30px,center]res://resources/sprites/metal.png[/img][b]metal[b]. NOW."
+subject = "I need [i]FIVE[/i] [img=30px,center]res://resources/sprites/ingot.png[/img][b]metal[/b]. NOW."
+contents = "I don't care. Get it to me. If you do, I'll give you $9999 dollars. Or don't. Your choice, I guess. [img=30px,center]res://resources/sprites/ore.png[/img][b]ore[/b]. Turn it into [img=30px,center]res://resources/sprites/ingot.png[/img][b]metal[/b]. NOW."
 category = "main"
+prerequisite_emails = Array[ExtResource("1_0hjw5")]([])
 day = 6
 hour = 8
 minute = 0

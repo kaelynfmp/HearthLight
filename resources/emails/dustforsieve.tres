@@ -11,6 +11,7 @@ contents = "I need some [img=30px,center]res://resources/sprites/dust.png[/img][
 
 Heh. Not that a chucklehead like you would even know how to put [img=30px,center]res://resources/sprites/rock.png[/img][b]rocks[/b] from [b]Botsy[/b] into a [img=30px,center]res://resources/sprites/grinderPrimitive.png[/img][b]grinder[/b]"
 category = "main"
+prerequisite_emails = Array[ExtResource("1_7tvhl")]([])
 day = 4
 hour = 8
 minute = 0

@@ -11,6 +11,7 @@ contents = "I need [i]eight[/i] [img=30px,center]res://resources/sprites/fabric.
 
 I'm no expert, but I'm pretty sure you make [img=30px,center]res://resources/sprites/fabric.png[/img][b]fabric[/b] by putting [img=30px,center]res://resources/sprites/cotton.png[/img][b]cotton[/b] into a [img=30px,center]res://resources/sprites/loomPrimitive.png[/img][b]loom[/b]."
 category = "main"
+prerequisite_emails = Array[ExtResource("1_jvolh")]([])
 day = 3
 hour = 8
 minute = 0

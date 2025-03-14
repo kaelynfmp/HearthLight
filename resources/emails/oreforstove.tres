@@ -13,6 +13,7 @@ I am sensing you are getting to this section of the email with no knowledge of h
 
 I predict you will have no issues with this arrangement."
 category = "main"
+prerequisite_emails = Array[ExtResource("1_fr4g4")]([])
 day = 5
 hour = 8
 minute = 0
