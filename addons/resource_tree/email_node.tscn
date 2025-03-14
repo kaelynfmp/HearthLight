@@ -1,14 +1,20 @@
-[gd_scene load_steps=53 format=3 uid="uid://dn25n37cbk4p6"]
+[gd_scene load_steps=60 format=3 uid="uid://dn25n37cbk4p6"]
 
 [ext_resource type="Texture2D" uid="uid://b3f53pdbhlfkg" path="res://resources/sprites/emails/emailPreview.png" id="1_1j7hc"]
 [ext_resource type="Script" uid="uid://dbrky7wchvte8" path="res://addons/resource_tree/email_node.gd" id="1_t2q0s"]
 [ext_resource type="Texture2D" uid="uid://dnvrhn4af2nix" path="res://resources/sprites/emails/emailDropdown.png" id="2_t2q0s"]
 [ext_resource type="Texture2D" uid="uid://dph2wxrwua005" path="res://resources/sprites/computer/computerCancel.png" id="3_2h2h1"]
+[ext_resource type="Script" uid="uid://dy75013g7jven" path="res://scripts/resources/bbcode/rich_text_resource.gd" id="3_2hvs7"]
 [ext_resource type="Texture2D" uid="uid://cwxs2j52xgre8" path="res://resources/sprites/computer/computerAccept.png" id="4_2hvs7"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_honka"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h2711"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bsp6a"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t2q0s"]
+bg_color = Color(1, 1, 1, 0)
+border_color = Color(0.8, 0.8, 0.8, 0)
+shadow_color = Color(1, 1, 1, 0.145098)
+shadow_size = 1
+shadow_offset = Vector2(23, 4.835)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jigf7"]
 
@@ -22,6 +28,10 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nndyg"]
 
+[sub_resource type="RichTextEffect" id="RichTextEffect_nndyg"]
+script = ExtResource("3_2hvs7")
+metadata/_custom_type_script = "uid://dy75013g7jven"
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sjhxk"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d5xh2"]
@@ -29,6 +39,14 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7coub"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t3n0n"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_2h2h1"]
+script = ExtResource("3_2hvs7")
+metadata/_custom_type_script = "uid://dy75013g7jven"
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_2hvs7"]
+script = ExtResource("3_2hvs7")
+metadata/_custom_type_script = "uid://dy75013g7jven"
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pg1eh"]
 texture = ExtResource("2_t2q0s")
@@ -41,6 +59,10 @@ texture = ExtResource("2_t2q0s")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_edwih"]
 
+[sub_resource type="RichTextEffect" id="RichTextEffect_sjhxk"]
+script = ExtResource("3_2hvs7")
+metadata/_custom_type_script = "uid://dy75013g7jven"
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vd82d"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_88btd"]
@@ -49,6 +71,10 @@ texture = ExtResource("2_t2q0s")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1kg04"]
 
+[sub_resource type="RichTextEffect" id="RichTextEffect_d5xh2"]
+script = ExtResource("3_2hvs7")
+metadata/_custom_type_script = "uid://dy75013g7jven"
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w165h"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t7cwc"]
@@ -56,6 +82,10 @@ texture = ExtResource("2_t2q0s")
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_52cx8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bjt0m"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_7coub"]
+script = ExtResource("3_2hvs7")
+metadata/_custom_type_script = "uid://dy75013g7jven"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ejx20"]
 
@@ -104,8 +134,8 @@ texture = ExtResource("2_t2q0s")
 [node name="EmailNode" type="GraphNode"]
 offset_right = 1937.0
 offset_bottom = 1085.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_honka")
-theme_override_styles/panel_selected = SubResource("StyleBoxEmpty_bsp6a")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_h2711")
+theme_override_styles/panel_selected = SubResource("StyleBoxFlat_t2q0s")
 theme_override_styles/titlebar = SubResource("StyleBoxEmpty_jigf7")
 theme_override_styles/titlebar_selected = SubResource("StyleBoxEmpty_kik5e")
 slot/0/left_enabled = false
@@ -147,6 +177,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_2hvs7")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_nndyg")
 bbcode_enabled = true
 text = "Sender"
+custom_effects = [SubResource("RichTextEffect_nndyg")]
 
 [node name="Subject" type="RichTextLabel" parent="EmailContainer"]
 layout_mode = 0
@@ -166,6 +197,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_7coub")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_t3n0n")
 bbcode_enabled = true
 text = "Subject line"
+custom_effects = [SubResource("RichTextEffect_2h2h1")]
 
 [node name="Blurb" type="RichTextLabel" parent="EmailContainer"]
 visible = false
@@ -181,6 +213,7 @@ theme_override_font_sizes/mono_font_size = 40
 theme_override_font_sizes/normal_font_size = 40
 theme_override_font_sizes/bold_font_size = 40
 text = "Start of email....."
+custom_effects = [SubResource("RichTextEffect_2hvs7")]
 
 [node name="Panel" type="Panel" parent="EmailContainer"]
 layout_mode = 1
@@ -214,6 +247,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_4p1a2")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_edwih")
 bbcode_enabled = true
 text = "This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. "
+custom_effects = [SubResource("RichTextEffect_sjhxk")]
 
 [node name="SenderDropdown" type="RichTextLabel" parent="EmailContainer/Panel"]
 layout_mode = 0
@@ -233,6 +267,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_4cv14")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_1kg04")
 bbcode_enabled = true
 text = "Sender"
+custom_effects = [SubResource("RichTextEffect_d5xh2")]
 
 [node name="SubjectDropdown" type="RichTextLabel" parent="EmailContainer/Panel"]
 layout_mode = 0
@@ -252,6 +287,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_52cx8")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_bjt0m")
 bbcode_enabled = true
 text = "Subject but this is a very long subject yes ok cool"
+custom_effects = [SubResource("RichTextEffect_7coub")]
 
 [node name="Decline" type="Button" parent="EmailContainer/Panel"]
 layout_mode = 0

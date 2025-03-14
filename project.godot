@@ -44,7 +44,6 @@ folder_colors={
 "res://resources/emails/": "pink",
 "res://resources/gadgets/character/": "green",
 "res://resources/items/": "teal",
-"res://resources/orders/": "pink",
 "res://resources/resource-icons/": "green",
 "res://resources/sprites/": "blue",
 "res://resources/tilesets/": "teal",

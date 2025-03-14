@@ -1,7 +1,20 @@
-[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://dynvawdp111sl"]
+[gd_resource type="Resource" script_class="Email" load_steps=6 format=3 uid="uid://dynvawdp111sl"]
 
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_jvolh"]
-[ext_resource type="Resource" uid="uid://caa34u6h1gre6" path="res://resources/orders/fabricforgrinderorder.tres" id="1_kymxr"]
+[ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="1_lrhwl"]
+[ext_resource type="Resource" uid="uid://ckrgha87ltstr" path="res://resources/gadgets/hand_grinder.tres" id="2_61c6n"]
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="3_q4d58"]
+
+[sub_resource type="Resource" id="Resource_47hgc"]
+script = ExtResource("3_q4d58")
+order_id = 1
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
+required_items = Array[Resource]([ExtResource("1_lrhwl")])
+required_quantities = Array[int]([8])
+currency_reward = 50
+rewards = Array[Resource]([ExtResource("2_61c6n")])
+rewards_quantities = Array[int]([1])
 
 [resource]
 script = ExtResource("1_jvolh")
@@ -16,4 +29,4 @@ day = 3
 hour = 8
 minute = 0
 is_read = false
-attached_order = ExtResource("1_kymxr")
+attached_order = SubResource("Resource_47hgc")

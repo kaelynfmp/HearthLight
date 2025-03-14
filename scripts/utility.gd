@@ -3,6 +3,33 @@
 
 extends Node
 
+func _enter_tree():
+	pass
+
+func load_path(path:String, strings_list:Array[String] = []) -> Array[String]:
+	var dir: DirAccess = DirAccess.open(path)
+	if dir:
+		dir.list_dir_begin()
+		var file_name: String = dir.get_next()
+		while true:
+			if file_name == "":
+				break
+			if file_name.ends_with(".remap"):
+				file_name = file_name.trim_suffix(".remap")
+			if file_name.ends_with(".tres"):
+				if dir.current_is_dir():
+					strings_list = load_path(dir.get_current_dir(), strings_list)
+				else:
+					var full_path:String = path + "/" + file_name
+					strings_list.append(full_path)
+				# found
+				file_name = dir.get_next()
+		dir.list_dir_end()
+		return strings_list
+	else:
+		assert(dir != null, "Directory not found! Should be at " + path)
+		return []
+
 ## Takes a [String] and a [RichTextLabel] and truncates the label to its width, appending '...', while accounting for
 ## BBCode sizing.
 func set_truncated_text(text:String, label:RichTextLabel) -> void:

@@ -17,9 +17,6 @@ var gadget_menu:PopupMenu
 var item_menu:PopupMenu
 
 var properties:RecipeTreeProperties = preload("res://addons/resource_tree/resource_tree_properties.tres")
-enum TYPE {
-	RECIPE, GADGET, ITEM, EMAIL
-}
 
 var graph_edit:GraphEdit
 var menu_node:MenuBar
@@ -37,7 +34,7 @@ var recipe_popup:PopupPanel
 var item_popup:PopupPanel
 var gadget_popup:PopupPanel
 
-func _enter_tree() -> void:
+func _ready() -> void:
 	recipe_node = load("res://addons/resource_tree/recipe_node.tscn")
 	gadget_node = load("res://addons/resource_tree/gadget_node.tscn")
 	item_node = load("res://addons/resource_tree/item_node.tscn")
@@ -379,7 +376,7 @@ func node_moved(to:Vector2, node) -> void:
 func load_recipes() -> void:
 	recipe_strings.clear()
 	recipes.clear()
-	load_path("res://resources/recipes", TYPE.RECIPE)
+	recipe_strings = Utility.load_path("res://resources/recipes")
 	load_gadgets()
 	load_items()
 	load_emails()
@@ -419,7 +416,7 @@ func load_recipes() -> void:
 func load_gadgets() -> void:
 	gadget_strings.clear()
 	gadgets.clear()
-	load_path("res://resources/gadgets", TYPE.GADGET)
+	gadget_strings = Utility.load_path("res://resources/gadgets")
 	validate_gadgets()
 	
 func validate_gadgets() -> void:
@@ -431,7 +428,6 @@ func validate_gadgets() -> void:
 		var gadget_node:GadgetEditorNode = properties.gadget_nodes[index]
 		if gadget_node.gadget not in gadgets:
 			# if the gadget isn't a resoruce, or if it isn't valid (the recipe no longer exists)
-			gadget_node.clear()
 			remove_gadgets.append(index)
 	for index in range(remove_gadgets.size()):
 		properties.gadget_nodes.remove_at(remove_gadgets[index] - index) # by minusing by the index, we account for the index shifting down every removal
@@ -441,7 +437,8 @@ func validate_gadgets() -> void:
 func load_items() -> void:
 	item_strings.clear()
 	items.clear()
-	load_path("res://resources/items", TYPE.ITEM)
+	item_strings = Utility.load_path("res://resources/items")
+	print(item_strings)
 	validate_items()
 	
 func validate_items() -> void:
@@ -453,7 +450,6 @@ func validate_items() -> void:
 		var item_node:ItemEditorNode = properties.item_nodes[index]
 		if item_node.item not in items:
 			# if the item isn't a resource, or if it isn't valid (the recipe no longer exists)
-			item_node.clear()
 			remove_items.append(index) # can't remove while iterating through list
 	for index in range(remove_items.size()):
 		properties.item_nodes.remove_at(remove_items[index] - index) # by minusing by the index, we account for the index shifting down every removal
@@ -463,7 +459,7 @@ func validate_items() -> void:
 func load_emails() -> void:
 	email_strings.clear()
 	emails.clear()
-	load_path("res://resources/emails", TYPE.EMAIL)
+	email_strings = Utility.load_path("res://resources/emails")
 	if !email_strings.is_empty():
 		for email_string in email_strings:
 			emails.append(load(email_string))
@@ -485,37 +481,6 @@ func load_emails() -> void:
 					if prerequisite_email in emails:
 						if properties.email_nodes.filter(func(email_node): return email_node.email == prerequisite_email).is_empty():
 							recipe_node.email_nodes.append(add_email(email))
-							
-		
-func load_path(path:String, type:int) -> void:
-	var dir: DirAccess = DirAccess.open(path)
-	if dir:
-		dir.list_dir_begin()
-		var file_name: String = dir.get_next()
-		while true:
-			if file_name == "":
-				break
-			if file_name.ends_with(".remap"):
-				file_name = file_name.trim_suffix(".remap")
-			if file_name.ends_with(".tres"):
-				if dir.current_is_dir():
-					load_path(dir.get_current_dir(), type)
-				else:
-					var full_path:String = path + "/" + file_name
-					if type == TYPE.RECIPE:
-						recipe_strings.append(full_path)
-					elif type == TYPE.GADGET:
-						gadget_strings.append(full_path)
-					elif type == TYPE.ITEM:
-						item_strings.append(full_path)
-					elif type == TYPE.EMAIL:
-						email_strings.append(full_path)
-				# found recipe
-				file_name = dir.get_next()
-		dir.list_dir_end()
-	else:
-		assert(dir != null, "Directory not found! Should be at 'res://resources/" +
-		("recipes" if type == TYPE.RECIPE else "gadgets" if type == TYPE.GADGET else "items" if type == TYPE.ITEM else "emails") + "'")
 
 func add_recipe(_recipe:Recipe) -> RecipeEditorNode:
 	var new_recipe:RecipeEditorNode = RecipeEditorNode.new()

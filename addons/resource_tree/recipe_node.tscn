@@ -20,11 +20,9 @@ shadow_color = Color(1, 1, 1, 0.145098)
 shadow_size = 1
 shadow_offset = Vector2(23, -50)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_50fyo"]
-bg_color = Color(1, 1, 1, 0)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kgs8m"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rfahj"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fyk7f"]
 
 [node name="RecipeNode" type="GraphNode"]
 z_index = 1
@@ -35,8 +33,8 @@ size_flags_vertical = 0
 theme = SubResource("Theme_1l7p2")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_q76ad")
 theme_override_styles/panel_selected = SubResource("StyleBoxFlat_4el5v")
-theme_override_styles/titlebar = SubResource("StyleBoxFlat_50fyo")
-theme_override_styles/titlebar_selected = SubResource("StyleBoxFlat_rfahj")
+theme_override_styles/titlebar = SubResource("StyleBoxEmpty_kgs8m")
+theme_override_styles/titlebar_selected = SubResource("StyleBoxEmpty_fyk7f")
 selected = true
 slot/0/left_enabled = false
 slot/0/left_type = 0

@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://dax2wy6iaipfq"]
+
+[ext_resource type="Script" uid="uid://dy75013g7jven" path="res://scripts/resources/bbcode/rich_text_resource.gd" id="1_wliv2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3nd3v"]
+bg_color = Color(0.239216, 0.321569, 0.6, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.168627, 0.180392, 0.509804, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+shadow_size = 4
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="Theme" id="Theme_eamnv"]
+default_font_size = 50
+
+[sub_resource type="Theme" id="Theme_l6wi2"]
+default_font_size = 30
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_0xnbr"]
+script = ExtResource("1_wliv2")
+metadata/_custom_type_script = "uid://dy75013g7jven"
+
+[node name="TooltipControl" type="Control"]
+modulate = Color(1, 1, 1, 0)
+z_index = 99
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="TooltipContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+offset_right = 109.0
+offset_bottom = 161.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3nd3v")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TooltipContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TooltipContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Title" type="Label" parent="TooltipContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = SubResource("Theme_eamnv")
+text = "Title"
+
+[node name="MarginContainer2" type="MarginContainer" parent="TooltipContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Tooltip" type="RichTextLabel" parent="TooltipContainer/VBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme = SubResource("Theme_l6wi2")
+bbcode_enabled = true
+text = "Tooltip
+"
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_0xnbr")]
