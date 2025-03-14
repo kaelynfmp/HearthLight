@@ -9,11 +9,9 @@ var initialized:bool = false
 var tooltip_node:PanelContainer
 
 func _ready():
-	meta_underlined = true
+	meta_underlined = false
 	hint_underlined = false
-	# meta hovering
-	meta_hover_started.connect(_meta_hover_started)
-	meta_hover_ended.connect(_meta_hover_ended)
+	meta_clicked.connect(_meta_clicked)
 	
 func _make_custom_tooltip(for_text: String) -> Object:
 	if for_text != "":
@@ -48,12 +46,8 @@ func _process(delta: float):
 	else:
 		tooltip_appeared = false
 	
-func _meta_hover_started(meta: Variant):
-	pass
-
-func _meta_hover_ended(meta: Variant):
-	pass	
-	
+func _meta_clicked(meta: Variant):
+	print("test")
 
 func set_text_with_bbcode(value: String):
 	text = ""
@@ -73,12 +67,12 @@ func set_text_with_bbcode(value: String):
 			tokens.append(value.substr(pos, next_tag_pos - pos))
 		
 		var valid_ending:bool = true
-		var end_tag_pos:int = value.find("]")
+		var end_tag_pos:int = value.find("]", next_tag_pos)
 		if end_tag_pos == -1:
 			# Doesn't have a proper ending, so go past
 			valid_ending = false
 	
-		var closing_tag_pos:int = value.find(closer_str)
+		var closing_tag_pos:int = value.find(closer_str, next_tag_pos)
 		if closing_tag_pos == -1:
 			# Doesn't have a proper ending, so go past
 			valid_ending = false
@@ -102,7 +96,6 @@ func set_text_with_bbcode(value: String):
 			var item = Utility.items[resource_name]
 			token += "[hint=" + resource_name + "][b]"
 			if item.texture != null:
-				# [img=30px,center]res://resources/sprites/plantPrimitive.png[/img][b]pot[/b]
 				var texture_path:String = item.texture.resource_path
 				token += "[img width=" + str(insert_image_width) + "px,center]"
 				token += texture_path
@@ -110,24 +103,26 @@ func set_text_with_bbcode(value: String):
 			token += text_value
 			token += "[/b][/hint]"
 			tokens.append(token)
-			pos = next_tag_pos + token.length()
 		elif resource_name in Utility.gadgets:
 			var token:String = ""
 			var gadget = Utility.gadgets[resource_name]
-			token += "[hint=" + resource_name + "][b]"
+			token += "[hint=" + resource_name + "]"
+			if Engine.is_editor_hint(): token += "[url=" + resource_name + "]"
+			token += "[b]"
 			if gadget.texture != null:
-				# [img=30px,center]res://resources/sprites/plantPrimitive.png[/img][b]pot[/b]
 				var texture_path:String = gadget.texture.resource_path
 				token += "[img width=" + str(insert_image_width) + "px,center]"
 				token += texture_path
 				token += "[/img]"
 			token += text_value
-			token += "[/b][/hint]"
+			token += "[/b]"
+			if Engine.is_editor_hint(): token += "[/url]"
+			token += "[/hint]"
 			tokens.append(token)
-			pos = next_tag_pos + token.length()
 		else:
-			tokens.append(value.substr(next_tag_pos, closing_tag_pos + closer_str.length() - next_tag_pos))
-			pos = closing_tag_pos + closer_str.length()
+			tokens.append(value.substr(next_tag_pos, closing_tag_pos + closer_str.length() - next_tag_pos)) 
+		
+		pos = closing_tag_pos + closer_str.length()
 		
 	for token in tokens:
 		text += token

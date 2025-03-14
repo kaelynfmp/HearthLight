@@ -21,7 +21,7 @@ func _process(_delta: float) -> void:
 		
 		
 		var content_label:RichTextLabel = panel.find_child("Content")
-		content_label.set_text(email.contents)
+		content_label.text = email.contents
 		var sender_dropdown_label:RichTextLabel = panel.find_child("SenderDropdown")
 		Utility.set_truncated_text(email.sender, sender_dropdown_label)
 		var subject_dropdown_label:RichTextLabel = panel.find_child("SubjectDropdown")

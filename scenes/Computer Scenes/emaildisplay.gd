@@ -24,7 +24,7 @@ func set_email(new_email: Email):
 	sender_dropdown.finished.connect(_finished.bind(email.sender, sender_dropdown))
 	subject_dropdown.finished.connect(_finished.bind(email.subject, subject_dropdown))
 	
-	content.set_text(email.contents)
+	content.text = email.contents
 	expand_panel.visible = false
 
 func _finished(text:String, label:RichTextLabel):
