@@ -21,8 +21,9 @@ rewards_quantities = Array[int]([1])
 [resource]
 script = ExtResource("1_16060")
 sender = "Katheryn Elion"
-subject = "goods?"
-contents = "hey, a little birdie told me that you've got yourself access to a plant [img=30px,center]res://resources/sprites/plantPrimitive.png[/img][b]pot[/b]. any chance i could take some of that cotton it could make off your hands? just plant some [img=30px,center]res://resources/sprites/seeds.png[/img][b]cotton seeds[/b] in that [img=30px,center]res://resources/sprites/plantPrimitive.png[/img][b]pot[/b], [img=30px,center]res://resources/sprites/water.png[/img][b]water[/b] it, and send off what it makes in the drone. it'll know where to go, don't worry
+subject = "goods? [res=Sieve]Cottofdgfn[/res]"
+contents = "[hint=test][url]test[/url][/hint]
+hey, a little birdie told me that you've got yourself access to a plant [img=30px,center]res://resources/sprites/plantPrimitive.png[/img][b]pot[/b]. any chance i could take some of that cotton it could make off your hands? just plant some [img=30px,center]res://resources/sprites/seeds.png[/img][b]cotton seeds[/b] in that [img=30px,center]res://resources/sprites/plantPrimitive.png[/img][b]pot[/b], [img=30px,center]res://resources/sprites/water.png[/img][b]water[/b] it, and send off what it makes in the drone. it'll know where to go, don't worry
 
 thanks a bunch!"
 category = "main"

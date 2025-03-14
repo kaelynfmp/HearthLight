@@ -438,7 +438,6 @@ func load_items() -> void:
 	item_strings.clear()
 	items.clear()
 	item_strings = Utility.load_path("res://resources/items")
-	print(item_strings)
 	validate_items()
 	
 func validate_items() -> void:

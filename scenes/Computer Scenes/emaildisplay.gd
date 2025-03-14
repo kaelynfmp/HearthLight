@@ -17,12 +17,19 @@ func _process(_delta: float) -> void:
 
 func set_email(new_email: Email):
 	email = new_email
-	Utility.set_truncated_text(email.sender, sender_label)
-	Utility.set_truncated_text(email.subject, subject_label)
-	Utility.set_truncated_text(email.contents.split("\n")[0], blurb_label)
+	sender_label.finished.connect(_finished.bind(email.sender, sender_label))
+	subject_label.finished.connect(_finished.bind(email.subject, subject_label))
+	blurb_label.finished.connect(_finished.bind(email.contents.split("\n")[0], blurb_label))
 	
-	Utility.set_truncated_text(email.sender, sender_dropdown)
-	Utility.set_truncated_text(email.subject, subject_dropdown)
+	sender_dropdown.finished.connect(_finished.bind(email.sender, sender_dropdown))
+	subject_dropdown.finished.connect(_finished.bind(email.subject, subject_dropdown))
 	
 	content.set_text(email.contents)
 	expand_panel.visible = false
+
+func _finished(text:String, label:RichTextLabel):
+	if !label.initialized:
+		label.initialized = true
+		Utility.set_truncated_text(text, label)
+		
+	

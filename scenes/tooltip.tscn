@@ -1,0 +1,153 @@
+[gd_scene load_steps=17 format=3 uid="uid://dax2wy6iaipfq"]
+
+[ext_resource type="Script" uid="uid://bha8ro4unkubb" path="res://scripts/gui/bbcode.gd" id="1_7dicn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7dicn"]
+bg_color = Color(0.239216, 0.321569, 0.6, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.168627, 0.180392, 0.509804, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+shadow_size = 4
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bfmi0"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+
+[sub_resource type="Theme" id="Theme_eamnv"]
+default_font_size = 50
+TooltipPanel/styles/panel = SubResource("StyleBoxEmpty_bfmi0")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_75wrl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7dicn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vy6iq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wnlnb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_miqp6"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+
+[sub_resource type="Theme" id="Theme_l6wi2"]
+default_font_size = 30
+TooltipPanel/styles/panel = SubResource("StyleBoxEmpty_miqp6")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ur0u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ywu5r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j2erg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bli6e"]
+
+[sub_resource type="GDScript" id="GDScript_wliv2"]
+script/source = "@tool
+
+@icon(\"res://resources/resource-icons/item.svg\")
+
+extends RichTextEffect
+class_name RichTextResource
+
+## Syntax: [res name='Cotton']Cotton[/res]
+
+var bbcode:String = \"res\"
+
+func _process_custom_fx(char_fx: CharFXTransform) -> bool:
+	char_fx.set_offset(Vector2(30.0, 0.0))
+	
+	var name = char_fx.env.get(\"name\", \"\")
+	
+	var item:Item
+	if name in Utility.items: 
+		item = Utility.items[name]
+	
+	if item != null:
+		pass
+		
+	return true"
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_0xnbr"]
+script = SubResource("GDScript_wliv2")
+metadata/_custom_type_script = "uid://dy75013g7jven"
+
+[node name="TooltipControl" type="Control"]
+z_index = 99
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 602.0
+offset_bottom = 159.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="TooltipContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 809.0
+offset_bottom = 219.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7dicn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TooltipContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TooltipContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Title" type="RichTextLabel" parent="TooltipContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme = SubResource("Theme_eamnv")
+theme_override_styles/fill = SubResource("StyleBoxEmpty_75wrl")
+theme_override_styles/background = SubResource("StyleBoxEmpty_7dicn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vy6iq")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wnlnb")
+text = "Title"
+fit_content = true
+hint_underlined = false
+script = ExtResource("1_7dicn")
+
+[node name="MarginContainer2" type="MarginContainer" parent="TooltipContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Tooltip" type="RichTextLabel" parent="TooltipContainer/VBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme = SubResource("Theme_l6wi2")
+theme_override_styles/fill = SubResource("StyleBoxEmpty_8ur0u")
+theme_override_styles/background = SubResource("StyleBoxEmpty_ywu5r")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j2erg")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bli6e")
+bbcode_enabled = true
+text = "Tooltip
+"
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_0xnbr")]
+hint_underlined = false
+script = ExtResource("1_7dicn")

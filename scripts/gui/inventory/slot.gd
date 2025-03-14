@@ -5,7 +5,7 @@ extends PanelContainer
 
 @onready var tooltip_control:Control = find_child("TooltipControl")
 @onready var tooltip:RichTextLabel = find_child("Tooltip", true)
-@onready var title:Label = find_child("Title", true)
+@onready var title:RichTextLabel = find_child("Title", true)
 
 var mouse_over: bool = false
 ## If you are currently holding right click to make a 'line'

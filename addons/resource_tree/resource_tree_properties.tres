@@ -47,7 +47,7 @@ order_output_quantities = Array[int]([])
 [sub_resource type="Resource" id="Resource_gubxu"]
 script = ExtResource("1_qn33u")
 email = ExtResource("3_ds5gw")
-x = 4760
+x = 4780
 y = 1260
 prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([])
 order_input_nodes = Array[Resource]([])
@@ -80,7 +80,7 @@ order_output_quantities = Array[int]([])
 [sub_resource type="Resource" id="Resource_s82cm"]
 script = ExtResource("1_qn33u")
 email = ExtResource("6_pmsyv")
-x = 4660
+x = 4640
 y = 0
 prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([])
 order_input_nodes = Array[Resource]([])
