@@ -32,7 +32,7 @@
 [ext_resource type="Resource" uid="uid://bgmxpne1d7fis" path="res://resources/items/metal.tres" id="15_5dwtj"]
 [ext_resource type="Resource" uid="uid://56o6vjd0t4id" path="res://resources/recipes/ore_recipe.tres" id="16_cwixx"]
 [ext_resource type="Resource" uid="uid://bynrrcyany4ha" path="res://resources/recipes/ingot_recipe.tres" id="19_mx342"]
-[ext_resource type="Resource" uid="uid://c4w565i1pocvn" path="res://resources/emails/test.tres" id="25_22qlt"]
+[ext_resource type="Resource" uid="uid://rwvikhdtxolu" path="res://resources/emails/test.tres" id="25_22qlt"]
 
 [sub_resource type="Resource" id="Resource_8w8ri"]
 script = ExtResource("1_5e5y2")
@@ -67,8 +67,8 @@ y = -340
 [sub_resource type="Resource" id="Resource_s82cm"]
 script = ExtResource("1_qn33u")
 email = ExtResource("6_pmsyv")
-x = 2320
-y = -1580
+x = 2220
+y = -1600
 prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([])
 required_item_nodes = Dictionary[Resource, int]({
 SubResource("Resource_lxf7n"): 2
@@ -222,11 +222,11 @@ SubResource("Resource_lashh"): 2
 })
 rewards_item_nodes = Dictionary[Resource, int]({})
 
-[sub_resource type="Resource" id="Resource_knd4m"]
+[sub_resource type="Resource" id="Resource_mniym"]
 script = ExtResource("1_qn33u")
 email = ExtResource("25_22qlt")
-x = 2360
-y = 340
+x = 2200
+y = 260
 prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([])
 required_item_nodes = Dictionary[Resource, int]({})
 given_item_nodes = Dictionary[Resource, int]({})
@@ -288,4 +288,4 @@ script = ExtResource("2_e0emm")
 recipe_nodes = Array[ExtResource("2_hx4k4")]([SubResource("Resource_xxos5"), SubResource("Resource_bf7ox"), SubResource("Resource_qy74w"), SubResource("Resource_gl4sg"), SubResource("Resource_h1khb")])
 gadget_nodes = Array[ExtResource("1_5e5y2")]([SubResource("Resource_gsbeb"), SubResource("Resource_8w8ri"), SubResource("Resource_hh24p"), SubResource("Resource_5t4gc"), SubResource("Resource_ycsiu"), SubResource("Resource_vnq76")])
 item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_o22c4"), SubResource("Resource_lxf7n"), SubResource("Resource_0uxyg"), SubResource("Resource_nos87"), SubResource("Resource_lashh"), SubResource("Resource_xcrkp"), SubResource("Resource_pio1n"), SubResource("Resource_qo8go")])
-email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_s82cm"), SubResource("Resource_kmc8f"), SubResource("Resource_gubxu"), SubResource("Resource_pmsyv"), SubResource("Resource_53ac7"), SubResource("Resource_l41o2"), SubResource("Resource_j4adb"), SubResource("Resource_72sxr"), SubResource("Resource_knd4m")])
+email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_s82cm"), SubResource("Resource_kmc8f"), SubResource("Resource_gubxu"), SubResource("Resource_pmsyv"), SubResource("Resource_53ac7"), SubResource("Resource_l41o2"), SubResource("Resource_j4adb"), SubResource("Resource_72sxr"), SubResource("Resource_mniym")])

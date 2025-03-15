@@ -12,6 +12,9 @@ var panel:Panel
 var order_container:Control
 var add_order:TextureButton
 var remove_order:TextureButton
+var currency_spinbox:SpinBox
+var rewards_currency:LineEdit
+var currency_line_edit:LineEdit
 
 func _ready():
 	container = find_child("EmailContainer")
@@ -20,11 +23,18 @@ func _ready():
 	add_order = panel.find_child("AddOrder")
 	remove_order = panel.find_child("RemoveOrder")
 	spinbox = load("res://addons/resource_tree/spin_box.tscn")
-	email_node.order_currency_changed.connect(_order_currency_changed)
+	rewards_currency = order_container.find_child("CurrencyLabel", true)
+	currency_spinbox = order_container.find_child("CurrencySpinbox", true)
+	currency_line_edit = currency_spinbox.get_line_edit()
+	currency_line_edit.add_theme_stylebox_override("normal", rewards_currency.get_theme_stylebox("normal"))
 
 func _process(_delta: float) -> void:
 	if email_node == null or email_node.email == null:
 		return
+	if !email_node.order_currency_changed.is_connected(_order_currency_changed): 
+		email_node.order_currency_changed.connect(_order_currency_changed)
+		if email_node.email.attached_order:
+			currency_spinbox.set_value(email_node.email.attached_order.currency_reward)
 	var email:Email = email_node.email
 	if container == null:
 		return
@@ -89,14 +99,17 @@ func _process(_delta: float) -> void:
 	var rewards_items:HFlowContainer = order_container.find_child("RewardsItems", true)
 	fill_items.call(rewards_items, email_node.rewards_item_nodes, "output", "RewardsItemSlot")
 
-	var rewards_currency:LineEdit = order_container.find_child("CurrencyLabel", true)
-	if rewards_currency.text == "":
-		rewards_currency.set_text(str(email_node.email.attached_order.currency_reward))
+	if !currency_spinbox.value_changed.is_connected(_currency_changed):
+		currency_spinbox.value_changed.connect(_currency_changed)
 	
+func _currency_changed(currency: float):
+	email_node.update_currency(int(currency))
+
+func _spinbox_changed(spinbox:SpinBox):
+	pass
 
 func _order_currency_changed():
-	var rewards_currency:LineEdit = order_container.find_child("CurrencyLabel", true)
-	rewards_currency.set_text(str(email_node.email.attached_order.currency_reward))
+	currency_spinbox.set_value(email_node.email.attached_order.currency_reward)
 	
 func _on_dragged(from:Vector2, to:Vector2) -> void:
 	moved.emit(to, email_node)

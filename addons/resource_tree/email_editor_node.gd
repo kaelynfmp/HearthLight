@@ -52,6 +52,12 @@ func _init(p_email:Email = null, p_x:int = 0, p_y:int = 0, p_prerequisite_email_
 func _order_currency_changed():
 	order_currency_changed.emit()
 
+func update_currency(currency:int) -> void:
+	if email == null or email.attached_order == null:
+		return
+	email.attached_order.currency_reward = currency
+	save_email()
+
 func clear_order() -> void:
 	email.attached_order = null
 	save_email()

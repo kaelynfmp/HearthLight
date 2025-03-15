@@ -95,7 +95,7 @@ expand_margin_right = 25.0
 
 [node name="EmailNode" type="GraphNode"]
 offset_right = 1937.0
-offset_bottom = 1085.0
+offset_bottom = 1084.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_h2711")
 theme_override_styles/panel_selected = SubResource("StyleBoxFlat_t2q0s")
 theme_override_styles/titlebar = SubResource("StyleBoxEmpty_jigf7")
@@ -112,8 +112,9 @@ slot/0/draw_stylebox = true
 script = ExtResource("1_t2q0s")
 
 [node name="EmailContainer" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 1061)
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 0
 mouse_filter = 2
 
 [node name="HeaderSprite" type="Sprite2D" parent="EmailContainer"]
@@ -187,14 +188,17 @@ offset_left = 39.0
 offset_top = 1094.0
 offset_right = 1867.0
 offset_bottom = 1597.0
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_nndyg")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="EmailContainer/OrderContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="GivenItemsContainer" type="VBoxContainer" parent="EmailContainer/OrderContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="EmailContainer/OrderContainer/HBoxContainer/GivenItemsContainer"]
 layout_mode = 2
@@ -205,6 +209,7 @@ horizontal_alignment = 1
 [node name="GivenItemsScroll" type="ScrollContainer" parent="EmailContainer/OrderContainer/HBoxContainer/GivenItemsContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 0
 horizontal_scroll_mode = 0
 
 [node name="GivenItems" type="HFlowContainer" parent="EmailContainer/OrderContainer/HBoxContainer/GivenItemsContainer/GivenItemsScroll"]
@@ -216,6 +221,7 @@ alignment = 1
 [node name="RequiredItemsContainer" type="VBoxContainer" parent="EmailContainer/OrderContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="EmailContainer/OrderContainer/HBoxContainer/RequiredItemsContainer"]
 layout_mode = 2
@@ -226,6 +232,7 @@ horizontal_alignment = 1
 [node name="RequiredItemsScroll" type="ScrollContainer" parent="EmailContainer/OrderContainer/HBoxContainer/RequiredItemsContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 0
 horizontal_scroll_mode = 0
 
 [node name="RequiredItems" type="HFlowContainer" parent="EmailContainer/OrderContainer/HBoxContainer/RequiredItemsContainer/RequiredItemsScroll"]
@@ -237,17 +244,20 @@ alignment = 1
 [node name="MarginContainer" type="MarginContainer" parent="EmailContainer/OrderContainer/HBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Arrow" type="TextureRect" parent="EmailContainer/OrderContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 2
 texture = ExtResource("6_7coub")
 stretch_mode = 4
 
 [node name="RewardsContainer" type="VBoxContainer" parent="EmailContainer/OrderContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="EmailContainer/OrderContainer/HBoxContainer/RewardsContainer"]
 layout_mode = 2
@@ -256,22 +266,34 @@ text = "Rewards"
 horizontal_alignment = 1
 
 [node name="CurrencyLabel" type="LineEdit" parent="EmailContainer/OrderContainer/HBoxContainer/RewardsContainer"]
+visible = false
 custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_filter = 2
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxTexture_2crda")
 alignment = 2
 
+[node name="CurrencySpinbox" type="SpinBox" parent="EmailContainer/OrderContainer/HBoxContainer/RewardsContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+max_value = 9.22337e+18
+alignment = 2
+update_on_text_changed = true
+
 [node name="RewardsItemsScroll" type="ScrollContainer" parent="EmailContainer/OrderContainer/HBoxContainer/RewardsContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 0
 horizontal_scroll_mode = 0
 
 [node name="RewardsItems" type="HFlowContainer" parent="EmailContainer/OrderContainer/HBoxContainer/RewardsContainer/RewardsItemsScroll"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
+mouse_filter = 0
 alignment = 1
 
 [node name="Panel" type="Panel" parent="EmailContainer"]
