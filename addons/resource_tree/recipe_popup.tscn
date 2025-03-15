@@ -71,7 +71,7 @@ offset_bottom = 45.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Name" type="TextEdit" parent="Control/HBoxContainer"]
+[node name="Name" type="LineEdit" parent="Control/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = SubResource("Theme_qtkt2")

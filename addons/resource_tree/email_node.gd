@@ -20,6 +20,7 @@ func _ready():
 	add_order = panel.find_child("AddOrder")
 	remove_order = panel.find_child("RemoveOrder")
 	spinbox = load("res://addons/resource_tree/spin_box.tscn")
+	email_node.order_currency_changed.connect(_order_currency_changed)
 
 func _process(_delta: float) -> void:
 	if email_node == null or email_node.email == null:
@@ -44,8 +45,7 @@ func _process(_delta: float) -> void:
 	
 	if order_container == null or add_order == null or remove_order == null:
 		return
-	var order_exists:bool = !email_node.required_item_nodes.is_empty() or !email_node.given_item_nodes.is_empty() or \
-	!email_node.rewards_item_nodes.is_empty()
+	var order_exists:bool = email_node.email.attached_order != null
 	remove_order.set_visible(order_exists)
 	add_order.set_visible(!order_exists)
 	order_container.set_visible(order_exists)
@@ -93,6 +93,10 @@ func _process(_delta: float) -> void:
 	if rewards_currency.text == "":
 		rewards_currency.set_text(str(email_node.email.attached_order.currency_reward))
 	
+
+func _order_currency_changed():
+	var rewards_currency:LineEdit = order_container.find_child("CurrencyLabel", true)
+	rewards_currency.set_text(str(email_node.email.attached_order.currency_reward))
 	
 func _on_dragged(from:Vector2, to:Vector2) -> void:
 	moved.emit(to, email_node)
@@ -101,8 +105,14 @@ func _on_delete_button_pressed() -> void:
 	kill.emit(self)
 	var dir: DirAccess = DirAccess.open("res://resources/emails")
 	dir.remove(email_node.email.get_path())
-	moved.emit(Vector2.ZERO, email_node) # Sends the move signal to tell the recipe tree immediately to check if it is alive
+	moved.emit(Vector2.ZERO, email_node) # Sends the move signal to tell the resource tree immediately to check if it is alive
 	EditorInterface.get_resource_filesystem().scan()
 
 func _on_node_selected() -> void:
 	EditorInterface.edit_resource(email_node.email)
+
+func _on_remove_order_pressed() -> void:
+	email_node.clear_order()
+
+func _on_add_order_pressed() -> void:
+	email_node.add_order()

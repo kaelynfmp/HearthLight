@@ -29,10 +29,12 @@ var menu:PackedScene
 var recipe_popup_scene:PackedScene
 var item_popup_scene:PackedScene
 var gadget_popup_scene:PackedScene
+var email_popup_scene:PackedScene
 
 var recipe_popup:PopupPanel
 var item_popup:PopupPanel
 var gadget_popup:PopupPanel
+var email_popup:PopupPanel
 
 func _ready() -> void:
 	recipe_node = load("res://addons/resource_tree/recipe_node.tscn")
@@ -43,6 +45,7 @@ func _ready() -> void:
 	recipe_popup_scene = load("res://addons/resource_tree/recipe_popup.tscn")
 	item_popup_scene = load("res://addons/resource_tree/item_popup.tscn")
 	gadget_popup_scene = load("res://addons/resource_tree/gadget_popup.tscn")
+	email_popup_scene = load("res://addons/resource_tree/email_popup.tscn")
 	
 	control = preload("res://addons/resource_tree/resource_tree.tscn").instantiate()
 	EditorInterface.get_editor_main_screen().add_child(control)
@@ -55,6 +58,7 @@ func _ready() -> void:
 	menu_node = menu.instantiate()
 	graph_edit.get_menu_hbox().add_child(menu_node)
 	menu_node.find_child("AddRecipe").pressed.connect(_add_recipe)
+	menu_node.find_child("AddEmail").pressed.connect(_add_email)
 
 	item_menu = menu_node.find_child("Add Resource")
 	gadget_menu = menu_node.find_child("Add Gadget")
@@ -94,6 +98,22 @@ func add_named_recipe():
 	ResourceSaver.save(new_recipe, path)
 	new_recipe.take_over_path(path)
 	recipe_popup.hide()
+	
+func _add_email():
+	email_popup = email_popup_scene.instantiate()
+	control.add_child(email_popup)
+	email_popup.show()
+	email_popup.find_child("Confirm", true).pressed.connect(add_named_email)
+	
+func add_named_email():
+	var email_name:String = "generated"
+	email_name = email_popup.find_child("Name").get_text()
+	var new_email:Email = Email.new()
+	new_email.set_name(email_name)
+	var path:String = "res://resources/emails/" + new_email.get_name() + ".tres"
+	ResourceSaver.save(new_email, path)
+	new_email.take_over_path(path)
+	email_popup.hide()
 
 func _on_request(from, from_port, to, to_port) -> void:
 	# If that node already has a connection, we should not be able to connect to it

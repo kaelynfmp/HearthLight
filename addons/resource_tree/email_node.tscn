@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dn25n37cbk4p6"]
+[gd_scene load_steps=42 format=3 uid="uid://dn25n37cbk4p6"]
 
 [ext_resource type="Texture2D" uid="uid://b3f53pdbhlfkg" path="res://resources/sprites/emails/emailPreview.png" id="1_1j7hc"]
 [ext_resource type="Texture2D" uid="uid://ya3hxo1l73v4" path="res://addons/resource_tree/input_slot.tres" id="1_nndyg"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://cu638rts4nfa2" path="res://resources/sprites/computer/computerBalance.png" id="7_t3n0n"]
 [ext_resource type="Texture2D" uid="uid://c56aavp3fuacv" path="res://addons/resource_tree/add_order_pressed.png" id="8_sjhxk"]
 [ext_resource type="Texture2D" uid="uid://ui86hauy65h3" path="res://addons/resource_tree/remove_order_pressed.png" id="10_d5xh2"]
+[ext_resource type="Texture2D" uid="uid://bfa2gd4mip243" path="res://addons/resource_tree/trash_can.png" id="13_rdwmc"]
+[ext_resource type="Texture2D" uid="uid://dgfutqbacjngj" path="res://addons/resource_tree/trash_can_pressed.png" id="14_4p1a2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h2711"]
 
@@ -394,5 +396,26 @@ texture_hover = ExtResource("3_2h2h1")
 texture_disabled = ExtResource("3_2h2h1")
 texture_focused = ExtResource("3_2h2h1")
 
+[node name="DeleteButton" type="TextureButton" parent="EmailContainer"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -88.0
+offset_top = -8.0
+offset_right = -36.0
+offset_bottom = 69.0
+grow_horizontal = 0
+texture_normal = ExtResource("13_rdwmc")
+texture_pressed = ExtResource("14_4p1a2")
+texture_hover = ExtResource("13_rdwmc")
+texture_disabled = ExtResource("13_rdwmc")
+texture_focused = ExtResource("13_rdwmc")
+ignore_texture_size = true
+stretch_mode = 4
+
 [connection signal="dragged" from="." to="." method="_on_dragged"]
 [connection signal="node_selected" from="." to="." method="_on_node_selected"]
+[connection signal="pressed" from="EmailContainer/Panel/AddOrder" to="." method="_on_add_order_pressed"]
+[connection signal="pressed" from="EmailContainer/Panel/RemoveOrder" to="." method="_on_remove_order_pressed"]
+[connection signal="pressed" from="EmailContainer/DeleteButton" to="." method="_on_delete_button_pressed"]

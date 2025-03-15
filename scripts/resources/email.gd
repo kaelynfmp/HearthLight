@@ -1,6 +1,5 @@
 class_name Email
 extends Resource
-
 @export_category("Email Contents")
 @export var sender: String
 @export var subject: String
@@ -16,7 +15,6 @@ var category: String
 @export var minute: int
 @export var is_read: bool
 @export var attached_order: Order
-
-
+		
 func mark_as_read():
 	is_read = true

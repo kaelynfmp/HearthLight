@@ -42,7 +42,7 @@ var responded: bool = false
 		required_quantities = value
 
 @export_category("Order Rewards")
-@export var currency_reward:int = 0
+@export var currency_reward: int = 0
 @export var rewards: Array[Resource] = []:
 	set(value):
 		if rewards_quantities.size() != value.size():

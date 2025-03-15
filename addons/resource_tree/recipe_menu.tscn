@@ -1,31 +1,37 @@
-[gd_scene load_steps=2 format=3 uid="uid://7w0fl8xnso21"]
-
-[ext_resource type="Texture2D" uid="uid://c586ej5iek823" path="res://resources/resource-icons/recipe.svg" id="1_y1dxf"]
+[gd_scene format=3 uid="uid://7w0fl8xnso21"]
 
 [node name="RecipeButtons" type="MenuBar"]
-offset_right = 219.0
+custom_minimum_size = Vector2(730, 0)
+offset_right = 672.0
 offset_bottom = 31.0
 size_flags_horizontal = 0
 
+[node name="AddEmail" type="Button" parent="."]
+layout_mode = 1
+offset_left = 579.0
+offset_top = -1.0
+offset_right = 665.0
+offset_bottom = 30.0
+size_flags_horizontal = 3
+text = "Add Email"
+alignment = 2
+expand_icon = true
+
 [node name="AddRecipe" type="Button" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.823
-anchor_right = 0.823
-offset_left = 70.763
-offset_right = 191.763
+offset_left = 400.0
+offset_right = 494.0
 offset_bottom = 31.0
 size_flags_horizontal = 3
 text = "Add Recipe"
-icon = ExtResource("1_y1dxf")
 alignment = 2
-expand_icon = true
 
 [node name="Add Resource" type="PopupMenu" parent="."]
 size = Vector2i(121, 100)
 allow_search = false
 item_count = 2
 item_0/text = "Create new..."
+item_0/id = 0
 item_1/id = 1
 item_1/separator = true
 
@@ -33,5 +39,6 @@ item_1/separator = true
 size = Vector2i(121, 100)
 item_count = 2
 item_0/text = "Create new..."
+item_0/id = 0
 item_1/id = 1
 item_1/separator = true
