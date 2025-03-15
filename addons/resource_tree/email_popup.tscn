@@ -5,8 +5,12 @@
 [node name="PopUp" instance=ExtResource("1_h8ngf")]
 title = "Add Email"
 
+[node name="Control" parent="." index="1"]
+offset_right = -4.0
+offset_bottom = -4.0
+
 [node name="Label" parent="Control" index="0"]
-text = "Name of Email"
+text = "Name of Email File"
 
 [node name="Name" parent="Control/HBoxContainer" index="0"]
 placeholder_text = "email_name"

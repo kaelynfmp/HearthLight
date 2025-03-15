@@ -6,11 +6,11 @@
 title = "Add Gadget"
 
 [node name="Control" parent="." index="1"]
-offset_right = 596.0
-offset_bottom = 396.0
+offset_right = -4.0
+offset_bottom = -4.0
 
 [node name="Label" parent="Control" index="0"]
-text = "Name of Gadget"
+text = "Name of Gadget File"
 
 [node name="Name" parent="Control/HBoxContainer" index="0"]
 placeholder_text = "gadget"

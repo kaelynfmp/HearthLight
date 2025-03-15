@@ -37,8 +37,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 596.0
-offset_bottom = 396.0
+offset_right = -4.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -55,7 +55,7 @@ offset_right = 151.5
 offset_bottom = 152.0
 grow_horizontal = 2
 theme = SubResource("Theme_thqch")
-text = "Name of Recipe"
+text = "Name of Recipe File"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control"]
 layout_mode = 1
