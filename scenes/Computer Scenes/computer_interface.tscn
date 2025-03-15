@@ -25,6 +25,8 @@ corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xtmmj"]
 texture = ExtResource("11_n3nyj")
+texture_margin_left = 55.0
+texture_margin_right = 30.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_33xji"]
 
@@ -154,13 +156,14 @@ layout_mode = 2
 
 [node name="Currency Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1433.0
+offset_left = 1527.0
 offset_top = 10.0
 offset_right = 1812.0
-offset_bottom = 93.0
+offset_bottom = 88.0
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxTexture_xtmmj")
-text = "       1000000"
+text = "1000000"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="Close Button" type="Button" parent="."]

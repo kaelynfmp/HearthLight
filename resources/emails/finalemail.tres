@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Email" load_steps=2 format=3 uid="uid://dnfk64uckrc13"]
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://dnfk64uckrc13"]
 
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_c2rdq"]
+[ext_resource type="Resource" uid="uid://dmneq4jdepfsq" path="res://resources/emails/metalformoney.tres" id="2_c1ohq"]
 
 [resource]
 script = ExtResource("1_c2rdq")
@@ -14,7 +15,7 @@ Congrats on all your progress! But . . . it'll never be enough. Don't forget tha
 
 [i]Thank you for playing![/i]"
 category = "main"
-prerequisite_emails = Array[ExtResource("1_c2rdq")]([])
+prerequisite_emails = Array[ExtResource("1_c2rdq")]([ExtResource("2_c1ohq")])
 day = 7
 hour = 8
 minute = 0

@@ -13,8 +13,6 @@ var prev_items:Array[Item]
 var email_strings:PackedStringArray
 var emails:Array[Email]
 
-var email_nodes_initialized:bool
-
 var gadget_menu:PopupMenu
 var item_menu:PopupMenu
 
@@ -67,7 +65,6 @@ func _ready() -> void:
 	item_menu.index_pressed.connect(item_menu_pressed)
 	gadget_menu.index_pressed.connect(gadget_menu_pressed)
 	load_recipes()
-	email_nodes_initialized = false
 	EditorInterface.get_resource_filesystem().filesystem_changed.connect(load_recipes)
 
 func _has_main_screen() -> bool:
@@ -174,7 +171,11 @@ func connect_nodes(from, from_port, to, to_port, node, to_connect_node, gadget_n
 		graph_edit.connect_node(str(from), from_port, str(to), to_port)
 	elif "email_node" in node:
 		if "email_node" in to_connect_node:
-			node.email_node.email.prerequisite_emails.append(to_connect_node.email_node.email)
+			var email = node.email_node.email
+			# Appending directly was causing a resource cache issue occasionally, so this guarantees it works
+			var new_emails = email.prerequisite_emails.duplicate()
+			new_emails.append(to_connect_node.email_node.email)
+			email.prerequisite_emails = new_emails
 	save_properties()
 	
 func disconnect_nodes(from, from_port, to, to_port, node, to_disconnect_node):
@@ -229,7 +230,7 @@ func _process(_delta:float) -> void:
 	if (prev_gadgets != gadgets):
 		prev_gadgets = gadgets.duplicate()
 		populate_menu_gadgets()
-	var graph_nodes:Array = graph_edit.get_children().filter(func(child): return child is GraphNode and "recipe_node" in child)
+	var graph_nodes:Array[Node] = graph_edit.get_children().filter(func(child): return child is GraphNode and "recipe_node" in child)
 	for node in graph_nodes:
 		var connections:Array = graph_edit.get_connection_list().filter(func(connection): return connection.to_node == node.get_name())
 		var found_inputs:Array
@@ -342,15 +343,45 @@ func _process(_delta:float) -> void:
 		#if node.get_input_port_count() == node.email_node.email.prerequisite_emails.size() + ((node.email_node.email.attached_order.required_items.size() + node.email_node.email.attached_order.given_items.size()) if node.email_node.email.attached_order != null else 0) + 1:
 		var email_node:EmailEditorNode = node.email_node
 		var email:Email = email_node.email
-		if !email_nodes_initialized or email_node.prerequisite_email_nodes.size() != email.prerequisite_emails.size() \
+
+		# Prerequisite Email Setup
+		if email_node.prerequisite_email_nodes.size() != email.prerequisite_emails.size() \
 		or !email_node.prerequisite_email_nodes.all(\
 		func(prerequisite_email_node): return prerequisite_email_node.email in email.prerequisite_emails):
+			# If size or contents is different
 			email_node.prerequisite_email_nodes.clear()
 			for prerequisite_email in email.prerequisite_emails:
 				var find_node = graph_nodes.filter(func(graph_node): return graph_node.email_node.email == prerequisite_email)
 				if !find_node.is_empty():
 					var prerequisite_email_node = find_node[0]
 					email_node.prerequisite_email_nodes.append(prerequisite_email_node.email_node)
+
+		## ORDERS
+		var order:Order = email.attached_order
+		if order != null and (!order.required_items.is_empty() or !order.given_items.is_empty() or !order.rewards.is_empty()):
+			var item_nodes:Array[Node] = graph_edit.get_children().filter(func(child): return child is GraphNode and "item_node" in child)
+			var gadget_nodes:Array[Node] = graph_edit.get_children().filter(func(child): return child is GraphNode and "gadget_node" in child)
+			var set_items := func (set_item_nodes, items_list, quantities_list):
+				if set_item_nodes.size() != items_list.size() \
+				or set_item_nodes.keys().all(\
+				func(item_node): return item_node in items_list):
+					# If size or contents is different
+					set_item_nodes.clear()
+					for index in range(items_list.size()):
+						var new_item:Resource = items_list[index]
+						var new_quantity:int = quantities_list[index]
+						var find_node:Array[Node] = item_nodes.filter(func(graph_node): return graph_node.item_node.item == new_item)
+						if find_node.is_empty():
+							find_node = gadget_nodes.filter(func(graph_node): return graph_node.gadget_node.gadget == new_item)
+						if !find_node.is_empty():
+							set_item_nodes[(find_node[0].item_node if new_item is Item else find_node[0].gadget_node)] = new_quantity
+						else:
+							set_item_nodes[add_item(new_item)] = new_quantity
+
+			set_items.call(email_node.given_item_nodes, order.given_items, order.given_quantities)
+			set_items.call(email_node.required_item_nodes, order.required_items, order.required_quantities)
+			set_items.call(email_node.rewards_item_nodes, order.rewards, order.rewards_quantities)
+					
 
 		# Check if the connection exists. If not, make it
 		for prerequisite_email_node:EmailEditorNode in email_node.prerequisite_email_nodes:
@@ -365,8 +396,6 @@ func _process(_delta:float) -> void:
 			var from_node:Node = graph_edit.get_children().filter(func(child): return child.name == connection.from_node)[0]
 			if from_node.email_node not in email_node.prerequisite_email_nodes:
 				graph_edit.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
-	
-	email_nodes_initialized = true
 		
 
 ## Arbitrarily populate nodes with a given variable name for subnode (recipe_node, graph_node, item_node)

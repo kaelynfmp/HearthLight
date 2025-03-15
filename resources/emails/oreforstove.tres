@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Email" load_steps=6 format=3 uid="uid://r3prgkwmqlck"]
+[gd_resource type="Resource" script_class="Email" load_steps=7 format=3 uid="uid://r3prgkwmqlck"]
 
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_fr4g4"]
 [ext_resource type="Resource" uid="uid://gw88mo33lg1c" path="res://resources/items/ore.tres" id="1_lubv2"]
 [ext_resource type="Resource" uid="uid://dospruqxgfufk" path="res://resources/gadgets/wood_stove.tres" id="2_oasae"]
 [ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="3_4a5ct"]
+[ext_resource type="Resource" uid="uid://cdwmg5cnw3msy" path="res://resources/emails/dustforsieve.tres" id="5_oasae"]
 
 [sub_resource type="Resource" id="Resource_tgye4"]
 script = ExtResource("3_4a5ct")
@@ -26,7 +27,7 @@ I am sensing you are getting to this section of the email with no knowledge of h
 
 I predict you will have no issues with this arrangement."
 category = "main"
-prerequisite_emails = Array[ExtResource("1_fr4g4")]([])
+prerequisite_emails = Array[ExtResource("1_fr4g4")]([ExtResource("5_oasae")])
 day = 5
 hour = 8
 minute = 0

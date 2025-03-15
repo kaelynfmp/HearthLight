@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://dn25n37cbk4p6"]
+[gd_scene load_steps=40 format=3 uid="uid://dn25n37cbk4p6"]
 
 [ext_resource type="Texture2D" uid="uid://b3f53pdbhlfkg" path="res://resources/sprites/emails/emailPreview.png" id="1_1j7hc"]
 [ext_resource type="Texture2D" uid="uid://ya3hxo1l73v4" path="res://addons/resource_tree/input_slot.tres" id="1_nndyg"]
@@ -7,7 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://dnvrhn4af2nix" path="res://resources/sprites/emails/emailDropdown.png" id="2_t2q0s"]
 [ext_resource type="Texture2D" uid="uid://dph2wxrwua005" path="res://resources/sprites/computer/computerCancel.png" id="3_2h2h1"]
 [ext_resource type="Script" uid="uid://bha8ro4unkubb" path="res://scripts/gui/bbcode.gd" id="3_2hvs7"]
-[ext_resource type="Texture2D" uid="uid://cwxs2j52xgre8" path="res://resources/sprites/computer/computerAccept.png" id="4_2hvs7"]
+[ext_resource type="Texture2D" uid="uid://bpk81ck7j3l2c" path="res://resources/sprites/progressbar.png" id="6_7coub"]
+[ext_resource type="Texture2D" uid="uid://dyuipylskmyc" path="res://addons/resource_tree/addOrder.png" id="7_nndyg"]
+[ext_resource type="Texture2D" uid="uid://cu638rts4nfa2" path="res://resources/sprites/computer/computerBalance.png" id="7_t3n0n"]
+[ext_resource type="Texture2D" uid="uid://c56aavp3fuacv" path="res://addons/resource_tree/add_order_pressed.png" id="8_sjhxk"]
+[ext_resource type="Texture2D" uid="uid://ui86hauy65h3" path="res://addons/resource_tree/remove_order_pressed.png" id="10_d5xh2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h2711"]
 
@@ -38,8 +42,30 @@ shadow_offset = Vector2(23, 4.835)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t3n0n"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nndyg"]
+content_margin_left = 60.0
+content_margin_right = 60.0
+bg_color = Color(1, 0.290196, 0.494118, 0.470588)
+skew = Vector2(0.18, 0)
+border_width_left = 20
+border_width_top = 20
+border_color = Color(1, 0.290196, 0.494118, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.223529)
+shadow_size = 10
+shadow_offset = Vector2(10, 10)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2crda"]
+texture = ExtResource("7_t3n0n")
+texture_margin_left = 49.0
+texture_margin_right = 30.0
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pg1eh"]
 texture = ExtResource("2_t2q0s")
+expand_margin_right = 25.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2crda"]
 
@@ -64,50 +90,6 @@ texture = ExtResource("2_t2q0s")
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_52cx8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bjt0m"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ejx20"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_36xid"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_arasa"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bwtwl"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ke1ch"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0y7n5"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j1184"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wd2s1"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_spiaa"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fvsb0"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cern5"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6vy1r"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bn1u5"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gdam4"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gmsro"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rvgkh"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_piqe6"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0uwoi"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uta7k"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o00vc"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s2ncr"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c3eu6"]
 
 [node name="EmailNode" type="GraphNode"]
 offset_right = 1937.0
@@ -197,6 +179,99 @@ meta_underlined = false
 hint_underlined = false
 script = ExtResource("3_2hvs7")
 
+[node name="OrderContainer" type="PanelContainer" parent="EmailContainer"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 1094.0
+offset_right = 1867.0
+offset_bottom = 1597.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_nndyg")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EmailContainer/OrderContainer"]
+layout_mode = 2
+
+[node name="GivenItemsContainer" type="VBoxContainer" parent="EmailContainer/OrderContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="EmailContainer/OrderContainer/HBoxContainer/GivenItemsContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Given Items"
+horizontal_alignment = 1
+
+[node name="GivenItemsScroll" type="ScrollContainer" parent="EmailContainer/OrderContainer/HBoxContainer/GivenItemsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="GivenItems" type="HFlowContainer" parent="EmailContainer/OrderContainer/HBoxContainer/GivenItemsContainer/GivenItemsScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+alignment = 1
+
+[node name="RequiredItemsContainer" type="VBoxContainer" parent="EmailContainer/OrderContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="EmailContainer/OrderContainer/HBoxContainer/RequiredItemsContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Required Items"
+horizontal_alignment = 1
+
+[node name="RequiredItemsScroll" type="ScrollContainer" parent="EmailContainer/OrderContainer/HBoxContainer/RequiredItemsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="RequiredItems" type="HFlowContainer" parent="EmailContainer/OrderContainer/HBoxContainer/RequiredItemsContainer/RequiredItemsScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="EmailContainer/OrderContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Arrow" type="TextureRect" parent="EmailContainer/OrderContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_7coub")
+stretch_mode = 4
+
+[node name="RewardsContainer" type="VBoxContainer" parent="EmailContainer/OrderContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="EmailContainer/OrderContainer/HBoxContainer/RewardsContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Rewards"
+horizontal_alignment = 1
+
+[node name="CurrencyLabel" type="LineEdit" parent="EmailContainer/OrderContainer/HBoxContainer/RewardsContainer"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxTexture_2crda")
+alignment = 2
+
+[node name="RewardsItemsScroll" type="ScrollContainer" parent="EmailContainer/OrderContainer/HBoxContainer/RewardsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="RewardsItems" type="HFlowContainer" parent="EmailContainer/OrderContainer/HBoxContainer/RewardsContainer/RewardsItemsScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+alignment = 1
+
 [node name="Panel" type="Panel" parent="EmailContainer"]
 layout_mode = 1
 anchors_preset = 15
@@ -274,46 +349,50 @@ meta_underlined = false
 hint_underlined = false
 script = ExtResource("3_2hvs7")
 
-[node name="Decline" type="Button" parent="EmailContainer/Panel"]
-layout_mode = 0
-offset_left = 1596.0
-offset_top = 764.0
-offset_right = 1730.0
-offset_bottom = 883.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ejx20")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_36xid")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_arasa")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_bwtwl")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ke1ch")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_0y7n5")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_j1184")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_wd2s1")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_spiaa")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_fvsb0")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cern5")
-disabled = true
-icon = ExtResource("3_2h2h1")
-flat = true
+[node name="AddOrder" type="TextureButton" parent="EmailContainer/Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -53.0
+offset_top = -39.0
+offset_right = 81.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 0
+tooltip_text = "Add Order"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("7_nndyg")
+texture_pressed = ExtResource("8_sjhxk")
+texture_hover = ExtResource("7_nndyg")
+texture_disabled = ExtResource("7_nndyg")
+texture_focused = ExtResource("7_nndyg")
 
-[node name="Accept" type="Button" parent="EmailContainer/Panel"]
-layout_mode = 0
-offset_left = 1751.0
-offset_top = 764.0
-offset_right = 1885.0
-offset_bottom = 883.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_6vy1r")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_bn1u5")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_gdam4")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_gmsro")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_rvgkh")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_piqe6")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_0uwoi")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_uta7k")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_o00vc")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_s2ncr")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_c3eu6")
-icon = ExtResource("4_2hvs7")
-flat = true
+[node name="RemoveOrder" type="TextureButton" parent="EmailContainer/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -53.0
+offset_top = -40.0
+offset_right = 81.0
+offset_bottom = 79.0
+grow_horizontal = 2
+grow_vertical = 0
+tooltip_text = "Remove Order"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("3_2h2h1")
+texture_pressed = ExtResource("10_d5xh2")
+texture_hover = ExtResource("3_2h2h1")
+texture_disabled = ExtResource("3_2h2h1")
+texture_focused = ExtResource("3_2h2h1")
 
 [connection signal="dragged" from="." to="." method="_on_dragged"]
 [connection signal="node_selected" from="." to="." method="_on_node_selected"]

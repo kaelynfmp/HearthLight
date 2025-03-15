@@ -7,17 +7,42 @@ extends Resource
 var is_completed: bool = false
 var is_accepted: bool = false
 var responded: bool = false
-@export var given_items: Array[Resource] = []
-@export var given_quantities: Array[int] = []
+@export var given_items: Array[Resource] = []:
+	set(value):
+		if given_quantities.size() != value.size():
+			given_quantities.resize(value.size())
+		given_items = value
+@export var given_quantities: Array[int] = []:
+	set(value):
+		if given_items.size() != value.size():
+			given_items.resize(value.size())
+		given_quantities = value
 
 @export_category("Order Requirements")
-@export var required_items: Array[Resource] = []
-@export var required_quantities: Array[int] = []
+@export var required_items: Array[Resource] = []:
+	set(value):
+		if required_quantities.size() != value.size():
+			required_quantities.resize(value.size())
+		required_items = value
+		
+@export var required_quantities: Array[int] = []:
+	set(value):
+		if required_items.size() != value.size():
+			required_items.resize(value.size())
+		required_quantities = value
 
 @export_category("Order Rewards")
-@export var currency_reward = 0
-@export var rewards: Array[Resource] = []
-@export var rewards_quantities: Array[int] = []
+@export var currency_reward:int = 0
+@export var rewards: Array[Resource] = []:
+	set(value):
+		if rewards_quantities.size() != value.size():
+			rewards_quantities.resize(value.size())
+		rewards = value
+@export var rewards_quantities: Array[int] = []:
+	set(value):
+		if rewards.size() != value.size():
+			rewards.resize(value.size())
+		rewards_quantities = value
 
 # should ensure that the array size matches up sometime in the future
 
