@@ -17,6 +17,7 @@ var inventory: bool = false:
 var gadget:StaticBody2D
 
 var computer_visible:bool = false
+var computer_tab_manager:TabContainer
 
 var blur:bool = false
 
@@ -281,6 +282,10 @@ func player_inventory_has(required_items:Array[Resource], required_quantities:Ar
 		if player_inventory.get_item_quantity(to_parse_item) < required_quantities[index]:
 			return false
 	return true
+
+func navigate_to_botsy():
+	if computer_tab_manager != null:
+		computer_tab_manager.current_tab = 1
 
 func update_time(in_game_seconds):
 	return # TODO: undisable. temporarily disabled for demo

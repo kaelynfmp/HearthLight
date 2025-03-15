@@ -5,6 +5,7 @@ extends Control
 func _ready() -> void:
 	exit_button.pressed.connect(func(): _close_computer())
 	GameManager.computer_visibility_changed.connect(change_computer_visibility)
+	GameManager.computer_tab_manager = find_child("Sites")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

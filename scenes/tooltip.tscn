@@ -91,22 +91,19 @@ z_index = 99
 z_as_relative = false
 layout_mode = 3
 anchors_preset = 0
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 602.0
-offset_bottom = 159.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 4.0
+offset_bottom = 4.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
 [node name="TooltipContainer" type="PanelContainer" parent="."]
-layout_mode = 0
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 809.0
-offset_bottom = 219.0
+offset_right = 628.0
+offset_bottom = 123.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7dicn")
 
@@ -118,7 +115,17 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Title" type="RichTextLabel" parent="TooltipContainer/VBoxContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TooltipContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TooltipImage" type="TextureRect" parent="TooltipContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 69)
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Title" type="RichTextLabel" parent="TooltipContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 theme = SubResource("Theme_eamnv")
@@ -128,6 +135,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_vy6iq")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_wnlnb")
 text = "Title"
 fit_content = true
+meta_underlined = false
 hint_underlined = false
 script = ExtResource("1_7dicn")
 
@@ -149,5 +157,6 @@ text = "Tooltip
 "
 fit_content = true
 custom_effects = [SubResource("RichTextEffect_0xnbr")]
+meta_underlined = false
 hint_underlined = false
 script = ExtResource("1_7dicn")

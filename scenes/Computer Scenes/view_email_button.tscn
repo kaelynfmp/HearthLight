@@ -129,6 +129,7 @@ theme_override_font_sizes/bold_font_size = 40
 bbcode_enabled = true
 text = "Sender"
 fit_content = true
+meta_underlined = false
 hint_underlined = false
 script = ExtResource("3_gr1tt")
 
@@ -146,6 +147,7 @@ theme_override_font_sizes/bold_font_size = 35
 bbcode_enabled = true
 text = "Subject line"
 fit_content = true
+meta_underlined = false
 hint_underlined = false
 script = ExtResource("3_gr1tt")
 
@@ -163,6 +165,7 @@ theme_override_font_sizes/mono_font_size = 40
 theme_override_font_sizes/normal_font_size = 40
 theme_override_font_sizes/bold_font_size = 40
 text = "Start of email....."
+meta_underlined = false
 hint_underlined = false
 script = ExtResource("3_gr1tt")
 
@@ -187,6 +190,7 @@ theme_override_font_sizes/bold_font_size = 30
 bbcode_enabled = true
 text = "This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. "
 fit_content = true
+meta_underlined = false
 hint_underlined = false
 script = ExtResource("3_gr1tt")
 
@@ -204,6 +208,7 @@ theme_override_font_sizes/bold_font_size = 40
 bbcode_enabled = true
 text = "Sender"
 fit_content = true
+meta_underlined = false
 hint_underlined = false
 script = ExtResource("3_gr1tt")
 
@@ -221,6 +226,7 @@ theme_override_font_sizes/bold_font_size = 40
 bbcode_enabled = true
 text = "Subject but this is a very long subject yes ok cool"
 fit_content = true
+meta_underlined = false
 hint_underlined = false
 script = ExtResource("3_gr1tt")
 

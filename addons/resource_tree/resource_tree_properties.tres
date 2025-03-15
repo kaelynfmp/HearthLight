@@ -220,7 +220,7 @@ recipe = ExtResource("8_kf0bi")
 x = 160
 y = -1560
 gadget_node = SubResource("Resource_8w8ri")
-input_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_0uxyg")])
+input_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_0uxyg"), SubResource("Resource_nos87")])
 output_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_lxf7n")])
 
 [sub_resource type="Resource" id="Resource_qy74w"]
