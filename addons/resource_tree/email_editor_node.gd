@@ -57,6 +57,18 @@ func update_currency(currency:int) -> void:
 		return
 	email.attached_order.currency_reward = currency
 	save_email()
+	
+func update_quantity(nodes, node, quantity:int):
+	if email == null or email.attached_order == null:
+		return
+	var item = node.gadget if node is GadgetEditorNode else node.item
+	if nodes == given_item_nodes:
+		email.attached_order.given_quantities[email.attached_order.given_items.find(item)] = quantity
+	elif nodes == required_item_nodes:
+		email.attached_order.required_quantities[email.attached_order.required_items.find(item)] = quantity
+	elif nodes == rewards_item_nodes:
+		email.attached_order.rewards_quantities[email.attached_order.rewards.find(item)] = quantity
+	save_email()
 
 func clear_order() -> void:
 	email.attached_order = null

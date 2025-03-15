@@ -82,8 +82,9 @@ func _process(_delta: float) -> void:
 				new_control.set_custom_minimum_size(316 * new_slot.get_scale())
 				var spinbox_node:SpinBox = spinbox.instantiate()
 				spinbox_node.slot = slot
-				spinbox_node.set_value(slot.quantity)
+				spinbox_node.set_value(nodes[node])
 				spinbox_node.connect_slot()
+				spinbox_node.value_changed.connect(_quantity_changed.bind(nodes, node))
 				new_slot.find_child("Stack").set_z_index(-1)
 				new_slot.find_child("SlotPanel").add_child(spinbox_node)
 				new_control.add_child(new_slot)
@@ -105,8 +106,9 @@ func _process(_delta: float) -> void:
 func _currency_changed(currency: float):
 	email_node.update_currency(int(currency))
 
-func _spinbox_changed(spinbox:SpinBox):
-	pass
+func _quantity_changed(quantity:float, nodes, node):
+	if nodes[node] != quantity:
+		email_node.update_quantity(nodes, node, int(quantity))
 
 func _order_currency_changed():
 	currency_spinbox.set_value(email_node.email.attached_order.currency_reward)
