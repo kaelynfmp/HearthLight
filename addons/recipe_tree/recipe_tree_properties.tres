@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://b1h4vs1btx62h" path="res://resources/gadgets/wheel.tres" id="2_70wi3"]
 [ext_resource type="Script" uid="uid://72s4vlpmyvjo" path="res://addons/recipe_tree/recipe_tree_properties.gd" id="2_e0emm"]
 [ext_resource type="Script" uid="uid://c71bj8yw74134" path="res://addons/recipe_tree/recipe_editor_node.gd" id="2_hx4k4"]
-[ext_resource type="Resource" uid="uid://cutk2mxl7dhrh" path="res://resources/gadgets/plant.tres" id="3_d1v0y"]
+[ext_resource type="Resource" uid="uid://lecjenwiue7t" path="res://resources/gadgets/plant.tres" id="3_d1v0y"]
 [ext_resource type="Script" uid="uid://ctnn0q4bapqqp" path="res://addons/recipe_tree/item_editor_node.gd" id="3_xi7dl"]
 [ext_resource type="Resource" uid="uid://ckrgha87ltstr" path="res://resources/gadgets/hand_grinder.tres" id="4_e1cam"]
 [ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="4_lhqeo"]

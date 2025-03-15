@@ -6,10 +6,12 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_du0bt"]
 radius = 77.0065
 
-[node name="InWorldItem" type="RigidBody2D"]
-z_index = 1
+[node name="InWorldItem" type="StaticBody2D"]
+z_index = 2
+z_as_relative = false
 y_sort_enabled = true
 script = ExtResource("1_du0bt")
+move_speed = 480
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_du0bt")

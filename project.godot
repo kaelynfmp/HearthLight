@@ -119,6 +119,12 @@ toggle_debug_mode={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="world"
+2d_physics/layer_2="player"
+2d_physics/layer_3="item"
+
 [rendering]
 
 textures/vram_compression/import_etc2_astc=true

@@ -1,6 +1,5 @@
 extends Node2D
 
-
 const boundary_atlas_pos:Vector2i = Vector2i(0, 0)
 const offsets:Array[Variant]      = [
 									Vector2i(0, -1),
@@ -9,6 +8,8 @@ const offsets:Array[Variant]      = [
 									Vector2i(-1, 0)
 									]
 var tile_map: Dictionary = {}
+
+var item_map: Dictionary = {}
 
 @onready var marker: Node2D = get_node("Marker") # Child Node2D
 
@@ -66,7 +67,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if GameManager.is_placing_gadget and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		if spawn_object(GameManager.get_gadget_from_cursor()):
 			GameManager.cursor.slot.decrement()
-			GameManager.change_inventory()
+			#GameManager.change_inventory()
 		
 func is_base_available(cell_pos: Vector2i) -> bool:
 	var lowest = ""
@@ -95,8 +96,8 @@ func spawn_object(gadget: Gadget, _cell_pos:Vector2i = Vector2i(-99, -99)) -> bo
 		instance.cell_pos = cell_pos
 		GameManager.room_map[cell_pos[0] + 6][cell_pos[1] + 5] = instance 
 		instance.removing.connect(free_tile)
-		instance.spawn_item_on_top.connect(spawn_item_on_top)
-		$Base.add_child(instance)
+		instance.item_at_location.connect(item_at_location)
+		$"Base".add_child(instance)
 		tile_map[layer_occupied_name].append(cell_pos + Vector2i(-1, -1))
 		return true
 	return false
@@ -105,10 +106,20 @@ func free_tile(layer_occupied_name:String, cell_pos:Vector2i):
 	tile_map[layer_occupied_name].remove_at(tile_map[layer_occupied_name].find(cell_pos + Vector2i(-1, -1)))
 	GameManager.room_map[cell_pos[0]][cell_pos[1]] = null
 
-func spawn_item_on_top(cell_pos: Vector2i, item: Item):
-	print(cell_pos, item)
-	var in_world_item = load("res://scenes/in_world_item.tscn")
-	var item_instance = in_world_item.instantiate()
-	item_instance.position = first_layer.map_to_local(cell_pos)
-	item_instance.item = item
-	$"Layer 1".add_child(item_instance)
+func item_at_location(cell_pos: Vector2i, item: Item, previous: Vector2i):
+	if previous == Vector2i(-100, -100):
+		var in_world_item = load("res://scenes/in_world_item.tscn")
+		var item_instance = in_world_item.instantiate()
+		item_instance.position = first_layer.map_to_local(cell_pos + Vector2i(-1, -1))
+		item_instance.item = item
+		$"Layer 1".add_child(item_instance)
+		GameManager.item_map[cell_pos[0]][cell_pos[1]] = item_instance
+	else:
+		if GameManager.item_map[previous[0]][previous[1]] == null:
+			print("Not found previous gadget")
+		else:
+			var item_instance: StaticBody2D = GameManager.item_map[previous[0]][previous[1]]
+			GameManager.item_map[previous[0]][previous[1]] = null
+			item_instance.target_position = first_layer.map_to_local(cell_pos + Vector2i(-1, -1))
+			GameManager.item_map[cell_pos[0]][cell_pos[1]] = item_instance
+	

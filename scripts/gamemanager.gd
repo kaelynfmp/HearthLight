@@ -80,19 +80,23 @@ var gadgets:Array[Gadget]
 var gadget_items:Dictionary
 
 var room_map = []
+var item_map = []
 
 func init_room_map():
+	var map = []
 	for i in range(11):
 		var row = []
 		for j in range(11):
 			row.append(null)
-		room_map.append(row)
+		map.append(row)
+	return map
 
 func _ready() -> void:
 	process_mode = PROCESS_MODE_ALWAYS
 	start_time = Time.get_ticks_msec()
 	seconds_elapsed = 0
-	init_room_map()
+	room_map = init_room_map()
+	item_map = init_room_map()
 	load_recipes()
 	load_gadgets()
 	

@@ -1,45 +1,34 @@
 extends StaticBody2D
 
 signal removing(layer_occupied_name:String, cell_pos:Vector2i)
-signal spawn_item_on_top(cell_pos: Vector2i, item: Item)
+signal item_at_location(cell_pos: Vector2i, item: Item, previous: StaticBody2D)
 
 @export var gadget_stats:Gadget
 @onready var audio_player:AudioStreamPlayer2D = find_child("AudioStreamPlayer")
-
 @onready var sprite:Sprite2D = find_child("Sprite")
 @onready var valid_selection:CompressedTexture2D = load("res://scripts/shaders/close_enough_texture.tres")
 @onready var invalid_selection:CompressedTexture2D = load("res://scripts/shaders/not_close_enough_texture.tres")
-
 @export var inventory: Inventory
-
 @export var is_holding: bool = false
 
 var location: Vector2i
-
 var character: Node2D
-
 var base_layer: Node2D
-
+var tile_layers: Node2D
 var age:int
-
 var initial_click:bool = true
-
 var progressing:bool = false
 var progress:float = 0
 var selected_recipe:Recipe
 var recipe_taken = false
-
 var layer_occupied_name:String
 var cell_pos:Vector2i
-
 var primitive_selected:bool = false
-
 var hovered:bool = false
-
 var recipes:Array[Recipe]
-
 var rear_gadget: StaticBody2D
 var front_gadget: StaticBody2D
+var corresponding_item: RigidBody2D
 
 func create_new_inventory(num_inputs: int, num_outputs: int) -> Inventory:
 	var inventory: Inventory = Inventory.new()
@@ -58,13 +47,14 @@ func _ready() -> void:
 	inventory = create_new_inventory(gadget_stats.inputs, gadget_stats.outputs)
 	character = get_parent().get_parent().get_parent().find_child("Character")
 	base_layer = get_parent()
+	tile_layers = base_layer.get_parent()
 	age = gadget_stats.age
 	sprite.texture = gadget_stats.texture
 	audio_player.set_stream(gadget_stats.ambient_sound)
 	update_recipes()
-	if gadget_stats.name == "Conveyor Belt":
-		constant_linear_velocity = Vector2(200, 200)
 	GameManager.update_recipes.connect(update_recipes)
+	
+
 
 func _physics_process(delta: float) -> void:
 	if GameManager.gadget == null:
@@ -87,7 +77,6 @@ func _physics_process(delta: float) -> void:
 			if gadget_stats.name != "Conveyor Belt":
 				finish_recipe()
 			else:
-				print("Time to finish")
 				finish_transport()
 		elif progress <= 0:
 			cancel_processing()
@@ -107,18 +96,16 @@ func _process(_delta: float) -> void:
 		
 func do_transport():
 	var rear_gadget_pos: Vector2i = cell_pos + Vector2i(-1, 0)
-	rear_gadget = GameManager.room_map[rear_gadget_pos[0] + 6][rear_gadget_pos[1] + 5]
-	if rear_gadget != null:
-		if rear_gadget.inventory.slots[0].item:
+	if (GameManager.room_map[rear_gadget_pos[0] + 6][rear_gadget_pos[1] + 5] != null):
+		rear_gadget = GameManager.room_map[rear_gadget_pos[0] + 6][rear_gadget_pos[1] + 5]
+		if rear_gadget != null:
 			start_progression_transport()
 			
 func start_progression_transport():
 	play_sound()
-	print("Start transporting")
 	progressing = true
 	
 func finish_transport():
-	print("Finish transporting")
 	pull_inventory()
 	cancel_processing()
 	
@@ -128,10 +115,17 @@ func pull_inventory():
 		for slot in rear_inventory.slots:
 			if slot.item != null:
 				var item: Item = slot.item
-				if rear_gadget.gadget_stats.name != "Conveyor Belt":
-					spawn_item_on_top.emit(cell_pos, item)
-				rear_inventory.remove_items(item, 1)
-				inventory.insert(item, 1)
+				var available_slots : Array[Slot] = inventory.slots.filter(func(slot): 
+					return slot.item == item or (slot.item == null and !slot.locked)
+				)
+				if !available_slots.is_empty():
+					if rear_gadget.gadget_stats.name != "Conveyor Belt":
+						item_at_location.emit(cell_pos, item,  Vector2i(-100, -100))
+					else:
+						item_at_location.emit(cell_pos, item, cell_pos + Vector2i(-1, 0))
+					rear_inventory.remove_items(item, 1)
+					inventory.insert(item, 1)
+					break
 				
 		
 func update_recipes():
