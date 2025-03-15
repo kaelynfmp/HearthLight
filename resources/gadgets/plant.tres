@@ -12,14 +12,14 @@
 [sub_resource type="Resource" id="Resource_6gsv3"]
 script = ExtResource("3_lt256")
 locked = false
-item_filter = Array[ExtResource("4_u6bql")]([ExtResource("5_oeelc"), ExtResource("6_yp1ak")])
+item_filter = Array[ExtResource("4_u6bql")]([ExtResource("5_oeelc")])
 bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_mnq6w"]
 script = ExtResource("3_lt256")
 locked = false
-item_filter = Array[ExtResource("4_u6bql")]([ExtResource("5_oeelc"), ExtResource("6_yp1ak")])
+item_filter = Array[ExtResource("4_u6bql")]([ExtResource("5_oeelc")])
 bypass_stack = false
 quantity = 0
 

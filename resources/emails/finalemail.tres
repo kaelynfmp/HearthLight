@@ -14,6 +14,7 @@ Congrats on all your progress! But . . . it'll never be enough. Don't forget tha
 
 [i]Thank you for playing![/i]"
 category = "main"
+prerequisite_emails = Array[ExtResource("1_c2rdq")]([])
 day = 7
 hour = 8
 minute = 0

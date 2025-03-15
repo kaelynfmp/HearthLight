@@ -13,6 +13,8 @@ var prev_items:Array[Item]
 var email_strings:PackedStringArray
 var emails:Array[Email]
 
+var email_nodes_initialized:bool
+
 var gadget_menu:PopupMenu
 var item_menu:PopupMenu
 
@@ -65,6 +67,7 @@ func _ready() -> void:
 	item_menu.index_pressed.connect(item_menu_pressed)
 	gadget_menu.index_pressed.connect(gadget_menu_pressed)
 	load_recipes()
+	email_nodes_initialized = false
 	EditorInterface.get_resource_filesystem().filesystem_changed.connect(load_recipes)
 
 func _has_main_screen() -> bool:
@@ -101,7 +104,7 @@ func _on_request(from, from_port, to, to_port) -> void:
 	var valid: bool = true
 	var connections: Array = graph_edit.get_connection_list().filter(func(connection): return connection.to_node == to and connection.to_port == to_port)
 	var to_connect_node:GraphNode = graph_edit.get_children().filter(func(child): return child.name == from)[0]
-	valid = connections.is_empty()
+	valid = connections.is_empty() or "email_node" in node
 	if valid:
 		connect_nodes(from, from_port, to, to_port, node, to_connect_node)
 	else:
@@ -156,54 +159,61 @@ func _on_request(from, from_port, to, to_port) -> void:
 		
 		
 func connect_nodes(from, from_port, to, to_port, node, to_connect_node, gadget_node=false) -> void:
-	if to_port < node.recipe_node.recipe.inputs.size() and not gadget_node:
-		# Input
-		if node.recipe_node.input_item_nodes.find(to_connect_node.item_node) != -1: return
-		node.recipe_node.input_item_nodes.append(to_connect_node.item_node)
-	elif to_port == node.recipe_node.recipe.inputs.size() or gadget_node:
-		# Gadget
-		node.recipe_node.gadget_node = to_connect_node.gadget_node
-	elif not gadget_node:
-		# Output
-		if node.recipe_node.output_item_nodes.find(to_connect_node.item_node) != -1: return
-		node.recipe_node.output_item_nodes.append(to_connect_node.item_node)
-	graph_edit.connect_node(str(from), from_port, str(to), to_port)
+	if "recipe_node" in node:
+		if to_port < node.recipe_node.recipe.inputs.size() and not gadget_node:
+			# Input
+			if node.recipe_node.input_item_nodes.find(to_connect_node.item_node) != -1: return
+			node.recipe_node.input_item_nodes.append(to_connect_node.item_node)
+		elif to_port == node.recipe_node.recipe.inputs.size() or gadget_node:
+			# Gadget
+			node.recipe_node.gadget_node = to_connect_node.gadget_node
+		elif not gadget_node:
+			# Output
+			if node.recipe_node.output_item_nodes.find(to_connect_node.item_node) != -1: return
+			node.recipe_node.output_item_nodes.append(to_connect_node.item_node)
+		graph_edit.connect_node(str(from), from_port, str(to), to_port)
+	elif "email_node" in node:
+		if "email_node" in to_connect_node:
+			node.email_node.email.prerequisite_emails.append(to_connect_node.email_node.email)
 	save_properties()
 	
 func disconnect_nodes(from, from_port, to, to_port, node, to_disconnect_node):
-	if to_port < node.recipe_node.recipe.inputs.size():
-		# Input
-		var find_node = node.recipe_node.input_item_nodes.find(to_disconnect_node.item_node)
-		if find_node != -1:
-			node.recipe_node.clear_input_item_node(node.recipe_node.input_item_nodes[find_node])
-	elif to_port == node.recipe_node.recipe.inputs.size():
-		# Gadget
-		var stored_recipe_inputs:Array[Slot]
-		var stored_recipe_outputs:Array[Slot]
-		var stored_recipe_input_nodes:Array[ItemEditorNode]
-		var stored_recipe_output_nodes:Array[ItemEditorNode]
-		if to_port == node.recipe_node.recipe.inputs.size():
-			stored_recipe_inputs = node.recipe_node.recipe.inputs.duplicate()
-			stored_recipe_outputs = node.recipe_node.recipe.outputs.duplicate()
-			stored_recipe_input_nodes = node.recipe_node.input_item_nodes.duplicate()
-			stored_recipe_output_nodes = node.recipe_node.output_item_nodes.duplicate()
-		var find_node = node.recipe_node.gadget_node
-		if find_node != null:
-			node.recipe_node.clear_gadget_node()
-			node.recipe_node.recipe.inputs = stored_recipe_inputs
-			node.recipe_node.recipe.outputs = stored_recipe_outputs
-			node.recipe_node.input_item_nodes = stored_recipe_input_nodes
-			node.recipe_node.output_item_nodes = stored_recipe_output_nodes
-	else:
-		# Output
-		var find_node = node.recipe_node.output_item_nodes.find(to_disconnect_node.item_node)
-		if find_node != -1:
-			node.recipe_node.clear_output_item_node(node.recipe_node.output_item_nodes[find_node])
-	graph_edit.disconnect_node(from, from_port, to, to_port)
+	if "recipe_node" in node:
+		if to_port < node.recipe_node.recipe.inputs.size():
+			# Input
+			var find_node = node.recipe_node.input_item_nodes.find(to_disconnect_node.item_node)
+			if find_node != -1:
+				node.recipe_node.clear_input_item_node(node.recipe_node.input_item_nodes[find_node])
+		elif to_port == node.recipe_node.recipe.inputs.size():
+			# Gadget
+			var stored_recipe_inputs:Array[Slot]
+			var stored_recipe_outputs:Array[Slot]
+			var stored_recipe_input_nodes:Array[ItemEditorNode]
+			var stored_recipe_output_nodes:Array[ItemEditorNode]
+			if to_port == node.recipe_node.recipe.inputs.size():
+				stored_recipe_inputs = node.recipe_node.recipe.inputs.duplicate()
+				stored_recipe_outputs = node.recipe_node.recipe.outputs.duplicate()
+				stored_recipe_input_nodes = node.recipe_node.input_item_nodes.duplicate()
+				stored_recipe_output_nodes = node.recipe_node.output_item_nodes.duplicate()
+			var find_node = node.recipe_node.gadget_node
+			if find_node != null:
+				node.recipe_node.clear_gadget_node()
+				node.recipe_node.recipe.inputs = stored_recipe_inputs
+				node.recipe_node.recipe.outputs = stored_recipe_outputs
+				node.recipe_node.input_item_nodes = stored_recipe_input_nodes
+				node.recipe_node.output_item_nodes = stored_recipe_output_nodes
+		else:
+			# Output
+			var find_node = node.recipe_node.output_item_nodes.find(to_disconnect_node.item_node)
+			if find_node != -1:
+				node.recipe_node.clear_output_item_node(node.recipe_node.output_item_nodes[find_node])
+		graph_edit.disconnect_node(from, from_port, to, to_port)
+	elif "email_node" in node:
+		node.email_node.email.prerequisite_emails.erase(to_disconnect_node.email_node.email)
 	save_properties()
 	
 func _on_disconnect_request(from, from_port, to, to_port) -> void:
-	var node:GraphNode = graph_edit.get_children().filter(func(child): return child.name == to)[0] # Unique nameness means this is the recipe node we want
+	var node:GraphNode = graph_edit.get_children().filter(func(child): return child.name == to)[0] # Unique nameness means this is the node we want
 	var to_disconnect_node:GraphNode = graph_edit.get_children().filter(func(child): return child.name == from)[0]
 	disconnect_nodes(from, from_port, to, to_port, node, to_disconnect_node)
 	
@@ -326,11 +336,37 @@ func _process(_delta:float) -> void:
 						if from_node.item_node not in node.recipe_node.output_item_nodes:
 							graph_edit.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
 
-	graph_nodes = graph_edit.get_children().filter(func(child): return child is GraphNode and "graph_node" in child)
+	graph_nodes = graph_edit.get_children().filter(func(child): return child is GraphNode and "email_node" in child)
 	for node in graph_nodes:
 		var connections:Array = graph_edit.get_connection_list().filter(func(connection): return connection.to_node == node.get_name())
-		if node.get_input_port_count() == node.email_node.email.prerequisite_emails.size() + ((node.email_node.email.order.required_items.size() + node.email_node.email.order.given_items.size()) if node.email_node.email.order != null else 0) + 1:
-			pass
+		#if node.get_input_port_count() == node.email_node.email.prerequisite_emails.size() + ((node.email_node.email.attached_order.required_items.size() + node.email_node.email.attached_order.given_items.size()) if node.email_node.email.attached_order != null else 0) + 1:
+		var email_node:EmailEditorNode = node.email_node
+		var email:Email = email_node.email
+		if !email_nodes_initialized or email_node.prerequisite_email_nodes.size() != email.prerequisite_emails.size() \
+		or !email_node.prerequisite_email_nodes.all(\
+		func(prerequisite_email_node): return prerequisite_email_node.email in email.prerequisite_emails):
+			email_node.prerequisite_email_nodes.clear()
+			for prerequisite_email in email.prerequisite_emails:
+				var find_node = graph_nodes.filter(func(graph_node): return graph_node.email_node.email == prerequisite_email)
+				if !find_node.is_empty():
+					var prerequisite_email_node = find_node[0]
+					email_node.prerequisite_email_nodes.append(prerequisite_email_node.email_node)
+
+		# Check if the connection exists. If not, make it
+		for prerequisite_email_node:EmailEditorNode in email_node.prerequisite_email_nodes:
+			var prereq_graph_node = graph_nodes.filter(func(graph_node): return graph_node.email_node == prerequisite_email_node)
+			if !prereq_graph_node.is_empty():
+				var existing_connections:Array = connections.filter(func(connection): return connection.from_node == prereq_graph_node[0].get_name())
+				if existing_connections.is_empty():
+					graph_edit.connect_node(prereq_graph_node[0].get_name(), 0, node.get_name(), 0)
+
+		for connection in connections:
+			# Check if the connection exists. If it is, but shouldn't, un-make it
+			var from_node:Node = graph_edit.get_children().filter(func(child): return child.name == connection.from_node)[0]
+			if from_node.email_node not in email_node.prerequisite_email_nodes:
+				graph_edit.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
+	
+	email_nodes_initialized = true
 		
 
 ## Arbitrarily populate nodes with a given variable name for subnode (recipe_node, graph_node, item_node)
@@ -479,8 +515,8 @@ func load_emails() -> void:
 				if prerequisite_email != null:
 					if prerequisite_email in emails:
 						if properties.email_nodes.filter(func(email_node): return email_node.email == prerequisite_email).is_empty():
-							recipe_node.email_nodes.append(add_email(email))
-
+							properties.email_nodes.append(add_email(email))
+	
 func add_recipe(_recipe:Recipe) -> RecipeEditorNode:
 	var new_recipe:RecipeEditorNode = RecipeEditorNode.new()
 	new_recipe.x = 100

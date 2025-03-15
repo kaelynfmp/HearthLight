@@ -7,19 +7,7 @@ extends Resource
 @export var x:int
 @export var y:int
 var prev_prerequisite_email_nodes_size:int = 0
-@export var prerequisite_email_nodes:Array[EmailEditorNode] :
-	get:
-		if prev_prerequisite_email_nodes_size != prerequisite_email_nodes.size():
-			prev_prerequisite_email_nodes_size = prerequisite_email_nodes.size()
-			changed.emit()
-			if email != null:
-				email.prerequisite_emails = []
-				for index in range(prerequisite_email_nodes.size()):
-					var email_node:EmailEditorNode = prerequisite_email_nodes[index]
-					if email_node.email != null:
-						email.prerequisite_emails[index] = email_node.email
-				save_email()
-		return prerequisite_email_nodes
+@export var prerequisite_email_nodes:Array[EmailEditorNode]
 var prev_order_input_nodes_size:int = 0
 @export var order_input_nodes:Array[Resource]:
 	get:

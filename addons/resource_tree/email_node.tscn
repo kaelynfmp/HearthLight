@@ -1,7 +1,9 @@
-[gd_scene load_steps=54 format=3 uid="uid://dn25n37cbk4p6"]
+[gd_scene load_steps=56 format=3 uid="uid://dn25n37cbk4p6"]
 
 [ext_resource type="Texture2D" uid="uid://b3f53pdbhlfkg" path="res://resources/sprites/emails/emailPreview.png" id="1_1j7hc"]
+[ext_resource type="Texture2D" uid="uid://ya3hxo1l73v4" path="res://addons/resource_tree/input_slot.tres" id="1_nndyg"]
 [ext_resource type="Script" uid="uid://dbrky7wchvte8" path="res://addons/resource_tree/email_node.gd" id="1_t2q0s"]
+[ext_resource type="Texture2D" uid="uid://df5leiiji8qsy" path="res://addons/resource_tree/output_slot.tres" id="2_sjhxk"]
 [ext_resource type="Texture2D" uid="uid://dnvrhn4af2nix" path="res://resources/sprites/emails/emailDropdown.png" id="2_t2q0s"]
 [ext_resource type="Texture2D" uid="uid://dph2wxrwua005" path="res://resources/sprites/computer/computerCancel.png" id="3_2h2h1"]
 [ext_resource type="Script" uid="uid://bha8ro4unkubb" path="res://scripts/gui/bbcode.gd" id="3_2hvs7"]
@@ -114,14 +116,14 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_h2711")
 theme_override_styles/panel_selected = SubResource("StyleBoxFlat_t2q0s")
 theme_override_styles/titlebar = SubResource("StyleBoxEmpty_jigf7")
 theme_override_styles/titlebar_selected = SubResource("StyleBoxEmpty_kik5e")
-slot/0/left_enabled = false
-slot/0/left_type = 0
+slot/0/left_enabled = true
+slot/0/left_type = 2
 slot/0/left_color = Color(1, 1, 1, 1)
-slot/0/left_icon = null
-slot/0/right_enabled = false
-slot/0/right_type = 0
+slot/0/left_icon = ExtResource("1_nndyg")
+slot/0/right_enabled = true
+slot/0/right_type = 2
 slot/0/right_color = Color(1, 1, 1, 1)
-slot/0/right_icon = null
+slot/0/right_icon = ExtResource("2_sjhxk")
 slot/0/draw_stylebox = true
 script = ExtResource("1_t2q0s")
 

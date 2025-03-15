@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Email" load_steps=8 format=3 uid="uid://cof21obwyvl4v"]
+[gd_resource type="Resource" script_class="Email" load_steps=10 format=3 uid="uid://cof21obwyvl4v"]
 
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_16060"]
 [ext_resource type="Resource" uid="uid://cutk2mxl7dhrh" path="res://resources/gadgets/plant.tres" id="1_sueqm"]
@@ -6,6 +6,8 @@
 [ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="3_6ndcv"]
 [ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="4_1axvi"]
 [ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="5_w18pw"]
+[ext_resource type="Resource" uid="uid://sc3eyh2thm3t" path="res://resources/emails/secondemail.tres" id="7_vwut3"]
+[ext_resource type="Resource" uid="uid://dmneq4jdepfsq" path="res://resources/emails/metalformoney.tres" id="8_6ndcv"]
 
 [sub_resource type="Resource" id="Resource_deaot"]
 script = ExtResource("5_w18pw")
@@ -27,7 +29,7 @@ hey, a little birdie told me that you've got yourself access to a plant [img=30p
 
 thanks a bunch!"
 category = "main"
-prerequisite_emails = Array[ExtResource("1_16060")]([])
+prerequisite_emails = Array[ExtResource("1_16060")]([ExtResource("7_vwut3"), ExtResource("8_6ndcv")])
 day = 1
 hour = 8
 minute = 0
