@@ -184,7 +184,7 @@ x = 15120
 y = -1580
 prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_j4adb")])
 required_item_nodes = Dictionary[Resource, int]({
-SubResource("Resource_4b6dr"): 1
+SubResource("Resource_4b6dr"): 2
 })
 given_item_nodes = Dictionary[Resource, int]({})
 rewards_item_nodes = Dictionary[Resource, int]({})
