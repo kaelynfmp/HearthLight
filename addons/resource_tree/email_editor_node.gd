@@ -64,10 +64,13 @@ func update_quantity(nodes, node, quantity:int):
 	var item = node.gadget if node is GadgetEditorNode else node.item
 	if nodes == given_item_nodes:
 		email.attached_order.given_quantities[email.attached_order.given_items.find(item)] = quantity
+		given_item_nodes[node] = quantity
 	elif nodes == required_item_nodes:
 		email.attached_order.required_quantities[email.attached_order.required_items.find(item)] = quantity
+		required_item_nodes[node] = quantity
 	elif nodes == rewards_item_nodes:
 		email.attached_order.rewards_quantities[email.attached_order.rewards.find(item)] = quantity
+		rewards_item_nodes[node] = quantity
 	save_email()
 
 func clear_order() -> void:

@@ -54,6 +54,8 @@ func _ready() -> void:
 	graph_edit = control
 	graph_edit.connection_request.connect(_on_request)
 	graph_edit.disconnection_request.connect(_on_disconnect_request)
+	graph_edit.add_valid_connection_type(0, 3)
+	graph_edit.add_valid_connection_type(1, 3)
 	
 	menu_node = menu.instantiate()
 	graph_edit.get_menu_hbox().add_child(menu_node)
@@ -124,7 +126,7 @@ func _on_request(from, from_port, to, to_port) -> void:
 	valid = connections.is_empty() or "email_node" in node
 	if valid:
 		connect_nodes(from, from_port, to, to_port, node, to_connect_node)
-	else:
+	elif "email_node" not in node:
 		var to_disconnect_node:GraphNode = graph_edit.get_children().filter(func(child): return child.name == from)[0]
 		
 		var gadget_node:bool
@@ -190,12 +192,45 @@ func connect_nodes(from, from_port, to, to_port, node, to_connect_node, gadget_n
 			node.recipe_node.output_item_nodes.append(to_connect_node.item_node)
 		graph_edit.connect_node(str(from), from_port, str(to), to_port)
 	elif "email_node" in node:
+		var email:Email = node.email_node.email
 		if "email_node" in to_connect_node:
-			var email = node.email_node.email
 			# Appending directly was causing a resource cache issue occasionally, so this guarantees it works
-			var new_emails = email.prerequisite_emails.duplicate()
+			var new_emails:Array[Email] = email.prerequisite_emails.duplicate()
 			new_emails.append(to_connect_node.email_node.email)
 			email.prerequisite_emails = new_emails
+		elif "item_node" in to_connect_node or "gadget_node" in to_connect_node:
+			var existing_connection:bool = graph_edit.get_connection_list().any(func(connection): \
+			return connection.from_node == from and connection.from_port == from_port and connection.to_node == to and connection.to_port == to_port)
+			if existing_connection: return
+			var is_item:bool = "item_node" in to_connect_node
+			var order:Order = email.attached_order
+			if !order: return
+			match to_port:
+				1:
+					var new_given_items:Array[Resource] = order.given_items.duplicate()
+					new_given_items.append(to_connect_node.item_node.item if is_item else to_connect_node.gadget_node.gadget)
+					var new_given_quantities:Array[int] = order.given_quantities.duplicate()
+					new_given_quantities.append(1)
+					order.given_items = new_given_items
+					order.given_quantities = new_given_quantities
+					node.email_node.given_item_nodes[to_connect_node.item_node if is_item else to_connect_node.gadget_node] = 1
+				2:
+					var new_required_items:Array[Resource] = order.required_items.duplicate()
+					new_required_items.append(to_connect_node.item_node.item if is_item else to_connect_node.gadget_node.gadget)
+					var new_required_quantities:Array[int] = order.required_quantities.duplicate()
+					new_required_quantities.append(1)
+					order.required_items = new_required_items
+					order.required_quantities = new_required_quantities
+					node.email_node.required_item_nodes[to_connect_node.item_node if is_item else to_connect_node.gadget_node] = 1
+				3:
+					var new_rewards_items:Array[Resource] = order.rewards.duplicate()
+					new_rewards_items.append(to_connect_node.item_node.item if is_item else to_connect_node.gadget_node.gadget)
+					var new_rewards_quantities:Array[int] = order.rewards_quantities.duplicate()
+					new_rewards_quantities.append(1)
+					order.rewards = new_rewards_items
+					order.rewards_quantities = new_rewards_quantities
+					node.email_node.rewards_item_nodes[to_connect_node.item_node if is_item else to_connect_node.gadget_node] = 1
+			
 	save_properties()
 	
 func disconnect_nodes(from, from_port, to, to_port, node, to_disconnect_node):
@@ -230,7 +265,37 @@ func disconnect_nodes(from, from_port, to, to_port, node, to_disconnect_node):
 				node.recipe_node.clear_output_item_node(node.recipe_node.output_item_nodes[find_node])
 		graph_edit.disconnect_node(from, from_port, to, to_port)
 	elif "email_node" in node:
-		node.email_node.email.prerequisite_emails.erase(to_disconnect_node.email_node.email)
+		if "email_node" in to_disconnect_node:
+			node.email_node.email.prerequisite_emails.erase(to_disconnect_node.email_node.email)
+		elif "item_node" in to_disconnect_node or "gadget_node" in to_disconnect_node:
+			var is_item:bool = "item_node" in to_disconnect_node
+			var order:Order = node.email_node.email.attached_order
+			if !order: return
+			match to_port:
+				1:
+					var new_given_items:Array[Resource] = order.given_items.duplicate()
+					var new_given_quantities:Array[int] = order.given_quantities.duplicate()
+					new_given_quantities.remove_at(new_given_items.find(to_disconnect_node.item_node.item if is_item else to_disconnect_node.gadget_node.gadget))
+					new_given_items.erase(to_disconnect_node.item_node.item if is_item else to_disconnect_node.gadget_node.gadget)
+					order.given_items = new_given_items
+					order.given_quantities = new_given_quantities
+					node.email_node.given_item_nodes.erase(to_disconnect_node.item_node if is_item else to_disconnect_node.gadget_node)
+				2:
+					var new_required_items:Array[Resource] = order.required_items.duplicate()
+					var new_required_quantities:Array[int] = order.required_quantities.duplicate()
+					new_required_quantities.remove_at(new_required_items.find(to_disconnect_node.item_node.item if is_item else to_disconnect_node.gadget_node.gadget))
+					new_required_items.erase(to_disconnect_node.item_node.item if is_item else to_disconnect_node.gadget_node.gadget)
+					order.required_items = new_required_items
+					order.required_quantities = new_required_quantities
+					node.email_node.required_item_nodes.erase(to_disconnect_node.item_node if is_item else to_disconnect_node.gadget_node)
+				3:
+					var new_rewards_items:Array[Resource] = order.rewards.duplicate()
+					var new_rewards_quantities:Array[int] = order.rewards_quantities.duplicate()
+					new_rewards_quantities.remove_at(new_rewards_items.find(to_disconnect_node.item_node.item if is_item else to_disconnect_node.gadget_node.gadget))
+					new_rewards_items.erase(to_disconnect_node.item_node.item if is_item else to_disconnect_node.gadget_node.gadget)
+					order.rewards = new_rewards_items
+					order.rewards_quantities = new_rewards_quantities
+					node.email_node.rewards_item_nodes.erase(to_disconnect_node.item_node if is_item else to_disconnect_node.gadget_node)
 	save_properties()
 	
 func _on_disconnect_request(from, from_port, to, to_port) -> void:
@@ -376,17 +441,27 @@ func _process(_delta:float) -> void:
 					var prerequisite_email_node = find_node[0]
 					email_node.prerequisite_email_nodes.append(prerequisite_email_node.email_node)
 
+		# Check if the connection exists. If not, make it
+		for prerequisite_email_node:EmailEditorNode in email_node.prerequisite_email_nodes:
+			var prereq_graph_node = graph_nodes.filter(func(graph_node): return graph_node.email_node == prerequisite_email_node)
+			if !prereq_graph_node.is_empty():
+				var existing_connections:Array = connections.filter(func(connection): return connection.from_node == prereq_graph_node[0].get_name())
+				if existing_connections.is_empty():
+					graph_edit.connect_node(prereq_graph_node[0].get_name(), 0, node.get_name(), 0)
+
 		## ORDERS
 		var order:Order = email.attached_order
-		if order != null and (!order.required_items.is_empty() or !order.given_items.is_empty() or !order.rewards.is_empty()):
+		if order != null:
 			var item_nodes:Array[Node] = graph_edit.get_children().filter(func(child): return child is GraphNode and "item_node" in child)
 			var gadget_nodes:Array[Node] = graph_edit.get_children().filter(func(child): return child is GraphNode and "gadget_node" in child)
 			var set_items := func (set_item_nodes, items_list, quantities_list):
 				if set_item_nodes.size() != items_list.size() \
 				or !set_item_nodes.keys().all(\
 				func(item_node): return (item_node.gadget if item_node is GadgetEditorNode else item_node.item) in items_list and \
-				set_item_nodes[item_node] == quantities_list[items_list.find(item_node)]):
-					# If size or contents is different
+				set_item_nodes[item_node] == quantities_list[items_list.find(item_node)])\
+				or !set_item_nodes.keys().all(func(item_node): return item_nodes.any(func(check_node): return check_node.item_node == item_node)\
+				if item_node is ItemEditorNode else gadget_nodes.any(func(check_node): return check_node.gadget_node == item_node)):
+					# If size or contents is different, or if the node no longer exists in the graph view
 					set_item_nodes.clear()
 					for index in range(items_list.size()):
 						var new_item:Resource = items_list[index]
@@ -403,22 +478,45 @@ func _process(_delta:float) -> void:
 			set_items.call(email_node.given_item_nodes, order.given_items, order.given_quantities)
 			set_items.call(email_node.required_item_nodes, order.required_items, order.required_quantities)
 			set_items.call(email_node.rewards_item_nodes, order.rewards, order.rewards_quantities)
-					
 
-		# Check if the connection exists. If not, make it
-		for prerequisite_email_node:EmailEditorNode in email_node.prerequisite_email_nodes:
-			var prereq_graph_node = graph_nodes.filter(func(graph_node): return graph_node.email_node == prerequisite_email_node)
-			if !prereq_graph_node.is_empty():
-				var existing_connections:Array = connections.filter(func(connection): return connection.from_node == prereq_graph_node[0].get_name())
-				if existing_connections.is_empty():
-					graph_edit.connect_node(prereq_graph_node[0].get_name(), 0, node.get_name(), 0)
+			var connect_nodes := func(to_connect_nodes:Dictionary[Resource, int], port:int):
+				for to_connect_node in to_connect_nodes.keys():
+					var graph_node:Array[Node] = item_nodes.filter(func(check_graph_node): return check_graph_node.item_node == to_connect_node)
+					if graph_node.is_empty():
+						graph_node = gadget_nodes.filter(func(check_graph_node): return check_graph_node.gadget_node == to_connect_node)
+					if !graph_node.is_empty():
+						var existing_connections:Array = connections.filter(func(connection): return connection.from_node == graph_node[0].get_name() and connection.to_port == port)
+						if existing_connections.is_empty():
+							graph_edit.connect_node(graph_node[0].get_name(), 0, node.get_name(), port)
 
+			connect_nodes.call(email_node.given_item_nodes, 1)
+			connect_nodes.call(email_node.required_item_nodes, 2)
+			connect_nodes.call(email_node.rewards_item_nodes, 3)
+
+			
+		
 		for connection in connections:
 			# Check if the connection exists. If it is, but shouldn't, un-make it
 			var from_node:Node = graph_edit.get_children().filter(func(child): return child.name == connection.from_node)[0]
-			if from_node.email_node not in email_node.prerequisite_email_nodes:
-				graph_edit.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
-		
+			if "email_node" in from_node:
+				if from_node.email_node not in email_node.prerequisite_email_nodes:
+					graph_edit.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
+			elif "item_node" in from_node or "gadget_node" in from_node:
+				var is_item:bool = "item_node" in from_node
+				var from_item_node = from_node.item_node if is_item else from_node.gadget_node
+				if order != null:
+					match connection.to_port:
+						1:
+							if from_item_node not in email_node.given_item_nodes:
+								graph_edit.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
+						2:
+							if from_item_node not in email_node.required_item_nodes:
+								graph_edit.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
+						3:
+							if from_item_node not in email_node.rewards_item_nodes:
+								graph_edit.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
+
+
 
 ## Arbitrarily populate nodes with a given variable name for subnode (recipe_node, graph_node, item_node)
 ## and a list of the property nodes that correspond, and finally with the scene that will be made
@@ -580,8 +678,9 @@ func add_recipe(_recipe:Recipe) -> RecipeEditorNode:
 
 func add_gadget(gadget:Gadget) -> GadgetEditorNode:
 	var new_gadget:GadgetEditorNode = GadgetEditorNode.new()
-	new_gadget.x = 0
-	new_gadget.y = 0
+	var center_pos:Vector2 = Vector2(graph_edit.scroll_offset + graph_edit.size / 2) / graph_edit.zoom
+	new_gadget.x = center_pos.x
+	new_gadget.y = center_pos.y
 	new_gadget.gadget = gadget
 	properties.gadget_nodes.append(new_gadget)
 	save_properties()
@@ -589,8 +688,9 @@ func add_gadget(gadget:Gadget) -> GadgetEditorNode:
 
 func add_item(item:Item) -> ItemEditorNode:
 	var new_item:ItemEditorNode = ItemEditorNode.new()
-	new_item.x = 0
-	new_item.y = 0
+	var center_pos:Vector2 = Vector2(graph_edit.scroll_offset + graph_edit.size / 2) / graph_edit.zoom
+	new_item.x = center_pos.x
+	new_item.y = center_pos.y
 	new_item.item = item
 	properties.item_nodes.append(new_item)
 	save_properties()
@@ -598,8 +698,9 @@ func add_item(item:Item) -> ItemEditorNode:
 	
 func add_email(email:Email) -> EmailEditorNode:
 	var new_email:EmailEditorNode = EmailEditorNode.new()
-	new_email.x = 0
-	new_email.y = 0
+	var center_pos:Vector2 = Vector2(graph_edit.scroll_offset + graph_edit.size / 2) / graph_edit.zoom
+	new_email.x = center_pos.x
+	new_email.y = center_pos.y
 	new_email.email = email
 	properties.email_nodes.append(new_email)
 	save_properties()

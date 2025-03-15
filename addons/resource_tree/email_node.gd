@@ -15,18 +15,24 @@ var remove_order:TextureButton
 var currency_spinbox:SpinBox
 var rewards_currency:LineEdit
 var currency_line_edit:LineEdit
+var given_slot:Control
+var required_slot:Control
+var rewards_slot:Control
 
 func _ready():
 	container = find_child("EmailContainer")
 	panel = container.find_child("Panel")
 	order_container = container.find_child("OrderContainer")
-	add_order = panel.find_child("AddOrder")
-	remove_order = panel.find_child("RemoveOrder")
+	add_order = container.find_child("AddOrder")
+	remove_order = container.find_child("RemoveOrder")
 	spinbox = load("res://addons/resource_tree/spin_box.tscn")
 	rewards_currency = order_container.find_child("CurrencyLabel", true)
 	currency_spinbox = order_container.find_child("CurrencySpinbox", true)
 	currency_line_edit = currency_spinbox.get_line_edit()
 	currency_line_edit.add_theme_stylebox_override("normal", rewards_currency.get_theme_stylebox("normal"))
+	given_slot = find_child("GivenSlot")
+	required_slot = find_child("RequiredSlot")
+	rewards_slot = find_child("RewardsSlot")
 
 func _process(_delta: float) -> void:
 	if email_node == null or email_node.email == null:
@@ -59,6 +65,12 @@ func _process(_delta: float) -> void:
 	remove_order.set_visible(order_exists)
 	add_order.set_visible(!order_exists)
 	order_container.set_visible(order_exists)
+	given_slot.set_visible(order_exists)
+	required_slot.set_visible(order_exists)
+	rewards_slot.set_visible(order_exists)
+	given_slot.set_custom_minimum_size(Vector2i(0, 177 if order_exists else 0))
+	required_slot.set_custom_minimum_size(Vector2i(0, 177 if order_exists else 0))
+	rewards_slot.set_custom_minimum_size(Vector2i(0, 177 if order_exists else 0))
 	if !order_exists: return
 	var fill_items := func(items:HFlowContainer, nodes:Dictionary[Resource, int], slot_type:String, prefix:String):
 		var item_in_nodes:bool = items.get_children().all(func(child): return \
