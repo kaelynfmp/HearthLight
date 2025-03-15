@@ -13,8 +13,8 @@ given_quantities = Array[int]([])
 required_items = Array[Resource]([ExtResource("1_fkqvy")])
 required_quantities = Array[int]([5])
 currency_reward = 9999
-rewards = Array[Resource]([null])
-rewards_quantities = Array[int]([0])
+rewards = Array[Resource]([])
+rewards_quantities = Array[int]([])
 
 [resource]
 script = ExtResource("1_0hjw5")

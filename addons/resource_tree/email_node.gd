@@ -50,22 +50,21 @@ func _process(_delta: float) -> void:
 	add_order.set_visible(!order_exists)
 	order_container.set_visible(order_exists)
 	if !order_exists: return
-	var fill_items := func(items:HFlowContainer, nodes:Dictionary[Resource, int], input:bool, prefix:String):
-		if items.get_child_count() != nodes.size():
+	var fill_items := func(items:HFlowContainer, nodes:Dictionary[Resource, int], slot_type:String, prefix:String):
+		var item_in_nodes:bool = items.get_children().all(func(child): return \
+		false if !child.get_child(0).slot.item else \
+		nodes.keys().any(func(node): return ((node.gadget.name == child.get_child(0).slot.item.name) \
+		if node is GadgetEditorNode else (node.item.name if node.item else false))))
+		if items.get_child_count() != nodes.size() or !item_in_nodes:
 			for child in items.get_children(): # Remove all children
 				child.queue_free()
 	
 			var index:int = 0
 			for node in nodes.keys():
-				var slot:Slot = Slot.new()
-				var item:Item
-				if node is GadgetEditorNode:
-					item = node.gadget.item
-				else:
-					item = node.item
-				slot.initialize(item, nodes[node])
+				var item:Item = node.gadget.item if node is GadgetEditorNode else node.item
+				var slot:Slot = Slot.new(item, nodes[node], true)
 				var new_control:Control = Control.new()
-				var new_slot:PanelContainer = load("res://scenes/inventory/" + ("input" if input else "output") + "_slot.tscn").instantiate()
+				var new_slot:PanelContainer = load("res://scenes/inventory/" + slot_type + "_slot.tscn").instantiate()
 				new_slot.set_slot(slot)
 				new_slot.update()
 				new_slot.set_name(prefix + str(index))
@@ -82,13 +81,13 @@ func _process(_delta: float) -> void:
 				index += 1
 	
 	var given_items:HFlowContainer = order_container.find_child("GivenItems", true)
-	fill_items.call(given_items, email_node.given_item_nodes, true, "GivenItemSlot")
+	fill_items.call(given_items, email_node.given_item_nodes, "given", "GivenItemSlot")
 			
 	var required_items:HFlowContainer = order_container.find_child("RequiredItems", true)
-	fill_items.call(required_items, email_node.required_item_nodes, true, "RequiredItemSlot")
+	fill_items.call(required_items, email_node.required_item_nodes, "input", "RequiredItemSlot")
 
 	var rewards_items:HFlowContainer = order_container.find_child("RewardsItems", true)
-	fill_items.call(rewards_items, email_node.rewards_item_nodes, true, "RewardsItemSlot")
+	fill_items.call(rewards_items, email_node.rewards_item_nodes, "output", "RewardsItemSlot")
 
 	var rewards_currency:LineEdit = order_container.find_child("CurrencyLabel", true)
 	if rewards_currency.text == "":

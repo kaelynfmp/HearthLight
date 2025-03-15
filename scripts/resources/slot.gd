@@ -51,10 +51,12 @@ var quantity: int :
 				quantity = 0
 		changed.emit()
 
-func _init(p_item: Item = null, p_quantity: int = 0, p_locked: bool = false):
+func _init(p_item: Item = null, p_quantity: int = 0, p_bypass_stack:bool = false, p_locked: bool = false, p_item_filter: Array[Item] = []):
 	item = p_item
 	quantity = p_quantity
+	bypass_stack = p_bypass_stack
 	locked = p_locked
+	item_filter = p_item_filter
 	
 func _get_property_list() -> Array[Dictionary]:
 	return [

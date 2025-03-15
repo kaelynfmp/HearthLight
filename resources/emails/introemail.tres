@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="Email" load_steps=8 format=3 uid="uid://cof21obwyvl4v"]
+[gd_resource type="Resource" script_class="Email" load_steps=9 format=3 uid="uid://cof21obwyvl4v"]
 
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_16060"]
 [ext_resource type="Resource" uid="uid://cutk2mxl7dhrh" path="res://resources/gadgets/plant.tres" id="1_sueqm"]
 [ext_resource type="Resource" uid="uid://bjux8vbxnqlf8" path="res://resources/items/seed.tres" id="2_vwut3"]
 [ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="3_6ndcv"]
 [ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="4_1axvi"]
+[ext_resource type="Resource" uid="uid://b1h4vs1btx62h" path="res://resources/gadgets/wheel.tres" id="5_vwut3"]
 [ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="5_w18pw"]
 
 [sub_resource type="Resource" id="Resource_deaot"]
@@ -15,8 +16,8 @@ given_quantities = Array[int]([1, 1, 1])
 required_items = Array[Resource]([ExtResource("4_1axvi")])
 required_quantities = Array[int]([2])
 currency_reward = 30
-rewards = Array[Resource]([])
-rewards_quantities = Array[int]([])
+rewards = Array[Resource]([ExtResource("5_vwut3")])
+rewards_quantities = Array[int]([1])
 
 [resource]
 script = ExtResource("1_16060")

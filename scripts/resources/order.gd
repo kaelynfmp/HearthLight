@@ -13,6 +13,11 @@ var responded: bool = false
 			given_quantities.resize(value.size())
 		given_items = value
 @export var given_quantities: Array[int] = []:
+	get:
+		if Engine.is_editor_hint():
+			for index in range(given_quantities.size()):
+				given_quantities[index] = max(1, given_quantities[index])
+		return given_quantities
 	set(value):
 		if given_items.size() != value.size():
 			given_items.resize(value.size())
@@ -26,6 +31,11 @@ var responded: bool = false
 		required_items = value
 		
 @export var required_quantities: Array[int] = []:
+	get:
+		if Engine.is_editor_hint():
+			for index in range(required_quantities.size()):
+				required_quantities[index] = max(1, required_quantities[index])
+		return required_quantities
 	set(value):
 		if required_items.size() != value.size():
 			required_items.resize(value.size())
@@ -39,6 +49,11 @@ var responded: bool = false
 			rewards_quantities.resize(value.size())
 		rewards = value
 @export var rewards_quantities: Array[int] = []:
+	get:
+		if Engine.is_editor_hint():
+			for index in range(rewards_quantities.size()):
+				rewards_quantities[index] = max(1, rewards_quantities[index])
+		return rewards_quantities
 	set(value):
 		if rewards.size() != value.size():
 			rewards.resize(value.size())
