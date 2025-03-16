@@ -17,22 +17,19 @@ func _process(_delta: float) -> void:
 
 func set_email(new_email: Email):
 	email = new_email
-	# Accounting for bbcode, we set it first, then trim the output
-	sender_label.set_text(email.sender)
-	sender_label.set_text(set_limited_text(sender_label.get_parsed_text()))
-	subject_label.set_text(email.subject)
-	subject_label.set_text(set_limited_text(subject_label.get_parsed_text(), 28))
+	sender_label.finished.connect(_finished.bind(email.sender, sender_label))
+	subject_label.finished.connect(_finished.bind(email.subject, subject_label))
+	blurb_label.finished.connect(_finished.bind(email.contents.split("\n")[0], blurb_label))
 	
-	blurb_label.set_text(email.contents.split("\n")[0])
-	blurb_label.text = set_limited_text(blurb_label.get_parsed_text())
-	sender_dropdown.text = email.sender
-	subject_dropdown.text = email.subject
+	sender_dropdown.finished.connect(_finished.bind(email.sender, sender_dropdown))
+	subject_dropdown.finished.connect(_finished.bind(email.subject, subject_dropdown))
+	
 	content.text = email.contents
 	expand_panel.visible = false
 
-func set_limited_text(input_text: String, limit: int = 16) -> String:
-	if input_text.length() > limit:
-		return input_text.substr(0, limit) + "..." 
-	else:
-		return input_text
+func _finished(text:String, label:RichTextLabel):
+	if !label.initialized:
+		label.initialized = true
+		Utility.set_truncated_text(text, label)
+		
 	

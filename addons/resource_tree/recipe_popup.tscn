@@ -1,0 +1,100 @@
+[gd_scene load_steps=7 format=3 uid="uid://by0ro4bf7dlmc"]
+
+[sub_resource type="Theme" id="Theme_thqch"]
+default_font_size = 40
+
+[sub_resource type="SystemFont" id="SystemFont_mb85a"]
+font_names = PackedStringArray("Consolas")
+subpixel_positioning = 0
+
+[sub_resource type="Theme" id="Theme_qtkt2"]
+default_font = SubResource("SystemFont_mb85a")
+default_font_size = 20
+
+[sub_resource type="SystemFont" id="SystemFont_dmgpo"]
+font_names = PackedStringArray("Consolas")
+subpixel_positioning = 0
+
+[sub_resource type="Theme" id="Theme_5d1we"]
+default_font = SubResource("SystemFont_dmgpo")
+
+[sub_resource type="Theme" id="Theme_f3c13"]
+default_font_size = 30
+
+[node name="PopUp" type="PopupPanel"]
+title = "Add Recipe"
+initial_position = 2
+size = Vector2i(600, 400)
+visible = true
+borderless = false
+unfocusable = true
+min_size = Vector2i(600, 300)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -151.5
+offset_top = 60.0
+offset_right = 151.5
+offset_bottom = 152.0
+grow_horizontal = 2
+theme = SubResource("Theme_thqch")
+text = "Name of Recipe File"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -270.0
+offset_top = -5.0
+offset_right = 270.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Name" type="LineEdit" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_qtkt2")
+placeholder_text = "recipe_name_"
+
+[node name="Label" type="Label" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = SubResource("Theme_5d1we")
+text = "_recipe"
+
+[node name="Confirm" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -62.5
+offset_top = -66.0
+offset_right = 62.5
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_f3c13")
+text = "Confirm"

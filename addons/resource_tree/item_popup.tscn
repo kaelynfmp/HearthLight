@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfyiwu716s5rn"]
+
+[ext_resource type="PackedScene" uid="uid://by0ro4bf7dlmc" path="res://addons/resource_tree/recipe_popup.tscn" id="1_hh01k"]
+
+[node name="PopUp" instance=ExtResource("1_hh01k")]
+title = "Add Resource"
+
+[node name="Control" parent="." index="1"]
+offset_right = 596.0
+offset_bottom = 396.0
+
+[node name="Label" parent="Control" index="0"]
+text = "Name of Resource"
+
+[node name="Name" parent="Control/HBoxContainer" index="0"]
+placeholder_text = "resource"
+
+[node name="Label" parent="Control/HBoxContainer" index="1"]
+text = ""

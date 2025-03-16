@@ -1,6 +1,5 @@
 class_name Email
 extends Resource
-
 @export_category("Email Contents")
 @export var sender: String
 @export var subject: String
@@ -25,6 +24,7 @@ var failed: bool
 var prereqs_must_fail: bool # This is for conditions where an email only appears after something /fails/, something Everett requested
 
 
+@export var prerequisite_emails: Array[Email]
 func mark_as_read():
 	is_read = true
 

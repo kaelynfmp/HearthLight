@@ -3,25 +3,14 @@ var orders: Array = []
 var accepted_orders: Array = []
 var rejected_orders: Array = []
 @onready var inventory: Inventory = preload("res://resources/character/inventory.tres")
-@export var order_folder : String = "res://resources/orders/"
 @export var order_class : Resource
 
 func load_orders():
-	# load all order resources
-	var dir = DirAccess.open(order_folder)
-	if dir != null:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if file_name.ends_with(".remap"):
-				file_name = file_name.trim_suffix(".remap")
-			if file_name.ends_with(".tres"):
-				var order_path = order_folder + file_name
-				var order = load(order_path)
-				if order and order is Order:
-					orders.append(order)
-			file_name = dir.get_next()
-		dir.list_dir_end()
+	var email_strings = Utility.load_path("res://resources/emails")
+	for email_string in email_strings:
+		var email = load(email_string)
+		if email.attached_order != null:
+			orders.append(email.attached_order)
 		
 		
 func accept_order(order: Order):
