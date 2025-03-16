@@ -9,6 +9,7 @@ var category: String
 # orders (active only/unopened), main (main lore), junk, social, archive (completed + declined orders)
 
 @export_category("Internal Details")
+@export var prerequisite_emails: Array[Email]
 @export var day: int 
 @export_range(8, 23, 1) var hour: int # min 0, max 30, step 1
 
@@ -24,7 +25,7 @@ var failed: bool
 var prereqs_must_fail: bool # This is for conditions where an email only appears after something /fails/, something Everett requested
 
 
-@export var prerequisite_emails: Array[Email]
+
 func mark_as_read():
 	is_read = true
 

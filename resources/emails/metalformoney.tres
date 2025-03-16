@@ -1,9 +1,8 @@
-[gd_resource type="Resource" script_class="Email" load_steps=6 format=3 uid="uid://dmneq4jdepfsq"]
+[gd_resource type="Resource" script_class="Email" load_steps=5 format=3 uid="uid://dmneq4jdepfsq"]
 
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_0hjw5"]
 [ext_resource type="Resource" uid="uid://bgmxpne1d7fis" path="res://resources/items/metal.tres" id="1_fkqvy"]
 [ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="2_osa67"]
-[ext_resource type="Resource" uid="uid://r3prgkwmqlck" path="res://resources/emails/oreforstove.tres" id="4_osa67"]
 
 [sub_resource type="Resource" id="Resource_odxgy"]
 script = ExtResource("2_osa67")
@@ -12,6 +11,9 @@ given_items = Array[Resource]([])
 given_quantities = Array[int]([])
 required_items = Array[Resource]([ExtResource("1_fkqvy")])
 required_quantities = Array[int]([5])
+day = 0
+hour = 0
+minute = 0
 currency_reward = 9999
 rewards = Array[Resource]([])
 rewards_quantities = Array[int]([])
@@ -22,7 +24,7 @@ sender = "Sir Billionaire"
 subject = "I need [i]FIVE[/i] [img=30px,center]res://resources/sprites/ingot.png[/img][b]metal[/b]. NOW."
 contents = "I don't care. Get it to me. If you do, I'll give you $9999 dollars. Or don't. Your choice, I guess. [img=30px,center]res://resources/sprites/ore.png[/img][b]ore[/b]. Turn it into [img=30px,center]res://resources/sprites/ingot.png[/img][b]metal[/b]. NOW."
 category = "main"
-prerequisite_emails = Array[ExtResource("1_0hjw5")]([ExtResource("4_osa67")])
+prerequisite_emails = Array[ExtResource("1_0hjw5")]([])
 day = 6
 hour = 8
 minute = 0
