@@ -17,6 +17,10 @@ extends Resource
 ## Age of the gadget (Primitive | Industrial | Electrical | Cyber)
 enum Age {PRIMITIVE, INDUSTRIAL, ELECTRICAL, CYBER}
 @export var age: Age
+
+enum Direction {NW, NE, SE, SW}
+@export var direction: Direction = 0
+
 ## In-game description of the gadget.
 @export_multiline var description: String:
 	get():

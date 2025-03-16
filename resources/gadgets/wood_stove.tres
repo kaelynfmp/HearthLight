@@ -40,6 +40,7 @@ script = ExtResource("5_eo3nv")
 texture = ExtResource("5_h1ts8")
 name = "Wood Fire Stove"
 age = 0
+direction = 2
 description = "This thing would be a fire hazard if buildings were made of flammable materials. It's a good thing that hasn't been the case for decades."
 item = SubResource("Resource_3ujm2")
 inventory = SubResource("Resource_abta4")

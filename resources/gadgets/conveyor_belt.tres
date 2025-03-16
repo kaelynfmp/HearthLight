@@ -38,6 +38,7 @@ script = ExtResource("5_owrvj")
 texture = ExtResource("4_rcdnk")
 name = "Conveyor Belt"
 age = 1
+direction = null
 description = "A conveyor belt"
 item = SubResource("Resource_nmkh0")
 inventory = SubResource("Resource_ggxxm")

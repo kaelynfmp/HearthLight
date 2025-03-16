@@ -39,6 +39,7 @@ script = ExtResource("5_ex550")
 texture = ExtResource("5_kij0c")
 name = "Hand-cranked Grinder"
 age = 0
+direction = 2
 description = "In an age of advanced biomechanical engineering and hyper-optimized fabrication, there's something to be said for using your own human muscles to process materials. Until your arm starts hurting, that is."
 item = SubResource("Resource_7ft7y")
 inventory = SubResource("Resource_2faxo")
