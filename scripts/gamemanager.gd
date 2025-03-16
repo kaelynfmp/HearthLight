@@ -54,7 +54,7 @@ signal currency_updated(new_amount)
 
 var start_time: int
 var current_time: int
-var active_time: int = 0
+var active_time: int = 0 # time spent with the time moving, aka out of pause/computer, PER DAY, resets every day
 var seconds_elapsed: float
 var day_hours: int  = 18
 var time_scale: int       = 480 # 1 irl second is 480 game seconds for 2 minutes/day, 16h day
@@ -314,12 +314,12 @@ func update_time(in_game_seconds):
 	game_time["second"] = int(in_game_seconds % 60)
 	
 	# count days
-	if (game_time["hour"] == day_hours + 6): 
+	if (game_time["hour"] == 24): 
 		game_time["day"] += 1
 		game_time["hour"] = 8
 		game_time["minute"] = 0
 		game_time["second"] = 0
-		start_time = Time.get_ticks_msec()
+		active_time=0
 	
 	# update day segment aka morning, afternoon etc
 	if (8 <= game_time["hour"] and game_time["hour"] < 12):
