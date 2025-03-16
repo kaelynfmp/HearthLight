@@ -455,12 +455,13 @@ func _process(_delta:float) -> void:
 			var item_nodes:Array[Node] = graph_edit.get_children().filter(func(child): return child is GraphNode and "item_node" in child)
 			var gadget_nodes:Array[Node] = graph_edit.get_children().filter(func(child): return child is GraphNode and "gadget_node" in child)
 			var set_items := func (set_item_nodes, items_list, quantities_list):
-				if set_item_nodes.size() != items_list.size() \
-				or !set_item_nodes.keys().all(\
-				func(item_node): return (item_node.gadget if item_node is GadgetEditorNode else item_node.item) in items_list and \
-				set_item_nodes[item_node] == quantities_list[items_list.find(item_node)])\
-				or !set_item_nodes.keys().all(func(item_node): return item_nodes.any(func(check_node): return check_node.item_node == item_node)\
-				if item_node is ItemEditorNode else gadget_nodes.any(func(check_node): return check_node.gadget_node == item_node)):
+				var contents_same:bool = set_item_nodes.keys().all(\
+					func(item_node): return (item_node.gadget if item_node is GadgetEditorNode else item_node.item) in items_list and \
+					set_item_nodes[item_node] == quantities_list[set_item_nodes.keys().find(item_node)])
+				var node_exists:bool = set_item_nodes.keys().all(func(item_node): return item_nodes.any(func(check_node): return check_node.item_node == item_node)\
+					if item_node is ItemEditorNode else gadget_nodes.any(func(check_node): return check_node.gadget_node == item_node))
+				
+				if set_item_nodes.size() != items_list.size() or !contents_same or !node_exists:
 					# If size or contents is different, or if the node no longer exists in the graph view
 					set_item_nodes.clear()
 					for index in range(items_list.size()):
