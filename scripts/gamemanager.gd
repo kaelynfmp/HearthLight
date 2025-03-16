@@ -85,9 +85,9 @@ var item_map = []
 
 func init_room_map():
 	var map = []
-	for i in range(11):
+	for i in range(12):
 		var row = []
-		for j in range(11):
+		for j in range(12):
 			row.append(null)
 		map.append(row)
 	return map
@@ -120,6 +120,14 @@ func _process(_delta: float) -> void:
 	elif Input.is_action_just_pressed("toggle_debug_mode"):
 		is_debugging = !is_debugging
 		debug_mode_change.emit()
+		
+	elif Input.is_action_just_pressed("rotate_gadget"):
+		if GameManager.cursor != null:
+			var gadget = get_gadget_from_cursor()
+			if gadget != null:
+				gadget.direction = (gadget.direction + 1) % 4
+				print(["SE", "SW", "NW", "NE"][gadget.direction])
+		
 		
 	blur = inventory
 	is_placing_gadget = false

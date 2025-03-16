@@ -18,7 +18,7 @@ extends Resource
 enum Age {PRIMITIVE, INDUSTRIAL, ELECTRICAL, CYBER}
 @export var age: Age
 
-enum Direction {NW, NE, SE, SW}
+enum Direction {SE, SW, NW, NE}
 @export var direction: Direction = 0
 
 ## In-game description of the gadget.

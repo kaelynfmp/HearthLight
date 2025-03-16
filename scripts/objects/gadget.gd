@@ -30,6 +30,7 @@ var recipes:Array[Recipe]
 var rear_gadget: StaticBody2D
 var front_gadget: StaticBody2D
 var corresponding_item: RigidBody2D
+var direction: int
 
 func create_new_inventory(num_inputs: int, num_outputs: int) -> Inventory:
 	var inventory: Inventory = Inventory.new()
@@ -51,6 +52,14 @@ func _ready() -> void:
 	tile_layers = base_layer.get_parent()
 	age = gadget_stats.age
 	sprite.texture = gadget_stats.texture
+	direction = gadget_stats.direction
+	sprite.flip_h = 0
+	sprite.flip_v = 0
+	if direction == 1 or direction == 2:
+		sprite.flip_h = true
+	if direction == 2 or direction == 3:
+		sprite.flip_v = true
+		
 	audio_player.set_stream(gadget_stats.ambient_sound)
 	update_recipes()
 	GameManager.update_recipes.connect(update_recipes)
