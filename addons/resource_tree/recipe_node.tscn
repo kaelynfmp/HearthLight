@@ -1,0 +1,144 @@
+[gd_scene load_steps=14 format=3 uid="uid://cy2rh66qq0462"]
+
+[ext_resource type="PackedScene" uid="uid://c88opsp0c7nm" path="res://scenes/ui_base.tscn" id="1_2yn8q"]
+[ext_resource type="Script" uid="uid://c6wprhdaf77pr" path="res://addons/resource_tree/recipe_node.gd" id="1_7ldq0"]
+[ext_resource type="Texture2D" uid="uid://df5leiiji8qsy" path="res://addons/resource_tree/output_slot.tres" id="1_s40qa"]
+[ext_resource type="PackedScene" uid="uid://c5605c3ehaw25" path="res://scenes/inventory/slot.tscn" id="2_3qwl6"]
+[ext_resource type="Texture2D" uid="uid://bpk81ck7j3l2c" path="res://resources/sprites/progressbar.png" id="3_r57nn"]
+[ext_resource type="Texture2D" uid="uid://3jvjtjeikwlj" path="res://resources/sprites/gadgetslot.png" id="4_7gsv1"]
+[ext_resource type="Texture2D" uid="uid://bfa2gd4mip243" path="res://addons/resource_tree/trash_can.png" id="7_vmfh2"]
+[ext_resource type="Texture2D" uid="uid://dgfutqbacjngj" path="res://addons/resource_tree/trash_can_pressed.png" id="8_hif45"]
+
+[sub_resource type="Theme" id="Theme_1l7p2"]
+default_font_size = 40
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q76ad"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4el5v"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+shadow_color = Color(1, 1, 1, 0.145098)
+shadow_size = 1
+shadow_offset = Vector2(23, -50)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kgs8m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fyk7f"]
+
+[node name="RecipeNode" type="GraphNode"]
+z_index = 1
+offset_right = 1833.0
+offset_bottom = 1047.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = SubResource("Theme_1l7p2")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_q76ad")
+theme_override_styles/panel_selected = SubResource("StyleBoxFlat_4el5v")
+theme_override_styles/titlebar = SubResource("StyleBoxEmpty_kgs8m")
+theme_override_styles/titlebar_selected = SubResource("StyleBoxEmpty_fyk7f")
+selected = true
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = ExtResource("1_s40qa")
+slot/0/draw_stylebox = true
+script = ExtResource("1_7ldq0")
+
+[node name="UIControl" type="Control" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="UIBase" parent="UIControl" instance=ExtResource("1_2yn8q")]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -55.0
+offset_bottom = 944.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="GadgetControl" type="Control" parent="UIControl/UIBase"]
+layout_mode = 1
+anchor_left = 0.236
+anchor_right = 1.0
+anchor_bottom = 0.783
+offset_left = 1201.58
+offset_top = 71.0
+offset_right = -51.0
+offset_bottom = -557.217
+grow_horizontal = 0
+
+[node name="ScaleManager" type="Node2D" parent="UIControl/UIBase/GadgetControl"]
+scale = Vector2(0.5, 0.5)
+
+[node name="GadgetSlot" parent="UIControl/UIBase/GadgetControl/ScaleManager" instance=ExtResource("2_3qwl6")]
+offset_right = 316.0
+offset_bottom = 310.0
+
+[node name="TextureRect2" type="TextureRect" parent="UIControl/UIBase/GadgetControl/ScaleManager/GadgetSlot"]
+texture_filter = 2
+layout_mode = 2
+texture = ExtResource("4_7gsv1")
+
+[node name="Contained" type="HBoxContainer" parent="UIControl/UIBase"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -473.5
+offset_top = -257.0
+offset_right = 503.5
+offset_bottom = 257.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="StartingCreatesGap" type="Control" parent="UIControl/UIBase/Contained"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Creates" type="TextureRect" parent="UIControl/UIBase/Contained"]
+texture_filter = 1
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_r57nn")
+stretch_mode = 3
+
+[node name="EndingCreatesGap" type="Control" parent="UIControl/UIBase/Contained"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Node2D" type="Node2D" parent="UIControl/UIBase"]
+
+[node name="DeleteButton" type="TextureButton" parent="UIControl/UIBase"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 13.0
+offset_top = -38.0
+offset_right = 65.0
+offset_bottom = 39.0
+grow_horizontal = 0
+texture_normal = ExtResource("7_vmfh2")
+texture_pressed = ExtResource("8_hif45")
+texture_hover = ExtResource("7_vmfh2")
+texture_disabled = ExtResource("7_vmfh2")
+texture_focused = ExtResource("7_vmfh2")
+ignore_texture_size = true
+stretch_mode = 4
+
+[connection signal="dragged" from="." to="." method="_on_dragged"]
+[connection signal="node_selected" from="." to="." method="_on_node_selected"]
+[connection signal="pressed" from="UIControl/UIBase/DeleteButton" to="." method="_on_delete_button_pressed"]

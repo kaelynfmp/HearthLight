@@ -7,6 +7,7 @@
 script = ExtResource("1_645j0")
 texture = ExtResource("2_n3wx1")
 name = "Fabric"
-description = "Quality fabric, unsullied by corpo hands."
+description = "Quality fabric, unsullied by corpo hands.
+Made from [res=Cotton]Cotton[/res]"
 max_stack = 24
 price = 75

@@ -16,6 +16,7 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 
 [autoload]
 
+Utility="*res://scripts/utility.gd"
 GameManager="*res://scripts/gamemanager.gd"
 OrderManager="*res://scripts/order_manager.gd"
 
@@ -32,7 +33,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/recipe_tree/plugin.cfg")
+enabled=PackedStringArray("res://addons/resource_tree/plugin.cfg")
 
 [file_customization]
 
@@ -43,7 +44,6 @@ folder_colors={
 "res://resources/emails/": "pink",
 "res://resources/gadgets/character/": "green",
 "res://resources/items/": "teal",
-"res://resources/orders/": "pink",
 "res://resources/resource-icons/": "green",
 "res://resources/sprites/": "blue",
 "res://resources/tilesets/": "teal",

@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://naeffe4h2rj1"]
+
+[ext_resource type="PackedScene" uid="uid://by0ro4bf7dlmc" path="res://addons/resource_tree/recipe_popup.tscn" id="1_h8ngf"]
+
+[node name="PopUp" instance=ExtResource("1_h8ngf")]
+title = "Add Email"
+
+[node name="Control" parent="." index="1"]
+offset_right = -4.0
+offset_bottom = -4.0
+
+[node name="Label" parent="Control" index="0"]
+text = "Name of Email File"
+
+[node name="Name" parent="Control/HBoxContainer" index="0"]
+placeholder_text = "email_name"
+
+[node name="Label" parent="Control/HBoxContainer" index="1"]
+text = ""
