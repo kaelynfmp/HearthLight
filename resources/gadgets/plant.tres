@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Gadget" load_steps=14 format=3 uid="uid://lecjenwiue7t"]
+[gd_resource type="Resource" script_class="Gadget" load_steps=14 format=3 uid="uid://c222by5ulftln"]
 
 [ext_resource type="AudioStream" uid="uid://fvjtpam4ybkn" path="res://resources/audio/Gadgets/watering plant.mp3" id="1_2r84d"]
 [ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="2_csb3v"]

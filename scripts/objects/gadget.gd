@@ -2,6 +2,7 @@ extends StaticBody2D
 
 signal removing(layer_occupied_name:String, cell_pos:Vector2i)
 signal item_at_location(cell_pos: Vector2i, item: Item, previous: StaticBody2D)
+signal item_gone_at_location(cell_pos: Vector2i, item: Item)
 
 @export var gadget_stats:Gadget
 @onready var audio_player:AudioStreamPlayer2D = find_child("AudioStreamPlayer")
@@ -106,8 +107,29 @@ func start_progression_transport():
 	progressing = true
 	
 func finish_transport():
+	push_inventory()
 	pull_inventory()
 	cancel_processing()
+	
+func push_inventory():
+	var front_gadget_pos: Vector2i = cell_pos + Vector2i(1, 0)
+	if GameManager.room_map[front_gadget_pos[0] + 6][front_gadget_pos[1] + 5] != null:
+		front_gadget = GameManager.room_map[front_gadget_pos[0] + 6][front_gadget_pos[1] + 5]
+		if front_gadget != null and front_gadget.gadget_stats.name != "Conveyor Belt":
+			var front_inventory: Inventory = front_gadget.inventory
+			for slot in inventory.slots:
+				if slot.item != null:
+					var item: Item = slot.item
+					var available_slots : Array[Slot] = front_inventory.slots.filter(func(slot): 
+						return !slot.locked and (slot.item == null or slot.item == item)
+					)
+					if !available_slots.is_empty():
+						# TODO: Emit a signal to remove in-world item
+						item_gone_at_location.emit(cell_pos, item)
+						inventory.remove_items(item, 1)
+						front_inventory.insert(item, 1)
+						break
+			
 	
 func pull_inventory():
 	if rear_gadget:
@@ -125,6 +147,7 @@ func pull_inventory():
 						item_at_location.emit(cell_pos, item, cell_pos + Vector2i(-1, 0))
 					rear_inventory.remove_items(item, 1)
 					inventory.insert(item, 1)
+					
 					break
 				
 		
