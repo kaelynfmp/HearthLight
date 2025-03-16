@@ -74,9 +74,9 @@ func _process(_delta: float) -> void:
 	if !order_exists: return
 	var fill_items := func(items:HFlowContainer, nodes:Dictionary[Resource, int], slot_type:String, prefix:String):
 		var item_in_nodes:bool = items.get_children().all(func(child): return \
-		false if !child.get_child(0).slot.item else \
-		nodes.keys().any(func(node): return ((node.gadget.name == child.get_child(0).slot.item.name) \
-		if node is GadgetEditorNode else (node.item.name if node.item else false))))
+			false if !child.get_child(0).slot.item else \
+			nodes.keys().any(func(node): return ((node.gadget.name == child.get_child(0).slot.item.name) \
+			if node is GadgetEditorNode else (node.item.name if node.item else false))))
 		if items.get_child_count() != nodes.size() or !item_in_nodes:
 			for child in items.get_children(): # Remove all children
 				child.queue_free()

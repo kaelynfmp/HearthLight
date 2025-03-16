@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Recipe" load_steps=11 format=3 uid="uid://bv8nwf0qdvhvg"]
+[gd_resource type="Resource" script_class="Recipe" load_steps=11 format=3 uid="uid://creh2tq2kdcms"]
 
 [ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="1_n0kaq"]
 [ext_resource type="Resource" uid="uid://cutk2mxl7dhrh" path="res://resources/gadgets/plant.tres" id="1_rukd6"]

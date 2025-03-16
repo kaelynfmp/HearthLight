@@ -10,8 +10,8 @@
 [sub_resource type="Resource" id="Resource_deaot"]
 script = ExtResource("5_w18pw")
 order_id = 1
-given_items = Array[Resource]([ExtResource("3_6ndcv"), ExtResource("2_vwut3"), ExtResource("1_sueqm")])
-given_quantities = Array[int]([2, 1, 1])
+given_items = Array[Resource]([ExtResource("1_sueqm"), ExtResource("2_vwut3"), ExtResource("3_6ndcv")])
+given_quantities = Array[int]([1, 1, 1])
 required_items = Array[Resource]([ExtResource("4_1axvi")])
 required_quantities = Array[int]([2])
 currency_reward = 30
