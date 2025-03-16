@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cy4o24bpi4gf5" path="res://resources/sprites/inputslot.png" id="2_sq5u0"]
 
 [node name="InputSlot" instance=ExtResource("1_djv2w")]
+size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Stack" parent="SlotPanel" index="1"]

@@ -1,0 +1,486 @@
+[gd_scene load_steps=42 format=3 uid="uid://dn25n37cbk4p6"]
+
+[ext_resource type="Texture2D" uid="uid://b3f53pdbhlfkg" path="res://resources/sprites/emails/emailPreview.png" id="1_1j7hc"]
+[ext_resource type="Texture2D" uid="uid://ya3hxo1l73v4" path="res://addons/resource_tree/input_slot.tres" id="1_nndyg"]
+[ext_resource type="Script" uid="uid://dbrky7wchvte8" path="res://addons/resource_tree/email_node.gd" id="1_t2q0s"]
+[ext_resource type="Texture2D" uid="uid://df5leiiji8qsy" path="res://addons/resource_tree/output_slot.tres" id="2_sjhxk"]
+[ext_resource type="Texture2D" uid="uid://dnvrhn4af2nix" path="res://resources/sprites/emails/emailDropdown.png" id="2_t2q0s"]
+[ext_resource type="Texture2D" uid="uid://dph2wxrwua005" path="res://resources/sprites/computer/computerCancel.png" id="3_2h2h1"]
+[ext_resource type="Script" uid="uid://bha8ro4unkubb" path="res://scripts/gui/bbcode.gd" id="3_2hvs7"]
+[ext_resource type="Texture2D" uid="uid://bpk81ck7j3l2c" path="res://resources/sprites/progressbar.png" id="6_7coub"]
+[ext_resource type="Texture2D" uid="uid://dyuipylskmyc" path="res://addons/resource_tree/addOrder.png" id="7_nndyg"]
+[ext_resource type="Texture2D" uid="uid://cu638rts4nfa2" path="res://resources/sprites/computer/computerBalance.png" id="7_t3n0n"]
+[ext_resource type="Texture2D" uid="uid://c56aavp3fuacv" path="res://addons/resource_tree/add_order_pressed.png" id="8_sjhxk"]
+[ext_resource type="Texture2D" uid="uid://ui86hauy65h3" path="res://addons/resource_tree/remove_order_pressed.png" id="10_d5xh2"]
+[ext_resource type="Texture2D" uid="uid://bfa2gd4mip243" path="res://addons/resource_tree/trash_can.png" id="13_rdwmc"]
+[ext_resource type="Texture2D" uid="uid://dgfutqbacjngj" path="res://addons/resource_tree/trash_can_pressed.png" id="14_4p1a2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h2711"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t2q0s"]
+bg_color = Color(1, 1, 1, 0)
+border_color = Color(0.8, 0.8, 0.8, 0)
+shadow_color = Color(1, 1, 1, 0.145098)
+shadow_size = 1
+shadow_offset = Vector2(23, 4.835)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jigf7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kik5e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t2q0s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2h2h1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2hvs7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nndyg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sjhxk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d5xh2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7coub"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t3n0n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nndyg"]
+content_margin_left = 60.0
+content_margin_right = 60.0
+bg_color = Color(1, 0.290196, 0.494118, 0.470588)
+skew = Vector2(0.18, 0)
+border_width_left = 20
+border_width_top = 20
+border_color = Color(1, 0.290196, 0.494118, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.223529)
+shadow_size = 10
+shadow_offset = Vector2(10, 10)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2crda"]
+texture = ExtResource("7_t3n0n")
+texture_margin_left = 49.0
+texture_margin_right = 30.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pg1eh"]
+texture = ExtResource("2_t2q0s")
+expand_margin_right = 25.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2crda"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rdwmc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4p1a2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_edwih"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vd82d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_88btd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4cv14"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1kg04"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w165h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t7cwc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_52cx8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bjt0m"]
+
+[node name="EmailNode" type="GraphNode"]
+offset_right = 1937.0
+offset_bottom = 1084.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_h2711")
+theme_override_styles/panel_selected = SubResource("StyleBoxFlat_t2q0s")
+theme_override_styles/titlebar = SubResource("StyleBoxEmpty_jigf7")
+theme_override_styles/titlebar_selected = SubResource("StyleBoxEmpty_kik5e")
+slot/0/left_enabled = true
+slot/0/left_type = 2
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = ExtResource("1_nndyg")
+slot/0/right_enabled = true
+slot/0/right_type = 2
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = ExtResource("2_sjhxk")
+slot/0/draw_stylebox = true
+slot/1/left_enabled = true
+slot/1/left_type = 3
+slot/1/left_color = Color(0.462745, 0.858824, 1, 1)
+slot/1/left_icon = ExtResource("1_nndyg")
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+slot/2/left_enabled = true
+slot/2/left_type = 3
+slot/2/left_color = Color(0.647059, 0.462745, 1, 1)
+slot/2/left_icon = ExtResource("1_nndyg")
+slot/2/right_enabled = false
+slot/2/right_type = 0
+slot/2/right_color = Color(1, 1, 1, 1)
+slot/2/right_icon = null
+slot/2/draw_stylebox = true
+slot/3/left_enabled = true
+slot/3/left_type = 3
+slot/3/left_color = Color(0.462745, 1, 0.603922, 1)
+slot/3/left_icon = ExtResource("1_nndyg")
+slot/3/right_enabled = false
+slot/3/right_type = 0
+slot/3/right_color = Color(1, 1, 1, 1)
+slot/3/right_icon = null
+slot/3/draw_stylebox = true
+script = ExtResource("1_t2q0s")
+
+[node name="EmailContainer" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 1061)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="HeaderSprite" type="Sprite2D" parent="EmailContainer"]
+position = Vector2(961.5, 130.75)
+scale = Vector2(1.66406, 1.69463)
+texture = ExtResource("1_1j7hc")
+
+[node name="Sender" type="RichTextLabel" parent="EmailContainer"]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 69.0
+offset_right = 531.0
+offset_bottom = 160.0
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+theme_override_font_sizes/mono_font_size = 40
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+theme_override_styles/fill = SubResource("StyleBoxEmpty_t2q0s")
+theme_override_styles/background = SubResource("StyleBoxEmpty_2h2h1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2hvs7")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nndyg")
+bbcode_enabled = true
+text = "Sender"
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("3_2hvs7")
+
+[node name="Subject" type="RichTextLabel" parent="EmailContainer"]
+layout_mode = 0
+offset_left = 623.0
+offset_top = 77.0
+offset_right = 1216.0
+offset_bottom = 162.0
+theme_override_font_sizes/bold_italics_font_size = 35
+theme_override_font_sizes/italics_font_size = 35
+theme_override_font_sizes/mono_font_size = 35
+theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/bold_font_size = 35
+theme_override_styles/fill = SubResource("StyleBoxEmpty_sjhxk")
+theme_override_styles/background = SubResource("StyleBoxEmpty_d5xh2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7coub")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_t3n0n")
+bbcode_enabled = true
+text = "Subject Label"
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("3_2hvs7")
+
+[node name="Blurb" type="RichTextLabel" parent="EmailContainer"]
+visible = false
+layout_mode = 2
+offset_left = 1132.0
+offset_top = 51.0
+offset_right = 1596.0
+offset_bottom = 120.0
+mouse_filter = 2
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+theme_override_font_sizes/mono_font_size = 40
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+text = "Start of email....."
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("3_2hvs7")
+
+[node name="OrderContainer" type="PanelContainer" parent="EmailContainer"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 1094.0
+offset_right = 1867.0
+offset_bottom = 1597.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nndyg")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EmailContainer/OrderContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="GivenItemsContainer" type="VBoxContainer" parent="EmailContainer/OrderContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="EmailContainer/OrderContainer/HBoxContainer/GivenItemsContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Given Items"
+horizontal_alignment = 1
+
+[node name="GivenItemsScroll" type="ScrollContainer" parent="EmailContainer/OrderContainer/HBoxContainer/GivenItemsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 0
+horizontal_scroll_mode = 0
+
+[node name="GivenItems" type="HFlowContainer" parent="EmailContainer/OrderContainer/HBoxContainer/GivenItemsContainer/GivenItemsScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+alignment = 1
+
+[node name="RequiredItemsContainer" type="VBoxContainer" parent="EmailContainer/OrderContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="EmailContainer/OrderContainer/HBoxContainer/RequiredItemsContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Required Items"
+horizontal_alignment = 1
+
+[node name="RequiredItemsScroll" type="ScrollContainer" parent="EmailContainer/OrderContainer/HBoxContainer/RequiredItemsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 0
+horizontal_scroll_mode = 0
+
+[node name="RequiredItems" type="HFlowContainer" parent="EmailContainer/OrderContainer/HBoxContainer/RequiredItemsContainer/RequiredItemsScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="EmailContainer/OrderContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Arrow" type="TextureRect" parent="EmailContainer/OrderContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("6_7coub")
+stretch_mode = 4
+
+[node name="RewardsContainer" type="VBoxContainer" parent="EmailContainer/OrderContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="EmailContainer/OrderContainer/HBoxContainer/RewardsContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Rewards"
+horizontal_alignment = 1
+
+[node name="CurrencyLabel" type="LineEdit" parent="EmailContainer/OrderContainer/HBoxContainer/RewardsContainer"]
+visible = false
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxTexture_2crda")
+alignment = 2
+
+[node name="CurrencySpinbox" type="SpinBox" parent="EmailContainer/OrderContainer/HBoxContainer/RewardsContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+max_value = 9.22337e+18
+alignment = 2
+update_on_text_changed = true
+
+[node name="RewardsItemsScroll" type="ScrollContainer" parent="EmailContainer/OrderContainer/HBoxContainer/RewardsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 0
+horizontal_scroll_mode = 0
+
+[node name="RewardsItems" type="HFlowContainer" parent="EmailContainer/OrderContainer/HBoxContainer/RewardsContainer/RewardsItemsScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+mouse_filter = 0
+alignment = 1
+
+[node name="Panel" type="Panel" parent="EmailContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 149.0
+offset_right = -16.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_pg1eh")
+
+[node name="Content" type="RichTextLabel" parent="EmailContainer/Panel"]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 246.0
+offset_right = 1827.0
+offset_bottom = 883.0
+theme_override_font_sizes/bold_italics_font_size = 30
+theme_override_font_sizes/italics_font_size = 30
+theme_override_font_sizes/mono_font_size = 30
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+theme_override_styles/fill = SubResource("StyleBoxEmpty_2crda")
+theme_override_styles/background = SubResource("StyleBoxEmpty_rdwmc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4p1a2")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_edwih")
+bbcode_enabled = true
+text = "This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. "
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("3_2hvs7")
+
+[node name="SenderDropdown" type="RichTextLabel" parent="EmailContainer/Panel"]
+layout_mode = 0
+offset_left = 323.0
+offset_top = 168.0
+offset_right = 787.0
+offset_bottom = 253.0
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+theme_override_font_sizes/mono_font_size = 40
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+theme_override_styles/fill = SubResource("StyleBoxEmpty_vd82d")
+theme_override_styles/background = SubResource("StyleBoxEmpty_88btd")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4cv14")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1kg04")
+bbcode_enabled = true
+text = "Sender"
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("3_2hvs7")
+
+[node name="SubjectDropdown" type="RichTextLabel" parent="EmailContainer/Panel"]
+layout_mode = 0
+offset_left = 795.0
+offset_top = 168.0
+offset_right = 1814.0
+offset_bottom = 254.0
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+theme_override_font_sizes/mono_font_size = 40
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+theme_override_styles/fill = SubResource("StyleBoxEmpty_w165h")
+theme_override_styles/background = SubResource("StyleBoxEmpty_t7cwc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_52cx8")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bjt0m")
+bbcode_enabled = true
+text = "Subject but this is a very long subject yes ok cool"
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("3_2hvs7")
+
+[node name="AddOrder" type="TextureButton" parent="EmailContainer"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -60.5
+offset_top = -31.0
+offset_right = 73.5
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 0
+tooltip_text = "Add Order"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("7_nndyg")
+texture_pressed = ExtResource("8_sjhxk")
+texture_hover = ExtResource("7_nndyg")
+texture_disabled = ExtResource("7_nndyg")
+texture_focused = ExtResource("7_nndyg")
+
+[node name="RemoveOrder" type="TextureButton" parent="EmailContainer"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -60.5
+offset_top = -32.0
+offset_right = 73.5
+offset_bottom = 87.0
+grow_horizontal = 2
+grow_vertical = 0
+tooltip_text = "Remove Order"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("3_2h2h1")
+texture_pressed = ExtResource("10_d5xh2")
+texture_hover = ExtResource("3_2h2h1")
+texture_disabled = ExtResource("3_2h2h1")
+texture_focused = ExtResource("3_2h2h1")
+
+[node name="DeleteButton" type="TextureButton" parent="EmailContainer"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -88.0
+offset_top = -8.0
+offset_right = -36.0
+offset_bottom = 69.0
+grow_horizontal = 0
+texture_normal = ExtResource("13_rdwmc")
+texture_pressed = ExtResource("14_4p1a2")
+texture_hover = ExtResource("13_rdwmc")
+texture_disabled = ExtResource("13_rdwmc")
+texture_focused = ExtResource("13_rdwmc")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="GivenSlot" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 177)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="RequiredSlot" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 177)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="RewardsSlot" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 177)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[connection signal="dragged" from="." to="." method="_on_dragged"]
+[connection signal="node_selected" from="." to="." method="_on_node_selected"]
+[connection signal="pressed" from="EmailContainer/AddOrder" to="." method="_on_add_order_pressed"]
+[connection signal="pressed" from="EmailContainer/RemoveOrder" to="." method="_on_remove_order_pressed"]
+[connection signal="pressed" from="EmailContainer/DeleteButton" to="." method="_on_delete_button_pressed"]

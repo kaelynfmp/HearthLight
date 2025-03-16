@@ -1,8 +1,9 @@
-[gd_scene load_steps=47 format=3 uid="uid://b5r8qyahtr3r1"]
+[gd_scene load_steps=48 format=3 uid="uid://b5r8qyahtr3r1"]
 
-[ext_resource type="Script" path="res://scenes/Computer Scenes/emaildisplay.gd" id="1_cc22d"]
+[ext_resource type="Script" uid="uid://25ttm7ow7tts" path="res://scenes/Computer Scenes/emaildisplay.gd" id="1_cc22d"]
 [ext_resource type="Texture2D" uid="uid://b3f53pdbhlfkg" path="res://resources/sprites/emails/emailPreview.png" id="2_ikcrj"]
 [ext_resource type="Texture2D" uid="uid://dph2wxrwua005" path="res://resources/sprites/computer/computerCancel.png" id="2_kcjoy"]
+[ext_resource type="Script" uid="uid://bha8ro4unkubb" path="res://scripts/gui/bbcode.gd" id="3_gr1tt"]
 [ext_resource type="Texture2D" uid="uid://cwxs2j52xgre8" path="res://resources/sprites/computer/computerAccept.png" id="3_jjpv2"]
 [ext_resource type="Texture2D" uid="uid://dnvrhn4af2nix" path="res://resources/sprites/emails/emailDropdown.png" id="3_n2822"]
 [ext_resource type="Texture2D" uid="uid://brioxpexvl23w" path="res://resources/sprites/emails/emailButton.png" id="6_xo1sp"]
@@ -120,7 +121,6 @@ offset_left = 67.0
 offset_top = 69.0
 offset_right = 531.0
 offset_bottom = 160.0
-mouse_filter = 2
 theme_override_font_sizes/bold_italics_font_size = 40
 theme_override_font_sizes/italics_font_size = 40
 theme_override_font_sizes/mono_font_size = 40
@@ -128,6 +128,10 @@ theme_override_font_sizes/normal_font_size = 40
 theme_override_font_sizes/bold_font_size = 40
 bbcode_enabled = true
 text = "Sender"
+fit_content = true
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("3_gr1tt")
 
 [node name="Subject" type="RichTextLabel" parent="."]
 layout_mode = 0
@@ -135,7 +139,6 @@ offset_left = 623.0
 offset_top = 77.0
 offset_right = 1216.0
 offset_bottom = 173.0
-mouse_filter = 2
 theme_override_font_sizes/bold_italics_font_size = 35
 theme_override_font_sizes/italics_font_size = 35
 theme_override_font_sizes/mono_font_size = 35
@@ -143,6 +146,10 @@ theme_override_font_sizes/normal_font_size = 35
 theme_override_font_sizes/bold_font_size = 35
 bbcode_enabled = true
 text = "Subject line"
+fit_content = true
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("3_gr1tt")
 
 [node name="Blurb" type="RichTextLabel" parent="."]
 visible = false
@@ -158,6 +165,9 @@ theme_override_font_sizes/mono_font_size = 40
 theme_override_font_sizes/normal_font_size = 40
 theme_override_font_sizes/bold_font_size = 40
 text = "Start of email....."
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("3_gr1tt")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
@@ -172,7 +182,6 @@ offset_left = 102.0
 offset_top = 246.0
 offset_right = 1827.0
 offset_bottom = 883.0
-mouse_filter = 2
 theme_override_font_sizes/bold_italics_font_size = 30
 theme_override_font_sizes/italics_font_size = 30
 theme_override_font_sizes/mono_font_size = 30
@@ -180,6 +189,10 @@ theme_override_font_sizes/normal_font_size = 30
 theme_override_font_sizes/bold_font_size = 30
 bbcode_enabled = true
 text = "This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. "
+fit_content = true
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("3_gr1tt")
 
 [node name="SenderDropdown" type="RichTextLabel" parent="Panel"]
 layout_mode = 0
@@ -187,7 +200,6 @@ offset_left = 323.0
 offset_top = 168.0
 offset_right = 965.0
 offset_bottom = 253.0
-mouse_filter = 2
 theme_override_font_sizes/bold_italics_font_size = 40
 theme_override_font_sizes/italics_font_size = 40
 theme_override_font_sizes/mono_font_size = 40
@@ -195,6 +207,10 @@ theme_override_font_sizes/normal_font_size = 40
 theme_override_font_sizes/bold_font_size = 40
 bbcode_enabled = true
 text = "Sender"
+fit_content = true
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("3_gr1tt")
 
 [node name="SubjectDropdown" type="RichTextLabel" parent="Panel"]
 layout_mode = 0
@@ -202,7 +218,6 @@ offset_left = 795.0
 offset_top = 168.0
 offset_right = 1814.0
 offset_bottom = 281.0
-mouse_filter = 2
 theme_override_font_sizes/bold_italics_font_size = 40
 theme_override_font_sizes/italics_font_size = 40
 theme_override_font_sizes/mono_font_size = 40
@@ -210,6 +225,10 @@ theme_override_font_sizes/normal_font_size = 40
 theme_override_font_sizes/bold_font_size = 40
 bbcode_enabled = true
 text = "Subject but this is a very long subject yes ok cool"
+fit_content = true
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("3_gr1tt")
 
 [node name="Decline" type="Button" parent="Panel"]
 layout_mode = 0

@@ -5,7 +5,8 @@ extends PanelContainer
 
 @onready var tooltip_control:Control = find_child("TooltipControl")
 @onready var tooltip:RichTextLabel = find_child("Tooltip", true)
-@onready var title:Label = find_child("Title", true)
+@onready var title:RichTextLabel = find_child("Title", true)
+@onready var tooltip_image:TextureRect = find_child("TooltipImage", true)
 
 var mouse_over: bool = false
 ## If you are currently holding right click to make a 'line'
@@ -25,6 +26,7 @@ func _process(delta: float) -> void:
 		tooltip_control.visible = slot.item != null
 		tooltip_control.set_position(get_local_mouse_position() + Vector2(50, 50))
 		if slot.item != null:
+			tooltip_image.set_texture(slot.item.texture)
 			tooltip.set_text(slot.item.description)
 			title.set_text(slot.item.name)
 		if mouse_over and slot.item != null:

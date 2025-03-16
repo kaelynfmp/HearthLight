@@ -18,6 +18,7 @@ var inventory: bool = false:
 var gadget:StaticBody2D
 
 var computer_visible:bool = false
+var computer_tab_manager:TabContainer
 
 var blur:bool = false
 
@@ -145,44 +146,18 @@ func _process(_delta: float) -> void:
 ## Load all recipes in the filesystem
 func load_recipes():
 	update_recipes.emit()
-	load_path("res://resources/recipes", Load_Type.RECIPE)
+	recipe_strings = Utility.load_path("res://resources/recipes")
 	for recipe_string:String in recipe_strings:
 		recipes.append(load(recipe_string))
 
 ## Load all gadgets in the filesystem
 func load_gadgets():
 	update_gadgets.emit()
-	load_path("res://resources/gadgets", Load_Type.GADGET)
+	gadget_strings = Utility.load_path("res://resources/gadgets")
 	for gadget_string:String in gadget_strings:
 		var curr_gadget:Gadget = load(gadget_string)
 		gadgets.append(curr_gadget)
 		gadget_items[curr_gadget.item] = curr_gadget
-
-## Loads a path and then appends the path's contents to strings
-func load_path(path:String, type:int):
-	var dir: DirAccess = DirAccess.open(path)
-	if dir:
-		dir.list_dir_begin()
-		var file_name: String = dir.get_next()
-		while file_name != "":
-			if file_name.ends_with(".remap"):
-				file_name = file_name.trim_suffix(".remap")
-			if dir.current_is_dir():
-				load_path(dir.get_current_dir(), type)
-			elif file_name.ends_with(".tres"):
-				var full_path:String = path + "/" + file_name
-				if type == Load_Type.RECIPE:
-					recipe_strings.append(full_path)
-				elif type == Load_Type.GADGET:
-					gadget_strings.append(full_path)
-				elif type == Load_Type.ITEM:
-					item_strings.append(full_path)
-			# found recipe
-			file_name = dir.get_next()
-		dir.list_dir_end()
-	else:
-		assert(dir != null, "Directory not found! Should be at 'res://resources/" +
-		("recipes" if type == Load_Type.RECIPE else "gadgets" if type == Load_Type.GADGET else "items") + "'")
 
 ## Changes whether the inventory is open or not
 func change_inventory():
@@ -333,6 +308,10 @@ func player_inventory_has(required_items:Array[Resource], required_quantities:Ar
 		if player_inventory.get_item_quantity(to_parse_item) < required_quantities[index]:
 			return false
 	return true
+
+func navigate_to_botsy():
+	if computer_tab_manager != null:
+		computer_tab_manager.current_tab = 1
 
 func update_time(in_game_seconds):
 	return # TODO: undisable. temporarily disabled for demo
