@@ -7,6 +7,7 @@ signal pause_changed
 signal update_gadgets
 signal take_cursor(Slot)
 signal debug_mode_change
+signal gadget_rotated(direction: int)
 
 @onready var computer_gadget:Gadget = load("res://resources/gadgets/computer.tres")
 
@@ -124,9 +125,10 @@ func _process(_delta: float) -> void:
 	elif Input.is_action_just_pressed("rotate_gadget"):
 		if GameManager.cursor != null:
 			var gadget = get_gadget_from_cursor()
-			if gadget != null:
+			if gadget != null and gadget.name == "Conveyor Belt":
 				gadget.direction = (gadget.direction + 1) % 4
 				print(["SE", "SW", "NW", "NE"][gadget.direction])
+				gadget_rotated.emit(gadget.direction)
 		
 		
 	blur = inventory

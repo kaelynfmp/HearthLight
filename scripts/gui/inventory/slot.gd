@@ -18,6 +18,8 @@ var hover_timer:float = 0.0
 var hover_time:float = 0.7 # in seconds
 var fade_time:float = 0.05 # in seconds
 
+var item_texture_rect: TextureRect
+
 func _ready():
 	tooltip_control.set_modulate(Color(1, 1, 1, 0))
 
