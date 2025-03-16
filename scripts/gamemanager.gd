@@ -53,6 +53,7 @@ signal currency_updated(new_amount)
 
 var start_time: int
 var current_time: int
+var active_time: int = 0
 var seconds_elapsed: float
 var day_hours: int  = 18
 var time_scale: int       = 480 # 1 irl second is 480 game seconds for 2 minutes/day, 16h day
@@ -67,8 +68,20 @@ var game_time: Dictionary = {
 var in_computer: bool
 var shop_dict: Dictionary = {
 	"resources": [],
-	"gadgets": []
+	"gadgets": [],
+	"wanted": []
 }
+var categorized_emails: Dictionary = {
+	"orders": [],
+	"main": [],
+	"junk": [],
+	"social": [],
+	"archive": []
+}
+@export var remaining_order_emails : Array = []
+@export var completed_order_emails : Array = []
+@export var all_lore_emails : Array = []
+@export var all_tutorial_emails : Array = []
 
 var pause: bool = false
 
@@ -114,12 +127,18 @@ func _process(_delta: float) -> void:
 					
 	
 	# time tracking
-	if !pause:
+	if !pause and !in_computer:
 		current_time = Time.get_ticks_msec()
-		var milliseconds_elapsed: int = current_time - start_time
+		var time_difference = current_time - start_time
+		start_time = Time.get_ticks_msec()
+		active_time += time_difference
+		
+		var milliseconds_elapsed: int = active_time
 		seconds_elapsed = milliseconds_elapsed / 1000
 		time_scaled_seconds = seconds_elapsed*time_scale
 		update_time(time_scaled_seconds)
+	else:
+		start_time = Time.get_ticks_msec()
 
 ## Load all recipes in the filesystem
 func load_recipes():
@@ -293,6 +312,7 @@ func change_computer_visibility():
 		change_inventory()
 	computer_visible = !computer_visible
 	computer_visibility_changed.emit()
+	in_computer != in_computer
 	
 func player_inventory_has(required_items:Array[Resource], required_quantities:Array[int]) -> bool:
 	if required_items.size() != required_quantities.size():
@@ -309,7 +329,6 @@ func player_inventory_has(required_items:Array[Resource], required_quantities:Ar
 	return true
 
 func update_time(in_game_seconds):
-	return # TODO: undisable. temporarily disabled for demo
 	#print("Game Seconds: %s" % in_game_seconds)	
 	game_time["hour"] = int(in_game_seconds / 3600) + 8
 	game_time["minute"] = int((in_game_seconds % 3600) / 60)
@@ -338,3 +357,23 @@ func update_time(in_game_seconds):
 		#print("IRL Seconds elapsed: ", seconds_elapsed)
 		#print("Game Seconds: %s" % in_game_seconds)	
 		#print("Game Time: %d Days, %dH %dM %dS" % [game_time["day"], game_time["hour"], game_time["minute"], game_time["second"]])
+func is_after_date(day: int, hour: int, minute: int) -> bool:
+	var current_day = game_time["day"]
+	var current_hour = game_time["hour"]
+	var current_minute = game_time["minute"]
+	if day < current_day:
+		return true
+	elif day > current_day:
+		return false
+	else: # requested day IS the current day
+		# check hour and minute
+		if hour < current_hour:
+			return true
+		elif hour > current_hour:
+			return false
+		else: # it IS the current hour
+			if minute <= current_minute:
+				return true
+			else:
+				return false
+	return false

@@ -1,13 +1,7 @@
 extends Node
 
 var emails: Array = []
-var categorized_emails: Dictionary = {
-	"orders": [],
-	"main": [],
-	"junk": [],
-	"social": [],
-	"archive": []
-}
+var categorized_emails: Dictionary = GameManager.categorized_emails
 var current_category: String = "main"
 var current_inbox_button: Button = null
 @onready var email_list_container: Node = $ScrollContainer/EmailsListContainer
@@ -15,10 +9,8 @@ var current_inbox_button: Button = null
 
 @onready var inbox_list_container: Node = $InboxButtonsList
 @export var inbox_button_scene: PackedScene
-
 @export var email_folder : String = "res://resources/emails/"
 @export var email_class : Resource
-
 var buttoncolor : String = "#e255aa"
 var selectedbuttoncolor : String = "#cc7aaa"
 
@@ -182,7 +174,8 @@ func fulfill_order(email: Email):
 		if !email.attached_order.rewards_quantities.is_empty():
 			GameManager.game_time["day"] += 1
 	
-	
+func get_emails_in_category(category: String):
+	return categorized_emails[category]
 #func is_read_color(email: Email, email_button: Button):
 	#if email.is_read:
 		#var style = StyleBoxFlat.new()

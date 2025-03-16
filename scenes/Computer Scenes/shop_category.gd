@@ -14,6 +14,7 @@ func set_category(category: String):
 	folder = "res://resources/items/"
 	if len(shop_dict[category]) == 0:
 		load_items(category)
+	generate_wanted()
 	for item in shop_dict[category]:
 		display_items(item)
 
@@ -35,6 +36,7 @@ func load_items(category):
 					var item_path = folder + file_name
 					var item = load(item_path)
 					if item and item is Item:
+						items.append(item)
 						if item.name.to_lower() in base_resources and item not in shop_dict["resources"]:
 							shop_dict["resources"].append(item)
 				file_name = dir.get_next()
@@ -63,6 +65,13 @@ func display_items(item: Item):
 	item_button.set_item(item) 
 	#email_button.pressed.connect(func(): show_email_details(email, email_button))  #calls function on click
 	item_container.add_child(item_button)
+
+func generate_wanted():
+	var items_copy = items.duplicate()
+	items_copy.shuffle()
+	var random_wanted_items = items_copy.slice(0,3)
+	for eachitem in random_wanted_items:
+		shop_dict["wanted"].append(eachitem)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

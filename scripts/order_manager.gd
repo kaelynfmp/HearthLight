@@ -50,7 +50,7 @@ func fulfill_order(order: Order) -> bool:
 		for i in range(len(order.required_items)):
 			remove_items_from_inventory(required_items[i],required_qtys[i])
 		reward_player(order)
-		order.is_completed = true
+		order.set_completed(true)
 		return true
 	# if true:
 	# remove items

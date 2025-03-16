@@ -45,8 +45,10 @@ func create_shop_categories():
 	for category_name in shop_dict.keys():
 		var shop_category = shop_category_scene.instantiate()
 		shop_category.set_category(category_name)
-		if category_name == "resources":
-			shop_category.custom_minimum_size = Vector2(1920,650)
+		var size_to_items = int(ceil(shop_dict[category_name].size() / 4.0))
+		shop_category.custom_minimum_size = Vector2(1920,550*size_to_items)
+		#if category_name == "resources" or category_name == "gadgets":
+			#shop_category.custom_minimum_size = Vector2(1920,650)
 		#inbox_button.text = category.capitalize()
 		#inbox_button.pressed.connect(func(): display_category_emails(category)) 
 		categories_list_container.add_child(shop_category)
