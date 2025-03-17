@@ -43,9 +43,12 @@ func create_new_inventory(num_inputs: int, num_outputs: int) -> Inventory:
 	inventory.slots = []
 	for i in range(num_inputs):
 		var slot: Slot = Slot.new()
+		slot.item = null
+		slot.locked = false
 		inventory.slots.append(slot)
 	for i in range(num_outputs):
 		var slot: Slot = Slot.new()
+		slot.item = null
 		slot.locked = true
 		inventory.slots.append(slot)
 	return inventory
@@ -79,7 +82,7 @@ func _physics_process(delta: float) -> void:
 		if gadget_stats.name == "Conveyor Belt":
 			do_transport()
 		else:
-			var checked_recipe:Recipe = check_for_valid_recipe()
+			var checked_recipe: Recipe = check_for_valid_recipe()
 			if checked_recipe != null:
 				do_recipe(checked_recipe)
 	else:
@@ -128,19 +131,14 @@ func finish_transport():
 func pull_inventory():
 	if rear_gadget:
 		var rear_inventory: Inventory = rear_gadget.inventory
-		for slot in rear_inventory.slots:
+		for slot in rear_inventory.slots.filter(func(slot): return slot.locked):
 			if slot.item != null:
 				var item: Item = slot.item
-				var available_slots : Array[Slot] = inventory.slots.filter(func(slot): 
-					return slot.item == item or (slot.item == null and !slot.locked)
-				)
-				if !available_slots.is_empty():
-					if rear_gadget.gadget_stats.name != "Conveyor Belt":
+				if rear_gadget.gadget_stats.name != "Conveyor Belt":
 						item_at_location.emit(cell_pos, item,  Vector2i(-100, -100))
-					else:
-						item_at_location.emit(cell_pos, item, cell_pos + direction_vector[direction])
-					rear_inventory.remove_items(item, 1)
-					break
+				rear_inventory.remove_items(item, 1, true)
+				break
+					
 
 func update_recipes():
 	recipes.clear()
@@ -153,8 +151,9 @@ func check_for_valid_recipe() -> Recipe:
 		var inputs:Array[Slot] = inventory.slots.filter(func(slot): return !slot.locked)
 		var valid:int = 0
 		for input in recipe.inputs:
-			if inventory.get_item_quantity(input.item, true) >= input.quantity:
-				valid += 1
+			for slot in inventory.slots.filter(func(slot): return !slot.locked):
+				if slot.item != null and slot.item.name == input.item.name and slot.quantity >= input.quantity:
+					valid += 1
 		if valid == inputs.size():
 			# valid!
 			return recipe
@@ -174,7 +173,9 @@ func start_progression():
 func recipe_take():
 	for input in selected_recipe.inputs:
 		# We know that the recipe is valid, so we can just remove willy nilly
-		inventory.remove_items(input.item, input.quantity)
+		for slot in inventory.slots.filter(func(slot): return !slot.locked):
+			if slot.item != null and slot.item.name == input.item.name:
+				inventory.remove_items(slot.item, input.quantity)
 	recipe_taken = true
 
 func finish_recipe():

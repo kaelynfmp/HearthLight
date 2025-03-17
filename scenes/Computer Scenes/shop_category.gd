@@ -33,7 +33,7 @@ func load_items(category):
 					var item = load(item_path)
 					if item and item is Item:
 						if GameManager.is_debugging:
-							item = item.duplicate(true)
+							item = item.duplicate()
 							item.price = 0
 							if item not in GameManager.shop_dict["resources"]:
 								shop_dict["resources"].append(item)
@@ -55,7 +55,9 @@ func load_items(category):
 				if file_name.ends_with(".tres"):
 					var gadget_path = folder + file_name
 					var gadget = load(gadget_path)
-					if GameManager.is_debugging:
+					if GameManager.is_debugging and gadget and gadget is Gadget and gadget.produces:
+						gadget = gadget.duplicate()
+						gadget.item = gadget.item.duplicate()
 						gadget.item.price = 0
 						if gadget not in GameManager.shop_dict["gadgets"]:
 							GameManager.shop_dict["gadgets"].append(gadget.item)

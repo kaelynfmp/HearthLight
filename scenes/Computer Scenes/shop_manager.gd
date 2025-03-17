@@ -1,7 +1,7 @@
 extends Node
 
 var items: Array = [] 
-var shop_dict = GameManager.shop_dict
+var shop_dict = {"resources": [], "gadgets": []}
 @onready var categories_list_container: Node = $ScrollContainer/ShopCategoriesListContainer
 @export var item_button_scene: PackedScene
 @export var shop_category_scene: PackedScene

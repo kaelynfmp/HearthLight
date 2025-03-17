@@ -24,10 +24,14 @@ func _physics_process(delta: float) -> void:
 	var current_gadget = GameManager.room_map[current_pos[0] + 6][current_pos[1] + 5]
 	if len(path) > 0 and global_position == path[0]:
 		path.pop_front()
-	
+	if current_gadget == null:
+		return
 	if current_gadget.gadget_stats.name != "Conveyor Belt":
-		current_gadget.inventory.insert(item, 1)
-		queue_free()
+		var availble_slots: Array[Slot] = current_gadget.inventory.slots.filter(func(slot): 
+			return !slot.locked and (slot.item == null or (slot.item == item and slot.quantity < item.max_stack)))	
+		if not availble_slots.is_empty():
+			current_gadget.inventory.insert(item, 1)
+			queue_free()
 		return
 	var direction = current_gadget.direction
 	var target_cell_pos = current_pos + direction_vectors[direction]

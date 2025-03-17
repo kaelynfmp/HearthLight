@@ -222,8 +222,8 @@ rewards_item_nodes = Dictionary[Resource, int]({})
 [sub_resource type="Resource" id="Resource_gsbeb"]
 script = ExtResource("1_5e5y2")
 gadget = ExtResource("2_70wi3")
-x = -740
-y = -340
+x = -680
+y = -280
 
 [sub_resource type="Resource" id="Resource_8w8ri"]
 script = ExtResource("1_5e5y2")
