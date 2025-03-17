@@ -16,7 +16,6 @@ var direction_vectors: Array[Vector2i] = [
 
 func _ready() -> void:
 	$CollisionShape2D/Sprite2D.texture = item.texture
-	print(item.name, " spawned at ", cell_pos)
 	path = [global_position]
 
 func _physics_process(delta: float) -> void:

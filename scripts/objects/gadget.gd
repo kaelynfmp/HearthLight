@@ -65,7 +65,6 @@ func _ready() -> void:
 		sprite.flip_h = true
 	if direction == 2 or direction == 3:
 		sprite.flip_v = true
-	print("Cell Position ", cell_pos)
 		
 	audio_player.set_stream(gadget_stats.ambient_sound)
 	update_recipes()
