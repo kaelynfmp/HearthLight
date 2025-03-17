@@ -45,5 +45,5 @@ inventory = SubResource("Resource_ggxxm")
 produces = true
 inputs = 1
 outputs = 1
-process_time = 2.0
+process_time = 1.0
 metadata/_custom_type_script = "uid://diu2pkk76wyyy"

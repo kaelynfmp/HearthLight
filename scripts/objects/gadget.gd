@@ -31,6 +31,12 @@ var rear_gadget: StaticBody2D
 var front_gadget: StaticBody2D
 var corresponding_item: RigidBody2D
 var direction: int
+var direction_vector: Array[Vector2i] = [
+	Vector2i(-1, 0),
+	Vector2i(0, -1),
+	Vector2i(1, 0),
+	Vector2i(0, 1),
+]
 
 func create_new_inventory(num_inputs: int, num_outputs: int) -> Inventory:
 	var inventory: Inventory = Inventory.new()
@@ -59,6 +65,7 @@ func _ready() -> void:
 		sprite.flip_h = true
 	if direction == 2 or direction == 3:
 		sprite.flip_v = true
+	print("Cell Position ", cell_pos)
 		
 	audio_player.set_stream(gadget_stats.ambient_sound)
 	update_recipes()
@@ -77,8 +84,8 @@ func _physics_process(delta: float) -> void:
 			if checked_recipe != null:
 				do_recipe(checked_recipe)
 	else:
-		var change_rate:float = delta / (gadget_stats.process_time * \
-			selected_recipe.processing_multiplier if selected_recipe else 1)
+		var change_rate:float = delta / (gadget_stats.process_time * (
+			selected_recipe.processing_multiplier if selected_recipe else 1))
 		if age > GameManager.Age.PRIMITIVE or primitive_selected:
 			progress += change_rate
 		else:
@@ -105,41 +112,20 @@ func _process(_delta: float) -> void:
 		pass
 		
 func do_transport():
-	var rear_gadget_pos: Vector2i = cell_pos + Vector2i(-1, 0)
+	var rear_gadget_pos: Vector2i = cell_pos + direction_vector[direction]
 	if (GameManager.room_map[rear_gadget_pos[0] + 6][rear_gadget_pos[1] + 5] != null):
 		rear_gadget = GameManager.room_map[rear_gadget_pos[0] + 6][rear_gadget_pos[1] + 5]
-		if rear_gadget != null:
+		if rear_gadget != null and rear_gadget.gadget_stats.name != "Conveyor Belt":
 			start_progression_transport()
 			
 func start_progression_transport():
 	play_sound()
+	pull_inventory()
 	progressing = true
 	
 func finish_transport():
-	push_inventory()
-	pull_inventory()
 	cancel_processing()
-	
-func push_inventory():
-	var front_gadget_pos: Vector2i = cell_pos + Vector2i(1, 0)
-	if GameManager.room_map[front_gadget_pos[0] + 6][front_gadget_pos[1] + 5] != null:
-		front_gadget = GameManager.room_map[front_gadget_pos[0] + 6][front_gadget_pos[1] + 5]
-		if front_gadget != null and front_gadget.gadget_stats.name != "Conveyor Belt":
-			var front_inventory: Inventory = front_gadget.inventory
-			for slot in inventory.slots:
-				if slot.item != null:
-					var item: Item = slot.item
-					var available_slots : Array[Slot] = front_inventory.slots.filter(func(slot): 
-						return !slot.locked and (slot.item == null or slot.item == item)
-					)
-					if !available_slots.is_empty():
-						# TODO: Emit a signal to remove in-world item
-						item_gone_at_location.emit(cell_pos, item)
-						inventory.remove_items(item, 1)
-						front_inventory.insert(item, 1)
-						break
-			
-	
+		
 func pull_inventory():
 	if rear_gadget:
 		var rear_inventory: Inventory = rear_gadget.inventory
@@ -153,13 +139,10 @@ func pull_inventory():
 					if rear_gadget.gadget_stats.name != "Conveyor Belt":
 						item_at_location.emit(cell_pos, item,  Vector2i(-100, -100))
 					else:
-						item_at_location.emit(cell_pos, item, cell_pos + Vector2i(-1, 0))
+						item_at_location.emit(cell_pos, item, cell_pos + direction_vector[direction])
 					rear_inventory.remove_items(item, 1)
-					inventory.insert(item, 1)
-					
 					break
-				
-		
+
 func update_recipes():
 	recipes.clear()
 	for recipe:Recipe in GameManager.recipes:

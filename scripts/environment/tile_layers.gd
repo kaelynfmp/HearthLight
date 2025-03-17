@@ -114,19 +114,14 @@ func despawn_item_at_location(cell_pos: Vector2i, item: Item):
 		to_despawn.queue_free()
 
 func item_at_location(cell_pos: Vector2i, item: Item, previous: Vector2i):
-	if previous == Vector2i(-100, -100):
-		var in_world_item = load("res://scenes/in_world_item.tscn")
-		var item_instance = in_world_item.instantiate()
-		item_instance.position = first_layer.map_to_local(cell_pos + Vector2i(-1, -1))
-		item_instance.item = item
-		$"Layer 1".add_child(item_instance)
-		GameManager.item_map[cell_pos[0]][cell_pos[1]] = item_instance
-	else:
-		if GameManager.item_map[previous[0]][previous[1]] == null:
-			print("Not found previous gadget")
-		else:
-			var item_instance: StaticBody2D = GameManager.item_map[previous[0]][previous[1]]
-			GameManager.item_map[previous[0]][previous[1]] = null
-			item_instance.target_position = first_layer.map_to_local(cell_pos + Vector2i(-1, -1))
-			GameManager.item_map[cell_pos[0]][cell_pos[1]] = item_instance
+	var in_world_item = load("res://scenes/in_world_item.tscn")
+	var item_instance = in_world_item.instantiate()
+	item_instance.global_position = first_layer.map_to_local(cell_pos + Vector2i(-1, -1))
+	item_instance.item = item
+	item_instance.cell_pos = cell_pos
+	item_instance.tile_layer = $"Layer 1"
+	$"Layer 1".add_child(item_instance)
+	GameManager.item_map[cell_pos[0] + 6][cell_pos[1] + 5] = item_instance
+	
+		
 	
