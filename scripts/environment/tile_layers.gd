@@ -121,7 +121,3 @@ func item_at_location(cell_pos: Vector2i, item: Item, previous: Vector2i):
 	item_instance.cell_pos = cell_pos
 	item_instance.tile_layer = $"Layer 1"
 	$"Layer 1".add_child(item_instance)
-	GameManager.item_map[cell_pos[0] + 6][cell_pos[1] + 5] = item_instance
-	
-		
-	
