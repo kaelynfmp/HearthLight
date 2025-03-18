@@ -58,6 +58,10 @@ folder_colors={
 "res://scripts/objects/": "pink"
 }
 
+[global_group]
+
+Gadget=""
+
 [input]
 
 ui_accept={

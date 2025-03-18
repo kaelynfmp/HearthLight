@@ -13,6 +13,7 @@ y_sort_enabled = true
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_du0bt")
+move_speed = 320
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_du0bt")

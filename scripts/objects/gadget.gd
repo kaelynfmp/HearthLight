@@ -65,7 +65,9 @@ func _ready() -> void:
 	sprite.texture = gadget_stats.texture
 	direction = gadget_stats.direction
 	rotate_sprite()
-		
+	if gadget_stats.name == "Conveyor Belt":
+		collision_layer = 2
+		collision_mask = 2
 	audio_player.set_stream(gadget_stats.ambient_sound)
 	update_recipes()
 	GameManager.update_recipes.connect(update_recipes)
