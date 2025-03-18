@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bpie3rt8qmyxr"]
+[gd_scene load_steps=20 format=3 uid="uid://bpie3rt8qmyxr"]
 
 [ext_resource type="PackedScene" uid="uid://c2wlmdehxae41" path="res://scenes/Computer Scenes/computer_interface.tscn" id="1_8kako"]
 [ext_resource type="PackedScene" uid="uid://c6g34by20r0qc" path="res://scenes/inventory/inventory.tscn" id="1_h8ipj"]
@@ -13,6 +13,10 @@
 [ext_resource type="Shader" uid="uid://cbx8f33etuvq2" path="res://scripts/shaders/gadgetoutline.gdshader" id="9_o8g3w"]
 [ext_resource type="Texture2D" uid="uid://gi6my3ydg3ke" path="res://resources/sprites/gui/gadget_selection.png" id="10_ivqh4"]
 [ext_resource type="PackedScene" uid="uid://biflar31oita2" path="res://scenes/menu/pause_menu.tscn" id="13_55orh"]
+[ext_resource type="Texture2D" uid="uid://dl2manigelkio" path="res://resources/sprites/gui/gear/normal.png" id="13_uxdf7"]
+[ext_resource type="Texture2D" uid="uid://byd0f2tce32li" path="res://resources/sprites/gui/gear/pressed.png" id="14_5357l"]
+[ext_resource type="Texture2D" uid="uid://v3mhxuklek42" path="res://resources/sprites/gui/gear/hover.png" id="15_iypfu"]
+[ext_resource type="Texture2D" uid="uid://ca24n44nxd7w1" path="res://resources/sprites/gui/gear/disabled.png" id="16_qpprf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_drira"]
 shader = ExtResource("2_0gell")
@@ -99,6 +103,34 @@ scale = Vector2(0.7, 0.7)
 offset = Vector2(0, -218)
 script = ExtResource("9_nhxen")
 
+[node name="Control" type="Control" parent="SelectedGadget"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SelectedGadget/Control"]
+layout_mode = 0
+offset_left = -623.0
+offset_right = 623.0
+offset_bottom = 351.0
+theme_override_constants/separation = 560
+alignment = 1
+
+[node name="RotateLeft" type="TextureButton" parent="SelectedGadget/Control/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("13_uxdf7")
+texture_pressed = ExtResource("14_5357l")
+texture_hover = ExtResource("15_iypfu")
+texture_disabled = ExtResource("16_qpprf")
+
+[node name="RotateRight" type="TextureButton" parent="SelectedGadget/Control/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("13_uxdf7")
+texture_pressed = ExtResource("14_5357l")
+texture_hover = ExtResource("15_iypfu")
+texture_disabled = ExtResource("16_qpprf")
+
 [node name="PauseMenu" parent="." instance=ExtResource("13_55orh")]
 process_mode = 3
 visible = false
@@ -106,3 +138,6 @@ top_level = true
 z_index = 4096
 z_as_relative = false
 size_flags_horizontal = 4
+
+[connection signal="pressed" from="SelectedGadget/Control/HBoxContainer/RotateLeft" to="SelectedGadget" method="_on_rotate_left_pressed"]
+[connection signal="pressed" from="SelectedGadget/Control/HBoxContainer/RotateRight" to="SelectedGadget" method="_on_rotate_right_pressed"]

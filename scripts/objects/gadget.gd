@@ -38,6 +38,9 @@ var direction_vector: Array[Vector2i] = [
 ]
 var disabled = false
 
+func get_local_position():
+	return base_layer.map_to_local(cell_pos)
+
 func create_new_inventory(num_inputs: int, num_outputs: int) -> void:
 	inventory = Inventory.new()
 	inventory.slots = []
@@ -61,8 +64,8 @@ func _ready() -> void:
 	age = gadget_stats.age
 	sprite.texture = gadget_stats.texture
 	direction = gadget_stats.direction
-	sprite.flip_h = 0
-	sprite.flip_v = 0
+	sprite.flip_h = false
+	sprite.flip_v = false
 	if direction == 1 or direction == 2:
 		sprite.flip_h = true
 	if direction == 2 or direction == 3:
@@ -120,6 +123,13 @@ func is_able_to_recipe(checked_recipe: Recipe):
 	return is_able
 	
 func _process(_delta: float) -> void:
+	#direction = gadget_stats.direction
+	sprite.flip_h = false
+	sprite.flip_v = false
+	if direction == 1 or direction == 2:
+		sprite.flip_h = true
+	if direction == 2 or direction == 3:
+		sprite.flip_v = true
 	if hovered:
 		sprite.material.set("shader_parameter/textureScale", Vector2.ONE)
 		if detect_nearby():

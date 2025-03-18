@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://chk8orxbmeds0" path="res://addons/resource_tree/gadget_editor_node.gd" id="1_5e5y2"]
 [ext_resource type="Script" uid="uid://72wdluf0sgvq" path="res://addons/resource_tree/email_editor_node.gd" id="1_qn33u"]
-[ext_resource type="Resource" uid="uid://b1h4vs1btx62h" path="res://resources/gadgets/wheel.tres" id="2_70wi3"]
+[ext_resource type="Resource" uid="uid://bmylw6g0ukbxm" path="res://resources/gadgets/wheel.tres" id="2_70wi3"]
 [ext_resource type="Resource" uid="uid://cdwmg5cnw3msy" path="res://resources/emails/dustforsieve.tres" id="2_ds5gw"]
 [ext_resource type="Script" uid="uid://72s4vlpmyvjo" path="res://addons/resource_tree/resource_tree_properties.gd" id="2_e0emm"]
 [ext_resource type="Script" uid="uid://c71bj8yw74134" path="res://addons/resource_tree/recipe_editor_node.gd" id="2_hx4k4"]
