@@ -37,6 +37,7 @@ var direction_vector: Array[Vector2i] = [
 	Vector2i(1, 0),
 	Vector2i(0, 1),
 ]
+var disabled = false
 
 func create_new_inventory(num_inputs: int, num_outputs: int) -> Inventory:
 	var inventory: Inventory = Inventory.new()
@@ -78,13 +79,18 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if GameManager.gadget == null:
 		primitive_selected = false
-	if !progressing or (!progressing and selected_recipe != null):
+	if !disabled and !progressing or (!progressing and selected_recipe != null):
 		if gadget_stats.name == "Conveyor Belt":
 			do_transport()
 		else:
 			var checked_recipe: Recipe = check_for_valid_recipe()
 			if checked_recipe != null:
-				do_recipe(checked_recipe)
+				
+				if is_able_to_recipe(checked_recipe):
+					disabled = false
+					do_recipe(checked_recipe)
+				else:
+					disabled = true
 	else:
 		var change_rate:float = delta / (gadget_stats.process_time * (
 			selected_recipe.processing_multiplier if selected_recipe else 1))
@@ -101,6 +107,19 @@ func _physics_process(delta: float) -> void:
 			cancel_processing()
 	if GameManager.inventory and GameManager.gadget == self and !detect_nearby():
 		GameManager.change_inventory()
+
+func is_able_to_recipe(checked_recipe: Recipe):
+	var output_slots = inventory.slots.filter(func(slot): return slot.locked)
+	var is_able = output_slots.all(func(slot):
+		var item = slot.item
+		if item == null:
+			return true
+		var slot_item_in_recipe = checked_recipe.outputs.find(func(slot): 
+			return slot.item.name == item.name)
+		if slot.quantity + checked_recipe.outputs[slot_item_in_recipe].quantity <= item.max_stack:
+			return true
+	)
+	return is_able
 	
 func _process(_delta: float) -> void:
 	if hovered:
@@ -129,15 +148,16 @@ func finish_transport():
 	cancel_processing()
 		
 func pull_inventory():
-	if rear_gadget:
-		var rear_inventory: Inventory = rear_gadget.inventory
-		for slot in rear_inventory.slots.filter(func(slot): return slot.locked):
-			if slot.item != null:
-				var item: Item = slot.item
-				if rear_gadget.gadget_stats.name != "Conveyor Belt":
-						item_at_location.emit(cell_pos, item,  Vector2i(-100, -100))
-				rear_inventory.remove_items(item, 1, true)
-				break
+	if GameManager.item_map[cell_pos[0] + 6][cell_pos[1] + 5] == null: 
+		if rear_gadget:
+			var rear_inventory: Inventory = rear_gadget.inventory
+			for slot in rear_inventory.slots.filter(func(slot): return slot.locked):
+				if slot.item != null:
+					var item: Item = slot.item
+					if rear_gadget.gadget_stats.name != "Conveyor Belt":
+							item_at_location.emit(cell_pos, item,  Vector2i(-100, -100))
+					rear_inventory.remove_items(item, 1, true)
+					break
 					
 
 func update_recipes():

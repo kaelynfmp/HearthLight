@@ -1,6 +1,6 @@
 extends StaticBody2D
 @export var item: Item
-@export var move_speed: int = 320
+@export var move_speed: int = 300
 @export var target_position: Vector2 = Vector2(-100, -100)
 @export var path: Array[Vector2] = []
 @export var cell_pos: Vector2i
@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void:
 	if next_gadget != null:
 		var target_pos = tile_layer.map_to_local(target_cell_pos + Vector2i(-1, -1))
 		var next_item =  GameManager.item_map[target_cell_pos[0] + 6][target_cell_pos[1] + 5]
-		if not target_pos in path and (next_item == null or (next_item != null and next_item.item.name == item.name)):
+		if not target_pos in path and (next_item == null):
 			path.append(target_pos)
 	if len(path) > 0:
 		if cell_pos != current_pos:
