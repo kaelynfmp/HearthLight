@@ -19,7 +19,7 @@ enum Age {PRIMITIVE, INDUSTRIAL, ELECTRICAL, CYBER}
 @export var age: Age
 
 enum Direction {SE, SW, NW, NE}
-@export var direction: Direction = 0
+@export var direction: Direction = Direction.SE
 
 ## In-game description of the gadget.
 @export_multiline var description: String:

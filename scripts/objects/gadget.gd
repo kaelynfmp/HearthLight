@@ -1,8 +1,7 @@
 extends StaticBody2D
 
 signal removing(layer_occupied_name:String, cell_pos:Vector2i)
-signal item_at_location(cell_pos: Vector2i, item: Item, previous: StaticBody2D)
-signal item_gone_at_location(cell_pos: Vector2i, item: Item)
+signal item_at_location(cell_pos: Vector2i, item: Item)
 
 @export var gadget_stats:Gadget
 @onready var audio_player:AudioStreamPlayer2D = find_child("AudioStreamPlayer")
@@ -39,8 +38,8 @@ var direction_vector: Array[Vector2i] = [
 ]
 var disabled = false
 
-func create_new_inventory(num_inputs: int, num_outputs: int) -> Inventory:
-	var inventory: Inventory = Inventory.new()
+func create_new_inventory(num_inputs: int, num_outputs: int) -> void:
+	inventory = Inventory.new()
 	inventory.slots = []
 	for i in range(num_inputs):
 		var slot: Slot = Slot.new()
@@ -52,11 +51,10 @@ func create_new_inventory(num_inputs: int, num_outputs: int) -> Inventory:
 		slot.item = null
 		slot.locked = true
 		inventory.slots.append(slot)
-	return inventory
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	inventory = create_new_inventory(gadget_stats.inputs, gadget_stats.outputs)
+	create_new_inventory(gadget_stats.inputs, gadget_stats.outputs)
 	character = get_parent().get_parent().get_parent().find_child("Character")
 	base_layer = get_parent()
 	tile_layers = base_layer.get_parent()
@@ -93,7 +91,7 @@ func _physics_process(delta: float) -> void:
 					disabled = true
 	else:
 		var change_rate:float = delta / (gadget_stats.process_time * (
-			selected_recipe.processing_multiplier if selected_recipe else 1))
+			selected_recipe.processing_multiplier if selected_recipe else 1.0))
 		if age > GameManager.Age.PRIMITIVE or primitive_selected:
 			progress += change_rate
 		else:
@@ -114,8 +112,8 @@ func is_able_to_recipe(checked_recipe: Recipe):
 		var item = slot.item
 		if item == null:
 			return true
-		var slot_item_in_recipe = checked_recipe.outputs.find(func(slot): 
-			return slot.item.name == item.name)
+		var slot_item_in_recipe = checked_recipe.outputs.find_custom(func(output): 
+			return output.item.name == item.name)
 		if slot.quantity + checked_recipe.outputs[slot_item_in_recipe].quantity <= item.max_stack:
 			return true
 	)
@@ -155,7 +153,7 @@ func pull_inventory():
 				if slot.item != null:
 					var item: Item = slot.item
 					if rear_gadget.gadget_stats.name != "Conveyor Belt":
-							item_at_location.emit(cell_pos, item,  Vector2i(-100, -100))
+							item_at_location.emit(cell_pos, item)
 					rear_inventory.remove_items(item, 1, true)
 					break
 					

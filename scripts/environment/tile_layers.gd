@@ -97,7 +97,6 @@ func spawn_object(gadget: Gadget, _cell_pos:Vector2i = Vector2i(-99, -99)) -> bo
 		GameManager.room_map[cell_pos[0] + 6][cell_pos[1] + 5] = instance 
 		instance.removing.connect(free_tile)
 		instance.item_at_location.connect(item_at_location)
-		instance.item_gone_at_location.connect(despawn_item_at_location)
 		$"Base".add_child(instance)
 		tile_map[layer_occupied_name].append(cell_pos + Vector2i(-1, -1))
 		return true
@@ -106,14 +105,9 @@ func spawn_object(gadget: Gadget, _cell_pos:Vector2i = Vector2i(-99, -99)) -> bo
 func free_tile(layer_occupied_name:String, cell_pos:Vector2i):
 	tile_map[layer_occupied_name].remove_at(tile_map[layer_occupied_name].find(cell_pos + Vector2i(-1, -1)))
 	GameManager.room_map[cell_pos[0]][cell_pos[1]] = null
-	
-func despawn_item_at_location(cell_pos: Vector2i, item: Item):
-	var to_despawn = GameManager.item_map[cell_pos[0]][cell_pos[1]]
-	if to_despawn != null:
-		GameManager.item_map[cell_pos[0]][cell_pos[1]] = null
-		to_despawn.queue_free()
 
-func item_at_location(cell_pos: Vector2i, item: Item, previous: Vector2i):
+
+func item_at_location(cell_pos: Vector2i, item: Item):
 	var in_world_item = load("res://scenes/in_world_item.tscn")
 	var item_instance = in_world_item.instantiate()
 	item_instance.global_position = first_layer.map_to_local(cell_pos + Vector2i(-1, -1))
