@@ -57,8 +57,9 @@ var current_time: int
 var active_time: int = 0 # time spent with the time moving, aka out of pause/computer, PER DAY, resets every day
 var seconds_elapsed: float
 var day_hours: int  = 18
-var time_scale: int       = 480 # 1 irl second is 480 game seconds for 2 minutes/day, 16h day
+var time_scale: int = 480  # 1 irl second is 480 game seconds for 2 minutes/day, 16h day
 var time_scaled_seconds: int
+var sleeping: bool
 var game_time: Dictionary = {
 	"day": 1,
 	"hour": 8,
@@ -75,14 +76,13 @@ var shop_dict: Dictionary = {
 var categorized_emails: Dictionary = {
 	"orders": [],
 	"main": [],
-	"junk": [],
-	"social": [],
+	"spam": [],
 	"archive": []
 }
-@export var remaining_order_emails : Array = []
-@export var completed_order_emails : Array = []
-@export var all_lore_emails : Array = []
-@export var all_tutorial_emails : Array = []
+var remaining_order_emails : Array = []
+var completed_order_emails : Array = []
+var all_lore_emails : Array = []
+var all_tutorial_emails : Array = []
 
 var pause: bool = false
 
@@ -137,7 +137,11 @@ func _process(_delta: float) -> void:
 		var milliseconds_elapsed: int = active_time
 		seconds_elapsed = milliseconds_elapsed / 1000
 		time_scaled_seconds = seconds_elapsed*time_scale
-		update_time(time_scaled_seconds)
+		
+		if !sleeping:
+			update_time(time_scaled_seconds)
+		elif sleeping: # TODO: whatever animations, etc
+			wake_up()
 	else:
 		start_time = Time.get_ticks_msec()
 
@@ -320,7 +324,10 @@ func update_time(in_game_seconds):
 		game_time["minute"] = 0
 		game_time["second"] = 0
 		active_time=0
+		seconds_elapsed = 0
+		go_sleep()
 	
+
 	# update day segment aka morning, afternoon etc
 	if (8 <= game_time["hour"] and game_time["hour"] < 12):
 		game_time["segment"] = "morning"
@@ -356,3 +363,9 @@ func is_after_date(day: int, hour: int, minute: int) -> bool:
 			else:
 				return false
 	return false
+
+func go_sleep():
+	sleeping = true
+	#TODO: Sleep behavior
+func wake_up():
+	sleeping = false

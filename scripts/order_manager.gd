@@ -41,10 +41,6 @@ func fulfill_order(order: Order) -> bool:
 		reward_player(order)
 		order.set_completed(true)
 		return true
-	# if true:
-	# remove items
-	# reward player
-	# TODO: archive order
 	
 	# if false:
 	return false

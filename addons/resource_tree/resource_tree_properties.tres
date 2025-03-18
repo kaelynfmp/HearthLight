@@ -84,7 +84,7 @@ script = ExtResource("1_qn33u")
 email = ExtResource("5_gubxu")
 x = 6260
 y = -1520
-prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_s82cm")])
+prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([])
 required_item_nodes = Dictionary[Resource, int]({
 SubResource("Resource_d4chq"): 4
 })
@@ -110,7 +110,7 @@ script = ExtResource("1_qn33u")
 email = ExtResource("3_ds5gw")
 x = 8260
 y = -1520
-prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_kmc8f")])
+prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([])
 required_item_nodes = Dictionary[Resource, int]({
 SubResource("Resource_mwob1"): 8
 })
@@ -136,7 +136,7 @@ script = ExtResource("1_qn33u")
 email = ExtResource("2_ds5gw")
 x = 10580
 y = -1540
-prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_gubxu")])
+prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([])
 required_item_nodes = Dictionary[Resource, int]({
 SubResource("Resource_57hsl"): 8
 })
@@ -144,6 +144,34 @@ given_item_nodes = Dictionary[Resource, int]({})
 rewards_item_nodes = Dictionary[Resource, int]({
 SubResource("Resource_yb530"): 1
 })
+
+[sub_resource type="Resource" id="Resource_4b6dr"]
+script = ExtResource("3_xi7dl")
+item = ExtResource("15_5dwtj")
+x = 14780
+y = 280
+
+[sub_resource type="Resource" id="Resource_l41o2"]
+script = ExtResource("1_qn33u")
+email = ExtResource("7_kmc8f")
+x = 15120
+y = -1580
+prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([])
+required_item_nodes = Dictionary[Resource, int]({
+SubResource("Resource_4b6dr"): 5
+})
+given_item_nodes = Dictionary[Resource, int]({})
+rewards_item_nodes = Dictionary[Resource, int]({})
+
+[sub_resource type="Resource" id="Resource_53ac7"]
+script = ExtResource("1_qn33u")
+email = ExtResource("4_syuws")
+x = 17200
+y = -1580
+prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_l41o2")])
+required_item_nodes = Dictionary[Resource, int]({})
+given_item_nodes = Dictionary[Resource, int]({})
+rewards_item_nodes = Dictionary[Resource, int]({})
 
 [sub_resource type="Resource" id="Resource_e1phy"]
 script = ExtResource("3_xi7dl")
@@ -162,7 +190,7 @@ script = ExtResource("1_qn33u")
 email = ExtResource("8_s82cm")
 x = 13000
 y = -1580
-prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_pmsyv")])
+prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([])
 required_item_nodes = Dictionary[Resource, int]({
 SubResource("Resource_e1phy"): 1
 })
@@ -170,34 +198,6 @@ given_item_nodes = Dictionary[Resource, int]({})
 rewards_item_nodes = Dictionary[Resource, int]({
 SubResource("Resource_54i16"): 1
 })
-
-[sub_resource type="Resource" id="Resource_4b6dr"]
-script = ExtResource("3_xi7dl")
-item = ExtResource("15_5dwtj")
-x = 14780
-y = 280
-
-[sub_resource type="Resource" id="Resource_l41o2"]
-script = ExtResource("1_qn33u")
-email = ExtResource("7_kmc8f")
-x = 15120
-y = -1580
-prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_j4adb")])
-required_item_nodes = Dictionary[Resource, int]({
-SubResource("Resource_4b6dr"): 5
-})
-given_item_nodes = Dictionary[Resource, int]({})
-rewards_item_nodes = Dictionary[Resource, int]({})
-
-[sub_resource type="Resource" id="Resource_53ac7"]
-script = ExtResource("1_qn33u")
-email = ExtResource("4_syuws")
-x = 17200
-y = -1580
-prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_l41o2")])
-required_item_nodes = Dictionary[Resource, int]({})
-given_item_nodes = Dictionary[Resource, int]({})
-rewards_item_nodes = Dictionary[Resource, int]({})
 
 [sub_resource type="Resource" id="Resource_yp6p7"]
 script = ExtResource("3_xi7dl")
@@ -210,7 +210,7 @@ script = ExtResource("1_qn33u")
 email = ExtResource("9_53ac7")
 x = 10560
 y = 120
-prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_gubxu")])
+prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([])
 required_item_nodes = Dictionary[Resource, int]({
 SubResource("Resource_57hsl"): 4
 })

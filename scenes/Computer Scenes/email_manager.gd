@@ -13,7 +13,11 @@ var current_inbox_button: Button = null
 @export var email_class : Resource
 var buttoncolor : String = "#e255aa"
 var selectedbuttoncolor : String = "#cc7aaa"
-
+var remaining_order_emails = GameManager.remaining_order_emails # NOT VALIDATED YET
+var completed_order_emails = GameManager.completed_order_emails
+var all_lore_emails = GameManager.all_lore_emails
+var all_tutorial_emails = GameManager.all_tutorial_emails
+var saved_day : int = 1
 func _ready():
 	load_emails()
 	create_inbox_buttons()
@@ -21,10 +25,27 @@ func _ready():
 	display_category_emails(current_category) # default view to "main"
 
 func _process(delta: float) -> void:
-	pass
-	#for key in categorized_emails:
-		#for email in categorized_emails[key]:
-			#print(email.sender, email.category)
+	for email in emails:
+		if email not in completed_order_emails and email not in remaining_order_emails and !email.tutorial and email not in all_lore_emails:
+			#email is not loaded in yet and is NOT a tutorial email and NOT a lore email
+			remaining_order_emails.append(email)
+	if saved_day != GameManager.game_time["day"]: # new day
+		var selected_new_emails = select_random_emails()
+		print("selecting 5 new emails")
+		remaining_order_emails.erase(selected_new_emails)
+		for eachemail in selected_new_emails:
+			categorized_emails["main"].append(eachemail)
+			print("appended email", eachemail)
+		saved_day = GameManager.game_time["day"]
+	
+	
+func select_random_emails():
+	# selects 5 random valid emails, or all of them if theres less than 5 valid ones
+	var valid_emails = remaining_order_emails.filter(func(email): return email.check_valid())
+	if valid_emails.is_empty():
+		valid_emails = completed_order_emails.filter(func(email): return email.check_valid())
+	valid_emails.shuffle()
+	return valid_emails.slice(0, 5)
 
 func create_inbox_buttons():
 	for category in categorized_emails.keys():
@@ -55,7 +76,7 @@ func display_category_emails(category: String):
 		child.queue_free()
 	
 	for email in categorized_emails[category]:
-		if is_email_time_reached(email):
+		if email.check_valid():
 			display_email_button(email)
 	current_category = category
 	
@@ -75,6 +96,10 @@ func load_emails():
 				if email and email is Email:
 					emails.append(email)
 					categorized_emails[email.category].append(email)
+					if email.lore_only:
+						all_lore_emails.append(email)
+					if email.tutorial:
+						all_tutorial_emails.append(email)
 					#display_email_button(email)  # display the email in the UI
 			file_name = dir.get_next()
 		dir.list_dir_end()
@@ -118,7 +143,8 @@ func display_email_button(email: Email):
 		if accept_button:
 			accept_button.pressed.connect(func(): order_accept(email))
 		if reject_button:
-			reject_button.pressed.connect(func(): order_reject(email))
+			if !email.tutorial:
+				reject_button.pressed.connect(func(): order_reject(email))
 	elif email.attached_order != null and email.attached_order.responded and email.attached_order.is_accepted and not email.attached_order.is_completed:
 		fulfill_texture.visible = true
 		accept_button.visible = false
@@ -154,10 +180,10 @@ func order_accept(email: Email):
 	var order = email.attached_order
 	OrderManager.accept_order(order)
 	OrderManager.give_player_starting_items(order)
-	# TODO: possibly move to "in progress"
 	change_email_category(email, "orders")
 	display_category_emails(current_category)
-	# TODO: check order fulfillment
+	# TODO: save order accept day, check this later
+	
 	
 func order_reject(email: Email):
 	var order = email.attached_order
@@ -165,14 +191,14 @@ func order_reject(email: Email):
 	# move inbox
 	change_email_category(email, "archive")
 	display_category_emails(current_category)
+	remaining_order_emails.append(email) # readd back to remaining order emails to be reselected
 	
 func fulfill_order(email: Email):
 	if OrderManager.fulfill_order(email.attached_order):
 		change_email_category(email, "archive")
 		display_category_emails(current_category)
-		 # TODO: remove. temporarily advancing day every order that rewards you with something. The intro email was given an empty quantity to compensate
-		if !email.attached_order.rewards_quantities.is_empty():
-			GameManager.game_time["day"] += 1
+		if !email.tutorial and email not in all_lore_emails:
+			completed_order_emails.append(email)
 	
 func get_emails_in_category(category: String):
 	return categorized_emails[category]
