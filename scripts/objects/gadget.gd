@@ -64,12 +64,7 @@ func _ready() -> void:
 	age = gadget_stats.age
 	sprite.texture = gadget_stats.texture
 	direction = gadget_stats.direction
-	sprite.flip_h = false
-	sprite.flip_v = false
-	if direction == 1 or direction == 2:
-		sprite.flip_h = true
-	if direction == 2 or direction == 3:
-		sprite.flip_v = true
+	rotate_sprite()
 		
 	audio_player.set_stream(gadget_stats.ambient_sound)
 	update_recipes()
@@ -122,14 +117,17 @@ func is_able_to_recipe(checked_recipe: Recipe):
 	)
 	return is_able
 	
-func _process(_delta: float) -> void:
-	#direction = gadget_stats.direction
+func rotate_sprite() -> void:
 	sprite.flip_h = false
 	sprite.flip_v = false
 	if direction == 1 or direction == 2:
 		sprite.flip_h = true
 	if direction == 2 or direction == 3:
 		sprite.flip_v = true
+	
+func _process(_delta: float) -> void:
+	#direction = gadget_stats.direction
+	rotate_sprite()
 	if hovered:
 		sprite.material.set("shader_parameter/textureScale", Vector2.ONE)
 		if detect_nearby():
