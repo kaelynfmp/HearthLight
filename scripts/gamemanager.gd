@@ -57,7 +57,7 @@ var current_time: int
 var active_time: int = 0 # time spent with the time moving, aka out of pause/computer, PER DAY, resets every day
 var seconds_elapsed: float
 var day_hours: int  = 18
-var time_scale: int = 480  # 1 irl second is 480 game seconds for 2 minutes/day, 16h day
+var time_scale: int = 480 * 12 # 1 irl second is 480 game seconds for 2 minutes/day, 16h day
 var time_scaled_seconds: int
 var sleeping: bool
 var game_time: Dictionary = {
@@ -84,7 +84,7 @@ var completed_order_emails : Array = []
 var all_lore_emails : Array = []
 var all_tutorial_emails : Array = []
 
-var pause: bool = false
+var pause: bool = true
 
 var recipes:Array[Recipe]
 var gadgets:Array[Gadget]

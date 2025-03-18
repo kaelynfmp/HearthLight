@@ -22,29 +22,37 @@ func _ready():
 	load_emails()
 	create_inbox_buttons()
 	#print(emails)
-	display_category_emails(current_category) # default view to "main"
-
-func _process(delta: float) -> void:
 	for email in emails:
 		if email not in completed_order_emails and email not in remaining_order_emails and !email.tutorial and email not in all_lore_emails:
 			#email is not loaded in yet and is NOT a tutorial email and NOT a lore email
 			remaining_order_emails.append(email)
+		if email.tutorial:
+			if email.check_valid():
+				GameManager.categorized_emails["main"].append(email)
+	display_category_emails(current_category) # default view to "main"
+
+func _process(delta: float) -> void:
+	# add new emails
 	if saved_day != GameManager.game_time["day"]: # new day
 		var selected_new_emails = select_random_emails()
 		print("selecting 5 new emails")
 		remaining_order_emails.erase(selected_new_emails)
 		for eachemail in selected_new_emails:
-			categorized_emails["main"].append(eachemail)
+			categorized_emails["main"].insert(0,eachemail)
 			print("appended email", eachemail)
+		display_category_emails(current_category)
 		saved_day = GameManager.game_time["day"]
-	
 	
 func select_random_emails():
 	# selects 5 random valid emails, or all of them if theres less than 5 valid ones
-	var valid_emails = remaining_order_emails.filter(func(email): return email.check_valid())
-	if valid_emails.is_empty():
-		valid_emails = completed_order_emails.filter(func(email): return email.check_valid())
+	var select_from = remaining_order_emails
+	if select_from.is_empty():
+		select_from = completed_order_emails
+	
+	var valid_emails = select_from.filter(func(email): return email.check_valid())
 	valid_emails.shuffle()
+	for eachemail in valid_emails:
+		select_from.erase(eachemail)
 	return valid_emails.slice(0, 5)
 
 func create_inbox_buttons():
@@ -95,7 +103,6 @@ func load_emails():
 				var email = load(email_path)
 				if email and email is Email:
 					emails.append(email)
-					categorized_emails[email.category].append(email)
 					if email.lore_only:
 						all_lore_emails.append(email)
 					if email.tutorial:
