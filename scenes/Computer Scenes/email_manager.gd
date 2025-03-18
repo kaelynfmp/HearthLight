@@ -40,6 +40,13 @@ func _process(delta: float) -> void:
 		for eachemail in selected_new_emails:
 			categorized_emails["main"].insert(0,eachemail)
 			print("appended email", eachemail)
+		
+		# check due dates BEFORE updating saved day
+		for eachemail in categorized_emails["orders"]:
+			if check_email_failed(eachemail):
+				# TODO: send failure email?
+				change_email_category(eachemail,"archive")
+			
 		display_category_emails(current_category)
 		saved_day = GameManager.game_time["day"]
 	
@@ -85,6 +92,8 @@ func display_category_emails(category: String):
 	
 	for email in categorized_emails[category]:
 		if email.check_valid():
+			display_email_button(email)
+		elif category == "archive":
 			display_email_button(email)
 	current_category = category
 	
@@ -206,7 +215,17 @@ func fulfill_order(email: Email):
 		display_category_emails(current_category)
 		if !email.tutorial and email not in all_lore_emails:
 			completed_order_emails.append(email)
-	
+
+func check_email_failed(email: Email) -> bool:
+	if saved_day != GameManager.game_time["day"] and email.failable:
+		email.failed = true
+		order_reject(email)
+		print("email failed")
+		print(GameManager.categorized_emails["archive"])
+		remaining_order_emails.append(email)
+		return true
+	return false
+
 func get_emails_in_category(category: String):
 	return categorized_emails[category]
 #func is_read_color(email: Email, email_button: Button):

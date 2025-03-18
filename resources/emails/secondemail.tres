@@ -41,6 +41,6 @@ attached_order = SubResource("Resource_koher")
 tutorial = false
 lore_only = false
 has_start_time = false
-failable = false
+failable = true
 failed = false
 prereqs_must_fail = false
