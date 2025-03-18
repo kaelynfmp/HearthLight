@@ -127,7 +127,6 @@ func _process(_delta: float) -> void:
 			var cursor_gadget = get_gadget_from_cursor()
 			if cursor_gadget != null and cursor_gadget.name == "Conveyor Belt":
 				cursor_gadget.direction = (cursor_gadget.direction + 1) % 4
-				print(["SE", "SW", "NW", "NE"][cursor_gadget.direction])
 				gadget_rotated.emit(cursor_gadget.direction)
 		
 		

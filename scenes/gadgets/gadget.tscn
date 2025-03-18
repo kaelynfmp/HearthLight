@@ -28,7 +28,7 @@ polygon = PackedVector2Array(450, 0, 0, -300, -450, 0, 0, 300)
 [node name="Sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_p5k61")
 scale = Vector2(0.7, 0.7)
-offset = Vector2(0, -160)
+offset = Vector2(0, -218)
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
