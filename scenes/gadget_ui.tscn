@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c88opsp0c7nm" path="res://scenes/ui_base.tscn" id="1_edcws"]
 [ext_resource type="Texture2D" uid="uid://bpk81ck7j3l2c" path="res://resources/sprites/progressbar.png" id="2_1u2kl"]
 [ext_resource type="Texture2D" uid="uid://dl2manigelkio" path="res://resources/sprites/gui/gear/normal.png" id="2_vuda5"]
-[ext_resource type="Shader" path="res://scripts/shaders/progress.gdshader" id="3_rt1dh"]
+[ext_resource type="Shader" uid="uid://ch21gkadfjfq0" path="res://scripts/shaders/progress.gdshader" id="3_rt1dh"]
 [ext_resource type="Texture2D" uid="uid://byd0f2tce32li" path="res://resources/sprites/gui/gear/pressed.png" id="3_uiq0m"]
 [ext_resource type="Texture2D" uid="uid://c0pk0sgvaoktr" path="res://resources/sprites/progressbar_filled.png" id="4_a56a2"]
 [ext_resource type="Texture2D" uid="uid://v3mhxuklek42" path="res://resources/sprites/gui/gear/hover.png" id="4_vb1co"]
@@ -19,6 +19,8 @@ gradient = SubResource("Gradient_oya0q")
 shader = ExtResource("3_rt1dh")
 shader_parameter/progress = 0.5
 shader_parameter/background_color = Color(0.15, 0.243333, 0.5, 0)
+shader_parameter/color_gradient = SubResource("GradientTexture1D_k3yj5")
+shader_parameter/mask_texture = ExtResource("4_a56a2")
 shader_parameter/wave_amplitude = 0.066
 shader_parameter/wave_frequency = 4.365
 shader_parameter/wave_speed = 3.387
@@ -32,8 +34,6 @@ shader_parameter/particle_end_scale = Vector2(0.01, 0.01)
 shader_parameter/particle_scale_randomness = 0.5
 shader_parameter/particle_amount = 15
 shader_parameter/image_dimension = Vector2(512, 512)
-shader_parameter/color_gradient = SubResource("GradientTexture1D_k3yj5")
-shader_parameter/mask_texture = ExtResource("4_a56a2")
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7bgkg"]
 

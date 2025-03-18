@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cq8nmdt2gxyse"]
 
-[ext_resource type="Script" path="res://scripts/gui/inventory/cursor.gd" id="1_87ihb"]
+[ext_resource type="Script" uid="uid://blds6wvpohx7q" path="res://scripts/gui/inventory/cursor.gd" id="1_87ihb"]
 [ext_resource type="PackedScene" uid="uid://c5605c3ehaw25" path="res://scenes/inventory/slot.tscn" id="2_08svr"]
 
 [node name="Cursor" type="Node2D"]

@@ -1,7 +1,5 @@
 extends Control
 
-signal is_paused
-
 var is_displayed = false
 
 # Called when the node enters the scene tree for the first time.

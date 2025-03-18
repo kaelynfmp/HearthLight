@@ -1,6 +1,6 @@
 [gd_scene load_steps=51 format=3 uid="uid://bj67g16p1cic7"]
 
-[ext_resource type="Script" path="res://scenes/Computer Scenes/item_buy_popup.gd" id="1_cmwl6"]
+[ext_resource type="Script" uid="uid://bq36bahokfv2b" path="res://scenes/Computer Scenes/item_buy_popup.gd" id="1_cmwl6"]
 [ext_resource type="Texture2D" uid="uid://b44kbp322i3y" path="res://resources/sprites/testimg.png" id="1_p7i7f"]
 [ext_resource type="Texture2D" uid="uid://cwxs2j52xgre8" path="res://resources/sprites/computer/computerAccept.png" id="3_b72uc"]
 [ext_resource type="Texture2D" uid="uid://dph2wxrwua005" path="res://resources/sprites/computer/computerCancel.png" id="4_hi044"]

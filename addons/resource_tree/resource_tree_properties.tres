@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://chk8orxbmeds0" path="res://addons/resource_tree/gadget_editor_node.gd" id="1_5e5y2"]
 [ext_resource type="Script" uid="uid://72wdluf0sgvq" path="res://addons/resource_tree/email_editor_node.gd" id="1_qn33u"]
-[ext_resource type="Resource" uid="uid://b1h4vs1btx62h" path="res://resources/gadgets/wheel.tres" id="2_70wi3"]
+[ext_resource type="Resource" uid="uid://bmylw6g0ukbxm" path="res://resources/gadgets/wheel.tres" id="2_70wi3"]
 [ext_resource type="Resource" uid="uid://cdwmg5cnw3msy" path="res://resources/emails/dustforsieve.tres" id="2_ds5gw"]
 [ext_resource type="Script" uid="uid://72s4vlpmyvjo" path="res://addons/resource_tree/resource_tree_properties.gd" id="2_e0emm"]
 [ext_resource type="Script" uid="uid://c71bj8yw74134" path="res://addons/resource_tree/recipe_editor_node.gd" id="2_hx4k4"]
-[ext_resource type="Resource" uid="uid://cutk2mxl7dhrh" path="res://resources/gadgets/plant.tres" id="3_d1v0y"]
+[ext_resource type="Resource" uid="uid://c222by5ulftln" path="res://resources/gadgets/plant.tres" id="3_d1v0y"]
 [ext_resource type="Resource" uid="uid://dynvawdp111sl" path="res://resources/emails/fabricforgrinder.tres" id="3_ds5gw"]
 [ext_resource type="Script" uid="uid://ctnn0q4bapqqp" path="res://addons/resource_tree/item_editor_node.gd" id="3_xi7dl"]
 [ext_resource type="Resource" uid="uid://ckrgha87ltstr" path="res://resources/gadgets/hand_grinder.tres" id="4_e1cam"]
@@ -222,8 +222,8 @@ rewards_item_nodes = Dictionary[Resource, int]({})
 [sub_resource type="Resource" id="Resource_gsbeb"]
 script = ExtResource("1_5e5y2")
 gadget = ExtResource("2_70wi3")
-x = -740
-y = -340
+x = -680
+y = -280
 
 [sub_resource type="Resource" id="Resource_8w8ri"]
 script = ExtResource("1_5e5y2")
@@ -333,8 +333,8 @@ output_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_xcrkp")
 [sub_resource type="Resource" id="Resource_gl4sg"]
 script = ExtResource("2_hx4k4")
 recipe = ExtResource("16_cwixx")
-x = 120
-y = 1560
+x = 140
+y = 1540
 gadget_node = SubResource("Resource_5t4gc")
 input_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_nos87"), SubResource("Resource_o22c4"), SubResource("Resource_xcrkp")])
 output_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_pio1n")])

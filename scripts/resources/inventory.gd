@@ -43,7 +43,8 @@ func insert(item: Item, amount=1, locked_only=false) -> int:
 	
 ## Returns how many [Item]s can be sent to the inventory
 func can_insert(item: Item, amount=1, locked_only=false) -> int:
-	var item_slots: Array = slots.filter(func(slot): return (slot.item == item and (!slot.locked and !locked_only) or (slot.locked and locked_only)))
+	var item_slots: Array = slots.filter(func(slot): 
+		return (slot.item == item and (!slot.locked and !locked_only) or (slot.locked and locked_only)))
 	if !item_slots.is_empty():
 		for slot in item_slots:
 			if !locked_only or slot.locked:
@@ -57,7 +58,8 @@ func can_insert(item: Item, amount=1, locked_only=false) -> int:
 				else:
 					amount = remainder
 	if amount > 0:
-		var empty_slots: Array = slots.filter(func(slot): return (slot.item == null and (!slot.locked and !locked_only) or (slot.locked and locked_only)))
+		var empty_slots: Array = slots.filter(func(slot):
+			return (slot.item == null and (!slot.locked and !locked_only) or (slot.locked and locked_only)))
 		if !empty_slots.is_empty():
 			for empty_slot:Slot in empty_slots:
 				if !locked_only or empty_slot.locked:
