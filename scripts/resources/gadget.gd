@@ -8,6 +8,9 @@ extends Resource
 ## Texture that represents the sprite in-game.
 @export var texture: Texture2D
 ## Name of the gadget as it appears in-game.
+
+@export var sprite_offset: Vector2
+
 @export var name: String:
 	get():
 		if item != null:

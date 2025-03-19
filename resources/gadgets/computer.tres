@@ -36,6 +36,7 @@ price = 0
 resource_name = "computer"
 script = ExtResource("4_uwl5i")
 texture = ExtResource("4_2lmon")
+sprite_offset = Vector2(0, -180)
 name = "Computer"
 age = 3
 direction = 0

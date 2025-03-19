@@ -36,6 +36,7 @@ metadata/_custom_type_script = "uid://by7jec2ew2vsl"
 [resource]
 script = ExtResource("5_owrvj")
 texture = ExtResource("4_rcdnk")
+sprite_offset = Vector2(0, -180)
 name = "Conveyor Belt"
 age = 1
 direction = 0

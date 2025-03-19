@@ -63,6 +63,7 @@ func _ready() -> void:
 	tile_layers = base_layer.get_parent()
 	age = gadget_stats.age
 	sprite.texture = gadget_stats.texture
+	sprite.offset = gadget_stats.sprite_offset
 	direction = gadget_stats.direction
 	rotate_sprite()
 	if gadget_stats.name == "Conveyor Belt":
