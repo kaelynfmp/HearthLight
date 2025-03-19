@@ -5,6 +5,7 @@ func _process(delta: float) -> void:
 		visible = true
 		var sprite = GameManager.gadget.find_child("Sprite")
 		texture = sprite.texture
+		offset = sprite.offset
 		flip_h = false
 		flip_v = false
 		flip_h = sprite.flip_h
