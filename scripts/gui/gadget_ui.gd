@@ -6,11 +6,13 @@ var rotation_speed:float = 10
 @onready var creates_progress:TextureRect = find_child("CreatesProgress", true)
 @onready var primitive_button:TextureButton = find_child("PrimitiveButton", true)
 var current_gadget:Gadget
+var input_hint_dict: Dictionary = {}
 
 func _process(delta: float) -> void:
 	visible = GameManager.gadget != null
 	if GameManager.gadget != null:
 		if current_gadget == null:
+			input_hint_dict = {}
 			set_gadget(GameManager.gadget)
 		if GameManager.gadget.progressing:
 			creates_progress.visible = true
@@ -25,6 +27,8 @@ func _process(delta: float) -> void:
 			primitive_button.set_rotation(primitive_button.get_rotation() + rotation_speed * delta)
 	else:
 		current_gadget = null
+	if current_gadget:
+		update_hint_visibility()
 	
 func set_gadget(gadget:StaticBody2D):
 	primitive_button.set_rotation(0)
@@ -49,6 +53,15 @@ func set_gadget(gadget:StaticBody2D):
 	for index in range(inputs.size()):
 		var input:Slot = gadget.inventory.slots[gadget.inventory.slots.find(inputs[index])]
 		var new_slot:PanelContainer = input_slot_scene.instantiate()
+		
+		# VISUAL INPUT HINTS ON GADGETS
+		var input_hint:TextureRect = new_slot.find_child("ImgHintInput", true)
+		var recipe_inputs = get_inputs_for_hint()
+		var curr_slot = recipe_inputs[index]
+		input_hint.texture = curr_slot.item.texture
+		input_hint_dict[input_hint] = current_gadget.inventory.get_item_quantity(curr_slot.item)
+		
+		
 		new_slot.set_slot(input)
 		new_slot.update()
 		new_slot.set_name("InputSlot" + str(index))
@@ -78,3 +91,41 @@ func set_gadget(gadget:StaticBody2D):
 			new_slot.size_flags_vertical = SIZE_SHRINK_CENTER
 		contained.add_child(new_slot)
 		contained.move_child(new_slot, starting_index + index)
+		
+		var output_hint:TextureRect = new_slot.find_child("ImgHintOutput", true)
+		var recipe_outputs = get_outputs_for_hint()
+		var curr_slot = recipe_outputs[index]
+		output_hint.texture = curr_slot.item.texture
+
+func get_inputs_for_hint():
+		var recipes = GameManager.recipes
+		var recipe: Recipe
+		for eachrecipe in recipes:
+			if eachrecipe.gadget == current_gadget:
+				recipe = eachrecipe
+				break
+		return recipe.inputs
+
+func get_outputs_for_hint():
+		var recipes = GameManager.recipes
+		var recipe: Recipe
+		for eachrecipe in recipes:
+			if eachrecipe.gadget == current_gadget:
+				recipe = eachrecipe
+				break
+		return recipe.outputs
+
+func update_hint_visibility():
+	var quantities = []
+	var recipe_inputs = get_inputs_for_hint()
+	var inputs:Array[Slot] = current_gadget.inventory.slots.filter(func(slot): return !slot.locked)
+	for index in range(inputs.size()):
+		quantities.append(current_gadget.inventory.get_item_quantity(recipe_inputs[index].item))
+	var i = 0
+	for texture in input_hint_dict:
+		input_hint_dict[texture] = quantities[i]
+		i+=1
+		if input_hint_dict[texture] > 0:
+			texture.visible = false
+		else:
+			texture.visible = true

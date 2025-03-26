@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Email" load_steps=4 format=3 uid="uid://ykahlpnerv5d"]
+
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_gmsf6"]
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_mfgsx"]
+
+[sub_resource type="Resource" id="Resource_idbo1"]
+script = ExtResource("1_gmsf6")
+order_id = -1
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
+given_currency = 100
+required_items = Array[Resource]([])
+required_quantities = Array[int]([])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 0
+rewards = Array[Resource]([])
+rewards_quantities = Array[int]([])
+metadata/_custom_type_script = "uid://cdrlcp2hcoi4m"
+
+[resource]
+script = ExtResource("1_mfgsx")
+sender = "Secret Admirer"
+subject = "Down on your luck?"
+contents = "Hey, I heard you're struggling a bit in the financials department.
+
+Take $100, I insist."
+category = "main"
+prerequisite_emails = Array[ExtResource("1_mfgsx")]([])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_idbo1")
+tutorial = false
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+metadata/_custom_type_script = "uid://f4g73stblggw"

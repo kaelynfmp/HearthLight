@@ -22,7 +22,7 @@ var responded: bool = false
 		if given_items.size() != value.size():
 			given_items.resize(value.size())
 		given_quantities = value
-
+@export var given_currency: int = 0
 @export_category("Order Requirements")
 @export var required_items: Array[Resource] = []:
 	set(value):

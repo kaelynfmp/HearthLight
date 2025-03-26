@@ -3,14 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://c2wlmdehxae41" path="res://scenes/Computer Scenes/computer_interface.tscn" id="1_8kako"]
 [ext_resource type="PackedScene" uid="uid://c6g34by20r0qc" path="res://scenes/inventory/inventory.tscn" id="1_h8ipj"]
 [ext_resource type="PackedScene" uid="uid://bj67g16p1cic7" path="res://scenes/Computer Scenes/item_buy_popup.tscn" id="1_xplaj"]
-[ext_resource type="Shader" path="res://scripts/shaders/blur.gdshader" id="2_0gell"]
+[ext_resource type="Shader" uid="uid://bn3laa6ok6dxw" path="res://scripts/shaders/blur.gdshader" id="2_0gell"]
 [ext_resource type="PackedScene" uid="uid://cq8nmdt2gxyse" path="res://scenes/cursor.tscn" id="2_wjdba"]
-[ext_resource type="Script" path="res://scripts/gui/blur.gd" id="3_xnxa5"]
-[ext_resource type="Script" path="res://scripts/gui/inventories.gd" id="4_pacb3"]
+[ext_resource type="Script" uid="uid://bs7340gd6xgde" path="res://scripts/gui/blur.gd" id="3_xnxa5"]
+[ext_resource type="Script" uid="uid://dnos8f4mnxpxj" path="res://scripts/gui/inventories.gd" id="4_pacb3"]
 [ext_resource type="PackedScene" uid="uid://dxa0at3wgkq8w" path="res://scenes/gadget_ui.tscn" id="4_svta0"]
-[ext_resource type="Script" path="res://scripts/gui/gadget_ui.gd" id="7_y0wjn"]
-[ext_resource type="Script" path="res://scripts/gui/selected_gadget.gd" id="9_nhxen"]
-[ext_resource type="Shader" path="res://scripts/shaders/gadgetoutline.gdshader" id="9_o8g3w"]
+[ext_resource type="Script" uid="uid://cktmdadtyd66f" path="res://scripts/gui/gadget_ui.gd" id="7_y0wjn"]
+[ext_resource type="Script" uid="uid://d4f5y62ujshdf" path="res://scripts/gui/selected_gadget.gd" id="9_nhxen"]
+[ext_resource type="Shader" uid="uid://cbx8f33etuvq2" path="res://scripts/shaders/gadgetoutline.gdshader" id="9_o8g3w"]
 [ext_resource type="Texture2D" uid="uid://gi6my3ydg3ke" path="res://resources/sprites/gui/gadget_selection.png" id="10_ivqh4"]
 [ext_resource type="PackedScene" uid="uid://biflar31oita2" path="res://scenes/menu/pause_menu.tscn" id="13_55orh"]
 
@@ -21,6 +21,7 @@ shader_parameter/mix_percentage = 0.024
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hoa3s"]
 shader = ExtResource("9_o8g3w")
+shader_parameter/scrollingTexture = ExtResource("10_ivqh4")
 shader_parameter/textureScale = Vector2(1, 1)
 shader_parameter/angle = 45.0
 shader_parameter/textureSpeed = 0.226
@@ -28,7 +29,6 @@ shader_parameter/thickness = 29.747
 shader_parameter/tolerance = 0.0
 shader_parameter/diagonals = true
 shader_parameter/rounded = true
-shader_parameter/scrollingTexture = ExtResource("10_ivqh4")
 
 [node name="HUD" type="CanvasLayer"]
 

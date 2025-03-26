@@ -1,12 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://c4jwdbd2el2ca"]
 
-[ext_resource type="Script" path="res://scripts/objects/gadget.gd" id="1_3434e"]
-[ext_resource type="Shader" path="res://scripts/shaders/gadget_close_enough.gdshader" id="2_e6717"]
+[ext_resource type="Script" uid="uid://ypmq38sppxx8" path="res://scripts/objects/gadget.gd" id="1_3434e"]
+[ext_resource type="Shader" uid="uid://dexym56k2wbkm" path="res://scripts/shaders/gadget_close_enough.gdshader" id="2_e6717"]
 [ext_resource type="Texture2D" uid="uid://c5syp4ayosfa8" path="res://scripts/shaders/not_close_enough_texture.tres" id="3_g7cu2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p5k61"]
 resource_local_to_scene = true
 shader = ExtResource("2_e6717")
+shader_parameter/scrollingTexture = ExtResource("3_g7cu2")
 shader_parameter/textureScale = Vector2(1, 1)
 shader_parameter/angle = 45.0
 shader_parameter/textureSpeed = 0.0500005
@@ -14,7 +15,6 @@ shader_parameter/thickness = 12.458
 shader_parameter/tolerance = 0.0
 shader_parameter/diagonals = true
 shader_parameter/rounded = true
-shader_parameter/scrollingTexture = ExtResource("3_g7cu2")
 
 [node name="Gadget" type="StaticBody2D"]
 y_sort_enabled = true

@@ -97,6 +97,9 @@ func _ready() -> void:
 	load_recipes()
 	load_gadgets()
 	
+	for recipe in recipes:
+		print("inputs: ", recipe.inputs, " gadget: ", recipe.gadget)
+	
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("inventory"):
 		if !pause:
