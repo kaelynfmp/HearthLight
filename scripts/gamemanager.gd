@@ -189,7 +189,6 @@ func add_inventory(p_inventory: Inventory):
 
 ## Attempts to send a slot to the nearest inventory, and will spread them out among multiple if necessary to send it all
 func send_to_inventory(slot: Slot):
-	
 	var home_inventory: Inventory
 	var temp_slot:Slot = slot.duplicate()
 	var starting_quantity = slot.duplicate().quantity
@@ -249,7 +248,7 @@ func set_gadget(p_gadget:StaticBody2D) -> void:
 	gadget = p_gadget
 	if !inventory:
 		change_inventory()
-		inventories.append(p_gadget.inventory)
+	inventories.append(p_gadget.inventory)
 		
 ## Gets the current gadget that corresponds to the item held in the cursor
 func get_gadget_from_cursor() -> Gadget:
@@ -315,30 +314,30 @@ func navigate_to_botsy():
 	if computer_tab_manager != null:
 		computer_tab_manager.current_tab = 1
 
-func update_time(in_game_seconds):
+func update_time(_in_game_seconds):
 	return # TODO: undisable. temporarily disabled for demo
 	#print("Game Seconds: %s" % in_game_seconds)	
-	game_time["hour"] = int(in_game_seconds / 3600) + 8
-	game_time["minute"] = int((in_game_seconds % 3600) / 60)
-	game_time["second"] = int(in_game_seconds % 60)
-	
-	# count days
-	if (game_time["hour"] == day_hours + 6): 
-		game_time["day"] += 1
-		game_time["hour"] = 8
-		game_time["minute"] = 0
-		game_time["second"] = 0
-		start_time = Time.get_ticks_msec()
-	
-	# update day segment aka morning, afternoon etc
-	if (8 <= game_time["hour"] and game_time["hour"] < 12):
-		game_time["segment"] = "morning"
-	elif (12 <= game_time["hour"] and game_time["hour"] < 16):
-		game_time["segment"] = "afternoon"
-	elif (16 <= game_time["hour"] and game_time["hour"] < 20):
-		game_time["segment"] = "evening"
-	else: # game time > 20
-		game_time["segment"] = "night"
+	#game_time["hour"] = int(in_game_seconds / 3600) + 8
+	#game_time["minute"] = int((in_game_seconds % 3600) / 60)
+	#game_time["second"] = int(in_game_seconds % 60)
+	#
+	## count days
+	#if (game_time["hour"] == day_hours + 6): 
+		#game_time["day"] += 1
+		#game_time["hour"] = 8
+		#game_time["minute"] = 0
+		#game_time["second"] = 0
+		#start_time = Time.get_ticks_msec()
+	#
+	## update day segment aka morning, afternoon etc
+	#if (8 <= game_time["hour"] and game_time["hour"] < 12):
+		#game_time["segment"] = "morning"
+	#elif (12 <= game_time["hour"] and game_time["hour"] < 16):
+		#game_time["segment"] = "afternoon"
+	#elif (16 <= game_time["hour"] and game_time["hour"] < 20):
+		#game_time["segment"] = "evening"
+	#else: # game time > 20
+		#game_time["segment"] = "night"
 	
 	# testing
 	#if (game_time["minute"]): # prints on the hour

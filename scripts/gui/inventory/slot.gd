@@ -60,8 +60,8 @@ func update():
 		item_sprite.visible = false
 		stack_number.visible = false
 
-## On mouse entered, it will check to see if it can distribute slots, pick up slotsor if it can start placing with
-## right click
+## On mouse entered, it will check to see if it can distribute slots, pick up slots
+## or if it can start placing with right click
 func _on_mouse_entered() -> void:
 	mouse_over = true
 	if cursor_slot() == null:

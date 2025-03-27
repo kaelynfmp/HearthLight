@@ -1,6 +1,6 @@
 extends Sprite2D
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if GameManager.gadget != null:
 		visible = true
 		var sprite = GameManager.gadget.find_child("Sprite")

@@ -30,8 +30,8 @@
 [ext_resource type="Resource" uid="uid://b5kgvvun4is1b" path="res://resources/recipes/dust_recipe.tres" id="12_f56e7"]
 [ext_resource type="Resource" uid="uid://gw88mo33lg1c" path="res://resources/items/ore.tres" id="13_5lr84"]
 [ext_resource type="Resource" uid="uid://bgmxpne1d7fis" path="res://resources/items/metal.tres" id="15_5dwtj"]
-[ext_resource type="Resource" uid="uid://56o6vjd0t4id" path="res://resources/recipes/ore_recipe.tres" id="16_cwixx"]
-[ext_resource type="Resource" uid="uid://bynrrcyany4ha" path="res://resources/recipes/ingot_recipe.tres" id="19_mx342"]
+[ext_resource type="Resource" uid="uid://b5q1eiwh4l7n5" path="res://resources/recipes/ore_recipe.tres" id="16_cwixx"]
+[ext_resource type="Resource" uid="uid://be1uv2mb3q4kb" path="res://resources/recipes/ingot_recipe.tres" id="19_mx342"]
 [ext_resource type="Resource" uid="uid://cksgqh7imb27s" path="res://resources/gadgets/conveyor_belt.tres" id="26_l41o2"]
 
 [sub_resource type="Resource" id="Resource_mniym"]

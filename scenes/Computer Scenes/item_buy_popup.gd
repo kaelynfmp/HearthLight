@@ -27,7 +27,7 @@ func _ready():
 	buy_button.connect("pressed", Callable(self, "_buy"))
 	decline_button.connect("pressed", Callable(self, "_close"))
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if GameManager.in_computer == false:
 		queue_free()
 

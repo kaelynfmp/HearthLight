@@ -27,9 +27,9 @@ func set_email(new_email: Email):
 	content.text = email.contents
 	expand_panel.visible = false
 
-func _finished(text:String, label:RichTextLabel):
+func _finished(_text:String, label:RichTextLabel):
 	if !label.initialized:
 		label.initialized = true
-		Utility.set_truncated_text(text, label)
+		Utility.set_truncated_text(_text, label)
 		
 	
