@@ -7,6 +7,7 @@
 radius = 77.0065
 
 [node name="InWorldItem" type="StaticBody2D"]
+z_index = 1
 y_sort_enabled = true
 collision_layer = 0
 collision_mask = 0
@@ -18,6 +19,5 @@ shape = SubResource("CircleShape2D_du0bt")
 one_way_collision_margin = 0.0
 
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
-z_index = 4
 y_sort_enabled = true
 texture = ExtResource("1_2rtls")

@@ -37,7 +37,8 @@ price = 100
 [resource]
 script = ExtResource("5_ex550")
 texture = ExtResource("5_kij0c")
-sprite_offset = Vector2(0, -120)
+sprite_offset = Vector2(0, -140)
+sprite_scale_factor = 0.95
 name = "Hand-cranked Grinder"
 age = 0
 direction = 0

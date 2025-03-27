@@ -45,7 +45,8 @@ price = 25
 [resource]
 script = ExtResource("5_441cp")
 texture = ExtResource("6_x573d")
-sprite_offset = Vector2(0, -363)
+sprite_offset = Vector2(0, -243)
+sprite_scale_factor = 0.9
 name = "Pot"
 age = 0
 direction = 0

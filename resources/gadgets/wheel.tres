@@ -37,7 +37,8 @@ price = 50
 [resource]
 script = ExtResource("1_s808j")
 texture = ExtResource("5_58b7f")
-sprite_offset = Vector2(0, -180)
+sprite_offset = Vector2(0, -140)
+sprite_scale_factor = 0.95
 name = "Ancient Loom"
 age = 0
 direction = 0

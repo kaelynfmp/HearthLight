@@ -65,6 +65,7 @@ func _ready() -> void:
 	sprite.texture = gadget_stats.texture
 	sprite.offset = gadget_stats.sprite_offset
 	direction = gadget_stats.direction
+	sprite.scale *= gadget_stats.sprite_scale_factor
 	rotate_sprite()
 	gadget_stats.inventory = inventory
 	if gadget_stats.name == "Conveyor Belt":

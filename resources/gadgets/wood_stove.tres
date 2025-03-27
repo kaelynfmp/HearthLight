@@ -38,7 +38,8 @@ price = 250
 [resource]
 script = ExtResource("5_eo3nv")
 texture = ExtResource("5_h1ts8")
-sprite_offset = Vector2(0, -180)
+sprite_offset = Vector2(0, -140)
+sprite_scale_factor = 0.95
 name = "Wood Fire Stove"
 age = 0
 direction = 0

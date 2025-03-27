@@ -53,7 +53,8 @@ price = 500
 [resource]
 script = ExtResource("5_eflns")
 texture = ExtResource("7_bwxyx")
-sprite_offset = Vector2(0, -180)
+sprite_offset = Vector2(0, -140)
+sprite_scale_factor = 0.95
 name = "Sieve"
 age = 0
 direction = 0

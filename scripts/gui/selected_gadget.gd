@@ -14,6 +14,8 @@ func _process(_delta: float) -> void:
 		set_scale(GameManager.gadget.get_global_transform_with_canvas().get_scale() * sprite.get_scale())
 		if GameManager.gadget.gadget_stats.name == "Conveyor Belt":
 			$Control.visible = true
+		else:
+			$Control.visible = false
 			
 	else:
 		texture = null

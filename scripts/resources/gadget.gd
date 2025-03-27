@@ -11,6 +11,8 @@ extends Resource
 
 @export var sprite_offset: Vector2
 
+@export var sprite_scale_factor: float = 1.0
+
 @export var name: String:
 	get():
 		if item != null:

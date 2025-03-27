@@ -37,6 +37,7 @@ resource_name = "computer"
 script = ExtResource("4_uwl5i")
 texture = ExtResource("4_2lmon")
 sprite_offset = Vector2(0, -180)
+sprite_scale_factor = 1.0
 name = "Computer"
 age = 3
 direction = 0
