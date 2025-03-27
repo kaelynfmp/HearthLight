@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Recipe" load_steps=9 format=3 uid="uid://ck1vl0k07mkbf"]
+[gd_resource type="Resource" script_class="Recipe" load_steps=9 format=3 uid="uid://dgn5yr1ecv3me"]
 
 [ext_resource type="Resource" uid="uid://bmylw6g0ukbxm" path="res://resources/gadgets/wheel.tres" id="1_dnk28"]
 [ext_resource type="Script" uid="uid://nu8khenfb28n" path="res://scripts/resources/recipe.gd" id="2_l4tvo"]

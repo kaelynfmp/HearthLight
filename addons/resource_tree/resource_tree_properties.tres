@@ -19,26 +19,26 @@
 [ext_resource type="Resource" uid="uid://cof21obwyvl4v" path="res://resources/emails/introemail.tres" id="6_pmsyv"]
 [ext_resource type="Resource" uid="uid://ccitfm40o5ju2" path="res://resources/gadgets/computer.tres" id="7_aov6n"]
 [ext_resource type="Resource" uid="uid://dmneq4jdepfsq" path="res://resources/emails/metalformoney.tres" id="7_kmc8f"]
-[ext_resource type="Resource" uid="uid://ck1vl0k07mkbf" path="res://resources/recipes/fabric_recipe.tres" id="7_wxbkn"]
+[ext_resource type="Resource" uid="uid://dgn5yr1ecv3me" path="res://resources/recipes/fabric_recipe.tres" id="7_wxbkn"]
 [ext_resource type="Resource" uid="uid://bjux8vbxnqlf8" path="res://resources/items/seed.tres" id="7_x6i4h"]
 [ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="8_3ht0r"]
-[ext_resource type="Resource" uid="uid://bv8nwf0qdvhvg" path="res://resources/recipes/cotton_recipe.tres" id="8_kf0bi"]
+[ext_resource type="Resource" uid="uid://creh2tq2kdcms" path="res://resources/recipes/cotton_recipe.tres" id="8_kf0bi"]
 [ext_resource type="Resource" uid="uid://r3prgkwmqlck" path="res://resources/emails/oreforstove.tres" id="8_s82cm"]
 [ext_resource type="Resource" uid="uid://sc3eyh2thm3t" path="res://resources/emails/secondemail.tres" id="9_53ac7"]
 [ext_resource type="Resource" uid="uid://cq5l4dfcn3c5t" path="res://resources/items/rock.tres" id="10_tvqdm"]
 [ext_resource type="Resource" uid="uid://lxvyxcteq6eq" path="res://resources/items/dust.tres" id="11_awnmn"]
-[ext_resource type="Resource" uid="uid://bbdry6mb2qbxh" path="res://resources/recipes/dust_recipe.tres" id="12_f56e7"]
+[ext_resource type="Resource" uid="uid://b5kgvvun4is1b" path="res://resources/recipes/dust_recipe.tres" id="12_f56e7"]
 [ext_resource type="Resource" uid="uid://gw88mo33lg1c" path="res://resources/items/ore.tres" id="13_5lr84"]
 [ext_resource type="Resource" uid="uid://bgmxpne1d7fis" path="res://resources/items/metal.tres" id="15_5dwtj"]
 [ext_resource type="Resource" uid="uid://56o6vjd0t4id" path="res://resources/recipes/ore_recipe.tres" id="16_cwixx"]
 [ext_resource type="Resource" uid="uid://bynrrcyany4ha" path="res://resources/recipes/ingot_recipe.tres" id="19_mx342"]
 [ext_resource type="Resource" uid="uid://cksgqh7imb27s" path="res://resources/gadgets/conveyor_belt.tres" id="26_l41o2"]
 
-[sub_resource type="Resource" id="Resource_3cnlq"]
-script = ExtResource("3_xi7dl")
-item = ExtResource("8_3ht0r")
-x = 3460
-y = -640
+[sub_resource type="Resource" id="Resource_mniym"]
+script = ExtResource("1_5e5y2")
+gadget = ExtResource("3_d1v0y")
+x = 3420
+y = -1300
 
 [sub_resource type="Resource" id="Resource_snmpi"]
 script = ExtResource("3_xi7dl")
@@ -46,11 +46,11 @@ item = ExtResource("7_x6i4h")
 x = 3440
 y = -980
 
-[sub_resource type="Resource" id="Resource_mniym"]
-script = ExtResource("1_5e5y2")
-gadget = ExtResource("3_d1v0y")
-x = 3420
-y = -1300
+[sub_resource type="Resource" id="Resource_3cnlq"]
+script = ExtResource("3_xi7dl")
+item = ExtResource("8_3ht0r")
+x = 3460
+y = -640
 
 [sub_resource type="Resource" id="Resource_d4chq"]
 script = ExtResource("3_xi7dl")
@@ -62,15 +62,15 @@ y = 280
 script = ExtResource("1_qn33u")
 email = ExtResource("6_pmsyv")
 x = 4100
-y = -1520
+y = -1540
 prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([])
 required_item_nodes = Dictionary[Resource, int]({
 SubResource("Resource_d4chq"): 2
 })
 given_item_nodes = Dictionary[Resource, int]({
-SubResource("Resource_3cnlq"): 1,
+SubResource("Resource_mniym"): 1,
 SubResource("Resource_snmpi"): 1,
-SubResource("Resource_mniym"): 1
+SubResource("Resource_3cnlq"): 1
 })
 rewards_item_nodes = Dictionary[Resource, int]({})
 
