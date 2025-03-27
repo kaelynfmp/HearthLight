@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://de20noymjuwfb"]
 
-[ext_resource type="Script" path="res://scenes/Computer Scenes/shop_category.gd" id="1_pmo2h"]
+[ext_resource type="Script" uid="uid://doi72fs0jfrme" path="res://scenes/Computer Scenes/shop_category.gd" id="1_pmo2h"]
 [ext_resource type="PackedScene" uid="uid://bchsomrab1tv0" path="res://scenes/Computer Scenes/buyable_item.tscn" id="1_slib6"]
 
 [node name="Category Label" type="Label" node_paths=PackedStringArray("category_label", "item_container")]

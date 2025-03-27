@@ -28,7 +28,7 @@ func _ready():
 	#print(emails)
 	display_category_emails(current_category) # default view to "main"
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 	#for key in categorized_emails:
 		#for email in categorized_emails[key]:

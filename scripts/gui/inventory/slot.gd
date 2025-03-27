@@ -18,6 +18,8 @@ var hover_timer:float = 0.0
 var hover_time:float = 0.7 # in seconds
 var fade_time:float = 0.05 # in seconds
 
+var item_texture_rect: TextureRect
+
 func _ready():
 	tooltip_control.set_modulate(Color(1, 1, 1, 0))
 
@@ -58,8 +60,8 @@ func update():
 		item_sprite.visible = false
 		stack_number.visible = false
 
-## On mouse entered, it will check to see if it can distribute slots, pick up slotsor if it can start placing with
-## right click
+## On mouse entered, it will check to see if it can distribute slots, pick up slots
+## or if it can start placing with right click
 func _on_mouse_entered() -> void:
 	mouse_over = true
 	if cursor_slot() == null:

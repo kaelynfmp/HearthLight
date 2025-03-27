@@ -53,8 +53,11 @@ price = 500
 [resource]
 script = ExtResource("5_eflns")
 texture = ExtResource("7_bwxyx")
+sprite_offset = Vector2(0, -140)
+sprite_scale_factor = 0.95
 name = "Sieve"
 age = 0
+direction = 0
 description = "You never thought you'd see one of these. This one probably belongs in a museum it's so old, but it'll get the job done."
 item = SubResource("Resource_t6qc1")
 inventory = SubResource("Resource_xngkc")

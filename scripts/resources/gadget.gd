@@ -8,6 +8,11 @@ extends Resource
 ## Texture that represents the sprite in-game.
 @export var texture: Texture2D
 ## Name of the gadget as it appears in-game.
+
+@export var sprite_offset: Vector2
+
+@export var sprite_scale_factor: float = 1.0
+
 @export var name: String:
 	get():
 		if item != null:
@@ -17,6 +22,10 @@ extends Resource
 ## Age of the gadget (Primitive | Industrial | Electrical | Cyber)
 enum Age {PRIMITIVE, INDUSTRIAL, ELECTRICAL, CYBER}
 @export var age: Age
+
+enum Direction {SE, SW, NW, NE}
+@export var direction: Direction = Direction.SE
+
 ## In-game description of the gadget.
 @export_multiline var description: String:
 	get():

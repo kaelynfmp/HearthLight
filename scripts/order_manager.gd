@@ -23,10 +23,10 @@ func reject_order(order: Order):
 	order.responded = true
 	rejected_orders.append(order)
 
-func check_due(order: Order):
+func check_due(_order: Order):
 	pass
 
-func archive_order(order: Order): # unfulfilled by due date OR rejected
+func archive_order(_order: Order): # unfulfilled by due date OR rejected
 	pass
 	
 func fulfill_order(order: Order) -> bool:
@@ -76,5 +76,5 @@ func give_player_starting_items(order: Order):
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass

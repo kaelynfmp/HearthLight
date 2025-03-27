@@ -41,7 +41,7 @@ func _make_custom_tooltip(for_text: String) -> Object:
 	label.visible = false
 	return label
 
-func _process(delta: float):
+func _process(_delta: float):
 	if tooltip_node != null:
 		var popup:PopupPanel = tooltip_node.get_parent()
 		var stylebox:StyleBoxFlat = StyleBoxFlat.new()

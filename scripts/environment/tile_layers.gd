@@ -1,6 +1,5 @@
 extends Node2D
 
-
 const boundary_atlas_pos:Vector2i = Vector2i(0, 0)
 const offsets:Array[Variant]      = [
 									Vector2i(0, -1),
@@ -10,17 +9,22 @@ const offsets:Array[Variant]      = [
 									]
 var tile_map: Dictionary = {}
 
+var item_map: Dictionary = {}
+
 @onready var marker: Node2D = get_node("Marker") # Child Node2D
 
 var base_layer: Node2D
+
+var first_layer: Node2D
 
 var is_placing: String = "Gadget" # Change this to place Pipe
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	base_layer = $Base
+	first_layer = $"Layer 1"
 	var exclusions = base_layer.get_used_cells()
-
+	
 	for layer:TileMapLayer in self.find_children("", "TileMapLayer"):
 		var cur_exclusions = exclusions.duplicate(true)
 		for idx in len(cur_exclusions):
@@ -28,7 +32,7 @@ func _ready() -> void:
 			cur_exclusions[idx] -= Vector2i(layer.z_index, layer.z_index)
 		place_boundaries(layer, cur_exclusions)
 		
-	spawnObject(GameManager.computer_gadget, Vector2i(-6, -5))
+	spawn_object(GameManager.computer_gadget, Vector2i(-6, -5))
 
 func place_boundaries(layer, exclusions=[]):
 	var used = layer.get_used_cells()
@@ -61,20 +65,18 @@ func _process(_delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if GameManager.is_placing_gadget and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		if spawnObject(GameManager.get_gadget_from_cursor()):
+		if spawn_object(GameManager.get_gadget_from_cursor()):
 			GameManager.cursor.slot.decrement()
-			GameManager.change_inventory()
+			#GameManager.change_inventory()
 		
 func is_base_available(cell_pos: Vector2i) -> bool:
-	var lowest = ""
-	var lowest_index = 0
 	if cell_pos in tile_map["Base"]:
 		if (cell_pos + Vector2i(-1, -1)) not in tile_map["Layer 1"]:
 			return true
 	return false
 
 ## Spawns a provided gadget onto the tilemap
-func spawnObject(gadget: Gadget, _cell_pos:Vector2i = Vector2i(-99, -99)) -> bool:
+func spawn_object(gadget: Gadget, _cell_pos:Vector2i = Vector2i(-99, -99)) -> bool:
 	# Check if in used tile
 	var mouse_pos = get_local_mouse_position()
 	var cell_pos = base_layer.local_to_map(mouse_pos)
@@ -89,13 +91,25 @@ func spawnObject(gadget: Gadget, _cell_pos:Vector2i = Vector2i(-99, -99)) -> boo
 		instance.gadget_stats = gadget
 		var layer_occupied_name:String = "Layer 1"
 		instance.layer_occupied_name = layer_occupied_name
-		instance.cell_pos = cell_pos + Vector2i(-1, -1)
+		instance.cell_pos = cell_pos
+		GameManager.room_map[cell_pos[0] + 6][cell_pos[1] + 5] = instance 
 		instance.removing.connect(free_tile)
-		$Base.add_child(instance)
+		instance.item_at_location.connect(item_at_location)
+		$"Base".add_child(instance)
 		tile_map[layer_occupied_name].append(cell_pos + Vector2i(-1, -1))
 		return true
 	return false
 		
 func free_tile(layer_occupied_name:String, cell_pos:Vector2i):
-	tile_map[layer_occupied_name].remove_at(tile_map[layer_occupied_name].find(cell_pos))
-		
+	tile_map[layer_occupied_name].remove_at(tile_map[layer_occupied_name].find(cell_pos + Vector2i(-1, -1)))
+	GameManager.room_map[cell_pos[0]][cell_pos[1]] = null
+
+
+func item_at_location(cell_pos: Vector2i, item: Item):
+	var in_world_item = load("res://scenes/in_world_item.tscn")
+	var item_instance = in_world_item.instantiate()
+	item_instance.global_position = first_layer.map_to_local(cell_pos + Vector2i(-1, -1))
+	item_instance.item = item
+	item_instance.cell_pos = cell_pos
+	item_instance.tile_layer = $"Layer 1"
+	$"Layer 1".add_child(item_instance)

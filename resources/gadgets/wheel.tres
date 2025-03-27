@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Gadget" load_steps=12 format=3 uid="uid://b1h4vs1btx62h"]
+[gd_resource type="Resource" script_class="Gadget" load_steps=12 format=3 uid="uid://bmylw6g0ukbxm"]
 
 [ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_8iuif"]
 [ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="1_s808j"]
@@ -37,8 +37,11 @@ price = 50
 [resource]
 script = ExtResource("1_s808j")
 texture = ExtResource("5_58b7f")
+sprite_offset = Vector2(0, -140)
+sprite_scale_factor = 0.95
 name = "Ancient Loom"
 age = 0
+direction = 0
 description = "An old antique that most would consider useless. Knowledge on how to use it is all but lost to most people, but you managed to find an esoteric video guide with pulsating electronic music that explained how to use it."
 item = SubResource("Resource_sgo1y")
 inventory = SubResource("Resource_btxp5")
