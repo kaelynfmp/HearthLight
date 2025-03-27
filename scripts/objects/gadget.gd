@@ -66,6 +66,7 @@ func _ready() -> void:
 	sprite.offset = gadget_stats.sprite_offset
 	direction = gadget_stats.direction
 	rotate_sprite()
+	gadget_stats.inventory = inventory
 	if gadget_stats.name == "Conveyor Belt":
 		collision_layer = 2
 		collision_mask = 2
@@ -250,6 +251,9 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 				GameManager.unique_gadget_interaction(gadget_stats)
 	elif detect_nearby() and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 		if GameManager.pickup_gadget(gadget_stats):
+			for slot in inventory.slots:
+			# Send it all away to any open inventories
+				GameManager.send_to_inventory(slot)
 			removing.emit(layer_occupied_name, cell_pos)
 			queue_free()
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.is_pressed():

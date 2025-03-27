@@ -189,6 +189,7 @@ func add_inventory(p_inventory: Inventory):
 
 ## Attempts to send a slot to the nearest inventory, and will spread them out among multiple if necessary to send it all
 func send_to_inventory(slot: Slot):
+	
 	var home_inventory: Inventory
 	var temp_slot:Slot = slot.duplicate()
 	var starting_quantity = slot.duplicate().quantity
@@ -249,11 +250,6 @@ func set_gadget(p_gadget:StaticBody2D) -> void:
 	if !inventory:
 		change_inventory()
 		inventories.append(p_gadget.inventory)
-	#elif len(inventories) >= 2:
-		#print("Well at least I tried")
-		#inventories.pop_back()
-		#print("First", len(inventories))
-		#inventory_open_state_changed.emit()
 		
 ## Gets the current gadget that corresponds to the item held in the cursor
 func get_gadget_from_cursor() -> Gadget:
@@ -287,9 +283,6 @@ func pickup_gadget(_gadget:Gadget) -> bool:
 	if cursor != null and cursor.slot != null and cursor.slot.item == null:
 		if !inventory:
 			change_inventory()
-		for slot in _gadget.inventory.slots:
-			# Send it all away to any open inventories
-			send_to_inventory(slot)
 		cursor.slot.initialize(_gadget.item)
 		return true
 	return false

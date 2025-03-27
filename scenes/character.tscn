@@ -527,7 +527,7 @@ states/Walk/position = Vector2(566.375, 174.5)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_2oe7h"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_ugw38"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_jrshk")]
 
 [node name="Character" type="CharacterBody2D"]
-z_index = 4
+z_index = 5
 y_sort_enabled = true
 scale = Vector2(0.094, 0.094)
 motion_mode = 1

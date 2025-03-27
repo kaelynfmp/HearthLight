@@ -70,8 +70,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			#GameManager.change_inventory()
 		
 func is_base_available(cell_pos: Vector2i) -> bool:
-	var lowest = ""
-	var lowest_index = 0
 	if cell_pos in tile_map["Base"]:
 		if (cell_pos + Vector2i(-1, -1)) not in tile_map["Layer 1"]:
 			return true

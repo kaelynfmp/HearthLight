@@ -25,6 +25,9 @@ func _physics_process(delta: float) -> void:
 	if len(path) > 0 and global_position == path[0]:
 		path.pop_front()
 	if current_gadget == null:
+		#GameManager.send_to_inventory()
+		GameManager.player_inventory.insert(item, 1)
+		queue_free()
 		return
 	if current_gadget.gadget_stats.name != "Conveyor Belt":
 		var availble_slots: Array[Slot] = current_gadget.inventory.slots.filter(func(slot): 
