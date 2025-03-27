@@ -46,6 +46,8 @@ func fulfill_order(order: Order) -> bool:
 	return false
 
 func check_fulfillment_ability(order: Order) -> bool:
+	if len(order.required_items) == 0:
+		return true
 	return GameManager.player_inventory_has(order.required_items, order.required_quantities)
 
 func remove_items_from_inventory(item: Item, qty: int):

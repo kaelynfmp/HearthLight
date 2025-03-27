@@ -16,6 +16,7 @@ stretch_mode = 2
 
 [node name="ImgHintOutput" type="TextureRect" parent="OutputBG" index="0"]
 modulate = Color(1, 1, 1, 0.188235)
+layout_mode = 0
 offset_left = 52.0
 offset_top = 41.0
 offset_right = 263.0

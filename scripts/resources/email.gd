@@ -23,7 +23,7 @@ var category: String
 @export var failable: bool 
 @export var failed: bool
 @export var prereqs_must_fail: bool # This is for conditions where an email only appears after something /fails/, something Everett requested
-
+@export var bankruptcy: bool = false
 
 
 func mark_as_read():
@@ -48,5 +48,4 @@ func check_valid() -> bool:
 	if prereqs_must_fail and prerequisite_emails.filter(func(email: Email): return failable and failed).is_empty():
 		# failure email and prereqs are not failed (if they exist)
 		return false
-
 	return true

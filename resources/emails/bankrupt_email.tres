@@ -39,4 +39,5 @@ has_start_time = false
 failable = false
 failed = false
 prereqs_must_fail = false
+bankruptcy = true
 metadata/_custom_type_script = "uid://f4g73stblggw"
