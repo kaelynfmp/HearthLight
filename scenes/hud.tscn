@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bpie3rt8qmyxr"]
+[gd_scene load_steps=31 format=3 uid="uid://bpie3rt8qmyxr"]
 
 [ext_resource type="PackedScene" uid="uid://c2wlmdehxae41" path="res://scenes/Computer Scenes/computer_interface.tscn" id="1_8kako"]
 [ext_resource type="PackedScene" uid="uid://c6g34by20r0qc" path="res://scenes/inventory/inventory.tscn" id="1_h8ipj"]
@@ -17,6 +17,17 @@
 [ext_resource type="Texture2D" uid="uid://byd0f2tce32li" path="res://resources/sprites/gui/gear/pressed.png" id="14_5357l"]
 [ext_resource type="Texture2D" uid="uid://v3mhxuklek42" path="res://resources/sprites/gui/gear/hover.png" id="15_iypfu"]
 [ext_resource type="Texture2D" uid="uid://ca24n44nxd7w1" path="res://resources/sprites/gui/gear/disabled.png" id="16_qpprf"]
+[ext_resource type="Texture2D" uid="uid://bjse6qjyy6aqk" path="res://resources/sprites/gui/questindicator.png" id="17_iypfu"]
+[ext_resource type="Texture2D" uid="uid://br677v2jqsxvc" path="res://resources/sprites/gui/questopen/questopen.png" id="17_kp442"]
+[ext_resource type="Texture2D" uid="uid://rtk7chr66qjo" path="res://resources/sprites/gui/questopen/questopenselect.png" id="18_gltyx"]
+[ext_resource type="Texture2D" uid="uid://ct3dhbtluduxf" path="res://resources/sprites/gui/checkmark.png" id="18_qpprf"]
+[ext_resource type="Texture2D" uid="uid://32e6btkil3qi" path="res://resources/sprites/gui/questopen/questopenhovered.png" id="19_mgfyp"]
+[ext_resource type="Script" uid="uid://cbtruwvxi8xxb" path="res://scripts/gui/quest_visibility_button.gd" id="20_mgfyp"]
+[ext_resource type="Texture2D" uid="uid://cfhlj4sxhcu7c" path="res://resources/sprites/gui/questopen/questclose.png" id="20_ptr5m"]
+[ext_resource type="Texture2D" uid="uid://irksvdg41c6j" path="res://resources/sprites/gui/questopen/questcloseselect.png" id="21_of3ib"]
+[ext_resource type="Texture2D" uid="uid://cpxoyyvqov6s3" path="res://resources/sprites/gui/questopen/questclosehover.png" id="22_7600b"]
+[ext_resource type="Script" uid="uid://c4ql6o66f32mb" path="res://scripts/gui/quest_list.gd" id="23_gltyx"]
+[ext_resource type="Script" uid="uid://de8r52enofgen" path="res://scripts/gui/quest_scroll.gd" id="24_ptr5m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_drira"]
 shader = ExtResource("2_0gell")
@@ -131,6 +142,95 @@ texture_pressed = ExtResource("14_5357l")
 texture_hover = ExtResource("15_iypfu")
 texture_disabled = ExtResource("16_qpprf")
 
+[node name="QuestButtonContainer" type="MarginContainer" parent="."]
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 358.0
+offset_bottom = 358.0
+scale = Vector2(0.25, 0.25)
+
+[node name="QuestOpen" type="TextureButton" parent="QuestButtonContainer"]
+visible = false
+layout_mode = 2
+texture_normal = ExtResource("17_kp442")
+texture_pressed = ExtResource("18_gltyx")
+texture_hover = ExtResource("19_mgfyp")
+stretch_mode = 5
+script = ExtResource("20_mgfyp")
+
+[node name="QuestClose" type="TextureButton" parent="QuestButtonContainer"]
+layout_mode = 2
+texture_normal = ExtResource("20_ptr5m")
+texture_pressed = ExtResource("21_of3ib")
+texture_hover = ExtResource("22_7600b")
+stretch_mode = 3
+script = ExtResource("20_mgfyp")
+close = true
+
+[node name="QuestScroll" type="ScrollContainer" parent="."]
+offset_left = 72.0
+offset_top = 60.0
+offset_right = 919.0
+offset_bottom = 1080.0
+script = ExtResource("24_ptr5m")
+transition_time = 0.2
+
+[node name="QuestList" type="VBoxContainer" parent="QuestScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+script = ExtResource("23_gltyx")
+
+[node name="Quest" type="VBoxContainer" parent="QuestScroll/QuestList"]
+layout_mode = 2
+
+[node name="QuestLabel" type="HBoxContainer" parent="QuestScroll/QuestList/Quest"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="QuestIcon" type="TextureRect" parent="QuestScroll/QuestList/Quest/QuestLabel"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("17_iypfu")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="QuestTitle" type="RichTextLabel" parent="QuestScroll/QuestList/Quest/QuestLabel"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0.933333, 0.223529, 0.560784, 1)
+theme_override_colors/font_shadow_color = Color(0.701961, 0.231373, 0.933333, 1)
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "Example Quest"
+fit_content = true
+
+[node name="Steps" type="VBoxContainer" parent="QuestScroll/QuestList/Quest"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StepContainer" type="MarginContainer" parent="QuestScroll/QuestList/Quest/Steps"]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+
+[node name="Step" type="HBoxContainer" parent="QuestScroll/QuestList/Quest/Steps/StepContainer"]
+layout_mode = 2
+
+[node name="Completion Icon" type="TextureRect" parent="QuestScroll/QuestList/Quest/Steps/StepContainer/Step"]
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 2
+texture = ExtResource("18_qpprf")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="StepText" type="RichTextLabel" parent="QuestScroll/QuestList/Quest/Steps/StepContainer/Step"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Example Step"
+fit_content = true
+
 [node name="PauseMenu" parent="." instance=ExtResource("13_55orh")]
 process_mode = 3
 visible = false
@@ -141,3 +241,5 @@ size_flags_horizontal = 4
 
 [connection signal="pressed" from="SelectedGadget/Control/HBoxContainer/RotateLeft" to="SelectedGadget" method="_on_rotate_left_pressed"]
 [connection signal="pressed" from="SelectedGadget/Control/HBoxContainer/RotateRight" to="SelectedGadget" method="_on_rotate_right_pressed"]
+[connection signal="pressed" from="QuestButtonContainer/QuestOpen" to="QuestButtonContainer/QuestOpen" method="_on_pressed"]
+[connection signal="pressed" from="QuestButtonContainer/QuestClose" to="QuestButtonContainer/QuestClose" method="_on_pressed"]

@@ -84,6 +84,8 @@ var gadget_items:Dictionary
 var room_map = []
 var item_map = []
 
+var quest_list_visible:bool = true
+
 func init_room_map():
 	var map = []
 	for i in range(12):
