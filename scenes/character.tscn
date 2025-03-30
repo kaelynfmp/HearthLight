@@ -481,9 +481,9 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iloky"]
 _data = {
-"RESET": SubResource("Animation_wqgrx"),
-"idle": SubResource("Animation_rdre4"),
-"walk": SubResource("Animation_gby1n")
+&"RESET": SubResource("Animation_wqgrx"),
+&"idle": SubResource("Animation_rdre4"),
+&"walk": SubResource("Animation_gby1n")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fiw0m"]
@@ -559,7 +559,7 @@ y_sort_enabled = true
 scale = Vector2(4.55, 4.55)
 
 [node name="Top Half" type="AnimatedSprite2D" parent="Sprite"]
-z_index = 1
+z_index = 2
 y_sort_enabled = true
 texture_filter = 1
 position = Vector2(0, -811)
@@ -580,7 +580,7 @@ offset = Vector2(-244, -739)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_iloky")
+&"": SubResource("AnimationLibrary_iloky")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

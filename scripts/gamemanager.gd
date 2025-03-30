@@ -6,6 +6,8 @@ signal update_recipes
 signal pause_changed
 signal update_gadgets
 signal take_cursor(Slot)
+signal debug_mode_change
+signal gadget_rotated(direction: int)
 
 @onready var computer_gadget:Gadget = load("res://resources/gadgets/computer.tres")
 
@@ -23,6 +25,8 @@ var blur:bool = false
 
 # Temp
 var is_placing_gadget: bool = false
+
+var is_debugging: bool = false
 
 var cursor:Node2D
 
@@ -92,10 +96,24 @@ var recipes:Array[Recipe]
 var gadgets:Array[Gadget]
 var gadget_items:Dictionary
 
+var room_map = []
+var item_map = []
+
+func init_room_map():
+	var map = []
+	for i in range(12):
+		var row = []
+		for j in range(12):
+			row.append(null)
+		map.append(row)
+	return map
+
 func _ready() -> void:
 	process_mode = PROCESS_MODE_ALWAYS
 	start_time = Time.get_ticks_msec()
 	seconds_elapsed = 0
+	room_map = init_room_map()
+	item_map = init_room_map()
 	load_recipes()
 	load_gadgets()
 	
@@ -117,6 +135,18 @@ func _process(_delta: float) -> void:
 			change_computer_visibility()
 		else:
 			change_inventory()
+			
+	elif Input.is_action_just_pressed("toggle_debug_mode"):
+		is_debugging = !is_debugging
+		debug_mode_change.emit()
+		
+	elif Input.is_action_just_pressed("rotate_gadget"):
+		if GameManager.cursor != null:
+			var cursor_gadget = get_gadget_from_cursor()
+			if cursor_gadget != null and cursor_gadget.name == "Conveyor Belt":
+				cursor_gadget.direction = (cursor_gadget.direction + 1) % 4
+				gadget_rotated.emit(cursor_gadget.direction)
+		
 		
 	blur = inventory
 	is_placing_gadget = false
@@ -250,7 +280,7 @@ func set_gadget(p_gadget:StaticBody2D) -> void:
 	gadget = p_gadget
 	if !inventory:
 		change_inventory()
-		inventories.append(p_gadget.inventory)
+	inventories.append(p_gadget.inventory)
 		
 ## Gets the current gadget that corresponds to the item held in the cursor
 func get_gadget_from_cursor() -> Gadget:
@@ -284,9 +314,6 @@ func pickup_gadget(_gadget:Gadget) -> bool:
 	if cursor != null and cursor.slot != null and cursor.slot.item == null:
 		if !inventory:
 			change_inventory()
-		for slot in _gadget.inventory.slots:
-			# Send it all away to any open inventories
-			send_to_inventory(slot)
 		cursor.slot.initialize(_gadget.item)
 		return true
 	return false

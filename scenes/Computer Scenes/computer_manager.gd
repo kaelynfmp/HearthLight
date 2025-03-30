@@ -8,7 +8,7 @@ func _ready() -> void:
 	GameManager.computer_tab_manager = find_child("Sites")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	currency_label.text = "       "+str(GameManager.currency)
 	GameManager.in_computer = GameManager.computer_visible
 

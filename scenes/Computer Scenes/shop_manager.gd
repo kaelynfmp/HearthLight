@@ -1,20 +1,31 @@
 extends Node
 
 var items: Array = [] 
-var shop_dict = GameManager.shop_dict
+var shop_dict = {"resources": [], "gadgets": []}
 @onready var categories_list_container: Node = $ScrollContainer/ShopCategoriesListContainer
 @export var item_button_scene: PackedScene
 @export var shop_category_scene: PackedScene
 var loaded_items = false
 var item_class : Resource
 var item_folder : String = "res://resources/items/"
+var category_scenes = []
 
 # **** ITEMS ARE BOUGHT IN item_buy_popup.gd ****
 func _ready():
+	GameManager.debug_mode_change.connect(reload_categories)
 	if shop_category_scene:
 		#load_shop_items()
 		create_shop_categories()
 	
+func reload_categories():
+	GameManager.shop_dict = {"resources": [], "gadgets": []}
+	if shop_category_scene:
+		for category in category_scenes:
+			categories_list_container.remove_child(category)
+		category_scenes = []
+		create_shop_categories()
+		
+
 #func display_item(item: Item): #insert item as a parameter
 	#var item_button = item_button_scene.instantiate()  
 	#item_button.set_item(item)
@@ -45,10 +56,11 @@ func create_shop_categories():
 	for category_name in shop_dict.keys():
 		var shop_category = shop_category_scene.instantiate()
 		shop_category.set_category(category_name)
-		var size_to_items = int(ceil(shop_dict[category_name].size() / 4.0))
-		shop_category.custom_minimum_size = Vector2(1920,550*size_to_items)
-		#if category_name == "resources" or category_name == "gadgets":
-			#shop_category.custom_minimum_size = Vector2(1920,650)
+		if category_name == "resources" or category_name == "gadgets":
+			var num_items = len(GameManager.shop_dict[category_name])
+			var num_rows = (num_items + 4) / 4
+			shop_category.custom_minimum_size = Vector2(1920, 300 * num_rows + 400)
+		category_scenes.append(shop_category)
 		#inbox_button.text = category.capitalize()
 		#inbox_button.pressed.connect(func(): display_category_emails(category)) 
 		categories_list_container.add_child(shop_category)
