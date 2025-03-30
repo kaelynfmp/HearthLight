@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://dop81y1juxyb7"]
+
+[ext_resource type="Texture2D" uid="uid://ct3dhbtluduxf" path="res://resources/sprites/gui/checkmark.png" id="1_nh5mp"]
+[ext_resource type="Script" uid="uid://deksr754qtguj" path="res://scripts/gui/quests/step_container.gd" id="1_tictl"]
+[ext_resource type="Script" uid="uid://bha8ro4unkubb" path="res://scripts/gui/bbcode.gd" id="3_k1txu"]
+
+[node name="StepContainer" type="MarginContainer"]
+offset_right = 1922.0
+offset_bottom = 42.0
+mouse_filter = 2
+theme_override_constants/margin_left = 28
+script = ExtResource("1_tictl")
+
+[node name="Step" type="HBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="CompletionIcon" type="TextureRect" parent="Step"]
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("1_nh5mp")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="StepText" type="RichTextLabel" parent="Step"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/bold_italics_font_size = 30
+theme_override_font_sizes/italics_font_size = 30
+theme_override_font_sizes/mono_font_size = 30
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+bbcode_enabled = true
+text = "Example Step"
+script = ExtResource("3_k1txu")

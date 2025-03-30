@@ -4,7 +4,13 @@ extends Resource
 
 @export_category("Order Details")
 @export var order_id: int
-var is_completed: bool = false
+signal completed
+
+var is_completed: bool = false:
+	set(value):
+		if value:
+			completed.emit()
+		is_completed = value
 var is_accepted: bool = false
 var responded: bool = false
 @export var given_items: Array[Resource] = []:

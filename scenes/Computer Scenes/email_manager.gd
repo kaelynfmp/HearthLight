@@ -67,25 +67,17 @@ func display_category_emails(category: String):
 			display_email_button(email)
 	current_category = category
 	
-
+## load all email resources
 func load_emails():
-	# load all email resources
-	var dir:DirAccess = DirAccess.open(email_folder)
-	if dir != null:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if file_name.ends_with(".remap"):
-				file_name = file_name.trim_suffix(".remap")
-			if file_name.ends_with(".tres"):
-				var email_path = email_folder + file_name
-				var email = load(email_path)
-				if email and email is Email:
-					emails.append(email)
-					categorized_emails[email.category].append(email)
-					#display_email_button(email)  # display the email in the UI
-			file_name = dir.get_next()
-		dir.list_dir_end()
+	var email_strings = Utility.load_path("res://resources/emails")
+	for email_string in email_strings:
+		var email = load(email_string)
+		if email and email is Email:
+			emails.append(email)
+			categorized_emails[email.category].append(email)
+			#display_email_button(email)  # display the email in the UI
+			if email.attached_order != null:
+				OrderManager.email_by_order[email.attached_order] = email
 
 func change_email_category(email: Email, new_category: String):
 	# remove from old inbox

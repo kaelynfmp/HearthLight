@@ -121,7 +121,7 @@ func set_text_with_bbcode(value: String):
 			token += "[b]"
 			if item.texture != null:
 				var texture_path:String = item.texture.resource_path
-				token += "[img width=" + str(insert_image_width) + "px,center]"
+				token += "[img height=" + str(insert_image_width) + "px,center]"
 				token += texture_path
 				token += "[/img]"
 			token += text_value
@@ -137,7 +137,7 @@ func set_text_with_bbcode(value: String):
 			token += "[b]"
 			if gadget.texture != null:
 				var texture_path:String = gadget.texture.resource_path
-				token += "[img width=" + str(insert_image_width) + "px,center]"
+				token += "[img height=" + str(insert_image_width) + "px,center]"
 				token += texture_path
 				token += "[/img]"
 			token += text_value
