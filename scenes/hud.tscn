@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bpie3rt8qmyxr"]
+[gd_scene load_steps=23 format=3 uid="uid://bpie3rt8qmyxr"]
 
 [ext_resource type="PackedScene" uid="uid://c2wlmdehxae41" path="res://scenes/Computer Scenes/computer_interface.tscn" id="1_8kako"]
 [ext_resource type="PackedScene" uid="uid://c6g34by20r0qc" path="res://scenes/inventory/inventory.tscn" id="1_h8ipj"]
@@ -13,11 +13,12 @@
 [ext_resource type="Shader" uid="uid://cbx8f33etuvq2" path="res://scripts/shaders/gadgetoutline.gdshader" id="9_o8g3w"]
 [ext_resource type="Texture2D" uid="uid://gi6my3ydg3ke" path="res://resources/sprites/gui/gadget_selection.png" id="10_ivqh4"]
 [ext_resource type="PackedScene" uid="uid://biflar31oita2" path="res://scenes/menu/pause_menu.tscn" id="13_55orh"]
-[ext_resource type="PackedScene" uid="uid://dnyyt61n7tlkc" path="res://scenes/clock.tscn" id="14_eld54"]
 [ext_resource type="Texture2D" uid="uid://dl2manigelkio" path="res://resources/sprites/gui/gear/normal.png" id="13_uxdf7"]
 [ext_resource type="Texture2D" uid="uid://byd0f2tce32li" path="res://resources/sprites/gui/gear/pressed.png" id="14_5357l"]
+[ext_resource type="PackedScene" uid="uid://dnyyt61n7tlkc" path="res://scenes/clock.tscn" id="14_eld54"]
 [ext_resource type="Texture2D" uid="uid://v3mhxuklek42" path="res://resources/sprites/gui/gear/hover.png" id="15_iypfu"]
 [ext_resource type="Texture2D" uid="uid://ca24n44nxd7w1" path="res://resources/sprites/gui/gear/disabled.png" id="16_qpprf"]
+[ext_resource type="Script" uid="uid://djkcgfibs8xbn" path="res://scenes/sleep_canvas.gd" id="19_iypfu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_drira"]
 shader = ExtResource("2_0gell")
@@ -34,6 +35,8 @@ shader_parameter/thickness = 29.747
 shader_parameter/tolerance = 0.0
 shader_parameter/diagonals = true
 shader_parameter/rounded = true
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_5357l"]
 
 [node name="HUD" type="CanvasLayer"]
 
@@ -147,5 +150,36 @@ offset_top = 13.0
 offset_right = 11.0
 offset_bottom = 13.0
 scale = Vector2(2.76, 2.4)
+
+[node name="SleepCanvas" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("19_iypfu")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="SleepCanvas"]
+z_index = 101
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 48.225
+anchor_bottom = 27.3
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 60
+text = "Sleeping through the night..."
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="DarkenCanvas" type="TextureRect" parent="SleepCanvas"]
+modulate = Color(0, 0, 0, 1)
+z_index = 100
+offset_right = 1926.0
+offset_bottom = 1092.0
+texture = SubResource("CanvasTexture_5357l")
+
 [connection signal="pressed" from="SelectedGadget/Control/HBoxContainer/RotateLeft" to="SelectedGadget" method="_on_rotate_left_pressed"]
 [connection signal="pressed" from="SelectedGadget/Control/HBoxContainer/RotateRight" to="SelectedGadget" method="_on_rotate_right_pressed"]
