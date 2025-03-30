@@ -61,11 +61,11 @@ y = 280
 [sub_resource type="Resource" id="Resource_s82cm"]
 script = ExtResource("1_qn33u")
 email = ExtResource("6_pmsyv")
-x = 4100
-y = -1540
+x = 4080
+y = -1560
 prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([])
 required_item_nodes = Dictionary[Resource, int]({
-SubResource("Resource_d4chq"): 1
+SubResource("Resource_d4chq"): 2
 })
 given_item_nodes = Dictionary[Resource, int]({
 SubResource("Resource_mniym"): 1,
