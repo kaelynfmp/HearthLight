@@ -18,7 +18,7 @@ func _process(_delta: float) -> void:
 func set_item_text():
 	if required_item:
 		var text:String = ""
-		text += "[res=" + required_item.name + "] " + (required_item.name if fulfilled_quantity < required_quantity else "[s]" + required_item.name + "[/s]") + "[/res]"
+		text += "[res=" + required_item.name + "] " + (required_item.name if fulfilled_quantity < required_quantity else "[s][i]" + required_item.name + "[/i][/s]") + "[/res]"
 		if required_quantity:
 			text += ": " + str(fulfilled_quantity) + "/"
 			text += str(required_quantity)
