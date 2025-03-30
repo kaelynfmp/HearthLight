@@ -36,15 +36,15 @@ func _ready():
 func _process(delta: float) -> void:
 	# add new emails
 	if saved_day != GameManager.game_time["day"]: # new day
-		print("selecting 5 new emails")
+		#print("selecting 5 new emails")
 		var selected_new_emails = select_random_emails()
 		if len(selected_new_emails)>0:
 			remaining_order_emails.erase(selected_new_emails)
 			for eachemail in selected_new_emails:
 				categorized_emails["main"].insert(0,eachemail)
-				print("appended email", eachemail)
+				#print("appended email", eachemail)
 		if GameManager.currency < 100 and GameManager.game_time["day"]% 3 == 0 and GameManager.game_time["day"] >= 3:
-			print("bankruptcy activated")
+			#print("bankruptcy activated")
 			bankruptcy_copy = bankruptcy_email.duplicate(true)
 			bankruptcy_copy.attached_order.is_accepted = false
 			categorized_emails["main"].insert(0,bankruptcy_copy)
@@ -97,7 +97,6 @@ func display_category_emails(category: String):
 	# clear current email list
 	for child in email_list_container.get_children():
 		child.queue_free()
-	print(categorized_emails)
 	for email in categorized_emails[category]:
 		if email.check_valid():
 			display_email_button(email)
@@ -238,8 +237,7 @@ func check_email_failed(email: Email) -> bool:
 	if saved_day != GameManager.game_time["day"] and email.failable:
 		email.failed = true
 		order_reject(email)
-		print("email failed")
-		print(GameManager.categorized_emails["archive"])
+		#print("email failed")
 		remaining_order_emails.append(email)
 		return true
 	return false

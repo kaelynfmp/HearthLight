@@ -43,4 +43,4 @@ has_start_time = false
 failable = false
 failed = false
 prereqs_must_fail = false
-bankruptcy_mail = false
+bankruptcy = false

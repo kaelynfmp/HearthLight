@@ -56,9 +56,11 @@ var start_time: int
 var current_time: int
 var active_time: int = 0 # time spent with the time moving, aka out of pause/computer, PER DAY, resets every day
 var seconds_elapsed: float
+var milliseconds_elapsed: int
 var day_hours: int  = 18
 var time_scale: int = 480 * 12 # 1 irl second is 480 game seconds for 2 minutes/day, 16h day
 var time_scaled_seconds: int
+var time_difference
 var sleeping: bool
 var game_time: Dictionary = {
 	"day": 1,
@@ -97,8 +99,8 @@ func _ready() -> void:
 	load_recipes()
 	load_gadgets()
 	
-	for recipe in recipes:
-		print("inputs: ", recipe.inputs, " gadget: ", recipe.gadget)
+	#for recipe in recipes:
+		#print("inputs: ", recipe.inputs, " gadget: ", recipe.gadget)
 	
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("inventory"):
@@ -133,18 +135,22 @@ func _process(_delta: float) -> void:
 	# time tracking
 	if !pause and !in_computer:
 		current_time = Time.get_ticks_msec()
-		var time_difference = current_time - start_time
+		time_difference = current_time - start_time
 		start_time = Time.get_ticks_msec()
-		active_time += time_difference
+		if !sleeping:
+			active_time += time_difference
 		
-		var milliseconds_elapsed: int = active_time
+		milliseconds_elapsed = active_time
 		seconds_elapsed = milliseconds_elapsed / 1000
 		time_scaled_seconds = seconds_elapsed*time_scale
 		
 		if !sleeping:
 			update_time(time_scaled_seconds)
 		elif sleeping: # TODO: whatever animations, etc
+			#await get_tree().create_timer(3).timeout
+			sleeping = false
 			wake_up()
+			start_time = Time.get_ticks_msec()
 	else:
 		start_time = Time.get_ticks_msec()
 
@@ -369,6 +375,8 @@ func is_after_date(day: int, hour: int, minute: int) -> bool:
 
 func go_sleep():
 	sleeping = true
+	print("starting sleep...")
 	#TODO: Sleep behavior
 func wake_up():
 	sleeping = false
+	print("waking up...")

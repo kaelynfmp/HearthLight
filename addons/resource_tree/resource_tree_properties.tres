@@ -19,7 +19,7 @@
 [ext_resource type="Resource" uid="uid://cof21obwyvl4v" path="res://resources/emails/introemail.tres" id="6_pmsyv"]
 [ext_resource type="Resource" uid="uid://ccitfm40o5ju2" path="res://resources/gadgets/computer.tres" id="7_aov6n"]
 [ext_resource type="Resource" uid="uid://dmneq4jdepfsq" path="res://resources/emails/metalformoney.tres" id="7_kmc8f"]
-[ext_resource type="Resource" path="res://resources/recipes/fabric_recipe.tres" id="7_wxbkn"]
+[ext_resource type="Resource" uid="uid://dgn5yr1ecv3me" path="res://resources/recipes/fabric_recipe.tres" id="7_wxbkn"]
 [ext_resource type="Resource" uid="uid://bjux8vbxnqlf8" path="res://resources/items/seed.tres" id="7_x6i4h"]
 [ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="8_3ht0r"]
 [ext_resource type="Resource" uid="uid://creh2tq2kdcms" path="res://resources/recipes/cotton_recipe.tres" id="8_kf0bi"]
