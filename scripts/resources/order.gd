@@ -22,7 +22,7 @@ var responded: bool = false
 		if given_items.size() != value.size():
 			given_items.resize(value.size())
 		given_quantities = value
-
+@export var given_currency: int = 0
 @export_category("Order Requirements")
 @export var required_items: Array[Resource] = []:
 	set(value):
@@ -40,6 +40,11 @@ var responded: bool = false
 		if required_items.size() != value.size():
 			required_items.resize(value.size())
 		required_quantities = value
+
+@export_category("Due Date")
+@export var day: int 
+@export_range(8, 23, 1) var hour: int # min 0, max 30, step 1
+@export_range(0, 59, 1) var minute: int
 
 @export_category("Order Rewards")
 @export var currency_reward: int = 0
@@ -87,3 +92,6 @@ func is_completable() -> bool:
 	if GameManager.player_inventory_has(required_items, required_quantities):
 		return true
 	return false
+
+func missed_deadline_consequence():
+	pass

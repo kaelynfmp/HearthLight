@@ -100,6 +100,7 @@ size_flags_vertical = 3
 mouse_filter = 2
 
 [node name="TooltipContainer" type="PanelContainer" parent="."]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 628.0

@@ -39,17 +39,15 @@ func fulfill_order(order: Order) -> bool:
 		for i in range(len(order.required_items)):
 			remove_items_from_inventory(required_items[i],required_qtys[i])
 		reward_player(order)
-		order.is_completed = true
+		order.set_completed(true)
 		return true
-	# if true:
-	# remove items
-	# reward player
-	# TODO: archive order
 	
 	# if false:
 	return false
 
 func check_fulfillment_ability(order: Order) -> bool:
+	if len(order.required_items) == 0:
+		return true
 	return GameManager.player_inventory_has(order.required_items, order.required_quantities)
 
 func remove_items_from_inventory(item: Item, qty: int):
@@ -66,6 +64,7 @@ func reward_player(order: Order):
 			inventory.insert(item, qty)
 
 func give_player_starting_items(order: Order):
+	GameManager.add_currency(order.given_currency)
 	if len(order.given_items)>0:
 		for i in range(0,len(order.given_items)):
 			var item = order.given_items[i]

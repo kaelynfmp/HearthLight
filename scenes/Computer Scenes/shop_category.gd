@@ -15,7 +15,8 @@ func set_category(category: String):
 	folder = "res://resources/items/"
 	if len(GameManager.shop_dict[category]) == 0:
 		load_items(category)
-	for item in GameManager.shop_dict[category]:
+	generate_wanted()
+	for item in shop_dict[category]:
 		display_items(item)
 	
 
@@ -74,6 +75,13 @@ func display_items(item: Item):
 	buttons.append(item_button)
 	#email_button.pressed.connect(func(): show_email_details(email, email_button))  #calls function on click
 	item_container.add_child(item_button)
+
+func generate_wanted():
+	var items_copy = items.duplicate()
+	items_copy.shuffle()
+	var random_wanted_items = items_copy.slice(0,3)
+	for eachitem in random_wanted_items:
+		shop_dict["wanted"].append(eachitem)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
