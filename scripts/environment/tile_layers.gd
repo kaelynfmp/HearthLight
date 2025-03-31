@@ -1,6 +1,5 @@
 extends Node2D
 
-
 const boundary_atlas_pos:Vector2i = Vector2i(0, 0)
 const offsets:Array[Variant]      = [
 									Vector2i(0, -1),
@@ -8,30 +7,36 @@ const offsets:Array[Variant]      = [
 									Vector2i(1, 0),
 									Vector2i(-1, 0)
 									]
-var tile_objects: Dictionary = {}
+var tile_map: Dictionary = {}
+
+var item_map: Dictionary = {}
 
 @onready var marker: Node2D = get_node("Marker") # Child Node2D
 
+var base_layer: Node2D
+
+var first_layer: Node2D
+
+var is_placing: String = "Gadget" # Change this to place Pipe
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var base_layer = $Base
+	base_layer = $Base
+	first_layer = $"Layer 1"
 	var exclusions = base_layer.get_used_cells()
-	var tile_in_layer = []
-
+	
 	for layer:TileMapLayer in self.find_children("", "TileMapLayer"):
 		var cur_exclusions = exclusions.duplicate(true)
 		for idx in len(cur_exclusions):
 			# account for verticality of next layer
 			cur_exclusions[idx] -= Vector2i(layer.z_index, layer.z_index)
 		place_boundaries(layer, cur_exclusions)
-	
-
-
-
+		
+	spawn_object(GameManager.computer_gadget, Vector2i(-6, -5))
 
 func place_boundaries(layer, exclusions=[]):
 	var used = layer.get_used_cells()
-	tile_objects[layer.get_name()] = []
+	tile_map[layer.get_name()] = []
 	for tile in used:
 		for offset in offsets:
 			var current_tile = tile + offset
@@ -39,62 +44,72 @@ func place_boundaries(layer, exclusions=[]):
 				if layer.get_cell_source_id(current_tile) == -1:
 					# nothing present
 					layer.set_cell(current_tile, 0, boundary_atlas_pos)
-		tile_objects[layer.get_name()].append(tile)
+		# We only deal with the first 3 layers since we do not allow gadget stacking
+		if layer.get_name() in ["Base", "Layer 1", "Layer 2"]:
+			tile_map[layer.get_name()].append(tile)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	var mouse_pos = get_local_mouse_position()
-	var base = find_child("Base")
-	var cell_pos = base.local_to_map(mouse_pos)
-	if cell_pos:
-		var lowest_layer = get_lowest_available_tile(cell_pos)
-		var index = lowest_layer["layer_relative_index"]
-		var lowest = lowest_layer["layer_name"]
-		if lowest != "":
-			marker.position = base.map_to_local(cell_pos)
-			marker.z_index = 11 - index
-	
+func _process(_delta: float) -> void:
+	if GameManager.is_placing_gadget:
+		var mouse_pos = get_local_mouse_position()
+		var cell_pos = base_layer.local_to_map(mouse_pos)
+		if cell_pos:
+			if (is_base_available(cell_pos)):
+				marker.position = base_layer.map_to_local(cell_pos)
+				marker.z_index = 0
+				marker.visible = true
+			else:
+				marker.visible = false
+	else:
+		marker.visible = false
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		spawnObject()
+func _unhandled_input(event: InputEvent) -> void:
+	if GameManager.is_placing_gadget and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if spawn_object(GameManager.get_gadget_from_cursor()):
+			GameManager.cursor.slot.decrement()
+			#GameManager.change_inventory()
 		
-func get_lowest_available_tile(cell_pos: Vector2i) -> Dictionary:
-	var layers = find_children("", "TileMapLayer")
-	var lowest = ""
-	var index = 10
-	for i in range(len(layers) - 1, -1, -1):
-		var layer_name = layers[i].get_name()
-		if cell_pos in tile_objects[layer_name]:
-			if (i > 0) and (cell_pos + Vector2i(-1, -1)) not in tile_objects[layers[i - 1].get_name()]:
-				lowest = layer_name
-				index = i
-			elif i == 0:
-				lowest = layer_name
-				index = i
-	return {"layer_name": lowest, "layer_relative_index": index}
+func is_base_available(cell_pos: Vector2i) -> bool:
+	if cell_pos in tile_map["Base"]:
+		if (cell_pos + Vector2i(-1, -1)) not in tile_map["Layer 1"]:
+			return true
+	return false
 
-func spawnObject() -> void:
+## Spawns a provided gadget onto the tilemap
+func spawn_object(gadget: Gadget, _cell_pos:Vector2i = Vector2i(-99, -99)) -> bool:
 	# Check if in used tile
 	var mouse_pos = get_local_mouse_position()
-	var base = find_child("Base")
-	var cell_pos = base.local_to_map(mouse_pos)
-	var lowest_layer = get_lowest_available_tile(cell_pos)
-	var lowest = lowest_layer["layer_name"]
-	var index = lowest_layer["layer_relative_index"]
-
-	if lowest != "":
-		#print(lowest)
-		var gadget = load("res://scenes/gadgets/gadget.tscn")
-		var instance = gadget.instantiate()
+	var cell_pos = base_layer.local_to_map(mouse_pos)
+	if _cell_pos != Vector2i(-99, -99):
+		cell_pos = _cell_pos
+	if (is_base_available(cell_pos)):
+		var gadget_scene = load("res://scenes/gadgets/gadget.tscn")
+		var instance = gadget_scene.instantiate()
 		instance.set_name("Gadget")
-		instance.z_index = 11 - index
-		instance.position = base.map_to_local(cell_pos)
-		var layer = find_child(lowest)
-		layer.add_child(instance)
-		var layer_occupied_index = 10 - index
-		var layer_occupied_name = "Layer %d"% (layer_occupied_index + 1)
-		if layer_occupied_name not in tile_objects:
-			tile_objects[layer_occupied_name] = []
-		tile_objects[layer_occupied_name].append(cell_pos + Vector2i(-1, -1))
-		#print("Placed")
+		instance.z_index = 1
+		instance.position = base_layer.map_to_local(cell_pos)
+		instance.gadget_stats = gadget
+		var layer_occupied_name:String = "Layer 1"
+		instance.layer_occupied_name = layer_occupied_name
+		instance.cell_pos = cell_pos
+		GameManager.room_map[cell_pos[0] + 6][cell_pos[1] + 5] = instance 
+		instance.removing.connect(free_tile)
+		instance.item_at_location.connect(item_at_location)
+		$"Base".add_child(instance)
+		tile_map[layer_occupied_name].append(cell_pos + Vector2i(-1, -1))
+		return true
+	return false
+		
+func free_tile(layer_occupied_name:String, cell_pos:Vector2i):
+	tile_map[layer_occupied_name].remove_at(tile_map[layer_occupied_name].find(cell_pos + Vector2i(-1, -1)))
+	GameManager.room_map[cell_pos[0]][cell_pos[1]] = null
+
+
+func item_at_location(cell_pos: Vector2i, item: Item):
+	var in_world_item = load("res://scenes/in_world_item.tscn")
+	var item_instance = in_world_item.instantiate()
+	item_instance.global_position = first_layer.map_to_local(cell_pos + Vector2i(-1, -1))
+	item_instance.item = item
+	item_instance.cell_pos = cell_pos
+	item_instance.tile_layer = $"Layer 1"
+	$"Layer 1".add_child(item_instance)

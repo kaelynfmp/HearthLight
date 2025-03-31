@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://curn735uv1pe6"]
+
+[ext_resource type="Texture2D" uid="uid://b76x0jq0i4v4y" path="res://resources/sprites/cotton.png" id="1_2rtls"]
+[ext_resource type="Script" uid="uid://cnsqt3nqidouv" path="res://scripts/objects/in_world_item.gd" id="1_du0bt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_du0bt"]
+radius = 77.0065
+
+[node name="InWorldItem" type="StaticBody2D"]
+z_index = 1
+y_sort_enabled = true
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_du0bt")
+move_speed = 320
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_du0bt")
+one_way_collision_margin = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+y_sort_enabled = true
+texture = ExtResource("1_2rtls")

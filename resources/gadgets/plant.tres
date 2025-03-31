@@ -1,0 +1,60 @@
+[gd_resource type="Resource" script_class="Gadget" load_steps=14 format=3 uid="uid://c222by5ulftln"]
+
+[ext_resource type="AudioStream" uid="uid://fvjtpam4ybkn" path="res://resources/audio/Gadgets/watering plant.mp3" id="1_2r84d"]
+[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="2_csb3v"]
+[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="3_lt256"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="4_u6bql"]
+[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="5_441cp"]
+[ext_resource type="Resource" uid="uid://bjux8vbxnqlf8" path="res://resources/items/seed.tres" id="5_oeelc"]
+[ext_resource type="Texture2D" uid="uid://baooyamycki3w" path="res://resources/sprites/plantPrimitive.png" id="6_x573d"]
+[ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="6_yp1ak"]
+
+[sub_resource type="Resource" id="Resource_6gsv3"]
+script = ExtResource("3_lt256")
+locked = false
+item_filter = Array[ExtResource("4_u6bql")]([ExtResource("5_oeelc"), ExtResource("6_yp1ak")])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_mnq6w"]
+script = ExtResource("3_lt256")
+locked = false
+item_filter = Array[ExtResource("4_u6bql")]([ExtResource("5_oeelc"), ExtResource("6_yp1ak")])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_tnt5q"]
+script = ExtResource("3_lt256")
+locked = true
+item_filter = Array[ExtResource("4_u6bql")]([ExtResource("5_oeelc"), ExtResource("6_yp1ak")])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_nd5xr"]
+script = ExtResource("2_csb3v")
+slots = Array[ExtResource("3_lt256")]([SubResource("Resource_6gsv3"), SubResource("Resource_mnq6w"), SubResource("Resource_tnt5q")])
+
+[sub_resource type="Resource" id="Resource_p2117"]
+script = ExtResource("4_u6bql")
+texture = ExtResource("6_x573d")
+name = "Pot"
+description = "The seeds for these things come in unmarked plastic baggies. You're not gonna ask where they come from."
+max_stack = 1
+price = 25
+
+[resource]
+script = ExtResource("5_441cp")
+texture = ExtResource("6_x573d")
+sprite_offset = Vector2(0, -243)
+sprite_scale_factor = 0.9
+name = "Pot"
+age = 0
+direction = 0
+description = "The seeds for these things come in unmarked plastic baggies. You're not gonna ask where they come from."
+item = SubResource("Resource_p2117")
+inventory = SubResource("Resource_nd5xr")
+produces = true
+inputs = 2
+outputs = 1
+process_time = 1.0
+ambient_sound = ExtResource("1_2r84d")

@@ -1,0 +1,152 @@
+[gd_scene load_steps=21 format=3 uid="uid://bpie3rt8qmyxr"]
+
+[ext_resource type="PackedScene" uid="uid://c2wlmdehxae41" path="res://scenes/Computer Scenes/computer_interface.tscn" id="1_8kako"]
+[ext_resource type="PackedScene" uid="uid://c6g34by20r0qc" path="res://scenes/inventory/inventory.tscn" id="1_h8ipj"]
+[ext_resource type="PackedScene" uid="uid://bj67g16p1cic7" path="res://scenes/Computer Scenes/item_buy_popup.tscn" id="1_xplaj"]
+[ext_resource type="Shader" uid="uid://bn3laa6ok6dxw" path="res://scripts/shaders/blur.gdshader" id="2_0gell"]
+[ext_resource type="PackedScene" uid="uid://cq8nmdt2gxyse" path="res://scenes/cursor.tscn" id="2_wjdba"]
+[ext_resource type="Script" uid="uid://bs7340gd6xgde" path="res://scripts/gui/blur.gd" id="3_xnxa5"]
+[ext_resource type="Script" uid="uid://dnos8f4mnxpxj" path="res://scripts/gui/inventories.gd" id="4_pacb3"]
+[ext_resource type="PackedScene" uid="uid://dxa0at3wgkq8w" path="res://scenes/gadget_ui.tscn" id="4_svta0"]
+[ext_resource type="Script" uid="uid://cktmdadtyd66f" path="res://scripts/gui/gadget_ui.gd" id="7_y0wjn"]
+[ext_resource type="Script" uid="uid://d4f5y62ujshdf" path="res://scripts/gui/selected_gadget.gd" id="9_nhxen"]
+[ext_resource type="Shader" uid="uid://cbx8f33etuvq2" path="res://scripts/shaders/gadgetoutline.gdshader" id="9_o8g3w"]
+[ext_resource type="Texture2D" uid="uid://gi6my3ydg3ke" path="res://resources/sprites/gui/gadget_selection.png" id="10_ivqh4"]
+[ext_resource type="PackedScene" uid="uid://biflar31oita2" path="res://scenes/menu/pause_menu.tscn" id="13_55orh"]
+[ext_resource type="Texture2D" uid="uid://dl2manigelkio" path="res://resources/sprites/gui/gear/normal.png" id="13_uxdf7"]
+[ext_resource type="Texture2D" uid="uid://byd0f2tce32li" path="res://resources/sprites/gui/gear/pressed.png" id="14_5357l"]
+[ext_resource type="PackedScene" uid="uid://dnyyt61n7tlkc" path="res://scenes/clock.tscn" id="14_eld54"]
+[ext_resource type="Texture2D" uid="uid://v3mhxuklek42" path="res://resources/sprites/gui/gear/hover.png" id="15_iypfu"]
+[ext_resource type="Texture2D" uid="uid://ca24n44nxd7w1" path="res://resources/sprites/gui/gear/disabled.png" id="16_qpprf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_drira"]
+shader = ExtResource("2_0gell")
+shader_parameter/strength = 2.454
+shader_parameter/mix_percentage = 0.024
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hoa3s"]
+shader = ExtResource("9_o8g3w")
+shader_parameter/scrollingTexture = ExtResource("10_ivqh4")
+shader_parameter/textureScale = Vector2(1, 1)
+shader_parameter/angle = 45.0
+shader_parameter/textureSpeed = 0.226
+shader_parameter/thickness = 29.747
+shader_parameter/tolerance = 0.0
+shader_parameter/diagonals = true
+shader_parameter/rounded = true
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="ItemBuyPopup" parent="." instance=ExtResource("1_xplaj")]
+visible = false
+offset_left = 551.0
+offset_top = 292.0
+offset_right = 551.0
+offset_bottom = 292.0
+
+[node name="ComputerInterface" parent="." instance=ExtResource("1_8kako")]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = 23.0
+offset_right = 48.0
+offset_bottom = 23.0
+scale = Vector2(0.95, 0.95)
+
+[node name="Blur" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_drira")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.141176)
+script = ExtResource("3_xnxa5")
+
+[node name="Inventories" type="VBoxContainer" parent="."]
+z_index = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1024.0
+offset_top = -495.0
+offset_right = 1536.0
+offset_bottom = 2085.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+script = ExtResource("4_pacb3")
+slide_in_speed = 10.0
+
+[node name="Inventory" parent="Inventories" instance=ExtResource("1_h8ipj")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="Gadget" parent="Inventories" instance=ExtResource("4_svta0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+script = ExtResource("7_y0wjn")
+
+[node name="Cursor" parent="." instance=ExtResource("2_wjdba")]
+
+[node name="SelectedGadget" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_hoa3s")
+scale = Vector2(0.7, 0.7)
+offset = Vector2(0, -218)
+script = ExtResource("9_nhxen")
+
+[node name="Control" type="Control" parent="SelectedGadget"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SelectedGadget/Control"]
+layout_mode = 0
+offset_left = -623.0
+offset_right = 623.0
+offset_bottom = 351.0
+theme_override_constants/separation = 560
+alignment = 1
+
+[node name="RotateLeft" type="TextureButton" parent="SelectedGadget/Control/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("13_uxdf7")
+texture_pressed = ExtResource("14_5357l")
+texture_hover = ExtResource("15_iypfu")
+texture_disabled = ExtResource("16_qpprf")
+
+[node name="RotateRight" type="TextureButton" parent="SelectedGadget/Control/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("13_uxdf7")
+texture_pressed = ExtResource("14_5357l")
+texture_hover = ExtResource("15_iypfu")
+texture_disabled = ExtResource("16_qpprf")
+
+[node name="PauseMenu" parent="." instance=ExtResource("13_55orh")]
+process_mode = 3
+visible = false
+top_level = true
+z_index = 4096
+z_as_relative = false
+size_flags_horizontal = 4
+
+[node name="Clock" parent="." instance=ExtResource("14_eld54")]
+z_index = 100
+offset_left = 11.0
+offset_top = 13.0
+offset_right = 11.0
+offset_bottom = 13.0
+scale = Vector2(2.76, 2.4)
+
+[connection signal="pressed" from="SelectedGadget/Control/HBoxContainer/RotateLeft" to="SelectedGadget" method="_on_rotate_left_pressed"]
+[connection signal="pressed" from="SelectedGadget/Control/HBoxContainer/RotateRight" to="SelectedGadget" method="_on_rotate_right_pressed"]

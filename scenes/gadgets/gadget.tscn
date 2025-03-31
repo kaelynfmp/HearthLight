@@ -1,15 +1,43 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4jwdbd2el2ca"]
+[gd_scene load_steps=5 format=3 uid="uid://c4jwdbd2el2ca"]
 
-[ext_resource type="Texture2D" uid="uid://cwi4fc6b360oh" path="res://resources/sprites/sewing_machine.png" id="1_8usb6"]
+[ext_resource type="Script" uid="uid://ypmq38sppxx8" path="res://scripts/objects/gadget.gd" id="1_3434e"]
+[ext_resource type="Shader" uid="uid://dexym56k2wbkm" path="res://scripts/shaders/gadget_close_enough.gdshader" id="2_e6717"]
+[ext_resource type="Texture2D" uid="uid://c5syp4ayosfa8" path="res://scripts/shaders/not_close_enough_texture.tres" id="3_g7cu2"]
 
-[node name="Gadget" type="StaticBody2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p5k61"]
+resource_local_to_scene = true
+shader = ExtResource("2_e6717")
+shader_parameter/scrollingTexture = ExtResource("3_g7cu2")
+shader_parameter/textureScale = Vector2(1, 1)
+shader_parameter/angle = 45.0
+shader_parameter/textureSpeed = 0.0500005
+shader_parameter/thickness = 12.458
+shader_parameter/tolerance = 0.0
+shader_parameter/diagonals = true
+shader_parameter/rounded = true
+
+[node name="Gadget" type="StaticBody2D" groups=["Gadget"]]
 y_sort_enabled = true
+input_pickable = true
+script = ExtResource("1_3434e")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(-6.11111, -22.0748)
 scale = Vector2(0.611111, 0.563525)
-polygon = PackedVector2Array(150.727, 16.1036, 50.9091, -54.8781, -130.727, 48.0454, -29.2727, 122.576)
+polygon = PackedVector2Array(450, 0, 0, -300, -450, 0, 0, 300)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_8usb6")
-offset = Vector2(0, -32)
+[node name="Sprite" type="Sprite2D" parent="."]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_p5k61")
+scale = Vector2(0.7, 0.7)
+offset = Vector2(0, -363)
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+volume_db = 6.0
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

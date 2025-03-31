@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bjux8vbxnqlf8"]
+
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="1_igpg3"]
+[ext_resource type="Texture2D" uid="uid://d0ea2gg8iw8ki" path="res://resources/sprites/seeds.png" id="2_5ju1u"]
+
+[resource]
+script = ExtResource("1_igpg3")
+texture = ExtResource("2_5ju1u")
+name = "Seed"
+description = "Plant this for Cotton!"
+max_stack = 24
+price = 10

@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://cmrx5n40guwlg"]
 
-[ext_resource type="Script" path="res://scripts/resources/item.gd" id="1_645j0"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yyo8x"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="1_645j0"]
+[ext_resource type="Texture2D" uid="uid://c4o4shysnbw11" path="res://resources/sprites/fabric.png" id="2_n3wx1"]
 
 [resource]
 script = ExtResource("1_645j0")
-texture = SubResource("PlaceholderTexture2D_yyo8x")
+texture = ExtResource("2_n3wx1")
 name = "Fabric"
-description = "Fabric desc"
-max_stack = 100
-price = 10
+description = "Quality fabric, unsullied by corpo hands.
+Made from [res=Cotton]Cotton[/res]"
+max_stack = 24
+price = 75

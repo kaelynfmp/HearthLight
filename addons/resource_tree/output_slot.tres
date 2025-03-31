@@ -1,0 +1,16 @@
+[gd_resource type="MeshTexture" load_steps=4 format=3 uid="uid://df5leiiji8qsy"]
+
+[sub_resource type="Gradient" id="Gradient_3fidg"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nl2u2"]
+gradient = SubResource("Gradient_3fidg")
+
+[sub_resource type="SphereMesh" id="SphereMesh_6ucxi"]
+radius = 20.0
+height = 40.0
+
+[resource]
+mesh = SubResource("SphereMesh_6ucxi")
+base_texture = SubResource("GradientTexture1D_nl2u2")
+image_size = Vector2(-20, 0)

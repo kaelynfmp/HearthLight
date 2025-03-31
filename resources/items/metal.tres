@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bgmxpne1d7fis"]
+
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="1_qxnr1"]
+[ext_resource type="Texture2D" uid="uid://d2pbocm1r1st3" path="res://resources/sprites/ingot.png" id="2_gkdtd"]
+
+[resource]
+script = ExtResource("1_qxnr1")
+texture = ExtResource("2_gkdtd")
+name = "Metal"
+description = "Useable metal. It's pure enough to hold its shape, but who knows how it'll hold up in an industrial setting."
+max_stack = 24
+price = 1000

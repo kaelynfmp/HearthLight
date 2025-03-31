@@ -1,29 +1,35 @@
 [gd_resource type="TileSet" load_steps=3 format=3 uid="uid://r7x82rdaw80h"]
 
-[ext_resource type="Texture2D" uid="uid://dhnorfwsv5cq5" path="res://resources/sprites/roomtileset.png" id="1_7blsg"]
+[ext_resource type="Texture2D" uid="uid://brguuahh0u3iq" path="res://resources/sprites/tileSheet.png" id="1_ioi3x"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ow55g"]
-texture = ExtResource("1_7blsg")
-texture_region_size = Vector2i(256, 256)
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dv7f8"]
+texture = ExtResource("1_ioi3x")
+texture_region_size = Vector2i(600, 600)
 0:1/0 = 0
-0:1/0/texture_origin = Vector2i(0, -64)
-0:1/0/y_sort_origin = 128
+0:1/0/texture_origin = Vector2i(0, -150)
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-300, 300, 0, 150, 300, 300, 0, 450)
 1:1/0 = 0
-1:1/0/texture_origin = Vector2i(0, -64)
-1:1/0/y_sort_origin = 128
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, 192, -128, 128, 0, 64, 128, 128)
+1:1/0/texture_origin = Vector2i(0, -150)
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-300, 300, 0, 150, 300, 300, 0, 450, -300, 300)
 2:1/0 = 0
-2:1/0/texture_origin = Vector2i(0, -64)
-2:1/0/y_sort_origin = 128
-2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, 128, 0, 64, 128, 128, 0, 192)
+2:1/0/texture_origin = Vector2i(0, -150)
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-300, 300, 0, 150, 300, 300, 0, 450, -300, 300)
+3:1/0 = 0
+3:1/0/texture_origin = Vector2i(0, -150)
+4:1/0 = 0
+4:1/0/texture_origin = Vector2i(0, -150)
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-300, 300, 0, 150, 300, 300, 0, 450)
+5:1/0 = 0
+5:1/0/texture_origin = Vector2i(0, -150)
+5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-300, 300, 0, 150, 300, 300, 0, 450)
 0:0/0 = 0
-0:0/0/texture_origin = Vector2i(0, -64)
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, 0, 0, -64, 128, 0, 0, 64)
+0:0/0/texture_origin = Vector2i(0, -150)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-300, 0, 0, 150, 300, 0, 0, -150)
 
 [resource]
 tile_shape = 1
 tile_layout = 5
 tile_offset_axis = 1
-tile_size = Vector2i(256, 128)
+tile_size = Vector2i(600, 300)
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_ow55g")
+sources/0 = SubResource("TileSetAtlasSource_dv7f8")

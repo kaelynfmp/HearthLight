@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="Email" load_steps=8 format=3 uid="uid://cof21obwyvl4v"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_16060"]
+[ext_resource type="Resource" uid="uid://c222by5ulftln" path="res://resources/gadgets/plant.tres" id="1_sueqm"]
+[ext_resource type="Resource" uid="uid://bjux8vbxnqlf8" path="res://resources/items/seed.tres" id="2_vwut3"]
+[ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="3_6ndcv"]
+[ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="4_1axvi"]
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="5_w18pw"]
+
+[sub_resource type="Resource" id="Resource_deaot"]
+script = ExtResource("5_w18pw")
+order_id = 1
+given_items = Array[Resource]([ExtResource("1_sueqm"), ExtResource("2_vwut3"), ExtResource("3_6ndcv")])
+given_quantities = Array[int]([1, 1, 1])
+given_currency = 0
+required_items = Array[Resource]([ExtResource("4_1axvi")])
+required_quantities = Array[int]([2])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 30
+rewards = Array[Resource]([])
+rewards_quantities = Array[int]([])
+
+[resource]
+script = ExtResource("1_16060")
+sender = "Katheryn Elion"
+subject = "goods?"
+contents = "[hint=test][url]test[/url][/hint]
+hey, a little birdie told me that you've got yourself access to a plant [res=Pot]pot[/res]. any chance i could take some of that [res=Cotton]cotton[/res] it could make off your hands? just plant some [res=Seed]cotton seeds[/res] in that [res=Pot]pot[/res], [res=Water]water[/res] it, and send off what it makes in the drone. it'll know where to go, don't worry
+
+thanks a bunch!"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_16060")]([])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_deaot")
+tutorial = true
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

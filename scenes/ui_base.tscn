@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://c88opsp0c7nm"]
+
+[ext_resource type="Texture2D" uid="uid://bj7v3g2xr7vbt" path="res://resources/sprites/uitileset.png" id="1_psqoa"]
+[ext_resource type="Texture2D" uid="uid://ds8bitw2mcmaj" path="res://resources/sprites/uitilesettopbar.png" id="2_gdlnc"]
+[ext_resource type="Texture2D" uid="uid://dbusy7s3toyc" path="res://resources/sprites/uitilesetbottombar.png" id="3_421cp"]
+
+[node name="UI Base" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Background" type="NinePatchRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_right = 1837.0
+offset_bottom = 999.0
+texture = ExtResource("1_psqoa")
+region_rect = Rect2(0, 0, 1837, 999)
+patch_margin_left = 563
+patch_margin_top = 141
+patch_margin_right = 529
+patch_margin_bottom = 186
+
+[node name="TopBar" type="TextureRect" parent="Background"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -446.5
+offset_top = 38.0
+offset_right = 447.5
+offset_bottom = 143.0
+grow_horizontal = 2
+texture = ExtResource("2_gdlnc")
+stretch_mode = 2
+
+[node name="BottomBar" type="TextureRect" parent="Background"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -455.0
+offset_top = -186.0
+offset_right = 456.0
+offset_bottom = -78.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_421cp")

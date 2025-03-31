@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ooc6jx4dihku"]
 
-[ext_resource type="Script" path="res://scripts/objects/marker.gd" id="1_8w0gy"]
+[ext_resource type="Script" uid="uid://brxnvpj6y0kj7" path="res://scripts/objects/marker.gd" id="1_8w0gy"]
 
 [node name="Marker" type="Node2D"]
 top_level = true

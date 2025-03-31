@@ -1,4 +1,4 @@
-@icon("res://resources/resource-icons/item.svg")
+
 
 class_name Item
 

@@ -1,0 +1,304 @@
+[gd_scene load_steps=48 format=3 uid="uid://b5r8qyahtr3r1"]
+
+[ext_resource type="Script" uid="uid://25ttm7ow7tts" path="res://scenes/Computer Scenes/emaildisplay.gd" id="1_cc22d"]
+[ext_resource type="Texture2D" uid="uid://b3f53pdbhlfkg" path="res://resources/sprites/emails/emailPreview.png" id="2_ikcrj"]
+[ext_resource type="Texture2D" uid="uid://dph2wxrwua005" path="res://resources/sprites/computer/computerCancel.png" id="2_kcjoy"]
+[ext_resource type="Script" uid="uid://bha8ro4unkubb" path="res://scripts/gui/bbcode.gd" id="3_gr1tt"]
+[ext_resource type="Texture2D" uid="uid://cwxs2j52xgre8" path="res://resources/sprites/computer/computerAccept.png" id="3_jjpv2"]
+[ext_resource type="Texture2D" uid="uid://dnvrhn4af2nix" path="res://resources/sprites/emails/emailDropdown.png" id="3_n2822"]
+[ext_resource type="Texture2D" uid="uid://brioxpexvl23w" path="res://resources/sprites/emails/emailButton.png" id="6_xo1sp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_68chq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8jmuh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0w25l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ojxc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nq4qc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hvyft"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t0k6g"]
+texture = ExtResource("3_n2822")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1okg4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fno5u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eo2p3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eyiw5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7nvff"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3i616"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5rtja"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ykmdm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0jcor"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xyom5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g1453"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v5u2j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ta5hb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jthic"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x1stq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_03q13"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_to4yd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6t1up"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ab5kp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3gqkk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4oddd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aeq6b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fysjm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ifi1y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4gaj0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dsybb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sobk5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2w7bx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o12fq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vvuy3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ayc68"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_esskc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_na4y0"]
+
+[node name="EmailButton" type="Button" node_paths=PackedStringArray("sender_label", "subject_label", "sender_dropdown", "subject_dropdown", "blurb_label", "content", "expand_panel", "fulfill_button")]
+custom_minimum_size = Vector2(1920, 300)
+offset_right = 1921.0
+offset_bottom = 190.0
+size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_68chq")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_8jmuh")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_0w25l")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ojxc")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_nq4qc")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hvyft")
+script = ExtResource("1_cc22d")
+sender_label = NodePath("Sender")
+subject_label = NodePath("Subject")
+sender_dropdown = NodePath("Panel/SenderDropdown")
+subject_dropdown = NodePath("Panel/SubjectDropdown")
+blurb_label = NodePath("Blurb")
+content = NodePath("Panel/Content")
+expand_panel = NodePath("Panel")
+fulfill_button = NodePath("Panel/FulfillTexture/Fulfill")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(961.5, 130.75)
+scale = Vector2(1.66406, 1.69463)
+texture = ExtResource("2_ikcrj")
+
+[node name="Sender" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 69.0
+offset_right = 531.0
+offset_bottom = 160.0
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+theme_override_font_sizes/mono_font_size = 40
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+bbcode_enabled = true
+text = "Sender"
+fit_content = true
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("3_gr1tt")
+
+[node name="Subject" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 623.0
+offset_top = 77.0
+offset_right = 1216.0
+offset_bottom = 173.0
+theme_override_font_sizes/bold_italics_font_size = 35
+theme_override_font_sizes/italics_font_size = 35
+theme_override_font_sizes/mono_font_size = 35
+theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/bold_font_size = 35
+bbcode_enabled = true
+text = "Subject line"
+fit_content = true
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("3_gr1tt")
+
+[node name="Blurb" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 1132.0
+offset_top = 51.0
+offset_right = 1596.0
+offset_bottom = 120.0
+mouse_filter = 2
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+theme_override_font_sizes/mono_font_size = 40
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+text = "Start of email....."
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("3_gr1tt")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_top = 150.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_t0k6g")
+
+[node name="Content" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 246.0
+offset_right = 1827.0
+offset_bottom = 883.0
+theme_override_font_sizes/bold_italics_font_size = 30
+theme_override_font_sizes/italics_font_size = 30
+theme_override_font_sizes/mono_font_size = 30
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+bbcode_enabled = true
+text = "This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. "
+fit_content = true
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("3_gr1tt")
+
+[node name="SenderDropdown" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 323.0
+offset_top = 168.0
+offset_right = 965.0
+offset_bottom = 253.0
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+theme_override_font_sizes/mono_font_size = 40
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+bbcode_enabled = true
+text = "Sender"
+fit_content = true
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("3_gr1tt")
+
+[node name="SubjectDropdown" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 795.0
+offset_top = 168.0
+offset_right = 1814.0
+offset_bottom = 281.0
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+theme_override_font_sizes/mono_font_size = 40
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+bbcode_enabled = true
+text = "Subject but this is a very long subject yes ok cool"
+fit_content = true
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("3_gr1tt")
+
+[node name="Decline" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 1596.0
+offset_top = 764.0
+offset_right = 1730.0
+offset_bottom = 883.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1okg4")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_fno5u")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_eo2p3")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_eyiw5")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_7nvff")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3i616")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5rtja")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_ykmdm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_0jcor")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_xyom5")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_g1453")
+disabled = true
+icon = ExtResource("2_kcjoy")
+flat = true
+
+[node name="Accept" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 1751.0
+offset_top = 764.0
+offset_right = 1885.0
+offset_bottom = 883.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_v5u2j")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_ta5hb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_jthic")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_x1stq")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_03q13")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_to4yd")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_6t1up")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_ab5kp")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3gqkk")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_4oddd")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_aeq6b")
+icon = ExtResource("3_jjpv2")
+flat = true
+
+[node name="FulfillTexture" type="Sprite2D" parent="Panel"]
+visible = false
+position = Vector2(1723, 830)
+scale = Vector2(0.862162, 0.968468)
+texture = ExtResource("6_xo1sp")
+
+[node name="Fulfill" type="Button" parent="Panel/FulfillTexture"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -185.0
+offset_top = -55.5
+offset_right = -185.0
+offset_bottom = -55.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 45
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fysjm")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_ifi1y")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_4gaj0")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_dsybb")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_sobk5")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_2w7bx")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_o12fq")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_vvuy3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ayc68")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_esskc")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_na4y0")
+text = "Fulfill"

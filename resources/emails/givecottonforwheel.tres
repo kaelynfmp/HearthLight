@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Email" load_steps=7 format=3 uid="uid://bh4dl6b28jmhc"]
+
+[ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="1_rjd1k"]
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_shk4p"]
+[ext_resource type="Resource" uid="uid://bmylw6g0ukbxm" path="res://resources/gadgets/wheel.tres" id="2_8t6yv"]
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="3_1kf00"]
+[ext_resource type="Resource" uid="uid://cof21obwyvl4v" path="res://resources/emails/introemail.tres" id="5_8t6yv"]
+
+[sub_resource type="Resource" id="Resource_lwqso"]
+script = ExtResource("3_1kf00")
+order_id = 1
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
+given_currency = 0
+required_items = Array[Resource]([ExtResource("1_rjd1k")])
+required_quantities = Array[int]([4])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 50
+rewards = Array[Resource]([ExtResource("2_8t6yv")])
+rewards_quantities = Array[int]([1])
+
+[resource]
+script = ExtResource("1_shk4p")
+sender = "Jenna Johnson"
+subject = "Want a [res=Ancient Loom]loom[/res]?"
+contents = "I will give you a [res=Ancient Loom]loom[/res] in exchange for [i]four[/i] [res=Cotton]cotton[/res]! Don't worry if you don't have enough [res=Seed]seeds[/res] or [res=Water]water[/res] or whatever, [res=Botsy]Botsy[/res] has like, everything these days!"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_shk4p")]([ExtResource("5_8t6yv")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_lwqso")
+tutorial = true
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

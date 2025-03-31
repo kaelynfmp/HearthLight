@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="Email" load_steps=7 format=3 uid="uid://cdwmg5cnw3msy"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_7tvhl"]
+[ext_resource type="Resource" uid="uid://lxvyxcteq6eq" path="res://resources/items/dust.tres" id="1_xxwyo"]
+[ext_resource type="Resource" uid="uid://bcp8nvhpucopi" path="res://resources/gadgets/sieve.tres" id="2_0oc80"]
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="3_xhpq5"]
+[ext_resource type="Resource" uid="uid://dynvawdp111sl" path="res://resources/emails/fabricforgrinder.tres" id="5_0oc80"]
+
+[sub_resource type="Resource" id="Resource_x47ja"]
+script = ExtResource("3_xhpq5")
+order_id = 1
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
+given_currency = 0
+required_items = Array[Resource]([ExtResource("1_xxwyo")])
+required_quantities = Array[int]([8])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 50
+rewards = Array[Resource]([ExtResource("2_0oc80")])
+rewards_quantities = Array[int]([1])
+
+[resource]
+script = ExtResource("1_7tvhl")
+sender = "Jon"
+subject = "Need a [img=30px,center]res://resources/sprites/sievePrimitive.png[/img][b]sieve[/b]?"
+contents = "I need some [img=30px,center]res://resources/sprites/dust.png[/img][b]dust[/b]. Lots of it. Probably . . . dunno, [i]eight[/i] handfuls? Pronto. Quick. I'll give you a [img=30px,center]res://resources/sprites/sievePrimitive.png[/img][b]sieve[/b] for your hard work. Even one less handful and you're done, bucko. I have big hands, too, and I [i]will[/i] be checking.
+
+Heh. Not that a chucklehead like you would even know how to put [img=30px,center]res://resources/sprites/rock.png[/img][b]rocks[/b] from [b]Botsy[/b] into a [img=30px,center]res://resources/sprites/grinderPrimitive.png[/img][b]grinder[/b]"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_7tvhl")]([ExtResource("5_0oc80")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_x47ja")
+tutorial = true
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://dnfk64uckrc13"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_c2rdq"]
+[ext_resource type="Resource" uid="uid://dmneq4jdepfsq" path="res://resources/emails/metalformoney.tres" id="2_c1ohq"]
+
+[resource]
+script = ExtResource("1_c2rdq")
+sender = "Loanne Sharck"
+subject = "Woah..."
+contents = "You've really been clearing out orders, huh! You've made a name for yourself! Welp, that's about all you'll get, for now. There was a guy that was going to give you a [b]conveyer belt[/b]. . . but they were dealt with.
+
+Congrats on all your progress! But . . . it'll never be enough. Don't forget that.
+
+[b]DEMO OVER[/b]
+
+[i]Thank you for playing![/i]"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_c2rdq")]([ExtResource("2_c1ohq")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = true
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

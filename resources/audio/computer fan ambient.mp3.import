@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cef0x1jr8hp7g"
+path="res://.godot/imported/computer fan ambient.mp3-4f888c85ee8e6cfa88d33051b8774844.mp3str"
+
+[deps]
+
+source_file="res://resources/audio/computer fan ambient.mp3"
+dest_files=["res://.godot/imported/computer fan ambient.mp3-4f888c85ee8e6cfa88d33051b8774844.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

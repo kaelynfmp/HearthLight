@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="Email" load_steps=7 format=3 uid="uid://dynvawdp111sl"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_jvolh"]
+[ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="1_lrhwl"]
+[ext_resource type="Resource" uid="uid://ckrgha87ltstr" path="res://resources/gadgets/hand_grinder.tres" id="2_61c6n"]
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="3_q4d58"]
+[ext_resource type="Resource" uid="uid://bh4dl6b28jmhc" path="res://resources/emails/givecottonforwheel.tres" id="5_61c6n"]
+
+[sub_resource type="Resource" id="Resource_47hgc"]
+script = ExtResource("3_q4d58")
+order_id = 1
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
+given_currency = 0
+required_items = Array[Resource]([ExtResource("1_lrhwl")])
+required_quantities = Array[int]([8])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 50
+rewards = Array[Resource]([ExtResource("2_61c6n")])
+rewards_quantities = Array[int]([1])
+
+[resource]
+script = ExtResource("1_jvolh")
+sender = "James Jamington"
+subject = "I Need [res=Fabric]Fabric[/res]"
+contents = "I need [i]eight[/i] [res=Fabric]fabric[/res] for my new shirt. I'll even give you a [res=Hand-cranked Grinder]grinder[/res] I had lying around in the attic in exchange!
+
+I'm no expert, but I'm pretty sure you make [res=Fabric]fabric[/res] by putting [res=Cotton]cotton[/res] into a [res=Ancient Loom]loom[/res]."
+category = "main"
+prerequisite_emails = Array[ExtResource("1_jvolh")]([ExtResource("5_61c6n")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_47hgc")
+tutorial = true
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

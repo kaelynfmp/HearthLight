@@ -1,12 +1,37 @@
 extends Node
 
-signal inventory_changed
+signal inventory_open_state_changed
+signal computer_visibility_changed
+signal update_recipes
+signal pause_changed
+signal update_gadgets
+signal take_cursor(Slot)
+signal debug_mode_change
+signal gadget_rotated(direction: int)
 
-@export var inventory:bool = false
+@onready var computer_gadget:Gadget = load("res://resources/gadgets/computer.tres")
+
+var inventory: bool = false:
+	set(value):
+		inventory = value
+		if !value:
+			gadget = null
+var gadget:StaticBody2D
+
+var computer_visible:bool = false
+var computer_tab_manager:TabContainer
+
+var blur:bool = false
+
+# Temp
+var is_placing_gadget: bool = false
+
+var is_debugging: bool = false
 
 var cursor:Node2D
 
 var inventories: Array[Inventory] = []
+var player_inventory: Inventory
 
 var slot_distributor: Dictionary = {"total": 0, "item": null, "slots": [], "distributed": []} 
 
@@ -16,40 +41,207 @@ enum Items {
 	DEFAULT_STACK = 100
 }
 
+enum Load_Type {
+	RECIPE, GADGET, ITEM
+}
+
+enum Age {
+	PRIMITIVE, INDUSTRIAL, ELECTRICAL, CYBER
+}
+
+var recipe_strings:Array[String]
+var gadget_strings:Array[String]
+var item_strings:Array[String]
+
+var currency: int = 20
+signal currency_updated(new_amount)
+
+var start_time: int
+var current_time: int
+var active_time: int = 0 # time spent with the time moving, aka out of pause/computer, PER DAY, resets every day
+var seconds_elapsed: float
+var milliseconds_elapsed: int
+var day_hours: int  = 18
+var time_scale: int = 480 * 12 # 1 irl second is 480 game seconds for 2 minutes/day, 16h day
+var time_scaled_seconds: int
+var time_difference
+var sleeping: bool
+var game_time: Dictionary = {
+	"day": 1,
+	"hour": 8,
+	"minute": 0,
+	"second": 0,
+	"segment": "morning"
+}
+var in_computer: bool
+var shop_dict: Dictionary = {
+	"resources": [],
+	"gadgets": [],
+	"wanted": []
+}
+var categorized_emails: Dictionary = {
+	"orders": [],
+	"main": [],
+	"spam": [],
+	"archive": []
+}
+var remaining_order_emails : Array = []
+var completed_order_emails : Array = []
+var all_lore_emails : Array = []
+var all_tutorial_emails : Array = []
+
+var pause: bool = true
+
+var recipes:Array[Recipe]
+var gadgets:Array[Gadget]
+var gadget_items:Dictionary
+
+var room_map = []
+var item_map = []
+
+func init_room_map():
+	var map = []
+	for i in range(12):
+		var row = []
+		for j in range(12):
+			row.append(null)
+		map.append(row)
+	return map
+
 func _ready() -> void:
-	pass
+	process_mode = PROCESS_MODE_ALWAYS
+	start_time = Time.get_ticks_msec()
+	seconds_elapsed = 0
+	room_map = init_room_map()
+	item_map = init_room_map()
+	load_recipes()
+	load_gadgets()
+	
+	#for recipe in recipes:
+		#print("inputs: ", recipe.inputs, " gadget: ", recipe.gadget)
 	
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("inventory"):
-		change_inventory()
+		if !pause:
+			if !GameManager.computer_visible:
+				change_inventory()
+			else:
+				change_computer_visibility()
+	elif Input.is_action_just_pressed("toggle_pause"):
+		if !GameManager.computer_visible and !inventory:
+			pause = !pause
+			pause_changed.emit()
+		elif GameManager.computer_visible:
+			change_computer_visibility()
+		else:
+			change_inventory()
+			
+	elif Input.is_action_just_pressed("toggle_debug_mode"):
+		is_debugging = !is_debugging
+		debug_mode_change.emit()
+		
+	elif Input.is_action_just_pressed("rotate_gadget"):
+		if GameManager.cursor != null:
+			var cursor_gadget = get_gadget_from_cursor()
+			if cursor_gadget != null and cursor_gadget.name == "Conveyor Belt":
+				cursor_gadget.direction = (cursor_gadget.direction + 1) % 4
+				gadget_rotated.emit(cursor_gadget.direction)
+		
+		
+	blur = inventory
+	is_placing_gadget = false
+	if cursor != null:
+		if cursor.slot != null:
+			if cursor.slot.item != null:
+				var is_there:bool
+				for item in gadget_items:
+					if item.name == cursor.slot.item.name:
+						is_there = true
+				if is_there:
+					blur = false
+					is_placing_gadget = true
+					
+	
+	# time tracking
+	if !pause and !in_computer:
+		current_time = Time.get_ticks_msec()
+		time_difference = current_time - start_time
+		start_time = Time.get_ticks_msec()
+		if !sleeping:
+			active_time += time_difference
+		
+		milliseconds_elapsed = active_time
+		seconds_elapsed = milliseconds_elapsed / 1000
+		time_scaled_seconds = seconds_elapsed*time_scale
+		
+		if !sleeping:
+			update_time(time_scaled_seconds)
+		elif sleeping: # TODO: whatever animations, etc
+			#await get_tree().create_timer(3).timeout
+			sleeping = false
+			wake_up()
+			start_time = Time.get_ticks_msec()
+	else:
+		start_time = Time.get_ticks_msec()
 
+## Load all recipes in the filesystem
+func load_recipes():
+	update_recipes.emit()
+	recipe_strings = Utility.load_path("res://resources/recipes")
+	for recipe_string:String in recipe_strings:
+		recipes.append(load(recipe_string))
+
+## Load all gadgets in the filesystem
+func load_gadgets():
+	update_gadgets.emit()
+	gadget_strings = Utility.load_path("res://resources/gadgets")
+	for gadget_string:String in gadget_strings:
+		var curr_gadget:Gadget = load(gadget_string)
+		gadgets.append(curr_gadget)
+		gadget_items[curr_gadget.item] = curr_gadget
+
+## Changes whether the inventory is open or not
 func change_inventory():
 	if inventory:
 		inventory = false
 		inventories.clear()
+		if cursor != null:
+			if cursor.slot != null:
+				if cursor.slot.item != null:
+					take_cursor.emit(cursor.slot.duplicate())
+					cursor.slot.decrement(cursor.slot.quantity)
+					
 	else:
 		inventory = true
-	inventory_changed.emit()
+	inventory_open_state_changed.emit()
 
+## Adds an inventory to the master list
 func add_inventory(p_inventory: Inventory):
 	inventories.append(p_inventory)
 
+## Attempts to send a slot to the nearest inventory, and will spread them out among multiple if necessary to send it all
 func send_to_inventory(slot: Slot):
-	var went_somewhere: bool = false
 	var home_inventory: Inventory
-	var temp_slot: Slot = slot.duplicate()
+	var temp_slot:Slot = slot.duplicate()
+	var starting_quantity = slot.duplicate().quantity
+	var starting_item = slot.duplicate().item
+	slot.decrement(starting_quantity)
 	for search_inventory in inventories:
 		if slot not in search_inventory.slots:
-			slot.decrement(slot.quantity)
-			went_somewhere = search_inventory.insert(temp_slot.item, temp_slot.quantity)
-			return
+			var remainder = search_inventory.insert(temp_slot.item, temp_slot.quantity)
+			temp_slot.decrement(temp_slot.quantity - remainder)
+			if temp_slot.quantity == 0:
+				break
 		else:
 			home_inventory = search_inventory
 
-	if !went_somewhere:
-		slot.decrement(slot.quantity)
-		home_inventory.insert(temp_slot.item, temp_slot.quantity)
+	if temp_slot.quantity > 0:
+		var remainder = home_inventory.insert(temp_slot.item, temp_slot.quantity)
+		temp_slot.decrement(temp_slot.quantity - remainder)
 
+	slot.initialize(starting_item, slot.quantity + temp_slot.quantity, true)
+
+## Sets the cursor object
 func set_cursor(setting_cursor: Node2D):
 	cursor = setting_cursor
 	
@@ -83,9 +275,135 @@ func distribute_slots() -> void:
 					slot_distributor.slots[subindex].initialize(slot_distributor.item, slot_distributor.distributed[subindex])
 				return
 	
+## Sets the currently selected gadget
+func set_gadget(p_gadget:StaticBody2D) -> void:
+	gadget = p_gadget
+	if !inventory:
+		change_inventory()
+	inventories.append(p_gadget.inventory)
+		
+## Gets the current gadget that corresponds to the item held in the cursor
+func get_gadget_from_cursor() -> Gadget:
+	if !cursor.slot or !cursor.slot.item:
+		return null
+	for item in gadget_items:
+		if item.name == cursor.slot.item.name:
+			return gadget_items[item]
+	return null
+	
 ## Clears the slot distributor, which is a list of currently dragged over slots, and will balance out how many items
 ## are in them all
 func clear_slot_distributor():
 	slot_distributor.total = 0
 	slot_distributor.item = null
 	slot_distributor.slots = []
+
+func add_currency(amount: int):
+	currency += amount
+	currency_updated.emit(currency)
+	
+func subtract_currency(amount: int) -> bool:
+	if currency >= amount:
+		currency -= amount
+		currency_updated.emit(currency)
+		return true  # successful purchare
+	return false  # not enough money for purchase
+
+## Picks up a gadget and puts it into the cursor
+func pickup_gadget(_gadget:Gadget) -> bool:
+	if cursor != null and cursor.slot != null and cursor.slot.item == null:
+		if !inventory:
+			change_inventory()
+		cursor.slot.initialize(_gadget.item)
+		return true
+	return false
+	
+func unique_gadget_interaction(_gadget:Gadget):
+	if _gadget == computer_gadget:
+		change_computer_visibility()
+		
+func change_computer_visibility():
+	if inventory:
+		change_inventory()
+	computer_visible = !computer_visible
+	computer_visibility_changed.emit()
+	in_computer != in_computer
+	
+func player_inventory_has(required_items:Array[Resource], required_quantities:Array[int]) -> bool:
+	if required_items.size() != required_quantities.size():
+		printerr("Fed incongruent required_items and required_quantities to player_inventory_has")
+	var loop_size = min(required_items.size(), required_quantities.size()) # If the arrays are misaligned, align to the smaller of the two
+	for index in range(loop_size):
+		var to_parse_item: Item
+		if required_items[index] is Gadget:
+			to_parse_item = required_items[index].item
+		else:
+			to_parse_item = required_items[index]
+		if player_inventory.get_item_quantity(to_parse_item) < required_quantities[index]:
+			return false
+	return true
+
+func navigate_to_botsy():
+	if computer_tab_manager != null:
+		computer_tab_manager.current_tab = 1
+
+func update_time(in_game_seconds):
+	#print("Game Seconds: %s" % in_game_seconds)	
+	game_time["hour"] = int(in_game_seconds / 3600) + 8
+	game_time["minute"] = int((in_game_seconds % 3600) / 60)
+	game_time["second"] = int(in_game_seconds % 60)
+	
+	# count days
+	if (game_time["hour"] == 24): 
+		game_time["day"] += 1
+		game_time["hour"] = 8
+		game_time["minute"] = 0
+		game_time["second"] = 0
+		active_time=0
+		seconds_elapsed = 0
+		go_sleep()
+	
+
+	# update day segment aka morning, afternoon etc
+	if (8 <= game_time["hour"] and game_time["hour"] < 12):
+		game_time["segment"] = "morning"
+	elif (12 <= game_time["hour"] and game_time["hour"] < 16):
+		game_time["segment"] = "afternoon"
+	elif (16 <= game_time["hour"] and game_time["hour"] < 20):
+		game_time["segment"] = "evening"
+	else: # game time > 20
+		game_time["segment"] = "night"
+	
+	# testing
+	#if (game_time["minute"]): # prints on the hour
+		#print("IRL Seconds elapsed: ", seconds_elapsed)
+		#print("Game Seconds: %s" % in_game_seconds)	
+		#print("Game Time: %d Days, %dH %dM %dS" % [game_time["day"], game_time["hour"], game_time["minute"], game_time["second"]])
+func is_after_date(day: int, hour: int, minute: int) -> bool:
+	var current_day = game_time["day"]
+	var current_hour = game_time["hour"]
+	var current_minute = game_time["minute"]
+	if day < current_day:
+		return true
+	elif day > current_day:
+		return false
+	else: # requested day IS the current day
+		# check hour and minute
+		if hour < current_hour:
+			return true
+		elif hour > current_hour:
+			return false
+		else: # it IS the current hour
+			if minute <= current_minute:
+				return true
+			else:
+				return false
+	return false
+
+func go_sleep():
+	sleeping = true
+	print("starting sleep...")
+	#TODO: Sleep behavior
+func wake_up():
+	sleeping = false
+	print("waking up...")

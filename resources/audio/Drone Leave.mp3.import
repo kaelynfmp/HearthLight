@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://sqqttumte0g5"
+path="res://.godot/imported/Drone Leave.mp3-d1966d83e938e4fb54f045954afffb9d.mp3str"
+
+[deps]
+
+source_file="res://resources/audio/Drone Leave.mp3"
+dest_files=["res://.godot/imported/Drone Leave.mp3-d1966d83e938e4fb54f045954afffb9d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

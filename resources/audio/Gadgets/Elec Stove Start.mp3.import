@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dh3bh61ggdf4a"
+path="res://.godot/imported/Elec Stove Start.mp3-977069953c610af500042946b22b976f.mp3str"
+
+[deps]
+
+source_file="res://resources/audio/Gadgets/Elec Stove Start.mp3"
+dest_files=["res://.godot/imported/Elec Stove Start.mp3-977069953c610af500042946b22b976f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
