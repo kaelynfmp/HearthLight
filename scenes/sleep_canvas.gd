@@ -10,7 +10,9 @@ func _process(delta: float) -> void:
 		if modulate.a >= 0.7:
 			pass
 	else:
-		visible = false
-		modulate.a = 0
+		if modulate.a > 0:
+			modulate.a -= 0.05  # Gradually fade out
+		else:
+			visible = false  # Hide when fully faded out
 	
 	
