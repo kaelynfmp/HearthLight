@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://uu6r2oeua8o1"
+path="res://.godot/imported/UI 12 (confirm).wav-01c0bfbc4711127432f4022a4ddc6a64.sample"
+
+[deps]
+
+source_file="res://resources/audio/UI Sounds/UI 12 (confirm).wav"
+dest_files=["res://.godot/imported/UI 12 (confirm).wav-01c0bfbc4711127432f4022a4ddc6a64.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

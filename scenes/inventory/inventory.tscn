@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c6g34by20r0qc"]
+[gd_scene load_steps=14 format=3 uid="uid://c6g34by20r0qc"]
 
 [ext_resource type="Script" uid="uid://cw5vc1ccqqf01" path="res://scripts/gui/inventory/inventory.gd" id="1_esbpf"]
 [ext_resource type="Texture2D" uid="uid://bmp10s6qtnd16" path="res://resources/sprites/inventory/inventory_frame.png" id="2_ru07y"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://d230y3xc0ll2v" path="res://resources/sprites/inventory/inventory_top.png" id="9_7fmjv"]
 [ext_resource type="Texture2D" uid="uid://cx7rqtwwi6ub3" path="res://resources/sprites/inventory/inventory_bottom_right_frame.png" id="9_hyo3a"]
 [ext_resource type="Texture2D" uid="uid://dtvqlumr8212s" path="res://resources/sprites/inventory/inventory_bottom_right_bar.png" id="10_wnb6k"]
+[ext_resource type="AudioStream" uid="uid://ykh4i04ugigr" path="res://resources/audio/UI Sounds/inventory close.wav" id="12_ll4hh"]
+[ext_resource type="AudioStream" uid="uid://cq0ghqydf13cu" path="res://resources/audio/UI Sounds/inventory open.wav" id="13_1pph4"]
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
@@ -224,3 +226,13 @@ grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("10_wnb6k")
 metadata/_edit_lock_ = true
+
+[node name="CloseAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_ll4hh")
+max_distance = 13075.0
+attenuation = 1e-05
+
+[node name="OpenAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_1pph4")
+max_distance = 8350.0
+attenuation = 1e-05

@@ -1,7 +1,10 @@
-[gd_scene load_steps=44 format=3 uid="uid://b353v4ogg13io"]
+[gd_scene load_steps=47 format=3 uid="uid://b353v4ogg13io"]
 
 [ext_resource type="Texture2D" uid="uid://p1ecnj7wqfy8" path="res://resources/sprites/mcIdleSprite.png" id="1_5mjhl"]
 [ext_resource type="Texture2D" uid="uid://caehhdqsv8axd" path="res://resources/sprites/mcWalkLeftSprites.png" id="1_iai2k"]
+[ext_resource type="Script" uid="uid://ssdfp5qmbtpv" path="res://scripts/objects/character.gd" id="1_lrhn5"]
+[ext_resource type="Resource" uid="uid://b1gb7sbupakg4" path="res://resources/character/inventory.tres" id="2_0lw5n"]
+[ext_resource type="AudioStream" uid="uid://baaqw3m7qs3ds" path="res://resources/audio/player footsteps.mp3" id="4_dp8ca"]
 
 [sub_resource type="Gradient" id="Gradient_iun0e"]
 offsets = PackedFloat32Array(0.522727, 1)
@@ -531,6 +534,10 @@ z_index = 1
 y_sort_enabled = true
 scale = Vector2(0.094, 0.094)
 motion_mode = 1
+script = ExtResource("1_lrhn5")
+inventory = ExtResource("2_0lw5n")
+camera_edges = Array[int]([-540, -720, 540, 370])
+inventory_camera_offset = 1000.0
 
 [node name="Shadow" type="Sprite2D" parent="."]
 y_sort_enabled = true
@@ -588,3 +595,12 @@ tree_root = SubResource("AnimationNodeStateMachine_1ww03")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Idle/TimeScale/scale = 1.0
 parameters/Walk/TimeScale/scale = 1.0
+
+[node name="Footsteps" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_dp8ca")
+pitch_scale = 0.8
+max_distance = 4096.0
+attenuation = 1e-05
+
+[node name="Listener" type="AudioListener2D" parent="."]
+current = true

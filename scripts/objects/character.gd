@@ -12,8 +12,11 @@ const SPEED:int = 1000
 
 @onready var anim_tree:Node = get_node("AnimationTree")
 
+@onready var footsteps_audio:AudioStreamPlayer2D = get_node("Footsteps")
+
 func _ready() -> void:
 	GameManager.player_inventory = inventory
+	GameManager.character = self
 
 func _process(_delta: float) -> void:
 	inventory_camera_offset = 3000 if position.x > 2000 else 1000
@@ -40,8 +43,14 @@ func _process(_delta: float) -> void:
 
 	if self.velocity == Vector2.ZERO:
 		anim_tree.get("parameters/playback").travel("Idle")
+		if footsteps_audio.playing:
+			footsteps_audio.stop()
 	else:
 		anim_tree.get("parameters/playback").travel("Walk")
+		if not footsteps_audio.playing:
+			footsteps_audio.play()
+		elif GameManager.in_computer:
+			footsteps_audio.stop()
 
 func _physics_process(_delta: float) -> void:
 	if !GameManager.computer_visible:
