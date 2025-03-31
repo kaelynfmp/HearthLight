@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_igpg3")
 texture = ExtResource("2_5ju1u")
-name = "Seed"
-description = "Plant this for Cotton!"
+name = "Cotton? Seed"
+description = "Plant this for something that certainly resembles cotton!"
 max_stack = 24
 price = 10

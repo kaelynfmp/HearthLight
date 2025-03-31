@@ -8,12 +8,14 @@ func _ready():
 	set_item_text()
 		
 func _process(_delta: float) -> void:
-	fulfilled_quantity = min(GameManager.player_inventory.get_item_quantity(required_item), required_quantity)
-	set_item_text()
-	if fulfilled_quantity < required_quantity:
-		$Step/CompletionIcon.modulate = Color(1, 1, 1, 0)
-	else:
-		$Step/CompletionIcon.modulate = Color(1, 1, 1, 1)
+	if GameManager.quest_list_visible:
+		# No need to do any of this if the quest list isn't even visible to begin with
+		fulfilled_quantity = min(GameManager.player_inventory.get_item_quantity(required_item), required_quantity)
+		set_item_text()
+		if fulfilled_quantity < required_quantity:
+			$Step/CompletionIcon.modulate = Color(1, 1, 1, 0)
+		else:
+			$Step/CompletionIcon.modulate = Color(1, 1, 1, 1)
 	
 func set_item_text():
 	if required_item:
