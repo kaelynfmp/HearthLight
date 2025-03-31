@@ -48,4 +48,13 @@ func check_valid() -> bool:
 	if prereqs_must_fail and prerequisite_emails.filter(func(email: Email): return failable and failed).is_empty():
 		# failure email and prereqs are not failed (if they exist)
 		return false
+		
+	# if NOT a failure email, check if prereq emails are failed: return false, otw true
+	# TODO: test
+	if !prereqs_must_fail:
+		for email in prerequisite_emails:
+			if email.failable and email.failed:
+				return false
+			if email.failable and email.attached_order.is_completed:
+				pass
 	return true
