@@ -89,7 +89,7 @@ texture = ExtResource("3_n2822")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_na4y0"]
 
-[node name="EmailButton" type="Button" node_paths=PackedStringArray("sender_label", "subject_label", "sender_dropdown", "subject_dropdown", "blurb_label", "content", "expand_panel", "fulfill_button")]
+[node name="EmailButton" type="Button" node_paths=PackedStringArray("sender_label", "subject_label", "sender_dropdown", "subject_dropdown", "blurb_label", "content", "expand_panel", "fulfill_button", "button_sprite")]
 custom_minimum_size = Vector2(1920, 300)
 offset_right = 1921.0
 offset_bottom = 190.0
@@ -109,6 +109,7 @@ blurb_label = NodePath("Blurb")
 content = NodePath("Panel/Content")
 expand_panel = NodePath("Panel")
 fulfill_button = NodePath("Panel/FulfillTexture/Fulfill")
+button_sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(961.5, 130.75)
@@ -176,6 +177,7 @@ layout_mode = 0
 offset_top = 150.0
 offset_right = 1920.0
 offset_bottom = 1080.0
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_t0k6g")
 
 [node name="Content" type="RichTextLabel" parent="Panel"]

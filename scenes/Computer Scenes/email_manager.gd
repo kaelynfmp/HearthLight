@@ -227,6 +227,7 @@ func order_accept(email: Email):
 		OrderManager.accept_order(order)
 		OrderManager.give_player_starting_items(order)
 		change_email_category(email, "orders")
+		email.is_read = false
 	else:
 		OrderManager.give_player_starting_items(order)
 		fulfill_order(email)
@@ -246,6 +247,7 @@ func order_reject(email: Email):
 	
 func fulfill_order(email: Email):
 	if OrderManager.fulfill_order(email.attached_order):
+		email.is_read = false
 		change_email_category(email, "archive")
 		display_category_emails(current_category)
 		if !email.tutorial and !email.bankruptcy and email not in all_lore_emails:
