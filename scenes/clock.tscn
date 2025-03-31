@@ -5,21 +5,36 @@
 [node name="Clock" type="Control" node_paths=PackedStringArray("day_label", "time_label")]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 1.0
+offset_right = 1920.0
+offset_bottom = 98.0
+mouse_filter = 2
 script = ExtResource("1_vlc7k")
 day_label = NodePath("Day Label")
 time_label = NodePath("Time Label")
 
 [node name="Day Label" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_right = 114.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 69.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 50
 text = "Day 345"
+fit_content = true
+scroll_active = false
 
 [node name="Time Label" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 20.0
-offset_right = 117.0
-offset_bottom = 46.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 5.0
+offset_top = 59.0
+offset_right = 5.0
+offset_bottom = 101.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 30
 text = "24:00"
+fit_content = true
+scroll_active = false
