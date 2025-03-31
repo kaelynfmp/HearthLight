@@ -32,8 +32,8 @@ hey, a little birdie told me that you've got yourself access to a plant [res=Pot
 thanks a bunch!"
 category = "main"
 prerequisite_emails = Array[ExtResource("1_16060")]([])
-day = 1
-hour = 8
+day = 0
+hour = 0
 minute = 0
 is_read = false
 attached_order = SubResource("Resource_deaot")
