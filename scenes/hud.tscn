@@ -177,6 +177,7 @@ metadata/_edit_use_anchors_ = true
 [node name="DarkenCanvas" type="TextureRect" parent="SleepCanvas"]
 modulate = Color(0, 0, 0, 1)
 z_index = 100
+layout_mode = 0
 offset_right = 1926.0
 offset_bottom = 1092.0
 texture = SubResource("CanvasTexture_5357l")
