@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c2wlmdehxae41"]
+[gd_scene load_steps=29 format=3 uid="uid://c2wlmdehxae41"]
 
 [ext_resource type="Script" uid="uid://cgcfc52ecvpnu" path="res://scenes/Computer Scenes/computer_manager.gd" id="1_1cjce"]
 [ext_resource type="PackedScene" uid="uid://b5r8qyahtr3r1" path="res://scenes/Computer Scenes/view_email_button.tscn" id="1_ip337"]
@@ -16,6 +16,18 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ga7bm"]
 bg_color = Color(0.470588, 0.145098, 0.588235, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gobfx"]
+bg_color = Color(0.485911, 0.152305, 0.6067, 1)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.486275, 0.152941, 0.607843, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0hhal"]
 bg_color = Color(0.572549, 0.239216, 0.690196, 1)
@@ -98,6 +110,11 @@ offset_top = 186.0
 offset_right = 382.0
 offset_bottom = 598.0
 
+[node name="Panel" type="Panel" parent="Sites/Emails/InboxButtonsList"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_gobfx")
+
 [node name="ScrollContainer" type="ScrollContainer" parent="Sites/Emails"]
 layout_mode = 0
 offset_left = 431.0
@@ -105,6 +122,7 @@ offset_top = 185.0
 offset_right = 2359.0
 offset_bottom = 1267.0
 scale = Vector2(0.720001, 0.72)
+theme_override_styles/panel = SubResource("StyleBoxFlat_gobfx")
 horizontal_scroll_mode = 0
 script = ExtResource("5_wwlms")
 order_class = ExtResource("6_luoch")
