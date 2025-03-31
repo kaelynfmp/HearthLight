@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dnyyt61n7tlkc"]
+[gd_scene load_steps=3 format=3 uid="uid://dnyyt61n7tlkc"]
 
 [ext_resource type="Script" uid="uid://h2vuv2d8cft5" path="res://scenes/clock.gd" id="1_vlc7k"]
+[ext_resource type="FontFile" uid="uid://cskltmfvwlc7g" path="res://resources/fonts/Audiowide-Regular.ttf" id="2_y58p0"]
 
 [node name="Clock" type="Control" node_paths=PackedStringArray("day_label", "time_label")]
 layout_mode = 3
@@ -14,6 +15,7 @@ time_label = NodePath("Time Label")
 layout_mode = 0
 offset_right = 114.0
 offset_bottom = 40.0
+theme_override_fonts/normal_font = ExtResource("2_y58p0")
 text = "Day 345"
 
 [node name="Time Label" type="RichTextLabel" parent="."]
@@ -22,4 +24,5 @@ offset_left = 3.0
 offset_top = 20.0
 offset_right = 117.0
 offset_bottom = 46.0
+theme_override_fonts/normal_font = ExtResource("2_y58p0")
 text = "24:00"
