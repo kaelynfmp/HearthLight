@@ -60,6 +60,7 @@ name_label = NodePath("Image/Name")
 price_label = NodePath("Image/Price")
 item_image = NodePath("Image")
 popup_scene = ExtResource("3_a38nv")
+button_sound = 7
 
 [node name="Image" type="TextureRect" parent="."]
 layout_mode = 1

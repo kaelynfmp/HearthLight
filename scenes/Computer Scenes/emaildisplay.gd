@@ -11,6 +11,8 @@ var email: Email
 @export var expand_panel: Panel  # expanded email content
 @export var fulfill_button: Button
 
+@export var button_sound: AudioManager.BUTTON
+
 func _process(_delta: float) -> void:
 	if fulfill_button.visible and GameManager.computer_visible and email != null and email.attached_order != null:
 		fulfill_button.disabled = !GameManager.player_inventory_has(email.attached_order.required_items, email.attached_order.required_quantities)

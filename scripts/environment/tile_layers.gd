@@ -67,6 +67,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if GameManager.is_placing_gadget and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		if spawn_object(GameManager.get_gadget_from_cursor()):
 			GameManager.cursor.slot.decrement()
+			AudioManager.play_button_sound(AudioManager.BUTTON.PUT_DOWN, 0.0, 1.0, 0.0)
 			#GameManager.change_inventory()
 		
 func is_base_available(cell_pos: Vector2i) -> bool:

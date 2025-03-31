@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dfugadl31kt1a"
+path="res://.godot/imported/email notification.mp3-30f3a36b9233d11c230210807e315988.mp3str"
+
+[deps]
+
+source_file="res://resources/audio/UI Sounds/email notification.mp3"
+dest_files=["res://.godot/imported/email notification.mp3-30f3a36b9233d11c230210807e315988.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

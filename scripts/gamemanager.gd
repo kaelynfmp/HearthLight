@@ -11,6 +11,8 @@ signal gadget_rotated(direction: int)
 
 @onready var computer_gadget:Gadget = load("res://resources/gadgets/computer.tres")
 
+var character:CharacterBody2D
+
 var inventory: bool = false:
 	set(value):
 		inventory = value
@@ -315,6 +317,7 @@ func pickup_gadget(_gadget:Gadget) -> bool:
 		if !inventory:
 			change_inventory()
 		cursor.slot.initialize(_gadget.item)
+		AudioManager.play_button_sound(AudioManager.BUTTON.PICK_UP, 0.0, 1.0, 0.0)
 		return true
 	return false
 	
