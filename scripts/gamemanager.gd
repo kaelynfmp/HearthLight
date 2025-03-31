@@ -58,10 +58,14 @@ signal currency_updated(new_amount)
 
 var start_time: int
 var current_time: int
+var active_time: int = 0 # time spent with the time moving, aka out of pause/computer, PER DAY, resets every day
 var seconds_elapsed: float
+var milliseconds_elapsed: int
 var day_hours: int  = 18
-var time_scale: int       = 480 # 1 irl second is 480 game seconds for 2 minutes/day, 16h day
+var time_scale: int = 480 * 12 # 1 irl second is 480 game seconds for 2 minutes/day, 16h day
 var time_scaled_seconds: int
+var time_difference
+var sleeping: bool
 var game_time: Dictionary = {
 	"day": 1,
 	"hour": 8,
@@ -72,10 +76,21 @@ var game_time: Dictionary = {
 var in_computer: bool
 var shop_dict: Dictionary = {
 	"resources": [],
-	"gadgets": []
+	"gadgets": [],
+	"wanted": []
 }
+var categorized_emails: Dictionary = {
+	"orders": [],
+	"main": [],
+	"spam": [],
+	"archive": []
+}
+var remaining_order_emails : Array = []
+var completed_order_emails : Array = []
+var all_lore_emails : Array = []
+var all_tutorial_emails : Array = []
 
-var pause: bool = false
+var pause: bool = true
 
 var recipes:Array[Recipe]
 var gadgets:Array[Gadget]
@@ -103,6 +118,9 @@ func _ready() -> void:
 	item_map = init_room_map()
 	load_recipes()
 	load_gadgets()
+	
+	#for recipe in recipes:
+		#print("inputs: ", recipe.inputs, " gadget: ", recipe.gadget)
 	
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("inventory"):
@@ -147,12 +165,26 @@ func _process(_delta: float) -> void:
 					
 	
 	# time tracking
-	if !pause:
+	if !pause and !in_computer:
 		current_time = Time.get_ticks_msec()
-		var milliseconds_elapsed: int = current_time - start_time
+		time_difference = current_time - start_time
+		start_time = Time.get_ticks_msec()
+		if !sleeping:
+			active_time += time_difference
+		
+		milliseconds_elapsed = active_time
 		seconds_elapsed = milliseconds_elapsed / 1000
 		time_scaled_seconds = seconds_elapsed*time_scale
-		update_time(time_scaled_seconds)
+		
+		if !sleeping:
+			update_time(time_scaled_seconds)
+		elif sleeping: # TODO: whatever animations, etc
+			#await get_tree().create_timer(3).timeout
+			sleeping = false
+			wake_up()
+			start_time = Time.get_ticks_msec()
+	else:
+		start_time = Time.get_ticks_msec()
 
 ## Load all recipes in the filesystem
 func load_recipes():
@@ -297,6 +329,7 @@ func change_computer_visibility():
 		change_inventory()
 	computer_visible = !computer_visible
 	computer_visibility_changed.emit()
+	in_computer != in_computer
 	
 func player_inventory_has(required_items:Array[Resource], required_quantities:Array[int]) -> bool:
 	if required_items.size() != required_quantities.size():
@@ -316,33 +349,63 @@ func navigate_to_botsy():
 	if computer_tab_manager != null:
 		computer_tab_manager.current_tab = 1
 
-func update_time(_in_game_seconds):
-	return # TODO: undisable. temporarily disabled for demo
+func update_time(in_game_seconds):
 	#print("Game Seconds: %s" % in_game_seconds)	
-	#game_time["hour"] = int(in_game_seconds / 3600) + 8
-	#game_time["minute"] = int((in_game_seconds % 3600) / 60)
-	#game_time["second"] = int(in_game_seconds % 60)
-	#
-	## count days
-	#if (game_time["hour"] == day_hours + 6): 
-		#game_time["day"] += 1
-		#game_time["hour"] = 8
-		#game_time["minute"] = 0
-		#game_time["second"] = 0
-		#start_time = Time.get_ticks_msec()
-	#
-	## update day segment aka morning, afternoon etc
-	#if (8 <= game_time["hour"] and game_time["hour"] < 12):
-		#game_time["segment"] = "morning"
-	#elif (12 <= game_time["hour"] and game_time["hour"] < 16):
-		#game_time["segment"] = "afternoon"
-	#elif (16 <= game_time["hour"] and game_time["hour"] < 20):
-		#game_time["segment"] = "evening"
-	#else: # game time > 20
-		#game_time["segment"] = "night"
+	game_time["hour"] = int(in_game_seconds / 3600) + 8
+	game_time["minute"] = int((in_game_seconds % 3600) / 60)
+	game_time["second"] = int(in_game_seconds % 60)
+	
+	# count days
+	if (game_time["hour"] == 24): 
+		game_time["day"] += 1
+		game_time["hour"] = 8
+		game_time["minute"] = 0
+		game_time["second"] = 0
+		active_time=0
+		seconds_elapsed = 0
+		go_sleep()
+	
+
+	# update day segment aka morning, afternoon etc
+	if (8 <= game_time["hour"] and game_time["hour"] < 12):
+		game_time["segment"] = "morning"
+	elif (12 <= game_time["hour"] and game_time["hour"] < 16):
+		game_time["segment"] = "afternoon"
+	elif (16 <= game_time["hour"] and game_time["hour"] < 20):
+		game_time["segment"] = "evening"
+	else: # game time > 20
+		game_time["segment"] = "night"
 	
 	# testing
 	#if (game_time["minute"]): # prints on the hour
 		#print("IRL Seconds elapsed: ", seconds_elapsed)
 		#print("Game Seconds: %s" % in_game_seconds)	
 		#print("Game Time: %d Days, %dH %dM %dS" % [game_time["day"], game_time["hour"], game_time["minute"], game_time["second"]])
+func is_after_date(day: int, hour: int, minute: int) -> bool:
+	var current_day = game_time["day"]
+	var current_hour = game_time["hour"]
+	var current_minute = game_time["minute"]
+	if day < current_day:
+		return true
+	elif day > current_day:
+		return false
+	else: # requested day IS the current day
+		# check hour and minute
+		if hour < current_hour:
+			return true
+		elif hour > current_hour:
+			return false
+		else: # it IS the current hour
+			if minute <= current_minute:
+				return true
+			else:
+				return false
+	return false
+
+func go_sleep():
+	sleeping = true
+	print("starting sleep...")
+	#TODO: Sleep behavior
+func wake_up():
+	sleeping = false
+	print("waking up...")

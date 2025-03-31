@@ -8,6 +8,7 @@ extends PanelContainer
 @onready var title:RichTextLabel = find_child("Title", true)
 @onready var tooltip_image:TextureRect = find_child("TooltipImage", true)
 
+
 var mouse_over: bool = false
 ## If you are currently holding right click to make a 'line'
 var rmb_line: bool = false
@@ -48,6 +49,7 @@ func update():
 		if !slot.item:
 			item_sprite.visible = false
 			stack_number.visible = false
+			
 		else:
 			item_sprite.visible = true
 			item_sprite.set_texture(slot.item.texture)

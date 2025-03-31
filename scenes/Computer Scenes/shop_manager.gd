@@ -56,8 +56,8 @@ func create_shop_categories():
 	for category_name in shop_dict.keys():
 		var shop_category = shop_category_scene.instantiate()
 		shop_category.set_category(category_name)
-		if category_name == "resources":
-			var num_items = len(GameManager.shop_dict["resources"])
+		if category_name == "resources" or category_name == "gadgets":
+			var num_items = len(GameManager.shop_dict[category_name])
 			var num_rows = (num_items + 4) / 4
 			shop_category.custom_minimum_size = Vector2(1920, 300 * num_rows + 400)
 		category_scenes.append(shop_category)

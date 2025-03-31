@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://c6g34by20r0qc"]
 
-[ext_resource type="Script" path="res://scripts/gui/inventory/inventory.gd" id="1_esbpf"]
+[ext_resource type="Script" uid="uid://cw5vc1ccqqf01" path="res://scripts/gui/inventory/inventory.gd" id="1_esbpf"]
 [ext_resource type="Texture2D" uid="uid://bmp10s6qtnd16" path="res://resources/sprites/inventory/inventory_frame.png" id="2_ru07y"]
 [ext_resource type="Texture2D" uid="uid://botr66ydaifxg" path="res://resources/sprites/inventory/inventory_bg.png" id="3_17kni"]
 [ext_resource type="Texture2D" uid="uid://1d4bc6losgyn" path="res://resources/sprites/inventory/inventory_bottom_tile.png" id="4_acfa3"]
-[ext_resource type="Script" path="res://scenes/inventory/slots.gd" id="5_s5ptj"]
+[ext_resource type="Script" uid="uid://p2s5t37jvjuc" path="res://scenes/inventory/slots.gd" id="5_s5ptj"]
 [ext_resource type="PackedScene" uid="uid://cfa834km6u0o5" path="res://scenes/inventory/inventory_slot.tscn" id="6_andm5"]
 [ext_resource type="Texture2D" uid="uid://rwnpo84ldki" path="res://resources/sprites/inventory/inventory_top_right_tile.png" id="8_gy5i1"]
 [ext_resource type="Texture2D" uid="uid://dq7m6fqe4qqf7" path="res://resources/sprites/inventory/inventory_bottom_left_bar.png" id="8_hxy1f"]
