@@ -19,6 +19,7 @@ var all_lore_emails = GameManager.all_lore_emails
 var all_tutorial_emails = GameManager.all_tutorial_emails
 var saved_day : int = 1
 @export var bankruptcy_email: Email
+@export var tutorial_bankruptcy_email: Email
 var bankruptcy_copy: Email
 func _ready():
 	load_emails()
@@ -38,6 +39,7 @@ func _ready():
 				GameManager.categorized_emails["main"].append(email)
 	add_valid_lore_emails()
 	display_category_emails(current_category) # default view to "main"
+
 func _process(delta: float) -> void:
 	# add new emails
 	
@@ -56,11 +58,9 @@ func _process(delta: float) -> void:
 			for eachemail in selected_new_emails:
 				print("inserting...", eachemail.sender)
 				#print("appended email", eachemail)
-		if GameManager.currency < 100 and GameManager.game_time["day"]% 3 == 0 and GameManager.game_time["day"] >= 3 and bankruptcy_email.check_chain():
-			#print("bankruptcy activated")
-			bankruptcy_copy = bankruptcy_email.duplicate(true)
-			bankruptcy_copy.attached_order.is_accepted = false
-			categorized_emails["main"].insert(0,bankruptcy_copy)
+		
+		# check for bankruptcy and send email with money if so
+		try_send_bankruptcy()
 		
 		# check due dates BEFORE updating saved day
 		for eachemail in categorized_emails["orders"]:
@@ -281,3 +281,18 @@ func add_valid_tutorial_emails():
 	for email in all_tutorial_emails:
 		if email.check_chain() and email not in categorized_emails["main"] and email not in categorized_emails["orders"] and email not in categorized_emails["archive"]:
 			categorized_emails["main"].insert(0,email)
+
+func try_send_bankruptcy():
+	#print(GameManager.currency < 10, !bankruptcy_email.check_chain(), categorized_emails["main"].filter(func(email: Email): return email.bankruptcy).is_empty())
+	if GameManager.currency < 10 and !bankruptcy_email.check_chain() and categorized_emails["main"].filter(func(email: Email): return email.bankruptcy).is_empty():
+		# tutorial not done yet, send tutorial bankruptcy
+		bankruptcy_copy = tutorial_bankruptcy_email.duplicate(true)
+	# normal bankruptcy
+	if GameManager.currency < 100 and GameManager.game_time["day"]% 3 == 0 and GameManager.game_time["day"] >= 3 and categorized_emails["main"].filter(func(email: Email): return email.bankruptcy).is_empty() and bankruptcy_email.check_chain():
+		#print("bankruptcy activated")
+		bankruptcy_copy = bankruptcy_email.duplicate(true)
+	
+	# if bankruptcy triggered
+	if bankruptcy_copy:
+		bankruptcy_copy.attached_order.is_accepted = false
+		categorized_emails["main"].insert(0,bankruptcy_copy)
