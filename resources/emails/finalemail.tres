@@ -16,8 +16,8 @@ Congrats on all your progress! But . . . it'll never be enough. Don't forget tha
 [i]Thank you for playing![/i]"
 category = "main"
 prerequisite_emails = Array[ExtResource("1_c2rdq")]([ExtResource("2_c1ohq")])
-day = 7
-hour = 8
+day = 0
+hour = 0
 minute = 0
 is_read = false
 tutorial = true
@@ -26,3 +26,4 @@ has_start_time = false
 failable = false
 failed = false
 prereqs_must_fail = false
+bankruptcy = false
