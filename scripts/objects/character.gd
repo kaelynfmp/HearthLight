@@ -14,6 +14,8 @@ const SPEED:int = 1000
 
 @onready var footsteps_audio:AudioStreamPlayer2D = get_node("Footsteps")
 
+var left:bool = true
+
 func _ready() -> void:
 	GameManager.player_inventory = inventory
 	GameManager.character = self
@@ -37,16 +39,19 @@ func _process(_delta: float) -> void:
 		if velocity == Vector2.ZERO: continue
 		if round(abs(rad_to_deg(velocity.angle()))) == 90: continue
 		if sign(cos(velocity.angle())) == -1:
-			sprite.play("WalkLeft")
+			left = true
 		elif sign(cos(velocity.angle())) == 1:
-			sprite.play("WalkRight")
+			left = false
 
 	if self.velocity == Vector2.ZERO:
 		anim_tree.get("parameters/playback").travel("Idle")
 		if footsteps_audio.playing:
 			footsteps_audio.stop()
 	else:
-		anim_tree.get("parameters/playback").travel("Walk")
+		if left:
+			anim_tree.get("parameters/playback").travel("WalkLeft")
+		else:
+			anim_tree.get("parameters/playback").travel("WalkRight")
 		if not footsteps_audio.playing:
 			footsteps_audio.play()
 		elif GameManager.in_computer:
