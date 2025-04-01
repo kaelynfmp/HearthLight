@@ -1,6 +1,7 @@
 extends Control
 
 var is_displayed = false
+@export var slide_in_speed:float
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,11 +10,13 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	visible = is_displayed
-	if visible:
+func _process(delta: float) -> void:
+	$Blur.visible = is_displayed
+	if is_displayed:
+		$PauseMenuSprite.set_position(Vector2(lerp($PauseMenuSprite.position.x, 0.0, slide_in_speed * delta), $PauseMenuSprite.position.y))
 		get_tree().paused = true
 	else:
+		$PauseMenuSprite.set_position(Vector2(lerp($PauseMenuSprite.position.x, -$PauseMenuSprite.size.x, slide_in_speed * delta), $PauseMenuSprite.position.y))
 		get_tree().paused = false
 	
 func _display() -> void:

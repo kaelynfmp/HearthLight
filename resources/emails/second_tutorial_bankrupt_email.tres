@@ -1,8 +1,7 @@
-[gd_resource type="Resource" script_class="Email" load_steps=5 format=3 uid="uid://dsf5ltqgqo7uj"]
+[gd_resource type="Resource" script_class="Email" load_steps=4 format=3 uid="uid://dsf5ltqgqo7uj"]
 
 [ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_xrqss"]
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="2_wk7sn"]
-[ext_resource type="Resource" uid="uid://sc3eyh2thm3t" path="res://resources/emails/secondemail.tres" id="3_wk7sn"]
 
 [sub_resource type="Resource" id="Resource_ntuda"]
 script = ExtResource("1_xrqss")
@@ -28,7 +27,7 @@ contents = "Hey, I heard you're struggling a bit in the financials department.
 
 Take $25, I insist."
 category = "main"
-prerequisite_emails = Array[ExtResource("2_wk7sn")]([ExtResource("3_wk7sn")])
+prerequisite_emails = Array[ExtResource("2_wk7sn")]([])
 day = 0
 hour = 0
 minute = 0

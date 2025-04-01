@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Gadget" load_steps=10 format=3 uid="uid://ccitfm40o5ju2"]
+[gd_resource type="Resource" script_class="Gadget" load_steps=11 format=3 uid="uid://ccitfm40o5ju2"]
 
 [ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_grp8q"]
 [ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_uarw1"]
@@ -32,10 +32,37 @@ description = "Your personal computer! Thank goodness the tech revolution a few 
 max_stack = 1
 price = 0
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_wj5s3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_2lmon")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_2lmon")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_2lmon")
+}],
+"loop": true,
+"name": &"se",
+"speed": 5.0
+}]
+
 [resource]
 resource_name = "computer"
 script = ExtResource("4_uwl5i")
-texture = ExtResource("4_2lmon")
+sprite_frames = SubResource("SpriteFrames_wj5s3")
 sprite_offset = Vector2(0, -180)
 sprite_scale_factor = 1.0
 name = "Computer"

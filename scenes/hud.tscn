@@ -101,7 +101,7 @@ script = ExtResource("7_y0wjn")
 
 [node name="Cursor" parent="." instance=ExtResource("2_wjdba")]
 
-[node name="SelectedGadget" type="Sprite2D" parent="."]
+[node name="SelectedGadget" type="AnimatedSprite2D" parent="."]
 visible = false
 material = SubResource("ShaderMaterial_hoa3s")
 scale = Vector2(0.7, 0.7)
@@ -138,7 +138,6 @@ texture_disabled = ExtResource("16_qpprf")
 
 [node name="PauseMenu" parent="." instance=ExtResource("13_55orh")]
 process_mode = 3
-visible = false
 top_level = true
 z_index = 4096
 z_as_relative = false
@@ -171,7 +170,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_fonts/normal_font = ExtResource("20_qpprf")
 theme_override_font_sizes/normal_font_size = 60
-text = "Sleeping through the night..."
+text = "The power has went out.
+You have no choice but to sleep."
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true

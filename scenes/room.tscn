@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://gfvpt16hdue1"]
+[gd_scene load_steps=20 format=4 uid="uid://gfvpt16hdue1"]
 
 [ext_resource type="Shader" uid="uid://7r383w0xu0ql" path="res://scripts/shaders/rain.gdshader" id="1_1f3ag"]
 [ext_resource type="TileSet" uid="uid://r7x82rdaw80h" path="res://resources/tilesets/room.tres" id="1_lwtf6"]
@@ -9,6 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://bpie3rt8qmyxr" path="res://scenes/hud.tscn" id="8_s1rlv"]
 [ext_resource type="Shader" uid="uid://c1k7h37pvve4h" path="res://scripts/shaders/bg.gdshader" id="9_t227l"]
 [ext_resource type="Script" uid="uid://cr8g2k7hdmqnq" path="res://scripts/audio/gadget_audio.gd" id="9_ybpoa"]
+[ext_resource type="AudioStream" uid="uid://cjx0wvt0iwlt6" path="res://resources/audio/Background Rain.mp3" id="10_qtoah"]
+[ext_resource type="AudioStream" uid="uid://bg77s7ef0pjwj" path="res://resources/audio/day start.wav" id="11_eom3m"]
+[ext_resource type="Script" uid="uid://dqhdc3kooe8xm" path="res://scripts/audio/day_start.gd" id="12_23wr2"]
+[ext_resource type="AudioStream" uid="uid://otmrxp1042tf" path="res://resources/audio/day end.wav" id="12_tk5fv"]
+[ext_resource type="Script" uid="uid://bdel4jeebw8i1" path="res://scripts/audio/day_end.gd" id="14_3j2fx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4qjpb"]
 shader = ExtResource("9_t227l")
@@ -185,11 +190,30 @@ metadata/_edit_lock_ = true
 
 [node name="HUD" parent="." instance=ExtResource("8_s1rlv")]
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Audio" type="Node2D" parent="."]
 
-[node name="GadgetAudio" type="AudioStreamPlayer2D" parent="Node2D"]
+[node name="GadgetAudio" type="AudioStreamPlayer2D" parent="Audio"]
 stream = SubResource("AudioStreamSynchronized_qtoah")
 autoplay = true
 script = ExtResource("9_ybpoa")
 
-[connection signal="finished" from="Node2D/GadgetAudio" to="Node2D/GadgetAudio" method="_on_finished"]
+[node name="AmbientRain" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("10_qtoah")
+volume_db = -9.0
+autoplay = true
+max_distance = 8560.0
+attenuation = 1e-05
+
+[node name="DayStart" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("11_eom3m")
+max_distance = 18050.0
+attenuation = 1e-05
+script = ExtResource("12_23wr2")
+
+[node name="DayEnd" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("12_tk5fv")
+max_distance = 12570.0
+attenuation = 1e-05
+script = ExtResource("14_3j2fx")
+
+[connection signal="finished" from="Audio/GadgetAudio" to="Audio/GadgetAudio" method="_on_finished"]

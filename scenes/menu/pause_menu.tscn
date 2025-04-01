@@ -1,25 +1,21 @@
-[gd_scene load_steps=10 format=3 uid="uid://biflar31oita2"]
+[gd_scene load_steps=13 format=3 uid="uid://biflar31oita2"]
 
 [ext_resource type="Script" uid="uid://djuv3gdudk61e" path="res://scripts/menus/pause_menu.gd" id="1_hr5ih"]
+[ext_resource type="Texture2D" uid="uid://cr6ns44pljosn" path="res://resources/sprites/pauseMenu.png" id="2_2yk66"]
+[ext_resource type="Shader" uid="uid://bn3laa6ok6dxw" path="res://scripts/shaders/blur.gdshader" id="2_5nn8h"]
 [ext_resource type="FontFile" uid="uid://cskltmfvwlc7g" path="res://resources/fonts/Audiowide-Regular.ttf" id="2_654oy"]
-[ext_resource type="Texture2D" uid="uid://bj7v3g2xr7vbt" path="res://resources/sprites/uitileset.png" id="3_etkr1"]
-[ext_resource type="Script" uid="uid://qijeydguunxc" path="res://scripts/menus/menu_button.gd" id="4_msl3b"]
+[ext_resource type="Texture2D" uid="uid://bk0pgp30181aw" path="res://resources/sprites/pauseMain.png" id="6_kwdbo"]
+[ext_resource type="Script" uid="uid://bc7sbrtfs8nd1" path="res://scripts/menus/menu_texture_button.gd" id="6_mb26x"]
+[ext_resource type="Texture2D" uid="uid://dfr3okv2urci2" path="res://resources/sprites/pauseMainSelect.png" id="7_devpi"]
+[ext_resource type="Texture2D" uid="uid://bpbginp3bsj4h" path="res://resources/sprites/pauseMainHover.png" id="8_u7ct7"]
+[ext_resource type="Texture2D" uid="uid://csky4dqvqhs7d" path="res://resources/sprites/pauseOptions.png" id="10_2pedh"]
+[ext_resource type="Texture2D" uid="uid://cxx36hi74kwv0" path="res://resources/sprites/pauseOptionsSelect.png" id="11_6d2ur"]
+[ext_resource type="Texture2D" uid="uid://dl1o7b1idtmc4" path="res://resources/sprites/pauseOptionsHover.png" id="12_0dble"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_elfdv"]
-bg_color = Color(3.60981e-08, 0.153377, 0.236964, 0.560784)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2rgi4"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dckp1"]
-texture = ExtResource("3_etkr1")
-modulate_color = Color(0.478434, 0.763275, 1, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cjs84"]
-texture = ExtResource("3_etkr1")
-modulate_color = Color(9.62615e-08, 0.47072, 0.740509, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e20bq"]
-texture = ExtResource("3_etkr1")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rdkub"]
+shader = ExtResource("2_5nn8h")
+shader_parameter/strength = 2.454
+shader_parameter/mix_percentage = 0.024
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -28,125 +24,122 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_hr5ih")
+slide_in_speed = 10.0
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Blur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_rdkub")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_elfdv")
+mouse_filter = 2
+color = Color(0, 0, 0, 0.141176)
 
-[node name="Label" type="Label" parent="."]
+[node name="PauseMenuSprite" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -502.0
-offset_top = 221.0
-offset_right = 502.0
-offset_bottom = 426.0
-grow_horizontal = 2
-theme_override_fonts/font = ExtResource("2_654oy")
-theme_override_font_sizes/font_size = 160
-text = "Pausing"
-horizontal_alignment = 1
-vertical_alignment = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -620.0
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_2yk66")
+expand_mode = 3
+stretch_mode = 4
 
-[node name="MainMenuButtonContainers" type="VBoxContainer" parent="."]
+[node name="PauseMenuButtonContainers" type="VBoxContainer" parent="PauseMenuSprite"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.759
-anchor_right = 0.5
-anchor_bottom = 0.759
-offset_left = -283.0
-offset_top = -309.72
-offset_right = 284.0
-offset_bottom = 157.28
-grow_horizontal = 2
-grow_vertical = 0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 108.0
+offset_top = -138.0
+offset_right = 395.0
+offset_bottom = 244.0
+grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/separation = 24
 alignment = 1
 
-[node name="Resume" type="Button" parent="MainMenuButtonContainers"]
+[node name="Resume" type="TextureButton" parent="PauseMenuSprite/PauseMenuButtonContainers"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_focus_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("2_654oy")
-theme_override_font_sizes/font_size = 64
-theme_override_styles/focus = SubResource("StyleBoxEmpty_2rgi4")
-theme_override_styles/hover = SubResource("StyleBoxTexture_dckp1")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_cjs84")
-theme_override_styles/normal = SubResource("StyleBoxTexture_e20bq")
-text = "Resume
-"
-script = ExtResource("4_msl3b")
+texture_normal = ExtResource("6_kwdbo")
+texture_pressed = ExtResource("7_devpi")
+texture_hover = ExtResource("8_u7ct7")
+texture_disabled = ExtResource("6_kwdbo")
+texture_focused = ExtResource("6_kwdbo")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("6_mb26x")
 
-[node name="ToMainMenu" type="Button" parent="MainMenuButtonContainers"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_focus_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+[node name="Label" type="Label" parent="PauseMenuSprite/PauseMenuButtonContainers/Resume"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_654oy")
-theme_override_font_sizes/font_size = 64
-theme_override_styles/focus = SubResource("StyleBoxEmpty_2rgi4")
-theme_override_styles/hover = SubResource("StyleBoxTexture_dckp1")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_cjs84")
-theme_override_styles/normal = SubResource("StyleBoxTexture_e20bq")
-text = "To Main Menu"
-script = ExtResource("4_msl3b")
+theme_override_font_sizes/font_size = 40
+text = "Resume"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Quit" type="Button" parent="MainMenuButtonContainers"]
+[node name="ToMainMenu" type="TextureButton" parent="PauseMenuSprite/PauseMenuButtonContainers"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_focus_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+texture_normal = ExtResource("10_2pedh")
+texture_pressed = ExtResource("11_6d2ur")
+texture_hover = ExtResource("12_0dble")
+texture_disabled = ExtResource("10_2pedh")
+texture_focused = ExtResource("10_2pedh")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("6_mb26x")
+
+[node name="Label" type="Label" parent="PauseMenuSprite/PauseMenuButtonContainers/ToMainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_654oy")
-theme_override_font_sizes/font_size = 64
-theme_override_styles/focus = SubResource("StyleBoxEmpty_2rgi4")
-theme_override_styles/hover = SubResource("StyleBoxTexture_dckp1")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_cjs84")
-theme_override_styles/normal = SubResource("StyleBoxTexture_e20bq")
+theme_override_font_sizes/font_size = 40
+text = "Main Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quit" type="TextureButton" parent="PauseMenuSprite/PauseMenuButtonContainers"]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("6_kwdbo")
+texture_pressed = ExtResource("7_devpi")
+texture_hover = ExtResource("8_u7ct7")
+texture_disabled = ExtResource("6_kwdbo")
+texture_focused = ExtResource("6_kwdbo")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("6_mb26x")
+
+[node name="Label" type="Label" parent="PauseMenuSprite/PauseMenuButtonContainers/Quit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_654oy")
+theme_override_font_sizes/font_size = 40
 text = "Quit"
-script = ExtResource("4_msl3b")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[connection signal="pressed" from="MainMenuButtonContainers/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="MainMenuButtonContainers/ToMainMenu" to="." method="_on_to_main_menu_pressed"]
-[connection signal="pressed" from="MainMenuButtonContainers/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="PauseMenuSprite/PauseMenuButtonContainers/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenuSprite/PauseMenuButtonContainers/ToMainMenu" to="." method="_on_to_main_menu_pressed"]
+[connection signal="pressed" from="PauseMenuSprite/PauseMenuButtonContainers/Quit" to="." method="_on_quit_pressed"]

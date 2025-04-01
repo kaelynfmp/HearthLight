@@ -18,7 +18,6 @@ func _on_start_pressed() -> void:
 
 
 func _on_credit_pressed() -> void:
-	$Label.visible = false
 	$MainMenuButtonContainers.visible = false
 	$CreditContainers.visible = true
 
@@ -27,6 +26,5 @@ func _on_quit_pressed() -> void:
 
 
 func _on_back_pressed() -> void:
-	$Label.visible = true
 	$MainMenuButtonContainers.visible = true
 	$CreditContainers.visible = false # Replace with function body.
