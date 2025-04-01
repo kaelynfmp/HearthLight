@@ -63,6 +63,8 @@ folder_colors={
 [global_group]
 
 Gadget=""
+world_items="All items located physically in-world"
+world_gadgets="All gadgets located physically in-world"
 
 [input]
 

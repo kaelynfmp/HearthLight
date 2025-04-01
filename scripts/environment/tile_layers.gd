@@ -96,6 +96,7 @@ func spawn_object(gadget: Gadget, _cell_pos:Vector2i = Vector2i(-99, -99)) -> bo
 		GameManager.room_map[cell_pos[0] + 6][cell_pos[1] + 5] = instance 
 		instance.removing.connect(free_tile)
 		instance.item_at_location.connect(item_at_location)
+		instance.add_to_group("world_gadgets")
 		$"Base".add_child(instance)
 		tile_map[layer_occupied_name].append(cell_pos + Vector2i(-1, -1))
 		return true
@@ -113,4 +114,5 @@ func item_at_location(cell_pos: Vector2i, item: Item):
 	item_instance.item = item
 	item_instance.cell_pos = cell_pos
 	item_instance.tile_layer = $"Layer 1"
+	item_instance.add_to_group("world_items")
 	$"Layer 1".add_child(item_instance)

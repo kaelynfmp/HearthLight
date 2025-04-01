@@ -42,7 +42,7 @@ shader_parameter/slant = 0.2
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_qtoah"]
 
-[node name="Room" type="Node"]
+[node name="Room" type="Node" groups=["world_gadgets", "world_items"]]
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -185,11 +185,11 @@ metadata/_edit_lock_ = true
 
 [node name="HUD" parent="." instance=ExtResource("8_s1rlv")]
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Audio" type="Node2D" parent="."]
 
-[node name="GadgetAudio" type="AudioStreamPlayer2D" parent="Node2D"]
+[node name="GadgetAudio" type="AudioStreamPlayer2D" parent="Audio"]
 stream = SubResource("AudioStreamSynchronized_qtoah")
 autoplay = true
 script = ExtResource("9_ybpoa")
 
-[connection signal="finished" from="Node2D/GadgetAudio" to="Node2D/GadgetAudio" method="_on_finished"]
+[connection signal="finished" from="Audio/GadgetAudio" to="Audio/GadgetAudio" method="_on_finished"]

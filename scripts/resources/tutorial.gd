@@ -28,6 +28,9 @@ var prev_steps
 					steps[index] = TutorialStep.new()
 			prev_steps = steps.duplicate()
 		return steps
+
+## The currently 'active' step for visualization purpoes
+var active_step:TutorialStep
 ## Whether or not the tutorial is complete
 var complete: bool
 var active:bool:
@@ -40,16 +43,23 @@ var active:bool:
 ## The node containing the activation script
 var activation_script_node:Node
 
-func _init(p_title:String = "", p_steps: Array[TutorialStep] = [], p_complete:bool = false, \
+func _init(p_title:String = "", p_steps: Array[TutorialStep] = [], p_active_step:TutorialStep = null, p_complete:bool = false, \
 p_activation_script:GDScript = null, p_activation_script_node:Node = null) -> void:
 	title = p_title
 	steps = p_steps
+	active_step = p_active_step
 	complete = p_complete
 	activation_script = p_activation_script
 	activation_script_node = p_activation_script_node
 	
 ## Whenever a step is completed, it will check if the entire tutorial is complete. If it is, emit signal and set self to complete
 func step_completed():
+	if not Engine.is_editor_hint():
+		TutorialManager.tutorial_sprite.sprite = null
 	if steps.all(func(step:TutorialStep): return step.complete):
 		complete = true
 		completed.emit()
+	else:
+		active_step.active = false
+		active_step = steps.filter(func(step:TutorialStep): return step != active_step and not step.complete)[0]
+		active_step.active = true

@@ -13,9 +13,11 @@ signal completed
 ## The node the step script is running on
 var step_script_node:Node 
 var complete:bool
+var active:bool
 
-func _init(p_desc:String = "", p_complete:bool = false, p_step_script:GDScript = null, p_step_script_node:Node = null) -> void:
+func _init(p_desc:String = "", p_complete:bool = false, p_step_script:GDScript = null, p_step_script_node:Node = null, p_active:bool = false) -> void:
 	desc = p_desc
 	complete = p_complete
 	step_script = p_step_script
 	step_script_node = p_step_script_node
+	active = p_active
