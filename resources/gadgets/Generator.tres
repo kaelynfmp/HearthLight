@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="Gadget" load_steps=11 format=3 uid="uid://dh7knqcysban1"]
+[gd_resource type="Resource" script_class="Gadget" load_steps=12 format=3 uid="uid://dh7knqcysban1"]
 
 [ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_exgi4"]
 [ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_cn647"]
 [ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_fk4tt"]
 [ext_resource type="Texture2D" uid="uid://dymvu7tgvxht5" path="res://resources/sprites/generatorCoal.png" id="4_cn647"]
+[ext_resource type="Resource" uid="uid://badopsm2qs26e" path="res://resources/items/Coal.tres" id="4_fk4tt"]
 [ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_i23j1"]
 
 [sub_resource type="Resource" id="Resource_8srds"]
 script = ExtResource("2_cn647")
 locked = false
-item_filter = Array[ExtResource("3_fk4tt")]([])
+item_filter = Array[ExtResource("3_fk4tt")]([ExtResource("4_fk4tt")])
 bypass_stack = false
 quantity = 0
 
@@ -30,7 +31,7 @@ texture = ExtResource("4_cn647")
 name = "Generator"
 description = "This is a generator."
 max_stack = 100
-price = 0
+price = 100
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cn647"]
 animations = [{

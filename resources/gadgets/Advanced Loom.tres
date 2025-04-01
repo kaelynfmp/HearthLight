@@ -31,7 +31,7 @@ texture = ExtResource("4_k1ud4")
 name = "Advanced Loom"
 description = ""
 max_stack = 100
-price = 0
+price = 100
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_57x6j"]
 animations = [{
@@ -67,4 +67,4 @@ inventory = SubResource("Resource_m0yaq")
 produces = true
 inputs = 1
 outputs = 1
-process_time = 4.0
+process_time = 12.0

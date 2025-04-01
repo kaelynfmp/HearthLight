@@ -10,4 +10,4 @@ texture = ExtResource("2_y1iss")
 name = "Coal"
 description = ""
 max_stack = 100
-price = 0
+price = 5

@@ -1,15 +1,24 @@
-[gd_resource type="Resource" script_class="Recipe" load_steps=9 format=3 uid="uid://buu3htcuiyyl6"]
+[gd_resource type="Resource" script_class="Recipe" load_steps=11 format=3 uid="uid://buu3htcuiyyl6"]
 
 [ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="1_o3580"]
-[ext_resource type="Resource" uid="uid://d2khmgxs20bw2" path="res://resources/gadgets/Advanced Loom.tres" id="1_vyn7a"]
+[ext_resource type="Resource" uid="uid://7oikt5vc44v0" path="res://resources/gadgets/advanced_plant.tres" id="1_vyn7a"]
 [ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="2_vyn7a"]
+[ext_resource type="Resource" uid="uid://bjux8vbxnqlf8" path="res://resources/items/seed.tres" id="3_5343m"]
 [ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="3_cjrus"]
 [ext_resource type="Script" uid="uid://nu8khenfb28n" path="res://scripts/resources/recipe.gd" id="3_ewiua"]
-[ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="5_ysmm6"]
+[ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="5_nxj5v"]
 
 [sub_resource type="Resource" id="Resource_ysmm6"]
 script = ExtResource("1_o3580")
-item = ExtResource("3_cjrus")
+item = ExtResource("3_5343m")
+locked = false
+item_filter = Array[ExtResource("2_vyn7a")]([])
+bypass_stack = false
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_ewiua"]
+script = ExtResource("1_o3580")
+item = ExtResource("5_nxj5v")
 locked = false
 item_filter = Array[ExtResource("2_vyn7a")]([])
 bypass_stack = false
@@ -17,7 +26,7 @@ quantity = 1
 
 [sub_resource type="Resource" id="Resource_0mehb"]
 script = ExtResource("1_o3580")
-item = ExtResource("5_ysmm6")
+item = ExtResource("3_cjrus")
 locked = false
 item_filter = Array[ExtResource("2_vyn7a")]([])
 bypass_stack = false
@@ -27,6 +36,6 @@ quantity = 4
 resource_name = "advanced_cotton_recipe"
 script = ExtResource("3_ewiua")
 gadget = ExtResource("1_vyn7a")
-inputs = Array[ExtResource("1_o3580")]([SubResource("Resource_ysmm6")])
+inputs = Array[ExtResource("1_o3580")]([SubResource("Resource_ysmm6"), SubResource("Resource_ewiua")])
 outputs = Array[ExtResource("1_o3580")]([SubResource("Resource_0mehb")])
 processing_multiplier = 4.0
