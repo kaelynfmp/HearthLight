@@ -1,40 +1,22 @@
-[gd_scene load_steps=15 format=3 uid="uid://dpji2u13pgk3n"]
+[gd_scene load_steps=18 format=3 uid="uid://dpji2u13pgk3n"]
 
-[ext_resource type="Texture2D" uid="uid://cobedgct5ecrq" path="res://resources/temp/menu_background.png" id="1_4p3nn"]
 [ext_resource type="Script" uid="uid://pje3fqm6wipx" path="res://scripts/menus/main_menu.gd" id="1_6dukm"]
 [ext_resource type="FontFile" uid="uid://cskltmfvwlc7g" path="res://resources/fonts/Audiowide-Regular.ttf" id="1_ujjk6"]
-[ext_resource type="Texture2D" uid="uid://bj7v3g2xr7vbt" path="res://resources/sprites/uitileset.png" id="2_ju1bv"]
-[ext_resource type="Script" uid="uid://qijeydguunxc" path="res://scripts/menus/menu_button.gd" id="5_hj162"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0iv4d"]
-texture = ExtResource("1_4p3nn")
-modulate_color = Color(0.727428, 0.727428, 0.727428, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_haohg"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s342v"]
-texture = ExtResource("2_ju1bv")
-modulate_color = Color(0.478434, 0.763275, 1, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k6w1a"]
-texture = ExtResource("2_ju1bv")
-modulate_color = Color(9.62615e-08, 0.47072, 0.740509, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hmkdj"]
-texture = ExtResource("2_ju1bv")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8cfo0"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uov44"]
-texture = ExtResource("2_ju1bv")
-modulate_color = Color(0.647395, 0.647395, 0.647395, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c06en"]
-texture = ExtResource("2_ju1bv")
-modulate_color = Color(0.351563, 0.351563, 0.351563, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5npun"]
-texture = ExtResource("2_ju1bv")
+[ext_resource type="Texture2D" uid="uid://bfxpsbyx7evh3" path="res://resources/sprites/mmBackground.png" id="2_gdhp0"]
+[ext_resource type="Texture2D" uid="uid://ctwoucooh4nfp" path="res://resources/sprites/mmTitle.png" id="3_pstia"]
+[ext_resource type="Texture2D" uid="uid://cswo3qd3b4kwk" path="res://resources/sprites/mmButton1.png" id="4_41tvm"]
+[ext_resource type="Texture2D" uid="uid://dhe7ll3t5mntv" path="res://resources/sprites/mmButton1Select.png" id="5_vxdmp"]
+[ext_resource type="Texture2D" uid="uid://c1nhq2q6yflk1" path="res://resources/sprites/mmButton1Hover.png" id="6_3h20m"]
+[ext_resource type="Script" uid="uid://bc7sbrtfs8nd1" path="res://scripts/menus/menu_texture_button.gd" id="7_uaj4g"]
+[ext_resource type="Texture2D" uid="uid://jw63g434eopn" path="res://resources/sprites/mmButton2.png" id="8_si58d"]
+[ext_resource type="Texture2D" uid="uid://4rh6achleia" path="res://resources/sprites/mmButton2Select.png" id="9_anexq"]
+[ext_resource type="Texture2D" uid="uid://coh6idmm14jg8" path="res://resources/sprites/mmButton2Hover.png" id="10_qvxhw"]
+[ext_resource type="Texture2D" uid="uid://bo4ag8n8p3p7x" path="res://resources/sprites/mmButton4.png" id="11_do53f"]
+[ext_resource type="Texture2D" uid="uid://fcuilu60akbx" path="res://resources/sprites/mmButton4Select.png" id="12_1bw8o"]
+[ext_resource type="Texture2D" uid="uid://bc5vsboiynor7" path="res://resources/sprites/mmButton4Hover.png" id="13_q78k2"]
+[ext_resource type="Texture2D" uid="uid://dqawuua68c2yw" path="res://resources/sprites/mmButton3.png" id="15_pstia"]
+[ext_resource type="Texture2D" uid="uid://cmkyia11ih6wj" path="res://resources/sprites/mmButton3Select.png" id="16_41tvm"]
+[ext_resource type="Texture2D" uid="uid://bdr1buk4dhwgt" path="res://resources/sprites/mmButton3Hover.png" id="17_vxdmp"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -44,135 +26,136 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6dukm")
+metadata/_edit_lock_ = true
 
-[node name="Panel" type="Panel" parent="."]
+[node name="BG" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_0iv4d")
+texture = ExtResource("2_gdhp0")
+expand_mode = 5
+metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="."]
+[node name="Title" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -502.0
-offset_top = 221.0
-offset_right = 502.0
-offset_bottom = 426.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 56.0
+offset_right = -19.0
+offset_bottom = 249.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("1_ujjk6")
-theme_override_font_sizes/font_size = 160
-text = "FactoRoom"
+texture = ExtResource("3_pstia")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="MainMenuButtonContainers" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.759
-anchor_right = 0.5
-anchor_bottom = 0.759
-offset_left = -283.0
-offset_top = -309.72
-offset_right = 284.0
-offset_bottom = 157.28
-grow_horizontal = 2
-grow_vertical = 0
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -803.0
+offset_top = -159.0
+offset_right = -191.0
+offset_bottom = 437.0
+grow_horizontal = 0
+grow_vertical = 2
 theme_override_constants/separation = 24
 alignment = 1
 
-[node name="Start" type="Button" parent="MainMenuButtonContainers"]
+[node name="Start" type="TextureButton" parent="MainMenuButtonContainers"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_focus_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("1_ujjk6")
-theme_override_font_sizes/font_size = 64
-theme_override_styles/focus = SubResource("StyleBoxEmpty_haohg")
-theme_override_styles/hover = SubResource("StyleBoxTexture_s342v")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_k6w1a")
-theme_override_styles/normal = SubResource("StyleBoxTexture_hmkdj")
-text = "Start
-"
-script = ExtResource("5_hj162")
+texture_normal = ExtResource("4_41tvm")
+texture_pressed = ExtResource("5_vxdmp")
+texture_hover = ExtResource("6_3h20m")
+texture_disabled = ExtResource("4_41tvm")
+texture_focused = ExtResource("4_41tvm")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("7_uaj4g")
 
-[node name="Credits" type="Button" parent="MainMenuButtonContainers"]
+[node name="Label" type="Label" parent="MainMenuButtonContainers/Start"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_ujjk6")
+theme_override_font_sizes/font_size = 80
+text = "Start"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Credits" type="TextureButton" parent="MainMenuButtonContainers"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_focus_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+texture_normal = ExtResource("8_si58d")
+texture_pressed = ExtResource("9_anexq")
+texture_hover = ExtResource("10_qvxhw")
+texture_disabled = ExtResource("8_si58d")
+texture_focused = ExtResource("8_si58d")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("7_uaj4g")
+
+[node name="Label" type="Label" parent="MainMenuButtonContainers/Credits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_ujjk6")
-theme_override_font_sizes/font_size = 64
-theme_override_styles/focus = SubResource("StyleBoxEmpty_haohg")
-theme_override_styles/hover = SubResource("StyleBoxTexture_s342v")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_k6w1a")
-theme_override_styles/normal = SubResource("StyleBoxTexture_hmkdj")
+theme_override_font_sizes/font_size = 80
 text = "Credits"
-script = ExtResource("5_hj162")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Quit" type="Button" parent="MainMenuButtonContainers"]
+[node name="Quit" type="TextureButton" parent="MainMenuButtonContainers"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_focus_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+texture_normal = ExtResource("11_do53f")
+texture_pressed = ExtResource("12_1bw8o")
+texture_hover = ExtResource("13_q78k2")
+texture_disabled = ExtResource("11_do53f")
+texture_focused = ExtResource("11_do53f")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("7_uaj4g")
+
+[node name="Label" type="Label" parent="MainMenuButtonContainers/Quit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -42.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_ujjk6")
-theme_override_font_sizes/font_size = 64
-theme_override_styles/focus = SubResource("StyleBoxEmpty_haohg")
-theme_override_styles/hover = SubResource("StyleBoxTexture_s342v")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_k6w1a")
-theme_override_styles/normal = SubResource("StyleBoxTexture_hmkdj")
+theme_override_font_sizes/font_size = 80
 text = "Quit"
-script = ExtResource("5_hj162")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CreditContainers" type="VBoxContainer" parent="."]
 visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -275.0
-offset_top = -469.5
-offset_right = 275.0
-offset_bottom = 469.5
-grow_horizontal = 2
+offset_left = -923.0
+offset_top = -172.0
+offset_right = -108.0
+offset_bottom = 455.0
+grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 24
 
@@ -184,7 +167,12 @@ text = "HearthLight Studios"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Producer" type="Label" parent="CreditContainers"]
+[node name="GridContainer" type="GridContainer" parent="CreditContainers"]
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 2
+
+[node name="Producer" type="Label" parent="CreditContainers/GridContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_ujjk6")
 theme_override_font_sizes/font_size = 36
@@ -193,7 +181,7 @@ Kaelyn"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LeadDesigner" type="Label" parent="CreditContainers"]
+[node name="LeadDesigner" type="Label" parent="CreditContainers/GridContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_ujjk6")
 theme_override_font_sizes/font_size = 36
@@ -202,7 +190,7 @@ ravyn"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Writer" type="Label" parent="CreditContainers"]
+[node name="Writer" type="Label" parent="CreditContainers/GridContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_ujjk6")
 theme_override_font_sizes/font_size = 36
@@ -211,7 +199,7 @@ Everett"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Audio" type="Label" parent="CreditContainers"]
+[node name="Audio" type="Label" parent="CreditContainers/GridContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_ujjk6")
 theme_override_font_sizes/font_size = 36
@@ -220,7 +208,7 @@ Ash"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VisualArtist" type="Label" parent="CreditContainers"]
+[node name="VisualArtist" type="Label" parent="CreditContainers/GridContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_ujjk6")
 theme_override_font_sizes/font_size = 36
@@ -229,7 +217,7 @@ Kaelyn"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Programmers" type="Label" parent="CreditContainers"]
+[node name="Programmers" type="Label" parent="CreditContainers/GridContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_ujjk6")
 theme_override_font_sizes/font_size = 36
@@ -238,17 +226,35 @@ ravyn, Zhashe, Duc"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Back" type="Button" parent="CreditContainers"]
+[node name="Back" type="TextureButton" parent="CreditContainers"]
+custom_minimum_size = Vector2(612, 183)
 layout_mode = 2
-size_flags_horizontal = 5
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 48
-theme_override_styles/focus = SubResource("StyleBoxEmpty_8cfo0")
-theme_override_styles/hover = SubResource("StyleBoxTexture_uov44")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_c06en")
-theme_override_styles/normal = SubResource("StyleBoxTexture_5npun")
+size_flags_horizontal = 4
+size_flags_vertical = 6
+texture_normal = ExtResource("15_pstia")
+texture_pressed = ExtResource("16_41tvm")
+texture_hover = ExtResource("17_vxdmp")
+texture_disabled = ExtResource("15_pstia")
+texture_focused = ExtResource("15_pstia")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("7_uaj4g")
+
+[node name="Label" type="Label" parent="CreditContainers/Back"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 14.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_ujjk6")
+theme_override_font_sizes/font_size = 80
 text = "Back"
-script = ExtResource("5_hj162")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="MainMenuButtonContainers/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="MainMenuButtonContainers/Credits" to="." method="_on_credit_pressed"]

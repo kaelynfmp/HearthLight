@@ -423,9 +423,9 @@ func wake_up():
 	sleep_end = Time.get_ticks_msec()
 	sleeping_time = (sleep_end - sleep_start) / 1000
 	#print(sleeping_time)
-	if sleeping_time >= 6:
+	if sleeping_time >= 5:
 		if not day_start_sound.playing:
 			day_start_sound.play()
-	if sleeping_time >= 10:
+	if sleeping_time >= 9:
 		sleeping = false
 		print("waking up...")

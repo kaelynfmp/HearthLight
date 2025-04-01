@@ -138,7 +138,6 @@ texture_disabled = ExtResource("16_qpprf")
 
 [node name="PauseMenu" parent="." instance=ExtResource("13_55orh")]
 process_mode = 3
-visible = false
 top_level = true
 z_index = 4096
 z_as_relative = false
