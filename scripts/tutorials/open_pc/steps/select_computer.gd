@@ -1,7 +1,7 @@
 extends Node
 
 var step:TutorialStep
-var selected_sprite:Sprite2D
+var selected_sprite:AnimatedSprite2D
 
 func _ready() -> void:
 	var gadgets: Array[Node] = get_tree().get_nodes_in_group("world_gadgets")
@@ -17,3 +17,5 @@ func _physics_process(_delta: float) -> void:
 			var computer:Node = gadgets[computer_find]
 			selected_sprite = computer.find_child("Sprite")
 			TutorialManager.tutorial_sprite.sprite = selected_sprite
+	if GameManager.computer_visible:
+		step.complete = true

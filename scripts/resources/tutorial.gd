@@ -21,7 +21,7 @@ var prev_steps
 		if prev_steps != steps:
 			for index in range(steps.size()):
 				var step:TutorialStep = steps[index]
-				if step is TutorialStep:
+				if step is TutorialStep and "completed" in step:
 					if not step.completed.is_connected(step_completed):
 						step.completed.connect(step_completed)
 				else:
@@ -32,12 +32,18 @@ var prev_steps
 ## The currently 'active' step for visualization purpoes
 var active_step:TutorialStep
 ## Whether or not the tutorial is complete
-var complete: bool
+var complete: bool:
+	set(value):
+		var old_complete:bool = complete
+		complete = value
+		if value == true and old_complete == false:
+			completed.emit()
 var active:bool:
 	set(value):
-		if value == true:
-			activated.emit()
+		var old_active:bool = active
 		active = value
+		if value == true and old_active == false:
+			activated.emit()
 ## The script that will check for when a tutorial is active, and activated it if so
 @export var activation_script:GDScript
 ## The node containing the activation script
@@ -58,7 +64,6 @@ func step_completed():
 		TutorialManager.tutorial_sprite.sprite = null
 	if steps.all(func(step:TutorialStep): return step.complete):
 		complete = true
-		completed.emit()
 	else:
 		active_step.active = false
 		active_step = steps.filter(func(step:TutorialStep): return step != active_step and not step.complete)[0]

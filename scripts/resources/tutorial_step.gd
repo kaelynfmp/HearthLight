@@ -12,7 +12,12 @@ signal completed
 @export var step_script:GDScript
 ## The node the step script is running on
 var step_script_node:Node 
-var complete:bool
+var complete:bool:
+	set(value):
+		var old_complete = complete
+		complete = value
+		if value == true and old_complete == false:
+			completed.emit()
 var active:bool
 
 func _init(p_desc:String = "", p_complete:bool = false, p_step_script:GDScript = null, p_step_script_node:Node = null, p_active:bool = false) -> void:
