@@ -37,9 +37,9 @@ func _process(_delta: float) -> void:
 		if velocity == Vector2.ZERO: continue
 		if round(abs(rad_to_deg(velocity.angle()))) == 90: continue
 		if sign(cos(velocity.angle())) == -1:
-			sprite.flip_h = false;
+			sprite.play("WalkLeft")
 		elif sign(cos(velocity.angle())) == 1:
-			sprite.flip_h = true;
+			sprite.play("WalkRight")
 
 	if self.velocity == Vector2.ZERO:
 		anim_tree.get("parameters/playback").travel("Idle")
