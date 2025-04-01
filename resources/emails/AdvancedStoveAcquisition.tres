@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Email" load_steps=7 format=3 uid="uid://bdcnnmnkvf33h"]
+[gd_resource type="Resource" script_class="Email" load_steps=8 format=3 uid="uid://bdcnnmnkvf33h"]
 
 [ext_resource type="Resource" uid="uid://bgmxpne1d7fis" path="res://resources/items/metal.tres" id="1_0rv74"]
+[ext_resource type="Resource" uid="uid://esvaq5jc2w7h" path="res://resources/gadgets/advanced_stove.tres" id="1_eh046"]
 [ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_h8wgg"]
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_k4ls1"]
 [ext_resource type="Resource" uid="uid://gw88mo33lg1c" path="res://resources/items/ore.tres" id="2_eh046"]
@@ -9,8 +10,8 @@
 [sub_resource type="Resource" id="Resource_qd3sw"]
 script = ExtResource("1_h8wgg")
 order_id = 0
-given_items = Array[Resource]([])
-given_quantities = Array[int]([])
+given_items = Array[Resource]([ExtResource("1_eh046")])
+given_quantities = Array[int]([1])
 given_currency = 0
 required_items = Array[Resource]([ExtResource("1_0rv74"), ExtResource("2_eh046")])
 required_quantities = Array[int]([1, 1])

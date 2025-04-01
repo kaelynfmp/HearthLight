@@ -3,14 +3,14 @@
 [ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="1_o3580"]
 [ext_resource type="Resource" uid="uid://7oikt5vc44v0" path="res://resources/gadgets/advanced_plant.tres" id="1_vyn7a"]
 [ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="2_vyn7a"]
-[ext_resource type="Resource" uid="uid://bjux8vbxnqlf8" path="res://resources/items/seed.tres" id="3_5343m"]
 [ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="3_cjrus"]
 [ext_resource type="Script" uid="uid://nu8khenfb28n" path="res://scripts/resources/recipe.gd" id="3_ewiua"]
+[ext_resource type="Resource" uid="uid://dh5cgjdmg2i4p" path="res://resources/items/GMO Seed.tres" id="3_tk5b6"]
 [ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="5_nxj5v"]
 
 [sub_resource type="Resource" id="Resource_ysmm6"]
 script = ExtResource("1_o3580")
-item = ExtResource("3_5343m")
+item = ExtResource("3_tk5b6")
 locked = false
 item_filter = Array[ExtResource("2_vyn7a")]([])
 bypass_stack = false

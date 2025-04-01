@@ -1,21 +1,24 @@
-[gd_resource type="Resource" script_class="Email" load_steps=5 format=3 uid="uid://cjm5ssafts5ap"]
+[gd_resource type="Resource" script_class="Email" load_steps=8 format=3 uid="uid://cjm5ssafts5ap"]
 
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_4ydql"]
+[ext_resource type="Resource" uid="uid://7oikt5vc44v0" path="res://resources/gadgets/advanced_plant.tres" id="1_7libj"]
 [ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_nr60n"]
+[ext_resource type="Resource" uid="uid://dh5cgjdmg2i4p" path="res://resources/items/GMO Seed.tres" id="2_mcygt"]
+[ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="3_mcygt"]
 [ext_resource type="Resource" uid="uid://ddiii5ep5hs4p" path="res://resources/emails/GeneratorTutorialComplete.tres" id="3_toijp"]
 
 [sub_resource type="Resource" id="Resource_nr60n"]
 script = ExtResource("1_nr60n")
 order_id = 0
-given_items = Array[Resource]([])
-given_quantities = Array[int]([])
+given_items = Array[Resource]([ExtResource("1_7libj"), ExtResource("2_mcygt")])
+given_quantities = Array[int]([1, 1])
 given_currency = 0
-required_items = Array[Resource]([])
-required_quantities = Array[int]([])
+required_items = Array[Resource]([ExtResource("3_mcygt")])
+required_quantities = Array[int]([1])
 day = 0
 hour = 0
 minute = 0
-currency_reward = 0
+currency_reward = 100
 rewards = Array[Resource]([])
 rewards_quantities = Array[int]([])
 

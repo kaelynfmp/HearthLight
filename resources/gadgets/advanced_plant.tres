@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_tt38c"]
 [ext_resource type="Texture2D" uid="uid://baooyamycki3w" path="res://resources/sprites/plantPrimitive.png" id="4_4878v"]
 [ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_fia4e"]
-[ext_resource type="Resource" uid="uid://bjux8vbxnqlf8" path="res://resources/items/seed.tres" id="4_tt38c"]
+[ext_resource type="Resource" uid="uid://dh5cgjdmg2i4p" path="res://resources/items/GMO Seed.tres" id="4_tt38c"]
 [ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="5_fia4e"]
 
 [sub_resource type="Resource" id="Resource_1tbgm"]
