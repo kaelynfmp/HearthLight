@@ -64,10 +64,14 @@ var active_time: int = 0 # time spent with the time moving, aka out of pause/com
 var seconds_elapsed: float
 var milliseconds_elapsed: int
 var day_hours: int  = 18
-var time_scale: int = 480 * 12 # 1 irl second is 480 game seconds for 2 minutes/day, 16h day
+var time_scale: int = 480 # 1 irl second is 480 game seconds for 2 minutes/day, 16h day
 var time_scaled_seconds: int
 var time_difference
+var continue_clock_in_computer = 22
 var sleeping: bool
+var sleeping_time
+var sleep_start
+var sleep_end
 var game_time: Dictionary = {
 	"day": 1,
 	"hour": 8,
@@ -165,7 +169,7 @@ func _process(_delta: float) -> void:
 					
 	
 	# time tracking
-	if !pause and !in_computer:
+	if !pause and !in_computer or (!pause and in_computer and game_time["hour"] >= continue_clock_in_computer) or (in_computer and game_time["hour"] == 8 and game_time["minute"] == 0):
 		current_time = Time.get_ticks_msec()
 		time_difference = current_time - start_time
 		start_time = Time.get_ticks_msec()
@@ -180,7 +184,6 @@ func _process(_delta: float) -> void:
 			update_time(time_scaled_seconds)
 		elif sleeping: # TODO: whatever animations, etc
 			#await get_tree().create_timer(3).timeout
-			sleeping = false
 			wake_up()
 			start_time = Time.get_ticks_msec()
 	else:
@@ -405,8 +408,14 @@ func is_after_date(day: int, hour: int, minute: int) -> bool:
 
 func go_sleep():
 	sleeping = true
+	sleep_start = Time.get_ticks_msec()
+	milliseconds_elapsed = active_time
 	print("starting sleep...")
 	#TODO: Sleep behavior
 func wake_up():
-	sleeping = false
-	print("waking up...")
+	sleep_end = Time.get_ticks_msec()
+	sleeping_time = (sleep_end - sleep_start) / 1000
+	#print(sleeping_time)
+	if sleeping_time >= 3:
+		sleeping = false
+		print("waking up...")
