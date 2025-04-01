@@ -1,3 +1,5 @@
+@tool
+
 @icon("res://resources/resource-icons/tutorial.svg")
 
 class_name Tutorial
@@ -7,6 +9,9 @@ extends Resource
 ## Signal that emits on tutorial completing
 signal completed
 
+## Signal that indicates the tutorial is currently active
+signal activated
+
 ## Title of the tutorial
 @export var title: String
 var prev_steps
@@ -14,17 +19,34 @@ var prev_steps
 @export var steps: Array[TutorialStep]:
 	get:
 		if prev_steps != steps:
-			for step in steps:
-				if not step.completed.is_connected(step_completed):
-					step.completed.connect(step_completed)
+			for index in range(steps.size()):
+				var step:TutorialStep = steps[index]
+				if step is TutorialStep:
+					if not step.completed.is_connected(step_completed):
+						step.completed.connect(step_completed)
+				else:
+					steps[index] = TutorialStep.new()
+			prev_steps = steps.duplicate()
 		return steps
 ## Whether or not the tutorial is complete
 var complete: bool
+var active:bool:
+	set(value):
+		if value == true:
+			activated.emit()
+		active = value
+## The script that will check for when a tutorial is active, and activated it if so
+@export var activation_script:GDScript
+## The node containing the activation script
+var activation_script_node:Node
 
-func _init(p_title:String = "", p_steps: Array[TutorialStep] = [], p_complete:bool = false) -> void:
+func _init(p_title:String = "", p_steps: Array[TutorialStep] = [], p_complete:bool = false, \
+p_activation_script:GDScript = null, p_activation_script_node:Node = null) -> void:
 	title = p_title
 	steps = p_steps
 	complete = p_complete
+	activation_script = p_activation_script
+	activation_script_node = p_activation_script_node
 	
 ## Whenever a step is completed, it will check if the entire tutorial is complete. If it is, emit signal and set self to complete
 func step_completed():
