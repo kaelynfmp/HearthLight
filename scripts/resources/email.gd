@@ -5,7 +5,7 @@ extends Resource
 @export var subject: String
 @export_multiline var contents: String
 @export_enum("orders", "main", "junk", "social", "archive")
-var category: String
+var category: String = "main"
 # orders (active only/unopened), main (main lore), junk, social, archive (completed + declined orders)
 
 @export_category("Internal Details")
@@ -33,7 +33,7 @@ func check_valid() -> bool:
 	if has_start_time and !GameManager.is_after_date(day, hour, minute):
 		# If it has a start time, and that start time hasn't been met
 		return false
-	if !prerequisite_emails.all(func(email: Email): return email in GameManager.categorized_emails["archive"]):
+	if !prerequisite_emails.all(func(email: Email): return (email.attached_order and email.attached_order.is_completed) or (!email.attached_order and email.is_read)):
 		# Prereq not met
 		# Prerequisite condition not met, some of the prereq emails are not archived. Checks the archive instead
 		# of completed_order_emails, because the pre-requisite could theoretically be a tutorial or lore email
@@ -46,10 +46,8 @@ func check_valid() -> bool:
 		# failure email and prereqs are not failed (if they exist)
 		return false
 	
-	#if check_chain(): # if NOT a failure email, check if prereq emails are failed: return false, otw true
-		#pass
-	#else:
-		#return false
+	#if self in GameManager.categorized_emails["orders"] or self in GameManager.categorized_emails["main"] or !check_chain(): # if NOT a failure email, check if prereq emails are failed: return false, otw true
+	#	return false
 	
 	return true
 
@@ -57,6 +55,8 @@ func check_chain() -> bool:
 	if !prereqs_must_fail:
 		for email in prerequisite_emails:
 			if !email.attached_order and email.is_read:
+				print("email is read! prerequisite achieved")
+				print(email.sender)
 				pass
 			if (email.failable and email.failed) or (email.attached_order and !email.attached_order.is_completed):
 				#print("Chain email invalid")
@@ -65,4 +65,6 @@ func check_chain() -> bool:
 				pass
 	#print("Chain email valid")
 	# once all emails are checked, return true
+	if sender == "Katheryn Elion":
+		print(subject, " has all completed prereqs and should be displayed")
 	return true

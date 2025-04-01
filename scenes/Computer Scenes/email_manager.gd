@@ -38,7 +38,7 @@ func _ready():
 			
 		if email.tutorial:
 			if email.check_valid():
-				GameManager.categorized_emails["main"].append(email)
+				GameManager.categorized_emails["main"].insert(0,email)
 	add_valid_lore_emails()
 	display_category_emails(current_category) # default view to "main"
 
@@ -157,7 +157,7 @@ func change_email_category(email: Email, new_category: String):
 		
 		# change email's category, display in new inbox
 		email.category = new_category
-		categorized_emails[new_category].append(email)
+		categorized_emails[new_category].insert(0,email)
 	
 func is_email_time_reached(email: Email) -> bool:
 	var game_time = GameManager.game_time
@@ -208,7 +208,7 @@ func display_email_button(email: Email):
 		fulfill_texture.visible = false
 		accept_button.visible = false
 		reject_button.visible = false
-	else: # no attached order OR order has been responded to
+	else: #  no order or order has been responded to
 		accept_button.visible = false
 		reject_button.visible = false
 		# if email.attached_order.responded:
@@ -218,6 +218,7 @@ func display_email_button(email: Email):
 func show_email_details(email: Email, email_button: Button):
 	var panel = email_button.get_node("Panel")
 	email.is_read = true
+	print(email.sender, "is read")
 	#is_read_color(email, email_button)
 	panel.visible = !panel.visible
 	if panel.visible:
