@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://caehhdqsv8axd"
-path="res://.godot/imported/mcWalkLeftSprites.png-38a66677f3b1f1dddc9e3759cc8fd672.ctex"
+uid="uid://cyr0pq2ch5n6s"
+path="res://.godot/imported/rightWalkSprites.png-213a071d463e9b2b559af3e5c3ee9583.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/sprites/mcWalkLeftSprites.png"
-dest_files=["res://.godot/imported/mcWalkLeftSprites.png-38a66677f3b1f1dddc9e3759cc8fd672.ctex"]
+source_file="res://resources/sprites/rightWalkSprites.png"
+dest_files=["res://.godot/imported/rightWalkSprites.png-213a071d463e9b2b559af3e5c3ee9583.ctex"]
 
 [params]
 
