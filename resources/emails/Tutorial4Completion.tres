@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://ddl262io6dr0t"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_svgbm"]
+[ext_resource type="Resource" uid="uid://c6ou4lu2dwine" path="res://resources/emails/tutorial4.tres" id="2_chfty"]
+
+[resource]
+resource_name = "Tutorial4Completion"
+script = ExtResource("1_svgbm")
+sender = "Ernest Hayden"
+subject = "You've Done it Again!"
+contents = "Jolly Good!
+
+You have once again exceeded my expectations. Your package arrived during teatime, and might I say you've positively blown my top hat off! I must apologize however for misleading you slightly. I wished not only to ascertain whether you were capable of producing some kind of [res=Ore]raw metal[/res], but also of what quality that metal might be. Fortunately for you, it seems that this metal has been masterfully separated from the useless chaff that no doubt originally surrounded it, and very handily surpasses the purity required to smelt it down into an ingot to purify it further. To that end, I have provided you with a [res=Wood Fire Stove]stove[/res] that should be capable of the job, and I will provide further correspondence shortly.
+
+A proud benefactor,
+Ernest Hayden"
+category = ""
+prerequisite_emails = Array[ExtResource("1_svgbm")]([ExtResource("2_chfty")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = true
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

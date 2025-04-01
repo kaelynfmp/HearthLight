@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://cl0m7wifdc1fn"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_wyxwp"]
+[ext_resource type="Resource" uid="uid://c4i1yak8kun2o" path="res://resources/emails/OrderChain1-2.tres" id="2_h1tbs"]
+
+[resource]
+resource_name = "OrderChain1-2Success"
+script = ExtResource("1_wyxwp")
+sender = "Vivian Brisket"
+subject = "ok yeah you're probably clean"
+contents = "Sorry, just wanted to make sure that I wasn't dealing with a narc. You really are something else though, huh? I was expecting some kind of something after that last request (I was a bit more brazen about it than I should've been ngl), but you're chill as hell. Be on the lookout for something [i]big[/i] in the near future though, it'll be good money >:3"
+category = ""
+prerequisite_emails = Array[ExtResource("1_wyxwp")]([ExtResource("2_h1tbs")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = false
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

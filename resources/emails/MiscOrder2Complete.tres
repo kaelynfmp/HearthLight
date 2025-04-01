@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://dl0ku13wj2437"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_ier6v"]
+[ext_resource type="Resource" uid="uid://dkgv5367ry2m5" path="res://resources/emails/MiscOrder2.tres" id="2_0b04e"]
+
+[resource]
+resource_name = "MiscOrder2Complete"
+script = ExtResource("1_ier6v")
+sender = "Clarence Smith"
+subject = "Your cooperation in this very legal endeavour is much appreciated"
+contents = "Hello again,
+
+I would like to thank you for your assistance in the previously mentioned endeavour. Not only did you provide exactly [res=Dust]what I requested[/res], you were exceptionally closed-lipped about it, for which you have my gratitude. I have provided some high-quality [res=Fabric]fabric[/res] which I hope you will find useful, along with a small payment in cash. Hopefully this will be sufficient, and I hope that I might be able to work with you again in the future.
+
+Many thanks,
+Clarence"
+category = ""
+prerequisite_emails = Array[ExtResource("1_ier6v")]([ExtResource("2_0b04e")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = false
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

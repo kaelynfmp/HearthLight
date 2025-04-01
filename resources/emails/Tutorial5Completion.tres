@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://c4l64rubumces"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_tvncd"]
+[ext_resource type="Resource" uid="uid://dn1yfys2dr5s3" path="res://resources/emails/Tutorial5.tres" id="2_crv7x"]
+
+[resource]
+resource_name = "Tutorial5Completion"
+script = ExtResource("1_tvncd")
+sender = "Ernest Hayden"
+subject = "A very fine job you've done!"
+contents = "You've done it again!
+
+I can't say how pleased I am to have come to know someone as dependable as you. For now you have provided me with some resources most essential, for which I am deeply grateful. I look forward to corresponding with you further, but those requests will be less frequent, and of a far less urgent nature. To a bright future for our partnership!
+
+Many thanks,
+Ernest"
+category = ""
+prerequisite_emails = Array[ExtResource("1_tvncd")]([ExtResource("2_crv7x")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = true
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

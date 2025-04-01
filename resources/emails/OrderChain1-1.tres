@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="Email" load_steps=6 format=3 uid="uid://d62ca2qg720h"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_lhv6p"]
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_n1hx6"]
+[ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="1_okta4"]
+[ext_resource type="Resource" uid="uid://dn1yfys2dr5s3" path="res://resources/emails/Tutorial5.tres" id="3_okta4"]
+
+[sub_resource type="Resource" id="Resource_j7kpp"]
+script = ExtResource("1_n1hx6")
+order_id = 0
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
+given_currency = 0
+required_items = Array[Resource]([ExtResource("1_okta4")])
+required_quantities = Array[int]([13])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 75
+rewards = Array[Resource]([])
+rewards_quantities = Array[int]([])
+
+[resource]
+resource_name = "OrderChain1-1"
+script = ExtResource("1_lhv6p")
+sender = "Vivian Brisket"
+subject = "Hey I heard you're cool as hell"
+contents = "Hihi <3 ! I've got some friends in places ([i]cool[/i] places, if you catch my drift ᖛ◞ ᖛ), and they let me know that you've got an operation going. I've been wanting to do some *extremely legal* things, and I kinda need something for it >w<
+
+I [i]need[/i] some [res=Fabric]fabric[/res], and I've heard that the stuff you've got is damn good. Any chance I could get some? I can pay well, and I'm happy to be a returning customer ❛‿˂̵✧
+
+(*^3^)/~☆"
+category = ""
+prerequisite_emails = Array[ExtResource("1_lhv6p")]([ExtResource("3_okta4")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_j7kpp")
+tutorial = false
+lore_only = false
+has_start_time = false
+failable = true
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

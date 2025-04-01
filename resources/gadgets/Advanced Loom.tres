@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="Gadget" load_steps=8 format=3 uid="uid://d2khmgxs20bw2"]
+
+[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_7agyg"]
+[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_k1ud4"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_57x6j"]
+[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_bay8m"]
+
+[sub_resource type="Resource" id="Resource_ubw0m"]
+script = ExtResource("2_k1ud4")
+locked = true
+item_filter = Array[ExtResource("3_57x6j")]([])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_m0yaq"]
+script = ExtResource("1_7agyg")
+slots = Array[ExtResource("2_k1ud4")]([SubResource("Resource_ubw0m")])
+
+[sub_resource type="Resource" id="Resource_y6jnr"]
+script = ExtResource("3_57x6j")
+name = "Advanced Loom"
+description = ""
+max_stack = 100
+price = 0
+
+[resource]
+resource_name = "Advanced Loom"
+script = ExtResource("4_bay8m")
+sprite_offset = Vector2(0, 0)
+sprite_scale_factor = 1.0
+name = "Advanced Loom"
+age = 0
+direction = 0
+description = ""
+item = SubResource("Resource_y6jnr")
+inventory = SubResource("Resource_m0yaq")
+produces = false
+inputs = 1
+outputs = 1
+process_time = 0.0

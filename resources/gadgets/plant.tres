@@ -38,7 +38,7 @@ slots = Array[ExtResource("3_lt256")]([SubResource("Resource_6gsv3"), SubResourc
 script = ExtResource("4_u6bql")
 texture = ExtResource("6_x573d")
 name = "Pot"
-description = "The seeds for these things come in unmarked plastic baggies. You're not gonna ask where they come from."
+description = "A basic planter's pot. It's surprisingly artisanal"
 max_stack = 1
 price = 25
 
@@ -50,7 +50,7 @@ sprite_scale_factor = 0.9
 name = "Pot"
 age = 0
 direction = 0
-description = "The seeds for these things come in unmarked plastic baggies. You're not gonna ask where they come from."
+description = "A basic planter's pot. It's surprisingly artisanal"
 item = SubResource("Resource_p2117")
 inventory = SubResource("Resource_nd5xr")
 produces = true
