@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6pmbvf4gf2rj"]
+[gd_scene load_steps=4 format=3 uid="uid://c6pmbvf4gf2rj"]
 
 [ext_resource type="Texture2D" uid="uid://brioxpexvl23w" path="res://resources/sprites/emails/emailButton.png" id="1_unc2n"]
+[ext_resource type="Script" uid="uid://qijeydguunxc" path="res://scripts/menus/menu_button.gd" id="2_ioox3"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r7ntb"]
 texture = ExtResource("1_unc2n")
@@ -15,6 +16,8 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_r7ntb")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_r7ntb")
 text = "test"
 flat = true
+script = ExtResource("2_ioox3")
+button_sound = 7
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Gadget" load_steps=14 format=3 uid="uid://c222by5ulftln"]
 
-[ext_resource type="AudioStream" uid="uid://fvjtpam4ybkn" path="res://resources/audio/Gadgets/watering plant.mp3" id="1_2r84d"]
+[ext_resource type="AudioStream" uid="uid://24ktmuhb4tr4" path="res://resources/audio/Gadgets/p plant.wav" id="1_oxrpq"]
 [ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="2_csb3v"]
 [ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="3_lt256"]
 [ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="4_u6bql"]
@@ -57,4 +57,4 @@ produces = true
 inputs = 2
 outputs = 1
 process_time = 1.0
-ambient_sound = ExtResource("1_2r84d")
+ambient_sound = ExtResource("1_oxrpq")

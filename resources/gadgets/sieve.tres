@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Gadget" load_steps=16 format=3 uid="uid://bcp8nvhpucopi"]
 
-[ext_resource type="AudioStream" uid="uid://chyuosb2550ag" path="res://resources/audio/Gadgets/prim sieve ambient.mp3" id="1_0636d"]
+[ext_resource type="AudioStream" uid="uid://m6tfopcr15mh" path="res://resources/audio/Gadgets/p Sieve.wav" id="1_fxx6p"]
 [ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="2_ulwbv"]
 [ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="3_q2vfb"]
 [ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="4_23boe"]
@@ -65,4 +65,4 @@ produces = true
 inputs = 3
 outputs = 1
 process_time = 7.0
-ambient_sound = ExtResource("1_0636d")
+ambient_sound = ExtResource("1_fxx6p")

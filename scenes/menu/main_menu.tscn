@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://dpji2u13pgk3n"]
+[gd_scene load_steps=15 format=3 uid="uid://dpji2u13pgk3n"]
 
 [ext_resource type="Texture2D" uid="uid://cobedgct5ecrq" path="res://resources/temp/menu_background.png" id="1_4p3nn"]
 [ext_resource type="Script" uid="uid://pje3fqm6wipx" path="res://scripts/menus/main_menu.gd" id="1_6dukm"]
 [ext_resource type="FontFile" uid="uid://cskltmfvwlc7g" path="res://resources/fonts/Audiowide-Regular.ttf" id="1_ujjk6"]
 [ext_resource type="Texture2D" uid="uid://bj7v3g2xr7vbt" path="res://resources/sprites/uitileset.png" id="2_ju1bv"]
+[ext_resource type="Script" uid="uid://qijeydguunxc" path="res://scripts/menus/menu_button.gd" id="5_hj162"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0iv4d"]
 texture = ExtResource("1_4p3nn")
@@ -107,6 +108,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_k6w1a")
 theme_override_styles/normal = SubResource("StyleBoxTexture_hmkdj")
 text = "Start
 "
+script = ExtResource("5_hj162")
 
 [node name="Credits" type="Button" parent="MainMenuButtonContainers"]
 layout_mode = 2
@@ -131,6 +133,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_s342v")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_k6w1a")
 theme_override_styles/normal = SubResource("StyleBoxTexture_hmkdj")
 text = "Credits"
+script = ExtResource("5_hj162")
 
 [node name="Quit" type="Button" parent="MainMenuButtonContainers"]
 layout_mode = 2
@@ -155,6 +158,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_s342v")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_k6w1a")
 theme_override_styles/normal = SubResource("StyleBoxTexture_hmkdj")
 text = "Quit"
+script = ExtResource("5_hj162")
 
 [node name="CreditContainers" type="VBoxContainer" parent="."]
 visible = false
@@ -244,6 +248,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_uov44")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_c06en")
 theme_override_styles/normal = SubResource("StyleBoxTexture_5npun")
 text = "Back"
+script = ExtResource("5_hj162")
 
 [connection signal="pressed" from="MainMenuButtonContainers/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="MainMenuButtonContainers/Credits" to="." method="_on_credit_pressed"]

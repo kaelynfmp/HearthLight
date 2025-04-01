@@ -19,6 +19,8 @@ var hover_timer:float = 0.0
 var hover_time:float = 0.7 # in seconds
 var fade_time:float = 0.05 # in seconds
 
+var drop_slot_errored:bool = false
+
 var item_texture_rect: TextureRect
 
 func _ready():
@@ -65,6 +67,8 @@ func update():
 ## On mouse entered, it will check to see if it can distribute slots, pick up slots
 ## or if it can start placing with right click
 func _on_mouse_entered() -> void:
+	if has_node("Highlight"):
+		get_node("Highlight").visible = true
 	mouse_over = true
 	if cursor_slot() == null:
 		return
@@ -90,6 +94,8 @@ func _on_mouse_entered() -> void:
 
 ## On mouse exit, it will add to the original slot if dragged off from right click for distribution purposes
 func _on_mouse_exited() -> void:
+	if has_node("Highlight"):
+		get_node("Highlight").visible = false
 	mouse_over = false
 	if cursor_slot() == null:
 		return
@@ -102,6 +108,8 @@ func _on_gui_input(event:InputEvent) -> void:
 	if cursor_slot() == null:
 		return
 	if event is InputEventMouseButton:
+		var temp_slot = slot.duplicate()
+		var temp_cursor_slot = cursor_slot().duplicate()
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			# If the items arent both null, OR if you left click, swap the items
 			if event.is_pressed():
@@ -127,6 +135,14 @@ func _on_gui_input(event:InputEvent) -> void:
 				if mouse_over:
 					# The mouse needs to still be on the slot for it to want to drop it
 					drop_slot_cursor()
+				if drop_slot_errored or (mouse_over and not just_half_stacked and (temp_slot.item != null or temp_cursor_slot.item != null) and \
+				temp_slot.item == slot.item and temp_slot.quantity == slot.quantity\
+				and temp_cursor_slot.item == cursor_slot().item and temp_cursor_slot.quantity == cursor_slot().quantity):
+					if has_node("ErrorSFX"): 						
+						if not get_node("ErrorSFX").playing:
+							get_node("ErrorSFX").play()
+				else:
+					AudioManager.play_button_sound(AudioManager.BUTTON.SHORT_CLICK)
 				just_half_stacked = false # On release of right click, after trying to drop the first time
 		elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
 			# Wheel up adds items
@@ -136,6 +152,17 @@ func _on_gui_input(event:InputEvent) -> void:
 			# Wheel down takes
 			if event.is_pressed():
 				pull_slot_cursor(true)
+		if (event.button_index == MOUSE_BUTTON_LEFT or \
+			event.button_index == MOUSE_BUTTON_WHEEL_UP or event.button_index == MOUSE_BUTTON_WHEEL_DOWN) \
+			and event.is_pressed():
+			if (temp_slot.item != null or temp_cursor_slot.item != null) and \
+				temp_slot.item == slot.item and temp_slot.quantity == slot.quantity\
+				and temp_cursor_slot.item == cursor_slot().item and temp_cursor_slot.quantity == cursor_slot().quantity:
+				if has_node("ErrorSFX"): 						
+					if not get_node("ErrorSFX").playing:
+						get_node("ErrorSFX").play()
+			else:
+				AudioManager.play_button_sound(AudioManager.BUTTON.SHORT_CLICK)
 
 ## Swap the current slot with the cursor slot
 func swap_slots_cursor(bypass: bool = false):
@@ -166,12 +193,15 @@ func merge_slots_cursor() -> void:
 
 ## Drop one item from cursor into slot
 func drop_slot_cursor(bypass: bool = false) -> void:
+	drop_slot_errored = false
 	if (just_half_stacked and not bypass):
 		return
 	if cursor_slot().item != null and (slot.item == null or slot.item == cursor_slot().item):
 		if not slot.can_insert(cursor_slot().item):
 			var remainder: int = cursor_slot().increment(slot.quantity)
 			slot.decrement(1 - remainder)
+			if slot.quantity == 0 or remainder == 1:
+				drop_slot_errored = true
 		else:
 			# If there is an item on your cursor when you click, place exactly one into the slot
 			# It also ensures that the slot is either empty or populated with something stackable
