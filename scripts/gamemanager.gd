@@ -102,6 +102,9 @@ var recipes:Array[Recipe]
 var gadgets:Array[Gadget]
 var gadget_items:Dictionary
 
+var day_start_sound:AudioStreamPlayer2D
+var day_end_sound:AudioStreamPlayer2D
+
 var room_map = []
 var item_map = []
 
@@ -317,11 +320,12 @@ func subtract_currency(amount: int) -> bool:
 	return false  # not enough money for purchase
 
 ## Picks up a gadget and puts it into the cursor
-func pickup_gadget(_gadget:Gadget) -> bool:
+func pickup_gadget(_gadget:Gadget, direction:Gadget.Direction = Gadget.Direction.SE) -> bool:
 	if cursor != null and cursor.slot != null and cursor.slot.item == null:
 		if !inventory:
 			change_inventory()
 		cursor.slot.initialize(_gadget.item)
+		get_gadget_from_cursor().direction = direction
 		AudioManager.play_button_sound(AudioManager.BUTTON.PICK_UP, 0.0, 1.0, 0.0)
 		return true
 	return false
@@ -362,6 +366,9 @@ func update_time(in_game_seconds):
 	game_time["second"] = int(in_game_seconds % 60)
 	
 	# count days
+	if (game_time["hour"] == 22 and game_time["minute"] >= 44):
+		if not day_end_sound.playing:
+			day_end_sound.play()
 	if (game_time["hour"] == 24): 
 		game_time["day"] += 1
 		game_time["hour"] = 8
@@ -418,6 +425,9 @@ func wake_up():
 	sleep_end = Time.get_ticks_msec()
 	sleeping_time = (sleep_end - sleep_start) / 1000
 	#print(sleeping_time)
-	if sleeping_time >= 3:
+	if sleeping_time >= 5:
+		if not day_start_sound.playing:
+			day_start_sound.play()
+	if sleeping_time >= 9:
 		sleeping = false
 		print("waking up...")

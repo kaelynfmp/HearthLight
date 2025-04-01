@@ -15,9 +15,12 @@ script = ExtResource("1_du0bt")
 move_speed = 320
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
 shape = SubResource("CircleShape2D_du0bt")
 one_way_collision_margin = 0.0
 
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
 y_sort_enabled = true
+position = Vector2(0, 100)
 texture = ExtResource("1_2rtls")
+offset = Vector2(0, -200)

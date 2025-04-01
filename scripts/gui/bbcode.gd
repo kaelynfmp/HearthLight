@@ -135,8 +135,8 @@ func set_text_with_bbcode(value: String):
 			token += "[hint=" + resource_name + "]"
 			if Engine.is_editor_hint(): token += "[url=" + resource_name + "]"
 			token += "[b]"
-			if gadget.texture != null:
-				var texture_path:String = gadget.texture.resource_path
+			if gadget.item.texture != null:
+				var texture_path:String = gadget.item.texture.resource_path
 				token += "[img height=" + str(insert_image_width) + "px,center]"
 				token += texture_path
 				token += "[/img]"

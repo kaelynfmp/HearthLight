@@ -5,7 +5,7 @@ signal item_at_location(cell_pos: Vector2i, item: Item)
 
 @export var gadget_stats:Gadget
 @onready var audio_player:AudioStreamPlayer2D = find_child("AudioStreamPlayer")
-@onready var sprite:Sprite2D = find_child("Sprite")
+@onready var sprite:AnimatedSprite2D = find_child("Sprite")
 @onready var valid_selection:CompressedTexture2D = load("res://scripts/shaders/close_enough_texture.tres")
 @onready var invalid_selection:CompressedTexture2D = load("res://scripts/shaders/not_close_enough_texture.tres")
 @export var inventory: Inventory
@@ -29,6 +29,7 @@ var recipes:Array[Recipe]
 var rear_gadget: StaticBody2D
 var front_gadget: StaticBody2D
 var corresponding_item: RigidBody2D
+enum Direction {SE, SW, NW, NE}
 var direction: int
 var direction_vector: Array[Vector2i] = [
 	Vector2i(-1, 0),
@@ -62,7 +63,7 @@ func _ready() -> void:
 	base_layer = get_parent()
 	tile_layers = base_layer.get_parent()
 	age = gadget_stats.age
-	sprite.texture = gadget_stats.texture
+	sprite.sprite_frames = gadget_stats.sprite_frames
 	sprite.offset = gadget_stats.sprite_offset
 	direction = gadget_stats.direction
 	sprite.scale *= gadget_stats.sprite_scale_factor
@@ -123,12 +124,15 @@ func is_able_to_recipe(checked_recipe: Recipe):
 	return is_able
 	
 func rotate_sprite() -> void:
-	sprite.flip_h = false
-	sprite.flip_v = false
-	if direction == 1 or direction == 2:
-		sprite.flip_h = true
-	if direction == 2 or direction == 3:
-		sprite.flip_v = true
+	match (direction):
+		Direction.SE:
+			sprite.animation = "se"
+		Direction.SW:
+			sprite.animation = "sw"
+		Direction.NE:
+			sprite.animation = "ne"
+		Direction.NW:
+			sprite.animation = "nw"
 	
 func _process(_delta: float) -> void:
 	#direction = gadget_stats.direction
@@ -251,7 +255,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			else:
 				GameManager.unique_gadget_interaction(gadget_stats)
 	elif detect_nearby() and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-		if GameManager.pickup_gadget(gadget_stats):
+		if GameManager.pickup_gadget(gadget_stats, direction):
 			for slot in inventory.slots:
 			# Send it all away to any open inventories
 				GameManager.send_to_inventory(slot)

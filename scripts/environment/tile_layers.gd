@@ -98,6 +98,8 @@ func spawn_object(gadget: Gadget, _cell_pos:Vector2i = Vector2i(-99, -99)) -> bo
 		instance.item_at_location.connect(item_at_location)
 		instance.add_to_group("world_gadgets")
 		$"Base".add_child(instance)
+		# Set to lowest, so items are always above
+		$"Base".move_child(instance, 0)
 		tile_map[layer_occupied_name].append(cell_pos + Vector2i(-1, -1))
 		return true
 	return false
@@ -110,9 +112,11 @@ func free_tile(layer_occupied_name:String, cell_pos:Vector2i):
 func item_at_location(cell_pos: Vector2i, item: Item):
 	var in_world_item = load("res://scenes/in_world_item.tscn")
 	var item_instance = in_world_item.instantiate()
-	item_instance.global_position = first_layer.map_to_local(cell_pos + Vector2i(-1, -1))
+	item_instance.global_position = base_layer.map_to_local(cell_pos)
 	item_instance.item = item
 	item_instance.cell_pos = cell_pos
-	item_instance.tile_layer = $"Layer 1"
+	item_instance.tile_layer = $"Base"
+	$"Base".add_child(item_instance)
+	# Set to highest, so items are always above
+	$"Base".move_child(item_instance, -1)
 	item_instance.add_to_group("world_items")
-	$"Layer 1".add_child(item_instance)

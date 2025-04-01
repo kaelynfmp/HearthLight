@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Gadget" load_steps=13 format=3 uid="uid://dospruqxgfufk"]
+[gd_resource type="Resource" script_class="Gadget" load_steps=14 format=3 uid="uid://dospruqxgfufk"]
 
 [ext_resource type="AudioStream" uid="uid://bl3swuycvduo8" path="res://resources/audio/Gadgets/p stove.wav" id="1_5j4jr"]
 [ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="2_86a58"]
@@ -35,9 +35,36 @@ description = "This thing would be a fire hazard if buildings were made of flamm
 max_stack = 1
 price = 250
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_5j4jr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_h1ts8")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_h1ts8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_h1ts8")
+}],
+"loop": true,
+"name": &"se",
+"speed": 5.0
+}]
+
 [resource]
 script = ExtResource("5_eo3nv")
-texture = ExtResource("5_h1ts8")
+sprite_frames = SubResource("SpriteFrames_5j4jr")
 sprite_offset = Vector2(0, -140)
 sprite_scale_factor = 0.95
 name = "Wood Fire Stove"

@@ -6,7 +6,7 @@ class_name Gadget
 extends Resource
 
 ## Texture that represents the sprite in-game.
-@export var texture: Texture2D
+@export var sprite_frames: SpriteFrames
 ## Name of the gadget as it appears in-game.
 
 @export var sprite_offset: Vector2
@@ -80,10 +80,10 @@ var prev_item_texture
 ## The sound that play when the gadget is stopped
 @export var stop_sound: AudioStream
 
-func _init(p_texture: Texture2D = null, p_name: String = "", p_description: String = "", p_item: Item = null, \
+func _init(p_sprite_frames: SpriteFrames = null, p_name: String = "", p_description: String = "", p_item: Item = null, \
 		   p_inventory: Inventory = null, p_produces: bool = false, p_inputs: int = 0, p_outputs: int = 0, \
 		   p_process_time: float = 0.0, p_start_sound: AudioStream = null, p_ambient_sound: AudioStream = null, p_stop_sound: AudioStream = null):
-	texture = p_texture
+	sprite_frames = p_sprite_frames
 	name = p_name
 	description = p_description
 	item = p_item
