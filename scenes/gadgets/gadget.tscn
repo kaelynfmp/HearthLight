@@ -20,7 +20,6 @@ shader_parameter/rounded = true
 y_sort_enabled = true
 input_pickable = true
 script = ExtResource("1_3434e")
-is_holding = null
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 scale = Vector2(0.611111, 0.563525)

@@ -1,14 +1,16 @@
-[gd_resource type="Resource" script_class="Gadget" load_steps=9 format=3 uid="uid://d2khmgxs20bw2"]
+[gd_resource type="Resource" script_class="Gadget" load_steps=12 format=3 uid="uid://d2khmgxs20bw2"]
 
 [ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_7agyg"]
 [ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_k1ud4"]
 [ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_57x6j"]
+[ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="4_57x6j"]
 [ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_bay8m"]
+[ext_resource type="Texture2D" uid="uid://djy1gmqklb5bc" path="res://resources/sprites/loomPrimitive.png" id="4_k1ud4"]
 
 [sub_resource type="Resource" id="Resource_ubw0m"]
 script = ExtResource("2_k1ud4")
 locked = false
-item_filter = Array[ExtResource("3_57x6j")]([])
+item_filter = Array[ExtResource("3_57x6j")]([ExtResource("4_57x6j")])
 bypass_stack = false
 quantity = 0
 
@@ -25,23 +27,44 @@ slots = Array[ExtResource("2_k1ud4")]([SubResource("Resource_ubw0m"), SubResourc
 
 [sub_resource type="Resource" id="Resource_y6jnr"]
 script = ExtResource("3_57x6j")
+texture = ExtResource("4_k1ud4")
 name = "Advanced Loom"
 description = ""
 max_stack = 100
 price = 0
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_57x6j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_k1ud4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_k1ud4")
+}],
+"loop": true,
+"name": &"se",
+"speed": 5.0
+}]
+
 [resource]
 resource_name = "Advanced Loom"
 script = ExtResource("4_bay8m")
-sprite_offset = Vector2(0, 0)
-sprite_scale_factor = 1.0
+sprite_frames = SubResource("SpriteFrames_57x6j")
+sprite_offset = Vector2(0, -140)
+sprite_scale_factor = 0.95
 name = "Advanced Loom"
-age = 0
+age = 1
 direction = 0
 description = ""
 item = SubResource("Resource_y6jnr")
 inventory = SubResource("Resource_m0yaq")
-produces = false
+produces = true
 inputs = 1
 outputs = 1
-process_time = 0.0
+process_time = 4.0

@@ -206,6 +206,7 @@ func load_gadgets():
 	for gadget_string:String in gadget_strings:
 		var curr_gadget:Gadget = load(gadget_string)
 		gadgets.append(curr_gadget)
+		#print(curr_gadget.name)
 		gadget_items[curr_gadget.item] = curr_gadget
 
 ## Changes whether the inventory is open or not
