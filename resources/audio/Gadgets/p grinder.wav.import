@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dob8405qfqs8o"
+path="res://.godot/imported/p grinder.wav-2f2f5d43a76d9df3cb261dc526a97810.sample"
+
+[deps]
+
+source_file="res://resources/audio/Gadgets/p grinder.wav"
+dest_files=["res://.godot/imported/p grinder.wav-2f2f5d43a76d9df3cb261dc526a97810.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://m5iub2jqs35t"
+path="res://.godot/imported/object placement.mp3-06e817ed2d1f9d65847934b432013e3e.mp3str"
+
+[deps]
+
+source_file="res://resources/audio/object placement.mp3"
+dest_files=["res://.godot/imported/object placement.mp3-06e817ed2d1f9d65847934b432013e3e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

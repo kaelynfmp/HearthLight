@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5605c3ehaw25"]
+[gd_scene load_steps=7 format=3 uid="uid://c5605c3ehaw25"]
 
 [ext_resource type="Script" uid="uid://bsn56iwimnccg" path="res://scripts/gui/inventory/slot.gd" id="1_n8mqj"]
 [ext_resource type="PackedScene" uid="uid://dax2wy6iaipfq" path="res://scenes/tooltip.tscn" id="2_x1gds"]
+[ext_resource type="AudioStream" uid="uid://bi2ci58kojoel" path="res://resources/audio/UI Sounds/UI 7 (error 2).mp3" id="3_0xnbr"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_do0su"]
 
@@ -72,6 +73,16 @@ vertical_alignment = 1
 [node name="TooltipControl" parent="." instance=ExtResource("2_x1gds")]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+
+[node name="Highlight" type="ColorRect" parent="."]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0.227451)
+
+[node name="ErrorSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_0xnbr")
+attenuation = 1e-05
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

@@ -7,6 +7,8 @@ extends Button
 @export var item_image: TextureRect
 @export var popup_scene: PackedScene 
 
+@export var button_sound: AudioManager.BUTTON
+
 func set_item(new_item: Item):
 	item = new_item
 	name_label.text = item.name

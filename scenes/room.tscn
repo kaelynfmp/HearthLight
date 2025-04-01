@@ -5,11 +5,10 @@
 [ext_resource type="Script" uid="uid://cm5vsm77un2s3" path="res://scripts/environment/tile_layers.gd" id="1_suw4i"]
 [ext_resource type="Texture2D" uid="uid://m1v51t3xgjie" path="res://resources/sprites/gridloop.png" id="2_eajwq"]
 [ext_resource type="PackedScene" uid="uid://b353v4ogg13io" path="res://scenes/character.tscn" id="3_aubfo"]
-[ext_resource type="Script" uid="uid://ssdfp5qmbtpv" path="res://scripts/objects/character.gd" id="3_jp7id"]
 [ext_resource type="PackedScene" uid="uid://ooc6jx4dihku" path="res://scenes/marker.tscn" id="4_mnrrm"]
-[ext_resource type="Resource" uid="uid://b1gb7sbupakg4" path="res://resources/character/inventory.tres" id="6_kcpka"]
 [ext_resource type="PackedScene" uid="uid://bpie3rt8qmyxr" path="res://scenes/hud.tscn" id="8_s1rlv"]
 [ext_resource type="Shader" uid="uid://c1k7h37pvve4h" path="res://scripts/shaders/bg.gdshader" id="9_t227l"]
+[ext_resource type="Script" uid="uid://cr8g2k7hdmqnq" path="res://scripts/audio/gadget_audio.gd" id="9_ybpoa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4qjpb"]
 shader = ExtResource("9_t227l")
@@ -40,6 +39,8 @@ shader_parameter/rain_color = Color(0.435, 0.5, 0.463167, 1)
 shader_parameter/base_rain_speed = 0.5
 shader_parameter/additional_rain_speed = 0.5
 shader_parameter/slant = 0.2
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_qtoah"]
 
 [node name="Room" type="Node"]
 
@@ -168,10 +169,6 @@ visible = false
 scale = Vector2(9, 9)
 
 [node name="Character" parent="Tilemap" instance=ExtResource("3_aubfo")]
-script = ExtResource("3_jp7id")
-inventory = ExtResource("6_kcpka")
-camera_edges = Array[int]([-540, -720, 540, 370])
-inventory_camera_offset = 1000.0
 
 [node name="Grid" type="Polygon2D" parent="Tilemap"]
 visible = false
@@ -187,3 +184,12 @@ polygon = PackedVector2Array(-3296, 0, 0, -1648, 3296, 0, 0, 1648)
 metadata/_edit_lock_ = true
 
 [node name="HUD" parent="." instance=ExtResource("8_s1rlv")]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="GadgetAudio" type="AudioStreamPlayer2D" parent="Node2D"]
+stream = SubResource("AudioStreamSynchronized_qtoah")
+autoplay = true
+script = ExtResource("9_ybpoa")
+
+[connection signal="finished" from="Node2D/GadgetAudio" to="Node2D/GadgetAudio" method="_on_finished"]

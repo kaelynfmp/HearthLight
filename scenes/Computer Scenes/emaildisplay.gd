@@ -11,6 +11,9 @@ var email: Email
 @export var expand_panel: Panel  # expanded email content
 @export var fulfill_button: Button
 @export var button_sprite: Sprite2D
+
+@export var button_sound: AudioManager.BUTTON
+
 func _process(_delta: float) -> void:
 	if email.is_read:
 		button_sprite.modulate = Color(0.9, 0.85, 0.9)

@@ -40,6 +40,8 @@ func _buy():
 		# insert(item: Item, amount=1)
 		#var player = get_tree().get_first_node_in_group("character")  # Find the player
 		if inventory.can_insert(item, quantity) == 0:
+			# Success state
+			AudioManager.play_button_sound(AudioManager.BUTTON.BUY)
 			inventory.insert(item, quantity)
 			queue_free()
 			return
@@ -49,7 +51,8 @@ func _buy():
 			print("Error inserting bought item into inventory")
 		
 	else:
-		pass
+		# Fail state
+		AudioManager.play_button_sound(AudioManager.BUTTON.NO_MONEY)
 		# maybe show insufficient funds in future
 		# show buy button as unavailable if currency not enough? future goal
 

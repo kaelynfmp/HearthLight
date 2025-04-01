@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://b5r8qyahtr3r1"]
+[gd_scene load_steps=49 format=3 uid="uid://b5r8qyahtr3r1"]
 
 [ext_resource type="Script" uid="uid://25ttm7ow7tts" path="res://scenes/Computer Scenes/emaildisplay.gd" id="1_cc22d"]
 [ext_resource type="Texture2D" uid="uid://b3f53pdbhlfkg" path="res://resources/sprites/emails/emailPreview.png" id="2_ikcrj"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bha8ro4unkubb" path="res://scripts/gui/bbcode.gd" id="3_gr1tt"]
 [ext_resource type="Texture2D" uid="uid://cwxs2j52xgre8" path="res://resources/sprites/computer/computerAccept.png" id="3_jjpv2"]
 [ext_resource type="Texture2D" uid="uid://dnvrhn4af2nix" path="res://resources/sprites/emails/emailDropdown.png" id="3_n2822"]
+[ext_resource type="Script" uid="uid://qijeydguunxc" path="res://scripts/menus/menu_button.gd" id="6_34x3b"]
 [ext_resource type="Texture2D" uid="uid://brioxpexvl23w" path="res://resources/sprites/emails/emailButton.png" id="6_xo1sp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_68chq"]
@@ -110,6 +111,7 @@ content = NodePath("Panel/Content")
 expand_panel = NodePath("Panel")
 fulfill_button = NodePath("Panel/FulfillTexture/Fulfill")
 button_sprite = NodePath("Sprite2D")
+button_sound = 7
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(961.5, 130.75)
@@ -254,6 +256,8 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_g1453")
 disabled = true
 icon = ExtResource("2_kcjoy")
 flat = true
+script = ExtResource("6_34x3b")
+button_sound = 7
 
 [node name="Accept" type="Button" parent="Panel"]
 layout_mode = 0
@@ -274,6 +278,8 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_4oddd")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_aeq6b")
 icon = ExtResource("3_jjpv2")
 flat = true
+script = ExtResource("6_34x3b")
+button_sound = 13
 
 [node name="FulfillTexture" type="Sprite2D" parent="Panel"]
 visible = false
@@ -306,3 +312,5 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_ayc68")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_esskc")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_na4y0")
 text = "Fulfill"
+script = ExtResource("6_34x3b")
+button_sound = 12

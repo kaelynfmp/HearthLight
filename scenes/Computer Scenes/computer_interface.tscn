@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b5r8qyahtr3r1" path="res://scenes/Computer Scenes/view_email_button.tscn" id="1_ip337"]
 [ext_resource type="Script" uid="uid://ncpw81oo06yf" path="res://scenes/Computer Scenes/email_manager.gd" id="1_stx68"]
 [ext_resource type="PackedScene" uid="uid://c6pmbvf4gf2rj" path="res://scenes/Computer Scenes/inbox_buttons.tscn" id="2_k1btw"]
+[ext_resource type="Script" uid="uid://d1y536ap3urkf" path="res://scripts/computer/sites.gd" id="2_ob7fn"]
 [ext_resource type="PackedScene" uid="uid://de20noymjuwfb" path="res://scenes/Computer Scenes/shop_category.tscn" id="3_mi23s"]
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="3_sa1xx"]
 [ext_resource type="Script" uid="uid://1635h72upi8v" path="res://scenes/Computer Scenes/shop_manager.gd" id="5_tq53l"]
@@ -14,6 +15,12 @@
 [ext_resource type="Resource" uid="uid://bp2r4d5y1sq0h" path="res://resources/emails/tutorial_bankrupt_email.tres" id="7_neuin"]
 [ext_resource type="Texture2D" uid="uid://cu638rts4nfa2" path="res://resources/sprites/computer/computerBalance.png" id="11_n3nyj"]
 [ext_resource type="Texture2D" uid="uid://clcmg5me835w8" path="res://resources/sprites/computer/computerClose.png" id="11_u2wnv"]
+[ext_resource type="Texture2D" uid="uid://kxyigamwj21o" path="res://resources/sprites/computer/computerClosePress.png" id="14_euqoa"]
+[ext_resource type="Texture2D" uid="uid://d0eni1gnv2ha6" path="res://resources/sprites/computer/computerCloseHover.png" id="15_bf1l8"]
+[ext_resource type="AudioStream" uid="uid://dafysaythyrdq" path="res://resources/audio/computer boot.mp3" id="16_6wvcf"]
+[ext_resource type="Script" uid="uid://bc7sbrtfs8nd1" path="res://scripts/menus/menu_texture_button.gd" id="17_ob7fn"]
+[ext_resource type="AudioStream" uid="uid://cef0x1jr8hp7g" path="res://resources/audio/computer fan ambient.mp3" id="17_s3t63"]
+[ext_resource type="AudioStream" uid="uid://d0xc2y5ug21fu" path="res://resources/audio/computer shut off.mp3" id="18_ob7fn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ga7bm"]
 bg_color = Color(0.470588, 0.145098, 0.588235, 1)
@@ -51,29 +58,7 @@ texture = ExtResource("11_n3nyj")
 texture_margin_left = 55.0
 texture_margin_right = 30.0
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_33xji"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8sduo"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hmytj"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tcbma"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a2ghg"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0vpew"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x0qjb"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wtq64"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ju68l"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_281s3"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hvttx"]
-
-[node name="ComputerInterface" type="Control" node_paths=PackedStringArray("currency_label", "exit_button")]
+[node name="ComputerInterface" type="Control" node_paths=PackedStringArray("currency_label", "exit_button", "boot_sound", "ambient_sound", "close_sound")]
 z_index = 50
 layout_mode = 3
 anchor_right = 0.005
@@ -89,6 +74,9 @@ size_flags_vertical = 4
 script = ExtResource("1_1cjce")
 currency_label = NodePath("Currency Label")
 exit_button = NodePath("Close Button")
+boot_sound = NodePath("ComputerBoot")
+ambient_sound = NodePath("ComputerAmbient")
+close_sound = NodePath("ComputerShutDown")
 
 [node name="Sites" type="TabContainer" parent="."]
 z_index = -10
@@ -102,6 +90,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 42
 theme_override_styles/panel = SubResource("StyleBoxFlat_ga7bm")
 current_tab = 0
+script = ExtResource("2_ob7fn")
 
 [node name="Emails" type="TabBar" parent="Sites"]
 layout_mode = 2
@@ -199,24 +188,31 @@ text = "1000000"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Close Button" type="Button" parent="."]
+[node name="Close Button" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 1819.0
 offset_top = 8.0
 offset_right = 1918.0
 offset_bottom = 91.0
-theme_override_font_sizes/font_size = 60
-theme_override_styles/focus = SubResource("StyleBoxEmpty_33xji")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_8sduo")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_hmytj")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_tcbma")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_a2ghg")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_0vpew")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_x0qjb")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_wtq64")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_ju68l")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_281s3")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_hvttx")
-icon = ExtResource("11_u2wnv")
-flat = true
-icon_alignment = 1
+texture_normal = ExtResource("11_u2wnv")
+texture_pressed = ExtResource("14_euqoa")
+texture_hover = ExtResource("15_bf1l8")
+script = ExtResource("17_ob7fn")
+button_sound = 7
+
+[node name="ComputerBoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_6wvcf")
+max_distance = 13925.0
+attenuation = 1e-05
+
+[node name="ComputerAmbient" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_s3t63")
+max_distance = 9385.0
+attenuation = 1e-05
+
+[node name="ComputerShutDown" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_ob7fn")
+max_distance = 11855.0
+attenuation = 1e-05
+
+[connection signal="tab_clicked" from="Sites" to="Sites" method="_on_tab_clicked"]

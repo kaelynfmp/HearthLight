@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 Utility="*res://scripts/utility.gd"
 GameManager="*res://scripts/gamemanager.gd"
 OrderManager="*res://scripts/order_manager.gd"
+AudioManager="*res://scripts/audio_manager.gd"
 
 [display]
 

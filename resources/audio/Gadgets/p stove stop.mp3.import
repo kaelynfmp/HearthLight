@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b0pxjy4j263lb"
+path="res://.godot/imported/p stove stop.mp3-4cffbdd7ec6d7951afc4ea995f063b53.mp3str"
+
+[deps]
+
+source_file="res://resources/audio/Gadgets/p stove stop.mp3"
+dest_files=["res://.godot/imported/p stove stop.mp3-4cffbdd7ec6d7951afc4ea995f063b53.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
