@@ -19,7 +19,8 @@ var all_lore_emails = GameManager.all_lore_emails
 var all_tutorial_emails = GameManager.all_tutorial_emails
 var saved_day : int = 1
 @export var bankruptcy_email: Email
-@export var tutorial_bankruptcy_email: Email
+@export var first_tutorial_bankruptcy_email: Email
+@export var second_tutorial_bankruptcy_email: Email
 var bankruptcy_copy: Email
 var last_bankruptcy_sent: int = 0
 func _ready():
@@ -291,9 +292,15 @@ func add_valid_tutorial_emails():
 func try_send_bankruptcy():
 	if last_bankruptcy_sent != GameManager.game_time["day"]: 
 		#print(GameManager.currency < 10, !bankruptcy_email.check_chain(), categorized_emails["main"].filter(func(email: Email): return email.bankruptcy).is_empty())
-		if GameManager.currency < 10 and !bankruptcy_email.check_chain() and categorized_emails["main"].filter(func(email: Email): return email.bankruptcy).is_empty():
-			# tutorial not done yet, send tutorial bankruptcy
-			bankruptcy_copy = tutorial_bankruptcy_email.duplicate(true)
+		if GameManager.currency <= 10 and !bankruptcy_email.check_chain() and categorized_emails["main"].filter(func(email: Email): return email.bankruptcy).is_empty():
+			# tutorial not done yet, send tutorial bankruptcy, not encountered rocks yet
+			bankruptcy_copy = first_tutorial_bankruptcy_email.duplicate(true)
+			
+		# TODO: finish this when tutorial stuff is done, change prereq emails etc
+		if second_tutorial_bankruptcy_email:
+			if GameManager.currency <= 25 and !bankruptcy_email.check_chain() and categorized_emails["main"].filter(func(email: Email): return email.bankruptcy).is_empty():
+				# tutorial not done but has encountered rocks
+				bankruptcy_copy = second_tutorial_bankruptcy_email.duplicate(true)
 		# normal bankruptcy
 		if GameManager.currency < 100 and GameManager.game_time["day"]% 3 == 0 and GameManager.game_time["day"] >= 3 and categorized_emails["main"].filter(func(email: Email): return email.bankruptcy).is_empty() and bankruptcy_email.check_chain():
 			#print("bankruptcy activated")

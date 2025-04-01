@@ -16,7 +16,7 @@ var email: Email
 
 func _process(_delta: float) -> void:
 	if email.is_read:
-		button_sprite.modulate = Color(0.9, 0.85, 0.9)
+		button_sprite.modulate = Color(0.8, 0.74, 0.8)
 	if fulfill_button.visible and GameManager.computer_visible and email != null and email.attached_order != null:
 		fulfill_button.disabled = !GameManager.player_inventory_has(email.attached_order.required_items, email.attached_order.required_quantities)
 
