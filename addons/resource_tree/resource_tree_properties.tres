@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RecipeTreeProperties" load_steps=77 format=3 uid="uid://bayqmo2156mc4"]
+[gd_resource type="Resource" script_class="RecipeTreeProperties" load_steps=81 format=3 uid="uid://bayqmo2156mc4"]
 
 [ext_resource type="Script" uid="uid://chk8orxbmeds0" path="res://addons/resource_tree/gadget_editor_node.gd" id="1_5e5y2"]
 [ext_resource type="Script" uid="uid://72wdluf0sgvq" path="res://addons/resource_tree/email_editor_node.gd" id="1_qn33u"]
@@ -33,7 +33,9 @@
 [ext_resource type="Resource" uid="uid://b5q1eiwh4l7n5" path="res://resources/recipes/ore_recipe.tres" id="16_cwixx"]
 [ext_resource type="Resource" uid="uid://be1uv2mb3q4kb" path="res://resources/recipes/ingot_recipe.tres" id="19_mx342"]
 [ext_resource type="Resource" uid="uid://ykahlpnerv5d" path="res://resources/emails/bankrupt_email.tres" id="25_22qlt"]
+[ext_resource type="Resource" uid="uid://dsxmn6eqykpbm" path="res://resources/emails/loretest.tres" id="26_22qlt"]
 [ext_resource type="Resource" uid="uid://cksgqh7imb27s" path="res://resources/gadgets/conveyor_belt.tres" id="26_l41o2"]
+[ext_resource type="Resource" uid="uid://bp2r4d5y1sq0h" path="res://resources/emails/tutorial_bankrupt_email.tres" id="27_mniym"]
 
 [sub_resource type="Resource" id="Resource_mniym"]
 script = ExtResource("1_5e5y2")
@@ -224,8 +226,28 @@ rewards_item_nodes = Dictionary[Resource, int]({})
 [sub_resource type="Resource" id="Resource_knd4m"]
 script = ExtResource("1_qn33u")
 email = ExtResource("25_22qlt")
-x = 4040
-y = 1360
+x = 17040
+y = 340
+prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_l41o2")])
+required_item_nodes = Dictionary[Resource, int]({})
+given_item_nodes = Dictionary[Resource, int]({})
+rewards_item_nodes = Dictionary[Resource, int]({})
+
+[sub_resource type="Resource" id="Resource_ikd3g"]
+script = ExtResource("1_qn33u")
+email = ExtResource("26_22qlt")
+x = 3060
+y = 920
+prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([])
+required_item_nodes = Dictionary[Resource, int]({})
+given_item_nodes = Dictionary[Resource, int]({})
+rewards_item_nodes = Dictionary[Resource, int]({})
+
+[sub_resource type="Resource" id="Resource_1txgy"]
+script = ExtResource("1_qn33u")
+email = ExtResource("27_mniym")
+x = 3100
+y = 2120
 prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([])
 required_item_nodes = Dictionary[Resource, int]({})
 given_item_nodes = Dictionary[Resource, int]({})
@@ -371,4 +393,4 @@ script = ExtResource("2_e0emm")
 recipe_nodes = Array[ExtResource("2_hx4k4")]([SubResource("Resource_xxos5"), SubResource("Resource_bf7ox"), SubResource("Resource_qy74w"), SubResource("Resource_gl4sg"), SubResource("Resource_h1khb")])
 gadget_nodes = Array[ExtResource("1_5e5y2")]([SubResource("Resource_gsbeb"), SubResource("Resource_8w8ri"), SubResource("Resource_hh24p"), SubResource("Resource_5t4gc"), SubResource("Resource_ycsiu"), SubResource("Resource_vnq76"), SubResource("Resource_mniym"), SubResource("Resource_j2s8c"), SubResource("Resource_dunp3"), SubResource("Resource_yb530"), SubResource("Resource_54i16"), SubResource("Resource_jxmyp")])
 item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_o22c4"), SubResource("Resource_lxf7n"), SubResource("Resource_0uxyg"), SubResource("Resource_nos87"), SubResource("Resource_lashh"), SubResource("Resource_xcrkp"), SubResource("Resource_pio1n"), SubResource("Resource_qo8go"), SubResource("Resource_snmpi"), SubResource("Resource_3cnlq"), SubResource("Resource_d4chq"), SubResource("Resource_mwob1"), SubResource("Resource_57hsl"), SubResource("Resource_yp6p7"), SubResource("Resource_e1phy"), SubResource("Resource_4b6dr")])
-email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_s82cm"), SubResource("Resource_kmc8f"), SubResource("Resource_gubxu"), SubResource("Resource_pmsyv"), SubResource("Resource_53ac7"), SubResource("Resource_l41o2"), SubResource("Resource_j4adb"), SubResource("Resource_72sxr"), SubResource("Resource_knd4m")])
+email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_s82cm"), SubResource("Resource_kmc8f"), SubResource("Resource_gubxu"), SubResource("Resource_pmsyv"), SubResource("Resource_53ac7"), SubResource("Resource_l41o2"), SubResource("Resource_j4adb"), SubResource("Resource_72sxr"), SubResource("Resource_knd4m"), SubResource("Resource_ikd3g"), SubResource("Resource_1txgy")])
