@@ -56,10 +56,13 @@ func check_valid() -> bool:
 func check_chain() -> bool:
 	if !prereqs_must_fail:
 		for email in prerequisite_emails:
-			if (email.failable and email.failed) or !email.attached_order.is_completed:
+			if !email.attached_order and email.is_read:
+				pass
+			if (email.failable and email.failed) or (email.attached_order and !email.attached_order.is_completed):
 				#print("Chain email invalid")
 				return false
-			if email.failable and email.attached_order.is_completed:
+			if email.failable and email.attached_order and email.attached_order.is_completed:
 				pass
 	#print("Chain email valid")
+	# once all emails are checked, return true
 	return true
