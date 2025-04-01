@@ -1,14 +1,16 @@
-[gd_resource type="Resource" script_class="Gadget" load_steps=9 format=3 uid="uid://dh7knqcysban1"]
+[gd_resource type="Resource" script_class="Gadget" load_steps=12 format=3 uid="uid://dh7knqcysban1"]
 
 [ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_exgi4"]
 [ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_cn647"]
 [ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_fk4tt"]
+[ext_resource type="Texture2D" uid="uid://dymvu7tgvxht5" path="res://resources/sprites/generatorCoal.png" id="4_cn647"]
+[ext_resource type="Resource" uid="uid://badopsm2qs26e" path="res://resources/items/Coal.tres" id="4_fk4tt"]
 [ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_i23j1"]
 
 [sub_resource type="Resource" id="Resource_8srds"]
 script = ExtResource("2_cn647")
 locked = false
-item_filter = Array[ExtResource("3_fk4tt")]([])
+item_filter = Array[ExtResource("3_fk4tt")]([ExtResource("4_fk4tt")])
 bypass_stack = false
 quantity = 0
 
@@ -25,23 +27,44 @@ slots = Array[ExtResource("2_cn647")]([SubResource("Resource_8srds"), SubResourc
 
 [sub_resource type="Resource" id="Resource_nmhtb"]
 script = ExtResource("3_fk4tt")
+texture = ExtResource("4_cn647")
 name = "Generator"
-description = ""
+description = "This is a generator. This powers every gadgets in a 2-tile radius around it."
 max_stack = 100
-price = 0
+price = 100
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cn647"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_cn647")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_cn647")
+}],
+"loop": true,
+"name": &"se",
+"speed": 5.0
+}]
 
 [resource]
 resource_name = "Generator"
 script = ExtResource("4_i23j1")
-sprite_offset = Vector2(0, 0)
-sprite_scale_factor = 1.0
+sprite_frames = SubResource("SpriteFrames_cn647")
+sprite_offset = Vector2(0, -140)
+sprite_scale_factor = 0.95
 name = "Generator"
-age = 0
+age = 1
 direction = 0
-description = ""
+description = "This is a generator. This powers every gadgets in a 2-tile radius around it."
 item = SubResource("Resource_nmhtb")
 inventory = SubResource("Resource_ur5ct")
-produces = false
+produces = true
 inputs = 1
 outputs = 1
-process_time = 0.0
+process_time = 10.0

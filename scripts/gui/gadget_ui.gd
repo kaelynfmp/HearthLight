@@ -58,6 +58,8 @@ func set_gadget(gadget:StaticBody2D):
 		var input_hint:TextureRect = new_slot.find_child("ImgHintInput", true)
 		var recipe_inputs = get_inputs_for_hint()
 		var curr_slot = recipe_inputs[index]
+		if curr_slot == null:
+			continue
 		input_hint.texture = curr_slot.item.texture
 		input_hint_dict[input_hint] = current_gadget.inventory.get_item_quantity(curr_slot.item)
 		
@@ -95,6 +97,8 @@ func set_gadget(gadget:StaticBody2D):
 		var output_hint:TextureRect = new_slot.find_child("ImgHintOutput", true)
 		var recipe_outputs = get_outputs_for_hint()
 		var curr_slot = recipe_outputs[index]
+		if curr_slot.item == null:
+			continue
 		output_hint.texture = curr_slot.item.texture
 
 func get_inputs_for_hint():

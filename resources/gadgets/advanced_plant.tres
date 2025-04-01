@@ -1,0 +1,79 @@
+[gd_resource type="Resource" script_class="Gadget" load_steps=14 format=3 uid="uid://7oikt5vc44v0"]
+
+[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_sknle"]
+[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_4878v"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_tt38c"]
+[ext_resource type="Texture2D" uid="uid://baooyamycki3w" path="res://resources/sprites/plantPrimitive.png" id="4_4878v"]
+[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_fia4e"]
+[ext_resource type="Resource" uid="uid://dh5cgjdmg2i4p" path="res://resources/items/GMO Seed.tres" id="4_tt38c"]
+[ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="5_fia4e"]
+
+[sub_resource type="Resource" id="Resource_1tbgm"]
+script = ExtResource("2_4878v")
+locked = false
+item_filter = Array[ExtResource("3_tt38c")]([ExtResource("4_tt38c"), ExtResource("5_fia4e")])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_tt38c"]
+script = ExtResource("2_4878v")
+locked = false
+item_filter = Array[ExtResource("3_tt38c")]([ExtResource("4_tt38c"), ExtResource("5_fia4e")])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_4878v"]
+script = ExtResource("2_4878v")
+locked = true
+item_filter = Array[ExtResource("3_tt38c")]([])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_q6wf6"]
+script = ExtResource("1_sknle")
+slots = Array[ExtResource("2_4878v")]([SubResource("Resource_1tbgm"), SubResource("Resource_tt38c"), SubResource("Resource_4878v")])
+
+[sub_resource type="Resource" id="Resource_fia4e"]
+script = ExtResource("3_tt38c")
+texture = ExtResource("4_4878v")
+name = "Advanced Pot"
+description = "Advanced Pot"
+max_stack = 100
+price = 100
+metadata/_custom_type_script = "uid://by7jec2ew2vsl"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1tbgm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_4878v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_4878v")
+}],
+"loop": true,
+"name": &"se",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("4_fia4e")
+sprite_frames = SubResource("SpriteFrames_1tbgm")
+sprite_offset = Vector2(0, -140)
+sprite_scale_factor = 0.95
+name = "Advanced Pot"
+age = 1
+direction = 0
+description = "Advanced Pot"
+item = SubResource("Resource_fia4e")
+inventory = SubResource("Resource_q6wf6")
+produces = true
+inputs = 2
+outputs = 1
+process_time = 10.0
+metadata/_custom_type_script = "uid://diu2pkk76wyyy"

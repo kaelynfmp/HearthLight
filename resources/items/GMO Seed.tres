@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dh5cgjdmg2i4p"]
+
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="1_1mo81"]
+[ext_resource type="Texture2D" uid="uid://d0ea2gg8iw8ki" path="res://resources/sprites/seeds.png" id="2_jbs1m"]
+
+[resource]
+script = ExtResource("1_1mo81")
+texture = ExtResource("2_jbs1m")
+name = "GMO Seed"
+description = "GMO Seed
+"
+max_stack = 100
+price = 10
+metadata/_custom_type_script = "uid://by7jec2ew2vsl"

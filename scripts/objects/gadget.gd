@@ -10,6 +10,8 @@ signal item_at_location(cell_pos: Vector2i, item: Item)
 @onready var invalid_selection:CompressedTexture2D = load("res://scripts/shaders/not_close_enough_texture.tres")
 @export var inventory: Inventory
 @export var is_holding: bool = false
+@export var has_power_from_generator = false
+
 
 var location: Vector2i
 var character: Node2D
@@ -38,6 +40,7 @@ var direction_vector: Array[Vector2i] = [
 	Vector2i(0, 1),
 ]
 var disabled = false
+var has_power = false
 
 func get_local_position():
 	return base_layer.map_to_local(cell_pos)
@@ -76,27 +79,39 @@ func _ready() -> void:
 	update_recipes()
 	GameManager.update_recipes.connect(update_recipes)
 	
-
+func check_for_nearby_generator():
+	for offset_x in range(-2, 3):
+		for offset_y in range(-2, 3):
+			var target_pos = cell_pos + Vector2i(offset_x, offset_y)
+			if GameManager.room_map[target_pos[0] + 6][target_pos[1] + 5] != null:
+				var gadget_at_target_pos = GameManager.room_map[target_pos[0] + 6][target_pos[1] + 5]
+				if gadget_at_target_pos.gadget_stats.name == "Generator" and gadget_at_target_pos.has_power:
+					has_power_from_generator = true
+					return
+	has_power_from_generator = false
+	
 
 func _physics_process(delta: float) -> void:
 	if GameManager.gadget == null:
 		primitive_selected = false
+	check_for_nearby_generator()
 	if !disabled and !progressing or (!progressing and selected_recipe != null):
 		if gadget_stats.name == "Conveyor Belt":
 			do_transport()
 		else:
 			var checked_recipe: Recipe = check_for_valid_recipe()
 			if checked_recipe != null:
-				
+				if gadget_stats.name == "Generator":
+					has_power = true
 				if is_able_to_recipe(checked_recipe):
 					disabled = false
 					do_recipe(checked_recipe)
 				else:
 					disabled = true
 	else:
-		var change_rate:float = delta / (gadget_stats.process_time * (
-			selected_recipe.processing_multiplier if selected_recipe else 1.0))
-		if age > GameManager.Age.PRIMITIVE or primitive_selected:
+		var change_rate:float = (delta / gadget_stats.process_time) * (
+			selected_recipe.processing_multiplier if selected_recipe else 1.0)
+		if (age > GameManager.Age.PRIMITIVE and has_power_from_generator) or primitive_selected:
 			progress += change_rate
 		else:
 			progress -= change_rate
@@ -225,6 +240,8 @@ func cancel_processing():
 	audio_player.stop()
 	if gadget_stats.name != "Conveyor Belt":
 		recipe_taken = false
+	if gadget_stats.name == "Generator":
+		has_power = false
 
 func add_item_to_inventory() -> void:
 	var item: Item = load("res://resources/items/cotton.tres")
