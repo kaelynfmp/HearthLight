@@ -28,6 +28,8 @@ func _ready():
 	create_inbox_buttons()
 	#print(emails)
 	for email in emails:
+		if !email.category:
+			email.category = "main"
 		if email not in completed_order_emails and email not in remaining_order_emails and email not in all_lore_emails and !email.bankruptcy:
 			#email is not loaded in yet and is NOT a tutorial email and NOT a lore email
 			if email.tutorial and !email.prerequisite_emails:
@@ -38,7 +40,7 @@ func _ready():
 			
 		if email.tutorial:
 			if email.check_valid():
-				GameManager.categorized_emails["main"].append(email)
+				GameManager.categorized_emails["main"].insert(0,email)
 	add_valid_lore_emails()
 	display_category_emails(current_category) # default view to "main"
 
@@ -157,7 +159,7 @@ func change_email_category(email: Email, new_category: String):
 		
 		# change email's category, display in new inbox
 		email.category = new_category
-		categorized_emails[new_category].append(email)
+		categorized_emails[new_category].insert(0,email)
 	
 func is_email_time_reached(email: Email) -> bool:
 	var game_time = GameManager.game_time
@@ -208,7 +210,7 @@ func display_email_button(email: Email):
 		fulfill_texture.visible = false
 		accept_button.visible = false
 		reject_button.visible = false
-	else: # no attached order OR order has been responded to
+	else: #  no order or order has been responded to
 		accept_button.visible = false
 		reject_button.visible = false
 		# if email.attached_order.responded:
@@ -218,6 +220,7 @@ func display_email_button(email: Email):
 func show_email_details(email: Email, email_button: Button):
 	var panel = email_button.get_node("Panel")
 	email.is_read = true
+	#print(email.sender, "is read")
 	#is_read_color(email, email_button)
 	panel.visible = !panel.visible
 	if panel.visible:
@@ -291,18 +294,28 @@ func add_valid_tutorial_emails():
 
 func try_send_bankruptcy():
 	if last_bankruptcy_sent != GameManager.game_time["day"]: 
+		var tutorial_complete: bool = true
+		for email in all_tutorial_emails:
+			if email.attached_order and !email.attached_order.is_completed:
+				tutorial_complete = false
+			if !email.attached_order and !email.is_read:
+				tutorial_complete = false
+				
+			
 		#print(GameManager.currency < 10, !bankruptcy_email.check_chain(), categorized_emails["main"].filter(func(email: Email): return email.bankruptcy).is_empty())
-		if GameManager.currency <= 10 and !bankruptcy_email.check_chain() and categorized_emails["main"].filter(func(email: Email): return email.bankruptcy).is_empty():
+		if GameManager.currency <= 10 and !tutorial_complete and categorized_emails["main"].filter(func(email: Email): return email.bankruptcy).is_empty():
 			# tutorial not done yet, send tutorial bankruptcy, not encountered rocks yet
 			bankruptcy_copy = first_tutorial_bankruptcy_email.duplicate(true)
+			if GameManager.currency < 10:
+				bankruptcy_copy.attached_order.given_currency += 10
 			
 		# TODO: finish this when tutorial stuff is done, change prereq emails etc
-		if second_tutorial_bankruptcy_email:
-			if GameManager.currency <= 25 and !bankruptcy_email.check_chain() and categorized_emails["main"].filter(func(email: Email): return email.bankruptcy).is_empty():
-				# tutorial not done but has encountered rocks
-				bankruptcy_copy = second_tutorial_bankruptcy_email.duplicate(true)
+		#if second_tutorial_bankruptcy_email:
+			#if GameManager.currency <= 25 and !tutorial_complete and categorized_emails["main"].filter(func(email: Email): return email.bankruptcy).is_empty() and second_tutorial_bankruptcy_email.check_chain():
+				## tutorial not done but has encountered rocks
+				#bankruptcy_copy = second_tutorial_bankruptcy_email.duplicate(true)
 		# normal bankruptcy
-		if GameManager.currency < 100 and GameManager.game_time["day"]% 3 == 0 and GameManager.game_time["day"] >= 3 and categorized_emails["main"].filter(func(email: Email): return email.bankruptcy).is_empty() and bankruptcy_email.check_chain():
+		if GameManager.currency < 100 and GameManager.game_time["day"]% 3 == 0 and GameManager.game_time["day"] >= 3 and categorized_emails["main"].filter(func(email: Email): return email.bankruptcy).is_empty() and tutorial_complete:
 			#print("bankruptcy activated")
 			bankruptcy_copy = bankruptcy_email.duplicate(true)
 		
