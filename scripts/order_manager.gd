@@ -1,22 +1,17 @@
 extends Node
-var orders: Array = []
+## For finding an email by the order that exists in it
+var email_by_order:Dictionary[Order, Email]
 var accepted_orders: Array = []
 var rejected_orders: Array = []
+signal order_accepted(order:Order)
 @onready var inventory: Inventory = preload("res://resources/character/inventory.tres")
 @export var order_class : Resource
-
-func load_orders():
-	var email_strings = Utility.load_path("res://resources/emails")
-	for email_string in email_strings:
-		var email = load(email_string)
-		if email.attached_order != null:
-			orders.append(email.attached_order)
-		
 		
 func accept_order(order: Order):
 	order.is_accepted = true
 	order.responded = true
 	accepted_orders.append(order)
+	order_accepted.emit(order)
 
 func reject_order(order: Order):
 	order.is_accepted = false
@@ -72,8 +67,3 @@ func give_player_starting_items(order: Order):
 				item = item.item
 			var qty = order.given_quantities[i]
 			inventory.insert(item, qty)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass

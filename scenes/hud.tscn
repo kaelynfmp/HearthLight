@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bpie3rt8qmyxr"]
+[gd_scene load_steps=39 format=3 uid="uid://bpie3rt8qmyxr"]
 
 [ext_resource type="PackedScene" uid="uid://c2wlmdehxae41" path="res://scenes/Computer Scenes/computer_interface.tscn" id="1_8kako"]
 [ext_resource type="PackedScene" uid="uid://c6g34by20r0qc" path="res://scenes/inventory/inventory.tscn" id="1_h8ipj"]
@@ -12,19 +12,48 @@
 [ext_resource type="Script" uid="uid://d4f5y62ujshdf" path="res://scripts/gui/selected_gadget.gd" id="9_nhxen"]
 [ext_resource type="Shader" uid="uid://cbx8f33etuvq2" path="res://scripts/shaders/gadgetoutline.gdshader" id="9_o8g3w"]
 [ext_resource type="Texture2D" uid="uid://gi6my3ydg3ke" path="res://resources/sprites/gui/gadget_selection.png" id="10_ivqh4"]
+[ext_resource type="Shader" uid="uid://dsr12xvjlitui" path="res://scripts/shaders/tutorial_outline.gdshader" id="11_frrke"]
+[ext_resource type="Script" uid="uid://dhbcadu5yh1g3" path="res://scripts/gui/tutorial_sprite.gd" id="12_vh1iw"]
 [ext_resource type="PackedScene" uid="uid://biflar31oita2" path="res://scenes/menu/pause_menu.tscn" id="13_55orh"]
 [ext_resource type="Texture2D" uid="uid://dl2manigelkio" path="res://resources/sprites/gui/gear/normal.png" id="13_uxdf7"]
 [ext_resource type="Texture2D" uid="uid://byd0f2tce32li" path="res://resources/sprites/gui/gear/pressed.png" id="14_5357l"]
 [ext_resource type="PackedScene" uid="uid://dnyyt61n7tlkc" path="res://scenes/clock.tscn" id="14_eld54"]
 [ext_resource type="Texture2D" uid="uid://v3mhxuklek42" path="res://resources/sprites/gui/gear/hover.png" id="15_iypfu"]
 [ext_resource type="Texture2D" uid="uid://ca24n44nxd7w1" path="res://resources/sprites/gui/gear/disabled.png" id="16_qpprf"]
+[ext_resource type="Texture2D" uid="uid://br677v2jqsxvc" path="res://resources/sprites/gui/questopen/questopen.png" id="17_kp442"]
+[ext_resource type="Texture2D" uid="uid://rtk7chr66qjo" path="res://resources/sprites/gui/questopen/questopenselect.png" id="18_gltyx"]
 [ext_resource type="Script" uid="uid://djkcgfibs8xbn" path="res://scenes/sleep_canvas.gd" id="19_iypfu"]
+[ext_resource type="Texture2D" uid="uid://32e6btkil3qi" path="res://resources/sprites/gui/questopen/questopenhovered.png" id="19_mgfyp"]
+[ext_resource type="Script" uid="uid://cbtruwvxi8xxb" path="res://scripts/gui/quests/quest_visibility_button.gd" id="20_mgfyp"]
+[ext_resource type="Texture2D" uid="uid://cfhlj4sxhcu7c" path="res://resources/sprites/gui/questopen/questclose.png" id="20_ptr5m"]
 [ext_resource type="FontFile" uid="uid://cskltmfvwlc7g" path="res://resources/fonts/Audiowide-Regular.ttf" id="20_qpprf"]
+[ext_resource type="Texture2D" uid="uid://irksvdg41c6j" path="res://resources/sprites/gui/questopen/questcloseselect.png" id="21_of3ib"]
+[ext_resource type="Texture2D" uid="uid://cpxoyyvqov6s3" path="res://resources/sprites/gui/questopen/questclosehover.png" id="22_7600b"]
+[ext_resource type="Script" uid="uid://c4ql6o66f32mb" path="res://scripts/gui/quests/quest_list.gd" id="23_gltyx"]
+[ext_resource type="Script" uid="uid://de8r52enofgen" path="res://scripts/gui/quests/quest_scroll.gd" id="24_ptr5m"]
+[ext_resource type="PackedScene" uid="uid://b3w6sowo6hkq5" path="res://scenes/quests/quest.tscn" id="26_mgfyp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_drira"]
 shader = ExtResource("2_0gell")
 shader_parameter/strength = 2.454
 shader_parameter/mix_percentage = 0.024
+
+[sub_resource type="Gradient" id="Gradient_fgtve"]
+colors = PackedColorArray(0.869864, 0.924752, 0.367615, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_03o4m"]
+gradient = SubResource("Gradient_fgtve")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dl6ww"]
+shader = ExtResource("11_frrke")
+shader_parameter/scrollingTexture = SubResource("GradientTexture1D_03o4m")
+shader_parameter/textureScale = Vector2(1, 1)
+shader_parameter/angle = 45.0
+shader_parameter/textureSpeed = 0.1
+shader_parameter/thickness = 30.0
+shader_parameter/tolerance = 0.0
+shader_parameter/diagonals = true
+shader_parameter/rounded = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hoa3s"]
 shader = ExtResource("9_o8g3w")
@@ -32,7 +61,7 @@ shader_parameter/scrollingTexture = ExtResource("10_ivqh4")
 shader_parameter/textureScale = Vector2(1, 1)
 shader_parameter/angle = 45.0
 shader_parameter/textureSpeed = 0.226
-shader_parameter/thickness = 29.747
+shader_parameter/thickness = 30.0
 shader_parameter/tolerance = 0.0
 shader_parameter/diagonals = true
 shader_parameter/rounded = true
@@ -48,17 +77,6 @@ offset_top = 292.0
 offset_right = 551.0
 offset_bottom = 292.0
 
-[node name="ComputerInterface" parent="." instance=ExtResource("1_8kako")]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 48.0
-offset_top = 23.0
-offset_right = 48.0
-offset_bottom = 23.0
-scale = Vector2(0.95, 0.95)
-
 [node name="Blur" type="ColorRect" parent="."]
 visible = false
 material = SubResource("ShaderMaterial_drira")
@@ -71,38 +89,13 @@ mouse_filter = 2
 color = Color(0, 0, 0, 0.141176)
 script = ExtResource("3_xnxa5")
 
-[node name="Inventories" type="VBoxContainer" parent="."]
-z_index = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -1024.0
-offset_top = -495.0
-offset_right = 1536.0
-offset_bottom = 2085.0
-grow_horizontal = 0
-grow_vertical = 2
-scale = Vector2(0.4, 0.4)
-script = ExtResource("4_pacb3")
-slide_in_speed = 10.0
-
-[node name="Inventory" parent="Inventories" instance=ExtResource("1_h8ipj")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-
-[node name="Gadget" parent="Inventories" instance=ExtResource("4_svta0")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-script = ExtResource("7_y0wjn")
-
-[node name="Cursor" parent="." instance=ExtResource("2_wjdba")]
+[node name="TutorialSprite" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_dl6ww")
+script = ExtResource("12_vh1iw")
 
 [node name="SelectedGadget" type="AnimatedSprite2D" parent="."]
 visible = false
+top_level = true
 material = SubResource("ShaderMaterial_hoa3s")
 scale = Vector2(0.7, 0.7)
 offset = Vector2(0, -218)
@@ -136,20 +129,106 @@ texture_pressed = ExtResource("14_5357l")
 texture_hover = ExtResource("15_iypfu")
 texture_disabled = ExtResource("16_qpprf")
 
+[node name="Inventories" type="VBoxContainer" parent="."]
+z_index = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1024.0
+offset_top = -495.0
+offset_right = 1536.0
+offset_bottom = 2085.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+script = ExtResource("4_pacb3")
+slide_in_speed = 10.0
+
+[node name="Inventory" parent="Inventories" instance=ExtResource("1_h8ipj")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="Gadget" parent="Inventories" instance=ExtResource("4_svta0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+script = ExtResource("7_y0wjn")
+
+[node name="Cursor" parent="." instance=ExtResource("2_wjdba")]
+
+[node name="QuestButtonContainer" type="MarginContainer" parent="."]
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 358.0
+offset_bottom = 358.0
+scale = Vector2(0.25, 0.25)
+
+[node name="QuestOpen" type="TextureButton" parent="QuestButtonContainer"]
+visible = false
+layout_mode = 2
+texture_normal = ExtResource("17_kp442")
+texture_pressed = ExtResource("18_gltyx")
+texture_hover = ExtResource("19_mgfyp")
+stretch_mode = 5
+script = ExtResource("20_mgfyp")
+
+[node name="QuestClose" type="TextureButton" parent="QuestButtonContainer"]
+layout_mode = 2
+texture_normal = ExtResource("20_ptr5m")
+texture_pressed = ExtResource("21_of3ib")
+texture_hover = ExtResource("22_7600b")
+stretch_mode = 3
+script = ExtResource("20_mgfyp")
+close = true
+
+[node name="QuestScroll" type="ScrollContainer" parent="."]
+offset_left = 72.0
+offset_top = 60.0
+offset_right = 919.0
+offset_bottom = 1080.0
+mouse_filter = 2
+script = ExtResource("24_ptr5m")
+transition_time = 0.2
+
+[node name="QuestList" type="VBoxContainer" parent="QuestScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+script = ExtResource("23_gltyx")
+
+[node name="Quest" parent="QuestScroll/QuestList" instance=ExtResource("26_mgfyp")]
+layout_mode = 2
+
+[node name="ComputerInterface" parent="." instance=ExtResource("1_8kako")]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = 23.0
+offset_right = 48.0
+offset_bottom = 23.0
+scale = Vector2(0.95, 0.95)
+
+[node name="Clock" parent="." instance=ExtResource("14_eld54")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -98.0
+offset_right = 1921.0
+offset_bottom = 0.0
+grow_vertical = 0
+mouse_filter = 0
+
 [node name="PauseMenu" parent="." instance=ExtResource("13_55orh")]
 process_mode = 3
 top_level = true
 z_index = 4096
 z_as_relative = false
 size_flags_horizontal = 4
-
-[node name="Clock" parent="." instance=ExtResource("14_eld54")]
-z_index = 100
-offset_left = 11.0
-offset_top = 13.0
-offset_right = 11.0
-offset_bottom = 13.0
-scale = Vector2(2.76, 2.4)
 
 [node name="SleepCanvas" type="Control" parent="."]
 layout_mode = 3
@@ -186,3 +265,5 @@ texture = SubResource("CanvasTexture_5357l")
 
 [connection signal="pressed" from="SelectedGadget/Control/HBoxContainer/RotateLeft" to="SelectedGadget" method="_on_rotate_left_pressed"]
 [connection signal="pressed" from="SelectedGadget/Control/HBoxContainer/RotateRight" to="SelectedGadget" method="_on_rotate_right_pressed"]
+[connection signal="pressed" from="QuestButtonContainer/QuestOpen" to="QuestButtonContainer/QuestOpen" method="_on_pressed"]
+[connection signal="pressed" from="QuestButtonContainer/QuestClose" to="QuestButtonContainer/QuestClose" method="_on_pressed"]

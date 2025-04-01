@@ -47,7 +47,7 @@ shader_parameter/slant = 0.2
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_qtoah"]
 
-[node name="Room" type="Node"]
+[node name="Room" type="Node" groups=["world_gadgets", "world_items"]]
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_filter = 1

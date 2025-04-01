@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Tutorial" load_steps=6 format=3 uid="uid://c0175x5s82ass"]
+
+[ext_resource type="Script" uid="uid://47jeqsadvf36" path="res://scripts/tutorials/open_pc/open_pc.gd" id="1_svt0j"]
+[ext_resource type="Script" uid="uid://doqxj43rsss6s" path="res://scripts/resources/tutorial.gd" id="1_ybnvf"]
+[ext_resource type="Script" uid="uid://b8hcur6mpta80" path="res://scripts/resources/tutorial_step.gd" id="2_tmn3a"]
+[ext_resource type="Script" uid="uid://d32hl1q8oxgck" path="res://scripts/tutorials/open_pc/steps/select_computer.gd" id="4_l2s0e"]
+
+[sub_resource type="Resource" id="Resource_svt0j"]
+script = ExtResource("2_tmn3a")
+desc = "Move to and click on your [res=Computer]Computer[/res]!"
+step_script = ExtResource("4_l2s0e")
+
+[resource]
+script = ExtResource("1_ybnvf")
+title = "Your Personal Computer!"
+steps = Array[ExtResource("2_tmn3a")]([SubResource("Resource_svt0j")])
+activation_script = ExtResource("1_svt0j")
+metadata/_custom_type_script = "uid://doqxj43rsss6s"

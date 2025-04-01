@@ -96,6 +96,7 @@ func spawn_object(gadget: Gadget, _cell_pos:Vector2i = Vector2i(-99, -99)) -> bo
 		GameManager.room_map[cell_pos[0] + 6][cell_pos[1] + 5] = instance 
 		instance.removing.connect(free_tile)
 		instance.item_at_location.connect(item_at_location)
+		instance.add_to_group("world_gadgets")
 		$"Base".add_child(instance)
 		# Set to lowest, so items are always above
 		$"Base".move_child(instance, 0)
@@ -118,3 +119,4 @@ func item_at_location(cell_pos: Vector2i, item: Item):
 	$"Base".add_child(item_instance)
 	# Set to highest, so items are always above
 	$"Base".move_child(item_instance, -1)
+	item_instance.add_to_group("world_items")
