@@ -7,6 +7,6 @@
 script = ExtResource("1_igpg3")
 texture = ExtResource("2_5ju1u")
 name = "Seed"
-description = "Plant this for Cotton!"
+description = "These things come in unmarked plastic baggies. You're not gonna ask where they come from."
 max_stack = 24
 price = 10

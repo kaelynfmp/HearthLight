@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://ilvjcg3gth70"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_lb81x"]
+[ext_resource type="Resource" uid="uid://d62ca2qg720h" path="res://resources/emails/OrderChain1-1.tres" id="2_7v75s"]
+
+[resource]
+resource_name = "OrderChain1-1Success"
+script = ExtResource("1_lb81x")
+sender = "Vivian Brisket"
+subject = "(*°▽°*)"
+contents = "You did it! You're the best <3. I knew I could count on you. You've got trustworthy vibes.
+I'll make sure to let everyone know how awesome and cool and junk you are ^v^
+
+(also holy damn this [res=Fabric]fabric[/res] is good. how'd you manage that?)"
+category = ""
+prerequisite_emails = Array[ExtResource("1_lb81x")]([ExtResource("2_7v75s")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = false
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

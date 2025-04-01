@@ -1,10 +1,9 @@
-[gd_resource type="Resource" script_class="Email" load_steps=7 format=3 uid="uid://sc3eyh2thm3t"]
+[gd_resource type="Resource" script_class="Email" load_steps=6 format=3 uid="uid://sc3eyh2thm3t"]
 
 [ext_resource type="Resource" uid="uid://cq5l4dfcn3c5t" path="res://resources/items/rock.tres" id="1_hv6a4"]
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_l8p6f"]
 [ext_resource type="Resource" uid="uid://lxvyxcteq6eq" path="res://resources/items/dust.tres" id="2_2cbxm"]
 [ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="3_xeo46"]
-[ext_resource type="Resource" uid="uid://dynvawdp111sl" path="res://resources/emails/fabricforgrinder.tres" id="5_2cbxm"]
 
 [sub_resource type="Resource" id="Resource_koher"]
 script = ExtResource("3_xeo46")
@@ -34,7 +33,7 @@ All I require is for you to process the [img=30px,center]res://resources/sprites
 Yours truly,
 Ernest Hayden "
 category = "main"
-prerequisite_emails = Array[ExtResource("1_l8p6f")]([ExtResource("5_2cbxm")])
+prerequisite_emails = Array[ExtResource("1_l8p6f")]([])
 day = 0
 hour = 0
 minute = 0
@@ -43,7 +42,7 @@ attached_order = SubResource("Resource_koher")
 tutorial = false
 lore_only = false
 has_start_time = false
-failable = true
+failable = false
 failed = false
-prereqs_must_fail = false
+prereqs_must_fail = true
 bankruptcy = false

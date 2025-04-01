@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://jueo20sepjdp"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_kwsg0"]
+[ext_resource type="Resource" uid="uid://c5v07kew6i73t" path="res://resources/emails/MiscOrder4.tres" id="2_qs5t7"]
+
+[resource]
+resource_name = "MiscOrder4Complete"
+script = ExtResource("1_kwsg0")
+sender = ""
+subject = ""
+contents = "Radical!
+
+[rainbow]Tubular![/rainbow]
+
+I Don't Know What I'd Do Without You, You're A Real Lifesaver! 😹😹
+I'd Say I'll Be More Careful, But You Know Me! 😹😹😹 I'm Wayy Too Parabolic For That! Cut Loose, And I'll See You On The Flip Side! Perchance!"
+category = ""
+prerequisite_emails = Array[ExtResource("1_kwsg0")]([ExtResource("2_qs5t7")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = false
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

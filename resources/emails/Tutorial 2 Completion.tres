@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://b86lxdd7gcv3a"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_akve1"]
+[ext_resource type="Resource" uid="uid://dynvawdp111sl" path="res://resources/emails/fabricforgrinder.tres" id="2_hftne"]
+
+[resource]
+resource_name = "Tutorial 2 Completion"
+script = ExtResource("1_akve1")
+sender = "Ernest Hayden"
+subject = "Brilliant!"
+contents = "You have proven yourself far more capable than those treacherous corporations. My moustache twitches even [i]thinking[/i] about those cowardly dogs. But you have proven yourself to be of a calibre well beyond your recognition, and I look forward to continuing business with you!
+
+I have sent you [res=Ancient Loom]a small gift[/res]. It was an antique that was taking up space in my loft, and I have the sense that you might find more use for it than I will. It's the least I can do to show my gratitude.
+
+Chuffed to bits,
+Ernest Hayden"
+category = ""
+prerequisite_emails = Array[ExtResource("1_akve1")]([ExtResource("2_hftne")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = true
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

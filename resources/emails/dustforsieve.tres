@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://lxvyxcteq6eq" path="res://resources/items/dust.tres" id="1_xxwyo"]
 [ext_resource type="Resource" uid="uid://bcp8nvhpucopi" path="res://resources/gadgets/sieve.tres" id="2_0oc80"]
 [ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="3_xhpq5"]
-[ext_resource type="Resource" uid="uid://dynvawdp111sl" path="res://resources/emails/fabricforgrinder.tres" id="5_0oc80"]
+[ext_resource type="Resource" uid="uid://sc3eyh2thm3t" path="res://resources/emails/secondemail.tres" id="5_0oc80"]
 
 [sub_resource type="Resource" id="Resource_x47ja"]
 script = ExtResource("3_xhpq5")
@@ -35,7 +35,7 @@ hour = 0
 minute = 0
 is_read = false
 attached_order = SubResource("Resource_x47ja")
-tutorial = true
+tutorial = false
 lore_only = false
 has_start_time = false
 failable = false

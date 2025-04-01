@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://sk2q2m7vto07"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_p3mlr"]
+[ext_resource type="Resource" uid="uid://f4emjvxl8gah" path="res://resources/emails/MiscOrder1.tres" id="2_m0ake"]
+
+[resource]
+resource_name = "MiscOrder1Complete"
+script = ExtResource("1_p3mlr")
+sender = "Blade Fox"
+subject = "hey thanks a bunch"
+contents = "Thanks for the [res=Metal]metal[/res]. It really means a lot that you were willing to help me out.
+
+My mom needed a brace for her legs, and I couldn't find anywhere that would be willing to provide [res=Metal]the materials[/res], let alone actually make the damn thing, so I'm just glad you were able to get me [i]something[/i]. Like I said, it means a lot."
+category = ""
+prerequisite_emails = Array[ExtResource("1_p3mlr")]([ExtResource("2_m0ake")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = false
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

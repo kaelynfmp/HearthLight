@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://cqks7rarii26c"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_dr13x"]
+[ext_resource type="Resource" uid="uid://c4i1yak8kun2o" path="res://resources/emails/OrderChain1-2.tres" id="2_5uhwx"]
+
+[resource]
+resource_name = "OrderChain1-2Fail"
+script = ExtResource("1_dr13x")
+sender = "Vivian Brisket"
+subject = ">:("
+contents = "I really could've used that fabric >:(. Now I'm gonna have to-
+yeah I'm not telling you that
+
+>:p"
+category = ""
+prerequisite_emails = Array[ExtResource("1_dr13x")]([ExtResource("2_5uhwx")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = false
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = true
+bankruptcy = false

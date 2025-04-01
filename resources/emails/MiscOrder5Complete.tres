@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://bhvqc55nvrefc"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_2va2f"]
+[ext_resource type="Resource" uid="uid://dpb8i228gkodd" path="res://resources/emails/MiscOrder5.tres" id="2_26uxv"]
+
+[resource]
+resource_name = "MiscOrder5Complete"
+script = ExtResource("1_2va2f")
+sender = "Twilight P. Numbra"
+subject = "A heartfelt thanks"
+contents = "Wow I feel alive again, I can't remember how long it's been since I felt like this.
+
+Okay, backing up a bit though. When I asked if you could get me some [res=Fabric]fabric[/res], that was a total shot in the dark. But when you actually sent me some and then I gave it to Dawn (oh yeah, that's my wife <3), she was so happy she was practically glowing, and she sat me down, said that she felt bad for keeping me in the dark. She explained some stuff about those pills I had to take every morning that given how you work I expect you already know about, and I really didn't expect them to wear off that fast. I feel like a whole new person now! Or I guess I feel like I did back when I still had a vision for who I wanted to be, what I wanted to do.
+
+Our daughter Meridiem's picked up on the changes I think. She's been especially lively today, and even looking at her makes me so glad that I'm alive. I don't know how I can thank you enough, but the least I can do is give you some [res=Metal]stuff[/res] I snuck out of work (don't worry, I made sure they didn't catch me)
+
+Forever grateful,
+Twilight"
+category = ""
+prerequisite_emails = Array[ExtResource("1_2va2f")]([ExtResource("2_26uxv")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = false
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

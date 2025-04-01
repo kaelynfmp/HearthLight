@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="Email" load_steps=6 format=3 uid="uid://d3oe0e0m7qk02"]
+
+[ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="1_07o8p"]
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_dv2cl"]
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_jf0na"]
+[ext_resource type="Resource" uid="uid://cl0m7wifdc1fn" path="res://resources/emails/OrderChain1-2Success.tres" id="3_dv2cl"]
+
+[sub_resource type="Resource" id="Resource_5ih40"]
+script = ExtResource("1_dv2cl")
+order_id = 0
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
+given_currency = 0
+required_items = Array[Resource]([ExtResource("1_07o8p")])
+required_quantities = Array[int]([64])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 1000
+rewards = Array[Resource]([])
+rewards_quantities = Array[int]([])
+
+[resource]
+resource_name = "OrderChain1-3"
+script = ExtResource("1_jf0na")
+sender = "Vivian Brisket"
+subject = "Time for the [i]real[/i] fun >:)"
+contents = "I can finally say it!
+[color=#FF0000]F[/color][color=#FF5F00]u[/color][color=#FFBF00]c[/color][color=#DFFF00]k[/color] [color=#1FFF00]t[/color][color=#00FF3F]h[/color][color=#00FF9F]e[/color] [color=#009FFF]p[/color][color=#003FFF]o[/color][color=#1F00FF]l[/color][color=#7F00FF]i[/color][color=#DF00FF]c[/color][color=#FF00BF]e[/color][color=#FF005F]![/color]
+
+yeah we need some more [b]fabric[/b] for mollys. Sic semper tyrannis and all that, I'm sure you get it :] (not to leak secret plans or anything, but you've been a massive help. those factories don't stand a chance)"
+category = ""
+prerequisite_emails = Array[ExtResource("1_jf0na")]([ExtResource("3_dv2cl")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_5ih40")
+tutorial = false
+lore_only = false
+has_start_time = false
+failable = true
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

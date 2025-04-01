@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="Email" load_steps=7 format=3 uid="uid://c5v07kew6i73t"]
+
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_3t0ym"]
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_p6aca"]
+[ext_resource type="Resource" uid="uid://bgmxpne1d7fis" path="res://resources/items/metal.tres" id="1_uqabr"]
+[ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="2_st5pu"]
+[ext_resource type="Resource" uid="uid://dn1yfys2dr5s3" path="res://resources/emails/Tutorial5.tres" id="3_s4v2g"]
+
+[sub_resource type="Resource" id="Resource_uqabr"]
+script = ExtResource("1_3t0ym")
+order_id = 0
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
+given_currency = 0
+required_items = Array[Resource]([ExtResource("1_uqabr"), ExtResource("2_st5pu")])
+required_quantities = Array[int]([3, 2])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 1250
+rewards = Array[Resource]([])
+rewards_quantities = Array[int]([])
+
+[resource]
+resource_name = "MiscOrder4"
+script = ExtResource("1_p6aca")
+sender = ""
+subject = ""
+contents = "Hey Hey! I Was Wondering If You Could Get Me Some Stuff I Need To Fix Up A Project Of Mine. I Totally Trashed My Couch, And I Need To Do Some Repairs 😹😹😹
+
+I Was Messing Around With Some Buds, And One Of Them Was Like \"duude, you should elbow drop that couch\" And I Was Like \"Hell Yeah Man!\" 😹 And Now We're Here. I Can Get You Some Money For It As Well (Don't Tell My Parents Though 😹😹😹)"
+category = ""
+prerequisite_emails = Array[ExtResource("1_p6aca")]([ExtResource("3_s4v2g")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_uqabr")
+tutorial = false
+lore_only = false
+has_start_time = false
+failable = true
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

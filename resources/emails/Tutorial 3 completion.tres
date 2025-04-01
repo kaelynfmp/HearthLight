@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://c4l8nmj6r3kmj"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_j8bhs"]
+[ext_resource type="Resource" uid="uid://dv5ev5cvec8v4" path="res://resources/emails/Tutorial3.tres" id="2_vjqwt"]
+
+[resource]
+resource_name = "Tutorial 3 completion"
+script = ExtResource("1_j8bhs")
+sender = "Katheryn Elion"
+subject = "it's only fair"
+contents = "wow, i didn't expect you to actually do it. are you some kind of magician or something? this is some seriously impressive consistency for something you made by hand
+
+since you did such an outstanding job, have this old [res=Sieve]sieve[/res] alongside your payment. don't worry, it wasn't doing much in its old home aside from being complicit in money laundering
+cheers!"
+category = ""
+prerequisite_emails = Array[ExtResource("1_j8bhs")]([ExtResource("2_vjqwt")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = true
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false
