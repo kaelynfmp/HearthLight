@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://dnyyt61n7tlkc" path="res://scenes/clock.tscn" id="14_eld54"]
 [ext_resource type="Texture2D" uid="uid://v3mhxuklek42" path="res://resources/sprites/gui/gear/hover.png" id="15_iypfu"]
 [ext_resource type="Texture2D" uid="uid://ca24n44nxd7w1" path="res://resources/sprites/gui/gear/disabled.png" id="16_qpprf"]
-[ext_resource type="Script" path="res://scenes/sleep_canvas.gd" id="19_iypfu"]
+[ext_resource type="Script" uid="uid://djkcgfibs8xbn" path="res://scenes/sleep_canvas.gd" id="19_iypfu"]
 [ext_resource type="FontFile" uid="uid://cskltmfvwlc7g" path="res://resources/fonts/Audiowide-Regular.ttf" id="20_qpprf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_drira"]
@@ -171,7 +171,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_fonts/normal_font = ExtResource("20_qpprf")
 theme_override_font_sizes/normal_font_size = 60
-text = "Sleeping through the night..."
+text = "The power has went out.
+You have no choice but to sleep."
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true

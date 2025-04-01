@@ -102,6 +102,9 @@ var recipes:Array[Recipe]
 var gadgets:Array[Gadget]
 var gadget_items:Dictionary
 
+var day_start_sound:AudioStreamPlayer2D
+var day_end_sound:AudioStreamPlayer2D
+
 var room_map = []
 var item_map = []
 
@@ -361,6 +364,9 @@ func update_time(in_game_seconds):
 	game_time["second"] = int(in_game_seconds % 60)
 	
 	# count days
+	if (game_time["hour"] == 22 and game_time["minute"] >= 44):
+		if not day_end_sound.playing:
+			day_end_sound.play()
 	if (game_time["hour"] == 24): 
 		game_time["day"] += 1
 		game_time["hour"] = 8
@@ -417,6 +423,9 @@ func wake_up():
 	sleep_end = Time.get_ticks_msec()
 	sleeping_time = (sleep_end - sleep_start) / 1000
 	#print(sleeping_time)
-	if sleeping_time >= 3:
+	if sleeping_time >= 6:
+		if not day_start_sound.playing:
+			day_start_sound.play()
+	if sleeping_time >= 10:
 		sleeping = false
 		print("waking up...")
