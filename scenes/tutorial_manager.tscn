@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://dit7u512qv7ga"]
+
+[ext_resource type="Script" uid="uid://ctmwrgknoi33l" path="res://scripts/tutorial_manager.gd" id="1_o3net"]
+[ext_resource type="Script" uid="uid://doqxj43rsss6s" path="res://scripts/resources/tutorial.gd" id="2_xnhi8"]
+[ext_resource type="Resource" uid="uid://c0175x5s82ass" path="res://resources/tutorials/open_pc.tres" id="3_ghxh3"]
+
+[node name="TutorialManager" type="Node"]
+script = ExtResource("1_o3net")
+tutorials = Array[ExtResource("2_xnhi8")]([ExtResource("3_ghxh3")])

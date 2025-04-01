@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3w6sowo6hkq5"]
+
+[ext_resource type="Script" uid="uid://bvff2eebc10i3" path="res://scripts/gui/quests/quest.gd" id="1_pleko"]
+[ext_resource type="Texture2D" uid="uid://bjse6qjyy6aqk" path="res://resources/sprites/gui/questindicator.png" id="1_u4fnb"]
+[ext_resource type="PackedScene" uid="uid://dop81y1juxyb7" path="res://scenes/quests/step_container.tscn" id="2_pleko"]
+[ext_resource type="Script" uid="uid://bha8ro4unkubb" path="res://scripts/gui/bbcode.gd" id="3_ubfai"]
+
+[node name="Quest" type="VBoxContainer"]
+offset_right = 1924.0
+offset_bottom = 115.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 2
+script = ExtResource("1_pleko")
+
+[node name="QuestLabel" type="HBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="QuestIcon" type="TextureRect" parent="QuestLabel"]
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+texture = ExtResource("1_u4fnb")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="QuestTitle" type="RichTextLabel" parent="QuestLabel"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.933333, 0.223529, 0.560784, 1)
+theme_override_colors/font_shadow_color = Color(0.701961, 0.231373, 0.933333, 1)
+theme_override_font_sizes/bold_italics_font_size = 50
+theme_override_font_sizes/italics_font_size = 50
+theme_override_font_sizes/mono_font_size = 50
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 50
+bbcode_enabled = true
+text = "Example Quest"
+fit_content = true
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("3_ubfai")
+
+[node name="Steps" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="StepContainer3" parent="Steps" instance=ExtResource("2_pleko")]
+layout_mode = 2
