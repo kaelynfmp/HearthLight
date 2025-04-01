@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="Email" load_steps=7 format=3 uid="uid://dpb8i228gkodd"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_1njqs"]
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_nqeup"]
+[ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="1_ucibn"]
+[ext_resource type="Resource" uid="uid://bgmxpne1d7fis" path="res://resources/items/metal.tres" id="2_sye1g"]
+[ext_resource type="Resource" uid="uid://dn1yfys2dr5s3" path="res://resources/emails/Tutorial5.tres" id="3_01r1f"]
+
+[sub_resource type="Resource" id="Resource_ucibn"]
+script = ExtResource("1_nqeup")
+order_id = 0
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
+given_currency = 0
+required_items = Array[Resource]([ExtResource("1_ucibn")])
+required_quantities = Array[int]([10])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 0
+rewards = Array[Resource]([ExtResource("2_sye1g")])
+rewards_quantities = Array[int]([10])
+
+[resource]
+resource_name = "MiscOrder5"
+script = ExtResource("1_1njqs")
+sender = "Twilight P. Numbra"
+subject = "About your services..."
+contents = "Hey,
+
+My wife's been all sorts of excited recently. I'm not really sure what's gotten into her, but she's been a lot more... whimsical recently. I'm really happy for her, and she seems like she's back to being who he was when we got married, but I don't really get why she's changed like this all of a sudden. I guess she found her second wind and I couldn't. I feel like a failure.
+
+Anyways, she really wants to do some sewing to make a teddy bear for our daughter, but she's been having trouble getting her hands on anything that, in her words \"won't hurt the little one later in life.\" I figured I could at least help her out a bit here. I guess I'm just worried that she's gonna leave me behind. She's so full of energy and, for lack of a better word, life. I don't want to hold her back. Is there any chance you've got [res=Fabric]anything for sewing[/res]?
+
+I know this is kind of a shot in the dark, but thanks for at least hearing me out,
+Twilight"
+category = ""
+prerequisite_emails = Array[ExtResource("1_1njqs")]([ExtResource("3_01r1f")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_ucibn")
+tutorial = false
+lore_only = false
+has_start_time = false
+failable = true
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

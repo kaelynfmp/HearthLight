@@ -1,35 +1,43 @@
-[gd_resource type="Resource" script_class="Email" load_steps=7 format=3 uid="uid://dynvawdp111sl"]
+[gd_resource type="Resource" script_class="Email" load_steps=8 format=3 uid="uid://dynvawdp111sl"]
 
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_jvolh"]
-[ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="1_lrhwl"]
-[ext_resource type="Resource" uid="uid://ckrgha87ltstr" path="res://resources/gadgets/hand_grinder.tres" id="2_61c6n"]
+[ext_resource type="Resource" uid="uid://cq5l4dfcn3c5t" path="res://resources/items/rock.tres" id="1_q4d58"]
+[ext_resource type="Resource" uid="uid://lxvyxcteq6eq" path="res://resources/items/dust.tres" id="2_q4d58"]
+[ext_resource type="Resource" uid="uid://bmylw6g0ukbxm" path="res://resources/gadgets/wheel.tres" id="3_47hgc"]
 [ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="3_q4d58"]
-[ext_resource type="Resource" uid="uid://bh4dl6b28jmhc" path="res://resources/emails/givecottonforwheel.tres" id="5_61c6n"]
+[ext_resource type="Resource" uid="uid://m1df6r382dc" path="res://resources/emails/Tutorial1Completion.tres" id="6_q4d58"]
 
 [sub_resource type="Resource" id="Resource_47hgc"]
 script = ExtResource("3_q4d58")
 order_id = 1
-given_items = Array[Resource]([])
-given_quantities = Array[int]([])
+given_items = Array[Resource]([ExtResource("1_q4d58")])
+given_quantities = Array[int]([2])
 given_currency = 0
-required_items = Array[Resource]([ExtResource("1_lrhwl")])
-required_quantities = Array[int]([8])
+required_items = Array[Resource]([ExtResource("2_q4d58")])
+required_quantities = Array[int]([2])
 day = 0
 hour = 0
 minute = 0
-currency_reward = 50
-rewards = Array[Resource]([ExtResource("2_61c6n")])
+currency_reward = 100
+rewards = Array[Resource]([ExtResource("3_47hgc")])
 rewards_quantities = Array[int]([1])
 
 [resource]
 script = ExtResource("1_jvolh")
-sender = "James Jamington"
-subject = "I Need [res=Fabric]Fabric[/res]"
-contents = "I need [i]eight[/i] [res=Fabric]fabric[/res] for my new shirt. I'll even give you a [res=Hand-cranked Grinder]grinder[/res] I had lying around in the attic in exchange!
+sender = "Ernest Hayden"
+subject = "I can never trust those damn corporations"
+contents = "Good day,
 
-I'm no expert, but I'm pretty sure you make [res=Fabric]fabric[/res] by putting [res=Cotton]cotton[/res] into a [res=Ancient Loom]loom[/res]."
+I am sending you this correspondence because I am in need of a service, and due to previous experiences, I am deeply uncomfortable with relaying on those treacherous, horrid corporations. A little birdie told me of your services, and at this point I am more than willing to indulge in the personal recommendations of unlicensed artisans than to trust those dastardly corporations with any more of my samples.
+
+All I require is for you to process the [b]minerals[/b] that I will be sending you. I would do it myself, but I have much better things to do with my time if I can avoid it. It is however a simple request, and one that I should have every confidence in you doing, though please excuse me for my wariness given my previous experiences with the utter incompetence of supposed \"professionals.\"
+
+In case you're new to this, processing minerals is an [b]active task[/b], you cannot simply \"set it and forget it\" as you might with say, a common [res=Pot]houseplant[/res]
+
+Yours truly,
+Ernest Hayden"
 category = "main"
-prerequisite_emails = Array[ExtResource("1_jvolh")]([ExtResource("5_61c6n")])
+prerequisite_emails = Array[ExtResource("1_jvolh")]([ExtResource("6_q4d58")])
 day = 0
 hour = 0
 minute = 0

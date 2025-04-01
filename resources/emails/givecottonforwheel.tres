@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="1_rjd1k"]
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_shk4p"]
-[ext_resource type="Resource" uid="uid://bmylw6g0ukbxm" path="res://resources/gadgets/wheel.tres" id="2_8t6yv"]
+[ext_resource type="Resource" uid="uid://ckrgha87ltstr" path="res://resources/gadgets/hand_grinder.tres" id="2_8t6yv"]
 [ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="3_1kf00"]
 [ext_resource type="Resource" uid="uid://cof21obwyvl4v" path="res://resources/emails/introemail.tres" id="5_8t6yv"]
 
@@ -23,9 +23,13 @@ rewards_quantities = Array[int]([1])
 
 [resource]
 script = ExtResource("1_shk4p")
-sender = "Jenna Johnson"
-subject = "Want a [res=Ancient Loom]loom[/res]?"
-contents = "I will give you a [res=Ancient Loom]loom[/res] in exchange for [i]four[/i] [res=Cotton]cotton[/res]! Don't worry if you don't have enough [res=Seed]seeds[/res] or [res=Water]water[/res] or whatever, [res=Botsy]Botsy[/res] has like, everything these days!"
+sender = "Katheryn Elion"
+subject = "Goods?"
+contents = "hey, a little birdie told me that you've got yourself a [res=Cotton]cotton[/res] plant. any chance i could take some of that [b]cotton[/b] off your hands? you'll need to [b]plant a [res=Seed]seed[/res][/b] and then [b][res=Water]water[/res] it[/b], then just [b]click[/b] on the [res=Pot]]cotton plant[/res]  to [b]collect[/b] it, and send it off to me. it'll know where to go, don't worry
+
+Oh yeah, and if you're missing anything, just check [res=Botsy]Botsy[/res]. you'll find what you need there
+
+thanks a bunch!"
 category = "main"
 prerequisite_emails = Array[ExtResource("1_shk4p")]([ExtResource("5_8t6yv")])
 day = 0

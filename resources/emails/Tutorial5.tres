@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="Email" load_steps=6 format=3 uid="uid://dn1yfys2dr5s3"]
+
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_fnf1k"]
+[ext_resource type="Resource" uid="uid://bgmxpne1d7fis" path="res://resources/items/metal.tres" id="1_hug36"]
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_ugh8a"]
+[ext_resource type="Resource" uid="uid://ddl262io6dr0t" path="res://resources/emails/Tutorial4Completion.tres" id="4_hug36"]
+
+[sub_resource type="Resource" id="Resource_fq6d3"]
+script = ExtResource("1_fnf1k")
+order_id = 0
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
+given_currency = 0
+required_items = Array[Resource]([ExtResource("1_hug36")])
+required_quantities = Array[int]([1])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 500
+rewards = Array[Resource]([])
+rewards_quantities = Array[int]([])
+
+[resource]
+resource_name = "Tutorial5"
+script = ExtResource("1_ugh8a")
+sender = "Ernest Hayden"
+subject = "You've been wonderfully dependable so far"
+contents = "Jolly good show!
+
+You've proven yourself competent and dependable time and again, and so I feel that I owe it to you to provide you with some capital, though not until you do me one small favour. Something has happened rather suddenly, and now I find myself entirely bereft of materials. I was hoping that you would be able to assist me in this department by procuring me some [res=Metal]metal[/res]. I have plenty of money that I will provide you with, I just need this one favour. After that I'll be out of your hair. Unless you're interested in future opportunities, that is.
+
+Many thanks,
+Ernest"
+category = ""
+prerequisite_emails = Array[ExtResource("1_ugh8a")]([ExtResource("4_hug36")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_fq6d3")
+tutorial = true
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

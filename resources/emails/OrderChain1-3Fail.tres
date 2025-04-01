@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://cpj8gbsnlm7sf"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_afpqj"]
+[ext_resource type="Resource" uid="uid://d3oe0e0m7qk02" path="res://resources/emails/OrderChain1-3.tres" id="2_g374q"]
+
+[resource]
+resource_name = "OrderChain1-3Fail"
+script = ExtResource("1_afpqj")
+sender = "Vivian Brisket"
+subject = "Wow, way to really pull through for us there :|"
+contents = "Seriously?"
+category = ""
+prerequisite_emails = Array[ExtResource("1_afpqj")]([ExtResource("2_g374q")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = false
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = true
+bankruptcy = false

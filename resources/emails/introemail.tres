@@ -24,12 +24,14 @@ rewards_quantities = Array[int]([])
 
 [resource]
 script = ExtResource("1_16060")
-sender = "Katheryn Elion"
-subject = "goods?"
+sender = "[REDACTED]"
+subject = "you look like you could use help"
 contents = "[hint=test][url]test[/url][/hint]
-hey, a little birdie told me that you've got yourself access to a plant [res=Pot]pot[/res]. any chance i could take some of that [res=Cotton]cotton[/res] it could make off your hands? just plant some [res=Seed]cotton seeds[/res] in that [res=Pot]pot[/res], [res=Water]water[/res] it, and send off what it makes in the drone. it'll know where to go, don't worry
+Take these.
+You can [b]place the [res=Pot]pot[/res][/b] by [b]clicking on it in your inventory (E)[/b] and [b]clicking in the room to place it[/b]. You can plant the [res=Cotton]cotton[/res] in the [res=Pot]pot[/res] by [b]dragging [res=Seed]seeds[/res] from your inventory[/b]. You'll need to do the same with [res=Water]water[/res] in order for it to grow.
 
-thanks a bunch!"
+Good luck. You'll need it.
+[REDACTED]"
 category = "main"
 prerequisite_emails = Array[ExtResource("1_16060")]([])
 day = 0

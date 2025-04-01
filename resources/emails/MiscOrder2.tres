@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="Email" load_steps=7 format=3 uid="uid://dkgv5367ry2m5"]
+
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_2hvj7"]
+[ext_resource type="Resource" uid="uid://lxvyxcteq6eq" path="res://resources/items/dust.tres" id="1_otcyr"]
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_wl46j"]
+[ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="2_5opfe"]
+[ext_resource type="Resource" uid="uid://dn1yfys2dr5s3" path="res://resources/emails/Tutorial5.tres" id="3_x8vmx"]
+
+[sub_resource type="Resource" id="Resource_otcyr"]
+script = ExtResource("1_2hvj7")
+order_id = 0
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
+given_currency = 0
+required_items = Array[Resource]([ExtResource("1_otcyr")])
+required_quantities = Array[int]([5])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 150
+rewards = Array[Resource]([ExtResource("2_5opfe")])
+rewards_quantities = Array[int]([10])
+
+[resource]
+resource_name = "MiscOrder2"
+script = ExtResource("1_wl46j")
+sender = "Clarence Smith"
+subject = "I would like to make a legitimate and aboveboard (legal) request of you"
+contents = "Hello, I would like to make a legitimate and aboveboard (legal) request of you.
+
+I will be attending a function tomorrow night, and I am trying to procure some reasonable enhancements to the experience. To that end, I was wondering if I could trouble you to provide me with some [res=Dust]fractured stone pieces of minimal size[/res]. I will kindly ask that you not inquire as to what I will be doing with these materials, as I can assure you that all of it is strictly within the bounds of the law. You will, of course, be compensated for your trouble.
+
+Your cooperation and silence would both be appreciated.
+
+Kindly,
+Clarence"
+category = ""
+prerequisite_emails = Array[ExtResource("1_wl46j")]([ExtResource("3_x8vmx")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_otcyr")
+tutorial = false
+lore_only = false
+has_start_time = false
+failable = true
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

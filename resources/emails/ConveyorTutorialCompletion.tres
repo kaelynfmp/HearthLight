@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://be58bgg864c3p"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_o7178"]
+[ext_resource type="Resource" uid="uid://c5fyj1i0awpih" path="res://resources/emails/ConveyorTutorial.tres" id="2_374mq"]
+
+[resource]
+resource_name = "ConveyorTutorialCompletion"
+script = ExtResource("1_o7178")
+sender = "Ernest Hayden"
+subject = "Logistical solutions, as promised"
+contents = "I've really come to count on you, do you know that?
+
+Ah, my apologies. I got a bit sentimental there. Many thanks for that timely rescue from the clutches of free market capitalism. As promised, I have sent you your [res=Conveyor Belt]conveyor belt[/res]. I hope you get good use out of it
+
+Many thanks,
+Ernest"
+category = ""
+prerequisite_emails = Array[ExtResource("1_o7178")]([ExtResource("2_374mq")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = false
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

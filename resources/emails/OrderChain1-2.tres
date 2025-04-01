@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="Email" load_steps=7 format=3 uid="uid://c4i1yak8kun2o"]
+
+[ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="1_6nl5c"]
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_hsmrq"]
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_tldp1"]
+[ext_resource type="Resource" uid="uid://ilvjcg3gth70" path="res://resources/emails/OrderChain1-1Success.tres" id="3_hsmrq"]
+[ext_resource type="Resource" uid="uid://ddiii5ep5hs4p" path="res://resources/emails/GeneratorTutorialComplete.tres" id="5_1l2p1"]
+
+[sub_resource type="Resource" id="Resource_1l2p1"]
+script = ExtResource("1_hsmrq")
+order_id = 0
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
+given_currency = 0
+required_items = Array[Resource]([ExtResource("1_6nl5c")])
+required_quantities = Array[int]([25])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 250
+rewards = Array[Resource]([])
+rewards_quantities = Array[int]([])
+
+[resource]
+resource_name = "OrderChain1-2"
+script = ExtResource("1_tldp1")
+sender = "Vivian Brisket"
+subject = "I'm back for more >:)"
+contents = "Ok you read the subject line, you know what's up. I need more [res=Fabric]fabric[/res] for my [s]nefarious[/s] completely aboveboard operations *wink wink nudge nudge*. [b]10[/b] should be fine for what I need right now, but I'll be sure to send in another order when I need some more"
+category = ""
+prerequisite_emails = Array[ExtResource("1_tldp1")]([ExtResource("3_hsmrq"), ExtResource("5_1l2p1")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_1l2p1")
+tutorial = false
+lore_only = false
+has_start_time = false
+failable = true
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

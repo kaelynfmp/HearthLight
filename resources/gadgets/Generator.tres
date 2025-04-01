@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="Gadget" load_steps=8 format=3 uid="uid://dh7knqcysban1"]
+
+[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_exgi4"]
+[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_cn647"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_fk4tt"]
+[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_i23j1"]
+
+[sub_resource type="Resource" id="Resource_8srds"]
+script = ExtResource("2_cn647")
+locked = true
+item_filter = Array[ExtResource("3_fk4tt")]([])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_ur5ct"]
+script = ExtResource("1_exgi4")
+slots = Array[ExtResource("2_cn647")]([SubResource("Resource_8srds")])
+
+[sub_resource type="Resource" id="Resource_nmhtb"]
+script = ExtResource("3_fk4tt")
+name = "Generator"
+description = ""
+max_stack = 100
+price = 0
+
+[resource]
+resource_name = "Generator"
+script = ExtResource("4_i23j1")
+sprite_offset = Vector2(0, 0)
+sprite_scale_factor = 1.0
+name = "Generator"
+age = 0
+direction = 0
+description = ""
+item = SubResource("Resource_nmhtb")
+inventory = SubResource("Resource_ur5ct")
+produces = false
+inputs = 1
+outputs = 1
+process_time = 0.0

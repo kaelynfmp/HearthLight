@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="Email" load_steps=7 format=3 uid="uid://c5fyj1i0awpih"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_dst0s"]
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_gc7lr"]
+[ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="1_jbx6v"]
+[ext_resource type="Resource" uid="uid://cksgqh7imb27s" path="res://resources/gadgets/conveyor_belt.tres" id="2_7hu52"]
+[ext_resource type="Resource" uid="uid://c4l64rubumces" path="res://resources/emails/Tutorial5Completion.tres" id="4_jbx6v"]
+
+[sub_resource type="Resource" id="Resource_7hu52"]
+script = ExtResource("1_gc7lr")
+order_id = 0
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
+given_currency = 0
+required_items = Array[Resource]([ExtResource("1_jbx6v")])
+required_quantities = Array[int]([40])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 0
+rewards = Array[Resource]([ExtResource("2_7hu52")])
+rewards_quantities = Array[int]([1])
+
+[resource]
+resource_name = "ConveyorTutorial"
+script = ExtResource("1_dst0s")
+sender = "Ernest Hayden"
+subject = "I have a proposition I think you'll like"
+contents = "Good Day,
+I've come across a magnificent little piece of machinery that I think you'll find quite the use for. It's an old [res=Conveyor Belt]conveyor belt[/res]. It probably hasn't seen any use in quite some time, but I can imagine it might be a rather useful little gadget for you operation, given that [b]they're used to move things between machines[/b].
+
+Unfortunately, in order to acquire this piece of machinery, I had to make a trade with some... unscrupulous fellows. I'm afraid that if I don't provide them with fine silks, or [res=Fabric]a convincing imitation[/res], then I will be forever indebted to them and their heinous organization. As-is, my collection of fine silks is running rather dry, and I [i]might[/i] have spent slightly more on their other products than I was able to pay, so I was hoping you might be able to help me out. A little quid pro quo, as it were.
+
+Thank you for understanding,
+Ernest"
+category = ""
+prerequisite_emails = Array[ExtResource("1_dst0s")]([ExtResource("4_jbx6v")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_7hu52")
+tutorial = false
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false
