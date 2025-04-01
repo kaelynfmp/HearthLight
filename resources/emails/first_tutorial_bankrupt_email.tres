@@ -8,13 +8,13 @@ script = ExtResource("1_ntuda")
 order_id = 0
 given_items = Array[Resource]([])
 given_quantities = Array[int]([])
-given_currency = 10
+given_currency = 15
 required_items = Array[Resource]([])
 required_quantities = Array[int]([])
 day = 0
 hour = 0
 minute = 0
-currency_reward = 10
+currency_reward = 0
 rewards = Array[Resource]([])
 rewards_quantities = Array[int]([])
 metadata/_custom_type_script = "uid://cdrlcp2hcoi4m"
@@ -25,7 +25,7 @@ sender = "Secret Admirer"
 subject = "Down on your luck?"
 contents = "Hey, I heard you're struggling a bit in the financials department.
 
-Take $10 I insist."
+Take some change, I insist."
 category = "main"
 prerequisite_emails = Array[ExtResource("2_3crd8")]([])
 day = 0
