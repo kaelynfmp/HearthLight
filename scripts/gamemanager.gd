@@ -315,11 +315,12 @@ func subtract_currency(amount: int) -> bool:
 	return false  # not enough money for purchase
 
 ## Picks up a gadget and puts it into the cursor
-func pickup_gadget(_gadget:Gadget) -> bool:
+func pickup_gadget(_gadget:Gadget, direction:Gadget.Direction = Gadget.Direction.SE) -> bool:
 	if cursor != null and cursor.slot != null and cursor.slot.item == null:
 		if !inventory:
 			change_inventory()
 		cursor.slot.initialize(_gadget.item)
+		get_gadget_from_cursor().direction = direction
 		AudioManager.play_button_sound(AudioManager.BUTTON.PICK_UP, 0.0, 1.0, 0.0)
 		return true
 	return false

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Gadget" load_steps=12 format=3 uid="uid://bmylw6g0ukbxm"]
+[gd_resource type="Resource" script_class="Gadget" load_steps=13 format=3 uid="uid://bmylw6g0ukbxm"]
 
 [ext_resource type="AudioStream" uid="uid://bdr8s62cq4yp4" path="res://resources/audio/Gadgets/p loom.wav" id="1_5sdsw"]
 [ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_8iuif"]
@@ -34,9 +34,36 @@ description = "An old antique that most would consider useless. Knowledge on how
 max_stack = 1
 price = 50
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_5sdsw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_58b7f")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_58b7f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_58b7f")
+}],
+"loop": true,
+"name": &"se",
+"speed": 5.0
+}]
+
 [resource]
 script = ExtResource("1_s808j")
-texture = ExtResource("5_58b7f")
+sprite_frames = SubResource("SpriteFrames_5sdsw")
 sprite_offset = Vector2(0, -140)
 sprite_scale_factor = 0.95
 name = "Ancient Loom"

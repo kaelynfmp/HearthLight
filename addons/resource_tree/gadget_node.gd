@@ -18,8 +18,8 @@ func _process(_delta: float) -> void:
 	if gadget_node.gadget == null:
 		$GadgetImage.texture = null
 		return
-	if $GadgetImage.texture != gadget_node.gadget.texture:
-		$GadgetImage.set_texture(gadget_node.gadget.texture)
+	if $GadgetImage.texture != gadget_node.gadget.item.texture:
+		$GadgetImage.set_texture(gadget_node.gadget.item.texture)
 	if title != gadget_node.gadget.name:
 		title = gadget_node.gadget.name
 	
