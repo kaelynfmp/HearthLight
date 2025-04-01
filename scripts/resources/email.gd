@@ -55,8 +55,6 @@ func check_chain() -> bool:
 	if !prereqs_must_fail:
 		for email in prerequisite_emails:
 			if !email.attached_order and email.is_read:
-				print("email is read! prerequisite achieved")
-				print(email.sender)
 				pass
 			if (email.failable and email.failed) or (email.attached_order and !email.attached_order.is_completed):
 				#print("Chain email invalid")
@@ -65,6 +63,4 @@ func check_chain() -> bool:
 				pass
 	#print("Chain email valid")
 	# once all emails are checked, return true
-	if sender == "Katheryn Elion":
-		print(subject, " has all completed prereqs and should be displayed")
 	return true
