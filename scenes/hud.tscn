@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://ca24n44nxd7w1" path="res://resources/sprites/gui/gear/disabled.png" id="16_qpprf"]
 [ext_resource type="Texture2D" uid="uid://br677v2jqsxvc" path="res://resources/sprites/gui/questopen/questopen.png" id="17_kp442"]
 [ext_resource type="Texture2D" uid="uid://rtk7chr66qjo" path="res://resources/sprites/gui/questopen/questopenselect.png" id="18_gltyx"]
-[ext_resource type="Script" uid="uid://djkcgfibs8xbn" path="res://scenes/sleep_canvas.gd" id="19_iypfu"]
+[ext_resource type="Script" path="res://scenes/sleep_canvas.gd" id="19_iypfu"]
 [ext_resource type="Texture2D" uid="uid://32e6btkil3qi" path="res://resources/sprites/gui/questopen/questopenhovered.png" id="19_mgfyp"]
 [ext_resource type="Script" uid="uid://cbtruwvxi8xxb" path="res://scripts/gui/quests/quest_visibility_button.gd" id="20_mgfyp"]
 [ext_resource type="Texture2D" uid="uid://cfhlj4sxhcu7c" path="res://resources/sprites/gui/questopen/questclose.png" id="20_ptr5m"]
@@ -197,6 +197,7 @@ offset_top = -98.0
 offset_right = 1921.0
 offset_bottom = 0.0
 grow_vertical = 0
+mouse_filter = 0
 
 [node name="PauseMenu" parent="." instance=ExtResource("13_55orh")]
 process_mode = 3

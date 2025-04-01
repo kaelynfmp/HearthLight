@@ -20,7 +20,7 @@ Utility="*res://scripts/utility.gd"
 GameManager="*res://scripts/gamemanager.gd"
 OrderManager="*res://scripts/order_manager.gd"
 AudioManager="*res://scripts/audio_manager.gd"
-TutorialManager="*res://scripts/tutorial_manager.gd"
+TutorialManager="*res://scenes/tutorial_manager.tscn"
 
 [display]
 
