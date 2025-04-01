@@ -29,7 +29,7 @@ slots = Array[ExtResource("2_cn647")]([SubResource("Resource_8srds"), SubResourc
 script = ExtResource("3_fk4tt")
 texture = ExtResource("4_cn647")
 name = "Generator"
-description = "This is a generator."
+description = "This is a generator. This powers every gadgets in a 2-tile radius around it."
 max_stack = 100
 price = 100
 
@@ -61,7 +61,7 @@ sprite_scale_factor = 0.95
 name = "Generator"
 age = 1
 direction = 0
-description = "This is a generator."
+description = "This is a generator. This powers every gadgets in a 2-tile radius around it."
 item = SubResource("Resource_nmhtb")
 inventory = SubResource("Resource_ur5ct")
 produces = true
