@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Gadget" load_steps=8 format=3 uid="uid://d2khmgxs20bw2"]
+[gd_resource type="Resource" script_class="Gadget" load_steps=9 format=3 uid="uid://d2khmgxs20bw2"]
 
 [ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_7agyg"]
 [ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_k1ud4"]
@@ -7,6 +7,13 @@
 
 [sub_resource type="Resource" id="Resource_ubw0m"]
 script = ExtResource("2_k1ud4")
+locked = false
+item_filter = Array[ExtResource("3_57x6j")]([])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_7agyg"]
+script = ExtResource("2_k1ud4")
 locked = true
 item_filter = Array[ExtResource("3_57x6j")]([])
 bypass_stack = false
@@ -14,7 +21,7 @@ quantity = 0
 
 [sub_resource type="Resource" id="Resource_m0yaq"]
 script = ExtResource("1_7agyg")
-slots = Array[ExtResource("2_k1ud4")]([SubResource("Resource_ubw0m")])
+slots = Array[ExtResource("2_k1ud4")]([SubResource("Resource_ubw0m"), SubResource("Resource_7agyg")])
 
 [sub_resource type="Resource" id="Resource_y6jnr"]
 script = ExtResource("3_57x6j")
