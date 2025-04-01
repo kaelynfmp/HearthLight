@@ -306,12 +306,14 @@ func try_send_bankruptcy():
 		if GameManager.currency <= 10 and !tutorial_complete and categorized_emails["main"].filter(func(email: Email): return email.bankruptcy).is_empty():
 			# tutorial not done yet, send tutorial bankruptcy, not encountered rocks yet
 			bankruptcy_copy = first_tutorial_bankruptcy_email.duplicate(true)
+			if GameManager.currency < 10:
+				bankruptcy_copy.attached_order.given_currency += 10
 			
 		# TODO: finish this when tutorial stuff is done, change prereq emails etc
-		if second_tutorial_bankruptcy_email:
-			if GameManager.currency <= 25 and !tutorial_complete and categorized_emails["main"].filter(func(email: Email): return email.bankruptcy).is_empty() and second_tutorial_bankruptcy_email.check_chain():
-				# tutorial not done but has encountered rocks
-				bankruptcy_copy = second_tutorial_bankruptcy_email.duplicate(true)
+		#if second_tutorial_bankruptcy_email:
+			#if GameManager.currency <= 25 and !tutorial_complete and categorized_emails["main"].filter(func(email: Email): return email.bankruptcy).is_empty() and second_tutorial_bankruptcy_email.check_chain():
+				## tutorial not done but has encountered rocks
+				#bankruptcy_copy = second_tutorial_bankruptcy_email.duplicate(true)
 		# normal bankruptcy
 		if GameManager.currency < 100 and GameManager.game_time["day"]% 3 == 0 and GameManager.game_time["day"] >= 3 and categorized_emails["main"].filter(func(email: Email): return email.bankruptcy).is_empty() and tutorial_complete:
 			#print("bankruptcy activated")
