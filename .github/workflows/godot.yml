@@ -2,7 +2,7 @@ name: "godot-ci export"
 on: push
 
 env:
-  GODOT_VERSION: 4.3
+  GODOT_VERSION: 4.4.1
   EXPORT_NAME: factaroom
   PROJECT_PATH: .
 
@@ -11,7 +11,7 @@ jobs:
     name: Windows Export
     runs-on: ubuntu-20.04
     container:
-      image: barichello/godot-ci:4.3
+      image: barichello/godot-ci:4.4.1
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -39,7 +39,7 @@ jobs:
     name: Linux Export
     runs-on: ubuntu-20.04
     container:
-      image: barichello/godot-ci:4.3
+      image: barichello/godot-ci:4.4.1
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -65,7 +65,7 @@ jobs:
   #  name: Web Export
   #  runs-on: ubuntu-20.04
   #  container:
-  #    image: barichello/godot-ci:4.3
+  #    image: barichello/godot-ci:4.4.1
   #  steps:
   #    - name: Checkout
   #      uses: actions/checkout@v4
@@ -99,7 +99,7 @@ jobs:
     name: Mac Export
     runs-on: ubuntu-20.04
     container:
-      image: barichello/godot-ci:4.3
+      image: barichello/godot-ci:4.4.1
     steps:
       - name: Checkout
         uses: actions/checkout@v4

@@ -221,7 +221,6 @@ offset_top = -98.0
 offset_right = 1921.0
 offset_bottom = 0.0
 grow_vertical = 0
-mouse_filter = 0
 
 [node name="PauseMenu" parent="." instance=ExtResource("13_55orh")]
 process_mode = 3
@@ -231,6 +230,7 @@ z_as_relative = false
 size_flags_horizontal = 4
 
 [node name="SleepCanvas" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

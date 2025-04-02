@@ -8,7 +8,7 @@ var gadgets: Dictionary[String, Gadget]
 
 func _ready():
 	if Engine.is_editor_hint():
-		EditorInterface.get_resource_filesystem().filesystem_changed.connect(load_resources)
+		Engine.get_singleton(&"EditorInterface").get_resource_filesystem().filesystem_changed.connect(load_resources)
 	load_resources()
 	
 ## Loads all of the different resources provided from their specified directories
