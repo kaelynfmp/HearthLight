@@ -54,12 +54,14 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_4qjpb")
 scale = Vector2(301.563, 207.721)
 texture = SubResource("GradientTexture2D_f28ma")
+metadata/_edit_lock_ = true
 
 [node name="Rain" type="Sprite2D" parent="."]
 texture_filter = 1
 material = SubResource("ShaderMaterial_4aq65")
 scale = Vector2(301.406, 208.491)
 texture = SubResource("GradientTexture2D_f28ma")
+metadata/_edit_lock_ = true
 
 [node name="Tilemap" type="Node2D" parent="."]
 y_sort_enabled = true

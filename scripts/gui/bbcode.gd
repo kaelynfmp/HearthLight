@@ -56,9 +56,9 @@ func _process(_delta: float):
 func _meta_clicked(meta: Variant):
 	if Engine.is_editor_hint():
 		if meta in Utility.items:
-			EditorInterface.edit_resource(Utility.items[meta])
+			Engine.get_singleton(&"EditorInterface").edit_resource(Utility.items[meta])
 		if meta in Utility.gadgets:
-			EditorInterface.edit_resource(Utility.gadgets[meta])
+			Engine.get_singleton(&"EditorInterface").edit_resource(Utility.gadgets[meta])
 	elif meta == "Botsy":
 		GameManager.navigate_to_botsy()
 

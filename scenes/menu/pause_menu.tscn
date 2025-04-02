@@ -29,6 +29,7 @@ script = ExtResource("1_hr5ih")
 slide_in_speed = 10.0
 
 [node name="Blur" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_rdkub")
 layout_mode = 1
 anchors_preset = 15
