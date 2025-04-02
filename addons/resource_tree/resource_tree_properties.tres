@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RecipeTreeProperties" load_steps=198 format=3 uid="uid://bayqmo2156mc4"]
+[gd_resource type="Resource" script_class="RecipeTreeProperties" load_steps=197 format=3 uid="uid://bayqmo2156mc4"]
 
 [ext_resource type="Script" uid="uid://chk8orxbmeds0" path="res://addons/resource_tree/gadget_editor_node.gd" id="1_5e5y2"]
 [ext_resource type="Script" uid="uid://72wdluf0sgvq" path="res://addons/resource_tree/email_editor_node.gd" id="1_qn33u"]
@@ -73,7 +73,6 @@
 [ext_resource type="Resource" uid="uid://7oikt5vc44v0" path="res://resources/gadgets/advanced_plant.tres" id="64_ixv8d"]
 [ext_resource type="Resource" uid="uid://duvphdqh8tjm0" path="res://resources/gadgets/advanced_sieve.tres" id="65_qvcag"]
 [ext_resource type="Resource" uid="uid://esvaq5jc2w7h" path="res://resources/gadgets/advanced_stove.tres" id="66_m3ky7"]
-[ext_resource type="Resource" uid="uid://dh5cgjdmg2i4p" path="res://resources/items/GMO Seed.tres" id="67_62w7x"]
 [ext_resource type="Resource" uid="uid://dwiaejoescb15" path="res://resources/recipes/energy_recipe.tres" id="69_7cegh"]
 [ext_resource type="Resource" uid="uid://buu3htcuiyyl6" path="res://resources/recipes/advanced_cotton_recipe.tres" id="70_jukpq"]
 [ext_resource type="Resource" uid="uid://8m8vqmc1pu67" path="res://resources/recipes/advanced_dust_recipe.tres" id="71_rigak"]
@@ -738,9 +737,9 @@ y = -2560
 
 [sub_resource type="Resource" id="Resource_iiyd8"]
 script = ExtResource("3_xi7dl")
-item = ExtResource("67_62w7x")
-x = 35020
-y = -3120
+item = ExtResource("7_x6i4h")
+x = 34740
+y = -3200
 
 [sub_resource type="Resource" id="Resource_4nvll"]
 script = ExtResource("3_xi7dl")
@@ -951,9 +950,9 @@ y = 2000
 
 [sub_resource type="Resource" id="Resource_v08ij"]
 script = ExtResource("3_xi7dl")
-item = ExtResource("67_62w7x")
-x = -3400
-y = -1740
+item = ExtResource("7_x6i4h")
+x = -3600
+y = -1560
 
 [sub_resource type="Resource" id="Resource_xxos5"]
 script = ExtResource("2_hx4k4")
@@ -1015,7 +1014,7 @@ recipe = ExtResource("70_jukpq")
 x = -2740
 y = -1280
 gadget_node = SubResource("Resource_4fbq8")
-input_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_v08ij"), SubResource("Resource_nos87")])
+input_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_nos87"), SubResource("Resource_v08ij")])
 output_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_4issc")])
 
 [sub_resource type="Resource" id="Resource_xnmbw"]
@@ -1058,5 +1057,5 @@ output_item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_qo8go")
 script = ExtResource("2_e0emm")
 recipe_nodes = Array[ExtResource("2_hx4k4")]([SubResource("Resource_xxos5"), SubResource("Resource_bf7ox"), SubResource("Resource_qy74w"), SubResource("Resource_gl4sg"), SubResource("Resource_h1khb"), SubResource("Resource_5bxfp"), SubResource("Resource_wyabk"), SubResource("Resource_xnmbw"), SubResource("Resource_ob3jn"), SubResource("Resource_c4koa"), SubResource("Resource_3d83o")])
 gadget_nodes = Array[ExtResource("1_5e5y2")]([SubResource("Resource_gsbeb"), SubResource("Resource_8w8ri"), SubResource("Resource_hh24p"), SubResource("Resource_5t4gc"), SubResource("Resource_ycsiu"), SubResource("Resource_vnq76"), SubResource("Resource_mniym"), SubResource("Resource_j2s8c"), SubResource("Resource_dunp3"), SubResource("Resource_mfngr"), SubResource("Resource_2mabv"), SubResource("Resource_dgarf"), SubResource("Resource_b5s7w"), SubResource("Resource_8r3jl"), SubResource("Resource_bc7ko"), SubResource("Resource_plqhs"), SubResource("Resource_06w4a"), SubResource("Resource_d4fdh"), SubResource("Resource_4fbq8"), SubResource("Resource_g6p2u"), SubResource("Resource_1j7ax"), SubResource("Resource_tbt5y"), SubResource("Resource_gxpfn"), SubResource("Resource_7ix8p")])
-item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_o22c4"), SubResource("Resource_lxf7n"), SubResource("Resource_0uxyg"), SubResource("Resource_nos87"), SubResource("Resource_lashh"), SubResource("Resource_xcrkp"), SubResource("Resource_pio1n"), SubResource("Resource_qo8go"), SubResource("Resource_snmpi"), SubResource("Resource_3cnlq"), SubResource("Resource_d4chq"), SubResource("Resource_12c4s"), SubResource("Resource_mwob1"), SubResource("Resource_dt62o"), SubResource("Resource_e5ts2"), SubResource("Resource_214k4"), SubResource("Resource_8cgbj"), SubResource("Resource_j8aen"), SubResource("Resource_pk8ro"), SubResource("Resource_y1wbr"), SubResource("Resource_g068s"), SubResource("Resource_3f32q"), SubResource("Resource_s1gna"), SubResource("Resource_ssn0x"), SubResource("Resource_07tg8"), SubResource("Resource_i85hr"), SubResource("Resource_7pu3b"), SubResource("Resource_xrb3t"), SubResource("Resource_bk5ib"), SubResource("Resource_wp2vv"), SubResource("Resource_fjetg"), SubResource("Resource_7x8l1"), SubResource("Resource_w45t7"), SubResource("Resource_q2qmu"), SubResource("Resource_4issc"), SubResource("Resource_xp6fh"), SubResource("Resource_lpic7"), SubResource("Resource_q8b8f"), SubResource("Resource_iiyd8"), SubResource("Resource_v08ij"), SubResource("Resource_4nvll")])
+item_nodes = Array[ExtResource("3_xi7dl")]([SubResource("Resource_o22c4"), SubResource("Resource_lxf7n"), SubResource("Resource_0uxyg"), SubResource("Resource_nos87"), SubResource("Resource_lashh"), SubResource("Resource_xcrkp"), SubResource("Resource_pio1n"), SubResource("Resource_qo8go"), SubResource("Resource_snmpi"), SubResource("Resource_3cnlq"), SubResource("Resource_d4chq"), SubResource("Resource_12c4s"), SubResource("Resource_mwob1"), SubResource("Resource_dt62o"), SubResource("Resource_e5ts2"), SubResource("Resource_214k4"), SubResource("Resource_8cgbj"), SubResource("Resource_j8aen"), SubResource("Resource_pk8ro"), SubResource("Resource_y1wbr"), SubResource("Resource_g068s"), SubResource("Resource_3f32q"), SubResource("Resource_s1gna"), SubResource("Resource_ssn0x"), SubResource("Resource_07tg8"), SubResource("Resource_i85hr"), SubResource("Resource_7pu3b"), SubResource("Resource_xrb3t"), SubResource("Resource_bk5ib"), SubResource("Resource_wp2vv"), SubResource("Resource_fjetg"), SubResource("Resource_7x8l1"), SubResource("Resource_w45t7"), SubResource("Resource_q2qmu"), SubResource("Resource_4issc"), SubResource("Resource_xp6fh"), SubResource("Resource_lpic7"), SubResource("Resource_q8b8f"), SubResource("Resource_4nvll"), SubResource("Resource_v08ij"), SubResource("Resource_iiyd8")])
 email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_s82cm"), SubResource("Resource_kmc8f"), SubResource("Resource_gubxu"), SubResource("Resource_knd4m"), SubResource("Resource_1txgy"), SubResource("Resource_ojx0m"), SubResource("Resource_brw5e"), SubResource("Resource_8sihk"), SubResource("Resource_6noad"), SubResource("Resource_y0ldh"), SubResource("Resource_02ir2"), SubResource("Resource_ugx5x"), SubResource("Resource_84i4g"), SubResource("Resource_8pp3x"), SubResource("Resource_0bcah"), SubResource("Resource_frnfm"), SubResource("Resource_7cegh"), SubResource("Resource_jukpq"), SubResource("Resource_rigak"), SubResource("Resource_7en74"), SubResource("Resource_g1gro"), SubResource("Resource_ixv8d"), SubResource("Resource_06pth"), SubResource("Resource_qvcag"), SubResource("Resource_huahi"), SubResource("Resource_m3ky7"), SubResource("Resource_62w7x"), SubResource("Resource_o08bd"), SubResource("Resource_hal4e"), SubResource("Resource_h7h8b"), SubResource("Resource_v6671"), SubResource("Resource_susxf"), SubResource("Resource_s2h3f"), SubResource("Resource_v2126"), SubResource("Resource_p6cry"), SubResource("Resource_rochj"), SubResource("Resource_n3qvx"), SubResource("Resource_vdy00"), SubResource("Resource_r7kp4"), SubResource("Resource_atenm"), SubResource("Resource_xn3qw")])
