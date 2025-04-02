@@ -47,7 +47,7 @@ texture = ExtResource("4_avpbn")
 name = "Advanced Sieve"
 description = "Advanced Sieve"
 max_stack = 100
-price = 0
+price = 100
 metadata/_custom_type_script = "uid://by7jec2ew2vsl"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_a7w3c"]
