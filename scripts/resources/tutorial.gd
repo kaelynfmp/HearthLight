@@ -24,7 +24,7 @@ var prev_steps
 				if step is TutorialStep and "completed" in step:
 					if not step.completed.is_connected(step_completed):
 						step.completed.connect(step_completed)
-				else:
+				elif step == null:
 					steps[index] = TutorialStep.new()
 			prev_steps = steps.duplicate()
 		return steps
