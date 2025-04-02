@@ -11,6 +11,8 @@ signal item_at_location(cell_pos: Vector2i, item: Item)
 @export var inventory: Inventory
 @export var is_holding: bool = false
 @export var has_power_from_generator = false
+@export var total_power = 0.0
+@export var power_per_coal = 100
 
 
 var location: Vector2i
@@ -85,16 +87,18 @@ func check_for_nearby_generator():
 			var target_pos = cell_pos + Vector2i(offset_x, offset_y)
 			if GameManager.room_map[target_pos[0] + 6][target_pos[1] + 5] != null:
 				var gadget_at_target_pos = GameManager.room_map[target_pos[0] + 6][target_pos[1] + 5]
-				if gadget_at_target_pos.gadget_stats.name == "Generator" and gadget_at_target_pos.has_power:
-					has_power_from_generator = true
-					return
-	has_power_from_generator = false
+				if gadget_at_target_pos.gadget_stats.name == "Generator" and gadget_at_target_pos.total_power > 0:
+					return true
+	return false
 	
 
 func _physics_process(delta: float) -> void:
 	if GameManager.gadget == null:
 		primitive_selected = false
-	check_for_nearby_generator()
+	if gadget_stats.age > GameManager.Age.PRIMITIVE and gadget_stats.name != "Generator":
+		has_power_from_generator = check_for_nearby_generator()
+	if gadget_stats.name == "Generator":
+		total_power = max(0, total_power - delta)
 	if !disabled and !progressing or (!progressing and selected_recipe != null):
 		if gadget_stats.name == "Conveyor Belt":
 			do_transport()
@@ -111,8 +115,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		var change_rate:float = (delta / gadget_stats.process_time) * (
 			selected_recipe.processing_multiplier if selected_recipe else 1.0)
-		if (age > GameManager.Age.PRIMITIVE and has_power_from_generator) or primitive_selected:
+		if (age > GameManager.Age.PRIMITIVE and gadget_stats.name != "Generator" and has_power_from_generator) or primitive_selected or gadget_stats.name == "Generator":
 			progress += change_rate
+			if gadget_stats.name == "Generator":
+				total_power += delta * 10
 		else:
 			progress -= change_rate
 		if progress >= 1:

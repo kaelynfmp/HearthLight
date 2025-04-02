@@ -64,8 +64,8 @@ animations = [{
 [resource]
 script = ExtResource("4_fia4e")
 sprite_frames = SubResource("SpriteFrames_1tbgm")
-sprite_offset = Vector2(0, -140)
-sprite_scale_factor = 0.95
+sprite_offset = Vector2(0, -243)
+sprite_scale_factor = 0.9
 name = "Advanced Pot"
 age = 1
 direction = 0
