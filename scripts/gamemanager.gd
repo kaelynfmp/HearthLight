@@ -112,9 +112,9 @@ var quest_list_visible:bool = true
 
 func init_room_map():
 	var map = []
-	for i in range(12):
+	for i in range(15):
 		var row = []
-		for j in range(12):
+		for j in range(15):
 			row.append(null)
 		map.append(row)
 	return map
