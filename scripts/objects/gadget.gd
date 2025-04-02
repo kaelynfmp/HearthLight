@@ -12,7 +12,7 @@ signal item_at_location(cell_pos: Vector2i, item: Item)
 @export var is_holding: bool = false
 @export var has_power_from_generator = false
 @export var total_power = 0.0
-@export var power_per_coal = 100
+@export var power_per_coal = 10
 
 
 var location: Vector2i
@@ -118,7 +118,7 @@ func _physics_process(delta: float) -> void:
 		if (age > GameManager.Age.PRIMITIVE and gadget_stats.name != "Generator" and has_power_from_generator) or primitive_selected or gadget_stats.name == "Generator":
 			progress += change_rate
 			if gadget_stats.name == "Generator":
-				total_power += delta * 10
+				total_power += delta * power_per_coal
 		else:
 			progress -= change_rate
 		if progress >= 1:
