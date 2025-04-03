@@ -11,7 +11,7 @@ var input_hint_dict: Dictionary = {}
 func _process(delta: float) -> void:
 	visible = GameManager.gadget != null and GameManager.gadget.gadget_stats.name != "Conveyor Belt"
 	if GameManager.gadget != null and GameManager.gadget.gadget_stats.name != "Conveyor Belt":
-		if current_gadget == null:
+		if current_gadget == null or GameManager.gadget.gadget_stats != current_gadget:
 			input_hint_dict = {}
 			set_gadget(GameManager.gadget)
 		if GameManager.gadget.progressing:

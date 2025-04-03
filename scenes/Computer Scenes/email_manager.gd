@@ -77,12 +77,6 @@ func _process(delta: float) -> void:
 			
 		display_category_emails(current_category)
 		saved_day = GameManager.game_time["day"]
-		for email in remaining_order_emails:
-			if not email.bankruptcy and email.attached_order:
-				print("remaining: ", email.attached_order.order_id)
-		for email in completed_order_emails:
-			if not email.bankruptcy and email.attached_order:
-				print("completed: ", email.attached_order.order_id)
 func select_random_emails():
 	# selects 2 random valid emails, or all of them if theres less than 2 valid ones
 	var select_from = remaining_order_emails

@@ -75,3 +75,4 @@ produces = false
 inputs = 1
 outputs = 1
 process_time = 0.0
+sound_string = null

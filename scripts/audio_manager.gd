@@ -7,6 +7,21 @@ var gadget_audio_index:Dictionary[Gadget, int] # Populate dict once ready
 
 var playback:AudioStreamPlaybackPolyphonic
 
+var active_gadgets:Dictionary[String, Dictionary] = {
+	"c grinder.wav": {},
+	"c loom.wav": {},
+	"c plant.wav": {},
+	"c sieve.wav": {},
+	"c stove.wav": {},
+	"c generator.wav": {},
+	"e grinder.wav": {},
+	"e loom.wav": {},
+	"e plant.wav": {},
+	"e sieve.wav": {},
+	"e stove.wav": {},
+	"e generator.wav": {}
+}
+
 ## Enum of all possible button sounds
 enum BUTTON {LOWER, BUTTON_CLICK, SELECT, DOUBLE_CLICK, HIGH_SELECT, DOUBLE_CLICK_TWO, HIGHLIGHT, CLICK, PICK_UP, PUT_DOWN, BUY, NO_MONEY, REWARD, CONFIRM, SHORT_CLICK}
 
@@ -61,3 +76,11 @@ func _play_pressed(node:Node) -> void:
 		
 func play_button_sound(index:int, db:float=0, pitch:float=1, pitch_range:float=0.1):
 	playback.play_stream(button_sounds[index], 0, db, randf_range(pitch - pitch_range, pitch + pitch_range))
+
+	
+func _process(_delta: float) -> void:
+	for audio_string:String in active_gadgets:
+		var gadgets_count = active_gadgets[audio_string].size()
+		if gadgets_count > 0:
+			pass
+		

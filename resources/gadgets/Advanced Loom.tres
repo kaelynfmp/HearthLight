@@ -67,4 +67,5 @@ inventory = SubResource("Resource_m0yaq")
 produces = true
 inputs = 1
 outputs = 1
-process_time = 12.0
+process_time = 4.0
+sound_string = "e loom.wav"

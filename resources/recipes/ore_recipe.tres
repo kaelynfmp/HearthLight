@@ -17,17 +17,17 @@ item_filter = Array[ExtResource("2_qg55f")]([])
 bypass_stack = false
 quantity = 1
 
-[sub_resource type="Resource" id="Resource_mjk5g"]
+[sub_resource type="Resource" id="Resource_fm6qw"]
 script = ExtResource("1_xx422")
-item = ExtResource("3_uta1k")
+item = ExtResource("5_thame")
 locked = false
 item_filter = Array[ExtResource("2_qg55f")]([])
 bypass_stack = false
 quantity = 1
 
-[sub_resource type="Resource" id="Resource_ml23d"]
+[sub_resource type="Resource" id="Resource_l00o7"]
 script = ExtResource("1_xx422")
-item = ExtResource("5_thame")
+item = ExtResource("3_uta1k")
 locked = false
 item_filter = Array[ExtResource("2_qg55f")]([])
 bypass_stack = false
@@ -45,6 +45,6 @@ quantity = 1
 resource_name = "ore_recipe"
 script = ExtResource("3_lrpuw")
 gadget = ExtResource("1_h76we")
-inputs = Array[ExtResource("1_xx422")]([SubResource("Resource_1bhxn"), SubResource("Resource_mjk5g"), SubResource("Resource_ml23d")])
+inputs = Array[ExtResource("1_xx422")]([SubResource("Resource_1bhxn"), SubResource("Resource_fm6qw"), SubResource("Resource_l00o7")])
 outputs = Array[ExtResource("1_xx422")]([SubResource("Resource_xgmiq")])
 processing_multiplier = 1.0

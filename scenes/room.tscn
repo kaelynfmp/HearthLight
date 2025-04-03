@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://gfvpt16hdue1"]
+[gd_scene load_steps=32 format=4 uid="uid://gfvpt16hdue1"]
 
 [ext_resource type="Shader" uid="uid://7r383w0xu0ql" path="res://scripts/shaders/rain.gdshader" id="1_1f3ag"]
 [ext_resource type="TileSet" uid="uid://r7x82rdaw80h" path="res://resources/tilesets/room.tres" id="1_lwtf6"]
@@ -7,13 +7,25 @@
 [ext_resource type="PackedScene" uid="uid://b353v4ogg13io" path="res://scenes/character.tscn" id="3_aubfo"]
 [ext_resource type="PackedScene" uid="uid://ooc6jx4dihku" path="res://scenes/marker.tscn" id="4_mnrrm"]
 [ext_resource type="PackedScene" uid="uid://bpie3rt8qmyxr" path="res://scenes/hud.tscn" id="8_s1rlv"]
+[ext_resource type="AudioStream" uid="uid://dlo4sirbsogfv" path="res://resources/audio/Gadgets/c grinder.wav" id="9_a5qmg"]
 [ext_resource type="Shader" uid="uid://c1k7h37pvve4h" path="res://scripts/shaders/bg.gdshader" id="9_t227l"]
 [ext_resource type="Script" uid="uid://cr8g2k7hdmqnq" path="res://scripts/audio/gadget_audio.gd" id="9_ybpoa"]
+[ext_resource type="AudioStream" uid="uid://bfh4c4fkoqlxs" path="res://resources/audio/Gadgets/c loom.wav" id="10_0tws2"]
 [ext_resource type="AudioStream" uid="uid://cjx0wvt0iwlt6" path="res://resources/audio/Background Rain.mp3" id="10_qtoah"]
+[ext_resource type="AudioStream" uid="uid://cmsrsd474ryy0" path="res://resources/audio/Gadgets/e generator.wav" id="11_2ftkj"]
 [ext_resource type="AudioStream" uid="uid://bg77s7ef0pjwj" path="res://resources/audio/day start.wav" id="11_eom3m"]
+[ext_resource type="AudioStream" uid="uid://bohtg30kj17mx" path="res://resources/audio/Gadgets/c generator.wav" id="12_0tws2"]
 [ext_resource type="Script" uid="uid://dqhdc3kooe8xm" path="res://scripts/audio/day_start.gd" id="12_23wr2"]
+[ext_resource type="AudioStream" uid="uid://dp8j80tndcqu3" path="res://resources/audio/Gadgets/c plant.wav" id="12_ny2il"]
 [ext_resource type="AudioStream" uid="uid://otmrxp1042tf" path="res://resources/audio/day end.wav" id="12_tk5fv"]
+[ext_resource type="AudioStream" uid="uid://5uqihcrhiet7" path="res://resources/audio/Gadgets/c sieve.wav" id="13_gjarb"]
 [ext_resource type="Script" uid="uid://bdel4jeebw8i1" path="res://scripts/audio/day_end.gd" id="14_3j2fx"]
+[ext_resource type="AudioStream" uid="uid://b260ktwoh0hce" path="res://resources/audio/Gadgets/c stove.wav" id="14_5o3hq"]
+[ext_resource type="AudioStream" uid="uid://beuwdkk40xpxk" path="res://resources/audio/Gadgets/e grinder.wav" id="15_7r6do"]
+[ext_resource type="AudioStream" uid="uid://5ktktxn1eh7u" path="res://resources/audio/Gadgets/e loom.wav" id="16_1wmww"]
+[ext_resource type="AudioStream" uid="uid://dwjl06uyeata5" path="res://resources/audio/Gadgets/e plant.wav" id="17_ftego"]
+[ext_resource type="AudioStream" uid="uid://wbeqjl3s0yx7" path="res://resources/audio/Gadgets/e sieve.wav" id="18_3aavd"]
+[ext_resource type="AudioStream" uid="uid://bkca86w1xoib3" path="res://resources/audio/Gadgets/e stove.wav" id="19_c4f3b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4qjpb"]
 shader = ExtResource("9_t227l")
@@ -46,6 +58,31 @@ shader_parameter/additional_rain_speed = 0.5
 shader_parameter/slant = 0.2
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_qtoah"]
+stream_count = 12
+stream_0/stream = ExtResource("9_a5qmg")
+stream_0/volume = -60.0
+stream_1/stream = ExtResource("10_0tws2")
+stream_1/volume = -60.0
+stream_2/stream = ExtResource("12_ny2il")
+stream_2/volume = -60.0
+stream_3/stream = ExtResource("13_gjarb")
+stream_3/volume = -60.0
+stream_4/stream = ExtResource("14_5o3hq")
+stream_4/volume = -60.0
+stream_5/stream = ExtResource("12_0tws2")
+stream_5/volume = -60.0
+stream_6/stream = ExtResource("15_7r6do")
+stream_6/volume = -60.0
+stream_7/stream = ExtResource("16_1wmww")
+stream_7/volume = -60.0
+stream_8/stream = ExtResource("17_ftego")
+stream_8/volume = -60.0
+stream_9/stream = ExtResource("18_3aavd")
+stream_9/volume = -60.0
+stream_10/stream = ExtResource("19_c4f3b")
+stream_10/volume = -60.0
+stream_11/stream = ExtResource("11_2ftkj")
+stream_11/volume = -60.0
 
 [node name="Room" type="Node" groups=["world_gadgets", "world_items"]]
 

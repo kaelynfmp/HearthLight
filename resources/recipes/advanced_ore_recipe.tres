@@ -47,4 +47,4 @@ script = ExtResource("3_0a2cw")
 gadget = ExtResource("1_stxvo")
 inputs = Array[ExtResource("1_7j0l1")]([SubResource("Resource_v134l"), SubResource("Resource_0a2cw"), SubResource("Resource_r2hqv")])
 outputs = Array[ExtResource("1_7j0l1")]([SubResource("Resource_k0ons")])
-processing_multiplier = 2.0
+processing_multiplier = 1.0
