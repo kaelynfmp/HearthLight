@@ -1,6 +1,7 @@
-[gd_scene load_steps=49 format=3 uid="uid://b5r8qyahtr3r1"]
+[gd_scene load_steps=50 format=3 uid="uid://b5r8qyahtr3r1"]
 
 [ext_resource type="Script" uid="uid://25ttm7ow7tts" path="res://scenes/Computer Scenes/emaildisplay.gd" id="1_cc22d"]
+[ext_resource type="Texture2D" uid="uid://buw7lcyvtgstr" path="res://resources/sprites/emails/emailPreviewTopBarUnread.png" id="2_djbhc"]
 [ext_resource type="Texture2D" uid="uid://bidf01qoxygne" path="res://resources/sprites/emails/emailClock.png" id="2_hhepv"]
 [ext_resource type="Texture2D" uid="uid://dph2wxrwua005" path="res://resources/sprites/computer/computerCancel.png" id="2_kcjoy"]
 [ext_resource type="Texture2D" uid="uid://d347gectovqni" path="res://resources/sprites/emails/emailPreviewUnread.png" id="2_ncyps"]
@@ -102,12 +103,11 @@ corner_radius_bottom_left = 100
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_na4y0"]
 
-[node name="EmailButton" type="Button" node_paths=PackedStringArray("sender_label", "subject_label", "sender_dropdown", "subject_dropdown", "blurb_label", "content", "expand_panel", "fulfill_button", "button_sprite", "clock", "bg", "bottom_bar")]
-z_index = 1
+[node name="EmailButton" type="Button" node_paths=PackedStringArray("sender_label", "subject_label", "sender_dropdown", "subject_dropdown", "blurb_label", "content", "expand_panel", "fulfill_button", "button_sprite", "clock", "bg", "top_bar", "bottom_bar")]
 custom_minimum_size = Vector2(1920, 300)
 offset_top = -4.0
 offset_right = 1920.0
-offset_bottom = 1015.0
+offset_bottom = 296.0
 size_flags_horizontal = 3
 theme_override_styles/focus = SubResource("StyleBoxEmpty_68chq")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_8jmuh")
@@ -127,8 +127,21 @@ fulfill_button = NodePath("Panel/FulfillTexture/Fulfill")
 button_sprite = NodePath("Sprite2D")
 clock = NodePath("Clock")
 bg = NodePath("Panel/BG")
+top_bar = NodePath("TopBar")
 bottom_bar = NodePath("Panel/BottomBar")
 button_sound = 7
+
+[node name="TopBar" type="TextureRect" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_djbhc")
+stretch_mode = 4
 
 [node name="Clock" type="TextureRect" parent="."]
 visible = false
@@ -207,7 +220,6 @@ hint_underlined = false
 script = ExtResource("3_gr1tt")
 
 [node name="Panel" type="Panel" parent="."]
-z_index = -1
 layout_mode = 0
 offset_left = 1.0
 offset_top = 145.0

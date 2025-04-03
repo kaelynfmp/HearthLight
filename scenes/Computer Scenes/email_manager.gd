@@ -23,6 +23,8 @@ var saved_day : int = 1
 @export var second_tutorial_bankruptcy_email: Email
 var bankruptcy_copy: Email
 var last_bankruptcy_sent: int = 0
+var default_button_texture:Texture
+
 func _ready():
 	load_emails()
 	create_inbox_buttons()
@@ -94,8 +96,22 @@ func create_inbox_buttons():
 		if categorized_emails[category].size() >= 0:
 			var inbox_button = inbox_button_scene.instantiate()
 			inbox_button.text = category.capitalize()
-			if(inbox_button.text == "Main"):
-				set_current_inbox_button(inbox_button)
+			inbox_button.category = category
+			default_button_texture = inbox_button.sprite.texture
+			match (inbox_button.text):
+				"Orders":
+					inbox_button.main_texture = preload("res://resources/sprites/emails/emailButton1.png")
+					inbox_button.name = "OrdersButton"
+				"Main":
+					inbox_button.main_texture = preload("res://resources/sprites/emails/emailButton2.png")
+					set_current_inbox_button(inbox_button)
+					inbox_button.name = "MainButton"
+				"Spam":
+					inbox_button.main_texture = preload("res://resources/sprites/emails/emailButton3.png")
+					inbox_button.name = "SpamButton"
+				"Archive":
+					inbox_button.main_texture = preload("res://resources/sprites/emails/emailButton4.png")
+					inbox_button.name = "ArchiveButton"
 			inbox_button.pressed.connect(func():
 				display_category_emails(category)
 				set_current_inbox_button(inbox_button))
@@ -106,11 +122,11 @@ func set_current_inbox_button(button: Button):
 	var style = StyleBoxFlat.new()
 	style.bg_color = Color(buttoncolor)
 	for eachbutton in inbox_list_container.get_children():
-		eachbutton.set("theme_override_styles/normal", style)
-	
-	var selectedstyle = StyleBoxFlat.new()
-	selectedstyle.bg_color = Color(selectedbuttoncolor)
-	current_inbox_button.set("theme_override_styles/normal", selectedstyle)
+		if eachbutton is Button:
+			eachbutton.sprite.texture = eachbutton.main_texture
+		
+	# Calling deferred here ensures that the main texture has been set first
+	current_inbox_button.sprite.call_deferred("set_texture", default_button_texture)
 	
 func display_category_emails(category: String):
 	# clear current email list
@@ -227,7 +243,12 @@ func order_accept(email: Email):
 		fulfill_order(email)
 		email.attached_order.is_accepted = true
 		change_email_category(email, "archive")
-	display_category_emails(current_category)
+	if GameManager.categorized_emails[current_category].filter(func(email: Email): return email.check_valid()).is_empty():
+		display_category_emails("orders")
+		# Find_child wasn't working
+		set_current_inbox_button(inbox_list_container.get_children()[inbox_list_container.get_children().find_custom(\
+			func(child): return child.name == "OrdersButton")])
+					
 	# TODO: save order accept day, check this later
 	
 	
