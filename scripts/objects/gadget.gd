@@ -60,11 +60,13 @@ func create_new_inventory(num_inputs: int, num_outputs: int) -> void:
 		var slot: Slot = Slot.new()
 		slot.item = null
 		slot.locked = false
+		slot.item_filter = gadget_stats.inventory.slots[i].item_filter
 		inventory.slots.append(slot)
 	for i in range(num_outputs):
 		var slot: Slot = Slot.new()
 		slot.item = null
 		slot.locked = true
+		slot.item_filter = gadget_stats.inventory.slots[num_inputs + i].item_filter
 		inventory.slots.append(slot)
 
 # Called when the node enters the scene tree for the first time.
@@ -80,7 +82,6 @@ func _ready() -> void:
 	direction = gadget_stats.direction
 	sprite.scale *= gadget_stats.sprite_scale_factor
 	rotate_sprite()
-	gadget_stats.inventory = inventory
 	if gadget_stats.name == "Conveyor Belt":
 		collision_layer = 2
 		collision_mask = 2
