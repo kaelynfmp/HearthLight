@@ -214,9 +214,13 @@ script = ExtResource("5_wwlms")
 order_class = ExtResource("6_luoch")
 
 [node name="EmailsListContainer" type="VBoxContainer" parent="Sites/Emails/ScrollContainer"]
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="EmailButton" parent="Sites/Emails/ScrollContainer/EmailsListContainer" instance=ExtResource("1_ip337")]
+layout_mode = 2
 
 [node name="Label" type="Label" parent="Sites/Emails"]
 layout_mode = 1

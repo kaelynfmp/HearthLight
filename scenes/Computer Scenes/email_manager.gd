@@ -210,7 +210,7 @@ func show_email_details(email: Email, email_button: Button):
 	#is_read_color(email, email_button)
 	panel.visible = !panel.visible
 	if panel.visible:
-		email_button.custom_minimum_size = Vector2(1920,1080)
+		email_button.custom_minimum_size = Vector2(1920,1019)
 	else:
 		email_button.custom_minimum_size = Vector2(1920,300)
 	

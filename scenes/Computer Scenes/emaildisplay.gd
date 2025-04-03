@@ -11,12 +11,18 @@ var email: Email
 @export var expand_panel: Panel  # expanded email content
 @export var fulfill_button: Button
 @export var button_sprite: Sprite2D
+@export var clock: TextureRect
+@export var bg: TextureRect
+@export var bottom_bar: TextureRect
 
 @export var button_sound: AudioManager.BUTTON
 
+var prev_read:bool = false
+
 func _process(_delta: float) -> void:
-	if email.is_read:
-		button_sprite.modulate = Color(0.8, 0.74, 0.8, 0.5)
+	if email.is_read and !prev_read and not email.tutorial:
+		prev_read = true
+		button_sprite.texture = preload("res://resources/sprites/emails/emailPreview.png")
 	if fulfill_button.visible and GameManager.computer_visible and email != null and email.attached_order != null:
 		fulfill_button.disabled = !GameManager.player_inventory_has(email.attached_order.required_items, email.attached_order.required_quantities)
 
@@ -31,7 +37,11 @@ func set_email(new_email: Email):
 	
 	content.text = email.contents
 	expand_panel.visible = false
-
+	if not email.tutorial and email.attached_order != null:
+		bg.texture = preload("res://resources/sprites/emails/emailDropdownTimed.png")
+		bottom_bar.texture = preload("res://resources/sprites/emails/emailBottomBarTimed.png")
+		clock.set_visible(true)
+	
 func _finished(_text:String, label:RichTextLabel):
 	if !label.initialized:
 		label.initialized = true
