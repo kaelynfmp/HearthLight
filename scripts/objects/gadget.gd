@@ -11,7 +11,7 @@ signal item_at_location(cell_pos: Vector2i, item: Item)
 @export var inventory: Inventory
 @export var is_holding: bool = false
 @export var has_power_from_generator = false
-@export var total_power = 0.0
+@export var total_power:float = 0.0
 @export var power_per_coal = 10
 
 var max_power:int = 1000
@@ -19,6 +19,7 @@ var max_power:int = 1000
 # one generator.
 var power_depletion_rate:float = 0.2
 
+var prev_power:float = 0.0
 
 var location: Vector2i
 var character: Node2D
@@ -97,7 +98,7 @@ func check_for_nearby_generator(delta: float):
 				var gadget_at_target_pos = GameManager.room_map[target_pos[0] + 6][target_pos[1] + 5]
 				if gadget_at_target_pos.is_generator and gadget_at_target_pos.has_power:
 					# Deplete power of generator being used
-					if progressing and selected_recipe != null:
+					if progressing and selected_recipe != null and not GameManager.sleeping:
 						gadget_at_target_pos.total_power = max(0, gadget_at_target_pos.total_power - power_depletion_rate * delta)
 					return true
 	return false
@@ -113,13 +114,12 @@ func _physics_process(delta: float) -> void:
 		has_power_from_generator = check_for_nearby_generator(delta)
 	if is_generator:
 		has_power = total_power > 0
-		print(total_power)
-		if gadget_stats.sound_string != null and gadget_stats.sound_string != "":
-			if has_power and not total_power >= max_power:
-				AudioManager.active_gadgets[gadget_stats.sound_string][self] = true
-			else:
-				if AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
-					AudioManager.active_gadgets[gadget_stats.sound_string].erase(self)
+		if prev_power != total_power:
+			prev_power = total_power
+			AudioManager.active_gadgets[gadget_stats.sound_string][self] = true
+		else:
+			if AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
+				AudioManager.active_gadgets[gadget_stats.sound_string].erase(self)
 	if !disabled and !progressing or (!progressing and selected_recipe != null):
 		if gadget_stats.name == "Conveyor Belt":
 			do_transport()
@@ -132,7 +132,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		var change_rate:float = (delta / gadget_stats.process_time) * (
 			selected_recipe.processing_multiplier if selected_recipe else 1.0)
-		if (recipe_taken or selected_recipe != null) and ((age > GameManager.Age.PRIMITIVE and not is_generator and has_power_from_generator) or primitive_selected or is_generator):
+		if not GameManager.sleeping and ((recipe_taken or selected_recipe != null) and \
+		((age > GameManager.Age.PRIMITIVE and not is_generator and has_power_from_generator) or \
+		primitive_selected or is_generator)):
 			if is_generator:
 				if total_power < max_power:
 					progress += change_rate
@@ -312,6 +314,9 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 				GameManager.unique_gadget_interaction(gadget_stats)
 	elif detect_nearby() and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 		if GameManager.pickup_gadget(gadget_stats, direction):
+			cancel_processing()
+			# Remove from masterlist of inventories
+			GameManager.inventories.erase(inventory)
 			for slot in inventory.slots:
 			# Send it all away to any open inventories
 				GameManager.send_to_inventory(slot)

@@ -46,7 +46,7 @@ script = ExtResource("3_nbxei")
 texture = ExtResource("4_avpbn")
 name = "Advanced Sieve"
 description = "Advanced Sieve"
-max_stack = 100
+max_stack = 1
 price = 100
 metadata/_custom_type_script = "uid://by7jec2ew2vsl"
 

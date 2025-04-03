@@ -234,6 +234,8 @@ metadata/_edit_lock_ = true
 [node name="GadgetAudio" type="AudioStreamPlayer2D" parent="Audio"]
 stream = SubResource("AudioStreamSynchronized_qtoah")
 autoplay = true
+max_distance = 11985.0
+attenuation = 1e-05
 script = ExtResource("9_ybpoa")
 
 [node name="AmbientRain" type="AudioStreamPlayer2D" parent="Audio"]

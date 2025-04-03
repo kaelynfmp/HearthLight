@@ -30,7 +30,7 @@ script = ExtResource("3_57x6j")
 texture = ExtResource("4_k1ud4")
 name = "Advanced Loom"
 description = ""
-max_stack = 100
+max_stack = 1
 price = 100
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_57x6j"]

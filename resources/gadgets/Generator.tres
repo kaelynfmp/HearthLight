@@ -30,7 +30,7 @@ script = ExtResource("3_fk4tt")
 texture = ExtResource("4_cn647")
 name = "Generator"
 description = "This is a generator. This powers every gadgets in a 2-tile radius around it."
-max_stack = 100
+max_stack = 1
 price = 100
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cn647"]

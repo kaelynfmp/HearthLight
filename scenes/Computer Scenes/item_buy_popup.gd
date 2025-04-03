@@ -1,7 +1,7 @@
 extends Node
 var item: Item
 @export var item_name: Label
-@export var item_desc: Label
+@export var item_desc: RichTextLabel
 @export var item_picture: TextureRect
 @onready var inventory: Inventory = preload("res://resources/character/inventory.tres")
 

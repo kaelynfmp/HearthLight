@@ -298,6 +298,9 @@ func distribute_slots() -> void:
 	
 ## Sets the currently selected gadget
 func set_gadget(p_gadget:StaticBody2D) -> void:
+	if inventory:
+		if gadget != null:
+			inventories.erase(gadget.inventory)
 	gadget = p_gadget
 	if !inventory:
 		change_inventory()

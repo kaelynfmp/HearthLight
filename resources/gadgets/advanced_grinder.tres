@@ -30,7 +30,7 @@ script = ExtResource("3_o65c2")
 texture = ExtResource("4_ec086")
 name = "Advanced Grinder"
 description = "Advanced Grinder"
-max_stack = 100
+max_stack = 1
 price = 100
 metadata/_custom_type_script = "uid://by7jec2ew2vsl"
 
