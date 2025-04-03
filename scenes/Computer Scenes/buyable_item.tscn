@@ -42,6 +42,7 @@ texture = ExtResource("1_s4hfb")
 texture = ExtResource("1_s4hfb")
 
 [node name="ItemButton" type="Button" node_paths=PackedStringArray("name_label", "price_label", "item_image")]
+visible = false
 custom_minimum_size = Vector2(405, 413)
 offset_right = 405.0
 offset_bottom = 413.0

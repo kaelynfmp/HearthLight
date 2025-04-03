@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="Email" load_steps=8 format=3 uid="uid://dv5ev5cvec8v4"]
+[gd_resource type="Resource" script_class="Email" load_steps=9 format=3 uid="uid://dv5ev5cvec8v4"]
 
 [ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="1_r7d84"]
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_ren0f"]
 [ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_sesjy"]
 [ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="2_8rtwo"]
 [ext_resource type="Resource" uid="uid://bcp8nvhpucopi" path="res://resources/gadgets/sieve.tres" id="3_8rtwo"]
+[ext_resource type="Resource" uid="uid://bmylw6g0ukbxm" path="res://resources/gadgets/wheel.tres" id="5_3o154"]
 [ext_resource type="Resource" uid="uid://b86lxdd7gcv3a" path="res://resources/emails/Tutorial 2 Completion.tres" id="6_8rtwo"]
 
 [sub_resource type="Resource" id="Resource_r7d84"]
@@ -21,13 +22,14 @@ minute = 0
 currency_reward = 200
 rewards = Array[Resource]([ExtResource("3_8rtwo")])
 rewards_quantities = Array[int]([1])
+unlocks = Array[Resource]([ExtResource("5_3o154")])
 
 [resource]
 resource_name = "Tutorial3"
 script = ExtResource("1_ren0f")
 sender = "Katheryn Elion"
 subject = "you're probably kinda bored..."
-contents = "hey, i don't know if you have anything better to do, but i was wondering if maybe you could process some of that [/res=Cotton]cotton[/res] you gave me? it might take a while, but you don't really have much else to do, do you? i guess it might be easier if you had a [res=Ancient Loom]loom[/res], but i guess you'll just have to do without :/"
+contents = "hey, i don't know if you have anything better to do, but i was wondering if maybe you could process some of that [res=Cotton]cotton[/res] you gave me? it might take a while, but you don't really have much else to do, do you? i guess it might be easier if you had a [res=Ancient Loom]loom[/res], but i guess you'll just have to do without :/"
 category = ""
 prerequisite_emails = Array[ExtResource("1_ren0f")]([ExtResource("6_8rtwo")])
 day = 0

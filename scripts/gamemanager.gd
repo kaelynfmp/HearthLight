@@ -88,6 +88,7 @@ var shop_dict: Dictionary = {
 }
 var shop_categories: Dictionary[String, Control]
 var buyable_items: Dictionary[Item, Button]
+var unlocked_items: Array[Item]
 
 var categorized_emails: Dictionary = {
 	"orders": [],
@@ -371,6 +372,16 @@ func player_inventory_has(required_items:Array[Resource], required_quantities:Ar
 		if player_inventory.get_item_quantity(to_parse_item) < required_quantities[index]:
 			return false
 	return true
+	
+func unlock_item(unlock:Resource):
+	if unlock is Gadget:
+		unlocked_items.append(unlock.item)
+		buyable_items[unlock.item].unlock()
+		shop_categories["gadgets"].unlock()
+	elif unlock is Item:
+		unlocked_items.append(unlock)
+		buyable_items[unlock as Item].unlock()
+		shop_categories["resources"].unlock()
 
 func navigate_to_botsy():
 	if computer_tab_manager != null:

@@ -21,6 +21,7 @@ minute = 0
 currency_reward = 30
 rewards = Array[Resource]([])
 rewards_quantities = Array[int]([])
+unlocks = Array[Resource]([ExtResource("2_vwut3"), ExtResource("3_6ndcv")])
 
 [resource]
 script = ExtResource("1_16060")

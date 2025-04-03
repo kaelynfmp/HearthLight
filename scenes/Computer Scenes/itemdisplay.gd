@@ -28,7 +28,7 @@ func _ready() -> void:
 	connect("pressed", Callable(self, "_show_popup"))
 	
 func unlock():
-	visible = true
+	set_visible(true)
 	
 func _show_popup():
 	var popup = popup_scene.instantiate()

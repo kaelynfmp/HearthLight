@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="Email" load_steps=6 format=3 uid="uid://dn1yfys2dr5s3"]
+[gd_resource type="Resource" script_class="Email" load_steps=7 format=3 uid="uid://dn1yfys2dr5s3"]
 
 [ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_fnf1k"]
 [ext_resource type="Resource" uid="uid://bgmxpne1d7fis" path="res://resources/items/metal.tres" id="1_hug36"]
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_ugh8a"]
+[ext_resource type="Resource" uid="uid://dospruqxgfufk" path="res://resources/gadgets/wood_stove.tres" id="3_fq6d3"]
 [ext_resource type="Resource" uid="uid://ddl262io6dr0t" path="res://resources/emails/Tutorial4Completion.tres" id="4_hug36"]
 
 [sub_resource type="Resource" id="Resource_fq6d3"]
@@ -19,6 +20,7 @@ minute = 0
 currency_reward = 500
 rewards = Array[Resource]([])
 rewards_quantities = Array[int]([])
+unlocks = Array[Resource]([ExtResource("3_fq6d3")])
 
 [resource]
 resource_name = "Tutorial5"

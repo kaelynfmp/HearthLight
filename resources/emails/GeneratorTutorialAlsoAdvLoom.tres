@@ -23,6 +23,7 @@ minute = 0
 currency_reward = 0
 rewards = Array[Resource]([ExtResource("3_c15ab"), ExtResource("4_rcrhj"), ExtResource("5_rcrhj")])
 rewards_quantities = Array[int]([1, 1, 1])
+unlocks = Array[Resource]([ExtResource("3_c15ab"), ExtResource("4_rcrhj")])
 
 [resource]
 resource_name = "GeneratorTutorialAlsoAdvLoom"

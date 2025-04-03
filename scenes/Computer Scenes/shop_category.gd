@@ -37,6 +37,8 @@ func load_items(category):
 				if gadget.item not in GameManager.shop_dict["gadgets"]:
 					GameManager.shop_dict["gadgets"].append(gadget.item)
 
+func unlock():
+	set_visible(true)
 
 func display_items(item: Item):
 	var item_button = item_button_scene.instantiate() 
