@@ -5,6 +5,7 @@ signal computer_visibility_changed
 signal update_recipes
 signal pause_changed
 signal update_gadgets
+signal update_items
 signal take_cursor(Slot)
 signal debug_mode_change
 signal gadget_rotated(direction: int)
@@ -100,7 +101,8 @@ var pause: bool = true
 
 var recipes:Array[Recipe]
 var gadgets:Array[Gadget]
-var gadget_items:Dictionary
+var gadget_items:Dictionary[Item, Gadget]
+var items:Array[Item]
 
 var day_start_sound:AudioStreamPlayer2D
 var day_end_sound:AudioStreamPlayer2D
@@ -127,6 +129,7 @@ func _ready() -> void:
 	item_map = init_room_map()
 	load_recipes()
 	load_gadgets()
+	load_items()
 	
 	#for recipe in recipes:
 		#print("inputs: ", recipe.inputs, " gadget: ", recipe.gadget)
@@ -208,8 +211,15 @@ func load_gadgets():
 	for gadget_string:String in gadget_strings:
 		var curr_gadget:Gadget = load(gadget_string)
 		gadgets.append(curr_gadget)
-		#print(curr_gadget.name)
 		gadget_items[curr_gadget.item] = curr_gadget
+		
+## Load all items in the filesystem
+func load_items():
+	update_items.emit()
+	item_strings = Utility.load_path("res://resources/items")
+	for item_string:String in item_strings:
+		var item:Item = load(item_string)
+		items.append(item)
 
 ## Changes whether the inventory is open or not
 func change_inventory():
