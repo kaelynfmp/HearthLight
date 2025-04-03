@@ -13,21 +13,21 @@
 [sub_resource type="Resource" id="Resource_0cyra"]
 script = ExtResource("3_q2vfb")
 locked = false
-item_filter = Array[ExtResource("4_23boe")]([ExtResource("5_073jg"), ExtResource("7_djx8y"), ExtResource("6_ee0md")])
+item_filter = Array[ExtResource("4_23boe")]([ExtResource("7_djx8y"), ExtResource("6_ee0md"), ExtResource("5_073jg")])
 bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_tda3d"]
 script = ExtResource("3_q2vfb")
 locked = false
-item_filter = Array[ExtResource("4_23boe")]([ExtResource("5_073jg"), ExtResource("7_djx8y"), ExtResource("6_ee0md")])
+item_filter = Array[ExtResource("4_23boe")]([ExtResource("7_djx8y"), ExtResource("6_ee0md"), ExtResource("5_073jg")])
 bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_msd4d"]
 script = ExtResource("3_q2vfb")
 locked = false
-item_filter = Array[ExtResource("4_23boe")]([ExtResource("5_073jg"), ExtResource("7_djx8y"), ExtResource("6_ee0md")])
+item_filter = Array[ExtResource("4_23boe")]([ExtResource("7_djx8y"), ExtResource("6_ee0md"), ExtResource("5_073jg")])
 bypass_stack = false
 quantity = 0
 
@@ -93,4 +93,4 @@ inputs = 3
 outputs = 1
 process_time = 7.0
 ambient_sound = ExtResource("1_fxx6p")
-sound_string = null
+sound_string = ""

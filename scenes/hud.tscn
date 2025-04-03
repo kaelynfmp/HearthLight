@@ -177,6 +177,7 @@ stretch_mode = 5
 script = ExtResource("20_mgfyp")
 
 [node name="QuestClose" type="TextureButton" parent="QuestButtonContainer"]
+visible = false
 layout_mode = 2
 texture_normal = ExtResource("20_ptr5m")
 texture_pressed = ExtResource("21_of3ib")

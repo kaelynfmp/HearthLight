@@ -89,4 +89,4 @@ inputs = 2
 outputs = 1
 process_time = 1.0
 ambient_sound = ExtResource("1_oxrpq")
-sound_string = null
+sound_string = ""

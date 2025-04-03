@@ -157,6 +157,8 @@ bbcode_enabled = true
 text = "Description Description Description Description Description Description Description "
 autowrap_mode = 2
 horizontal_alignment = 1
+meta_underlined = false
+hint_underlined = false
 script = ExtResource("2_ocrdl")
 
 [node name="TextureRect" type="TextureRect" parent="Panel"]

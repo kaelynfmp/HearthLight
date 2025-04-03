@@ -63,15 +63,22 @@ func load_path(path:String, strings_list:Array[String] = []) -> Array[String]:
 func set_truncated_text(text:String, label:RichTextLabel) -> void:
 	var result:String = ""
 	var visible_width:float = 0.0
-	var width:float = label.get_size().x - 1.0
+	var width:float = label.get_size().x
 	var tokens:Array[String] = parse_bbcode(text)
 
 	for token in tokens:
 		label.text = token
+		if token != tokens[-1]:
+			label.text += "..." # If not the final token, make sure it'll fit ...
 		visible_width += label.get_content_width()
 		if visible_width > width:
 			result += "..."
 			break
+		if token != tokens[-1]:
+			# Now that we've checked that it fits ..., remove the ... that we added and re-calculate the width
+			visible_width -= label.get_content_width()
+			label.text = token
+			visible_width += label.get_content_width()
 		result += token
 		
 	label.text = result
