@@ -80,9 +80,13 @@ var prev_item_texture
 ## The sound that play when the gadget is stopped
 @export var stop_sound: AudioStream
 
+## The string associated with the advanced gadget audio
+## Blank if primitive or not having a sound
+@export var sound_string: String
+
 func _init(p_sprite_frames: SpriteFrames = null, p_name: String = "", p_description: String = "", p_item: Item = null, \
 		   p_inventory: Inventory = null, p_produces: bool = false, p_inputs: int = 0, p_outputs: int = 0, \
-		   p_process_time: float = 0.0, p_start_sound: AudioStream = null, p_ambient_sound: AudioStream = null, p_stop_sound: AudioStream = null):
+		   p_process_time: float = 0.0, p_start_sound: AudioStream = null, p_ambient_sound: AudioStream = null, p_stop_sound: AudioStream = null, p_sound_string:String = ""):
 	sprite_frames = p_sprite_frames
 	name = p_name
 	description = p_description
@@ -95,3 +99,4 @@ func _init(p_sprite_frames: SpriteFrames = null, p_name: String = "", p_descript
 	start_sound = p_start_sound
 	ambient_sound = p_ambient_sound
 	stop_sound = p_stop_sound
+	sound_string = p_sound_string

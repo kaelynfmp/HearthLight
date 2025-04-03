@@ -29,4 +29,4 @@ script = ExtResource("3_52byq")
 gadget = ExtResource("1_u3013")
 inputs = Array[ExtResource("1_k61rp")]([SubResource("Resource_pq2cb")])
 outputs = Array[ExtResource("1_k61rp")]([SubResource("Resource_hxm54")])
-processing_multiplier = 2.0
+processing_multiplier = 1.0

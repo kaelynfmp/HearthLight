@@ -3,6 +3,7 @@ extends ScrollContainer
 var prev_state = GameManager.quest_list_visible
 var max_height:float = 0.0
 var max_possible_height:float
+var prev_max_height:float
 @export_enum("Linear", "Sine", "Quint", "Quart", "Quad", "Expo", "Elastic", "Cubic", "Circ", "Bounce", "Back") var transition:int = Tween.TRANS_CUBIC
 @export var transition_time:float = 1.0
 
@@ -21,10 +22,20 @@ func _process(_delta: float) -> void:
 		prev_state = GameManager.quest_list_visible
 		# If state is changed, play the animation to slide in or out
 		if GameManager.quest_list_visible:
-			var tween:Tween = get_tree().create_tween()
-			tween.tween_property(self, "size", Vector2(size.x, max_height), transition_time).set_trans(transition)
+			expand()
 		else:
-			var tween:Tween = get_tree().create_tween()
-			tween.tween_property(self, "size", Vector2(size.x, 0), transition_time).set_trans(transition)
+			shrink()
+	elif prev_max_height != max_height:
+		if prev_max_height < max_height:
+			expand()
+		else:
+			shrink(max_height)
+		prev_max_height = max_height
 			
+func expand():
+	var tween:Tween = get_tree().create_tween()
+	tween.tween_property(self, "size", Vector2(size.x, max_height), transition_time).set_trans(transition)
 	
+func shrink(_size:float = 0.0):
+	var tween:Tween = get_tree().create_tween()
+	tween.tween_property(self, "size", Vector2(size.x, _size), transition_time).set_trans(transition)

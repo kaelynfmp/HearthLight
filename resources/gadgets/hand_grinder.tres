@@ -77,3 +77,4 @@ inputs = 1
 outputs = 1
 process_time = 5.0
 ambient_sound = ExtResource("1_npdxi")
+sound_string = ""

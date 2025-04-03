@@ -9,49 +9,51 @@ extends Resource
 ## Gadget this recipe uses
 @export var gadget: Gadget:
 	get():
-		var new_inputs:int = 1
-		var new_outputs:int = 1
-		if gadget != null:
-			new_inputs = gadget.inputs
-			new_outputs = gadget.outputs
-		if new_inputs != inputs.size():
-			# Resizing does not trigger the setter, so you need to resize a copied array,
-			# and then set the entire array. Why.
-			var temp_inputs:Array = inputs.duplicate()
-			temp_inputs.resize(new_inputs)
-			inputs = temp_inputs
-		if new_outputs != outputs.size():
-			# Resizing does not trigger the setter, so you need to resize a copied array,
-			# and then set the entire array. Why.
-			var temp_outputs:Array = outputs.duplicate()
-			temp_outputs.resize(new_outputs)
-			outputs = temp_outputs
+		if Engine.is_editor_hint():
+			var new_inputs:int = 1
+			var new_outputs:int = 1
+			if gadget != null:
+				new_inputs = gadget.inputs
+				new_outputs = gadget.outputs
+			if new_inputs != inputs.size():
+				# Resizing does not trigger the setter, so you need to resize a copied array,
+				# and then set the entire array. Why.
+				var temp_inputs:Array = inputs.duplicate()
+				temp_inputs.resize(new_inputs)
+				inputs = temp_inputs
+			if new_outputs != outputs.size():
+				# Resizing does not trigger the setter, so you need to resize a copied array,
+				# and then set the entire array. Why.
+				var temp_outputs:Array = outputs.duplicate()
+				temp_outputs.resize(new_outputs)
+				outputs = temp_outputs
 		return gadget
 ## Inputs this recipe takes
 @export var inputs: Array[Slot]:
 	get():
-		for slot in inputs:
-			if slot == null:
-				slot = load("res://scripts/resources/slot.gd").new()
-			if Engine.is_editor_hint():
-				if slot.item != null and !slot.changed.is_connected(slot_changed):
-					slot.changed.connect(slot_changed)
-			if slot.item != null and slot.item not in items:
-				items.append(slot.item)
-				add_gadget_filter(slot.item)
-		var index: int = 0
-		for item in items:
-			var matching: Array = inputs.filter(func(slot): if slot != null: return slot.item == item)
-			if matching.is_empty():
-				items.remove_at(index)
-				remove_gadget_filter(item)
-			index += 1
+		if Engine.is_editor_hint():
+			for slot in inputs:
+				if slot == null:
+					slot = load("res://scripts/resources/slot.gd").new()
+					if slot.item != null and !slot.changed.is_connected(slot_changed):
+						slot.changed.connect(slot_changed)
+				if slot.item != null and slot.item not in items:
+					items.append(slot.item)
+					add_gadget_filter(slot.item)
+			var index: int = 0
+			for item in items:
+				var matching: Array = inputs.filter(func(slot): if slot != null: return slot.item == item)
+				if matching.is_empty():
+					items.remove_at(index)
+					remove_gadget_filter(item)
+				index += 1
 		return inputs
 	set(value):
-		for index in range(value.size()):
-			if value[index] == null:
-				# load an empty slot if array is ever appended
-				value[index] = load("res://scripts/resources/slot.gd").new()
+		if Engine.is_editor_hint():
+			for index in range(value.size()):
+				if value[index] == null:
+					# load an empty slot if array is ever appended
+					value[index] = load("res://scripts/resources/slot.gd").new()
 		inputs = value
 
 var items: Array[Item] = []
@@ -65,10 +67,11 @@ var items: Array[Item] = []
 					slot.changed.connect(slot_changed)
 		return outputs
 	set(value):
-		for index in range(value.size()):
-			if value[index] == null:
-				# load an empty slot if array is ever appended
-				value[index] = load("res://scripts/resources/slot.gd").new()
+		if Engine.is_editor_hint():
+			for index in range(value.size()):
+				if value[index] == null:
+					# load an empty slot if array is ever appended
+					value[index] = load("res://scripts/resources/slot.gd").new()
 		outputs = value
 ## Processing time multiplier of this recipe
 @export var processing_multiplier: float = 1.0

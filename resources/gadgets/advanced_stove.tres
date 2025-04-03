@@ -30,7 +30,7 @@ script = ExtResource("3_cel8q")
 texture = ExtResource("4_ieogk")
 name = "Advanced Stove"
 description = "Advanced Stove"
-max_stack = 100
+max_stack = 1
 price = 100
 metadata/_custom_type_script = "uid://by7jec2ew2vsl"
 
@@ -67,5 +67,6 @@ inventory = SubResource("Resource_onrw8")
 produces = true
 inputs = 1
 outputs = 1
-process_time = 10.0
+process_time = 7.0
+sound_string = "e stove.wav"
 metadata/_custom_type_script = "uid://diu2pkk76wyyy"

@@ -39,7 +39,8 @@ shader_parameter/strength = 2.454
 shader_parameter/mix_percentage = 0.024
 
 [sub_resource type="Gradient" id="Gradient_fgtve"]
-colors = PackedColorArray(0.869864, 0.924752, 0.367615, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0, 0.544218)
+colors = PackedColorArray(0.869864, 0.924752, 0.367615, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_03o4m"]
 gradient = SubResource("Gradient_fgtve")
@@ -176,6 +177,7 @@ stretch_mode = 5
 script = ExtResource("20_mgfyp")
 
 [node name="QuestClose" type="TextureButton" parent="QuestButtonContainer"]
+visible = false
 layout_mode = 2
 texture_normal = ExtResource("20_ptr5m")
 texture_pressed = ExtResource("21_of3ib")

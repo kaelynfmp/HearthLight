@@ -38,7 +38,7 @@ script = ExtResource("3_tt38c")
 texture = ExtResource("4_4878v")
 name = "Advanced Pot"
 description = "Advanced Pot"
-max_stack = 100
+max_stack = 1
 price = 100
 metadata/_custom_type_script = "uid://by7jec2ew2vsl"
 
@@ -75,5 +75,6 @@ inventory = SubResource("Resource_q6wf6")
 produces = true
 inputs = 2
 outputs = 1
-process_time = 10.0
+process_time = 2.0
+sound_string = "e plant.wav"
 metadata/_custom_type_script = "uid://diu2pkk76wyyy"

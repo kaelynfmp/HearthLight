@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cmsrsd474ryy0"
-path="res://.godot/imported/Transport.wav-c53b1c875999fa8d75c9f0bc7e6c2e70.sample"
+path="res://.godot/imported/e generator.wav-0c503d8ff9af61dd635cb29b7d8ec7a0.sample"
 
 [deps]
 
-source_file="res://resources/audio/Gadgets/Transport.wav"
-dest_files=["res://.godot/imported/Transport.wav-c53b1c875999fa8d75c9f0bc7e6c2e70.sample"]
+source_file="res://resources/audio/Gadgets/e generator.wav"
+dest_files=["res://.godot/imported/e generator.wav-0c503d8ff9af61dd635cb29b7d8ec7a0.sample"]
 
 [params]
 
