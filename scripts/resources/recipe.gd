@@ -40,7 +40,6 @@ extends Resource
 				if slot.item != null and slot.item not in items:
 					items.append(slot.item)
 					add_gadget_filter(slot.item)
-					print("test")
 			var index: int = 0
 			for item in items:
 				var matching: Array = inputs.filter(func(slot): if slot != null: return slot.item == item)
