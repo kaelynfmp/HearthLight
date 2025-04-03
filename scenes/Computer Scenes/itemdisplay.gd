@@ -16,6 +16,7 @@ func set_item(new_item: Item):
 	if GameManager.is_debugging:
 		price_label.text = "FREE"
 	item_image.texture = item.texture
+	GameManager.buyable_items[item] = self
 
 func set_limited_text(input_text: String, limit: int = 16) -> String:
 	if input_text.length() > limit:
@@ -25,6 +26,9 @@ func set_limited_text(input_text: String, limit: int = 16) -> String:
 	
 func _ready() -> void:
 	connect("pressed", Callable(self, "_show_popup"))
+	
+func unlock():
+	visible = true
 	
 func _show_popup():
 	var popup = popup_scene.instantiate()

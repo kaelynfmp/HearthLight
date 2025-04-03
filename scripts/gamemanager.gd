@@ -86,6 +86,9 @@ var shop_dict: Dictionary = {
 	"gadgets": [],
 	"wanted": []
 }
+var shop_categories: Dictionary[String, Control]
+var buyable_items: Dictionary[Item, Button]
+
 var categorized_emails: Dictionary = {
 	"orders": [],
 	"main": [],

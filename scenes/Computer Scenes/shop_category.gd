@@ -51,7 +51,3 @@ func generate_wanted():
 	var random_wanted_items = items_copy.slice(0,3)
 	for eachitem in random_wanted_items:
 		shop_dict["wanted"].append(eachitem)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass

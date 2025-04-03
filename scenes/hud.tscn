@@ -206,6 +206,7 @@ layout_mode = 2
 
 [node name="ComputerInterface" parent="." instance=ExtResource("1_8kako")]
 visible = false
+z_index = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -216,6 +217,7 @@ offset_bottom = 23.0
 scale = Vector2(0.95, 0.95)
 
 [node name="Clock" parent="." instance=ExtResource("14_eld54")]
+z_index = 2
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0

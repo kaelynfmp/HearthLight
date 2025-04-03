@@ -59,8 +59,9 @@ func create_shop_categories():
 		if category_name == "resources" or category_name == "gadgets":
 			var num_items = len(GameManager.shop_dict[category_name])
 			var num_rows = (num_items + 4) / 4
-			shop_category.custom_minimum_size = Vector2(1838, 300 * num_rows + 400)
+		GameManager.shop_categories[category_name] = shop_category
 		category_scenes.append(shop_category)
+		
 		#inbox_button.text = category.capitalize()
 		#inbox_button.pressed.connect(func(): display_category_emails(category)) 
 		categories_list_container.add_child(shop_category)
