@@ -21,7 +21,7 @@ var email: Email
 var prev_read:bool = false
 
 func _process(_delta: float) -> void:
-	if (email.is_read and !prev_read and not email.tutorial) or email in GameManager.categorized_emails["archive"]:
+	if email.is_read and !prev_read and not email.tutorial:
 		prev_read = true
 		button_sprite.texture = preload("res://resources/sprites/emails/emailPreview.png")
 		top_bar.texture = preload("res://resources/sprites/emails/emailPreviewTopBar.png")

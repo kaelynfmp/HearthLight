@@ -242,6 +242,7 @@ func order_accept(email: Email):
 		OrderManager.give_player_starting_items(order)
 		fulfill_order(email)
 		email.attached_order.is_accepted = true
+		email.is_read = true
 		change_email_category(email, "archive")
 	if GameManager.categorized_emails[current_category].filter(func(email: Email): return email.check_valid()).is_empty():
 		display_category_emails("orders")

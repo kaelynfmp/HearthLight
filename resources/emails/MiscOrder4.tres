@@ -20,6 +20,7 @@ minute = 0
 currency_reward = 1250
 rewards = Array[Resource]([])
 rewards_quantities = Array[int]([])
+unlocks = Array[Resource]([])
 
 [resource]
 resource_name = "MiscOrder4"

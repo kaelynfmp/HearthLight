@@ -17,6 +17,7 @@ minute = 0
 currency_reward = 25
 rewards = Array[Resource]([])
 rewards_quantities = Array[int]([])
+unlocks = Array[Resource]([])
 metadata/_custom_type_script = "uid://cdrlcp2hcoi4m"
 
 [resource]

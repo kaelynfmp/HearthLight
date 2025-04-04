@@ -20,6 +20,7 @@ minute = 0
 currency_reward = 150
 rewards = Array[Resource]([ExtResource("2_5opfe")])
 rewards_quantities = Array[int]([10])
+unlocks = Array[Resource]([])
 
 [resource]
 resource_name = "MiscOrder2"

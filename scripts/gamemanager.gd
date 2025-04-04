@@ -89,6 +89,8 @@ var shop_dict: Dictionary = {
 var shop_categories: Dictionary[String, Control]
 var buyable_items: Dictionary[Item, Button]
 var unlocked_items: Array[Item]
+var gadgets_unlocked: bool = false
+var resources_unlocked: bool = false
 
 var categorized_emails: Dictionary = {
 	"orders": [],
@@ -378,10 +380,12 @@ func unlock_item(unlock:Resource):
 		unlocked_items.append(unlock.item)
 		buyable_items[unlock.item].unlock()
 		shop_categories["gadgets"].unlock()
+		gadgets_unlocked = true
 	elif unlock is Item:
 		unlocked_items.append(unlock)
 		buyable_items[unlock as Item].unlock()
 		shop_categories["resources"].unlock()
+		resources_unlocked = true
 
 func navigate_to_botsy():
 	if computer_tab_manager != null:

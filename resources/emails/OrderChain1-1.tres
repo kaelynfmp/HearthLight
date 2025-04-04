@@ -19,6 +19,7 @@ minute = 0
 currency_reward = 75
 rewards = Array[Resource]([])
 rewards_quantities = Array[int]([])
+unlocks = Array[Resource]([])
 
 [resource]
 resource_name = "OrderChain1-1"

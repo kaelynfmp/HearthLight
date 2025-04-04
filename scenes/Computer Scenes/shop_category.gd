@@ -8,6 +8,12 @@ var folder : String
 var buttons = []
 @export var item_container: Node
 @export var item_button_scene : PackedScene
+var unlocked:bool = false
+
+func _ready() -> void:
+	GameManager.debug_mode_change.connect(debug_visible)
+	if GameManager.is_debugging:
+		set_visible(true)
 
 func set_category(category: String):
 	selected_category = category
@@ -18,7 +24,10 @@ func set_category(category: String):
 	generate_wanted()
 	for item in shop_dict[category]:
 		display_items(item)
-	
+	if (selected_category == "gadgets" and GameManager.gadgets_unlocked) or (selected_category == "resources" and GameManager.resources_unlocked):
+		set_visible(true)
+		unlocked = true
+
 
 func load_items(category):
 	if category == "resources":
@@ -39,6 +48,7 @@ func load_items(category):
 
 func unlock():
 	set_visible(true)
+	unlocked = true
 
 func display_items(item: Item):
 	var item_button = item_button_scene.instantiate() 
@@ -53,3 +63,8 @@ func generate_wanted():
 	var random_wanted_items = items_copy.slice(0,3)
 	for eachitem in random_wanted_items:
 		shop_dict["wanted"].append(eachitem)
+		
+
+func debug_visible():
+	if GameManager.is_debugging:
+		set_visible(true)
