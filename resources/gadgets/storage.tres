@@ -1,0 +1,148 @@
+[gd_resource type="Resource" script_class="Gadget" load_steps=22 format=3 uid="uid://dk4tt2xs7bvxr"]
+
+[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_cv0ly"]
+[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_0o3wc"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_qlcc6"]
+[ext_resource type="Texture2D" uid="uid://beyxev73jkx3g" path="res://resources/sprites/storage.png" id="4_0o3wc"]
+[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_cn3ik"]
+
+[sub_resource type="Resource" id="Resource_hp7hg"]
+script = ExtResource("2_0o3wc")
+locked = false
+item_filter = Array[ExtResource("3_qlcc6")]([])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_0o3wc"]
+script = ExtResource("2_0o3wc")
+locked = false
+item_filter = Array[ExtResource("3_qlcc6")]([])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_cn3ik"]
+script = ExtResource("2_0o3wc")
+locked = false
+item_filter = Array[ExtResource("3_qlcc6")]([])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_i7g30"]
+script = ExtResource("2_0o3wc")
+locked = false
+item_filter = Array[ExtResource("3_qlcc6")]([])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_rrxqy"]
+script = ExtResource("2_0o3wc")
+locked = false
+item_filter = Array[ExtResource("3_qlcc6")]([])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_3cq57"]
+script = ExtResource("2_0o3wc")
+locked = false
+item_filter = Array[ExtResource("3_qlcc6")]([])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_u37ha"]
+script = ExtResource("2_0o3wc")
+locked = false
+item_filter = Array[ExtResource("3_qlcc6")]([])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_brcm5"]
+script = ExtResource("2_0o3wc")
+locked = false
+item_filter = Array[ExtResource("3_qlcc6")]([])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_vj35k"]
+script = ExtResource("2_0o3wc")
+locked = false
+item_filter = Array[ExtResource("3_qlcc6")]([])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_gehvc"]
+script = ExtResource("2_0o3wc")
+locked = false
+item_filter = Array[ExtResource("3_qlcc6")]([])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_o0km5"]
+script = ExtResource("2_0o3wc")
+locked = false
+item_filter = Array[ExtResource("3_qlcc6")]([])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_wq5as"]
+script = ExtResource("2_0o3wc")
+locked = false
+item_filter = Array[ExtResource("3_qlcc6")]([])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_swwps"]
+script = ExtResource("2_0o3wc")
+locked = true
+item_filter = Array[ExtResource("3_qlcc6")]([])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_kuo7w"]
+script = ExtResource("1_cv0ly")
+slots = Array[ExtResource("2_0o3wc")]([SubResource("Resource_hp7hg"), SubResource("Resource_0o3wc"), SubResource("Resource_cn3ik"), SubResource("Resource_i7g30"), SubResource("Resource_rrxqy"), SubResource("Resource_3cq57"), SubResource("Resource_u37ha"), SubResource("Resource_brcm5"), SubResource("Resource_vj35k"), SubResource("Resource_gehvc"), SubResource("Resource_o0km5"), SubResource("Resource_wq5as"), SubResource("Resource_swwps")])
+
+[sub_resource type="Resource" id="Resource_qlcc6"]
+script = ExtResource("3_qlcc6")
+texture = ExtResource("4_0o3wc")
+name = "Storage"
+description = "Store your items here"
+max_stack = 100
+price = 50
+metadata/_custom_type_script = "uid://by7jec2ew2vsl"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cn3ik"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_0o3wc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_0o3wc")
+}],
+"loop": true,
+"name": &"se",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("4_cn3ik")
+sprite_frames = SubResource("SpriteFrames_cn3ik")
+sprite_offset = Vector2(0, -140)
+sprite_scale_factor = 0.95
+name = "Storage"
+age = 1
+direction = 0
+description = "Store your items here"
+item = SubResource("Resource_qlcc6")
+inventory = SubResource("Resource_kuo7w")
+produces = true
+inputs = 12
+outputs = 1
+process_time = 0.0
+sound_string = ""
+metadata/_custom_type_script = "uid://diu2pkk76wyyy"

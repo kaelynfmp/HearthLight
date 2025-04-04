@@ -3,6 +3,7 @@ extends Control
 var rotation_speed:float = 10
 @onready var input_slot_scene:PackedScene = preload("res://scenes/inventory/input_slot.tscn")
 @onready var output_slot_scene:PackedScene = preload("res://scenes/inventory/output_slot.tscn")
+@onready var slot_scene:PackedScene = preload("res://scenes/inventory/storage_slot.tscn")
 @onready var creates_progress:TextureRect = find_child("CreatesProgress", true)
 @onready var primitive_button:TextureButton = find_child("PrimitiveButton", true)
 var current_gadget:Gadget
@@ -27,22 +28,49 @@ func _process(delta: float) -> void:
 			primitive_button.set_rotation(primitive_button.get_rotation() + rotation_speed * delta)
 	else:
 		current_gadget = null
-	if current_gadget:
+	if current_gadget and current_gadget.name != "Storage":
 		update_hint_visibility()
+		
+func setup_storage(gadget: StaticBody2D):
+	var inputs:Array[Slot] = gadget.inventory.slots.filter(func(slot): return !slot.locked)
+	var contained = $Background/Contained
+	contained.visible = false
+	var hflowcontainer = $Background/HFlowContainer
+	hflowcontainer.visible = true
+	var remove_children:Array
+	for child in hflowcontainer.get_children():
+		if "InputSlot" in child.name or "OutputSlot" in child.name or "StorageSlot" in child.name:
+			remove_children.append(child)
+	for child in remove_children:
+		hflowcontainer.remove_child(child)
+	for index in range(inputs.size()):
+		var input:Slot = gadget.inventory.slots[gadget.inventory.slots.find(inputs[index])]
+		var new_slot:PanelContainer = slot_scene.instantiate()
+		new_slot.set_slot(input)
+		new_slot.update()
+		new_slot.set_name("StorageSlot" + str(index))
+		hflowcontainer.add_child(new_slot) 
+		hflowcontainer.move_child(new_slot, index)
 	
 func set_gadget(gadget:StaticBody2D):
 	primitive_button.set_rotation(0)
 	current_gadget = gadget.gadget_stats
 	primitive_button.visible = gadget.gadget_stats.age == GameManager.Age.PRIMITIVE
 	
+	if current_gadget.name == "Storage":
+		setup_storage(gadget)
+		return
+	
 	var inputs:Array[Slot] = gadget.inventory.slots.filter(func(slot): return !slot.locked)
 	var outputs:Array[Slot] = gadget.inventory.slots.filter(func(slot): return slot.locked)
 	var contained = $Background/Contained
-	
+	var hflowcontainer = $Background/HFlowContainer
+	hflowcontainer.visible = false
+	contained.visible = true
 	var remove_children:Array
 	
 	for child in contained.get_children():
-		if "InputSlot" in child.name or "OutputSlot" in child.name:
+		if "InputSlot" in child.name or "OutputSlot" in child.name or "StorageSlot" in child.name:
 			remove_children.append(child)
 		
 	# Not sure if needed, but didn't want to delete children as I was iterating over them		
@@ -59,6 +87,7 @@ func set_gadget(gadget:StaticBody2D):
 		var recipe_inputs = get_inputs_for_hint()
 		var curr_slot = recipe_inputs[index]
 		if curr_slot == null:
+			input_hint.texture = null
 			continue
 		input_hint.texture = curr_slot.item.texture
 		input_hint_dict[input_hint] = current_gadget.inventory.get_item_quantity(curr_slot.item)
@@ -98,6 +127,7 @@ func set_gadget(gadget:StaticBody2D):
 		var recipe_outputs = get_outputs_for_hint()
 		var curr_slot = recipe_outputs[index]
 		if curr_slot.item == null:
+			output_hint.texture = null
 			continue
 		output_hint.texture = curr_slot.item.texture
 

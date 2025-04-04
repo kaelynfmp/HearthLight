@@ -52,6 +52,7 @@ offset_right = 918.5
 offset_bottom = 499.5
 grow_horizontal = 2
 grow_vertical = 2
+region_rect = Rect2(0, 0, 1845.09, 999)
 
 [node name="Contained" type="HBoxContainer" parent="Background" index="2"]
 layout_mode = 1
@@ -138,3 +139,16 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 metadata/_edit_lock_ = true
+
+[node name="HFlowContainer" type="HFlowContainer" parent="Background" index="3"]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 84.5
+offset_top = 204.5
+offset_right = 1781.5
+offset_bottom = 753.5
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+alignment = 1
+last_wrap_alignment = 2
