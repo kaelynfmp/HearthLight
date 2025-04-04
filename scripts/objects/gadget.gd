@@ -210,12 +210,15 @@ func pull_inventory():
 	if GameManager.item_map[cell_pos[0] + 6][cell_pos[1] + 5] == null: 
 		if rear_gadget:
 			var rear_inventory: Inventory = rear_gadget.inventory
-			for slot in rear_inventory.slots.filter(func(slot): return slot.locked):
+			var rear_slots = rear_inventory.slots.filter(func(slot): return slot.locked)
+			if rear_gadget.gadget_stats.name == "Storage":
+				rear_slots = rear_inventory.slots.filter(func(slot): return !slot.locked)
+			for slot in rear_slots:
 				if slot.item != null:
 					var item: Item = slot.item
 					if rear_gadget.gadget_stats.name != "Conveyor Belt":
 							item_at_location.emit(cell_pos, item)
-					rear_inventory.remove_items(item, 1, true)
+					rear_inventory.remove_items(item, 1, slot.locked)
 					break
 					
 
