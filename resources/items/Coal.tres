@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://badopsm2qs26e"]
 
 [ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="1_2obae"]
-[ext_resource type="Texture2D" uid="uid://badc6dv4mkm67" path="res://resources/sprites/rock.png" id="2_y1iss"]
+[ext_resource type="Texture2D" uid="uid://mkgcv7boe8mc" path="res://resources/sprites/coal.png" id="2_y1iss"]
 
 [resource]
 resource_name = "Coal"
