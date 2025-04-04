@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Gadget" load_steps=16 format=3 uid="uid://bcp8nvhpucopi"]
+[gd_resource type="Resource" script_class="Gadget" load_steps=17 format=3 uid="uid://bcp8nvhpucopi"]
 
 [ext_resource type="AudioStream" uid="uid://m6tfopcr15mh" path="res://resources/audio/Gadgets/p Sieve.wav" id="1_fxx6p"]
 [ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="2_ulwbv"]
@@ -13,21 +13,21 @@
 [sub_resource type="Resource" id="Resource_0cyra"]
 script = ExtResource("3_q2vfb")
 locked = false
-item_filter = Array[ExtResource("4_23boe")]([ExtResource("7_djx8y"), ExtResource("5_073jg"), ExtResource("6_ee0md")])
+item_filter = Array[ExtResource("4_23boe")]([ExtResource("7_djx8y"), ExtResource("6_ee0md"), ExtResource("5_073jg")])
 bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_tda3d"]
 script = ExtResource("3_q2vfb")
 locked = false
-item_filter = Array[ExtResource("4_23boe")]([ExtResource("7_djx8y"), ExtResource("5_073jg"), ExtResource("6_ee0md")])
+item_filter = Array[ExtResource("4_23boe")]([ExtResource("7_djx8y"), ExtResource("6_ee0md"), ExtResource("5_073jg")])
 bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_msd4d"]
 script = ExtResource("3_q2vfb")
 locked = false
-item_filter = Array[ExtResource("4_23boe")]([ExtResource("7_djx8y"), ExtResource("5_073jg"), ExtResource("6_ee0md")])
+item_filter = Array[ExtResource("4_23boe")]([ExtResource("7_djx8y"), ExtResource("6_ee0md"), ExtResource("5_073jg")])
 bypass_stack = false
 quantity = 0
 
@@ -50,9 +50,36 @@ description = "You never thought you'd see one of these. This one probably belon
 max_stack = 1
 price = 500
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_fxx6p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_bwxyx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_bwxyx")
+}],
+"loop": true,
+"name": &"se",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_bwxyx")
+}],
+"loop": true,
+"name": &"sieve",
+"speed": 5.0
+}]
+
 [resource]
 script = ExtResource("5_eflns")
-texture = ExtResource("7_bwxyx")
+sprite_frames = SubResource("SpriteFrames_fxx6p")
 sprite_offset = Vector2(0, -140)
 sprite_scale_factor = 0.95
 name = "Sieve"
@@ -66,3 +93,4 @@ inputs = 3
 outputs = 1
 process_time = 7.0
 ambient_sound = ExtResource("1_fxx6p")
+sound_string = ""

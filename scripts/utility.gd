@@ -8,7 +8,7 @@ var gadgets: Dictionary[String, Gadget]
 
 func _ready():
 	if Engine.is_editor_hint():
-		EditorInterface.get_resource_filesystem().filesystem_changed.connect(load_resources)
+		Engine.get_singleton(&"EditorInterface").get_resource_filesystem().filesystem_changed.connect(load_resources)
 	load_resources()
 	
 ## Loads all of the different resources provided from their specified directories
@@ -68,10 +68,17 @@ func set_truncated_text(text:String, label:RichTextLabel) -> void:
 
 	for token in tokens:
 		label.text = token
+		if token != tokens[-1]:
+			label.text += "..." # If not the final token, make sure it'll fit ...
 		visible_width += label.get_content_width()
 		if visible_width > width:
 			result += "..."
 			break
+		if token != tokens[-1]:
+			# Now that we've checked that it fits ..., remove the ... that we added and re-calculate the width
+			visible_width -= label.get_content_width()
+			label.text = token
+			visible_width += label.get_content_width()
 		result += token
 		
 	label.text = result

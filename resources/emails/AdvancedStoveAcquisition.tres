@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="Email" load_steps=8 format=3 uid="uid://bdcnnmnkvf33h"]
+
+[ext_resource type="Resource" uid="uid://bgmxpne1d7fis" path="res://resources/items/metal.tres" id="1_0rv74"]
+[ext_resource type="Resource" uid="uid://esvaq5jc2w7h" path="res://resources/gadgets/advanced_stove.tres" id="1_eh046"]
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_h8wgg"]
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_k4ls1"]
+[ext_resource type="Resource" uid="uid://gw88mo33lg1c" path="res://resources/items/ore.tres" id="2_eh046"]
+[ext_resource type="Resource" uid="uid://ddiii5ep5hs4p" path="res://resources/emails/GeneratorTutorialComplete.tres" id="5_do661"]
+
+[sub_resource type="Resource" id="Resource_qd3sw"]
+script = ExtResource("1_h8wgg")
+order_id = 0
+given_items = Array[Resource]([ExtResource("1_eh046")])
+given_quantities = Array[int]([1])
+given_currency = 0
+required_items = Array[Resource]([ExtResource("1_0rv74"), ExtResource("2_eh046")])
+required_quantities = Array[int]([1, 1])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 0
+rewards = Array[Resource]([])
+rewards_quantities = Array[int]([])
+
+[resource]
+resource_name = "AdvancedStoveAcquisition"
+script = ExtResource("1_k4ls1")
+sender = "Rob Elion"
+subject = "My wife's said good things about you"
+contents = "Hey! My wife's said some great thing about you, and it seems like you're pretty sympathetic to our cause. I guess we [i]did[/i] technically save you, but I guess you had no way of knowing that, huh. And I guess we also left you in a room with basically nothing. Y'know, not the best plan in hindsight, sorry about that
+
+Anyways, we're gotten our hands on some new magnet tech (don't worry about how we got it (...okay yeah we stole it. but those bastards had it coming!)), and we've been itching to make a proof-of-concept with this tech. If you could help us out with some metal, ideally both [res=Metal]refined[/res] and [res=Ore]unrefined[/res], that'd be great, and we could probably throw together [res=Advanced Stove]something[/res] for you to use in your operations that I guess you have going now (seriously, how did you get all this started?)"
+category = ""
+prerequisite_emails = Array[ExtResource("1_k4ls1")]([ExtResource("5_do661")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_qd3sw")
+tutorial = false
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

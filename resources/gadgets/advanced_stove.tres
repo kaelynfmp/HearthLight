@@ -1,0 +1,72 @@
+[gd_resource type="Resource" script_class="Gadget" load_steps=12 format=3 uid="uid://esvaq5jc2w7h"]
+
+[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_7unc4"]
+[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_ieogk"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_cel8q"]
+[ext_resource type="Resource" uid="uid://gw88mo33lg1c" path="res://resources/items/ore.tres" id="4_cel8q"]
+[ext_resource type="Texture2D" uid="uid://dvqlsoydwm5ek" path="res://resources/sprites/stovePrimitive.png" id="4_ieogk"]
+[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_rjvo2"]
+
+[sub_resource type="Resource" id="Resource_6qbom"]
+script = ExtResource("2_ieogk")
+locked = false
+item_filter = Array[ExtResource("3_cel8q")]([ExtResource("4_cel8q")])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_7unc4"]
+script = ExtResource("2_ieogk")
+locked = true
+item_filter = Array[ExtResource("3_cel8q")]([])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_onrw8"]
+script = ExtResource("1_7unc4")
+slots = Array[ExtResource("2_ieogk")]([SubResource("Resource_6qbom"), SubResource("Resource_7unc4")])
+
+[sub_resource type="Resource" id="Resource_cel8q"]
+script = ExtResource("3_cel8q")
+texture = ExtResource("4_ieogk")
+name = "Advanced Stove"
+description = "Advanced Stove"
+max_stack = 1
+price = 100
+metadata/_custom_type_script = "uid://by7jec2ew2vsl"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rjvo2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ieogk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ieogk")
+}],
+"loop": true,
+"name": &"se",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("4_rjvo2")
+sprite_frames = SubResource("SpriteFrames_rjvo2")
+sprite_offset = Vector2(0, -140)
+sprite_scale_factor = 0.95
+name = "Advanced Stove"
+age = 1
+direction = 0
+description = "Advanced Stove"
+item = SubResource("Resource_cel8q")
+inventory = SubResource("Resource_onrw8")
+produces = true
+inputs = 1
+outputs = 1
+process_time = 7.0
+sound_string = "e stove.wav"
+metadata/_custom_type_script = "uid://diu2pkk76wyyy"

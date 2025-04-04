@@ -10,10 +10,13 @@ var email: Email
 @export var content: RichTextLabel
 @export var expand_panel: Panel  # expanded email content
 @export var fulfill_button: Button
+@export var button_sprite: Sprite2D
 
 @export var button_sound: AudioManager.BUTTON
 
 func _process(_delta: float) -> void:
+	if email.is_read:
+		button_sprite.modulate = Color(0.8, 0.74, 0.8, 0.5)
 	if fulfill_button.visible and GameManager.computer_visible and email != null and email.attached_order != null:
 		fulfill_button.disabled = !GameManager.player_inventory_has(email.attached_order.required_items, email.attached_order.required_quantities)
 
@@ -32,6 +35,6 @@ func set_email(new_email: Email):
 func _finished(_text:String, label:RichTextLabel):
 	if !label.initialized:
 		label.initialized = true
-		Utility.set_truncated_text(_text, label)
+		Utility.call_deferred("set_truncated_text", _text, label) # Called deferred to ensure font size is correct
 		
 	

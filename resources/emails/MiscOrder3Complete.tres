@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://bbm4xr36d2gvv"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_87k2q"]
+[ext_resource type="Resource" uid="uid://b7ooc6stx1yu7" path="res://resources/emails/MiscOrder3.tres" id="2_5itlu"]
+
+[resource]
+resource_name = "MiscOrder3Complete"
+script = ExtResource("1_87k2q")
+sender = "Martell R. Man"
+subject = "Thanks"
+contents = "I'd like to say thanks. Now, Greta's happy as can be, and I'm feeling goood. She always says I get a bit too uptight and anxious when I'm sober, and I kinda get it. I might not be able to be this mellow all the time, but if it's for the sake of Greta, then it's worth it. She's such a wonderful woman.
+
+Anyways, I've sent some of my [res=Water]bong water[/res] your way as thanks. Hopefully you can find a use for it, since I can't exactly just dump it, what with the weed that's in it now.
+
+sorry!"
+category = ""
+prerequisite_emails = Array[ExtResource("1_87k2q")]([ExtResource("2_5itlu")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = false
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

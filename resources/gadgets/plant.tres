@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Gadget" load_steps=14 format=3 uid="uid://c222by5ulftln"]
+[gd_resource type="Resource" script_class="Gadget" load_steps=16 format=3 uid="uid://c222by5ulftln"]
 
 [ext_resource type="AudioStream" uid="uid://24ktmuhb4tr4" path="res://resources/audio/Gadgets/p plant.wav" id="1_oxrpq"]
 [ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="2_csb3v"]
@@ -38,19 +38,50 @@ slots = Array[ExtResource("3_lt256")]([SubResource("Resource_6gsv3"), SubResourc
 script = ExtResource("4_u6bql")
 texture = ExtResource("6_x573d")
 name = "Pot"
-description = "The seeds for these things come in unmarked plastic baggies. You're not gonna ask where they come from."
+description = "A basic planter's pot. It's surprisingly artisanal"
 max_stack = 1
 price = 25
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxrpq"]
+atlas = ExtResource("6_x573d")
+region = Rect2(0, 0, 408, 837)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_acsf8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_x573d")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxrpq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_x573d")
+}],
+"loop": true,
+"name": &"se",
+"speed": 5.0
+}]
+
 [resource]
 script = ExtResource("5_441cp")
-texture = ExtResource("6_x573d")
+sprite_frames = SubResource("SpriteFrames_acsf8")
 sprite_offset = Vector2(0, -243)
 sprite_scale_factor = 0.9
 name = "Pot"
 age = 0
 direction = 0
-description = "The seeds for these things come in unmarked plastic baggies. You're not gonna ask where they come from."
+description = "A basic planter's pot. It's surprisingly artisanal"
 item = SubResource("Resource_p2117")
 inventory = SubResource("Resource_nd5xr")
 produces = true
@@ -58,3 +89,4 @@ inputs = 2
 outputs = 1
 process_time = 1.0
 ambient_sound = ExtResource("1_oxrpq")
+sound_string = ""

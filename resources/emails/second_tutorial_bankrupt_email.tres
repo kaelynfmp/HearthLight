@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="Email" load_steps=4 format=3 uid="uid://dsf5ltqgqo7uj"]
+
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_xrqss"]
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="2_wk7sn"]
+
+[sub_resource type="Resource" id="Resource_ntuda"]
+script = ExtResource("1_xrqss")
+order_id = 0
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
+given_currency = 0
+required_items = Array[Resource]([])
+required_quantities = Array[int]([])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 25
+rewards = Array[Resource]([])
+rewards_quantities = Array[int]([])
+metadata/_custom_type_script = "uid://cdrlcp2hcoi4m"
+
+[resource]
+script = ExtResource("2_wk7sn")
+sender = "Secret Admirer"
+subject = "Down on your luck?"
+contents = "Hey, I heard you're struggling a bit in the financials department.
+
+Take $25, I insist."
+category = "main"
+prerequisite_emails = Array[ExtResource("2_wk7sn")]([])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_ntuda")
+tutorial = false
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = true
+metadata/_custom_type_script = "uid://f4g73stblggw"

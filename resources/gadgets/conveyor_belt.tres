@@ -1,10 +1,13 @@
-[gd_resource type="Resource" script_class="Gadget" load_steps=10 format=3 uid="uid://cksgqh7imb27s"]
+[gd_resource type="Resource" script_class="Gadget" load_steps=14 format=3 uid="uid://cksgqh7imb27s"]
 
 [ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_inqyl"]
 [ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_nmkh0"]
 [ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_lf8tf"]
-[ext_resource type="Texture2D" uid="uid://b40enkw3srx8o" path="res://resources/sprites/grinderPrimitive.png" id="4_rcdnk"]
 [ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="5_owrvj"]
+[ext_resource type="Texture2D" uid="uid://c3d0xu44diter" path="res://resources/sprites/conveyorRightDown.png" id="6_nmkh0"]
+[ext_resource type="Texture2D" uid="uid://be3ekjx37l1mf" path="res://resources/sprites/conveyorLeftDown.png" id="7_lf8tf"]
+[ext_resource type="Texture2D" uid="uid://br8fm2xpt1bek" path="res://resources/sprites/conveyorRightUp.png" id="7_owrvj"]
+[ext_resource type="Texture2D" uid="uid://6m6c0kro2jjy" path="res://resources/sprites/conveyorLeftUp.png" id="7_rcdnk"]
 
 [sub_resource type="Resource" id="Resource_n21an"]
 script = ExtResource("2_nmkh0")
@@ -26,17 +29,100 @@ slots = Array[ExtResource("2_nmkh0")]([SubResource("Resource_n21an"), SubResourc
 
 [sub_resource type="Resource" id="Resource_nmkh0"]
 script = ExtResource("3_lf8tf")
-texture = ExtResource("4_rcdnk")
+texture = ExtResource("6_nmkh0")
 name = "Conveyor Belt"
 description = "A conveyor belt"
 max_stack = 100
-price = 0
+price = 5
 metadata/_custom_type_script = "uid://by7jec2ew2vsl"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lf8tf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_nmkh0")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_nmkh0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_owrvj")
+}],
+"loop": true,
+"name": &"ne",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_owrvj")
+}],
+"loop": true,
+"name": &"ne_active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_rcdnk")
+}],
+"loop": true,
+"name": &"nw",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_rcdnk")
+}],
+"loop": true,
+"name": &"nw_active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_nmkh0")
+}],
+"loop": true,
+"name": &"se",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_nmkh0")
+}],
+"loop": true,
+"name": &"se_active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_lf8tf")
+}],
+"loop": true,
+"name": &"sw",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_lf8tf")
+}],
+"loop": true,
+"name": &"sw_active",
+"speed": 5.0
+}]
 
 [resource]
 script = ExtResource("5_owrvj")
-texture = ExtResource("4_rcdnk")
-sprite_offset = Vector2(0, -140)
+sprite_frames = SubResource("SpriteFrames_lf8tf")
+sprite_offset = Vector2(0, -80)
 sprite_scale_factor = 0.95
 name = "Conveyor Belt"
 age = 1
@@ -48,4 +134,5 @@ produces = true
 inputs = 1
 outputs = 1
 process_time = 1.0
+sound_string = ""
 metadata/_custom_type_script = "uid://diu2pkk76wyyy"

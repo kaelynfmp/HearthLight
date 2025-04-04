@@ -25,7 +25,7 @@ script = ExtResource("1_3434e")
 scale = Vector2(0.611111, 0.563525)
 polygon = PackedVector2Array(450, 0, 0, -300, -450, 0, 0, 300)
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_p5k61")
 scale = Vector2(0.7, 0.7)

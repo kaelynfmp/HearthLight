@@ -56,9 +56,9 @@ func _process(_delta: float):
 func _meta_clicked(meta: Variant):
 	if Engine.is_editor_hint():
 		if meta in Utility.items:
-			EditorInterface.edit_resource(Utility.items[meta])
+			Engine.get_singleton(&"EditorInterface").edit_resource(Utility.items[meta])
 		if meta in Utility.gadgets:
-			EditorInterface.edit_resource(Utility.gadgets[meta])
+			Engine.get_singleton(&"EditorInterface").edit_resource(Utility.gadgets[meta])
 	elif meta == "Botsy":
 		GameManager.navigate_to_botsy()
 
@@ -121,7 +121,7 @@ func set_text_with_bbcode(value: String):
 			token += "[b]"
 			if item.texture != null:
 				var texture_path:String = item.texture.resource_path
-				token += "[img width=" + str(insert_image_width) + "px,center]"
+				token += "[img height=" + str(insert_image_width) + "px,center]"
 				token += texture_path
 				token += "[/img]"
 			token += text_value
@@ -135,9 +135,9 @@ func set_text_with_bbcode(value: String):
 			token += "[hint=" + resource_name + "]"
 			if Engine.is_editor_hint(): token += "[url=" + resource_name + "]"
 			token += "[b]"
-			if gadget.texture != null:
-				var texture_path:String = gadget.texture.resource_path
-				token += "[img width=" + str(insert_image_width) + "px,center]"
+			if gadget.item.texture != null:
+				var texture_path:String = gadget.item.texture.resource_path
+				token += "[img height=" + str(insert_image_width) + "px,center]"
 				token += texture_path
 				token += "[/img]"
 			token += text_value

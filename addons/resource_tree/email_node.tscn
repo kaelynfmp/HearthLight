@@ -187,6 +187,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_7coub")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_t3n0n")
 bbcode_enabled = true
 text = "Subject Label"
+autowrap_mode = 0
 meta_underlined = false
 hint_underlined = false
 script = ExtResource("3_2hvs7")

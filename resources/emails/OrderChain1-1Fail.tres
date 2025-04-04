@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://blalwvmc76s05"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_60t8t"]
+[ext_resource type="Resource" uid="uid://d62ca2qg720h" path="res://resources/emails/OrderChain1-1.tres" id="2_p60am"]
+
+[resource]
+resource_name = "OrderChain1-1Fail"
+script = ExtResource("1_60t8t")
+sender = "Vivian Brisket"
+subject = ":("
+contents = ":("
+category = ""
+prerequisite_emails = Array[ExtResource("1_60t8t")]([ExtResource("2_p60am")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = false
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = true
+bankruptcy = false

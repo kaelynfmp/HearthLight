@@ -1,4 +1,4 @@
-﻿extends Node
+extends Node
 
 ## The synchronized stream of all gadgets above the primitive age
 var gadget_audio:AudioStreamPlayer2D
@@ -6,6 +6,36 @@ var gadget_audio:AudioStreamPlayer2D
 var gadget_audio_index:Dictionary[Gadget, int] # Populate dict once ready
 
 var playback:AudioStreamPlaybackPolyphonic
+
+var active_gadgets:Dictionary[StringName, Dictionary] = {
+	"c grinder.wav": {},
+	"c loom.wav": {},
+	"c plant.wav": {},
+	"c sieve.wav": {},
+	"c stove.wav": {},
+	"c generator.wav": {},
+	"e grinder.wav": {},
+	"e loom.wav": {},
+	"e plant.wav": {},
+	"e sieve.wav": {},
+	"e stove.wav": {},
+	"e generator.wav": {}
+}
+
+var sync_stream_indexes:Dictionary[StringName, int] = {
+	"c grinder.wav": -1,
+	"c loom.wav": -1,
+	"c plant.wav": -1,
+	"c sieve.wav": -1,
+	"c stove.wav": -1,
+	"c generator.wav": -1,
+	"e grinder.wav": -1,
+	"e loom.wav": -1,
+	"e plant.wav": -1,
+	"e sieve.wav": -1,
+	"e stove.wav": -1,
+	"e generator.wav": -1
+}
 
 ## Enum of all possible button sounds
 enum BUTTON {LOWER, BUTTON_CLICK, SELECT, DOUBLE_CLICK, HIGH_SELECT, DOUBLE_CLICK_TWO, HIGHLIGHT, CLICK, PICK_UP, PUT_DOWN, BUY, NO_MONEY, REWARD, CONFIRM, SHORT_CLICK}
@@ -31,6 +61,12 @@ var button_sounds:Array[AudioStream] = [
 
 func set_gadget_audio(stream_player:AudioStreamPlayer2D):
 	gadget_audio = stream_player
+	for index in range(stream_player.stream.stream_count):
+		var sync_stream = stream_player.stream.get_sync_stream(index)
+		for audio_string:String in active_gadgets:
+			if sync_stream.resource_path == "res://resources/audio/Gadgets/" + audio_string:
+				sync_stream_indexes[audio_string] = index
+				break
 
 # https://forum.godotengine.org/t/best-proper-way-to-do-ui-sounds-hover-click/39081/3	
 
@@ -61,3 +97,14 @@ func _play_pressed(node:Node) -> void:
 		
 func play_button_sound(index:int, db:float=0, pitch:float=1, pitch_range:float=0.1):
 	playback.play_stream(button_sounds[index], 0, db, randf_range(pitch - pitch_range, pitch + pitch_range))
+
+	
+func _process(_delta: float) -> void:
+	if gadget_audio != null:
+		for audio_string:String in active_gadgets:
+			var gadgets_count = active_gadgets[audio_string].size()
+			if gadgets_count > 0 and not GameManager.sleeping:
+				gadget_audio.stream.set_sync_stream_volume(sync_stream_indexes[audio_string], 0.0)
+			else:
+				gadget_audio.stream.set_sync_stream_volume(sync_stream_indexes[audio_string], -60.0)
+		

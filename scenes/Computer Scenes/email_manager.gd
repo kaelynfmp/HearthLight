@@ -19,35 +19,55 @@ var all_lore_emails = GameManager.all_lore_emails
 var all_tutorial_emails = GameManager.all_tutorial_emails
 var saved_day : int = 1
 @export var bankruptcy_email: Email
+@export var first_tutorial_bankruptcy_email: Email
+@export var second_tutorial_bankruptcy_email: Email
 var bankruptcy_copy: Email
+var last_bankruptcy_sent: int = 0
 func _ready():
 	load_emails()
 	create_inbox_buttons()
 	#print(emails)
 	for email in emails:
-		if email not in completed_order_emails and email not in remaining_order_emails and !email.tutorial and email not in all_lore_emails and !email.bankruptcy:
+		if !email.category:
+			email.category = "main"
+		if email not in completed_order_emails and email not in remaining_order_emails and email not in all_lore_emails and !email.bankruptcy:
 			#email is not loaded in yet and is NOT a tutorial email and NOT a lore email
-			remaining_order_emails.append(email)
+			if email.tutorial and !email.prerequisite_emails:
+				# does not add the very first tutorial email to the remaining emails
+				pass
+			else:
+				remaining_order_emails.append(email)
+			
 		if email.tutorial:
 			if email.check_valid():
-				GameManager.categorized_emails["main"].append(email)
+				GameManager.categorized_emails["main"].insert(0,email)
+	add_valid_lore_emails()
 	display_category_emails(current_category) # default view to "main"
 
 func _process(delta: float) -> void:
 	# add new emails
+	
+	# upon previous tutorial email completed, insert next one
+	add_valid_tutorial_emails()
+	
+	# upon valid, insert lore email
+	add_valid_lore_emails()
+	
+	# check for bankruptcy and send email with money if so
+	# only works once per day, only sends if bankrupt and you dont have a bankruptcy email in your inbox
+	try_send_bankruptcy()
+	
+	# new randomly selected orders every day
 	if saved_day != GameManager.game_time["day"]: # new day
-		#print("selecting 5 new emails")
+		#print("selecting 2 new emails")
 		var selected_new_emails = select_random_emails()
 		if len(selected_new_emails)>0:
 			remaining_order_emails.erase(selected_new_emails)
 			for eachemail in selected_new_emails:
-				categorized_emails["main"].insert(0,eachemail)
+				print("inserting...", eachemail.sender)
 				#print("appended email", eachemail)
-		if GameManager.currency < 100 and GameManager.game_time["day"]% 3 == 0 and GameManager.game_time["day"] >= 3:
-			#print("bankruptcy activated")
-			bankruptcy_copy = bankruptcy_email.duplicate(true)
-			bankruptcy_copy.attached_order.is_accepted = false
-			categorized_emails["main"].insert(0,bankruptcy_copy)
+		
+
 		
 		# check due dates BEFORE updating saved day
 		for eachemail in categorized_emails["orders"]:
@@ -57,9 +77,8 @@ func _process(delta: float) -> void:
 			
 		display_category_emails(current_category)
 		saved_day = GameManager.game_time["day"]
-	
 func select_random_emails():
-	# selects 5 random valid emails, or all of them if theres less than 5 valid ones
+	# selects 2 random valid emails, or all of them if theres less than 2 valid ones
 	var select_from = remaining_order_emails
 	if select_from.is_empty():
 		select_from = completed_order_emails
@@ -68,7 +87,7 @@ func select_random_emails():
 	valid_emails.shuffle()
 	for eachemail in valid_emails:
 		select_from.erase(eachemail)
-	return valid_emails.slice(0, 5)
+	return valid_emails.slice(0, 2)
 
 func create_inbox_buttons():
 	for category in categorized_emails.keys():
@@ -104,37 +123,29 @@ func display_category_emails(category: String):
 			display_email_button(email)
 	current_category = category
 	
-
+## load all email resources
 func load_emails():
-	# load all email resources
-	var dir:DirAccess = DirAccess.open(email_folder)
-	if dir != null:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if file_name.ends_with(".remap"):
-				file_name = file_name.trim_suffix(".remap")
-			if file_name.ends_with(".tres"):
-				var email_path = email_folder + file_name
-				var email = load(email_path)
-				if email and email is Email:
-					emails.append(email)
-					if email.lore_only:
-						all_lore_emails.append(email)
-					if email.tutorial:
-						all_tutorial_emails.append(email)
-					#display_email_button(email)  # display the email in the UI
-			file_name = dir.get_next()
-		dir.list_dir_end()
+	var email_strings = Utility.load_path("res://resources/emails")
+	for email_string in email_strings:
+		var email = load(email_string)
+		if email and email is Email:
+			emails.append(email)
+			if email.lore_only:
+				all_lore_emails.append(email)
+			if email.tutorial:
+				all_tutorial_emails.append(email)
+			#display_email_button(email)  # display the email in the UI
+			if email.attached_order != null:
+				OrderManager.email_by_order[email.attached_order] = email
 
 func change_email_category(email: Email, new_category: String):
 	# remove from old inbox
 	if email in categorized_emails[email.category]:
 		categorized_emails[email.category].erase(email)
 		
-	# change email's category, display in new inbox
-	email.category = new_category
-	categorized_emails[new_category].append(email)
+		# change email's category, display in new inbox
+		email.category = new_category
+		categorized_emails[new_category].insert(0,email)
 	
 func is_email_time_reached(email: Email) -> bool:
 	var game_time = GameManager.game_time
@@ -185,7 +196,7 @@ func display_email_button(email: Email):
 		fulfill_texture.visible = false
 		accept_button.visible = false
 		reject_button.visible = false
-	else: # no attached order OR order has been responded to
+	else: #  no order or order has been responded to
 		accept_button.visible = false
 		reject_button.visible = false
 		# if email.attached_order.responded:
@@ -195,6 +206,7 @@ func display_email_button(email: Email):
 func show_email_details(email: Email, email_button: Button):
 	var panel = email_button.get_node("Panel")
 	email.is_read = true
+	#print(email.sender, "is read")
 	#is_read_color(email, email_button)
 	panel.visible = !panel.visible
 	if panel.visible:
@@ -209,6 +221,7 @@ func order_accept(email: Email):
 		OrderManager.accept_order(order)
 		OrderManager.give_player_starting_items(order)
 		change_email_category(email, "orders")
+		email.is_read = false
 	else:
 		OrderManager.give_player_starting_items(order)
 		fulfill_order(email)
@@ -228,10 +241,15 @@ func order_reject(email: Email):
 	
 func fulfill_order(email: Email):
 	if OrderManager.fulfill_order(email.attached_order):
+		email.is_read = false
 		change_email_category(email, "archive")
 		display_category_emails(current_category)
-		if !email.tutorial and !email.bankruptcy not in all_lore_emails:
+		if !email.tutorial and !email.bankruptcy and email not in all_lore_emails:
+			print("adding to completed...")
 			completed_order_emails.append(email)
+		if email in remaining_order_emails:
+			print("removing from remaining")
+			remaining_order_emails.erase(email)
 
 func check_email_failed(email: Email) -> bool:
 	if saved_day != GameManager.game_time["day"] and email.failable:
@@ -249,3 +267,46 @@ func get_emails_in_category(category: String):
 		#var style = StyleBoxFlat.new()
 		#style.bg_color = Color(selectedbuttoncolor)
 		#email_button.set("theme_override_styles/normal", style)
+
+func add_valid_lore_emails():
+	for email in all_lore_emails:
+		if email.check_valid() and email not in categorized_emails["main"]:
+			categorized_emails["main"].insert(0,email)
+
+func add_valid_tutorial_emails():
+	for email in all_tutorial_emails:
+		if email.check_chain() and email not in categorized_emails["main"] and email not in categorized_emails["orders"] and email not in categorized_emails["archive"]:
+			categorized_emails["main"].insert(0,email)
+
+func try_send_bankruptcy():
+	if last_bankruptcy_sent != GameManager.game_time["day"]: 
+		var tutorial_complete: bool = true
+		for email in all_tutorial_emails:
+			if email.attached_order and !email.attached_order.is_completed:
+				tutorial_complete = false
+			if !email.attached_order and !email.is_read:
+				tutorial_complete = false
+				
+			
+		#print(GameManager.currency < 10, !bankruptcy_email.check_chain(), categorized_emails["main"].filter(func(email: Email): return email.bankruptcy).is_empty())
+		if GameManager.currency <= 10 and !tutorial_complete and categorized_emails["main"].filter(func(email: Email): return email.bankruptcy).is_empty():
+			# tutorial not done yet, send tutorial bankruptcy, not encountered rocks yet
+			bankruptcy_copy = first_tutorial_bankruptcy_email.duplicate(true)
+			if GameManager.currency < 10:
+				bankruptcy_copy.attached_order.given_currency += 10
+			
+		# TODO: finish this when tutorial stuff is done, change prereq emails etc
+		#if second_tutorial_bankruptcy_email:
+			#if GameManager.currency <= 25 and !tutorial_complete and categorized_emails["main"].filter(func(email: Email): return email.bankruptcy).is_empty() and second_tutorial_bankruptcy_email.check_chain():
+				## tutorial not done but has encountered rocks
+				#bankruptcy_copy = second_tutorial_bankruptcy_email.duplicate(true)
+		# normal bankruptcy
+		if GameManager.currency < 100 and GameManager.game_time["day"]% 3 == 0 and GameManager.game_time["day"] >= 3 and categorized_emails["main"].filter(func(email: Email): return email.bankruptcy).is_empty() and tutorial_complete:
+			#print("bankruptcy activated")
+			bankruptcy_copy = bankruptcy_email.duplicate(true)
+		
+		# if bankruptcy triggered
+		if bankruptcy_copy:
+			bankruptcy_copy.attached_order.is_accepted = false
+			categorized_emails["main"].insert(0,bankruptcy_copy)
+			last_bankruptcy_sent = GameManager.game_time["day"]

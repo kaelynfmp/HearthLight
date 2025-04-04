@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://ddiii5ep5hs4p"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_asf85"]
+[ext_resource type="Resource" uid="uid://peirphrq2rt7" path="res://resources/emails/GeneratorTutorialAlsoAdvLoom.tres" id="2_577tx"]
+
+[resource]
+resource_name = "GeneratorTutorialComplete"
+script = ExtResource("1_asf85")
+sender = "Ernest Hayden"
+subject = "A crisis averted. And so, a moment of peace"
+contents = "I am so terribly sorry,
+
+It was due to my negligence that you were forced to suffer for so long, to toil away relentlessly, to push the boulder ever upward! But no longer. You can take a break now. Have a cuppa. There is more to life than just simple labour, you know.
+
+Take in your surroundings. Do they bring you a sense of comfort? If not, then I'm sorry that you feel that you must go through this. There must be a powerful force driving you, perhaps the intoxication that freedom from the Doldrums brings? That's the medication they had you taking, by the way. Terrible stuff. 
+
+Have you ever been outside of the city? It used to be that there were verdant hills that blanketed the landscape in the cruel but warm embrace of mother nature. There are still places like that, thanks to my and many others' diligent work, but it's never guaranteed that they will remain. You should come see them sometime.
+
+But perhaps not now. After all, you've still work to do, haven't you? Gravity pulls inexorably on the boulder, and the only way forward is up, hoping that it might one day rest atop the peak.
+
+Sincerely,
+Ernest"
+category = ""
+prerequisite_emails = Array[ExtResource("1_asf85")]([ExtResource("2_577tx")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = false
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

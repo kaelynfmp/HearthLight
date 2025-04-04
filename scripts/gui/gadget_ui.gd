@@ -9,9 +9,9 @@ var current_gadget:Gadget
 var input_hint_dict: Dictionary = {}
 
 func _process(delta: float) -> void:
-	visible = GameManager.gadget != null
-	if GameManager.gadget != null:
-		if current_gadget == null:
+	visible = GameManager.gadget != null and GameManager.gadget.gadget_stats.name != "Conveyor Belt"
+	if GameManager.gadget != null and GameManager.gadget.gadget_stats.name != "Conveyor Belt":
+		if current_gadget == null or GameManager.gadget.gadget_stats != current_gadget:
 			input_hint_dict = {}
 			set_gadget(GameManager.gadget)
 		if GameManager.gadget.progressing:
@@ -58,6 +58,8 @@ func set_gadget(gadget:StaticBody2D):
 		var input_hint:TextureRect = new_slot.find_child("ImgHintInput", true)
 		var recipe_inputs = get_inputs_for_hint()
 		var curr_slot = recipe_inputs[index]
+		if curr_slot == null:
+			continue
 		input_hint.texture = curr_slot.item.texture
 		input_hint_dict[input_hint] = current_gadget.inventory.get_item_quantity(curr_slot.item)
 		
@@ -91,10 +93,12 @@ func set_gadget(gadget:StaticBody2D):
 			new_slot.size_flags_vertical = SIZE_SHRINK_CENTER
 		contained.add_child(new_slot)
 		contained.move_child(new_slot, starting_index + index)
-		
+	
 		var output_hint:TextureRect = new_slot.find_child("ImgHintOutput", true)
 		var recipe_outputs = get_outputs_for_hint()
 		var curr_slot = recipe_outputs[index]
+		if curr_slot.item == null:
+			continue
 		output_hint.texture = curr_slot.item.texture
 
 func get_inputs_for_hint():

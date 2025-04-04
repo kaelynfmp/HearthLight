@@ -1,7 +1,7 @@
 extends Node
 var item: Item
 @export var item_name: Label
-@export var item_desc: Label
+@export var item_desc: RichTextLabel
 @export var item_picture: TextureRect
 @onready var inventory: Inventory = preload("res://resources/character/inventory.tres")
 
@@ -64,6 +64,9 @@ func set_item_buy(new_item: Item):
 	item_picture.texture = item.texture
 	cost_per_item = item.price
 	total_cost = item.price
+	if GameManager.is_debugging:
+		cost_per_item = 0
+		total_cost = 0
 	
 func _increase():
 	if quantity < max_value:
@@ -83,3 +86,6 @@ func update_cost_label():
 	if cost_label:
 		cost_label.text = "Cost: $" + str(quantity * cost_per_item)
 		total_cost = quantity * cost_per_item
+		if GameManager.is_debugging:
+			total_cost = 0
+			cost_label.text = "Cost: FREE"

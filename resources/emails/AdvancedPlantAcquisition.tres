@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="Email" load_steps=8 format=3 uid="uid://cjm5ssafts5ap"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_4ydql"]
+[ext_resource type="Resource" uid="uid://7oikt5vc44v0" path="res://resources/gadgets/advanced_plant.tres" id="1_7libj"]
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_nr60n"]
+[ext_resource type="Resource" uid="uid://bjux8vbxnqlf8" path="res://resources/items/seed.tres" id="2_mcygt"]
+[ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="3_mcygt"]
+[ext_resource type="Resource" uid="uid://ddiii5ep5hs4p" path="res://resources/emails/GeneratorTutorialComplete.tres" id="3_toijp"]
+
+[sub_resource type="Resource" id="Resource_nr60n"]
+script = ExtResource("1_nr60n")
+order_id = 0
+given_items = Array[Resource]([ExtResource("1_7libj"), ExtResource("2_mcygt")])
+given_quantities = Array[int]([1, 1])
+given_currency = 0
+required_items = Array[Resource]([ExtResource("3_mcygt")])
+required_quantities = Array[int]([1])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 100
+rewards = Array[Resource]([])
+rewards_quantities = Array[int]([])
+
+[resource]
+resource_name = "AdvancedPlantAcquisition"
+script = ExtResource("1_4ydql")
+sender = "Ernest Hayden"
+subject = "I have something I think you might like..."
+contents = "Hello,
+
+I have recently come into possession of a number of [res=GMO Seed]strange plant seeds[/res]. I, of course, need to keep a number of them for myself to perform tests on and see if they're of any interest to my compatriots and I, but I could be persuaded to lose a few of them in your general direction if you're willing, though I am not made of money, and would appreciate a charitable donation were something like that come to pass.
+
+I'm not entirely sure what they are as of yet, but I am certain that you will be able to find a use for them.
+Take care,
+Ernest"
+category = ""
+prerequisite_emails = Array[ExtResource("1_4ydql")]([ExtResource("3_toijp")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_nr60n")
+tutorial = false
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

@@ -5,6 +5,7 @@ signal computer_visibility_changed
 signal update_recipes
 signal pause_changed
 signal update_gadgets
+signal update_items
 signal take_cursor(Slot)
 signal debug_mode_change
 signal gadget_rotated(direction: int)
@@ -64,10 +65,14 @@ var active_time: int = 0 # time spent with the time moving, aka out of pause/com
 var seconds_elapsed: float
 var milliseconds_elapsed: int
 var day_hours: int  = 18
-var time_scale: int = 480 * 12 # 1 irl second is 480 game seconds for 2 minutes/day, 16h day
+var time_scale: int = 480 # 1 irl second is 480 game seconds for 2 minutes/day, 16h day
 var time_scaled_seconds: int
 var time_difference
+var continue_clock_in_computer = 22
 var sleeping: bool
+var sleeping_time
+var sleep_start
+var sleep_end
 var game_time: Dictionary = {
 	"day": 1,
 	"hour": 8,
@@ -96,16 +101,22 @@ var pause: bool = true
 
 var recipes:Array[Recipe]
 var gadgets:Array[Gadget]
-var gadget_items:Dictionary
+var gadget_items:Dictionary[Item, Gadget]
+var items:Array[Item]
+
+var day_start_sound:AudioStreamPlayer2D
+var day_end_sound:AudioStreamPlayer2D
 
 var room_map = []
 var item_map = []
 
+var quest_list_visible:bool = true
+
 func init_room_map():
 	var map = []
-	for i in range(12):
+	for i in range(15):
 		var row = []
-		for j in range(12):
+		for j in range(15):
 			row.append(null)
 		map.append(row)
 	return map
@@ -118,6 +129,7 @@ func _ready() -> void:
 	item_map = init_room_map()
 	load_recipes()
 	load_gadgets()
+	load_items()
 	
 	#for recipe in recipes:
 		#print("inputs: ", recipe.inputs, " gadget: ", recipe.gadget)
@@ -165,7 +177,7 @@ func _process(_delta: float) -> void:
 					
 	
 	# time tracking
-	if !pause and !in_computer:
+	if !pause and !in_computer or (!pause and in_computer and game_time["hour"] >= continue_clock_in_computer) or (in_computer and game_time["hour"] == 8 and game_time["minute"] == 0):
 		current_time = Time.get_ticks_msec()
 		time_difference = current_time - start_time
 		start_time = Time.get_ticks_msec()
@@ -180,7 +192,6 @@ func _process(_delta: float) -> void:
 			update_time(time_scaled_seconds)
 		elif sleeping: # TODO: whatever animations, etc
 			#await get_tree().create_timer(3).timeout
-			sleeping = false
 			wake_up()
 			start_time = Time.get_ticks_msec()
 	else:
@@ -201,6 +212,14 @@ func load_gadgets():
 		var curr_gadget:Gadget = load(gadget_string)
 		gadgets.append(curr_gadget)
 		gadget_items[curr_gadget.item] = curr_gadget
+		
+## Load all items in the filesystem
+func load_items():
+	update_items.emit()
+	item_strings = Utility.load_path("res://resources/items")
+	for item_string:String in item_strings:
+		var item:Item = load(item_string)
+		items.append(item)
 
 ## Changes whether the inventory is open or not
 func change_inventory():
@@ -279,6 +298,9 @@ func distribute_slots() -> void:
 	
 ## Sets the currently selected gadget
 func set_gadget(p_gadget:StaticBody2D) -> void:
+	if inventory:
+		if gadget != null:
+			inventories.erase(gadget.inventory)
 	gadget = p_gadget
 	if !inventory:
 		change_inventory()
@@ -312,11 +334,12 @@ func subtract_currency(amount: int) -> bool:
 	return false  # not enough money for purchase
 
 ## Picks up a gadget and puts it into the cursor
-func pickup_gadget(_gadget:Gadget) -> bool:
+func pickup_gadget(_gadget:Gadget, direction:Gadget.Direction = Gadget.Direction.SE) -> bool:
 	if cursor != null and cursor.slot != null and cursor.slot.item == null:
 		if !inventory:
 			change_inventory()
 		cursor.slot.initialize(_gadget.item)
+		get_gadget_from_cursor().direction = direction
 		AudioManager.play_button_sound(AudioManager.BUTTON.PICK_UP, 0.0, 1.0, 0.0)
 		return true
 	return false
@@ -357,6 +380,9 @@ func update_time(in_game_seconds):
 	game_time["second"] = int(in_game_seconds % 60)
 	
 	# count days
+	if (game_time["hour"] == 22 and game_time["minute"] >= 44):
+		if not day_end_sound.playing:
+			day_end_sound.play()
 	if (game_time["hour"] == 24): 
 		game_time["day"] += 1
 		game_time["hour"] = 8
@@ -405,8 +431,17 @@ func is_after_date(day: int, hour: int, minute: int) -> bool:
 
 func go_sleep():
 	sleeping = true
+	sleep_start = Time.get_ticks_msec()
+	milliseconds_elapsed = active_time
 	print("starting sleep...")
 	#TODO: Sleep behavior
 func wake_up():
-	sleeping = false
-	print("waking up...")
+	sleep_end = Time.get_ticks_msec()
+	sleeping_time = (sleep_end - sleep_start) / 1000
+	#print(sleeping_time)
+	if sleeping_time >= 5:
+		if not day_start_sound.playing:
+			day_start_sound.play()
+	if sleeping_time >= 9:
+		sleeping = false
+		print("waking up...")

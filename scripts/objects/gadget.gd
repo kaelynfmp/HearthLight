@@ -5,17 +5,28 @@ signal item_at_location(cell_pos: Vector2i, item: Item)
 
 @export var gadget_stats:Gadget
 @onready var audio_player:AudioStreamPlayer2D = find_child("AudioStreamPlayer")
-@onready var sprite:Sprite2D = find_child("Sprite")
+@onready var sprite:AnimatedSprite2D = find_child("Sprite")
 @onready var valid_selection:CompressedTexture2D = load("res://scripts/shaders/close_enough_texture.tres")
 @onready var invalid_selection:CompressedTexture2D = load("res://scripts/shaders/not_close_enough_texture.tres")
 @export var inventory: Inventory
 @export var is_holding: bool = false
+@export var has_power_from_generator = false
+@export var total_power:float = 0.0
+@export var power_per_coal = 10
+
+var max_power:int = 1000
+# With 6 gadgets, this means 1 coal can power 6 recipes. I.e. 6 simultaneous gadgets can be powered by 
+# one generator.
+var power_depletion_rate:float = 0.2
+
+var prev_power:float = 0.0
 
 var location: Vector2i
 var character: Node2D
 var base_layer: Node2D
 var tile_layers: Node2D
 var age:int
+var is_generator:bool = false
 var initial_click:bool = true
 var progressing:bool = false
 var progress:float = 0
@@ -29,6 +40,7 @@ var recipes:Array[Recipe]
 var rear_gadget: StaticBody2D
 var front_gadget: StaticBody2D
 var corresponding_item: RigidBody2D
+enum Direction {SE, SW, NW, NE}
 var direction: int
 var direction_vector: Array[Vector2i] = [
 	Vector2i(-1, 0),
@@ -37,6 +49,7 @@ var direction_vector: Array[Vector2i] = [
 	Vector2i(0, 1),
 ]
 var disabled = false
+var has_power = false
 
 func get_local_position():
 	return base_layer.map_to_local(cell_pos)
@@ -48,11 +61,13 @@ func create_new_inventory(num_inputs: int, num_outputs: int) -> void:
 		var slot: Slot = Slot.new()
 		slot.item = null
 		slot.locked = false
+		slot.item_filter = gadget_stats.inventory.slots[i].item_filter
 		inventory.slots.append(slot)
 	for i in range(num_outputs):
 		var slot: Slot = Slot.new()
 		slot.item = null
 		slot.locked = true
+		slot.item_filter = gadget_stats.inventory.slots[num_inputs + i].item_filter
 		inventory.slots.append(slot)
 
 # Called when the node enters the scene tree for the first time.
@@ -62,12 +77,12 @@ func _ready() -> void:
 	base_layer = get_parent()
 	tile_layers = base_layer.get_parent()
 	age = gadget_stats.age
-	sprite.texture = gadget_stats.texture
+	is_generator = "Generator" in gadget_stats.name
+	sprite.sprite_frames = gadget_stats.sprite_frames
 	sprite.offset = gadget_stats.sprite_offset
 	direction = gadget_stats.direction
 	sprite.scale *= gadget_stats.sprite_scale_factor
 	rotate_sprite()
-	gadget_stats.inventory = inventory
 	if gadget_stats.name == "Conveyor Belt":
 		collision_layer = 2
 		collision_mask = 2
@@ -75,28 +90,58 @@ func _ready() -> void:
 	update_recipes()
 	GameManager.update_recipes.connect(update_recipes)
 	
-
+func check_for_nearby_generator(delta: float):
+	for offset_x in range(-2, 3):
+		for offset_y in range(-2, 3):
+			var target_pos = cell_pos + Vector2i(offset_x, offset_y)
+			if GameManager.room_map[target_pos[0] + 6][target_pos[1] + 5] != null:
+				var gadget_at_target_pos = GameManager.room_map[target_pos[0] + 6][target_pos[1] + 5]
+				if gadget_at_target_pos.is_generator and gadget_at_target_pos.has_power:
+					# Deplete power of generator being used
+					if progressing and selected_recipe != null and not GameManager.sleeping:
+						gadget_at_target_pos.total_power = max(0, gadget_at_target_pos.total_power - power_depletion_rate * delta)
+					return true
+	return false
+	
 
 func _physics_process(delta: float) -> void:
+	if not gadget_stats.produces:
+		return
 	if GameManager.gadget == null:
 		primitive_selected = false
+	check_for_valid_recipe()
+	if gadget_stats.age > GameManager.Age.PRIMITIVE and not is_generator:
+		has_power_from_generator = check_for_nearby_generator(delta)
+	if is_generator:
+		has_power = total_power > 0
+		if prev_power != total_power:
+			prev_power = total_power
+			AudioManager.active_gadgets[gadget_stats.sound_string][self] = true
+		else:
+			if AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
+				AudioManager.active_gadgets[gadget_stats.sound_string].erase(self)
 	if !disabled and !progressing or (!progressing and selected_recipe != null):
 		if gadget_stats.name == "Conveyor Belt":
 			do_transport()
-		else:
-			var checked_recipe: Recipe = check_for_valid_recipe()
-			if checked_recipe != null:
-				
-				if is_able_to_recipe(checked_recipe):
-					disabled = false
-					do_recipe(checked_recipe)
-				else:
-					disabled = true
+		elif selected_recipe != null:
+			if is_able_to_recipe():
+				disabled = false
+				do_recipe()
+			else:
+				disabled = true
 	else:
-		var change_rate:float = delta / (gadget_stats.process_time * (
-			selected_recipe.processing_multiplier if selected_recipe else 1.0))
-		if age > GameManager.Age.PRIMITIVE or primitive_selected:
-			progress += change_rate
+		var change_rate:float = (delta / gadget_stats.process_time) * (
+			selected_recipe.processing_multiplier if selected_recipe else 1.0)
+		if not GameManager.sleeping and ((recipe_taken or selected_recipe != null) and \
+		((age > GameManager.Age.PRIMITIVE and not is_generator and has_power_from_generator) or \
+		primitive_selected or is_generator)):
+			if is_generator:
+				if total_power < max_power:
+					progress += change_rate
+					var power_rate:float = change_rate * power_per_coal
+					total_power = min(total_power + power_rate, max_power)
+			else:
+				progress += change_rate
 		else:
 			progress -= change_rate
 		if progress >= 1:
@@ -109,26 +154,29 @@ func _physics_process(delta: float) -> void:
 	if GameManager.inventory and GameManager.gadget == self and !detect_nearby():
 		GameManager.change_inventory()
 
-func is_able_to_recipe(checked_recipe: Recipe):
-	var output_slots = inventory.slots.filter(func(slot): return slot.locked)
-	var is_able = output_slots.all(func(slot):
+func is_able_to_recipe() -> bool:
+	var output_slots: Array = inventory.slots.filter(func(slot): return slot.locked)
+	var is_able: bool = output_slots.all(func(slot):
 		var item = slot.item
 		if item == null:
 			return true
-		var slot_item_in_recipe = checked_recipe.outputs.find_custom(func(output): 
+		var slot_item_in_recipe = selected_recipe.outputs.find_custom(func(output): 
 			return output.item.name == item.name)
-		if slot.quantity + checked_recipe.outputs[slot_item_in_recipe].quantity <= item.max_stack:
+		if slot.quantity + selected_recipe.outputs[slot_item_in_recipe].quantity <= item.max_stack:
 			return true
 	)
 	return is_able
 	
 func rotate_sprite() -> void:
-	sprite.flip_h = false
-	sprite.flip_v = false
-	if direction == 1 or direction == 2:
-		sprite.flip_h = true
-	if direction == 2 or direction == 3:
-		sprite.flip_v = true
+	match (direction):
+		Direction.SE:
+			sprite.animation = "se"
+		Direction.SW:
+			sprite.animation = "sw"
+		Direction.NE:
+			sprite.animation = "ne"
+		Direction.NW:
+			sprite.animation = "nw"
 	
 func _process(_delta: float) -> void:
 	#direction = gadget_stats.direction
@@ -177,7 +225,10 @@ func update_recipes():
 		if recipe.gadget == gadget_stats:
 			recipes.append(recipe)
 		
-func check_for_valid_recipe() -> Recipe:
+func check_for_valid_recipe() -> void:
+	if age > GameManager.Age.PRIMITIVE and not is_generator and not has_power_from_generator:
+		selected_recipe = null
+		return
 	for recipe in recipes:
 		var inputs:Array[Slot] = inventory.slots.filter(func(slot): return !slot.locked)
 		var valid:int = 0
@@ -187,19 +238,25 @@ func check_for_valid_recipe() -> Recipe:
 					valid += 1
 		if valid == inputs.size():
 			# valid!
-			return recipe
+			selected_recipe = recipe
+			return
 	selected_recipe = null
-	return null
+	return
 	
-func do_recipe(recipe:Recipe):
-	selected_recipe = recipe
+func do_recipe():
 	if age > GameManager.Age.PRIMITIVE or primitive_selected:
 		start_progression()
 
 func start_progression():
 	recipe_taken = false
+	if is_generator:
+		recipe_take()
 	progressing = true
 	play_sound()
+	if not is_generator:
+		if gadget_stats.sound_string != null and gadget_stats.sound_string != "":
+			# 'True' is arbitrary value, this is a dictionary only to preserve uniqueness
+			AudioManager.active_gadgets[gadget_stats.sound_string][self] = true
 	
 func recipe_take():
 	for input in selected_recipe.inputs:
@@ -210,15 +267,20 @@ func recipe_take():
 	recipe_taken = true
 
 func finish_recipe():
-	recipe_take()
-	for output in selected_recipe.outputs:
-		inventory.insert(output.item, output.quantity, true)
+	if not is_generator:
+		recipe_take()
+		for output in selected_recipe.outputs:
+			inventory.insert(output.item, output.quantity, true)
 	cancel_processing()
 	
 func cancel_processing():
 	progress = 0.0
 	progressing = false
 	audio_player.stop()
+	if not is_generator:
+		if gadget_stats.sound_string != null and gadget_stats.sound_string != "":
+			if AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
+				AudioManager.active_gadgets[gadget_stats.sound_string].erase(self)
 	if gadget_stats.name != "Conveyor Belt":
 		recipe_taken = false
 
@@ -251,7 +313,10 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			else:
 				GameManager.unique_gadget_interaction(gadget_stats)
 	elif detect_nearby() and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-		if GameManager.pickup_gadget(gadget_stats):
+		if GameManager.pickup_gadget(gadget_stats, direction):
+			cancel_processing()
+			# Remove from masterlist of inventories
+			GameManager.inventories.erase(inventory)
 			for slot in inventory.slots:
 			# Send it all away to any open inventories
 				GameManager.send_to_inventory(slot)

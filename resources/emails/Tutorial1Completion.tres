@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://m1df6r382dc"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_tttpt"]
+[ext_resource type="Resource" uid="uid://bh4dl6b28jmhc" path="res://resources/emails/givecottonforwheel.tres" id="2_kbomj"]
+
+[resource]
+resource_name = "Tutorial1Completion"
+script = ExtResource("1_tttpt")
+sender = "Katheryn Elion"
+subject = "it's only fair"
+contents = "damn, this is some nice [res=Cotton]cotton[/res], you must've worked pretty hard to get yourself a plant like that. i'd feel bad if i didn't give you anything in return, so i've sent a little [res=Hand-cranked Grinder]something[/res] your way as thanks
+
+toodleoo~"
+category = ""
+prerequisite_emails = Array[ExtResource("1_tttpt")]([ExtResource("2_kbomj")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = true
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

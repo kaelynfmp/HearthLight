@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="Email" load_steps=7 format=3 uid="uid://c6ou4lu2dwine"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_sdwtk"]
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_w6atu"]
+[ext_resource type="Resource" uid="uid://gw88mo33lg1c" path="res://resources/items/ore.tres" id="1_y727p"]
+[ext_resource type="Resource" uid="uid://dospruqxgfufk" path="res://resources/gadgets/wood_stove.tres" id="2_0jvak"]
+[ext_resource type="Resource" uid="uid://c4l8nmj6r3kmj" path="res://resources/emails/Tutorial 3 completion.tres" id="5_y727p"]
+
+[sub_resource type="Resource" id="Resource_y727p"]
+script = ExtResource("1_w6atu")
+order_id = 0
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
+given_currency = 0
+required_items = Array[Resource]([ExtResource("1_y727p")])
+required_quantities = Array[int]([1])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 50
+rewards = Array[Resource]([ExtResource("2_0jvak")])
+rewards_quantities = Array[int]([1])
+
+[resource]
+resource_name = "tutorial4"
+script = ExtResource("1_sdwtk")
+sender = "Ernest Hayden"
+subject = "A Bright New Companionship"
+contents = "Greetings again,
+
+Given your stellar performance with regards to my previous request, I shall delay no more in once again requesting your services. I am in need of some [res=Ore]raw metal[/res]. How you acquire this [res=Metal]metal[/res] is none of my concern, though the simplest way would probably be to [b]process some kind of [res=Dust]stone dust[/res][/b] in something like a [res=Sieve]sieve[/res]. There are most certainly other ways, but [b]processing [res=Dust]stone dust[/res] in a [res=Sieve]sieve[/res][/b] is by far the most accessible, even though you would still require some kind of [res=Fabric]filter[/res], as well as some [res=Water]water[/res], although that, I can only hope, shouldn't be an issue for you.
+
+With high hopes,
+Ernest Hayden"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_sdwtk")]([ExtResource("5_y727p")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_y727p")
+tutorial = true
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false
