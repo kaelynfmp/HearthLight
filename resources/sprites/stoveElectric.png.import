@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dib6u1m2lcdw4"
-path="res://.godot/imported/mmBackground.png-6b1e6616c0c14c1029186d6122e22819.ctex"
+uid="uid://c4wgipjaa5lev"
+path="res://.godot/imported/stoveElectric.png-878c49dd5643eab5692ab835a741c1d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/sprites/mmBackground.png"
-dest_files=["res://.godot/imported/mmBackground.png-6b1e6616c0c14c1029186d6122e22819.ctex"]
+source_file="res://resources/sprites/stoveElectric.png"
+dest_files=["res://.godot/imported/stoveElectric.png-878c49dd5643eab5692ab835a741c1d2.ctex"]
 
 [params]
 

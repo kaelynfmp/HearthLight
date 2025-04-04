@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dib6u1m2lcdw4"
-path="res://.godot/imported/mmBackground.png-6b1e6616c0c14c1029186d6122e22819.ctex"
+uid="uid://b8wdt72c00ymb"
+path="res://.godot/imported/grinderCyber.png-fdc6586847eaaf9e1a1194860379c13b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/sprites/mmBackground.png"
-dest_files=["res://.godot/imported/mmBackground.png-6b1e6616c0c14c1029186d6122e22819.ctex"]
+source_file="res://resources/sprites/grinderCyber.png"
+dest_files=["res://.godot/imported/grinderCyber.png-fdc6586847eaaf9e1a1194860379c13b.ctex"]
 
 [params]
 
