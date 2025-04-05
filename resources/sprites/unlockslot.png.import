@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dy1i6p4fabrud"
-path="res://.godot/imported/oreHUD.png-de45ae001050e8f8318ba7f32007fee6.ctex"
+uid="uid://bblk1vh2kg0ut"
+path="res://.godot/imported/unlockslot.png-50a8f4905fb5b03a1261ae0211845d8d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/sprites/emails/oreHUD.png"
-dest_files=["res://.godot/imported/oreHUD.png-de45ae001050e8f8318ba7f32007fee6.ctex"]
+source_file="res://resources/sprites/unlockslot.png"
+dest_files=["res://.godot/imported/unlockslot.png-50a8f4905fb5b03a1261ae0211845d8d.ctex"]
 
 [params]
 

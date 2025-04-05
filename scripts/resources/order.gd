@@ -69,6 +69,7 @@ var responded: bool = false
 		if rewards.size() != value.size():
 			rewards.resize(value.size())
 		rewards_quantities = value
+@export var unlocks: Array[Resource] = []
 
 # should ensure that the array size matches up sometime in the future
 
@@ -88,6 +89,8 @@ func set_completed(completed: bool) -> void:
 	if completed:
 		is_completed = true
 		print("Order ", order_id, " completed")
+		for unlock in unlocks:
+			GameManager.unlock_item(unlock)
 
 func set_accepted(accepted: bool) -> void:
 	if accepted:

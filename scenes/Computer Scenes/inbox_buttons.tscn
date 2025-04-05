@@ -1,26 +1,91 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6pmbvf4gf2rj"]
+[gd_scene load_steps=16 format=3 uid="uid://c6pmbvf4gf2rj"]
 
 [ext_resource type="Texture2D" uid="uid://brioxpexvl23w" path="res://resources/sprites/emails/emailButton.png" id="1_unc2n"]
-[ext_resource type="Script" uid="uid://qijeydguunxc" path="res://scripts/menus/menu_button.gd" id="2_ioox3"]
+[ext_resource type="Script" uid="uid://cip2jdo81fsjl" path="res://scenes/Computer Scenes/inbox_buttons.gd" id="2_ioox3"]
+[ext_resource type="FontFile" uid="uid://cskltmfvwlc7g" path="res://resources/fonts/Audiowide-Regular.ttf" id="3_eo2wc"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r7ntb"]
-texture = ExtResource("1_unc2n")
-modulate_color = Color(0.796243, 0.796243, 0.796243, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_im2ob"]
 
-[node name="Button" type="Button"]
-z_index = 2
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ioox3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eo2wc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vhqey"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ciwhi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5qgq4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ioox3"]
+bg_color = Color(1, 1, 1, 0.188235)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8iu4j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t8klu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xir2v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5nxev"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eo2wc"]
+bg_color = Color(0.73, 0.146, 0.146, 1)
+border_color = Color(0.853014, 9.72722e-05, 5.38102e-05, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+shadow_color = Color(0, 0, 0, 0.329412)
+shadow_size = 1
+shadow_offset = Vector2(-0.5, 0.5)
+
+[node name="Button" type="Button" node_paths=PackedStringArray("sprite", "notification")]
 custom_minimum_size = Vector2(325, 100)
 offset_right = 325.0
 offset_bottom = 100.0
-theme_override_styles/focus = SubResource("StyleBoxTexture_r7ntb")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_r7ntb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_im2ob")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_ioox3")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_eo2wc")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_vhqey")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ciwhi")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_5qgq4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ioox3")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_8iu4j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_t8klu")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_xir2v")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5nxev")
 text = "test"
-flat = true
 script = ExtResource("2_ioox3")
 button_sound = 7
+sprite = NodePath("Sprite2D")
+notification = NodePath("Notification")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(163, 51.25)
 scale = Vector2(0.881081, 0.95045)
 texture = ExtResource("1_unc2n")
+
+[node name="Notification" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 13.0
+offset_bottom = 13.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_eo2wc")
+
+[node name="Label" type="Label" parent="Notification"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_eo2wc")
+text = "!"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bj67g16p1cic7"]
+[gd_scene load_steps=71 format=3 uid="uid://bj67g16p1cic7"]
 
 [ext_resource type="Script" uid="uid://bq36bahokfv2b" path="res://scenes/Computer Scenes/item_buy_popup.gd" id="1_cmwl6"]
 [ext_resource type="Texture2D" uid="uid://b44kbp322i3y" path="res://resources/sprites/testimg.png" id="1_p7i7f"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dph2wxrwua005" path="res://resources/sprites/computer/computerCancel.png" id="4_hi044"]
 [ext_resource type="Script" uid="uid://qijeydguunxc" path="res://scripts/menus/menu_button.gd" id="4_q3mbq"]
 [ext_resource type="Texture2D" uid="uid://dia3ys8fp0pob" path="res://resources/sprites/shop/shopQuantity.png" id="5_bl36k"]
+[ext_resource type="FontFile" uid="uid://cskltmfvwlc7g" path="res://resources/fonts/Audiowide-Regular.ttf" id="8_hml2d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a3scx"]
 bg_color = Color(0.336859, 0.193585, 0.420663, 1)
@@ -23,7 +24,12 @@ bg_color = Color(0.336859, 0.193585, 0.420663, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tf7mm"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mjcil"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hml2d"]
+bg_color = Color(1, 1, 1, 0.211765)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wk3g5"]
 
@@ -44,8 +50,6 @@ bg_color = Color(0.336859, 0.193585, 0.420663, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xse6i"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0lpwo"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k6v7x"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mrmh4"]
 
@@ -74,6 +78,68 @@ bg_color = Color(0.336859, 0.193585, 0.420663, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nmku7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v04yb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kcdgv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_32mne"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nticq"]
+
+[sub_resource type="Gradient" id="Gradient_3mqyj"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qacpl"]
+gradient = SubResource("Gradient_3mqyj")
+width = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5sg77"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cg30f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_52frh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oxccv"]
+
+[sub_resource type="Theme" id="Theme_g6yrn"]
+default_font = ExtResource("8_hml2d")
+default_font_size = 50
+LineEdit/colors/font_color = Color(1, 1, 1, 1)
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_kcdgv")
+LineEdit/styles/normal = SubResource("StyleBoxEmpty_32mne")
+LineEdit/styles/read_only = SubResource("StyleBoxEmpty_nticq")
+SpinBox/icons/down = SubResource("GradientTexture1D_qacpl")
+SpinBox/icons/down_disabled = SubResource("GradientTexture1D_qacpl")
+SpinBox/icons/down_hover = SubResource("GradientTexture1D_qacpl")
+SpinBox/icons/down_pressed = SubResource("GradientTexture1D_qacpl")
+SpinBox/icons/up = SubResource("GradientTexture1D_qacpl")
+SpinBox/icons/up_disabled = SubResource("GradientTexture1D_qacpl")
+SpinBox/icons/up_hover = SubResource("GradientTexture1D_qacpl")
+SpinBox/icons/up_pressed = SubResource("GradientTexture1D_qacpl")
+SpinBox/icons/updown = SubResource("GradientTexture1D_qacpl")
+SpinBox/styles/down_background_hovered = SubResource("StyleBoxEmpty_5sg77")
+SpinBox/styles/down_background_pressed = SubResource("StyleBoxEmpty_cg30f")
+SpinBox/styles/up_background_hovered = SubResource("StyleBoxEmpty_52frh")
+SpinBox/styles/up_background_pressed = SubResource("StyleBoxEmpty_oxccv")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gj7b3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iuei4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_41if7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_riyxr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ngu7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ptc1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bd4bm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cmxme"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1nxws"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ln6j6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e3q01"]
 
@@ -113,9 +179,9 @@ item_name = NodePath("Panel/Name")
 item_desc = NodePath("Panel/Description")
 item_picture = NodePath("Panel/TextureRect")
 cost_label = NodePath("Panel/Cost")
-number_label = NodePath("Panel/Qty")
-minus_button = NodePath("Panel/Qty/Minus")
-plus_button = NodePath("Panel/Qty/Plus")
+number_label = NodePath("Panel/ShopQuantity/Control/Qty")
+minus_button = NodePath("Panel/ShopQuantity/Minus")
+plus_button = NodePath("Panel/ShopQuantity/Plus")
 buy_button = NodePath("Panel/Confirm")
 decline_button = NodePath("Panel/Decline")
 
@@ -185,7 +251,7 @@ horizontal_alignment = 1
 layout_mode = 0
 offset_left = 1955.0
 offset_top = 1350.0
-offset_right = 2106.0
+offset_right = 2067.0
 offset_bottom = 1469.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_1g2mv")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_ttfo8")
@@ -193,19 +259,18 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_llgvx")
 theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_7g5ps")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_q4f4a")
 theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_tf7mm")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_mjcil")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hml2d")
 theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_wk3g5")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_f1kc6")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_2pt1w")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_rnw2n")
 icon = ExtResource("3_b72uc")
-flat = true
 
 [node name="Decline" type="Button" parent="Panel"]
 layout_mode = 0
 offset_left = 1653.0
 offset_top = 1350.0
-offset_right = 1804.0
+offset_right = 1763.0
 offset_bottom = 1469.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_7kxm2")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_81oyx")
@@ -213,37 +278,29 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_06erm")
 theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_2wrdy")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_xse6i")
 theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_0lpwo")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_k6v7x")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hml2d")
 theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_mrmh4")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_axbvb")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_nbxwu")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_fbeq8")
 icon = ExtResource("4_hi044")
-flat = true
 script = ExtResource("4_q3mbq")
 button_sound = 7
 
-[node name="Qty" type="Label" parent="Panel"]
-layout_mode = 0
-offset_left = 1338.46
-offset_top = 1193.27
-offset_right = 1746.46
-offset_bottom = 1362.27
-theme_override_font_sizes/font_size = 70
-text = "Qty"
-horizontal_alignment = 1
-
-[node name="ShopQuantity" type="Sprite2D" parent="Panel/Qty"]
-position = Vector2(205, 58.6153)
+[node name="ShopQuantity" type="Sprite2D" parent="Panel"]
+position = Vector2(1590, 1251.62)
 scale = Vector2(1.67039, 1.56579)
 texture = ExtResource("5_bl36k")
 
-[node name="Minus" type="Button" parent="Panel/Qty"]
-layout_mode = 0
-offset_left = -71.0
-offset_top = -16.0001
-offset_right = 94.0
-offset_bottom = 134.0
+[node name="Minus" type="Button" parent="Panel/ShopQuantity"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -164.0
+offset_top = -94.5
+offset_right = -65.0
+offset_bottom = 0.5
+grow_vertical = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_fpg6m")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_ccu83")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_mfcxg")
@@ -257,12 +314,64 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_v04yb")
 script = ExtResource("4_q3mbq")
 button_sound = 7
 
-[node name="Plus" type="Button" parent="Panel/Qty"]
-layout_mode = 0
-offset_left = 314.0
-offset_top = -14.0
-offset_right = 479.0
-offset_bottom = 134.0
+[node name="Control" type="Control" parent="Panel/ShopQuantity"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.5
+offset_top = -79.5
+offset_right = -100.5
+offset_bottom = -15.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Qty" type="SpinBox" parent="Panel/ShopQuantity/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -35.0
+offset_top = -16.0
+offset_right = 35.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_g6yrn")
+theme_override_constants/set_min_buttons_width_from_icons = 0
+theme_override_constants/buttons_width = 0
+theme_override_constants/field_and_buttons_separation = 0
+theme_override_constants/buttons_vertical_separation = 0
+theme_override_styles/up_down_buttons_separator = SubResource("StyleBoxEmpty_gj7b3")
+theme_override_styles/field_and_buttons_separator = SubResource("StyleBoxEmpty_iuei4")
+theme_override_styles/down_background_disabled = SubResource("StyleBoxEmpty_41if7")
+theme_override_styles/down_background_pressed = SubResource("StyleBoxEmpty_riyxr")
+theme_override_styles/down_background_hovered = SubResource("StyleBoxEmpty_2ngu7")
+theme_override_styles/down_background = SubResource("StyleBoxEmpty_0ptc1")
+theme_override_styles/up_background_disabled = SubResource("StyleBoxEmpty_bd4bm")
+theme_override_styles/up_background_pressed = SubResource("StyleBoxEmpty_cmxme")
+theme_override_styles/up_background_hovered = SubResource("StyleBoxEmpty_1nxws")
+theme_override_styles/up_background = SubResource("StyleBoxEmpty_ln6j6")
+min_value = 1.0
+max_value = 99.0
+value = 1.0
+alignment = 1
+
+[node name="Plus" type="Button" parent="Panel/ShopQuantity"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -263.0
+offset_top = -95.5
+offset_right = -164.0
+offset_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_e3q01")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_sjq1k")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_2sgud")

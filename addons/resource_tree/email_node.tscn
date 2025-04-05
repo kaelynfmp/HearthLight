@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dn25n37cbk4p6"]
+[gd_scene load_steps=61 format=3 uid="uid://dn25n37cbk4p6"]
 
 [ext_resource type="Texture2D" uid="uid://b3f53pdbhlfkg" path="res://resources/sprites/emails/emailPreview.png" id="1_1j7hc"]
 [ext_resource type="Texture2D" uid="uid://ya3hxo1l73v4" path="res://addons/resource_tree/input_slot.tres" id="1_nndyg"]
@@ -7,10 +7,19 @@
 [ext_resource type="Texture2D" uid="uid://dnvrhn4af2nix" path="res://resources/sprites/emails/emailDropdown.png" id="2_t2q0s"]
 [ext_resource type="Texture2D" uid="uid://dph2wxrwua005" path="res://resources/sprites/computer/computerCancel.png" id="3_2h2h1"]
 [ext_resource type="Script" uid="uid://bha8ro4unkubb" path="res://scripts/gui/bbcode.gd" id="3_2hvs7"]
+[ext_resource type="Texture2D" uid="uid://d347gectovqni" path="res://resources/sprites/emails/emailPreviewUnread.png" id="4_52cx8"]
+[ext_resource type="Texture2D" uid="uid://fvs8ffaiwwgc" path="res://resources/sprites/emails/emailPreviewTopBar.png" id="4_vd82d"]
+[ext_resource type="Texture2D" uid="uid://bidf01qoxygne" path="res://resources/sprites/emails/emailClock.png" id="5_88btd"]
+[ext_resource type="Texture2D" uid="uid://buw7lcyvtgstr" path="res://resources/sprites/emails/emailPreviewTopBarUnread.png" id="5_bjt0m"]
 [ext_resource type="Texture2D" uid="uid://bpk81ck7j3l2c" path="res://resources/sprites/progressbar.png" id="6_7coub"]
+[ext_resource type="Texture2D" uid="uid://051qi7uxl7x2" path="res://resources/sprites/emails/emailPreviewTimed.png" id="6_h2711"]
+[ext_resource type="Texture2D" uid="uid://c8363ebjivp7s" path="res://resources/sprites/emails/emailPreviewTopBarTimed.png" id="7_0ghoq"]
 [ext_resource type="Texture2D" uid="uid://dyuipylskmyc" path="res://addons/resource_tree/addOrder.png" id="7_nndyg"]
 [ext_resource type="Texture2D" uid="uid://cu638rts4nfa2" path="res://resources/sprites/computer/computerBalance.png" id="7_t3n0n"]
+[ext_resource type="Texture2D" uid="uid://cgy6jk2gpowke" path="res://resources/sprites/emails/emailDropdownTimed.png" id="8_hng3u"]
 [ext_resource type="Texture2D" uid="uid://c56aavp3fuacv" path="res://addons/resource_tree/add_order_pressed.png" id="8_sjhxk"]
+[ext_resource type="Texture2D" uid="uid://y7lqwebgcofx" path="res://resources/sprites/emails/emailBottomBar.png" id="9_4cv14"]
+[ext_resource type="Texture2D" uid="uid://bt4a2gqvr6x73" path="res://resources/sprites/emails/emailBottomBarTimed.png" id="9_658bh"]
 [ext_resource type="Texture2D" uid="uid://ui86hauy65h3" path="res://addons/resource_tree/remove_order_pressed.png" id="10_d5xh2"]
 [ext_resource type="Texture2D" uid="uid://bfa2gd4mip243" path="res://addons/resource_tree/trash_can.png" id="13_rdwmc"]
 [ext_resource type="Texture2D" uid="uid://dgfutqbacjngj" path="res://addons/resource_tree/trash_can_pressed.png" id="14_4p1a2"]
@@ -36,6 +45,17 @@ shadow_offset = Vector2(23, 4.835)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nndyg"]
 
+[sub_resource type="SystemFont" id="SystemFont_52cx8"]
+font_names = PackedStringArray("Monospace")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xmaaf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f1k5n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4uiga"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f02lc"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sjhxk"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d5xh2"]
@@ -43,6 +63,43 @@ shadow_offset = Vector2(23, 4.835)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7coub"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t3n0n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1kg04"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vd82d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_88btd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4cv14"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w165h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t7cwc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_52cx8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bjt0m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ghoq"]
+
+[sub_resource type="SystemFont" id="SystemFont_bjt0m"]
+font_names = PackedStringArray("Monospace")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v4qda"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4jyu3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ihim6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d3188"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hng3u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_658bh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vk11o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4sruv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nndyg"]
 content_margin_left = 60.0
@@ -65,35 +122,7 @@ texture = ExtResource("7_t3n0n")
 texture_margin_left = 49.0
 texture_margin_right = 30.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pg1eh"]
-texture = ExtResource("2_t2q0s")
-expand_margin_right = 25.0
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2crda"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rdwmc"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4p1a2"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_edwih"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vd82d"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_88btd"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4cv14"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1kg04"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w165h"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t7cwc"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_52cx8"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bjt0m"]
-
-[node name="EmailNode" type="GraphNode"]
+[node name="EmailNode" type="GraphNode" node_paths=PackedStringArray("header_sprite", "top_bar", "clock", "bg", "bottom_bar", "sender_label", "email_label", "subject_label", "blurb_label", "content_label", "sender_dropdown_label", "email_dropdown_label", "subject_dropdown_label")]
 offset_right = 1937.0
 offset_bottom = 1084.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_h2711")
@@ -136,13 +165,69 @@ slot/3/right_type = 0
 slot/3/right_color = Color(1, 1, 1, 1)
 slot/3/right_icon = null
 slot/3/draw_stylebox = true
+slot/4/left_enabled = true
+slot/4/left_type = 3
+slot/4/left_color = Color(1, 0.462745, 0.666667, 1)
+slot/4/left_icon = ExtResource("1_nndyg")
+slot/4/right_enabled = false
+slot/4/right_type = 0
+slot/4/right_color = Color(1, 1, 1, 1)
+slot/4/right_icon = null
+slot/4/draw_stylebox = true
 script = ExtResource("1_t2q0s")
+header_sprite = NodePath("EmailContainer/HeaderSprite")
+top_bar = NodePath("EmailContainer/TopBar")
+clock = NodePath("EmailContainer/Clock")
+bg = NodePath("EmailContainer/Panel/BG")
+bottom_bar = NodePath("EmailContainer/Panel/BottomBar")
+tutorial_header_texture = ExtResource("4_52cx8")
+tutorial_top_bar_texture = ExtResource("5_bjt0m")
+timed_header_texture = ExtResource("6_h2711")
+timed_top_bar_texture = ExtResource("7_0ghoq")
+timed_bg = ExtResource("8_hng3u")
+timed_bottom_bar = ExtResource("9_658bh")
+sender_label = NodePath("EmailContainer/Sender")
+email_label = NodePath("EmailContainer/Email")
+subject_label = NodePath("EmailContainer/Subject")
+blurb_label = NodePath("EmailContainer/Blurb")
+content_label = NodePath("EmailContainer/Panel/Content")
+sender_dropdown_label = NodePath("EmailContainer/Panel/SenderDropdown")
+email_dropdown_label = NodePath("EmailContainer/Panel/EmailDropdown")
+subject_dropdown_label = NodePath("EmailContainer/Panel/SubjectDropdown")
 
 [node name="EmailContainer" type="Control" parent="."]
-custom_minimum_size = Vector2(0, 1061)
+custom_minimum_size = Vector2(0, 1000)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 2
+
+[node name="TopBar" type="TextureRect" parent="EmailContainer"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 36.0
+offset_top = 7.0
+offset_right = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_vd82d")
+stretch_mode = 4
+
+[node name="Clock" type="TextureRect" parent="EmailContainer"]
+visible = false
+z_index = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -530.0
+offset_top = 18.0
+offset_right = -403.0
+offset_bottom = 162.0
+grow_horizontal = 0
+texture = ExtResource("5_88btd")
 
 [node name="HeaderSprite" type="Sprite2D" parent="EmailContainer"]
 position = Vector2(961.5, 130.75)
@@ -154,7 +239,8 @@ layout_mode = 0
 offset_left = 67.0
 offset_top = 69.0
 offset_right = 531.0
-offset_bottom = 160.0
+offset_bottom = 125.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/bold_italics_font_size = 40
 theme_override_font_sizes/italics_font_size = 40
 theme_override_font_sizes/mono_font_size = 40
@@ -170,12 +256,37 @@ meta_underlined = false
 hint_underlined = false
 script = ExtResource("3_2hvs7")
 
+[node name="Email" type="RichTextLabel" parent="EmailContainer"]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 119.0
+offset_right = 535.0
+offset_bottom = 149.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = SubResource("SystemFont_52cx8")
+theme_override_font_sizes/bold_italics_font_size = 25
+theme_override_font_sizes/italics_font_size = 25
+theme_override_font_sizes/mono_font_size = 25
+theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/bold_font_size = 25
+theme_override_styles/fill = SubResource("StyleBoxEmpty_xmaaf")
+theme_override_styles/background = SubResource("StyleBoxEmpty_f1k5n")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4uiga")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f02lc")
+bbcode_enabled = true
+text = "sender@email.com"
+fit_content = true
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("3_2hvs7")
+
 [node name="Subject" type="RichTextLabel" parent="EmailContainer"]
 layout_mode = 0
 offset_left = 623.0
 offset_top = 77.0
 offset_right = 1216.0
 offset_bottom = 162.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/bold_italics_font_size = 35
 theme_override_font_sizes/italics_font_size = 35
 theme_override_font_sizes/mono_font_size = 35
@@ -210,12 +321,134 @@ meta_underlined = false
 hint_underlined = false
 script = ExtResource("3_2hvs7")
 
+[node name="Panel" type="Panel" parent="EmailContainer"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 145.0
+offset_right = 1921.0
+offset_bottom = 1021.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1kg04")
+
+[node name="BG" type="TextureRect" parent="EmailContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 4.0
+offset_right = -1.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_t2q0s")
+
+[node name="BottomBar" type="TextureRect" parent="EmailContainer/Panel"]
+layout_mode = 0
+offset_top = 851.0
+offset_right = 138.0
+offset_bottom = 876.0
+texture = ExtResource("9_4cv14")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Content" type="RichTextLabel" parent="EmailContainer/Panel"]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 218.0
+offset_right = 1827.0
+offset_bottom = 855.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/bold_italics_font_size = 30
+theme_override_font_sizes/italics_font_size = 30
+theme_override_font_sizes/mono_font_size = 30
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+theme_override_styles/fill = SubResource("StyleBoxEmpty_vd82d")
+theme_override_styles/background = SubResource("StyleBoxEmpty_88btd")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4cv14")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w165h")
+bbcode_enabled = true
+text = "This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. "
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("3_2hvs7")
+
+[node name="SenderDropdown" type="RichTextLabel" parent="EmailContainer/Panel"]
+layout_mode = 0
+offset_left = 323.0
+offset_top = 139.0
+offset_right = 965.0
+offset_bottom = 194.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+theme_override_font_sizes/mono_font_size = 40
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+theme_override_styles/fill = SubResource("StyleBoxEmpty_t7cwc")
+theme_override_styles/background = SubResource("StyleBoxEmpty_52cx8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bjt0m")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0ghoq")
+bbcode_enabled = true
+text = "Sender"
+fit_content = true
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("3_2hvs7")
+
+[node name="EmailDropdown" type="RichTextLabel" parent="EmailContainer/Panel"]
+layout_mode = 0
+offset_left = 323.0
+offset_top = 188.0
+offset_right = 791.0
+offset_bottom = 218.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = SubResource("SystemFont_bjt0m")
+theme_override_font_sizes/bold_italics_font_size = 25
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 25
+theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/bold_font_size = 25
+theme_override_styles/fill = SubResource("StyleBoxEmpty_v4qda")
+theme_override_styles/background = SubResource("StyleBoxEmpty_4jyu3")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ihim6")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d3188")
+bbcode_enabled = true
+text = "sender@email.com"
+fit_content = true
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("3_2hvs7")
+
+[node name="SubjectDropdown" type="RichTextLabel" parent="EmailContainer/Panel"]
+layout_mode = 0
+offset_left = 795.0
+offset_top = 139.0
+offset_right = 1814.0
+offset_bottom = 252.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+theme_override_font_sizes/mono_font_size = 40
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+theme_override_styles/fill = SubResource("StyleBoxEmpty_hng3u")
+theme_override_styles/background = SubResource("StyleBoxEmpty_658bh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vk11o")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4sruv")
+bbcode_enabled = true
+text = "Subject but this is a very long subject yes ok cool"
+fit_content = true
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("3_2hvs7")
+
 [node name="OrderContainer" type="PanelContainer" parent="EmailContainer"]
 layout_mode = 0
 offset_left = 39.0
-offset_top = 1094.0
+offset_top = 1052.0
 offset_right = 1867.0
-offset_bottom = 1597.0
+offset_bottom = 1555.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_nndyg")
 
@@ -324,82 +557,30 @@ size_flags_vertical = 6
 mouse_filter = 0
 alignment = 1
 
-[node name="Panel" type="Panel" parent="EmailContainer"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = 149.0
-offset_right = -16.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="UnlocksContainer" type="VBoxContainer" parent="EmailContainer/OrderContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_pg1eh")
 
-[node name="Content" type="RichTextLabel" parent="EmailContainer/Panel"]
-layout_mode = 0
-offset_left = 102.0
-offset_top = 246.0
-offset_right = 1827.0
-offset_bottom = 883.0
-theme_override_font_sizes/bold_italics_font_size = 30
-theme_override_font_sizes/italics_font_size = 30
-theme_override_font_sizes/mono_font_size = 30
-theme_override_font_sizes/normal_font_size = 30
-theme_override_font_sizes/bold_font_size = 30
-theme_override_styles/fill = SubResource("StyleBoxEmpty_2crda")
-theme_override_styles/background = SubResource("StyleBoxEmpty_rdwmc")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_4p1a2")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_edwih")
-bbcode_enabled = true
-text = "This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. This is the email contents. "
-meta_underlined = false
-hint_underlined = false
-script = ExtResource("3_2hvs7")
+[node name="Label" type="Label" parent="EmailContainer/OrderContainer/HBoxContainer/UnlocksContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Unlocks
+"
+horizontal_alignment = 1
 
-[node name="SenderDropdown" type="RichTextLabel" parent="EmailContainer/Panel"]
-layout_mode = 0
-offset_left = 323.0
-offset_top = 168.0
-offset_right = 787.0
-offset_bottom = 253.0
-theme_override_font_sizes/bold_italics_font_size = 40
-theme_override_font_sizes/italics_font_size = 40
-theme_override_font_sizes/mono_font_size = 40
-theme_override_font_sizes/normal_font_size = 40
-theme_override_font_sizes/bold_font_size = 40
-theme_override_styles/fill = SubResource("StyleBoxEmpty_vd82d")
-theme_override_styles/background = SubResource("StyleBoxEmpty_88btd")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_4cv14")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_1kg04")
-bbcode_enabled = true
-text = "Sender"
-meta_underlined = false
-hint_underlined = false
-script = ExtResource("3_2hvs7")
+[node name="UnlocksItemsScroll" type="ScrollContainer" parent="EmailContainer/OrderContainer/HBoxContainer/UnlocksContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 0
+horizontal_scroll_mode = 0
 
-[node name="SubjectDropdown" type="RichTextLabel" parent="EmailContainer/Panel"]
-layout_mode = 0
-offset_left = 795.0
-offset_top = 168.0
-offset_right = 1814.0
-offset_bottom = 254.0
-theme_override_font_sizes/bold_italics_font_size = 40
-theme_override_font_sizes/italics_font_size = 40
-theme_override_font_sizes/mono_font_size = 40
-theme_override_font_sizes/normal_font_size = 40
-theme_override_font_sizes/bold_font_size = 40
-theme_override_styles/fill = SubResource("StyleBoxEmpty_w165h")
-theme_override_styles/background = SubResource("StyleBoxEmpty_t7cwc")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_52cx8")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_bjt0m")
-bbcode_enabled = true
-text = "Subject but this is a very long subject yes ok cool"
-meta_underlined = false
-hint_underlined = false
-script = ExtResource("3_2hvs7")
+[node name="UnlocksItems" type="HFlowContainer" parent="EmailContainer/OrderContainer/HBoxContainer/UnlocksContainer/UnlocksItemsScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+mouse_filter = 0
+alignment = 1
 
 [node name="AddOrder" type="TextureButton" parent="EmailContainer"]
 visible = false
@@ -410,9 +591,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -60.5
-offset_top = -31.0
+offset_top = -93.0
 offset_right = 73.5
-offset_bottom = 88.0
+offset_bottom = 26.0
 grow_horizontal = 2
 grow_vertical = 0
 tooltip_text = "Add Order"
@@ -432,9 +613,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -60.5
-offset_top = -32.0
+offset_top = -56.0
 offset_right = 73.5
-offset_bottom = 87.0
+offset_bottom = 63.0
 grow_horizontal = 2
 grow_vertical = 0
 tooltip_text = "Remove Order"
@@ -465,18 +646,23 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [node name="GivenSlot" type="Control" parent="."]
-custom_minimum_size = Vector2(0, 177)
+custom_minimum_size = Vector2(0, 145)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
 [node name="RequiredSlot" type="Control" parent="."]
-custom_minimum_size = Vector2(0, 177)
+custom_minimum_size = Vector2(0, 145)
 layout_mode = 2
 size_flags_horizontal = 0
 
 [node name="RewardsSlot" type="Control" parent="."]
-custom_minimum_size = Vector2(0, 177)
+custom_minimum_size = Vector2(0, 145)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="UnlocksSlot" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 145)
 layout_mode = 2
 size_flags_horizontal = 0
 

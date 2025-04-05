@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4jwdbd2el2ca"]
+[gd_scene load_steps=6 format=3 uid="uid://c4jwdbd2el2ca"]
 
 [ext_resource type="Script" uid="uid://ypmq38sppxx8" path="res://scripts/objects/gadget.gd" id="1_3434e"]
 [ext_resource type="Shader" uid="uid://dexym56k2wbkm" path="res://scripts/shaders/gadget_close_enough.gdshader" id="2_e6717"]
 [ext_resource type="Texture2D" uid="uid://c5syp4ayosfa8" path="res://scripts/shaders/not_close_enough_texture.tres" id="3_g7cu2"]
+[ext_resource type="Texture2D" uid="uid://do3p2jtgd6d2n" path="res://resources/sprites/emails/computerAlert.png" id="4_1uu4j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p5k61"]
 resource_local_to_scene = true
@@ -30,6 +31,12 @@ y_sort_enabled = true
 material = SubResource("ShaderMaterial_p5k61")
 scale = Vector2(0.7, 0.7)
 offset = Vector2(0, -363)
+
+[node name="Notification" type="Sprite2D" parent="."]
+visible = false
+z_index = 4
+position = Vector2(8, -656)
+texture = ExtResource("4_1uu4j")
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0

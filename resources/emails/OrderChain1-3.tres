@@ -19,11 +19,13 @@ minute = 0
 currency_reward = 1000
 rewards = Array[Resource]([])
 rewards_quantities = Array[int]([])
+unlocks = Array[Resource]([])
 
 [resource]
 resource_name = "OrderChain1-3"
 script = ExtResource("1_jf0na")
 sender = "Vivian Brisket"
+email = ""
 subject = "Time for the [i]real[/i] fun >:)"
 contents = "I can finally say it!
 [color=#FF0000]F[/color][color=#FF5F00]u[/color][color=#FFBF00]c[/color][color=#DFFF00]k[/color] [color=#1FFF00]t[/color][color=#00FF3F]h[/color][color=#00FF9F]e[/color] [color=#009FFF]p[/color][color=#003FFF]o[/color][color=#1F00FF]l[/color][color=#7F00FF]i[/color][color=#DF00FF]c[/color][color=#FF00BF]e[/color][color=#FF005F]![/color]

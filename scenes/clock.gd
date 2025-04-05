@@ -20,7 +20,7 @@ func _process(_delta: float) -> void:
 	if GameManager.in_computer:
 		day_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		time_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		position.y = 0
+		position.y = 20
 		
 	else:
 		position = initial_position

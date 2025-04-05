@@ -97,7 +97,8 @@ func initialize(p_item: Item, p_quantity: int = 1, bypass: bool = false) -> int:
 		changed.emit()
 		if item == null:
 			return 0
-		return max(quantity - item.max_stack, 0)
+		# Return attempted quantity minus actual quantity, since it'll go to its stack limit
+		return max(p_quantity - quantity, 0)
 	return p_quantity
 	
 ## Whether the item is either locked or the item is not in the filter

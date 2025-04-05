@@ -19,11 +19,13 @@ minute = 0
 currency_reward = 75
 rewards = Array[Resource]([])
 rewards_quantities = Array[int]([])
+unlocks = Array[Resource]([])
 
 [resource]
 resource_name = "OrderChain1-1"
 script = ExtResource("1_lhv6p")
 sender = "Vivian Brisket"
+email = ""
 subject = "Hey I heard you're cool as hell"
 contents = "Hihi <3 ! I've got some friends in places ([i]cool[/i] places, if you catch my drift ᖛ◞ ᖛ), and they let me know that you've got an operation going. I've been wanting to do some *extremely legal* things, and I kinda need something for it >w<
 

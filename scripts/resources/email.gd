@@ -2,6 +2,7 @@ class_name Email
 extends Resource
 @export_category("Email Contents")
 @export var sender: String
+@export var email: String
 @export var subject: String
 @export_multiline var contents: String
 @export_enum("orders", "main", "junk", "social", "archive")
@@ -24,6 +25,9 @@ var category: String = "main"
 @export var failed: bool
 @export var prereqs_must_fail: bool # This is for conditions where an email only appears after something /fails/, something Everett requested
 @export var bankruptcy: bool = false
+
+## Whether or not the email was archived, only used visually so we don't have to navigate the list every frame
+var archived: bool = false
 
 
 func check_valid() -> bool:

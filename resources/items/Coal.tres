@@ -9,5 +9,5 @@ script = ExtResource("1_2obae")
 texture = ExtResource("2_y1iss")
 name = "Coal"
 description = ""
-max_stack = 100
+max_stack = 24
 price = 5

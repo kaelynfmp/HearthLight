@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://fl3ygsg5b5m6"]
+[gd_scene load_steps=3 format=3 uid="uid://fl3ygsg5b5m6"]
 
 [ext_resource type="PackedScene" uid="uid://c5605c3ehaw25" path="res://scenes/inventory/slot.tscn" id="1_djv2w"]
 [ext_resource type="Texture2D" uid="uid://cy4o24bpi4gf5" path="res://resources/sprites/inputslot.png" id="2_sq5u0"]
-[ext_resource type="Texture2D" uid="uid://b76x0jq0i4v4y" path="res://resources/sprites/cotton.png" id="3_sgv75"]
 
 [node name="InputSlot" instance=ExtResource("1_djv2w")]
 size_flags_horizontal = 4
@@ -26,6 +25,5 @@ offset_left = 52.0
 offset_top = 41.0
 offset_right = 263.0
 offset_bottom = 253.0
-texture = ExtResource("3_sgv75")
 expand_mode = 1
 stretch_mode = 5

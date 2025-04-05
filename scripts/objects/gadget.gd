@@ -53,6 +53,8 @@ var direction_vector: Array[Vector2i] = [
 var disabled = false
 var has_power = false
 
+var notification:Sprite2D
+
 func get_local_position():
 	return base_layer.map_to_local(cell_pos)
 
@@ -93,6 +95,7 @@ func _ready() -> void:
 	close_audio_player.set_stream(gadget_stats.close_sound)
 	update_recipes()
 	GameManager.update_recipes.connect(update_recipes)
+	notification = find_child("Notification")
 	
 func check_for_nearby_generator(delta: float):
 	for offset_x in range(-2, 3):
@@ -194,6 +197,12 @@ func _process(_delta: float) -> void:
 	else:
 		sprite.material.set("shader_parameter/textureScale", Vector2.ZERO)
 		pass
+		
+	if gadget_stats.name == "Computer":
+		if GameManager.has_unreads():
+			notification.set_visible(true)
+		else:
+			notification.set_visible(false)
 		
 func do_transport():
 	var rear_gadget_pos: Vector2i = cell_pos + direction_vector[direction]

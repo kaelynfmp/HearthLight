@@ -20,11 +20,13 @@ minute = 0
 currency_reward = 0
 rewards = Array[Resource]([ExtResource("2_sye1g")])
 rewards_quantities = Array[int]([10])
+unlocks = Array[Resource]([])
 
 [resource]
 resource_name = "MiscOrder5"
 script = ExtResource("1_1njqs")
 sender = "Twilight P. Numbra"
+email = ""
 subject = "About your services..."
 contents = "Hey,
 

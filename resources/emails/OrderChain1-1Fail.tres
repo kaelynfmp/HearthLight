@@ -7,6 +7,7 @@
 resource_name = "OrderChain1-1Fail"
 script = ExtResource("1_60t8t")
 sender = "Vivian Brisket"
+email = ""
 subject = ":("
 contents = ":("
 category = ""
@@ -16,7 +17,7 @@ hour = 0
 minute = 0
 is_read = false
 tutorial = false
-lore_only = false
+lore_only = true
 has_start_time = false
 failable = false
 failed = false

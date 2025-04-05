@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dheruvammpr6b"]
+[gd_scene load_steps=3 format=3 uid="uid://dheruvammpr6b"]
 
 [ext_resource type="PackedScene" uid="uid://c5605c3ehaw25" path="res://scenes/inventory/slot.tscn" id="1_23isu"]
 [ext_resource type="Texture2D" uid="uid://bcoaaapap72ix" path="res://resources/sprites/givenslot.png" id="2_23isu"]
-[ext_resource type="Texture2D" uid="uid://b76x0jq0i4v4y" path="res://resources/sprites/cotton.png" id="3_lgray"]
 
 [node name="GivenSlot" instance=ExtResource("1_23isu")]
 
@@ -13,14 +12,3 @@ size_flags_vertical = 4
 mouse_filter = 2
 texture = ExtResource("2_23isu")
 stretch_mode = 2
-
-[node name="ImgHintOutput" type="TextureRect" parent="GivenBG" index="0"]
-modulate = Color(1, 1, 1, 0.188235)
-layout_mode = 0
-offset_left = 52.0
-offset_top = 41.0
-offset_right = 263.0
-offset_bottom = 253.0
-texture = ExtResource("3_lgray")
-expand_mode = 1
-stretch_mode = 5

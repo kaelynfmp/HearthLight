@@ -20,11 +20,13 @@ minute = 0
 currency_reward = 0
 rewards = Array[Resource]([ExtResource("2_f8j87")])
 rewards_quantities = Array[int]([7])
+unlocks = Array[Resource]([])
 
 [resource]
 resource_name = "MiscOrder3"
 script = ExtResource("1_hmxy6")
 sender = "Martell R. Man"
+email = ""
 subject = "I would like some cotton, on behalf of my wife Greta"
 contents = "Oftentimes, my wife Greta asks me if I am doing alright, and I have to tell her that I am not, because I cannot partake of the devil's leaf. The cannabis that I can find is much too pure to use by itself in a bong, and I need something else with a more neutral quality to dilute the toke, so that I can be where I need to be for my wife Greta.
 

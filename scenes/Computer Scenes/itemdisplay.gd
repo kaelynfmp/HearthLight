@@ -9,6 +9,8 @@ extends Button
 
 @export var button_sound: AudioManager.BUTTON
 
+var unlocked:bool = false
+
 func set_item(new_item: Item):
 	item = new_item
 	name_label.text = item.name
@@ -16,6 +18,10 @@ func set_item(new_item: Item):
 	if GameManager.is_debugging:
 		price_label.text = "FREE"
 	item_image.texture = item.texture
+	GameManager.buyable_items[item] = self
+	if GameManager.is_debugging or item in GameManager.unlocked_items:
+		set_visible(true)
+		unlocked = true
 
 func set_limited_text(input_text: String, limit: int = 16) -> String:
 	if input_text.length() > limit:
@@ -25,9 +31,18 @@ func set_limited_text(input_text: String, limit: int = 16) -> String:
 	
 func _ready() -> void:
 	connect("pressed", Callable(self, "_show_popup"))
+	GameManager.debug_mode_change.connect(debug_visible)
+	
+func unlock():
+	set_visible(true)
+	unlocked = true
 	
 func _show_popup():
 	var popup = popup_scene.instantiate()
 	popup.set_item_buy(item)
 	get_tree().current_scene.find_child("HUD", true).add_child(popup) 
 	
+func debug_visible():
+	if GameManager.is_debugging:
+		set_visible(true)
+		price_label.text = "FREE"

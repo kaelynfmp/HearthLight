@@ -20,6 +20,7 @@ func _init(p_slots: Array[Slot] = []):
 
 ## Attempts to insert [Item]s, going into the earliest available [Slot]s
 func insert(item: Item, amount=1, locked_only=false) -> int:
+	print("amount", amount)
 	var item_slots: Array = slots.filter(func(slot): return (slot.item == item and (!slot.locked and !locked_only) or (slot.locked and locked_only)))
 	if !item_slots.is_empty():
 		for slot in item_slots:
