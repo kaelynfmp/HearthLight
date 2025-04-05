@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dib6u1m2lcdw4"
-path="res://.godot/imported/mmBackground.png-6b1e6616c0c14c1029186d6122e22819.ctex"
+uid="uid://c7fttb1au7gvf"
+path="res://.godot/imported/grinderElectric.png-48f7d35cb31f67e04c85a884fec8f2a4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/sprites/mmBackground.png"
-dest_files=["res://.godot/imported/mmBackground.png-6b1e6616c0c14c1029186d6122e22819.ctex"]
+source_file="res://resources/sprites/grinderElectric.png"
+dest_files=["res://.godot/imported/grinderElectric.png-48f7d35cb31f67e04c85a884fec8f2a4.ctex"]
 
 [params]
 

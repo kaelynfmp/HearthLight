@@ -6,7 +6,12 @@ class_name Gadget
 extends Resource
 
 ## Texture that represents the sprite in-game.
-@export var sprite_frames: SpriteFrames
+@export var sprite_frames: SpriteFrames:
+	get():
+		if Engine.is_editor_hint():
+			if item != null:
+				item.texture = sprite_frames.get_frame_texture("se", 0)
+		return sprite_frames
 ## Name of the gadget as it appears in-game.
 
 @export var sprite_offset: Vector2
@@ -29,8 +34,9 @@ enum Direction {SE, SW, NW, NE}
 ## In-game description of the gadget.
 @export_multiline var description: String:
 	get():
-		if item != null:
-			item.description = description
+		if Engine.is_editor_hint():
+			if item != null:
+				item.description = description
 		return description
 
 @export_category("Properties")
@@ -79,6 +85,10 @@ var prev_item_texture
 @export var ambient_sound: AudioStream
 ## The sound that play when the gadget is stopped
 @export var stop_sound: AudioStream
+## The sound that plays when the gadget is opened
+@export var open_sound: AudioStream
+## The sound that plays when the gadget is closed
+@export var close_sound: AudioStream
 
 ## The string associated with the advanced gadget audio
 ## Blank if primitive or not having a sound

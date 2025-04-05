@@ -230,6 +230,9 @@ func load_items():
 ## Changes whether the inventory is open or not
 func change_inventory():
 	if inventory:
+		if gadget != null:
+			if gadget.gadget_stats.close_sound != null:
+				gadget.play_close_sound()
 		inventory = false
 		inventories.clear()
 		if cursor != null:
@@ -237,7 +240,6 @@ func change_inventory():
 				if cursor.slot.item != null:
 					take_cursor.emit(cursor.slot.duplicate())
 					cursor.slot.decrement(cursor.slot.quantity)
-					
 	else:
 		inventory = true
 	inventory_open_state_changed.emit()
@@ -307,10 +309,14 @@ func set_gadget(p_gadget:StaticBody2D) -> void:
 	if inventory:
 		if gadget != null:
 			inventories.erase(gadget.inventory)
+			if gadget.gadget_stats.close_sound != null and gadget.gadget_stats.name != p_gadget.gadget_stats.name:
+				gadget.play_close_sound()
 	gadget = p_gadget
 	if !inventory:
 		change_inventory()
 	inventories.append(p_gadget.inventory)
+	if p_gadget.gadget_stats.open_sound != null:
+		p_gadget.play_open_sound()
 		
 ## Gets the current gadget that corresponds to the item held in the cursor
 func get_gadget_from_cursor() -> Gadget:

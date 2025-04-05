@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dib6u1m2lcdw4"
-path="res://.godot/imported/mmBackground.png-6b1e6616c0c14c1029186d6122e22819.ctex"
+uid="uid://mkgcv7boe8mc"
+path="res://.godot/imported/coal.png-67e04bc0c8346ba44e7cd7c7ec403181.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/sprites/mmBackground.png"
-dest_files=["res://.godot/imported/mmBackground.png-6b1e6616c0c14c1029186d6122e22819.ctex"]
+source_file="res://resources/sprites/coal.png"
+dest_files=["res://.godot/imported/coal.png-67e04bc0c8346ba44e7cd7c7ec403181.ctex"]
 
 [params]
 

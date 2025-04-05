@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dib6u1m2lcdw4"
-path="res://.godot/imported/mmBackground.png-6b1e6616c0c14c1029186d6122e22819.ctex"
+uid="uid://57ncmkhvtt8m"
+path="res://.godot/imported/plantIndustrial.png-36d6dbebdbb888e891a3ca016f3bb8e0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/sprites/mmBackground.png"
-dest_files=["res://.godot/imported/mmBackground.png-6b1e6616c0c14c1029186d6122e22819.ctex"]
+source_file="res://resources/sprites/plantIndustrial.png"
+dest_files=["res://.godot/imported/plantIndustrial.png-36d6dbebdbb888e891a3ca016f3bb8e0.ctex"]
 
 [params]
 
