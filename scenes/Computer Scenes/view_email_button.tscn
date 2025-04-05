@@ -32,6 +32,7 @@
 
 [sub_resource type="SystemFont" id="SystemFont_hwfu5"]
 font_names = PackedStringArray("Monospace")
+subpixel_positioning = 0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_34x3b"]
 
@@ -219,6 +220,7 @@ hint_underlined = false
 script = ExtResource("3_gr1tt")
 
 [node name="Email" type="RichTextLabel" parent="."]
+layout_mode = 0
 offset_left = 67.0
 offset_top = 118.0
 offset_right = 535.0
@@ -320,6 +322,7 @@ hint_underlined = false
 script = ExtResource("3_gr1tt")
 
 [node name="EmailDropdown" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
 offset_left = 323.0
 offset_top = 188.0
 offset_right = 791.0

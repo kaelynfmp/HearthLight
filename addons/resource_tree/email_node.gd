@@ -18,6 +18,7 @@ var currency_line_edit:LineEdit
 var given_slot:Control
 var required_slot:Control
 var rewards_slot:Control
+var unlocks_slot:Control
 
 @export var header_sprite:Sprite2D
 @export var top_bar:TextureRect
@@ -60,6 +61,7 @@ func _ready():
 	given_slot = find_child("GivenSlot")
 	required_slot = find_child("RequiredSlot")
 	rewards_slot = find_child("RewardsSlot")
+	unlocks_slot = find_child("UnlocksSlot")
 	default_header_texture = header_sprite.texture
 	default_top_bar_texture = top_bar.texture
 	default_bg = bg.texture
@@ -95,9 +97,11 @@ func _process(_delta: float) -> void:
 	given_slot.set_visible(order_exists)
 	required_slot.set_visible(order_exists)
 	rewards_slot.set_visible(order_exists)
-	given_slot.set_custom_minimum_size(Vector2i(0, 177 if order_exists else 0))
-	required_slot.set_custom_minimum_size(Vector2i(0, 177 if order_exists else 0))
-	rewards_slot.set_custom_minimum_size(Vector2i(0, 177 if order_exists else 0))
+	unlocks_slot.set_visible(order_exists)
+	given_slot.set_custom_minimum_size(Vector2i(0, 145 if order_exists else 0))
+	required_slot.set_custom_minimum_size(Vector2i(0, 145 if order_exists else 0))
+	rewards_slot.set_custom_minimum_size(Vector2i(0, 145 if order_exists else 0))
+	unlocks_slot.set_custom_minimum_size(Vector2i(0, 145 if order_exists else 0))
 	
 	if email.tutorial or email.bankruptcy:
 		header_sprite.texture = tutorial_header_texture
@@ -120,7 +124,7 @@ func _process(_delta: float) -> void:
 		bottom_bar.texture = timed_bottom_bar
 		clock.visible = true
 
-	var fill_items := func(items:HFlowContainer, nodes:Dictionary[Resource, int], slot_type:String, prefix:String):
+	var fill_items := func(items:HFlowContainer, nodes:Dictionary[Resource, int], slot_type:String, prefix:String, has_spinbox:bool = true):
 		var item_in_nodes:bool = items.get_children().all(func(child): return \
 			false if !child.get_child(0).slot.item else \
 			nodes.keys().any(func(node): return ((node.gadget.name == child.get_child(0).slot.item.name) \
@@ -140,13 +144,14 @@ func _process(_delta: float) -> void:
 				new_slot.set_name(prefix + str(index))
 				new_slot.set_scale(Vector2(0.5, 0.5))
 				new_control.set_custom_minimum_size(316 * new_slot.get_scale())
-				var spinbox_node:SpinBox = spinbox.instantiate()
-				spinbox_node.slot = slot
-				spinbox_node.set_value(nodes[node])
-				spinbox_node.connect_slot()
-				spinbox_node.value_changed.connect(_quantity_changed.bind(nodes, node))
+				if has_spinbox:
+					var spinbox_node:SpinBox = spinbox.instantiate()
+					spinbox_node.slot = slot
+					spinbox_node.set_value(nodes[node])
+					spinbox_node.connect_slot()
+					spinbox_node.value_changed.connect(_quantity_changed.bind(nodes, node))
+					new_slot.find_child("SlotPanel").add_child(spinbox_node)
 				new_slot.find_child("Stack").set_z_index(-1)
-				new_slot.find_child("SlotPanel").add_child(spinbox_node)
 				new_control.add_child(new_slot)
 				items.add_child(new_control)
 				index += 1
@@ -159,6 +164,9 @@ func _process(_delta: float) -> void:
 
 	var rewards_items:HFlowContainer = order_container.find_child("RewardsItems", true)
 	fill_items.call(rewards_items, email_node.rewards_item_nodes, "output", "RewardsItemSlot")
+
+	var unlocks_items:HFlowContainer = order_container.find_child("UnlocksItems", true)
+	fill_items.call(unlocks_items, email_node.unlocks_item_nodes, "unlock", "UnlocksItemSlot", false)
 
 	if !currency_spinbox.value_changed.is_connected(_currency_changed):
 		currency_spinbox.value_changed.connect(_currency_changed)

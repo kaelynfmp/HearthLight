@@ -230,6 +230,11 @@ func connect_nodes(from, from_port, to, to_port, node, to_connect_node, gadget_n
 					order.rewards = new_rewards_items
 					order.rewards_quantities = new_rewards_quantities
 					node.email_node.rewards_item_nodes[to_connect_node.item_node if is_item else to_connect_node.gadget_node] = 1
+				4:
+					var new_unlocks_items:Array[Resource] = order.unlocks.duplicate()
+					new_unlocks_items.append(to_connect_node.item_node.item if is_item else to_connect_node.gadget_node.gadget)
+					order.unlocks = new_unlocks_items
+					node.email_node.unlocks_item_nodes[to_connect_node.item_node if is_item else to_connect_node.gadget_node] = 1
 			
 	save_properties()
 	
@@ -296,6 +301,11 @@ func disconnect_nodes(from, from_port, to, to_port, node, to_disconnect_node):
 					order.rewards = new_rewards_items
 					order.rewards_quantities = new_rewards_quantities
 					node.email_node.rewards_item_nodes.erase(to_disconnect_node.item_node if is_item else to_disconnect_node.gadget_node)
+				4:
+					var new_unlocks_items:Array[Resource] = order.unlocks.duplicate()
+					new_unlocks_items.erase(to_disconnect_node.item_node.item if is_item else to_disconnect_node.gadget_node.gadget)
+					order.unlocks = new_unlocks_items
+					node.email_node.unlocks_item_nodes.erase(to_disconnect_node.item_node if is_item else to_disconnect_node.gadget_node)
 	save_properties()
 	
 func _on_disconnect_request(from, from_port, to, to_port) -> void:
@@ -479,6 +489,10 @@ func _process(_delta:float) -> void:
 			set_items.call(email_node.given_item_nodes, order.given_items, order.given_quantities)
 			set_items.call(email_node.required_item_nodes, order.required_items, order.required_quantities)
 			set_items.call(email_node.rewards_item_nodes, order.rewards, order.rewards_quantities)
+			var unlocks_array:Array[int] = []
+			unlocks_array.resize(order.unlocks.size())
+			unlocks_array.fill(1)
+			set_items.call(email_node.unlocks_item_nodes, order.unlocks, unlocks_array)
 
 			var connect_nodes := func(to_connect_nodes:Dictionary[Resource, int], port:int):
 				for to_connect_node in to_connect_nodes.keys():
@@ -493,6 +507,7 @@ func _process(_delta:float) -> void:
 			connect_nodes.call(email_node.given_item_nodes, 1)
 			connect_nodes.call(email_node.required_item_nodes, 2)
 			connect_nodes.call(email_node.rewards_item_nodes, 3)
+			connect_nodes.call(email_node.unlocks_item_nodes, 4)
 
 			
 		
@@ -515,6 +530,9 @@ func _process(_delta:float) -> void:
 								graph_edit.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
 						3:
 							if from_item_node not in email_node.rewards_item_nodes:
+								graph_edit.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
+						4:
+							if from_item_node not in email_node.unlocks_item_nodes:
 								graph_edit.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
 
 

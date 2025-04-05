@@ -12,7 +12,7 @@
 script = ExtResource("3_q4d58")
 order_id = 1
 given_items = Array[Resource]([ExtResource("1_q4d58")])
-given_quantities = Array[int]([2])
+given_quantities = Array[int]([1])
 given_currency = 0
 required_items = Array[Resource]([ExtResource("2_q4d58")])
 required_quantities = Array[int]([2])
@@ -22,7 +22,7 @@ minute = 0
 currency_reward = 100
 rewards = Array[Resource]([ExtResource("3_47hgc")])
 rewards_quantities = Array[int]([1])
-unlocks = Array[Resource]([ExtResource("1_q4d58"), ExtResource("5_47hgc")])
+unlocks = Array[Resource]([ExtResource("5_47hgc"), ExtResource("1_q4d58")])
 
 [resource]
 script = ExtResource("1_jvolh")

@@ -165,6 +165,15 @@ slot/3/right_type = 0
 slot/3/right_color = Color(1, 1, 1, 1)
 slot/3/right_icon = null
 slot/3/draw_stylebox = true
+slot/4/left_enabled = true
+slot/4/left_type = 3
+slot/4/left_color = Color(1, 0.462745, 0.666667, 1)
+slot/4/left_icon = ExtResource("1_nndyg")
+slot/4/right_enabled = false
+slot/4/right_type = 0
+slot/4/right_color = Color(1, 1, 1, 1)
+slot/4/right_icon = null
+slot/4/draw_stylebox = true
 script = ExtResource("1_t2q0s")
 header_sprite = NodePath("EmailContainer/HeaderSprite")
 top_bar = NodePath("EmailContainer/TopBar")
@@ -187,7 +196,7 @@ email_dropdown_label = NodePath("EmailContainer/Panel/EmailDropdown")
 subject_dropdown_label = NodePath("EmailContainer/Panel/SubjectDropdown")
 
 [node name="EmailContainer" type="Control" parent="."]
-custom_minimum_size = Vector2(0, 1031)
+custom_minimum_size = Vector2(0, 1000)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 2
@@ -248,6 +257,7 @@ hint_underlined = false
 script = ExtResource("3_2hvs7")
 
 [node name="Email" type="RichTextLabel" parent="EmailContainer"]
+layout_mode = 0
 offset_left = 67.0
 offset_top = 119.0
 offset_right = 535.0
@@ -312,6 +322,7 @@ hint_underlined = false
 script = ExtResource("3_2hvs7")
 
 [node name="Panel" type="Panel" parent="EmailContainer"]
+layout_mode = 0
 offset_left = 1.0
 offset_top = 145.0
 offset_right = 1921.0
@@ -386,6 +397,7 @@ hint_underlined = false
 script = ExtResource("3_2hvs7")
 
 [node name="EmailDropdown" type="RichTextLabel" parent="EmailContainer/Panel"]
+layout_mode = 0
 offset_left = 323.0
 offset_top = 188.0
 offset_right = 791.0
@@ -545,6 +557,31 @@ size_flags_vertical = 6
 mouse_filter = 0
 alignment = 1
 
+[node name="UnlocksContainer" type="VBoxContainer" parent="EmailContainer/OrderContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="EmailContainer/OrderContainer/HBoxContainer/UnlocksContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Unlocks
+"
+horizontal_alignment = 1
+
+[node name="UnlocksItemsScroll" type="ScrollContainer" parent="EmailContainer/OrderContainer/HBoxContainer/UnlocksContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 0
+horizontal_scroll_mode = 0
+
+[node name="UnlocksItems" type="HFlowContainer" parent="EmailContainer/OrderContainer/HBoxContainer/UnlocksContainer/UnlocksItemsScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+mouse_filter = 0
+alignment = 1
+
 [node name="AddOrder" type="TextureButton" parent="EmailContainer"]
 visible = false
 layout_mode = 1
@@ -609,18 +646,23 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [node name="GivenSlot" type="Control" parent="."]
-custom_minimum_size = Vector2(0, 177)
+custom_minimum_size = Vector2(0, 145)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
 [node name="RequiredSlot" type="Control" parent="."]
-custom_minimum_size = Vector2(0, 177)
+custom_minimum_size = Vector2(0, 145)
 layout_mode = 2
 size_flags_horizontal = 0
 
 [node name="RewardsSlot" type="Control" parent="."]
-custom_minimum_size = Vector2(0, 177)
+custom_minimum_size = Vector2(0, 145)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="UnlocksSlot" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 145)
 layout_mode = 2
 size_flags_horizontal = 0
 

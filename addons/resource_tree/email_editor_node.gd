@@ -38,9 +38,16 @@ var prev_prerequisite_email_nodes_size:int = 0
 			return rewards_item_nodes
 
 		return rewards_item_nodes
+@export var unlocks_item_nodes:Dictionary[Resource, int]:
+	get:
+		if email.attached_order == null:
+			unlocks_item_nodes.clear()
+			return unlocks_item_nodes
+
+		return unlocks_item_nodes
 
 func _init(p_email:Email = null, p_x:int = 0, p_y:int = 0, p_prerequisite_email_nodes:Array[EmailEditorNode] = [], p_required_item_nodes:Dictionary[Resource, int] = {}, \
-	p_given_item_nodes:Dictionary[Resource, int] = {}, p_rewards_item_nodes:Dictionary[Resource, int] = {}):
+	p_given_item_nodes:Dictionary[Resource, int] = {}, p_rewards_item_nodes:Dictionary[Resource, int] = {}, p_unlocks_item_nodes:Dictionary[Resource, int] = {}):
 	email = p_email
 	x = p_x
 	y = p_y
@@ -48,6 +55,7 @@ func _init(p_email:Email = null, p_x:int = 0, p_y:int = 0, p_prerequisite_email_
 	required_item_nodes = p_required_item_nodes
 	given_item_nodes = p_given_item_nodes
 	rewards_item_nodes = p_rewards_item_nodes
+	unlocks_item_nodes = p_unlocks_item_nodes
 	
 func _order_currency_changed():
 	order_currency_changed.emit()
@@ -58,7 +66,7 @@ func update_currency(currency:int) -> void:
 	email.attached_order.currency_reward = currency
 	save_email()
 	
-func update_quantity(nodes, node, quantity:int):
+func update_quantity(nodes, node, quantity:int=1):
 	if email == null or email.attached_order == null:
 		return
 	var item = node.gadget if node is GadgetEditorNode else node.item
