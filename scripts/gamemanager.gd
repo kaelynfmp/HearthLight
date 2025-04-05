@@ -356,6 +356,12 @@ func pickup_gadget(_gadget:Gadget, direction:Gadget.Direction = Gadget.Direction
 		return true
 	return false
 	
+func has_unreads() -> bool:
+	for category in categorized_emails.values():
+		if category.any(func(email: Email): return email.check_valid() and not email.is_read):
+			return true
+	return false
+	
 func unique_gadget_interaction(_gadget:Gadget):
 	if _gadget == computer_gadget:
 		change_computer_visibility()
