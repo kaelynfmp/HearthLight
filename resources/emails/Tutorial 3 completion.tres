@@ -7,6 +7,7 @@
 resource_name = "Tutorial 3 completion"
 script = ExtResource("1_j8bhs")
 sender = "Katheryn Elion"
+email = ""
 subject = "it's only fair"
 contents = "wow, i didn't expect you to actually do it. are you some kind of magician or something? this is some seriously impressive consistency for something you made by hand
 

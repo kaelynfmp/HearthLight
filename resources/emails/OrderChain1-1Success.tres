@@ -7,6 +7,7 @@
 resource_name = "OrderChain1-1Success"
 script = ExtResource("1_lb81x")
 sender = "Vivian Brisket"
+email = ""
 subject = "(*°▽°*)"
 contents = "You did it! You're the best <3. I knew I could count on you. You've got trustworthy vibes.
 I'll make sure to let everyone know how awesome and cool and junk you are ^v^

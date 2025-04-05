@@ -26,6 +26,7 @@ unlocks = Array[Resource]([])
 resource_name = "MiscOrder4"
 script = ExtResource("1_p6aca")
 sender = ""
+email = ""
 subject = ""
 contents = "Hey Hey! I Was Wondering If You Could Get Me Some Stuff I Need To Fix Up A Project Of Mine. I Totally Trashed My Couch, And I Need To Do Some Repairs 😹😹😹
 

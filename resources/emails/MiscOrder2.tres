@@ -26,6 +26,7 @@ unlocks = Array[Resource]([])
 resource_name = "MiscOrder2"
 script = ExtResource("1_wl46j")
 sender = "Clarence Smith"
+email = ""
 subject = "I would like to make a legitimate and aboveboard (legal) request of you"
 contents = "Hello, I would like to make a legitimate and aboveboard (legal) request of you.
 

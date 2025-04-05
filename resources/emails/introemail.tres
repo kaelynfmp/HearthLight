@@ -26,6 +26,7 @@ unlocks = Array[Resource]([ExtResource("2_vwut3"), ExtResource("3_6ndcv")])
 [resource]
 script = ExtResource("1_16060")
 sender = "[REDACTED]"
+email = ""
 subject = "you look like you could use help"
 contents = "[hint=test][url]test[/url][/hint]
 Take these.

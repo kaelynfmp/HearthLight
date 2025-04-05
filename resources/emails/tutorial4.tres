@@ -27,6 +27,7 @@ unlocks = Array[Resource]([ExtResource("4_0jvak")])
 resource_name = "tutorial4"
 script = ExtResource("1_sdwtk")
 sender = "Ernest Hayden"
+email = ""
 subject = "A Bright New Companionship"
 contents = "Greetings again,
 

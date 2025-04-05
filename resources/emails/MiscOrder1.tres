@@ -25,6 +25,7 @@ unlocks = Array[Resource]([])
 resource_name = "MiscOrder1"
 script = ExtResource("1_8du1s")
 sender = "Blade Fox"
+email = ""
 subject = "I need some materials"
 contents = "[res=Metal]metal[/res]
 

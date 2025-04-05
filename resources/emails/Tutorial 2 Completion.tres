@@ -7,6 +7,7 @@
 resource_name = "Tutorial 2 Completion"
 script = ExtResource("1_akve1")
 sender = "Ernest Hayden"
+email = ""
 subject = "Brilliant!"
 contents = "You have proven yourself far more capable than those treacherous corporations. My moustache twitches even [i]thinking[/i] about those cowardly dogs. But you have proven yourself to be of a calibre well beyond your recognition, and I look forward to continuing business with you!
 

@@ -19,6 +19,33 @@ var given_slot:Control
 var required_slot:Control
 var rewards_slot:Control
 
+@export var header_sprite:Sprite2D
+@export var top_bar:TextureRect
+@export var clock:TextureRect
+@export var bg:TextureRect
+@export var bottom_bar:TextureRect
+
+var default_header_texture:Texture
+var default_top_bar_texture:Texture
+var default_bg:Texture
+var default_bottom_bar:Texture
+@export var tutorial_header_texture:Texture
+@export var tutorial_top_bar_texture:Texture
+@export var timed_header_texture:Texture
+@export var timed_top_bar_texture:Texture
+@export var timed_bg:Texture
+@export var timed_bottom_bar:Texture
+
+@export var sender_label:RichTextLabel
+@export var email_label:RichTextLabel
+@export var subject_label:RichTextLabel
+@export var blurb_label:RichTextLabel
+
+@export var content_label:RichTextLabel
+@export var sender_dropdown_label:RichTextLabel
+@export var email_dropdown_label:RichTextLabel
+@export var subject_dropdown_label:RichTextLabel
+
 func _ready():
 	container = find_child("EmailContainer")
 	panel = container.find_child("Panel")
@@ -33,6 +60,10 @@ func _ready():
 	given_slot = find_child("GivenSlot")
 	required_slot = find_child("RequiredSlot")
 	rewards_slot = find_child("RewardsSlot")
+	default_header_texture = header_sprite.texture
+	default_top_bar_texture = top_bar.texture
+	default_bg = bg.texture
+	default_bottom_bar = bottom_bar.texture
 
 func _process(_delta: float) -> void:
 	if email_node == null or email_node.email == null:
@@ -44,19 +75,15 @@ func _process(_delta: float) -> void:
 	var email:Email = email_node.email
 	if container == null:
 		return
-	var sender_label:RichTextLabel = container.find_child("Sender")
 	Utility.set_truncated_text(email.sender, sender_label)
-	var subject_label:RichTextLabel = container.find_child("Subject")
+	Utility.set_truncated_text(email.email, email_label)
 	Utility.set_truncated_text(email.subject, subject_label)
-	var blurb_label:RichTextLabel = container.find_child("Blurb")
 	Utility.set_truncated_text(email.contents.split("\n")[0], blurb_label)
 	
-	
-	var content_label:RichTextLabel = panel.find_child("Content")
+
 	content_label.text = email.contents
-	var sender_dropdown_label:RichTextLabel = panel.find_child("SenderDropdown")
 	Utility.set_truncated_text(email.sender, sender_dropdown_label)
-	var subject_dropdown_label:RichTextLabel = panel.find_child("SubjectDropdown")
+	Utility.set_truncated_text(email.email, email_dropdown_label)
 	Utility.set_truncated_text(email.subject, subject_dropdown_label)
 	
 	if order_container == null or add_order == null or remove_order == null:
@@ -71,7 +98,28 @@ func _process(_delta: float) -> void:
 	given_slot.set_custom_minimum_size(Vector2i(0, 177 if order_exists else 0))
 	required_slot.set_custom_minimum_size(Vector2i(0, 177 if order_exists else 0))
 	rewards_slot.set_custom_minimum_size(Vector2i(0, 177 if order_exists else 0))
+	
+	if email.tutorial or email.bankruptcy:
+		header_sprite.texture = tutorial_header_texture
+		top_bar.texture = tutorial_top_bar_texture
+	else:
+		header_sprite.texture = default_header_texture
+		top_bar.texture = default_top_bar_texture
+
+	if not order_exists or email.bankruptcy or email.tutorial:
+		bg.texture = default_bg
+		bottom_bar.texture = default_bottom_bar
+		clock.visible = false
+
 	if !order_exists: return
+	
+	if not email.tutorial and not email.bankruptcy:
+		header_sprite.texture = timed_header_texture
+		top_bar.texture = timed_top_bar_texture
+		bg.texture = timed_bg
+		bottom_bar.texture = timed_bottom_bar
+		clock.visible = true
+
 	var fill_items := func(items:HFlowContainer, nodes:Dictionary[Resource, int], slot_type:String, prefix:String):
 		var item_in_nodes:bool = items.get_children().all(func(child): return \
 			false if !child.get_child(0).slot.item else \
@@ -114,7 +162,7 @@ func _process(_delta: float) -> void:
 
 	if !currency_spinbox.value_changed.is_connected(_currency_changed):
 		currency_spinbox.value_changed.connect(_currency_changed)
-	
+
 func _currency_changed(currency: float):
 	email_node.update_currency(int(currency))
 

@@ -27,6 +27,7 @@ unlocks = Array[Resource]([])
 resource_name = "AdvancedPlantAcquisition"
 script = ExtResource("1_4ydql")
 sender = "Ernest Hayden"
+email = ""
 subject = "I have something I think you might like..."
 contents = "Hello,
 
@@ -42,7 +43,7 @@ hour = 0
 minute = 0
 is_read = false
 attached_order = SubResource("Resource_nr60n")
-tutorial = false
+tutorial = true
 lore_only = false
 has_start_time = false
 failable = false

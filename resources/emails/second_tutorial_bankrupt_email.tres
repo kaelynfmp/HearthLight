@@ -23,6 +23,7 @@ metadata/_custom_type_script = "uid://cdrlcp2hcoi4m"
 [resource]
 script = ExtResource("2_wk7sn")
 sender = "Secret Admirer"
+email = ""
 subject = "Down on your luck?"
 contents = "Hey, I heard you're struggling a bit in the financials department.
 

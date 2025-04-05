@@ -28,6 +28,7 @@ unlocks = Array[Resource]([ExtResource("5_3o154")])
 resource_name = "Tutorial3"
 script = ExtResource("1_ren0f")
 sender = "Katheryn Elion"
+email = ""
 subject = "you're probably kinda bored..."
 contents = "hey, i don't know if you have anything better to do, but i was wondering if maybe you could process some of that [res=Cotton]cotton[/res] you gave me? it might take a while, but you don't really have much else to do, do you? i guess it might be easier if you had a [res=Ancient Loom]loom[/res], but i guess you'll just have to do without :/"
 category = ""

@@ -27,6 +27,7 @@ unlocks = Array[Resource]([])
 resource_name = "OrderChain1-2"
 script = ExtResource("1_tldp1")
 sender = "Vivian Brisket"
+email = ""
 subject = "I'm back for more >:)"
 contents = "Ok you read the subject line, you know what's up. I need more [res=Fabric]fabric[/res] for my [s]nefarious[/s] completely aboveboard operations *wink wink nudge nudge*. [b]10[/b] should be fine for what I need right now, but I'll be sure to send in another order when I need some more"
 category = ""
@@ -36,7 +37,7 @@ hour = 0
 minute = 0
 is_read = false
 attached_order = SubResource("Resource_1l2p1")
-tutorial = false
+tutorial = true
 lore_only = false
 has_start_time = false
 failable = true

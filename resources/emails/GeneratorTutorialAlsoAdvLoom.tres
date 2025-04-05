@@ -29,6 +29,7 @@ unlocks = Array[Resource]([ExtResource("3_c15ab"), ExtResource("4_rcrhj")])
 resource_name = "GeneratorTutorialAlsoAdvLoom"
 script = ExtResource("1_ksrh8")
 sender = "Ernest Hayden"
+email = ""
 subject = "Need some power?"
 contents = "Hello again,
 
@@ -50,7 +51,7 @@ hour = 0
 minute = 0
 is_read = false
 attached_order = SubResource("Resource_bnul4")
-tutorial = false
+tutorial = true
 lore_only = false
 has_start_time = false
 failable = false

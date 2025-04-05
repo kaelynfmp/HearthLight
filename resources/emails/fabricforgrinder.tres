@@ -27,6 +27,7 @@ unlocks = Array[Resource]([ExtResource("1_q4d58"), ExtResource("5_47hgc")])
 [resource]
 script = ExtResource("1_jvolh")
 sender = "Ernest Hayden"
+email = ""
 subject = "I can never trust those damn corporations"
 contents = "Good day,
 

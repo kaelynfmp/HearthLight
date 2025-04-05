@@ -163,6 +163,10 @@ func change_email_category(email: Email, new_category: String):
 		email.category = new_category
 		categorized_emails[new_category].insert(0,email)
 	
+	if new_category == "archive":
+		email.is_read = true
+		email.archived = true
+	
 func is_email_time_reached(email: Email) -> bool:
 	var game_time = GameManager.game_time
 	if email.day <= game_time["day"]: # day is right/has passed
@@ -242,7 +246,6 @@ func order_accept(email: Email):
 		OrderManager.give_player_starting_items(order)
 		fulfill_order(email)
 		email.attached_order.is_accepted = true
-		email.is_read = true
 		change_email_category(email, "archive")
 	if GameManager.categorized_emails[current_category].filter(func(email: Email): return email.check_valid()).is_empty():
 		display_category_emails("orders")

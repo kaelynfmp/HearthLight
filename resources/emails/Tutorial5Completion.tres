@@ -7,6 +7,7 @@
 resource_name = "Tutorial5Completion"
 script = ExtResource("1_tvncd")
 sender = "Ernest Hayden"
+email = ""
 subject = "A very fine job you've done!"
 contents = "You've done it again!
 
