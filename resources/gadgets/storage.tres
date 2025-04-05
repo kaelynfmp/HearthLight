@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="Gadget" load_steps=22 format=3 uid="uid://dk4tt2xs7bvxr"]
+[gd_resource type="Resource" script_class="Gadget" load_steps=24 format=3 uid="uid://dk4tt2xs7bvxr"]
 
+[ext_resource type="AudioStream" uid="uid://ci1t3hte3nxmy" path="res://resources/audio/drawer close.mp3" id="1_cn3ik"]
 [ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_cv0ly"]
 [ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_0o3wc"]
 [ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_qlcc6"]
 [ext_resource type="Texture2D" uid="uid://beyxev73jkx3g" path="res://resources/sprites/storage.png" id="4_0o3wc"]
 [ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_cn3ik"]
+[ext_resource type="AudioStream" uid="uid://bttgk8sdaqcnj" path="res://resources/audio/drawer open.mp3" id="6_hp7hg"]
 
 [sub_resource type="Resource" id="Resource_hp7hg"]
 script = ExtResource("2_0o3wc")
@@ -144,5 +146,7 @@ produces = true
 inputs = 12
 outputs = 1
 process_time = 0.0
+open_sound = ExtResource("6_hp7hg")
+close_sound = ExtResource("1_cn3ik")
 sound_string = ""
 metadata/_custom_type_script = "uid://diu2pkk76wyyy"

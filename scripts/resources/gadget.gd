@@ -79,6 +79,10 @@ var prev_item_texture
 @export var ambient_sound: AudioStream
 ## The sound that play when the gadget is stopped
 @export var stop_sound: AudioStream
+## The sound that plays when the gadget is opened
+@export var open_sound: AudioStream
+## The sound that plays when the gadget is closed
+@export var close_sound: AudioStream
 
 ## The string associated with the advanced gadget audio
 ## Blank if primitive or not having a sound
