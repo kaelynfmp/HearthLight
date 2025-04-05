@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ok6kwcx8c3s1"]
+
+[ext_resource type="PackedScene" uid="uid://c5605c3ehaw25" path="res://scenes/inventory/slot.tscn" id="1_xbaix"]
+[ext_resource type="Texture2D" uid="uid://d4ieb41fgf3ti" path="res://resources/sprites/storageSlot.png" id="2_lk6br"]
+
+[node name="StorageSlot" instance=ExtResource("1_xbaix")]
+
+[node name="InputBG" type="TextureRect" parent="." index="1"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 8
+mouse_filter = 2
+texture = ExtResource("2_lk6br")
+stretch_mode = 2

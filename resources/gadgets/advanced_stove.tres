@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_ieogk"]
 [ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_cel8q"]
 [ext_resource type="Resource" uid="uid://gw88mo33lg1c" path="res://resources/items/ore.tres" id="4_cel8q"]
-[ext_resource type="Texture2D" uid="uid://dvqlsoydwm5ek" path="res://resources/sprites/stovePrimitive.png" id="4_ieogk"]
 [ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_rjvo2"]
+[ext_resource type="Texture2D" uid="uid://c4wgipjaa5lev" path="res://resources/sprites/stoveElectric.png" id="7_rjvo2"]
 
 [sub_resource type="Resource" id="Resource_6qbom"]
 script = ExtResource("2_ieogk")
@@ -27,7 +27,7 @@ slots = Array[ExtResource("2_ieogk")]([SubResource("Resource_6qbom"), SubResourc
 
 [sub_resource type="Resource" id="Resource_cel8q"]
 script = ExtResource("3_cel8q")
-texture = ExtResource("4_ieogk")
+texture = ExtResource("7_rjvo2")
 name = "Advanced Stove"
 description = "Advanced Stove"
 max_stack = 1
@@ -38,7 +38,7 @@ metadata/_custom_type_script = "uid://by7jec2ew2vsl"
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_ieogk")
+"texture": ExtResource("7_rjvo2")
 }],
 "loop": true,
 "name": &"default",
@@ -46,7 +46,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_ieogk")
+"texture": ExtResource("7_rjvo2")
 }],
 "loop": true,
 "name": &"se",

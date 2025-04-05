@@ -5,6 +5,8 @@ signal item_at_location(cell_pos: Vector2i, item: Item)
 
 @export var gadget_stats:Gadget
 @onready var audio_player:AudioStreamPlayer2D = find_child("AudioStreamPlayer")
+@onready var open_audio_player:AudioStreamPlayer2D = find_child("OpenAudioPlayer")
+@onready var close_audio_player:AudioStreamPlayer2D = find_child("CloseAudioPlayer")
 @onready var sprite:AnimatedSprite2D = find_child("Sprite")
 @onready var valid_selection:CompressedTexture2D = load("res://scripts/shaders/close_enough_texture.tres")
 @onready var invalid_selection:CompressedTexture2D = load("res://scripts/shaders/not_close_enough_texture.tres")
@@ -87,6 +89,8 @@ func _ready() -> void:
 		collision_layer = 2
 		collision_mask = 2
 	audio_player.set_stream(gadget_stats.ambient_sound)
+	open_audio_player.set_stream(gadget_stats.open_sound)
+	close_audio_player.set_stream(gadget_stats.close_sound)
 	update_recipes()
 	GameManager.update_recipes.connect(update_recipes)
 	
@@ -210,12 +214,15 @@ func pull_inventory():
 	if GameManager.item_map[cell_pos[0] + 6][cell_pos[1] + 5] == null: 
 		if rear_gadget:
 			var rear_inventory: Inventory = rear_gadget.inventory
-			for slot in rear_inventory.slots.filter(func(slot): return slot.locked):
+			var rear_slots = rear_inventory.slots.filter(func(slot): return slot.locked)
+			if rear_gadget.gadget_stats.name == "Storage":
+				rear_slots = rear_inventory.slots.filter(func(slot): return !slot.locked)
+			for slot in rear_slots:
 				if slot.item != null:
 					var item: Item = slot.item
 					if rear_gadget.gadget_stats.name != "Conveyor Belt":
 							item_at_location.emit(cell_pos, item)
-					rear_inventory.remove_items(item, 1, true)
+					rear_inventory.remove_items(item, 1, slot.locked)
 					break
 					
 
@@ -338,6 +345,14 @@ func play_sound() -> void:
 	#	else:
 	#		audio_player.stream_paused = true
 			#print("pause")
+
+func play_open_sound():
+	if not open_audio_player.playing:
+		open_audio_player.play()
+	
+func play_close_sound():
+	if not close_audio_player.playing:
+		close_audio_player.play()
 
 
 func _on_audio_stream_player_finished() -> void:

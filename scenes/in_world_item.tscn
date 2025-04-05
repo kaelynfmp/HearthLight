@@ -22,5 +22,6 @@ one_way_collision_margin = 0.0
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
 y_sort_enabled = true
 position = Vector2(0, 100)
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("1_2rtls")
-offset = Vector2(0, -200)
+offset = Vector2(0, -400)
