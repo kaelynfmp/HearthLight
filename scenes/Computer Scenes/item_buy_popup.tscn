@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://bj67g16p1cic7"]
+[gd_scene load_steps=71 format=3 uid="uid://bj67g16p1cic7"]
 
 [ext_resource type="Script" uid="uid://bq36bahokfv2b" path="res://scenes/Computer Scenes/item_buy_popup.gd" id="1_cmwl6"]
 [ext_resource type="Texture2D" uid="uid://b44kbp322i3y" path="res://resources/sprites/testimg.png" id="1_p7i7f"]
@@ -24,7 +24,12 @@ bg_color = Color(0.336859, 0.193585, 0.420663, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tf7mm"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mjcil"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hml2d"]
+bg_color = Color(1, 1, 1, 0.211765)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wk3g5"]
 
@@ -45,8 +50,6 @@ bg_color = Color(0.336859, 0.193585, 0.420663, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xse6i"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0lpwo"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k6v7x"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mrmh4"]
 
@@ -248,7 +251,7 @@ horizontal_alignment = 1
 layout_mode = 0
 offset_left = 1955.0
 offset_top = 1350.0
-offset_right = 2106.0
+offset_right = 2067.0
 offset_bottom = 1469.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_1g2mv")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_ttfo8")
@@ -256,19 +259,18 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_llgvx")
 theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_7g5ps")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_q4f4a")
 theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_tf7mm")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_mjcil")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hml2d")
 theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_wk3g5")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_f1kc6")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_2pt1w")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_rnw2n")
 icon = ExtResource("3_b72uc")
-flat = true
 
 [node name="Decline" type="Button" parent="Panel"]
 layout_mode = 0
 offset_left = 1653.0
 offset_top = 1350.0
-offset_right = 1804.0
+offset_right = 1763.0
 offset_bottom = 1469.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_7kxm2")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_81oyx")
@@ -276,13 +278,12 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_06erm")
 theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_2wrdy")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_xse6i")
 theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_0lpwo")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_k6v7x")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hml2d")
 theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_mrmh4")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_axbvb")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_nbxwu")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_fbeq8")
 icon = ExtResource("4_hi044")
-flat = true
 script = ExtResource("4_q3mbq")
 button_sound = 7
 

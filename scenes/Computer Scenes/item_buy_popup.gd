@@ -49,9 +49,8 @@ func _buy():
 			queue_free()
 			return
 		else:
-			# TODO: proper error handling
 			GameManager.add_currency(total_cost)
-			print("Error inserting bought item into inventory")
+			AudioManager.play_button_sound(AudioManager.BUTTON.NO_MONEY)
 		
 	else:
 		# Fail state
