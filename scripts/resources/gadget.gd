@@ -6,7 +6,12 @@ class_name Gadget
 extends Resource
 
 ## Texture that represents the sprite in-game.
-@export var sprite_frames: SpriteFrames
+@export var sprite_frames: SpriteFrames:
+	get():
+		if Engine.is_editor_hint():
+			if item != null:
+				item.texture = sprite_frames.get_frame_texture("se", 0)
+		return sprite_frames
 ## Name of the gadget as it appears in-game.
 
 @export var sprite_offset: Vector2
@@ -29,8 +34,9 @@ enum Direction {SE, SW, NW, NE}
 ## In-game description of the gadget.
 @export_multiline var description: String:
 	get():
-		if item != null:
-			item.description = description
+		if Engine.is_editor_hint():
+			if item != null:
+				item.description = description
 		return description
 
 @export_category("Properties")
