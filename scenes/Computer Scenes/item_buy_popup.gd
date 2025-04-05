@@ -8,11 +8,11 @@ var item: Item
 # quantity select
 @export var min_value: int = 1
 @export var max_value: int = 99
-@export var cost_per_item: int = 10 
+var cost_per_item: int = 10 
 @export var cost_label: Label
 var quantity: int = 1  # Default quantity
 
-@export var number_label: Label
+@export var number_label: SpinBox
 @export var minus_button: Button
 @export var plus_button: Button
 
@@ -22,10 +22,13 @@ var total_cost: int
 
 func _ready():
 	update_label()
-	minus_button.connect("pressed", Callable(self, "_decrease"))
-	plus_button.connect("pressed", Callable(self, "_increase"))
-	buy_button.connect("pressed", Callable(self, "_buy"))
-	decline_button.connect("pressed", Callable(self, "_close"))
+	minus_button.pressed.connect(_decrease)
+	plus_button.pressed.connect(_increase)
+	buy_button.pressed.connect(_buy)
+	decline_button.pressed.connect(_close)
+	number_label.min_value = min_value
+	number_label.max_value = max_value
+	number_label.value_changed.connect(_changed)
 
 func _process(_delta: float) -> void:
 	if GameManager.in_computer == false:
@@ -69,17 +72,26 @@ func set_item_buy(new_item: Item):
 		total_cost = 0
 	
 func _increase():
-	if quantity < max_value:
-		quantity += 1
+	var temp_quantity:int = quantity
+	var plus:int = 1 if not Input.is_action_pressed("modifier") else 10
+	quantity = min(quantity + plus, max_value)
+	if quantity != temp_quantity: # If quantity changed by this
 		update_label()
 
 func _decrease():
-	if quantity > min_value:
-		quantity -= 1
+	var temp_quantity:int = quantity
+	var minus:int = 1 if not Input.is_action_pressed("modifier") else 10
+	quantity = max(quantity - minus, min_value)
+	if quantity != temp_quantity: # If quantity changed by this
 		update_label()
-
+		
+func _changed(value: float):
+	if quantity != value:
+		quantity = clamp(value, min_value, max_value)
+		update_label()
+	
 func update_label():
-	number_label.text = str(quantity)
+	number_label.value = quantity
 	update_cost_label()
 
 func update_cost_label():
