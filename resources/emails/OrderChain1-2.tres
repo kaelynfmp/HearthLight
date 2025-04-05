@@ -1,17 +1,16 @@
-[gd_resource type="Resource" script_class="Email" load_steps=8 format=3 uid="uid://c4i1yak8kun2o"]
+[gd_resource type="Resource" script_class="Email" load_steps=7 format=3 uid="uid://c4i1yak8kun2o"]
 
 [ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="1_6nl5c"]
 [ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_hsmrq"]
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_tldp1"]
-[ext_resource type="Resource" uid="uid://d2khmgxs20bw2" path="res://resources/gadgets/Advanced Loom.tres" id="1_xvqib"]
 [ext_resource type="Resource" uid="uid://ilvjcg3gth70" path="res://resources/emails/OrderChain1-1Success.tres" id="3_hsmrq"]
 [ext_resource type="Resource" uid="uid://ddiii5ep5hs4p" path="res://resources/emails/GeneratorTutorialComplete.tres" id="5_1l2p1"]
 
 [sub_resource type="Resource" id="Resource_1l2p1"]
 script = ExtResource("1_hsmrq")
 order_id = 0
-given_items = Array[Resource]([ExtResource("1_xvqib")])
-given_quantities = Array[int]([1])
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
 given_currency = 0
 required_items = Array[Resource]([ExtResource("1_6nl5c")])
 required_quantities = Array[int]([25])
@@ -21,7 +20,7 @@ minute = 0
 currency_reward = 250
 rewards = Array[Resource]([])
 rewards_quantities = Array[int]([])
-unlocks = Array[Resource]([ExtResource("1_xvqib")])
+unlocks = Array[Resource]([])
 
 [resource]
 resource_name = "OrderChain1-2"
@@ -37,7 +36,7 @@ hour = 0
 minute = 0
 is_read = false
 attached_order = SubResource("Resource_1l2p1")
-tutorial = true
+tutorial = false
 lore_only = false
 has_start_time = false
 failable = true
