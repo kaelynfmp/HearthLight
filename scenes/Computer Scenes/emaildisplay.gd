@@ -50,7 +50,7 @@ func set_email(new_email: Email):
 	blurb_label.finished.connect(_finished.bind(email.contents.split("\n")[0], blurb_label))
 	
 	sender_dropdown.finished.connect(_finished.bind(email.sender, sender_dropdown))
-	email_dropdown.finished.connect(_funished.bind(email.email, email_dropdown))
+	email_dropdown.finished.connect(_finished.bind(email.email, email_dropdown))
 	subject_dropdown.finished.connect(_finished.bind(email.subject, subject_dropdown))
 	
 	content.text = email.contents
