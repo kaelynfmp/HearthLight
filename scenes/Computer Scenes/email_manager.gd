@@ -215,6 +215,7 @@ func display_email_button(email: Email):
 	if email.attached_order == null:
 		fulfill_texture.visible = true
 		fulfill_texture.find_child("Fulfill").text = "Archive"
+		fulfill_button.pressed.connect(func(): fulfill_order(email))
 	if email.attached_order != null and email.attached_order.responded and email.attached_order.is_accepted and not email.attached_order.is_completed:
 		fulfill_texture.visible = true
 		accept_button.visible = false
@@ -287,6 +288,7 @@ func order_reject(email: Email, accept_button: Button = null, reject_button: But
 func fulfill_order(email: Email):
 	if email.attached_order == null:
 		change_email_category(email, "archive")
+		display_category_emails(current_category)
 	else:
 		if OrderManager.fulfill_order(email.attached_order):
 			email.is_read = false
@@ -318,7 +320,7 @@ func get_emails_in_category(category: String):
 
 func add_valid_lore_emails():
 	for email in all_lore_emails:
-		if email.check_valid() and email not in categorized_emails["main"]:
+		if email.check_valid() and email not in categorized_emails["main"] and not email.archived:
 			categorized_emails["main"].insert(0,email)
 			display_category_emails(current_category)
 

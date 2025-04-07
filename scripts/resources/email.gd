@@ -37,16 +37,16 @@ func check_valid() -> bool:
 	if has_start_time and !GameManager.is_after_date(day, hour, minute):
 		# If it has a start time, and that start time hasn't been met
 		return false
-	if !prerequisite_emails.all(func(email: Email): return (email.attached_order and email.attached_order.is_completed) or (!email.attached_order and email.is_read)):
+	if !prerequisite_emails.all(func(_email: Email): return (_email.attached_order and _email.attached_order.is_completed) or (!_email.attached_order and _email.is_read)):
 		# Prereq not met
 		# Prerequisite condition not met, some of the prereq emails are not archived. Checks the archive instead
 		# of completed_order_emails, because the pre-requisite could theoretically be a tutorial or lore email
 		return false
-	if !prereqs_must_fail and !prerequisite_emails.filter(func(email: Email): return failable and failed).is_empty():
+	if !prereqs_must_fail and !prerequisite_emails.filter(func(_email: Email): return failable and failed).is_empty():
 		# not a failure email AND failed prereq emails list is NOT EMPTY
 		# aka not a failure email and prereqs have been failed
 		return false
-	if prereqs_must_fail and prerequisite_emails.filter(func(email: Email): return failable and failed).is_empty():
+	if prereqs_must_fail and prerequisite_emails.filter(func(_email: Email): return failable and failed).is_empty():
 		# failure email and prereqs are not failed (if they exist)
 		return false
 	
