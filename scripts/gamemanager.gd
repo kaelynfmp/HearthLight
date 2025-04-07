@@ -74,7 +74,8 @@ var day_hours: int  = 18
 var time_scale: int = 480 # 1 irl second is 480 game seconds for 2 minutes/day, 16h day
 var time_scaled_seconds: int
 var time_difference
-var continue_clock_in_computer = 22
+var continue_clock_in_computer: int = 5000
+var time_final: bool
 var sleeping: bool
 var sleeping_time
 var sleep_start
@@ -189,21 +190,21 @@ func _process(_delta: float) -> void:
 					
 func _physics_process(_delta: float) -> void:
 	# time tracking
-	if !pause and !in_computer or (!pause and in_computer and game_time["hour"] >= continue_clock_in_computer) or (in_computer and game_time["hour"] == start_time and game_time["minute"] == 0):
+	milliseconds_elapsed = active_time
+	seconds_elapsed = milliseconds_elapsed / 1000
+	time_scaled_seconds = seconds_elapsed*time_scale
+	var less_rounded_seconds:int = int(milliseconds_elapsed / 1000.0 * time_scale)
+	time_final = less_rounded_seconds >= max_time_seconds - continue_clock_in_computer # If it is time to start ticking and playing the audio
+	if !pause and !in_computer or (!pause and in_computer and time_final) or (in_computer and game_time["hour"] == start_time and game_time["minute"] == 0):
 		current_time = Time.get_ticks_msec()
 		time_difference = current_time - start_time
 		start_time = Time.get_ticks_msec()
 		if !sleeping:
 			active_time += time_difference
-
-		milliseconds_elapsed = active_time
-		seconds_elapsed = milliseconds_elapsed / 1000
-		time_scaled_seconds = seconds_elapsed*time_scale
-		var less_rounded_seconds:int = int(milliseconds_elapsed / 1000.0 * time_scale)
 	
 		if !sleeping:
 			update_time(time_scaled_seconds)
-			if (less_rounded_seconds >= max_time_seconds - 5000):
+			if (time_final):
 				if not day_end_sound.playing:
 					day_end_sound.play()
 		elif sleeping: # TODO: whatever animations, etc
