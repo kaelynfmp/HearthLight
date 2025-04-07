@@ -9,6 +9,7 @@ signal update_items
 signal take_cursor(Slot)
 signal debug_mode_change
 signal gadget_rotated(direction: int)
+signal awaken
 
 @onready var computer_gadget:Gadget = load("res://resources/gadgets/computer.tres")
 
@@ -59,6 +60,11 @@ var item_strings:Array[String]
 var currency: int = 20
 signal currency_updated(new_amount)
 
+var starting_hour: int = 8
+var last_hour: int = 10
+var hours: int = last_hour - starting_hour
+var max_time_seconds: int = hours * 3600
+var max_time: int = max_time_seconds * 1000
 var start_time: int
 var current_time: int
 var active_time: int = 0 # time spent with the time moving, aka out of pause/computer, PER DAY, resets every day
@@ -181,7 +187,7 @@ func _process(_delta: float) -> void:
 					blur = false
 					is_placing_gadget = true
 					
-	
+func _physics_process(_delta: float) -> void:
 	# time tracking
 	if !pause and !in_computer or (!pause and in_computer and game_time["hour"] >= continue_clock_in_computer) or (in_computer and game_time["hour"] == 8 and game_time["minute"] == 0):
 		current_time = Time.get_ticks_msec()
@@ -189,13 +195,16 @@ func _process(_delta: float) -> void:
 		start_time = Time.get_ticks_msec()
 		if !sleeping:
 			active_time += time_difference
-		
+
 		milliseconds_elapsed = active_time
 		seconds_elapsed = milliseconds_elapsed / 1000
 		time_scaled_seconds = seconds_elapsed*time_scale
 		
 		if !sleeping:
 			update_time(time_scaled_seconds)
+			if (time_scaled_seconds >= max_time_seconds - 5250):
+				if not day_end_sound.playing:
+					day_end_sound.play()
 		elif sleeping: # TODO: whatever animations, etc
 			#await get_tree().create_timer(3).timeout
 			wake_up()
@@ -405,17 +414,15 @@ func navigate_to_botsy():
 
 func update_time(in_game_seconds):
 	#print("Game Seconds: %s" % in_game_seconds)	
-	game_time["hour"] = int(in_game_seconds / 3600) + 8
+	game_time["hour"] = int(in_game_seconds / 3600) + starting_hour
 	game_time["minute"] = int((in_game_seconds % 3600) / 60)
 	game_time["second"] = int(in_game_seconds % 60)
 	
 	# count days
-	if (game_time["hour"] == 22 and game_time["minute"] >= 44):
-		if not day_end_sound.playing:
-			day_end_sound.play()
-	if (game_time["hour"] == 24): 
+	if (game_time["hour"] == last_hour): 
+		print(in_game_seconds * 1000)
 		game_time["day"] += 1
-		game_time["hour"] = 8
+		game_time["hour"] = starting_hour
 		game_time["minute"] = 0
 		game_time["second"] = 0
 		active_time=0
@@ -468,10 +475,11 @@ func go_sleep():
 func wake_up():
 	sleep_end = Time.get_ticks_msec()
 	sleeping_time = (sleep_end - sleep_start) / 1000
+	awaken.emit()
 	#print(sleeping_time)
-	if sleeping_time >= 5:
+	if sleeping_time >= 4:
 		if not day_start_sound.playing:
 			day_start_sound.play()
-	if sleeping_time >= 9:
+	if sleeping_time >= 8:
 		sleeping = false
 		print("waking up...")

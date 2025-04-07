@@ -1,47 +1,55 @@
-[gd_scene load_steps=32 format=4 uid="uid://gfvpt16hdue1"]
+[gd_scene load_steps=55 format=4 uid="uid://gfvpt16hdue1"]
 
 [ext_resource type="Shader" uid="uid://7r383w0xu0ql" path="res://scripts/shaders/rain.gdshader" id="1_1f3ag"]
+[ext_resource type="Texture2D" uid="uid://cvhgtu8uxcmcm" path="res://resources/sprites/backgrounds/backgroundDay/layer0.png" id="1_2cm04"]
+[ext_resource type="Script" uid="uid://dbabccdi05x6r" path="res://scripts/environment/backgrounds.gd" id="1_7r6do"]
 [ext_resource type="TileSet" uid="uid://r7x82rdaw80h" path="res://resources/tilesets/room.tres" id="1_lwtf6"]
 [ext_resource type="Script" uid="uid://cm5vsm77un2s3" path="res://scripts/environment/tile_layers.gd" id="1_suw4i"]
+[ext_resource type="PackedScene" uid="uid://fbvmqkd4iark" path="res://scenes/background.tscn" id="2_2ftkj"]
+[ext_resource type="Texture2D" uid="uid://b2jmklfd7b0v2" path="res://resources/sprites/backgrounds/backgroundDay/layer1.png" id="2_bwmvn"]
 [ext_resource type="Texture2D" uid="uid://m1v51t3xgjie" path="res://resources/sprites/gridloop.png" id="2_eajwq"]
+[ext_resource type="Texture2D" uid="uid://cvmxqd0kvgfl6" path="res://resources/sprites/backgrounds/backgroundTransition2/layer0.png" id="3_11at7"]
 [ext_resource type="PackedScene" uid="uid://b353v4ogg13io" path="res://scenes/character.tscn" id="3_aubfo"]
+[ext_resource type="Texture2D" uid="uid://l8ogan2bm25m" path="res://resources/sprites/backgrounds/backgroundDay/layer2.png" id="3_qwukm"]
+[ext_resource type="Texture2D" uid="uid://chdgy2uaxtco3" path="res://resources/sprites/backgrounds/backgroundDay/layer3.png" id="4_frp7b"]
+[ext_resource type="Texture2D" uid="uid://b10lp6tgt22td" path="res://resources/sprites/backgrounds/backgroundTransition2/layer1.png" id="4_gmm1g"]
 [ext_resource type="PackedScene" uid="uid://ooc6jx4dihku" path="res://scenes/marker.tscn" id="4_mnrrm"]
+[ext_resource type="Texture2D" uid="uid://cc5wayqu01jsg" path="res://resources/sprites/backgrounds/backgroundTransition2/layer2.png" id="5_rhbk5"]
+[ext_resource type="Texture2D" uid="uid://b60ggecy5nr2l" path="res://resources/sprites/backgrounds/backgroundDay/layer4.png" id="5_yo4w0"]
+[ext_resource type="Texture2D" uid="uid://bbdbelmlg2u78" path="res://resources/sprites/backgrounds/backgroundTransition2/layer3.png" id="6_jr8j8"]
+[ext_resource type="Texture2D" uid="uid://c2xoee6k4jqeo" path="res://resources/sprites/backgrounds/backgroundTransition2/layer4.png" id="7_d3vt8"]
+[ext_resource type="Texture2D" uid="uid://ovxprtg2h5ph" path="res://resources/sprites/backgrounds/backgroundTransition2/layer5.png" id="8_lxjld"]
 [ext_resource type="PackedScene" uid="uid://bpie3rt8qmyxr" path="res://scenes/hud.tscn" id="8_s1rlv"]
 [ext_resource type="AudioStream" uid="uid://dlo4sirbsogfv" path="res://resources/audio/Gadgets/c grinder.wav" id="9_a5qmg"]
-[ext_resource type="Shader" uid="uid://c1k7h37pvve4h" path="res://scripts/shaders/bg.gdshader" id="9_t227l"]
+[ext_resource type="Texture2D" uid="uid://dwsoqni3qdd6o" path="res://resources/sprites/backgrounds/backgroundSunset/layer0.png" id="9_pyvr3"]
 [ext_resource type="Script" uid="uid://cr8g2k7hdmqnq" path="res://scripts/audio/gadget_audio.gd" id="9_ybpoa"]
 [ext_resource type="AudioStream" uid="uid://bfh4c4fkoqlxs" path="res://resources/audio/Gadgets/c loom.wav" id="10_0tws2"]
+[ext_resource type="Texture2D" uid="uid://cvjeqxdafjdi2" path="res://resources/sprites/backgrounds/backgroundSunset/layer1.png" id="10_014nw"]
 [ext_resource type="AudioStream" uid="uid://cjx0wvt0iwlt6" path="res://resources/audio/Background Rain.mp3" id="10_qtoah"]
 [ext_resource type="AudioStream" uid="uid://d340885v7vk1g" path="res://resources/audio/Gadgets/e generator.wav" id="11_2ftkj"]
 [ext_resource type="AudioStream" uid="uid://bg77s7ef0pjwj" path="res://resources/audio/day start.wav" id="11_eom3m"]
+[ext_resource type="Texture2D" uid="uid://b8gspl54tk5sl" path="res://resources/sprites/backgrounds/backgroundSunset/layer2.png" id="11_ki8oc"]
 [ext_resource type="AudioStream" uid="uid://dmr2jtiyo3por" path="res://resources/audio/Gadgets/c generator.wav" id="12_0tws2"]
 [ext_resource type="Script" uid="uid://dqhdc3kooe8xm" path="res://scripts/audio/day_start.gd" id="12_23wr2"]
 [ext_resource type="AudioStream" uid="uid://dp8j80tndcqu3" path="res://resources/audio/Gadgets/c plant.wav" id="12_ny2il"]
 [ext_resource type="AudioStream" uid="uid://otmrxp1042tf" path="res://resources/audio/day end.wav" id="12_tk5fv"]
+[ext_resource type="Texture2D" uid="uid://khgp03noc0m4" path="res://resources/sprites/backgrounds/backgroundSunset/layer3.png" id="12_wy7hx"]
 [ext_resource type="AudioStream" uid="uid://5uqihcrhiet7" path="res://resources/audio/Gadgets/c sieve.wav" id="13_gjarb"]
+[ext_resource type="Texture2D" uid="uid://dxvupmog4cq2q" path="res://resources/sprites/backgrounds/backgroundSunset/layer4.png" id="13_gyv14"]
 [ext_resource type="Script" uid="uid://bdel4jeebw8i1" path="res://scripts/audio/day_end.gd" id="14_3j2fx"]
 [ext_resource type="AudioStream" uid="uid://b260ktwoh0hce" path="res://resources/audio/Gadgets/c stove.wav" id="14_5o3hq"]
+[ext_resource type="Texture2D" uid="uid://bcgf7s2m5yerx" path="res://resources/sprites/backgrounds/backgroundSunset/layer5.png" id="14_ehhah"]
 [ext_resource type="AudioStream" uid="uid://beuwdkk40xpxk" path="res://resources/audio/Gadgets/e grinder.wav" id="15_7r6do"]
+[ext_resource type="Texture2D" uid="uid://cr327wtng6k05" path="res://resources/sprites/backgrounds/backgroundTransition1/layer0.png" id="15_yrunl"]
 [ext_resource type="AudioStream" uid="uid://5ktktxn1eh7u" path="res://resources/audio/Gadgets/e loom.wav" id="16_1wmww"]
+[ext_resource type="Texture2D" uid="uid://crmrmrpt7sjfl" path="res://resources/sprites/backgrounds/backgroundTransition1/layer1.png" id="16_vwfcp"]
 [ext_resource type="AudioStream" uid="uid://dwjl06uyeata5" path="res://resources/audio/Gadgets/e plant.wav" id="17_ftego"]
+[ext_resource type="Texture2D" uid="uid://clxth7pqaonce" path="res://resources/sprites/backgrounds/backgroundTransition1/layer2.png" id="17_khtjq"]
 [ext_resource type="AudioStream" uid="uid://wbeqjl3s0yx7" path="res://resources/audio/Gadgets/e sieve.wav" id="18_3aavd"]
+[ext_resource type="Texture2D" uid="uid://dxqqcpd04b31v" path="res://resources/sprites/backgrounds/backgroundTransition1/layer3.png" id="18_a2pm4"]
 [ext_resource type="AudioStream" uid="uid://bkca86w1xoib3" path="res://resources/audio/Gadgets/e stove.wav" id="19_c4f3b"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4qjpb"]
-shader = ExtResource("9_t227l")
-shader_parameter/color = Color(0.024, 0.0256, 0.12, 1)
-shader_parameter/OCTAVES = 4
-shader_parameter/enable_pixelation = false
-shader_parameter/pixelation_amount = 999
-shader_parameter/fog_direction = Vector2(1, 1)
-shader_parameter/scroll_noise_tex = false
-shader_parameter/noise_scroll_direction = Vector2(1, 0)
-
-[sub_resource type="Gradient" id="Gradient_crfpw"]
-colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_f28ma"]
-gradient = SubResource("Gradient_crfpw")
+[ext_resource type="Texture2D" uid="uid://dx53tvy44tf7d" path="res://resources/sprites/backgrounds/backgroundTransition1/layer4.png" id="19_drrlj"]
+[ext_resource type="Texture2D" uid="uid://duaxdwah4406a" path="res://resources/sprites/backgrounds/backgroundTransition1/layer5.png" id="20_55ugc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4aq65"]
 shader = ExtResource("1_1f3ag")
@@ -56,6 +64,12 @@ shader_parameter/rain_color = Color(0.435, 0.5, 0.463167, 1)
 shader_parameter/base_rain_speed = 0.5
 shader_parameter/additional_rain_speed = 0.5
 shader_parameter/slant = 0.2
+
+[sub_resource type="Gradient" id="Gradient_crfpw"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f28ma"]
+gradient = SubResource("Gradient_crfpw")
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_qtoah"]
 stream_count = 12
@@ -86,12 +100,93 @@ stream_11/volume = -60.0
 
 [node name="Room" type="Node" groups=["world_gadgets", "world_items"]]
 
-[node name="Background" type="Sprite2D" parent="."]
-texture_filter = 1
-material = SubResource("ShaderMaterial_4qjpb")
-scale = Vector2(301.563, 207.721)
-texture = SubResource("GradientTexture2D_f28ma")
-metadata/_edit_lock_ = true
+[node name="Backgrounds" type="Node2D" parent="." node_paths=PackedStringArray("backgrounds")]
+position = Vector2(960, 540)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_7r6do")
+backgrounds = [NodePath("DayBackground"), NodePath("Transition1Background"), NodePath("SunsetBackground"), NodePath("Transition2Background"), NodePath("NightBackground")]
+
+[node name="NightBackground" parent="Backgrounds" instance=ExtResource("2_2ftkj")]
+
+[node name="Transition2Background" parent="Backgrounds" instance=ExtResource("2_2ftkj")]
+
+[node name="Sprite" parent="Backgrounds/Transition2Background/Layer 0" index="0"]
+texture = ExtResource("3_11at7")
+
+[node name="Sprite" parent="Backgrounds/Transition2Background/Layer 1" index="0"]
+texture = ExtResource("4_gmm1g")
+
+[node name="Sprite" parent="Backgrounds/Transition2Background/Layer 2" index="0"]
+texture = ExtResource("5_rhbk5")
+
+[node name="Sprite" parent="Backgrounds/Transition2Background/Layer 3" index="0"]
+texture = ExtResource("6_jr8j8")
+
+[node name="Sprite" parent="Backgrounds/Transition2Background/Layer 4" index="0"]
+texture = ExtResource("7_d3vt8")
+
+[node name="Sprite" parent="Backgrounds/Transition2Background/Layer 5" index="0"]
+texture = ExtResource("8_lxjld")
+
+[node name="SunsetBackground" parent="Backgrounds" instance=ExtResource("2_2ftkj")]
+
+[node name="Sprite" parent="Backgrounds/SunsetBackground/Layer 0" index="0"]
+texture = ExtResource("9_pyvr3")
+
+[node name="Sprite" parent="Backgrounds/SunsetBackground/Layer 1" index="0"]
+texture = ExtResource("10_014nw")
+
+[node name="Sprite" parent="Backgrounds/SunsetBackground/Layer 2" index="0"]
+texture = ExtResource("11_ki8oc")
+
+[node name="Sprite" parent="Backgrounds/SunsetBackground/Layer 3" index="0"]
+texture = ExtResource("12_wy7hx")
+
+[node name="Sprite" parent="Backgrounds/SunsetBackground/Layer 4" index="0"]
+texture = ExtResource("13_gyv14")
+
+[node name="Sprite" parent="Backgrounds/SunsetBackground/Layer 5" index="0"]
+texture = ExtResource("14_ehhah")
+
+[node name="Transition1Background" parent="Backgrounds" instance=ExtResource("2_2ftkj")]
+
+[node name="Sprite" parent="Backgrounds/Transition1Background/Layer 0" index="0"]
+texture = ExtResource("15_yrunl")
+
+[node name="Sprite" parent="Backgrounds/Transition1Background/Layer 1" index="0"]
+texture = ExtResource("16_vwfcp")
+
+[node name="Sprite" parent="Backgrounds/Transition1Background/Layer 2" index="0"]
+texture = ExtResource("17_khtjq")
+
+[node name="Sprite" parent="Backgrounds/Transition1Background/Layer 3" index="0"]
+texture = ExtResource("18_a2pm4")
+
+[node name="Sprite" parent="Backgrounds/Transition1Background/Layer 4" index="0"]
+texture = ExtResource("19_drrlj")
+
+[node name="Sprite" parent="Backgrounds/Transition1Background/Layer 5" index="0"]
+texture = ExtResource("20_55ugc")
+
+[node name="DayBackground" parent="Backgrounds" instance=ExtResource("2_2ftkj")]
+
+[node name="Sprite" parent="Backgrounds/DayBackground/Layer 0" index="0"]
+texture = ExtResource("1_2cm04")
+
+[node name="Sprite" parent="Backgrounds/DayBackground/Layer 1" index="0"]
+texture = ExtResource("2_bwmvn")
+
+[node name="Sprite" parent="Backgrounds/DayBackground/Layer 2" index="0"]
+texture = ExtResource("3_qwukm")
+
+[node name="Sprite" parent="Backgrounds/DayBackground/Layer 3" index="0"]
+texture = ExtResource("4_frp7b")
+
+[node name="Sprite" parent="Backgrounds/DayBackground/Layer 4" index="0"]
+texture = ExtResource("5_yo4w0")
+
+[node name="Layer 5" parent="Backgrounds/DayBackground" index="5"]
+visible = false
 
 [node name="Rain" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -258,3 +353,8 @@ attenuation = 1e-05
 script = ExtResource("14_3j2fx")
 
 [connection signal="finished" from="Audio/GadgetAudio" to="Audio/GadgetAudio" method="_on_finished"]
+
+[editable path="Backgrounds/Transition2Background"]
+[editable path="Backgrounds/SunsetBackground"]
+[editable path="Backgrounds/Transition1Background"]
+[editable path="Backgrounds/DayBackground"]
