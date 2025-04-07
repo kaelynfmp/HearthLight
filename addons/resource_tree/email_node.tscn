@@ -47,6 +47,7 @@ shadow_offset = Vector2(23, 4.835)
 
 [sub_resource type="SystemFont" id="SystemFont_52cx8"]
 font_names = PackedStringArray("Monospace")
+subpixel_positioning = 0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xmaaf"]
 
@@ -84,6 +85,7 @@ font_names = PackedStringArray("Monospace")
 
 [sub_resource type="SystemFont" id="SystemFont_bjt0m"]
 font_names = PackedStringArray("Monospace")
+subpixel_positioning = 0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v4qda"]
 
