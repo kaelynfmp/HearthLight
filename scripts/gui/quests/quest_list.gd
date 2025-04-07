@@ -13,6 +13,7 @@ func order_accepted(order:Order):
 	new_quest.order = order
 	add_child(new_quest)
 	order.completed.connect(order_completed.bind(new_quest))
+	order.removed.connect(order_completed.bind(new_quest))
 	
 func order_completed(quest:VBoxContainer):
 	remove_child(quest)

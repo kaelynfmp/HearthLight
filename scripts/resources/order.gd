@@ -5,6 +5,7 @@ extends Resource
 @export_category("Order Details")
 @export var order_id: int
 signal completed
+signal removed
 
 var is_completed: bool = false:
 	set(value):
