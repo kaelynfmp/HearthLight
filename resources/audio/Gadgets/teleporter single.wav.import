@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://tgo12aeivrf"
+path="res://.godot/imported/teleporter single.wav-eb8284d6a689168463d2ac50f45c9601.sample"
+
+[deps]
+
+source_file="res://resources/audio/Gadgets/teleporter single.wav"
+dest_files=["res://.godot/imported/teleporter single.wav-eb8284d6a689168463d2ac50f45c9601.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
