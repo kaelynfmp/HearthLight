@@ -7,6 +7,7 @@
 resource_name = "MiscOrder2Complete"
 script = ExtResource("1_ier6v")
 sender = "Clarence Smith"
+email = ""
 subject = "Your cooperation in this very legal endeavour is much appreciated"
 contents = "Hello again,
 
@@ -21,7 +22,7 @@ hour = 0
 minute = 0
 is_read = false
 tutorial = false
-lore_only = false
+lore_only = true
 has_start_time = false
 failable = false
 failed = false

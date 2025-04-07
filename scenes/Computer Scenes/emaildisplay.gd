@@ -40,7 +40,7 @@ func _process(_delta: float) -> void:
 			button_sprite.texture = button_sprite_read
 			top_bar.texture = top_bar_read
 	if fulfill_button.visible and GameManager.computer_visible and email != null and email.attached_order != null:
-		fulfill_button.disabled = !GameManager.player_inventory_has(email.attached_order.required_items, email.attached_order.required_quantities)
+		fulfill_button.disabled = not GameManager.is_debugging and !GameManager.player_inventory_has(email.attached_order.required_items, email.attached_order.required_quantities)
 
 func set_email(new_email: Email):
 	email = new_email

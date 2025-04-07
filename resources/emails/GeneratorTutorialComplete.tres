@@ -7,6 +7,7 @@
 resource_name = "GeneratorTutorialComplete"
 script = ExtResource("1_asf85")
 sender = "Ernest Hayden"
+email = ""
 subject = "A crisis averted. And so, a moment of peace"
 contents = "I am so terribly sorry,
 
@@ -27,7 +28,7 @@ hour = 0
 minute = 0
 is_read = false
 tutorial = false
-lore_only = false
+lore_only = true
 has_start_time = false
 failable = false
 failed = false

@@ -212,6 +212,9 @@ func display_email_button(email: Email):
 		if reject_button:
 			if !email.tutorial:
 				reject_button.pressed.connect(func(): order_reject(email, accept_button, reject_button))
+	if email.attached_order == null:
+		fulfill_texture.visible = true
+		fulfill_texture.find_child("Fulfill").text = "Archive"
 	if email.attached_order != null and email.attached_order.responded and email.attached_order.is_accepted and not email.attached_order.is_completed:
 		fulfill_texture.visible = true
 		accept_button.visible = false
@@ -282,16 +285,19 @@ func order_reject(email: Email, accept_button: Button = null, reject_button: But
 	remaining_order_emails.append(email) # readd back to remaining order emails to be reselected
 	
 func fulfill_order(email: Email):
-	if OrderManager.fulfill_order(email.attached_order):
-		email.is_read = false
+	if email.attached_order == null:
 		change_email_category(email, "archive")
-		display_category_emails(current_category)
-		if !email.tutorial and !email.bankruptcy and email not in all_lore_emails:
-			#print("adding to completed...")
-			completed_order_emails.append(email)
-		if email in remaining_order_emails:
-			#print("removing from remaining")
-			remaining_order_emails.erase(email)
+	else:
+		if OrderManager.fulfill_order(email.attached_order):
+			email.is_read = false
+			change_email_category(email, "archive")
+			display_category_emails(current_category)
+			if !email.tutorial and !email.bankruptcy and email not in all_lore_emails:
+				#print("adding to completed...")
+				completed_order_emails.append(email)
+			if email in remaining_order_emails:
+				#print("removing from remaining")
+				remaining_order_emails.erase(email)
 
 func check_email_failed(email: Email) -> bool:
 	if saved_day != GameManager.game_time["day"] and email.failable:

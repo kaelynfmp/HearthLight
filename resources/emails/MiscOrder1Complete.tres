@@ -7,6 +7,7 @@
 resource_name = "MiscOrder1Complete"
 script = ExtResource("1_p3mlr")
 sender = "Blade Fox"
+email = ""
 subject = "hey thanks a bunch"
 contents = "Thanks for the [res=Metal]metal[/res]. It really means a lot that you were willing to help me out.
 
@@ -18,7 +19,7 @@ hour = 0
 minute = 0
 is_read = false
 tutorial = false
-lore_only = false
+lore_only = true
 has_start_time = false
 failable = false
 failed = false

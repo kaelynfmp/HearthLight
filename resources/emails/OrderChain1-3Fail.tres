@@ -7,6 +7,7 @@
 resource_name = "OrderChain1-3Fail"
 script = ExtResource("1_afpqj")
 sender = "Vivian Brisket"
+email = ""
 subject = "Wow, way to really pull through for us there :|"
 contents = "Seriously?"
 category = ""
@@ -16,7 +17,7 @@ hour = 0
 minute = 0
 is_read = false
 tutorial = false
-lore_only = false
+lore_only = true
 has_start_time = false
 failable = false
 failed = false
