@@ -1,0 +1,64 @@
+[gd_resource type="Resource" script_class="Gadget" load_steps=10 format=3 uid="uid://dm264rb6ttr13"]
+
+[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_wi0xr"]
+[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_llmds"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_r3bhi"]
+[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_l2yjn"]
+[ext_resource type="Texture2D" uid="uid://5bk3beumimel" path="res://resources/sprites/generatorUniversal.png" id="4_llmds"]
+
+[sub_resource type="Resource" id="Resource_ebhqi"]
+script = ExtResource("2_llmds")
+locked = true
+item_filter = Array[ExtResource("3_r3bhi")]([])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_1mchb"]
+script = ExtResource("1_wi0xr")
+slots = Array[ExtResource("2_llmds")]([SubResource("Resource_ebhqi")])
+
+[sub_resource type="Resource" id="Resource_r3bhi"]
+script = ExtResource("3_r3bhi")
+texture = ExtResource("4_llmds")
+name = "Universal Generator"
+description = "This powers your whole room without consuming Coals."
+max_stack = 1
+price = 300
+metadata/_custom_type_script = "uid://by7jec2ew2vsl"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l2yjn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_llmds")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_llmds")
+}],
+"loop": true,
+"name": &"se",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("4_l2yjn")
+sprite_frames = SubResource("SpriteFrames_l2yjn")
+sprite_offset = Vector2(0, 0)
+sprite_scale_factor = 1.0
+name = "Universal Generator"
+age = 0
+direction = 0
+description = "This powers your whole room without consuming Coals."
+item = SubResource("Resource_r3bhi")
+inventory = SubResource("Resource_1mchb")
+produces = true
+inputs = 1
+outputs = 1
+process_time = 1.0
+sound_string = ""
+metadata/_custom_type_script = "uid://diu2pkk76wyyy"

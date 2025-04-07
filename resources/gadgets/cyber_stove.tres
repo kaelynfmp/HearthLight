@@ -1,0 +1,64 @@
+[gd_resource type="Resource" script_class="Gadget" load_steps=10 format=3 uid="uid://ceqny8kv6mlda"]
+
+[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_8ulmx"]
+[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_0og7f"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_ktapf"]
+[ext_resource type="Texture2D" uid="uid://bw7krreqoccwk" path="res://resources/sprites/stoveCyber.png" id="4_0og7f"]
+[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_qvnt0"]
+
+[sub_resource type="Resource" id="Resource_ovf07"]
+script = ExtResource("2_0og7f")
+locked = true
+item_filter = Array[ExtResource("3_ktapf")]([])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_sty8k"]
+script = ExtResource("1_8ulmx")
+slots = Array[ExtResource("2_0og7f")]([SubResource("Resource_ovf07")])
+
+[sub_resource type="Resource" id="Resource_ktapf"]
+script = ExtResource("3_ktapf")
+texture = ExtResource("4_0og7f")
+name = ""
+description = "Cyber Stove"
+max_stack = 1
+price = 300
+metadata/_custom_type_script = "uid://by7jec2ew2vsl"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qvnt0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_0og7f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_0og7f")
+}],
+"loop": true,
+"name": &"se",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("4_qvnt0")
+sprite_frames = SubResource("SpriteFrames_qvnt0")
+sprite_offset = Vector2(0, 0)
+sprite_scale_factor = 1.0
+name = ""
+age = 3
+direction = 0
+description = "Cyber Stove"
+item = SubResource("Resource_ktapf")
+inventory = SubResource("Resource_sty8k")
+produces = true
+inputs = 1
+outputs = 1
+process_time = 1.0
+sound_string = ""
+metadata/_custom_type_script = "uid://diu2pkk76wyyy"
