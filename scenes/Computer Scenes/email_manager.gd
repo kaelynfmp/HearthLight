@@ -271,6 +271,8 @@ func order_accept(email: Email, accept_button: Button = null, reject_button: But
 		# Find_child wasn't working
 		set_current_inbox_button(inbox_list_container.get_children()[inbox_list_container.get_children().find_custom(\
 			func(child): return child.name == "OrdersButton")])
+	else:
+		display_category_emails(current_category)
 					
 	# TODO: save order accept day, check this later
 	
