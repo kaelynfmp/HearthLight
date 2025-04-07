@@ -214,7 +214,8 @@ func display_email_button(email: Email):
 				reject_button.pressed.connect(func(): order_reject(email, accept_button, reject_button))
 	if email.attached_order == null:
 		fulfill_texture.visible = true
-		fulfill_texture.find_child("Fulfill").text = "Archive"
+		fulfill_button.button_sound = AudioManager.BUTTON.CLICK
+		fulfill_button.text = "Archive"
 		fulfill_button.pressed.connect(func(): fulfill_order(email))
 	if email.attached_order != null and email.attached_order.responded and email.attached_order.is_accepted and not email.attached_order.is_completed:
 		fulfill_texture.visible = true
