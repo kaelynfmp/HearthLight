@@ -4,9 +4,9 @@ var emails: Array = []
 var categorized_emails: Dictionary = GameManager.categorized_emails
 var current_category: String = "main"
 var current_inbox_button: Button = null
-@onready var email_list_container: Node = $ScrollContainer/EmailsListContainer
+@onready var email_list_container: Node = $EmailScrollContainer/EmailsListContainer
+@onready var email_scroll_container: Node = $EmailScrollContainer
 @export var email_button_scene: PackedScene
-
 @onready var inbox_list_container: Node = $InboxButtonsList
 @export var inbox_button_scene: PackedScene
 @export var email_folder : String = "res://resources/emails/"
@@ -24,6 +24,7 @@ var saved_day : int = 1
 var bankruptcy_copy: Email
 var last_bankruptcy_sent: int = 0
 var default_button_texture:Texture
+var currently_open_emails = []
 
 func _ready():
 	load_emails()
@@ -55,22 +56,26 @@ func _process(delta: float) -> void:
 	# upon valid, insert lore email
 	add_valid_lore_emails()
 	
+	
+	for email in categorized_emails[current_category]:
+		if email.check_valid() and !email.displayed:
+			display_email_button(email)
 	# check for bankruptcy and send email with money if so
 	# only works once per day, only sends if bankrupt and you dont have a bankruptcy email in your inbox
 	try_send_bankruptcy()
 	
 	# new randomly selected orders every day
 	if saved_day != GameManager.game_time["day"]: # new day
+		#add_valid_emails(2)
 		#print("selecting 2 new emails")
 		var selected_new_emails = select_random_emails()
+		print(selected_new_emails)
 		if len(selected_new_emails)>0:
 			remaining_order_emails.erase(selected_new_emails)
 			for eachemail in selected_new_emails:
-				print("inserting...", eachemail.sender)
+				#print("inserting...", eachemail.sender)
 				#print("appended email", eachemail)
-		
-
-		
+				categorized_emails["main"].insert(0,eachemail)
 		# check due dates BEFORE updating saved day
 		for eachemail in categorized_emails["orders"]:
 			if check_email_failed(eachemail):
@@ -127,13 +132,17 @@ func set_current_inbox_button(button: Button):
 		
 	# Calling deferred here ensures that the main texture has been set first
 	current_inbox_button.sprite.call_deferred("set_texture", default_button_texture)
-	
+
 func display_category_emails(category: String):
 	# clear current email list
+	if category != current_category:
+		currently_open_emails = []
 	for child in email_list_container.get_children():
 		child.queue_free()
+	#print("        \n ------- \n")
 	for email in categorized_emails[category]:
 		if email.check_valid():
+			#print(email.sender, " is valid and will display now")
 			display_email_button(email)
 		elif category == "archive":
 			display_email_button(email)
@@ -162,7 +171,6 @@ func change_email_category(email: Email, new_category: String):
 		# change email's category, display in new inbox
 		email.category = new_category
 		categorized_emails[new_category].insert(0,email)
-	
 	if new_category == "archive":
 		email.is_read = true
 		email.archived = true
@@ -178,16 +186,17 @@ func is_email_time_reached(email: Email) -> bool:
 
 # adds email to UI as a button
 func display_email_button(email: Email):
+	email.displayed = true
 	var email_button = email_button_scene.instantiate()
 	email_button.set_email(email)
 	var panel = email_button.get_node("Panel")
-	panel.visible = false
+	#panel.visible = false
 	email_button.pressed.connect(func(): show_email_details(email, email_button))  #calls function on click
-	email_list_container.add_child(email_button) 
-	
+	if email in currently_open_emails:
+		show_email_details(email,email_button)
+	email_list_container.add_child(email_button)
 	# make email read
 	#is_read_color(email, email_button)
-	
 	var accept_button = email_button.find_child("Accept")
 	var reject_button = email_button.find_child("Decline")
 	var fulfill_texture = email_button.find_child("FulfillTexture")
@@ -199,24 +208,24 @@ func display_email_button(email: Email):
 	# order accept/reject
 	if email.attached_order != null and !email.attached_order.responded:
 		if accept_button:
-			accept_button.pressed.connect(func(): order_accept(email))
+			accept_button.pressed.connect(func(): order_accept(email, accept_button, reject_button))
 		if reject_button:
 			if !email.tutorial:
-				reject_button.pressed.connect(func(): order_reject(email))
-	elif email.attached_order != null and email.attached_order.responded and email.attached_order.is_accepted and not email.attached_order.is_completed:
+				reject_button.pressed.connect(func(): order_reject(email, accept_button, reject_button))
+	if email.attached_order != null and email.attached_order.responded and email.attached_order.is_accepted and not email.attached_order.is_completed:
 		fulfill_texture.visible = true
 		accept_button.visible = false
 		reject_button.visible = false
 		fulfill_button.pressed.connect(func(): fulfill_order(email))
 		#change_email_category(email, "orders")
 		#display_category_emails(current_category)
-	elif email.attached_order != null and email.attached_order.is_completed:
+	if email.attached_order != null and email.attached_order.is_completed:
 		change_email_category(email, "archive")
 		#display_category_emails(current_category)
 		fulfill_texture.visible = false
 		accept_button.visible = false
 		reject_button.visible = false
-	else: #  no order or order has been responded to
+	if !email.attached_order or email.attached_order.responded: #  no order or order has been responded to
 		accept_button.visible = false
 		reject_button.visible = false
 		# if email.attached_order.responded:
@@ -230,13 +239,18 @@ func show_email_details(email: Email, email_button: Button):
 	#is_read_color(email, email_button)
 	panel.visible = !panel.visible
 	if panel.visible:
+		currently_open_emails.append(email)
 		email_button.custom_minimum_size = Vector2(1920,1019)
 	else:
+		currently_open_emails.erase(email)
 		email_button.custom_minimum_size = Vector2(1920,300)
 	
 	
-func order_accept(email: Email):
+func order_accept(email: Email, accept_button: Button = null, reject_button: Button = null):
 	var order = email.attached_order
+	if accept_button and reject_button:
+		accept_button.visible = false
+		reject_button.visible = false
 	if !email.bankruptcy:
 		OrderManager.accept_order(order)
 		OrderManager.give_player_starting_items(order)
@@ -256,8 +270,11 @@ func order_accept(email: Email):
 	# TODO: save order accept day, check this later
 	
 	
-func order_reject(email: Email):
+func order_reject(email: Email, accept_button: Button = null, reject_button: Button = null):
 	var order = email.attached_order
+	if accept_button and reject_button:
+		accept_button.visible = false
+		reject_button.visible = false
 	OrderManager.reject_order(order)
 	# move inbox
 	change_email_category(email, "archive")
@@ -270,10 +287,10 @@ func fulfill_order(email: Email):
 		change_email_category(email, "archive")
 		display_category_emails(current_category)
 		if !email.tutorial and !email.bankruptcy and email not in all_lore_emails:
-			print("adding to completed...")
+			#print("adding to completed...")
 			completed_order_emails.append(email)
 		if email in remaining_order_emails:
-			print("removing from remaining")
+			#print("removing from remaining")
 			remaining_order_emails.erase(email)
 
 func check_email_failed(email: Email) -> bool:
@@ -297,11 +314,23 @@ func add_valid_lore_emails():
 	for email in all_lore_emails:
 		if email.check_valid() and email not in categorized_emails["main"]:
 			categorized_emails["main"].insert(0,email)
+			display_category_emails(current_category)
+
+#func add_valid_emails(qty: int):
+	#var i = 0
+	#for email in remaining_order_emails:
+		#while i<qty:
+			#if email.check_chain() and email.check_valid() and email not in categorized_emails["main"] and email not in categorized_emails["orders"]:
+				#categorized_emails["main"].insert(0,email)
+				#display_category_emails(current_category)
+			#i+=1
 
 func add_valid_tutorial_emails():
+	
 	for email in all_tutorial_emails:
-		if email.check_chain() and email not in categorized_emails["main"] and email not in categorized_emails["orders"] and email not in categorized_emails["archive"]:
+		if email.check_chain() and email.check_valid() and email not in categorized_emails["main"] and email not in categorized_emails["orders"] and email not in categorized_emails["archive"]:
 			categorized_emails["main"].insert(0,email)
+			display_category_emails(current_category)
 
 func try_send_bankruptcy():
 	if last_bankruptcy_sent != GameManager.game_time["day"]: 
@@ -312,7 +341,7 @@ func try_send_bankruptcy():
 			if !email.attached_order and !email.is_read:
 				tutorial_complete = false
 				
-			
+		
 		#print(GameManager.currency < 10, !bankruptcy_email.check_chain(), categorized_emails["main"].filter(func(email: Email): return email.bankruptcy).is_empty())
 		if GameManager.currency <= 10 and !tutorial_complete and categorized_emails["main"].filter(func(email: Email): return email.bankruptcy).is_empty():
 			# tutorial not done yet, send tutorial bankruptcy, not encountered rocks yet

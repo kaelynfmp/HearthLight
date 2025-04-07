@@ -25,7 +25,7 @@ var category: String = "main"
 @export var failed: bool
 @export var prereqs_must_fail: bool # This is for conditions where an email only appears after something /fails/, something Everett requested
 @export var bankruptcy: bool = false
-
+var displayed: bool = false
 ## Whether or not the email was archived, only used visually so we don't have to navigate the list every frame
 var archived: bool = false
 

@@ -201,7 +201,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_gobfx")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Sites/Emails"]
+[node name="EmailScrollContainer" type="ScrollContainer" parent="Sites/Emails"]
 layout_mode = 0
 offset_left = 431.0
 offset_top = 185.0
@@ -213,13 +213,13 @@ horizontal_scroll_mode = 0
 script = ExtResource("5_wwlms")
 order_class = ExtResource("6_luoch")
 
-[node name="EmailsListContainer" type="VBoxContainer" parent="Sites/Emails/ScrollContainer"]
+[node name="EmailsListContainer" type="VBoxContainer" parent="Sites/Emails/EmailScrollContainer"]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="EmailButton" parent="Sites/Emails/ScrollContainer/EmailsListContainer" instance=ExtResource("1_ip337")]
+[node name="EmailButton" parent="Sites/Emails/EmailScrollContainer/EmailsListContainer" instance=ExtResource("1_ip337")]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Sites/Emails"]
