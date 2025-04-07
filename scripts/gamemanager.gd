@@ -61,7 +61,7 @@ var currency: int = 20
 signal currency_updated(new_amount)
 
 var starting_hour: int = 8
-var last_hour: int = 10
+var last_hour: int = 24
 var hours: int = last_hour - starting_hour
 var max_time_seconds: int = hours * 3600
 var max_time: int = max_time_seconds * 1000
@@ -189,7 +189,7 @@ func _process(_delta: float) -> void:
 					
 func _physics_process(_delta: float) -> void:
 	# time tracking
-	if !pause and !in_computer or (!pause and in_computer and game_time["hour"] >= continue_clock_in_computer) or (in_computer and game_time["hour"] == 8 and game_time["minute"] == 0):
+	if !pause and !in_computer or (!pause and in_computer and game_time["hour"] >= continue_clock_in_computer) or (in_computer and game_time["hour"] == start_time and game_time["minute"] == 0):
 		current_time = Time.get_ticks_msec()
 		time_difference = current_time - start_time
 		start_time = Time.get_ticks_msec()
@@ -199,10 +199,11 @@ func _physics_process(_delta: float) -> void:
 		milliseconds_elapsed = active_time
 		seconds_elapsed = milliseconds_elapsed / 1000
 		time_scaled_seconds = seconds_elapsed*time_scale
-		
+		var less_rounded_seconds:int = int(milliseconds_elapsed / 1000.0 * time_scale)
+	
 		if !sleeping:
 			update_time(time_scaled_seconds)
-			if (time_scaled_seconds >= max_time_seconds - 5250):
+			if (less_rounded_seconds >= max_time_seconds - 5000):
 				if not day_end_sound.playing:
 					day_end_sound.play()
 		elif sleeping: # TODO: whatever animations, etc
@@ -419,14 +420,7 @@ func update_time(in_game_seconds):
 	game_time["second"] = int(in_game_seconds % 60)
 	
 	# count days
-	if (game_time["hour"] == last_hour): 
-		print(in_game_seconds * 1000)
-		game_time["day"] += 1
-		game_time["hour"] = starting_hour
-		game_time["minute"] = 0
-		game_time["second"] = 0
-		active_time=0
-		seconds_elapsed = 0
+	if (game_time["hour"] == last_hour):
 		go_sleep()
 	
 
@@ -474,12 +468,18 @@ func go_sleep():
 	#TODO: Sleep behavior
 func wake_up():
 	sleep_end = Time.get_ticks_msec()
-	sleeping_time = (sleep_end - sleep_start) / 1000
+	sleeping_time = sleep_end - sleep_start
 	awaken.emit()
+	active_time=0
+	seconds_elapsed = 0
 	#print(sleeping_time)
-	if sleeping_time >= 4:
+	if sleeping_time >= 2300:
 		if not day_start_sound.playing:
 			day_start_sound.play()
-	if sleeping_time >= 8:
+	if sleeping_time >= 5000:
+		game_time["day"] += 1
+		game_time["hour"] = starting_hour
+		game_time["minute"] = 0
+		game_time["second"] = 0
 		sleeping = false
 		print("waking up...")
