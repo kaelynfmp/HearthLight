@@ -27,7 +27,7 @@ func _process(_delta: float) -> void:
 		day_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 		time_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	
-	if game_time["hour"] > GameManager.continue_clock_in_computer:
+	if GameManager.time_final:
 		if modulate.a >0.5:
 			modulate.a -= 0.005
 		elif modulate.a <= 0.5 and current_minute != game_time["minute"]:

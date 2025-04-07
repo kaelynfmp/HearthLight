@@ -127,7 +127,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			if AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
 				AudioManager.active_gadgets[gadget_stats.sound_string].erase(self)
-	if !disabled and !progressing or (!progressing and selected_recipe != null):
+	if !disabled and !progressing or (!progressing and selected_recipe != null) and not GameManager.sleeping:
 		if gadget_stats.name == "Conveyor Belt":
 			do_transport()
 		elif selected_recipe != null:
