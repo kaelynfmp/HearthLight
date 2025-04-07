@@ -7,6 +7,7 @@
 resource_name = "OrderChain1-2Fail"
 script = ExtResource("1_dr13x")
 sender = "Vivian Brisket"
+email = ""
 subject = ">:("
 contents = "I really could've used that fabric >:(. Now I'm gonna have to-
 yeah I'm not telling you that
@@ -19,7 +20,7 @@ hour = 0
 minute = 0
 is_read = false
 tutorial = false
-lore_only = false
+lore_only = true
 has_start_time = false
 failable = false
 failed = false

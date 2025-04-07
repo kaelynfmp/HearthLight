@@ -166,6 +166,11 @@ func _process(_delta: float) -> void:
 	elif Input.is_action_just_pressed("toggle_debug_mode"):
 		is_debugging = !is_debugging
 		debug_mode_change.emit()
+	
+	elif Input.is_action_just_pressed("day_progress"):
+		if GameManager.computer_visible:
+			change_computer_visibility()
+		update_time(max_time_seconds)
 		
 	elif Input.is_action_just_pressed("rotate_gadget"):
 		if GameManager.cursor != null:

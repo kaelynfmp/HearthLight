@@ -414,7 +414,7 @@ y = 1360
 script = ExtResource("1_qn33u")
 email = ExtResource("37_e1phy")
 x = 21760
-y = -80
+y = -100
 prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_02ir2")])
 required_item_nodes = Dictionary[Resource, int]({
 SubResource("Resource_s1gna"): 5
@@ -440,7 +440,7 @@ y = 3320
 [sub_resource type="Resource" id="Resource_7cegh"]
 script = ExtResource("1_qn33u")
 email = ExtResource("38_54i16")
-x = 21740
+x = 21760
 y = 1860
 prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_02ir2")])
 required_item_nodes = Dictionary[Resource, int]({
@@ -467,7 +467,7 @@ y = 5600
 [sub_resource type="Resource" id="Resource_jukpq"]
 script = ExtResource("1_qn33u")
 email = ExtResource("39_4b6dr")
-x = 21720
+x = 21760
 y = 3800
 prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_02ir2")])
 required_item_nodes = Dictionary[Resource, int]({

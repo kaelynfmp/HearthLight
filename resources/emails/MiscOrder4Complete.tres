@@ -7,6 +7,7 @@
 resource_name = "MiscOrder4Complete"
 script = ExtResource("1_kwsg0")
 sender = ""
+email = ""
 subject = ""
 contents = "Radical!
 
@@ -21,7 +22,7 @@ hour = 0
 minute = 0
 is_read = false
 tutorial = false
-lore_only = false
+lore_only = true
 has_start_time = false
 failable = false
 failed = false

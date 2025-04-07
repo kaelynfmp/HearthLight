@@ -7,6 +7,7 @@
 resource_name = "MiscOrder3Complete"
 script = ExtResource("1_87k2q")
 sender = "Martell R. Man"
+email = ""
 subject = "Thanks"
 contents = "I'd like to say thanks. Now, Greta's happy as can be, and I'm feeling goood. She always says I get a bit too uptight and anxious when I'm sober, and I kinda get it. I might not be able to be this mellow all the time, but if it's for the sake of Greta, then it's worth it. She's such a wonderful woman.
 
@@ -20,7 +21,7 @@ hour = 0
 minute = 0
 is_read = false
 tutorial = false
-lore_only = false
+lore_only = true
 has_start_time = false
 failable = false
 failed = false

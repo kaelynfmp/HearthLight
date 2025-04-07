@@ -43,7 +43,7 @@ func _ready():
 			
 		if email.tutorial:
 			if email.check_valid():
-				GameManager.categorized_emails["main"].insert(0,email)
+				categorized_emails["main"].insert(0,email)
 	add_valid_lore_emails()
 	display_category_emails(current_category) # default view to "main"
 
@@ -82,7 +82,7 @@ func _process(delta: float) -> void:
 				# TODO: send failure email?
 				change_email_category(eachemail,"archive")
 			
-		display_category_emails(current_category)
+		display_nearest_category(current_category)
 		saved_day = GameManager.game_time["day"]
 func select_random_emails():
 	# selects 2 random valid emails, or all of them if theres less than 2 valid ones
@@ -147,6 +147,9 @@ func display_category_emails(category: String):
 		elif category == "archive":
 			display_email_button(email)
 	current_category = category
+
+	set_current_inbox_button(inbox_list_container.get_children()[inbox_list_container.get_children().find_custom(\
+		func(child): return child.name == category.capitalize() + "Button")])
 	
 ## load all email resources
 func load_emails():
@@ -212,6 +215,11 @@ func display_email_button(email: Email):
 		if reject_button:
 			if !email.tutorial:
 				reject_button.pressed.connect(func(): order_reject(email, accept_button, reject_button))
+	if email.attached_order == null:
+		fulfill_texture.visible = true
+		fulfill_button.button_sound = AudioManager.BUTTON.CLICK
+		fulfill_button.text = "Archive"
+		fulfill_button.pressed.connect(func(): fulfill_order(email))
 	if email.attached_order != null and email.attached_order.responded and email.attached_order.is_accepted and not email.attached_order.is_completed:
 		fulfill_texture.visible = true
 		accept_button.visible = false
@@ -246,6 +254,16 @@ func show_email_details(email: Email, email_button: Button):
 		email_button.custom_minimum_size = Vector2(1920,300)
 	
 	
+func display_nearest_category(category: String):
+	if not categorized_emails[category].any(func(email: Email): return email.check_valid()):
+		# Find first category with stuff in it
+		var category_name:String = categorized_emails.keys()[categorized_emails.keys().find_custom(\
+			func(category_string: String): return categorized_emails[category_string].any(\
+				func(email: Email): return email.check_valid()))]
+		display_category_emails(category_name)
+	else:
+		display_category_emails(category)
+
 func order_accept(email: Email, accept_button: Button = null, reject_button: Button = null):
 	var order = email.attached_order
 	if accept_button and reject_button:
@@ -261,11 +279,7 @@ func order_accept(email: Email, accept_button: Button = null, reject_button: But
 		fulfill_order(email)
 		email.attached_order.is_accepted = true
 		change_email_category(email, "archive")
-	if GameManager.categorized_emails[current_category].filter(func(email: Email): return email.check_valid()).is_empty():
-		display_category_emails("orders")
-		# Find_child wasn't working
-		set_current_inbox_button(inbox_list_container.get_children()[inbox_list_container.get_children().find_custom(\
-			func(child): return child.name == "OrdersButton")])
+	display_nearest_category(current_category)
 					
 	# TODO: save order accept day, check this later
 	
@@ -278,24 +292,33 @@ func order_reject(email: Email, accept_button: Button = null, reject_button: But
 	OrderManager.reject_order(order)
 	# move inbox
 	change_email_category(email, "archive")
-	display_category_emails(current_category)
+	display_nearest_category(current_category)
 	remaining_order_emails.append(email) # readd back to remaining order emails to be reselected
 	
 func fulfill_order(email: Email):
-	if OrderManager.fulfill_order(email.attached_order):
-		email.is_read = false
+	if email.attached_order == null:
 		change_email_category(email, "archive")
-		display_category_emails(current_category)
-		if !email.tutorial and !email.bankruptcy and email not in all_lore_emails:
-			#print("adding to completed...")
-			completed_order_emails.append(email)
-		if email in remaining_order_emails:
-			#print("removing from remaining")
-			remaining_order_emails.erase(email)
+		display_nearest_category(current_category)
+	else:
+		if OrderManager.fulfill_order(email.attached_order):
+			email.is_read = false
+			change_email_category(email, "archive")
+			if !email.tutorial and !email.bankruptcy and email not in all_lore_emails:
+				#print("adding to completed...")
+				completed_order_emails.append(email)
+			if email in remaining_order_emails:
+				#print("removing from remaining")
+				remaining_order_emails.erase(email)
+			if email.tutorial:
+				# Immediately show the next emails, so we can go to main instead of archive
+				add_valid_tutorial_emails()
+				add_valid_lore_emails()
+			display_nearest_category(current_category)
 
 func check_email_failed(email: Email) -> bool:
 	if saved_day != GameManager.game_time["day"] and email.failable:
 		email.failed = true
+		email.attached_order.removed.emit()
 		order_reject(email)
 		#print("email failed")
 		remaining_order_emails.append(email)
@@ -312,7 +335,7 @@ func get_emails_in_category(category: String):
 
 func add_valid_lore_emails():
 	for email in all_lore_emails:
-		if email.check_valid() and email not in categorized_emails["main"]:
+		if email.check_valid() and email not in categorized_emails["main"] and not email.archived:
 			categorized_emails["main"].insert(0,email)
 			display_category_emails(current_category)
 

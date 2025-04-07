@@ -7,6 +7,7 @@
 resource_name = "OrderChain1-3Success"
 script = ExtResource("1_ed37u")
 sender = "the writer"
+email = ""
 subject = "placeholder"
 contents = "i didn't think you'd get this far. congrats on getting through that mini story though!"
 category = ""
@@ -16,7 +17,7 @@ hour = 0
 minute = 0
 is_read = false
 tutorial = false
-lore_only = false
+lore_only = true
 has_start_time = false
 failable = false
 failed = false

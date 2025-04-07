@@ -27,7 +27,7 @@ func archive_order(_order: Order): # unfulfilled by due date OR rejected
 func fulfill_order(order: Order) -> bool:
 	
 	#check fulfillment ability
-	if check_fulfillment_ability(order):
+	if GameManager.is_debugging or check_fulfillment_ability(order):
 		#GameManager.add_currency(50)
 		var required_items = order.required_items
 		var required_qtys = order.required_quantities
