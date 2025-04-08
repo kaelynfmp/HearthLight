@@ -52,7 +52,7 @@ var direction_vector: Array[Vector2i] = [
 ]
 var disabled = false
 var has_power = false
-
+var is_able_to_do_recipe: bool = false
 var notification:Sprite2D
 
 func get_local_position():
@@ -131,7 +131,8 @@ func _physics_process(delta: float) -> void:
 		if gadget_stats.name == "Conveyor Belt":
 			do_transport()
 		elif selected_recipe != null:
-			if is_able_to_recipe():
+			is_able_to_do_recipe = is_able_to_recipe()
+			if is_able_to_do_recipe:
 				disabled = false
 				do_recipe()
 			else:
@@ -162,6 +163,17 @@ func _physics_process(delta: float) -> void:
 		GameManager.change_inventory()
 
 func is_able_to_recipe() -> bool:
+	var recipe_inputs: Array[Slot] = selected_recipe.inputs
+	var input_slots: Array[Slot] = inventory.slots.filter(func(slot): return !slot.locked)
+	var have_enough_inputs: bool = recipe_inputs.all(
+		func(recipe_input_slot):
+			var item = recipe_input_slot.item
+			var required: bool = input_slots.any(
+				func(input_slot):		
+					return input_slot.item.name == item.name and input_slot.quantity >= recipe_input_slot.quantity
+			)
+			return required
+	)
 	var output_slots: Array = inventory.slots.filter(func(slot): return slot.locked)
 	var is_able: bool = output_slots.all(func(slot):
 		var item = slot.item
@@ -172,7 +184,7 @@ func is_able_to_recipe() -> bool:
 		if slot.quantity + selected_recipe.outputs[slot_item_in_recipe].quantity <= item.max_stack:
 			return true
 	)
-	return is_able
+	return is_able and have_enough_inputs
 	
 func rotate_sprite() -> void:
 	match (direction):

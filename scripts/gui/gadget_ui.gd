@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 			creates_progress.material.set("shader_parameter/progress", GameManager.gadget.progress)
 		else:
 			creates_progress.visible = false
-		primitive_button.disabled = GameManager.gadget.selected_recipe == null
+		primitive_button.disabled = GameManager.gadget.selected_recipe == null or not GameManager.gadget.is_able_to_do_recipe
 		if primitive_button.disabled:
 			primitive_button.set_rotation(0)
 		GameManager.gadget.primitive_selected = primitive_button.is_pressed()
