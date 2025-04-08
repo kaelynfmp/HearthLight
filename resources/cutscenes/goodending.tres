@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=2 format=3 uid="uid://d0yfwkub86nxp"]
+
+[ext_resource type="Script" uid="uid://cqmru0quqhglh" path="res://scripts/resources/cutscene.gd" id="1_d7k1x"]
+
+[resource]
+script = ExtResource("1_d7k1x")
+text = Array[String](["An explosion echoes in the distance, though you're not quite sure what's exploding.", "The air stills, and all that is left is the rhythmic clamour of machines.", "A letter slides under the door to your room, a door that has been untouched since you first woke up.", "You open the letter.", "\"Congratulations! I can't say I ever expected you to do it, but consider me a fan. I'm excited to see what you do next, just keep in mind that I'll always be watching.
+
+Locke Steppe, CEO of Heaven Corp.\"", "Your computer pings. You check it hesitantly. There's an email from a familiar, rebellious address.", "\"You'll never believe what we just blew up! It was that place you used to work at! Don't worry, it was a tactical blast, but we managed to take the CEO hostage >:)\"", "You sink to the floor, letting the sounds of the machines envelop your consciousness. ", "Perhaps you can still have a future."])
+final_button_text = "Enter Free-Play"
+cutscene_type = 1
+metadata/_custom_type_script = "uid://cqmru0quqhglh"

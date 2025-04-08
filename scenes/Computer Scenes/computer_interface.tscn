@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://c2wlmdehxae41"]
+[gd_scene load_steps=55 format=3 uid="uid://c2wlmdehxae41"]
 
 [ext_resource type="Script" uid="uid://cgcfc52ecvpnu" path="res://scenes/Computer Scenes/computer_manager.gd" id="1_1cjce"]
 [ext_resource type="PackedScene" uid="uid://b5r8qyahtr3r1" path="res://scenes/Computer Scenes/view_email_button.tscn" id="1_ip337"]
@@ -29,6 +29,9 @@
 [ext_resource type="AudioStream" uid="uid://cef0x1jr8hp7g" path="res://resources/audio/computer fan ambient.mp3" id="17_s3t63"]
 [ext_resource type="AudioStream" uid="uid://d0xc2y5ug21fu" path="res://resources/audio/computer shut off.mp3" id="18_ob7fn"]
 [ext_resource type="FontFile" uid="uid://c4bnatv11g13n" path="res://resources/fonts/Conthrax-SemiBold.otf" id="18_uu7um"]
+[ext_resource type="Script" uid="uid://born3r77x351j" path="res://scenes/Computer Scenes/debt_container.gd" id="27_uu7um"]
+[ext_resource type="Script" uid="uid://dfi1dyqj72ymj" path="res://scenes/Computer Scenes/debt_button.gd" id="28_am2my"]
+[ext_resource type="Script" uid="uid://7kwghrt4byhk" path="res://scenes/Computer Scenes/debt_label.gd" id="28_cdujh"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xg8e0"]
 
@@ -103,6 +106,83 @@ corner_radius_bottom_left = 30
 texture = ExtResource("11_n3nyj")
 texture_margin_left = 55.0
 texture_margin_right = 30.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4yp1e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uu7um"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gp3as"]
+bg_color = Color(0.211765, 0, 0.00392157, 0.258824)
+skew = Vector2(0.17, 0)
+border_width_left = 4
+border_width_top = 4
+border_color = Color(0.694118, 0, 0, 0.592157)
+corner_radius_top_left = 15
+corner_radius_top_right = 5
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 5
+expand_margin_left = 6.0
+expand_margin_top = 6.0
+expand_margin_right = 6.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_am2my"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cdujh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ymdu8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cdujh"]
+bg_color = Color(0.211765, 0, 0.00392157, 0.447059)
+skew = Vector2(0.17, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_bottom = 4
+border_color = Color(0.69246, 1.841e-06, 7.70092e-07, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 5
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 5
+expand_margin_left = 6.0
+expand_margin_top = 6.0
+expand_margin_right = 6.0
+expand_margin_bottom = 6.0
+shadow_color = Color(0.694118, 0, 0, 0.223529)
+shadow_size = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ateaq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ymdu8"]
+bg_color = Color(0.694118, 0, 0, 1)
+skew = Vector2(0.17, 0)
+border_width_left = 4
+border_width_top = 4
+border_color = Color(0.211765, 0, 0.00392157, 0.447059)
+corner_radius_top_left = 15
+corner_radius_top_right = 5
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 5
+expand_margin_left = 6.0
+expand_margin_top = 6.0
+expand_margin_right = 6.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5c0xc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ateaq"]
+bg_color = Color(0.211765, 0, 0.00392157, 0.447059)
+skew = Vector2(0.17, 0)
+border_width_left = 4
+border_width_top = 4
+border_color = Color(0.69246, 1.841e-06, 7.70092e-07, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 5
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 5
+expand_margin_left = 6.0
+expand_margin_top = 6.0
+expand_margin_right = 6.0
+expand_margin_bottom = 6.0
 
 [node name="ComputerInterface" type="Control" node_paths=PackedStringArray("currency_label", "exit_button", "boot_sound", "ambient_sound", "close_sound")]
 z_index = 50
@@ -373,6 +453,55 @@ texture_pressed = ExtResource("14_euqoa")
 texture_hover = ExtResource("15_bf1l8")
 script = ExtResource("17_ob7fn")
 button_sound = 7
+
+[node name="DebtContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.063
+offset_left = -958.5
+offset_top = 58.0
+offset_right = 963.5
+offset_bottom = 38.96
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+alignment = 1
+script = ExtResource("27_uu7um")
+
+[node name="DebtLabel" type="Label" parent="DebtContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.787542, 4.16331e-06, 5.77569e-07, 1)
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 8
+theme_override_fonts/font = ExtResource("3_gp3as")
+theme_override_font_sizes/font_size = 32
+text = "$10000"
+script = ExtResource("28_cdujh")
+
+[node name="DebtButton" type="Button" parent="DebtContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("18_uu7um")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4yp1e")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_uu7um")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_gp3as")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_am2my")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_cdujh")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_ymdu8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cdujh")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_ateaq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ymdu8")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_5c0xc")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ateaq")
+disabled = true
+text = "Pay Debt"
+script = ExtResource("28_am2my")
 
 [node name="ComputerBoot" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("16_6wvcf")

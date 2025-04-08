@@ -21,6 +21,8 @@ func _ready() -> void:
 	GameManager.character = self
 
 func _process(_delta: float) -> void:
+	if GameManager.cutscene_displayed:
+		return
 	inventory_camera_offset = 3000 if position.x > 2000 else 1000
 	var camera_position:Vector2 = Vector2(
 		clamp(position.x + (inventory_camera_offset if GameManager.inventory else 0.0),

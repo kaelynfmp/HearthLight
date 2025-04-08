@@ -10,6 +10,7 @@ signal take_cursor(Slot)
 signal debug_mode_change
 signal gadget_rotated(direction: int)
 signal awaken
+signal paid_off_debt
 
 @onready var computer_gadget:Gadget = load("res://resources/gadgets/computer.tres")
 
@@ -53,12 +54,24 @@ enum Age {
 	PRIMITIVE, INDUSTRIAL, ELECTRICAL, CYBER
 }
 
+enum CUTSCENE_TYPE {
+	AWAKEN, FREE_PLAY, MAIN_MENU
+}
+
 var recipe_strings:Array[String]
 var gadget_strings:Array[String]
 var item_strings:Array[String]
 
 var currency: int = 20
 signal currency_updated(new_amount)
+
+
+var debt:int = 10000
+var debt_days:int = 21
+var debt_paid:bool = false
+
+var cutscene_displayed:bool = true
+@onready var current_cutscene:Cutscene = load("res://resources/cutscenes/intro.tres")
 
 var starting_hour: int = 8
 var last_hour: int = 24
@@ -148,6 +161,8 @@ func _ready() -> void:
 		#print("inputs: ", recipe.inputs, " gadget: ", recipe.gadget)
 	
 func _process(_delta: float) -> void:
+	if cutscene_displayed:
+		return
 	if Input.is_action_just_pressed("inventory"):
 		if !pause:
 			if !GameManager.computer_visible:
@@ -195,6 +210,8 @@ func _process(_delta: float) -> void:
 					
 func _physics_process(_delta: float) -> void:
 	# time tracking
+	if cutscene_displayed:
+		return
 	milliseconds_elapsed = active_time
 	seconds_elapsed = milliseconds_elapsed / 1000
 	time_scaled_seconds = seconds_elapsed*time_scale
@@ -489,3 +506,26 @@ func wake_up():
 		game_time["second"] = 0
 		sleeping = false
 		print("waking up...")
+
+func pay_debt():
+	if computer_visible:
+		computer_visible = false
+		computer_visibility_changed.emit()
+	paid_off_debt.emit()
+	debt_paid = true
+	if game_time["day"] > debt_days:
+		current_cutscene = load("res://resources/cutscenes/badending.tres")
+	else:
+		current_cutscene = load("res://resources/cutscenes/goodending.tres")
+		
+	cutscene_displayed = true
+
+func conclude_cutscene():
+	cutscene_displayed = false
+	start_time = Time.get_ticks_msec()
+	if current_cutscene.cutscene_type == CUTSCENE_TYPE.MAIN_MENU:
+		get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
+		
+		
+		
+		

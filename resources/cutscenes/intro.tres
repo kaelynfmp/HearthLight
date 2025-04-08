@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=2 format=3 uid="uid://djk8i0vbjysna"]
+
+[ext_resource type="Script" uid="uid://cqmru0quqhglh" path="res://scripts/resources/cutscene.gd" id="1_3jrkk"]
+
+[resource]
+script = ExtResource("1_3jrkk")
+text = Array[String](["It's always been rough living here in Penumbra, But you got by. It was decent living. Taking the company-mandated meds, going to work, coming home, sleeping.", "At least, that's what you thought.", "One day, everything felt different. you had a spring in your step. At work you were daydreaming about getting a promotion.", "The boss called you into her office.", "\"Sorry, but we can't have you getting too big for your shoes. Luckily for you, we're trying out a new initiative,\" she said.", "\"The Japanese call it [i]oidashibeya[/i], although we much prefer the French term [i]mise au placard[/i]. You'll love it!\"", "The following days consisted of rote monotony, sometimes even just sitting in an empty room with nothing to do.", "Even so, your mind didn't stop thinking, didn't stop wondering if there's more to life than living the same day over and over again.", "A few days in, you left a note as you left, and you weren't planning on going back.", "As you were leaving, a spring in your step, looking forward to the next thing that life might offer you, you felt a sharp pain in the back of your head, and your vision suddenly went dark.", "[i]You woke up in an unfamiliar room.[/i]", "\"What, where am I? Is that a letter on the ground? What does it say?\"", "\" [b]'don't leave, it's not safe.'[/b] \"", "\"Huh.\"", "\"Alright then.\""])
+final_button_text = "Awaken"
+cutscene_type = 0
+metadata/_custom_type_script = "uid://cqmru0quqhglh"
