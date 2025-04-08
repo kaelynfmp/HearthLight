@@ -41,7 +41,7 @@ func _process(delta: float) -> void:
 			$Background/Contained/InfinitePower.visible = false
 	else:
 		current_gadget = null
-	if current_gadget and not current_gadget.name in ["Storage", "Universal Generator"]:
+	if current_gadget and not current_gadget.name in ["Storage", "Universal Generator", "Teleporter"]:
 		update_hint_visibility()
 		
 func setup_storage(gadget: StaticBody2D):
@@ -132,6 +132,9 @@ func set_gadget(gadget:StaticBody2D):
 		
 	if "Generator" in current_gadget.name:
 		setup_generator(gadget)
+		return
+		
+	if current_gadget.name == "Teleporter":
 		return
 		
 	for index in range(inputs.size()):
