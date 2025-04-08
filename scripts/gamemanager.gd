@@ -10,6 +10,7 @@ signal take_cursor(Slot)
 signal debug_mode_change
 signal gadget_rotated(direction: int)
 signal awaken
+signal paid_off_debt
 
 @onready var computer_gadget:Gadget = load("res://resources/gadgets/computer.tres")
 
@@ -60,7 +61,12 @@ var item_strings:Array[String]
 var currency: int = 20
 signal currency_updated(new_amount)
 
+
+var debt:int = 10000
 var debt_days:int = 21
+var debt_paid:bool = false
+
+
 var starting_hour: int = 8
 var last_hour: int = 24
 var hours: int = last_hour - starting_hour
@@ -490,3 +496,7 @@ func wake_up():
 		game_time["second"] = 0
 		sleeping = false
 		print("waking up...")
+
+func pay_debt():
+	paid_off_debt.emit()
+	debt_paid = true
