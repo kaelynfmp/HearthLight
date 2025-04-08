@@ -90,6 +90,8 @@ func spawn_object(gadget: Gadget, _cell_pos:Vector2i = Vector2i(-99, -99)) -> bo
 		instance.z_index = 1
 		instance.position = base_layer.map_to_local(cell_pos)
 		instance.gadget_stats = gadget
+		if gadget.name == "Universal Generator":
+			GameManager.has_cyber_generator = true
 		var layer_occupied_name:String = "Layer 1"
 		instance.layer_occupied_name = layer_occupied_name
 		instance.cell_pos = cell_pos

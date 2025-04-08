@@ -24,7 +24,7 @@ var gadget:StaticBody2D
 
 var computer_visible:bool = false
 var computer_tab_manager:TabContainer
-
+var has_cyber_generator = false
 var blur:bool = false
 
 # Temp

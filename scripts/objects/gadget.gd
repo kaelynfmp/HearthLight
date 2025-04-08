@@ -100,6 +100,8 @@ func _ready() -> void:
 	notification = find_child("Notification")
 	
 func check_for_nearby_generator(delta: float):
+	if GameManager.has_cyber_generator:
+		return true
 	for offset_x in range(-2, 3):
 		for offset_y in range(-2, 3):
 			var target_pos = cell_pos + Vector2i(offset_x, offset_y)
@@ -350,6 +352,8 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			cancel_processing()
 			# Remove from masterlist of inventories
 			GameManager.inventories.erase(inventory)
+			if gadget_stats.name == "Universal Generator":
+				GameManager.has_cyber_generator = false
 			for slot in inventory.slots:
 			# Send it all away to any open inventories
 				GameManager.send_to_inventory(slot)
