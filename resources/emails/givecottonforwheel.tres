@@ -28,7 +28,7 @@ script = ExtResource("1_shk4p")
 sender = "Katheryn Elion"
 email = ""
 subject = "Goods?"
-contents = "hey, a little birdie told me that you've got yourself a [res=Cotton]cotton[/res] plant. any chance i could take some of that [b]cotton[/b] off your hands? you'll need to [b]plant a [res=Seed]seed[/res][/b] and then [b][res=Water]water[/res] it[/b], then just [b]click[/b] on the [res=Pot]]cotton plant[/res]  to [b]collect[/b] it, and send it off to me. it'll know where to go, don't worry
+contents = "hey, a little birdie told me that you've got yourself a [res=Cotton]cotton[/res] plant. any chance i could take some of that [b]cotton[/b] off your hands? you'll need to [b]plant a [res=Seed]seed[/res][/b] and then [b][res=Water]water[/res] it[/b], then just [b]click[/b] on the [res=Pot]cotton plant[/res]  to [b]collect[/b] it, and send it off to me. it'll know where to go, don't worry
 
 Oh yeah, and if you're missing anything, just check [res=Botsy]Botsy[/res]. you'll find what you need there
 
