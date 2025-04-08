@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 			primitive_button.set_rotation(primitive_button.get_rotation() + rotation_speed * delta)
 	else:
 		current_gadget = null
-	if current_gadget and current_gadget.name != "Storage":
+	if current_gadget and not current_gadget.name in ["Storage", "Universal Generator"]:
 		update_hint_visibility()
 		
 func setup_storage(gadget: StaticBody2D):
@@ -51,6 +51,9 @@ func setup_storage(gadget: StaticBody2D):
 		new_slot.set_name("StorageSlot" + str(index))
 		hflowcontainer.add_child(new_slot) 
 		hflowcontainer.move_child(new_slot, index)
+		
+func setup_generator(gadget: StaticBody2D):
+	pass
 	
 func set_gadget(gadget:StaticBody2D):
 	primitive_button.set_rotation(0)
@@ -77,6 +80,10 @@ func set_gadget(gadget:StaticBody2D):
 
 	for child in remove_children:
 		contained.remove_child(child)
+		
+	if "Generator" in current_gadget.name:
+		setup_generator(gadget)
+		return
 		
 	for index in range(inputs.size()):
 		var input:Slot = gadget.inventory.slots[gadget.inventory.slots.find(inputs[index])]

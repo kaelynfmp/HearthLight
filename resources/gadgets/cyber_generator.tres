@@ -60,5 +60,5 @@ produces = true
 inputs = 1
 outputs = 1
 process_time = 1.0
-sound_string = ""
+sound_string = "c generator.wav"
 metadata/_custom_type_script = "uid://diu2pkk76wyyy"
