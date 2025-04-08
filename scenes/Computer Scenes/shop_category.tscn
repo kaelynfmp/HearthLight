@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://de20noymjuwfb"]
+[gd_scene load_steps=5 format=3 uid="uid://de20noymjuwfb"]
 
 [ext_resource type="Script" uid="uid://doi72fs0jfrme" path="res://scenes/Computer Scenes/shop_category.gd" id="1_pmo2h"]
 [ext_resource type="PackedScene" uid="uid://bchsomrab1tv0" path="res://scenes/Computer Scenes/buyable_item.tscn" id="1_slib6"]
+[ext_resource type="FontFile" uid="uid://c4bnatv11g13n" path="res://resources/fonts/Conthrax-SemiBold.otf" id="3_bctpv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_35h04"]
 content_margin_left = 40.0
@@ -40,6 +41,7 @@ theme_override_constants/separation = 30
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_bctpv")
 theme_override_font_sizes/font_size = 45
 text = "Category"
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://b5r8qyahtr3r1"]
+[gd_scene load_steps=59 format=3 uid="uid://b5r8qyahtr3r1"]
 
 [ext_resource type="Script" uid="uid://25ttm7ow7tts" path="res://scenes/Computer Scenes/emaildisplay.gd" id="1_cc22d"]
 [ext_resource type="Texture2D" uid="uid://buw7lcyvtgstr" path="res://resources/sprites/emails/emailPreviewTopBarUnread.png" id="2_djbhc"]
@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://cgy6jk2gpowke" path="res://resources/sprites/emails/emailDropdownTimed.png" id="6_jtaea"]
 [ext_resource type="Texture2D" uid="uid://brioxpexvl23w" path="res://resources/sprites/emails/emailButton.png" id="6_xo1sp"]
 [ext_resource type="Texture2D" uid="uid://bt4a2gqvr6x73" path="res://resources/sprites/emails/emailBottomBarTimed.png" id="7_n4bjr"]
+[ext_resource type="FontFile" uid="uid://cskltmfvwlc7g" path="res://resources/fonts/Audiowide-Regular.ttf" id="11_3hun1"]
+[ext_resource type="FontFile" uid="uid://tn2pvq1qwtx6" path="res://resources/fonts/GiantRobotArmy-Medium.ttf" id="15_jtaea"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_68chq"]
 
@@ -187,6 +189,11 @@ offset_top = 69.0
 offset_right = 531.0
 offset_bottom = 124.0
 mouse_filter = 1
+theme_override_fonts/normal_font = ExtResource("11_3hun1")
+theme_override_fonts/mono_font = ExtResource("11_3hun1")
+theme_override_fonts/italics_font = ExtResource("11_3hun1")
+theme_override_fonts/bold_italics_font = ExtResource("11_3hun1")
+theme_override_fonts/bold_font = ExtResource("11_3hun1")
 theme_override_font_sizes/bold_italics_font_size = 40
 theme_override_font_sizes/italics_font_size = 40
 theme_override_font_sizes/mono_font_size = 40
@@ -206,6 +213,11 @@ offset_top = 77.0
 offset_right = 1216.0
 offset_bottom = 161.0
 mouse_filter = 1
+theme_override_fonts/normal_font = ExtResource("11_3hun1")
+theme_override_fonts/mono_font = ExtResource("11_3hun1")
+theme_override_fonts/italics_font = ExtResource("11_3hun1")
+theme_override_fonts/bold_italics_font = ExtResource("11_3hun1")
+theme_override_fonts/bold_font = ExtResource("11_3hun1")
 theme_override_font_sizes/bold_italics_font_size = 35
 theme_override_font_sizes/italics_font_size = 35
 theme_override_font_sizes/mono_font_size = 35
@@ -292,6 +304,11 @@ offset_left = 102.0
 offset_top = 218.0
 offset_right = 1827.0
 offset_bottom = 855.0
+theme_override_fonts/normal_font = ExtResource("15_jtaea")
+theme_override_fonts/mono_font = ExtResource("15_jtaea")
+theme_override_fonts/italics_font = ExtResource("15_jtaea")
+theme_override_fonts/bold_italics_font = ExtResource("15_jtaea")
+theme_override_fonts/bold_font = ExtResource("15_jtaea")
 theme_override_font_sizes/bold_italics_font_size = 30
 theme_override_font_sizes/italics_font_size = 30
 theme_override_font_sizes/mono_font_size = 30
@@ -309,6 +326,11 @@ offset_left = 323.0
 offset_top = 139.0
 offset_right = 965.0
 offset_bottom = 194.0
+theme_override_fonts/normal_font = ExtResource("11_3hun1")
+theme_override_fonts/mono_font = ExtResource("11_3hun1")
+theme_override_fonts/italics_font = ExtResource("11_3hun1")
+theme_override_fonts/bold_italics_font = ExtResource("11_3hun1")
+theme_override_fonts/bold_font = ExtResource("11_3hun1")
 theme_override_font_sizes/bold_italics_font_size = 40
 theme_override_font_sizes/italics_font_size = 40
 theme_override_font_sizes/mono_font_size = 40
@@ -345,14 +367,19 @@ layout_mode = 0
 offset_left = 795.0
 offset_top = 139.0
 offset_right = 1814.0
-offset_bottom = 252.0
+offset_bottom = 218.0
+theme_override_fonts/normal_font = ExtResource("11_3hun1")
+theme_override_fonts/mono_font = ExtResource("11_3hun1")
+theme_override_fonts/italics_font = ExtResource("11_3hun1")
+theme_override_fonts/bold_italics_font = ExtResource("11_3hun1")
+theme_override_fonts/bold_font = ExtResource("11_3hun1")
 theme_override_font_sizes/bold_italics_font_size = 40
 theme_override_font_sizes/italics_font_size = 40
 theme_override_font_sizes/mono_font_size = 40
 theme_override_font_sizes/normal_font_size = 40
 theme_override_font_sizes/bold_font_size = 40
 bbcode_enabled = true
-text = "Subject but this is a very long subject yes ok cool"
+text = "Subject but this is a very long subject yes ok"
 fit_content = true
 meta_underlined = false
 hint_underlined = false

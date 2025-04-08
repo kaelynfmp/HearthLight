@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://dax2wy6iaipfq"]
+[gd_scene load_steps=18 format=3 uid="uid://dax2wy6iaipfq"]
 
 [ext_resource type="Script" uid="uid://bha8ro4unkubb" path="res://scripts/gui/bbcode.gd" id="1_7dicn"]
+[ext_resource type="FontFile" uid="uid://c4bnatv11g13n" path="res://resources/fonts/Conthrax-SemiBold.otf" id="1_75wrl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7dicn"]
 bg_color = Color(0.239216, 0.321569, 0.6, 1)
@@ -130,6 +131,11 @@ stretch_mode = 4
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 theme = SubResource("Theme_eamnv")
+theme_override_fonts/normal_font = ExtResource("1_75wrl")
+theme_override_fonts/mono_font = ExtResource("1_75wrl")
+theme_override_fonts/italics_font = ExtResource("1_75wrl")
+theme_override_fonts/bold_italics_font = ExtResource("1_75wrl")
+theme_override_fonts/bold_font = ExtResource("1_75wrl")
 theme_override_styles/fill = SubResource("StyleBoxEmpty_75wrl")
 theme_override_styles/background = SubResource("StyleBoxEmpty_7dicn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vy6iq")

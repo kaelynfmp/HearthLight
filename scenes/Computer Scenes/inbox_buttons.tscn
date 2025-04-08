@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://c6pmbvf4gf2rj"]
+[gd_scene load_steps=17 format=3 uid="uid://c6pmbvf4gf2rj"]
 
 [ext_resource type="Texture2D" uid="uid://brioxpexvl23w" path="res://resources/sprites/emails/emailButton.png" id="1_unc2n"]
+[ext_resource type="FontFile" uid="uid://c4bnatv11g13n" path="res://resources/fonts/Conthrax-SemiBold.otf" id="1_vhqey"]
 [ext_resource type="Script" uid="uid://cip2jdo81fsjl" path="res://scenes/Computer Scenes/inbox_buttons.gd" id="2_ioox3"]
 [ext_resource type="FontFile" uid="uid://cskltmfvwlc7g" path="res://resources/fonts/Audiowide-Regular.ttf" id="3_eo2wc"]
 
@@ -42,6 +43,9 @@ shadow_offset = Vector2(-0.5, 0.5)
 custom_minimum_size = Vector2(325, 100)
 offset_right = 325.0
 offset_bottom = 100.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_vhqey")
+theme_override_font_sizes/font_size = 32
 theme_override_styles/focus = SubResource("StyleBoxEmpty_im2ob")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_ioox3")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_eo2wc")
@@ -53,7 +57,7 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_8iu4j")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_t8klu")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_xir2v")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_5nxev")
-text = "test"
+text = "Inbox"
 script = ExtResource("2_ioox3")
 button_sound = 7
 sprite = NodePath("Sprite2D")
