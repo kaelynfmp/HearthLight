@@ -1,33 +1,14 @@
-[gd_resource type="Resource" script_class="Recipe" load_steps=13 format=3 uid="uid://swqhkwxwryu0"]
+[gd_resource type="Resource" script_class="Recipe" load_steps=8 format=3 uid="uid://deka81er2fjw7"]
 
-[ext_resource type="Resource" uid="uid://c72ncnx37h5nj" path="res://resources/gadgets/cyber_sieve.tres" id="1_lht2s"]
 [ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_iyw7s"]
 [ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="3_y3qxl"]
 [ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="4_nddbh"]
-[ext_resource type="Resource" uid="uid://lxvyxcteq6eq" path="res://resources/items/dust.tres" id="5_a58pj"]
-[ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="6_8ytnl"]
 [ext_resource type="Resource" uid="uid://gw88mo33lg1c" path="res://resources/items/ore.tres" id="7_goqif"]
 [ext_resource type="Script" uid="uid://nu8khenfb28n" path="res://scripts/resources/recipe.gd" id="8_s6vis"]
 
 [sub_resource type="Resource" id="Resource_v134l"]
 script = ExtResource("2_iyw7s")
 item = ExtResource("3_y3qxl")
-locked = false
-item_filter = Array[ExtResource("4_nddbh")]([])
-bypass_stack = false
-quantity = 1
-
-[sub_resource type="Resource" id="Resource_0a2cw"]
-script = ExtResource("2_iyw7s")
-item = ExtResource("5_a58pj")
-locked = false
-item_filter = Array[ExtResource("4_nddbh")]([])
-bypass_stack = false
-quantity = 1
-
-[sub_resource type="Resource" id="Resource_r2hqv"]
-script = ExtResource("2_iyw7s")
-item = ExtResource("6_8ytnl")
 locked = false
 item_filter = Array[ExtResource("4_nddbh")]([])
 bypass_stack = false
@@ -44,7 +25,6 @@ quantity = 4
 [resource]
 resource_name = "advanced_ore_recipe"
 script = ExtResource("8_s6vis")
-gadget = ExtResource("1_lht2s")
-inputs = Array[ExtResource("2_iyw7s")]([SubResource("Resource_v134l"), SubResource("Resource_0a2cw"), SubResource("Resource_r2hqv")])
+inputs = Array[ExtResource("2_iyw7s")]([SubResource("Resource_v134l")])
 outputs = Array[ExtResource("2_iyw7s")]([SubResource("Resource_k0ons")])
 processing_multiplier = 1.0

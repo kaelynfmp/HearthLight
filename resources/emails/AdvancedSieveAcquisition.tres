@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="Email" load_steps=7 format=3 uid="uid://cstdcgks34cad"]
+
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_6qm4u"]
+[ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="1_aflbq"]
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_wb58f"]
+[ext_resource type="Resource" uid="uid://lxvyxcteq6eq" path="res://resources/items/dust.tres" id="2_foxpp"]
+[ext_resource type="Resource" uid="uid://duvphdqh8tjm0" path="res://resources/gadgets/advanced_sieve.tres" id="4_frvnd"]
+
+[sub_resource type="Resource" id="Resource_yit4s"]
+script = ExtResource("1_6qm4u")
+order_id = 0
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
+given_currency = 0
+required_items = Array[Resource]([ExtResource("1_aflbq"), ExtResource("2_foxpp")])
+required_quantities = Array[int]([30, 15])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 0
+rewards = Array[Resource]([])
+rewards_quantities = Array[int]([])
+unlocks = Array[Resource]([ExtResource("4_frvnd")])
+
+[resource]
+resource_name = "AdvancedSieveAcquisition"
+script = ExtResource("1_wb58f")
+sender = "Katheryn Elion"
+email = ""
+subject = "i hear you've been busy!"
+contents = "i don't know how the hell you did it, but you seem to have built yourself a nice little operation, and completely outside of any kind of corpo influence, too! this might be a bit presumptuous of me, but some colleagues and i have been on the hunt for a decent [res=Advanced Sieve]water filter[/res], and we think we've found something that might work, but we don't actually have any of the filters :|. all the mechanisms are there, but we've got nothing to actually [i]filter[/i] the water with. I was hoping you might be able to help out in with [res=Fabric]something of your own[/res], and we'd also appreciate it if you could give us [res=Dust]somthing to put in the water to make it dirtier[/res]. for testing
+
+;)"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_wb58f")]([])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_yit4s")
+tutorial = true
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

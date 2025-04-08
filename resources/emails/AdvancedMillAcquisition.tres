@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="Email" load_steps=6 format=3 uid="uid://cg251hphl4d0y"]
+
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_6tajt"]
+[ext_resource type="Resource" uid="uid://clcbxlv3y06k4" path="res://resources/gadgets/advanced_grinder.tres" id="1_ah6pj"]
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_sa8a3"]
+[ext_resource type="Resource" uid="uid://lxvyxcteq6eq" path="res://resources/items/dust.tres" id="2_4hp2c"]
+
+[sub_resource type="Resource" id="Resource_3sn7f"]
+script = ExtResource("1_6tajt")
+order_id = 0
+given_items = Array[Resource]([ExtResource("1_ah6pj")])
+given_quantities = Array[int]([1])
+given_currency = 0
+required_items = Array[Resource]([ExtResource("2_4hp2c")])
+required_quantities = Array[int]([52])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 0
+rewards = Array[Resource]([])
+rewards_quantities = Array[int]([])
+unlocks = Array[Resource]([ExtResource("1_ah6pj")])
+
+[resource]
+resource_name = "AdvancedMillAcquisition"
+script = ExtResource("1_sa8a3")
+sender = "advertising"
+email = ""
+subject = "Our brand new, non-lethal product"
+contents = "Please try our wonderful new piece of technology. It will not try to kill you. :)"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_sa8a3")]([])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_3sn7f")
+tutorial = true
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="Email" load_steps=7 format=3 uid="uid://jhr1plgeckkr"]
+
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_2wmdq"]
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_7038c"]
+[ext_resource type="Resource" uid="uid://dh7knqcysban1" path="res://resources/gadgets/Generator.tres" id="1_kvpsd"]
+[ext_resource type="Resource" uid="uid://u3vwner7w78e" path="res://resources/emails/AdvancedSieveCompletion.tres" id="3_kvpsd"]
+[ext_resource type="Resource" uid="uid://boevxtgwrkuv8" path="res://resources/emails/AdvancedMillCompletion.tres" id="4_4u0bp"]
+
+[sub_resource type="Resource" id="Resource_hhw8k"]
+script = ExtResource("1_2wmdq")
+order_id = 0
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
+given_currency = 0
+required_items = Array[Resource]([ExtResource("1_kvpsd")])
+required_quantities = Array[int]([5])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 0
+rewards = Array[Resource]([])
+rewards_quantities = Array[int]([])
+unlocks = Array[Resource]([])
+
+[resource]
+resource_name = "QuantumGeneratorAcquisition"
+script = ExtResource("1_7038c")
+sender = "Ernest Hayden"
+email = ""
+subject = "I can't hold on to this"
+contents = "I would wish you a good day, but I am afraid I am in something of a hurry.
+
+I have recently come into possession of something immensely valuable. I do not know how, but the [res=Quantum Generatormachine[/res] that is next to me as I write this very message is quietly humming away, generating a seemingly endless supply of electricity. I do now know how it is doing this, nor do I wish to know. Having this... [res=Quantum Generator]beast[/res] around is putting me on edge. I am worried that, at any moment, a paddywagon will roll up to my estate and take the existence of such a device as a threat. Keeping it with me does nothing but put me on edge, and as much as I would like to keep a stiff upper lip about all this, I must admit that this is too much for me to handle.
+
+I have gathered through the grapevine that you are associated with a group that will certainly be able to make better use of [res=Quantum Generator]this device[/res] than I, and I am certain that they are also much better equipped to deal with the consequences than I.
+
+I would ask, however, that you provide me with some generators. I'm afraid that plugging [res=Quantum Generator]this monstrosity[/res] into my home electricity grid instantaneously wiped out all of my existing generators.
+
+Thank you, and please help,
+Ernest"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_7038c")]([ExtResource("3_kvpsd"), ExtResource("4_4u0bp")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_hhw8k")
+tutorial = false
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

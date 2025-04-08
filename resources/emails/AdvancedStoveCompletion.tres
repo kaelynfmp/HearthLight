@@ -6,10 +6,16 @@
 [resource]
 resource_name = "AdvancedStoveCompletion"
 script = ExtResource("1_wvebx")
-sender = ""
+sender = "Rob Elion"
 email = ""
-subject = ""
-contents = ""
+subject = "Ahh, the magnificent power of magnets!"
+contents = "Ehehehehe
+
+Sorry, that really makes me sound evil. We got the proof-of-concept working! As thanks, here's that [res=Induction Stove]something[/res] I was talking about. Sorry again about not really giving you anything to do, but you seem to have done pretty well for yourself, so maybe we made the right call after all...
+
+Kidding!
+
+Anyways yeah thanks, this is super useful, and we can't thank you enough"
 category = ""
 prerequisite_emails = Array[ExtResource("1_wvebx")]([ExtResource("2_03rdo")])
 day = 0

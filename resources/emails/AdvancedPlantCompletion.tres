@@ -6,10 +6,22 @@
 [resource]
 resource_name = "AdvancedPlantCompletion"
 script = ExtResource("1_fanfm")
+<<<<<<< Updated upstream
 sender = ""
 email = ""
 subject = ""
 contents = ""
+=======
+sender = "Ernest Hayden "
+email = ""
+subject = "As promised"
+contents = "I'm terribly sorry,
+
+I believe I might have misplaced one of [res=Nutrient Injection Pot]strange gardening pots[/res] and a shipping label, although I cannot imagine where either of them went. Please do let me know if you encounter them, as I have a feeling you might be seeing them soon.
+
+Until next time,
+Ernest"
+>>>>>>> Stashed changes
 category = ""
 prerequisite_emails = Array[ExtResource("1_fanfm")]([ExtResource("2_7q5ad")])
 day = 0

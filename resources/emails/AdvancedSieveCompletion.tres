@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Email" load_steps=2 format=3 uid="uid://t1tygjk8fxxt"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_oepfu"]
+
+[resource]
+resource_name = "AdvancedSieveCompletion"
+script = ExtResource("1_oepfu")
+sender = ""
+email = ""
+subject = ""
+contents = ""
+category = "main"
+prerequisite_emails = Array[ExtResource("1_oepfu")]([])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = false
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false
