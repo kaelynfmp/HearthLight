@@ -60,6 +60,7 @@ var item_strings:Array[String]
 var currency: int = 20
 signal currency_updated(new_amount)
 
+var debt_days:int = 21
 var starting_hour: int = 8
 var last_hour: int = 24
 var hours: int = last_hour - starting_hour
