@@ -24,7 +24,7 @@
 [ext_resource type="FontFile" uid="uid://cskltmfvwlc7g" path="res://resources/fonts/Audiowide-Regular.ttf" id="13_h2711"]
 [ext_resource type="Texture2D" uid="uid://bfa2gd4mip243" path="res://addons/resource_tree/trash_can.png" id="13_rdwmc"]
 [ext_resource type="Texture2D" uid="uid://dgfutqbacjngj" path="res://addons/resource_tree/trash_can_pressed.png" id="14_4p1a2"]
-[ext_resource type="FontFile" uid="uid://tn2pvq1qwtx6" path="res://resources/fonts/GiantRobotArmy-Medium.ttf" id="16_bjt0m"]
+[ext_resource type="FontFile" uid="uid://c4bnatv11g13n" path="res://resources/fonts/Conthrax-SemiBold.otf" id="19_h2711"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h2711"]
 
@@ -372,11 +372,6 @@ offset_top = 218.0
 offset_right = 1827.0
 offset_bottom = 855.0
 theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = ExtResource("16_bjt0m")
-theme_override_fonts/mono_font = ExtResource("16_bjt0m")
-theme_override_fonts/italics_font = ExtResource("16_bjt0m")
-theme_override_fonts/bold_italics_font = ExtResource("16_bjt0m")
-theme_override_fonts/bold_font = ExtResource("16_bjt0m")
 theme_override_font_sizes/bold_italics_font_size = 30
 theme_override_font_sizes/italics_font_size = 30
 theme_override_font_sizes/mono_font_size = 30
@@ -492,6 +487,7 @@ mouse_filter = 2
 
 [node name="Label" type="Label" parent="EmailContainer/OrderContainer/HBoxContainer/GivenItemsContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("19_h2711")
 theme_override_font_sizes/font_size = 40
 text = "Given Items"
 horizontal_alignment = 1
@@ -515,6 +511,7 @@ mouse_filter = 2
 
 [node name="Label" type="Label" parent="EmailContainer/OrderContainer/HBoxContainer/RequiredItemsContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("19_h2711")
 theme_override_font_sizes/font_size = 40
 text = "Required Items"
 horizontal_alignment = 1
@@ -551,6 +548,7 @@ mouse_filter = 2
 
 [node name="Label" type="Label" parent="EmailContainer/OrderContainer/HBoxContainer/RewardsContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("19_h2711")
 theme_override_font_sizes/font_size = 40
 text = "Rewards"
 horizontal_alignment = 1
@@ -593,6 +591,7 @@ mouse_filter = 2
 
 [node name="Label" type="Label" parent="EmailContainer/OrderContainer/HBoxContainer/UnlocksContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("19_h2711")
 theme_override_font_sizes/font_size = 40
 text = "Unlocks
 "
