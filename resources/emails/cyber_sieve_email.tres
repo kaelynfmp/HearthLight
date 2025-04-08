@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="Email" load_steps=7 format=3 uid="uid://ccpfmonlcinap"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_0ww8n"]
+[ext_resource type="Resource" uid="uid://c72ncnx37h5nj" path="res://resources/gadgets/cyber_sieve.tres" id="1_grj6u"]
+[ext_resource type="Resource" uid="uid://bgmxpne1d7fis" path="res://resources/items/metal.tres" id="1_nv7pv"]
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_q7kf4"]
+[ext_resource type="Resource" uid="uid://bymqmr55efkl0" path="res://resources/emails/cyber_mill_completion.tres" id="4_nv7pv"]
+
+[sub_resource type="Resource" id="Resource_ui1ip"]
+script = ExtResource("1_q7kf4")
+order_id = 0
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
+given_currency = 0
+required_items = Array[Resource]([ExtResource("1_nv7pv")])
+required_quantities = Array[int]([50])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 1000
+rewards = Array[Resource]([ExtResource("1_grj6u")])
+rewards_quantities = Array[int]([1])
+unlocks = Array[Resource]([ExtResource("1_grj6u")])
+
+[resource]
+resource_name = "cyber_sieve_email"
+script = ExtResource("1_0ww8n")
+sender = "TEH FUTEUR"
+email = ""
+subject = "I LOVE WATER"
+contents = "WE LOVE TAKING BATHS IN THE FUTURE.
+
+YOU SHOULD TRY IT.
+
+[res=Metal]METALLLLL[/res]"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_0ww8n")]([ExtResource("4_nv7pv")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_ui1ip")
+tutorial = true
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

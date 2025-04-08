@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://bcqfc48lbx4di"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_pubij"]
+[ext_resource type="Resource" uid="uid://ccvnu27rje38v" path="res://resources/emails/advanced_sieve_email.tres" id="2_vot31"]
+
+[resource]
+resource_name = "advanced_sieve_completion"
+script = ExtResource("1_pubij")
+sender = "The Void"
+email = ""
+subject = "This Will Suffice"
+contents = "We are pleased . . ."
+category = "main"
+prerequisite_emails = Array[ExtResource("1_pubij")]([ExtResource("2_vot31")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = false
+lore_only = true
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

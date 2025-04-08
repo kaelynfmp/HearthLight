@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://bymqmr55efkl0"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_gfcwl"]
+[ext_resource type="Resource" uid="uid://5km4srx346kn" path="res://resources/emails/quantum_mill_email.tres" id="2_5q2uq"]
+
+[resource]
+resource_name = "cyber_mill_completion"
+script = ExtResource("1_gfcwl")
+sender = "Rob Elion"
+email = ""
+subject = "hell yeah!"
+contents = "I knew we could count on you to get it done! We're looking forward to big things out of you :D
+
+And don't worry, we won't be making [i]too many[/i] weapons out of this tech (probably) "
+category = "main"
+prerequisite_emails = Array[ExtResource("1_gfcwl")]([ExtResource("2_5q2uq")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = false
+lore_only = true
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false
