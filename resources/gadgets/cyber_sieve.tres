@@ -69,8 +69,8 @@ animations = [{
 [resource]
 script = ExtResource("4_pchjd")
 sprite_frames = SubResource("SpriteFrames_pchjd")
-sprite_offset = Vector2(0, 0)
-sprite_scale_factor = 1.0
+sprite_offset = Vector2(0, -140)
+sprite_scale_factor = 0.95
 name = "Cyber Sieve"
 age = 3
 direction = 0

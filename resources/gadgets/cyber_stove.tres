@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Gadget" load_steps=10 format=3 uid="uid://ceqny8kv6mlda"]
+[gd_resource type="Resource" script_class="Gadget" load_steps=11 format=3 uid="uid://ceqny8kv6mlda"]
 
 [ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_8ulmx"]
 [ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_0og7f"]
@@ -8,6 +8,13 @@
 
 [sub_resource type="Resource" id="Resource_ovf07"]
 script = ExtResource("2_0og7f")
+locked = false
+item_filter = Array[ExtResource("3_ktapf")]([])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_0og7f"]
+script = ExtResource("2_0og7f")
 locked = true
 item_filter = Array[ExtResource("3_ktapf")]([])
 bypass_stack = false
@@ -15,7 +22,7 @@ quantity = 0
 
 [sub_resource type="Resource" id="Resource_sty8k"]
 script = ExtResource("1_8ulmx")
-slots = Array[ExtResource("2_0og7f")]([SubResource("Resource_ovf07")])
+slots = Array[ExtResource("2_0og7f")]([SubResource("Resource_ovf07"), SubResource("Resource_0og7f")])
 
 [sub_resource type="Resource" id="Resource_ktapf"]
 script = ExtResource("3_ktapf")
@@ -48,8 +55,8 @@ animations = [{
 [resource]
 script = ExtResource("4_qvnt0")
 sprite_frames = SubResource("SpriteFrames_qvnt0")
-sprite_offset = Vector2(0, 0)
-sprite_scale_factor = 1.0
+sprite_offset = Vector2(0, -140)
+sprite_scale_factor = 0.95
 name = ""
 age = 3
 direction = 0

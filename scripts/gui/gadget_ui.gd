@@ -32,6 +32,13 @@ func _process(delta: float) -> void:
 			energy_progress.material.set("shader_parameter/progress", GameManager.gadget.total_power / GameManager.gadget.max_power)
 		else:
 			energy_progress.visible = false
+		if current_gadget.name == "Universal Generator":
+			$Background/Contained/CreatesControl.visible = false
+			$Background/Contained/InfinitePower.visible = true
+			
+		else:
+			$Background/Contained/CreatesControl.visible = true
+			$Background/Contained/InfinitePower.visible = false
 	else:
 		current_gadget = null
 	if current_gadget and not current_gadget.name in ["Storage", "Universal Generator"]:
@@ -60,11 +67,12 @@ func setup_storage(gadget: StaticBody2D):
 		hflowcontainer.move_child(new_slot, index)
 		
 func setup_generator(gadget: StaticBody2D):
-	$Background/Contained/EnergyControl.visible = true
+
+	var contained = $Background/Contained
+	print(current_gadget.name)
 	# Setup coal slot
 	if current_gadget.name == "Generator":
-		var contained = $Background/Contained
-		contained.visible = true
+		$Background/Contained/EnergyControl.visible = true
 		var inputs:Array[Slot] = gadget.inventory.slots.filter(func(slot): return !slot.locked)
 		for index in range(inputs.size()):
 			var input:Slot = gadget.inventory.slots[gadget.inventory.slots.find(inputs[index])]
@@ -92,7 +100,7 @@ func setup_generator(gadget: StaticBody2D):
 			contained.add_child(new_slot)
 			contained.move_child(new_slot, index)
 	else:
-		$Background/Contained.visible = false
+		$Background/Contained/EnergyControl.visible = false
 	
 func set_gadget(gadget:StaticBody2D):
 	primitive_button.set_rotation(0)
@@ -109,6 +117,7 @@ func set_gadget(gadget:StaticBody2D):
 	var hflowcontainer = $Background/HFlowContainer
 	hflowcontainer.visible = false
 	$Background/Contained/EnergyControl.visible = false
+	$Background/Contained/InfinitePower.visible = false
 	contained.visible = true
 	var remove_children:Array
 	

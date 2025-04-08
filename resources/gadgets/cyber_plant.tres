@@ -62,8 +62,8 @@ animations = [{
 [resource]
 script = ExtResource("4_fqogh")
 sprite_frames = SubResource("SpriteFrames_o0ex7")
-sprite_offset = Vector2(0, 0)
-sprite_scale_factor = 1.0
+sprite_offset = Vector2(0, -243)
+sprite_scale_factor = 0.9
 name = "Cyber Pot"
 age = 3
 direction = 0
