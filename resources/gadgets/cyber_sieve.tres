@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_rfhdh"]
 [ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_8561u"]
 [ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_4rwd2"]
-[ext_resource type="Texture2D" uid="uid://ni5q0u43gvlx" path="res://resources/sprites/sievePrimitive.png" id="4_8561u"]
+[ext_resource type="Texture2D" uid="uid://cokalwkppdqr5" path="res://resources/sprites/sieveCyber.png" id="4_4rwd2"]
 [ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_pchjd"]
 
 [sub_resource type="Resource" id="Resource_2tti6"]
@@ -40,7 +40,7 @@ slots = Array[ExtResource("2_8561u")]([SubResource("Resource_2tti6"), SubResourc
 
 [sub_resource type="Resource" id="Resource_4rwd2"]
 script = ExtResource("3_4rwd2")
-texture = ExtResource("4_8561u")
+texture = ExtResource("4_4rwd2")
 name = "Cyber Sieve"
 description = "Cyber Sieve"
 max_stack = 1
@@ -51,7 +51,7 @@ metadata/_custom_type_script = "uid://by7jec2ew2vsl"
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_8561u")
+"texture": ExtResource("4_4rwd2")
 }],
 "loop": true,
 "name": &"default",
@@ -59,7 +59,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_8561u")
+"texture": ExtResource("4_4rwd2")
 }],
 "loop": true,
 "name": &"se",
@@ -69,7 +69,7 @@ animations = [{
 [resource]
 script = ExtResource("4_pchjd")
 sprite_frames = SubResource("SpriteFrames_pchjd")
-sprite_offset = Vector2(0, -140)
+sprite_offset = Vector2(0, -200)
 sprite_scale_factor = 0.95
 name = "Cyber Sieve"
 age = 3
@@ -81,5 +81,5 @@ produces = true
 inputs = 3
 outputs = 1
 process_time = 1.0
-sound_string = ""
+sound_string = "c sieve.wav"
 metadata/_custom_type_script = "uid://diu2pkk76wyyy"

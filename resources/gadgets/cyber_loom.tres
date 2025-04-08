@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_s13dw"]
 [ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_4uh71"]
 [ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_2rdug"]
-[ext_resource type="Texture2D" uid="uid://djy1gmqklb5bc" path="res://resources/sprites/loomPrimitive.png" id="4_4uh71"]
+[ext_resource type="Texture2D" uid="uid://cnyjtg51tfd03" path="res://resources/sprites/loomCyber.png" id="4_4uh71"]
 [ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_rd213"]
 
 [sub_resource type="Resource" id="Resource_6x6h6"]
@@ -67,5 +67,5 @@ produces = true
 inputs = 1
 outputs = 1
 process_time = 1.0
-sound_string = ""
+sound_string = "c loom.wav"
 metadata/_custom_type_script = "uid://diu2pkk76wyyy"

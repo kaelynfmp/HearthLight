@@ -55,8 +55,8 @@ animations = [{
 [resource]
 script = ExtResource("4_ripor")
 sprite_frames = SubResource("SpriteFrames_ripor")
-sprite_offset = Vector2(0, 0)
-sprite_scale_factor = 1.0
+sprite_offset = Vector2(0, -140)
+sprite_scale_factor = 0.95
 name = "Teleporter"
 age = 3
 direction = 0
@@ -67,5 +67,5 @@ produces = true
 inputs = 1
 outputs = 1
 process_time = 0.5
-sound_string = ""
+sound_string = "teleporter loop.wav"
 metadata/_custom_type_script = "uid://diu2pkk76wyyy"

@@ -353,8 +353,9 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			for slot in inventory.slots:
 			# Send it all away to any open inventories
 				GameManager.send_to_inventory(slot)
-			if AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
-				(func(): AudioManager.active_gadgets[gadget_stats.sound_string].erase(self)).call_deferred()
+			if gadget_stats.age > Gadget.Age.PRIMITIVE:
+				if AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
+					(func(): AudioManager.active_gadgets[gadget_stats.sound_string].erase(self)).call_deferred()
 			removing.emit(layer_occupied_name, cell_pos)
 			queue_free()
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.is_pressed():

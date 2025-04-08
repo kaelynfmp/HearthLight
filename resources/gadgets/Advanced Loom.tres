@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_57x6j"]
 [ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="4_57x6j"]
 [ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_bay8m"]
-[ext_resource type="Texture2D" uid="uid://djy1gmqklb5bc" path="res://resources/sprites/loomPrimitive.png" id="4_k1ud4"]
+[ext_resource type="Texture2D" uid="uid://twsfx8g8r54" path="res://resources/sprites/loomElectrical.png" id="7_ubw0m"]
 
 [sub_resource type="Resource" id="Resource_ubw0m"]
 script = ExtResource("2_k1ud4")
@@ -27,7 +27,7 @@ slots = Array[ExtResource("2_k1ud4")]([SubResource("Resource_ubw0m"), SubResourc
 
 [sub_resource type="Resource" id="Resource_y6jnr"]
 script = ExtResource("3_57x6j")
-texture = ExtResource("4_k1ud4")
+texture = ExtResource("7_ubw0m")
 name = "Advanced Loom"
 description = ""
 max_stack = 1
@@ -37,7 +37,7 @@ price = 100
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_k1ud4")
+"texture": ExtResource("7_ubw0m")
 }],
 "loop": true,
 "name": &"default",
@@ -45,7 +45,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_k1ud4")
+"texture": ExtResource("7_ubw0m")
 }],
 "loop": true,
 "name": &"se",
