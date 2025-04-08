@@ -1,22 +1,24 @@
-[gd_resource type="Resource" script_class="Gadget" load_steps=12 format=3 uid="uid://027jttcoc2y8"]
+[gd_resource type="Resource" script_class="Gadget" load_steps=14 format=3 uid="uid://027jttcoc2y8"]
 
 [ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_5arwy"]
 [ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_rtbff"]
 [ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_5xxeq"]
+[ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="4_5xxeq"]
 [ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_fqogh"]
 [ext_resource type="Texture2D" uid="uid://dn11bwl7rlnqw" path="res://resources/sprites/plantCyber.png" id="4_rtbff"]
+[ext_resource type="Resource" uid="uid://bjux8vbxnqlf8" path="res://resources/items/seed.tres" id="5_fqogh"]
 
 [sub_resource type="Resource" id="Resource_5qaho"]
 script = ExtResource("2_rtbff")
 locked = false
-item_filter = Array[ExtResource("3_5xxeq")]([])
+item_filter = Array[ExtResource("3_5xxeq")]([ExtResource("4_5xxeq"), ExtResource("5_fqogh")])
 bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_5xxeq"]
 script = ExtResource("2_rtbff")
 locked = false
-item_filter = Array[ExtResource("3_5xxeq")]([])
+item_filter = Array[ExtResource("3_5xxeq")]([ExtResource("4_5xxeq"), ExtResource("5_fqogh")])
 bypass_stack = false
 quantity = 0
 

@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="Email" load_steps=7 format=3 uid="uid://be2krtnnujdfy"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_ppvn7"]
+[ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="1_qrwju"]
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_wah56"]
+[ext_resource type="Resource" uid="uid://ctu6bpp0f2uun" path="res://resources/gadgets/cyber_loom.tres" id="2_eegxu"]
+[ext_resource type="Resource" uid="uid://bymqmr55efkl0" path="res://resources/emails/cyber_mill_completion.tres" id="5_4s20q"]
+
+[sub_resource type="Resource" id="Resource_qtnl2"]
+script = ExtResource("1_wah56")
+order_id = 0
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
+given_currency = 0
+required_items = Array[Resource]([ExtResource("1_qrwju")])
+required_quantities = Array[int]([50])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 1000
+rewards = Array[Resource]([ExtResource("2_eegxu")])
+rewards_quantities = Array[int]([1])
+unlocks = Array[Resource]([ExtResource("2_eegxu")])
+
+[resource]
+resource_name = "cyber_loom_email"
+script = ExtResource("1_ppvn7")
+sender = "TEH FUTEUR"
+email = ""
+subject = "THE FUTURE IS [res=Fabric]FABRIC[/res]"
+contents = "THE FUTURE
+
+WE NEED TO MAKE [res=Fabric]FABRIC FOREVER[/res]
+
+GIVE US SOME AND WE LET YOU GIVE US MORE
+
+IN.
+
+THE FUTURE."
+category = "main"
+prerequisite_emails = Array[ExtResource("1_ppvn7")]([ExtResource("5_4s20q")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_qtnl2")
+tutorial = true
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

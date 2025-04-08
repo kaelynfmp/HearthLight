@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="Email" load_steps=7 format=3 uid="uid://c6kh7itdfyx78"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_2vmma"]
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_fv3pi"]
+[ext_resource type="Resource" uid="uid://gw88mo33lg1c" path="res://resources/items/ore.tres" id="1_irknk"]
+[ext_resource type="Resource" uid="uid://ceqny8kv6mlda" path="res://resources/gadgets/cyber_stove.tres" id="2_aaluv"]
+[ext_resource type="Resource" uid="uid://bymqmr55efkl0" path="res://resources/emails/cyber_mill_completion.tres" id="5_gllh1"]
+
+[sub_resource type="Resource" id="Resource_ucyta"]
+script = ExtResource("1_fv3pi")
+order_id = 0
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
+given_currency = 0
+required_items = Array[Resource]([ExtResource("1_irknk")])
+required_quantities = Array[int]([50])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 1000
+rewards = Array[Resource]([ExtResource("2_aaluv")])
+rewards_quantities = Array[int]([1])
+unlocks = Array[Resource]([ExtResource("2_aaluv")])
+
+[resource]
+resource_name = "cyber_pot_email"
+script = ExtResource("1_2vmma")
+sender = "TEH FUTEUR"
+email = ""
+subject = "HOT HOT H0T"
+contents = "WOW. THINGS ARE HOT. LETS MAKE THEM HOTTER.
+
+[res=Ore]ORES. ORE ORE ORE. HOW DO YOU EVEN GET ORES.[/res]"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_2vmma")]([ExtResource("5_gllh1")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_ucyta")
+tutorial = true
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

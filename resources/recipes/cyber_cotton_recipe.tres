@@ -16,7 +16,7 @@ item_filter = Array[ExtResource("4_ytuld")]([])
 bypass_stack = false
 quantity = 1
 
-[sub_resource type="Resource" id="Resource_ewiua"]
+[sub_resource type="Resource" id="Resource_gcclu"]
 script = ExtResource("2_kubb5")
 item = ExtResource("5_ccxe2")
 locked = false
@@ -36,6 +36,6 @@ quantity = 6
 resource_name = "advanced_cotton_recipe"
 script = ExtResource("7_5yehd")
 gadget = ExtResource("1_kl4v6")
-inputs = Array[ExtResource("2_kubb5")]([SubResource("Resource_ysmm6"), SubResource("Resource_ewiua")])
+inputs = Array[ExtResource("2_kubb5")]([SubResource("Resource_ysmm6"), SubResource("Resource_gcclu")])
 outputs = Array[ExtResource("2_kubb5")]([SubResource("Resource_0mehb")])
 processing_multiplier = 1.0

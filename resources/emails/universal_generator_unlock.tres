@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="Email" load_steps=8 format=3 uid="uid://63c6qcuu0kw1"]
+
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_71f3r"]
+[ext_resource type="Resource" uid="uid://bgmxpne1d7fis" path="res://resources/items/metal.tres" id="1_csokc"]
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_y7mu0"]
+[ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="2_ewc3s"]
+[ext_resource type="Resource" uid="uid://dm264rb6ttr13" path="res://resources/gadgets/cyber_generator.tres" id="2_tdlms"]
+[ext_resource type="Resource" uid="uid://bcqfc48lbx4di" path="res://resources/emails/advanced_sieve_completion.tres" id="3_gx8dj"]
+
+[sub_resource type="Resource" id="Resource_csokc"]
+script = ExtResource("1_71f3r")
+order_id = 0
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
+given_currency = 0
+required_items = Array[Resource]([ExtResource("1_csokc"), ExtResource("2_ewc3s")])
+required_quantities = Array[int]([100, 1])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 0
+rewards = Array[Resource]([ExtResource("2_tdlms")])
+rewards_quantities = Array[int]([1])
+unlocks = Array[Resource]([ExtResource("2_tdlms")])
+
+[resource]
+resource_name = "universal_generator_unlock"
+script = ExtResource("1_y7mu0")
+sender = "TEH FUTEUR"
+email = ""
+subject = "7H3 FU7UR3 1Z H3R3"
+contents = "WAT UP.
+
+I AM FROM PLANET GORBLOX, FROM THE YEAR 2934023492405634834095623904623098465209834650982346509234068230968230946203946789234689723468972346902398074629034609234609823490682348096290345630945645
+
+I AM THE FUTURE.
+
+YOU ARE THE FUTURE?
+
+PROVE IT.
+
+WE ARE THE FUTURE.
+
+ALSO WE WANT PAST [res=Cotton]COTTON[/res]. FOR. REASONS."
+category = "main"
+prerequisite_emails = Array[ExtResource("1_y7mu0")]([ExtResource("3_gx8dj")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_csokc")
+tutorial = true
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

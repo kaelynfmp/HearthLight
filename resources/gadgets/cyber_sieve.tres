@@ -1,29 +1,32 @@
-[gd_resource type="Resource" script_class="Gadget" load_steps=13 format=3 uid="uid://c72ncnx37h5nj"]
+[gd_resource type="Resource" script_class="Gadget" load_steps=16 format=3 uid="uid://c72ncnx37h5nj"]
 
 [ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_rfhdh"]
 [ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_8561u"]
 [ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_4rwd2"]
+[ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="4_2tti6"]
 [ext_resource type="Texture2D" uid="uid://cokalwkppdqr5" path="res://resources/sprites/sieveCyber.png" id="4_4rwd2"]
 [ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_pchjd"]
+[ext_resource type="Resource" uid="uid://lxvyxcteq6eq" path="res://resources/items/dust.tres" id="5_pchjd"]
+[ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="6_2tti6"]
 
 [sub_resource type="Resource" id="Resource_2tti6"]
 script = ExtResource("2_8561u")
 locked = false
-item_filter = Array[ExtResource("3_4rwd2")]([])
+item_filter = Array[ExtResource("3_4rwd2")]([ExtResource("4_2tti6"), ExtResource("5_pchjd"), ExtResource("6_2tti6")])
 bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_8561u"]
 script = ExtResource("2_8561u")
 locked = false
-item_filter = Array[ExtResource("3_4rwd2")]([])
+item_filter = Array[ExtResource("3_4rwd2")]([ExtResource("4_2tti6"), ExtResource("5_pchjd"), ExtResource("6_2tti6")])
 bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_pchjd"]
 script = ExtResource("2_8561u")
 locked = false
-item_filter = Array[ExtResource("3_4rwd2")]([])
+item_filter = Array[ExtResource("3_4rwd2")]([ExtResource("4_2tti6"), ExtResource("5_pchjd"), ExtResource("6_2tti6")])
 bypass_stack = false
 quantity = 0
 
