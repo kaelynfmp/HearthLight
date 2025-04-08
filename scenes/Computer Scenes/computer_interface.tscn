@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://c2wlmdehxae41"]
+[gd_scene load_steps=41 format=3 uid="uid://c2wlmdehxae41"]
 
 [ext_resource type="Script" uid="uid://cgcfc52ecvpnu" path="res://scenes/Computer Scenes/computer_manager.gd" id="1_1cjce"]
 [ext_resource type="PackedScene" uid="uid://b5r8qyahtr3r1" path="res://scenes/Computer Scenes/view_email_button.tscn" id="1_ip337"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c6pmbvf4gf2rj" path="res://scenes/Computer Scenes/inbox_buttons.tscn" id="2_k1btw"]
 [ext_resource type="Texture2D" uid="uid://d8jn46d64brl" path="res://resources/sprites/computer/computerBackground.png" id="2_n837d"]
 [ext_resource type="Script" uid="uid://d1y536ap3urkf" path="res://scripts/computer/sites.gd" id="2_ob7fn"]
+[ext_resource type="FontFile" uid="uid://cskltmfvwlc7g" path="res://resources/fonts/Audiowide-Regular.ttf" id="3_gp3as"]
 [ext_resource type="PackedScene" uid="uid://de20noymjuwfb" path="res://scenes/Computer Scenes/shop_category.tscn" id="3_mi23s"]
 [ext_resource type="Texture2D" uid="uid://crqkxwunroqpm" path="res://resources/sprites/emails/emailTab.png" id="3_n837d"]
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="3_sa1xx"]
@@ -19,12 +20,15 @@
 [ext_resource type="Resource" uid="uid://dsf5ltqgqo7uj" path="res://resources/emails/second_tutorial_bankrupt_email.tres" id="9_knruj"]
 [ext_resource type="Texture2D" uid="uid://cu638rts4nfa2" path="res://resources/sprites/computer/computerBalance.png" id="11_n3nyj"]
 [ext_resource type="Texture2D" uid="uid://clcmg5me835w8" path="res://resources/sprites/computer/computerClose.png" id="11_u2wnv"]
+[ext_resource type="Texture2D" uid="uid://ddr1ddhgv3fin" path="res://resources/sprites/computer/mailIcon.png" id="11_xg8e0"]
+[ext_resource type="Texture2D" uid="uid://bnyyvupv1jipp" path="res://resources/sprites/computer/shopIcon.png" id="13_4yp1e"]
 [ext_resource type="Texture2D" uid="uid://kxyigamwj21o" path="res://resources/sprites/computer/computerClosePress.png" id="14_euqoa"]
 [ext_resource type="Texture2D" uid="uid://d0eni1gnv2ha6" path="res://resources/sprites/computer/computerCloseHover.png" id="15_bf1l8"]
 [ext_resource type="AudioStream" uid="uid://dafysaythyrdq" path="res://resources/audio/computer boot.mp3" id="16_6wvcf"]
 [ext_resource type="Script" uid="uid://bc7sbrtfs8nd1" path="res://scripts/menus/menu_texture_button.gd" id="17_ob7fn"]
 [ext_resource type="AudioStream" uid="uid://cef0x1jr8hp7g" path="res://resources/audio/computer fan ambient.mp3" id="17_s3t63"]
 [ext_resource type="AudioStream" uid="uid://d0xc2y5ug21fu" path="res://resources/audio/computer shut off.mp3" id="18_ob7fn"]
+[ext_resource type="FontFile" uid="uid://c4bnatv11g13n" path="res://resources/fonts/Conthrax-SemiBold.otf" id="18_uu7um"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xg8e0"]
 
@@ -35,8 +39,9 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gp3as"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4yp1e"]
-content_margin_left = 60.0
-content_margin_right = 102.0
+content_margin_left = 6.0
+content_margin_top = 0.0
+content_margin_right = 151.0
 bg_color = Color(1, 0, 0, 0)
 corner_radius_top_right = 45
 corner_radius_bottom_right = 15
@@ -44,7 +49,8 @@ expand_margin_left = 6.0
 expand_margin_top = 6.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uu7um"]
-content_margin_left = 60.0
+content_margin_left = 6.0
+content_margin_top = 0.0
 content_margin_right = 60.0
 bg_color = Color(1, 1, 1, 0.0392157)
 corner_radius_top_left = 45
@@ -53,8 +59,9 @@ corner_radius_bottom_right = 45
 corner_radius_bottom_left = 45
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_am2my"]
-content_margin_left = 60.0
-content_margin_right = 74.0
+content_margin_left = 6.0
+content_margin_top = 0.0
+content_margin_right = 101.0
 bg_color = Color(1, 1, 1, 0)
 corner_radius_top_right = 45
 corner_radius_bottom_right = 15
@@ -122,6 +129,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_n837d")
@@ -136,7 +144,8 @@ offset_top = 46.5
 offset_bottom = 41.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 42
+theme_override_fonts/font = ExtResource("3_gp3as")
+theme_override_font_sizes/font_size = 40
 theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_xg8e0")
 theme_override_styles/tab_disabled = SubResource("StyleBoxEmpty_mljnk")
 theme_override_styles/tabbar_background = SubResource("StyleBoxEmpty_vtj2o")
@@ -159,16 +168,35 @@ first_tutorial_bankruptcy_email = ExtResource("7_neuin")
 second_tutorial_bankruptcy_email = ExtResource("9_knruj")
 metadata/_tab_index = 0
 
+[node name="Email Icon" type="TextureRect" parent="Sites/Emails"]
+layout_mode = 2
+offset_left = 169.0
+offset_top = -52.0
+offset_right = 267.0
+offset_bottom = 6.0
+texture = ExtResource("11_xg8e0")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Shop Icon" type="TextureRect" parent="Sites/Emails"]
+layout_mode = 2
+offset_left = 448.0
+offset_top = -45.0
+offset_right = 532.0
+offset_bottom = -2.0
+texture = ExtResource("13_4yp1e")
+expand_mode = 1
+stretch_mode = 4
+
 [node name="ShopBackground" type="TextureRect" parent="Sites/Emails"]
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -2.5
-offset_top = -65.0
-offset_right = 2.5
-offset_bottom = -42.0
+offset_top = -61.0
+offset_right = 5.0
+offset_bottom = -38.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -180,10 +208,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -2.5
-offset_top = -65.0
-offset_right = 2.5
-offset_bottom = -42.0
+offset_top = -61.0
+offset_right = 5.0
+offset_bottom = -38.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -231,6 +258,7 @@ offset_top = 37.0
 offset_right = -37.0
 offset_bottom = 100.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("18_uu7um")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_0hhal")
 text = "   email.com"
@@ -244,52 +272,69 @@ item_button_scene = ExtResource("6_q6ffq")
 shop_category_scene = ExtResource("3_mi23s")
 metadata/_tab_index = 1
 
+[node name="Shop Icon" type="TextureRect" parent="Sites/Botsy"]
+layout_mode = 0
+offset_left = 413.0
+offset_top = -51.0
+offset_right = 529.0
+offset_bottom = 8.0
+texture = ExtResource("13_4yp1e")
+expand_mode = 1
+stretch_mode = 4
+
 [node name="EmailsBackground" type="TextureRect" parent="Sites/Botsy"]
 z_index = -1
-layout_mode = 1
-anchors_preset = 15
+layout_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -2.5
-offset_top = -65.0
-offset_right = 2.5
-offset_bottom = -42.0
+offset_top = -61.0
+offset_right = 5.0
+offset_bottom = -38.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("3_n837d")
 
+[node name="Email Icon" type="TextureRect" parent="Sites/Botsy"]
+z_index = -1
+layout_mode = 0
+offset_left = 165.0
+offset_top = -50.0
+offset_right = 250.0
+offset_bottom = 3.0
+texture = ExtResource("11_xg8e0")
+expand_mode = 1
+stretch_mode = 4
+
 [node name="ShopBackground" type="TextureRect" parent="Sites/Botsy"]
 z_index = -1
-layout_mode = 1
-anchors_preset = 15
+layout_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -2.5
-offset_top = -65.0
-offset_right = 2.5
-offset_bottom = -42.0
+offset_top = -61.0
+offset_right = 5.0
+offset_bottom = -38.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("2_41ojn")
 
 [node name="Label" type="Label" parent="Sites/Botsy"]
-layout_mode = 1
-anchors_preset = 10
+layout_mode = 2
 anchor_right = 1.0
 offset_left = 38.0
 offset_top = 37.0
 offset_right = -37.0
 offset_bottom = 100.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("18_uu7um")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_0hhal")
 text = "   botsy.com"
 vertical_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Sites/Botsy"]
-layout_mode = 0
+layout_mode = 2
 offset_left = 40.0
 offset_top = 120.0
 offset_right = 1878.0
@@ -306,13 +351,14 @@ theme_override_constants/separation = 30
 
 [node name="Currency Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1527.0
-offset_top = 15.0
-offset_right = 1812.0
-offset_bottom = 93.0
+offset_left = 1475.0
+offset_top = 13.5
+offset_right = 1811.0
+offset_bottom = 91.5
+theme_override_fonts/font = ExtResource("3_gp3as")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxTexture_xtmmj")
-text = "1000000"
+text = "0123456"
 horizontal_alignment = 2
 vertical_alignment = 1
 

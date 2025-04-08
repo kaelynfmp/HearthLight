@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5605c3ehaw25"]
+[gd_scene load_steps=8 format=3 uid="uid://c5605c3ehaw25"]
 
 [ext_resource type="Script" uid="uid://bsn56iwimnccg" path="res://scripts/gui/inventory/slot.gd" id="1_n8mqj"]
+[ext_resource type="FontFile" uid="uid://cskltmfvwlc7g" path="res://resources/fonts/Audiowide-Regular.ttf" id="2_ck1dj"]
 [ext_resource type="PackedScene" uid="uid://dax2wy6iaipfq" path="res://scenes/tooltip.tscn" id="2_x1gds"]
 [ext_resource type="AudioStream" uid="uid://bi2ci58kojoel" path="res://resources/audio/UI Sounds/UI 7 (error 2).mp3" id="3_0xnbr"]
 
@@ -65,6 +66,7 @@ offset_left = -91.0
 offset_top = -63.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_ck1dj")
 theme_override_font_sizes/font_size = 50
 text = "0"
 horizontal_alignment = 1

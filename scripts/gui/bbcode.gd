@@ -8,6 +8,8 @@ var initialized:bool = false
 
 var tooltip_node:Control
 
+var botsy_texture_path:String = "res://resources/sprites/computer/shopIcon.png"
+
 func _ready():
 	meta_underlined = false
 	hint_underlined = false
@@ -108,7 +110,9 @@ func set_text_with_bbcode(value: String):
 			var token:String = ""
 			token += "[url=Botsy]"
 			token += "[u]"
-			# INSERT TEXTURE LATER
+			token += "[img height=" + str(insert_image_width) + "px,center]"
+			token += botsy_texture_path
+			token += "[/img]"
 			token += text_value
 			token += "[/u]"
 			token += "[/url]"
