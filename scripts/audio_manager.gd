@@ -7,7 +7,7 @@ var gadget_audio_index:Dictionary[Gadget, int] # Populate dict once ready
 
 var playback:AudioStreamPlaybackPolyphonic
 
-var active_gadgets:Dictionary[StringName, Dictionary] = {
+var active_gadgets:Dictionary[String, Dictionary] = {
 	"c grinder.wav": {},
 	"c loom.wav": {},
 	"c plant.wav": {},
@@ -22,7 +22,7 @@ var active_gadgets:Dictionary[StringName, Dictionary] = {
 	"e generator.wav": {}
 }
 
-var sync_stream_indexes:Dictionary[StringName, int] = {
+var sync_stream_indexes:Dictionary[String, int] = {
 	"c grinder.wav": -1,
 	"c loom.wav": -1,
 	"c plant.wav": -1,
