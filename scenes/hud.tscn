@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bpie3rt8qmyxr"]
+[gd_scene load_steps=53 format=3 uid="uid://bpie3rt8qmyxr"]
 
 [ext_resource type="PackedScene" uid="uid://c2wlmdehxae41" path="res://scenes/Computer Scenes/computer_interface.tscn" id="1_8kako"]
 [ext_resource type="PackedScene" uid="uid://c6g34by20r0qc" path="res://scenes/inventory/inventory.tscn" id="1_h8ipj"]
@@ -32,6 +32,9 @@
 [ext_resource type="Script" uid="uid://c4ql6o66f32mb" path="res://scripts/gui/quests/quest_list.gd" id="23_gltyx"]
 [ext_resource type="Script" uid="uid://de8r52enofgen" path="res://scripts/gui/quests/quest_scroll.gd" id="24_ptr5m"]
 [ext_resource type="PackedScene" uid="uid://b3w6sowo6hkq5" path="res://scenes/quests/quest.tscn" id="26_mgfyp"]
+[ext_resource type="Script" uid="uid://bmbjvwjv7o02o" path="res://scripts/cutscene_canvas.gd" id="33_fgtve"]
+[ext_resource type="Script" uid="uid://ccoraw5tcjrlm" path="res://scripts/cutscene_text.gd" id="34_03o4m"]
+[ext_resource type="Script" uid="uid://bnf7fgs3grdh8" path="res://scripts/continue_button.gd" id="35_03o4m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_drira"]
 shader = ExtResource("2_0gell")
@@ -68,6 +71,55 @@ shader_parameter/diagonals = true
 shader_parameter/rounded = true
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_5357l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_03o4m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dl6ww"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8f8xv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v0qwq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yawqa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qccye"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_03o4m"]
+bg_color = Color(0.843137, 0, 0.368627, 0.458824)
+border_width_bottom = 8
+border_color = Color(0.842874, 0, 0.369416, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_flipt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dl6ww"]
+bg_color = Color(0.843137, 0, 0.368627, 1)
+border_width_bottom = 8
+border_color = Color(0.842874, 0, 0.369416, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uorui"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8f8xv"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_bottom = 8
+border_color = Color(0.842874, 0, 0.369416, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 8.0
+expand_margin_right = 8.0
 
 [node name="HUD" type="CanvasLayer"]
 
@@ -267,6 +319,75 @@ layout_mode = 0
 offset_right = 1926.0
 offset_bottom = 1092.0
 texture = SubResource("CanvasTexture_5357l")
+
+[node name="CutsceneCanvas" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1083.0
+script = ExtResource("33_fgtve")
+
+[node name="CutsceneText" type="RichTextLabel" parent="CutsceneCanvas"]
+z_index = 101
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 279.0
+offset_right = -279.0
+offset_bottom = -101.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/bold_italics_font_size = 60
+theme_override_font_sizes/italics_font_size = 60
+theme_override_font_sizes/mono_font_size = 60
+theme_override_font_sizes/normal_font_size = 60
+theme_override_font_sizes/bold_font_size = 60
+bbcode_enabled = true
+text = "Cutscene text"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("34_03o4m")
+
+[node name="DarkenCanvas" type="TextureRect" parent="CutsceneCanvas"]
+modulate = Color(0, 0, 0, 1)
+z_index = 100
+layout_mode = 0
+offset_right = 1926.0
+offset_bottom = 1092.0
+texture = SubResource("CanvasTexture_5357l")
+
+[node name="ContinueButton" type="Button" parent="CutsceneCanvas"]
+z_index = 1001
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -39.5
+offset_top = -72.0
+offset_right = 39.5
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 42
+theme_override_styles/focus = SubResource("StyleBoxEmpty_03o4m")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_dl6ww")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8f8xv")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_v0qwq")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_yawqa")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_qccye")
+theme_override_styles/hover = SubResource("StyleBoxFlat_03o4m")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_flipt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dl6ww")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_uorui")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8f8xv")
+text = "Continue"
+script = ExtResource("35_03o4m")
+button_sound = 7
 
 [connection signal="pressed" from="SelectedGadget/Control/HBoxContainer/RotateLeft" to="SelectedGadget" method="_on_rotate_left_pressed"]
 [connection signal="pressed" from="SelectedGadget/Control/HBoxContainer/RotateRight" to="SelectedGadget" method="_on_rotate_right_pressed"]

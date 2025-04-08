@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=2 format=3 uid="uid://btrqeuwsy3xah"]
+
+[ext_resource type="Script" uid="uid://cqmru0quqhglh" path="res://scripts/resources/cutscene.gd" id="1_rprjj"]
+
+[resource]
+script = ExtResource("1_rprjj")
+text = Array[String](["\"Well well well, look who we have here. You've got a lotta nerve, putting me on a wild goose chase like that.\"", "\"And I'm gonna make sure you pay for every second of it, that's a Hark family guarantee.\"
+
+[i]You failed to pay your debts in time. Perhaps in another life, you could have gotten a better chance.[/i]"])
+final_button_text = "Return to Main Menu"
+cutscene_type = 1
+metadata/_custom_type_script = "uid://cqmru0quqhglh"
