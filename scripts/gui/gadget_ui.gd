@@ -6,6 +6,7 @@ var rotation_speed:float = 10
 @onready var slot_scene:PackedScene = preload("res://scenes/inventory/storage_slot.tscn")
 @onready var creates_progress:TextureRect = find_child("CreatesProgress", true)
 @onready var primitive_button:TextureButton = find_child("PrimitiveButton", true)
+@onready var energy_progress:TextureRect = find_child("EnergyProgress", true)
 var current_gadget:Gadget
 var input_hint_dict: Dictionary = {}
 
@@ -20,21 +21,34 @@ func _process(delta: float) -> void:
 			creates_progress.material.set("shader_parameter/progress", GameManager.gadget.progress)
 		else:
 			creates_progress.visible = false
-		primitive_button.disabled = GameManager.gadget.selected_recipe == null
+		primitive_button.disabled = GameManager.gadget.selected_recipe == null or not GameManager.gadget.is_able_to_do_recipe
 		if primitive_button.disabled:
 			primitive_button.set_rotation(0)
 		GameManager.gadget.primitive_selected = primitive_button.is_pressed()
 		if primitive_button.is_pressed():
 			primitive_button.set_rotation(primitive_button.get_rotation() + rotation_speed * delta)
+		if current_gadget.name == "Generator":
+			energy_progress.visible = true
+			energy_progress.material.set("shader_parameter/progress", GameManager.gadget.total_power / GameManager.gadget.max_power)
+		else:
+			energy_progress.visible = false
+		if current_gadget.name == "Universal Generator":
+			$Background/Contained/CreatesControl.visible = false
+			$Background/Contained/InfinitePower.visible = true
+			
+		else:
+			$Background/Contained/CreatesControl.visible = true
+			$Background/Contained/InfinitePower.visible = false
 	else:
 		current_gadget = null
-	if current_gadget and current_gadget.name != "Storage":
+	if current_gadget and not current_gadget.name in ["Storage", "Universal Generator"]:
 		update_hint_visibility()
 		
 func setup_storage(gadget: StaticBody2D):
 	var inputs:Array[Slot] = gadget.inventory.slots.filter(func(slot): return !slot.locked)
 	var contained = $Background/Contained
 	contained.visible = false
+	$Background/Contained/EnergyControl.visible = false
 	var hflowcontainer = $Background/HFlowContainer
 	hflowcontainer.visible = true
 	var remove_children:Array
@@ -51,6 +65,42 @@ func setup_storage(gadget: StaticBody2D):
 		new_slot.set_name("StorageSlot" + str(index))
 		hflowcontainer.add_child(new_slot) 
 		hflowcontainer.move_child(new_slot, index)
+		
+func setup_generator(gadget: StaticBody2D):
+
+	var contained = $Background/Contained
+	print(current_gadget.name)
+	# Setup coal slot
+	if current_gadget.name == "Generator":
+		$Background/Contained/EnergyControl.visible = true
+		var inputs:Array[Slot] = gadget.inventory.slots.filter(func(slot): return !slot.locked)
+		for index in range(inputs.size()):
+			var input:Slot = gadget.inventory.slots[gadget.inventory.slots.find(inputs[index])]
+			var new_slot: PanelContainer = input_slot_scene.instantiate()
+			
+			# VISUAL INPUT HINTS ON GADGETS
+			var input_hint: TextureRect = new_slot.find_child("ImgHintInput", true)
+			var recipe_inputs = get_inputs_for_hint()
+			var curr_slot = recipe_inputs[index]
+			if curr_slot == null:
+				input_hint.texture = null
+				continue
+			input_hint.texture = curr_slot.item.texture
+			input_hint_dict[input_hint] = current_gadget.inventory.get_item_quantity(curr_slot.item)
+			new_slot.set_slot(input)
+			new_slot.update()
+			new_slot.set_name("InputSlot" + str(index))
+			if inputs.size() >= 3:
+				if index % 2 == 1:
+					new_slot.size_flags_vertical = SIZE_SHRINK_BEGIN
+				else:
+					new_slot.size_flags_vertical = SIZE_SHRINK_END
+			else:
+				new_slot.size_flags_vertical = SIZE_SHRINK_CENTER	
+			contained.add_child(new_slot)
+			contained.move_child(new_slot, index)
+	else:
+		$Background/Contained/EnergyControl.visible = false
 	
 func set_gadget(gadget:StaticBody2D):
 	primitive_button.set_rotation(0)
@@ -66,6 +116,8 @@ func set_gadget(gadget:StaticBody2D):
 	var contained = $Background/Contained
 	var hflowcontainer = $Background/HFlowContainer
 	hflowcontainer.visible = false
+	$Background/Contained/EnergyControl.visible = false
+	$Background/Contained/InfinitePower.visible = false
 	contained.visible = true
 	var remove_children:Array
 	
@@ -77,6 +129,10 @@ func set_gadget(gadget:StaticBody2D):
 
 	for child in remove_children:
 		contained.remove_child(child)
+		
+	if "Generator" in current_gadget.name:
+		setup_generator(gadget)
+		return
 		
 	for index in range(inputs.size()):
 		var input:Slot = gadget.inventory.slots[gadget.inventory.slots.find(inputs[index])]

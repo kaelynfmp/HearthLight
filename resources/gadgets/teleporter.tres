@@ -1,0 +1,71 @@
+[gd_resource type="Resource" script_class="Gadget" load_steps=11 format=3 uid="uid://bkuks7tbfprqt"]
+
+[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_66ifb"]
+[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_pfq51"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_ksb6m"]
+[ext_resource type="Texture2D" uid="uid://1htm0iluudsp" path="res://resources/sprites/teleportDR.png" id="4_pfq51"]
+[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_ripor"]
+
+[sub_resource type="Resource" id="Resource_g0fqm"]
+script = ExtResource("2_pfq51")
+locked = false
+item_filter = Array[ExtResource("3_ksb6m")]([])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_pfq51"]
+script = ExtResource("2_pfq51")
+locked = true
+item_filter = Array[ExtResource("3_ksb6m")]([])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_ttbt3"]
+script = ExtResource("1_66ifb")
+slots = Array[ExtResource("2_pfq51")]([SubResource("Resource_g0fqm"), SubResource("Resource_pfq51")])
+
+[sub_resource type="Resource" id="Resource_ksb6m"]
+script = ExtResource("3_ksb6m")
+texture = ExtResource("4_pfq51")
+name = "Teleporter"
+description = "This teleports your item into any gadget that you want!"
+max_stack = 100
+price = 50
+metadata/_custom_type_script = "uid://by7jec2ew2vsl"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ripor"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_pfq51")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_pfq51")
+}],
+"loop": true,
+"name": &"se",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("4_ripor")
+sprite_frames = SubResource("SpriteFrames_ripor")
+sprite_offset = Vector2(0, -140)
+sprite_scale_factor = 0.95
+name = "Teleporter"
+age = 3
+direction = 0
+description = "This teleports your item into any gadget that you want!"
+item = SubResource("Resource_ksb6m")
+inventory = SubResource("Resource_ttbt3")
+produces = true
+inputs = 1
+outputs = 1
+process_time = 0.5
+sound_string = "teleporter loop.wav"
+metadata/_custom_type_script = "uid://diu2pkk76wyyy"

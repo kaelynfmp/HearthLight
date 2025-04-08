@@ -1,0 +1,71 @@
+[gd_resource type="Resource" script_class="Gadget" load_steps=11 format=3 uid="uid://ctu6bpp0f2uun"]
+
+[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_s13dw"]
+[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_4uh71"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_2rdug"]
+[ext_resource type="Texture2D" uid="uid://cnyjtg51tfd03" path="res://resources/sprites/loomCyber.png" id="4_4uh71"]
+[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_rd213"]
+
+[sub_resource type="Resource" id="Resource_6x6h6"]
+script = ExtResource("2_4uh71")
+locked = false
+item_filter = Array[ExtResource("3_2rdug")]([])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_4uh71"]
+script = ExtResource("2_4uh71")
+locked = true
+item_filter = Array[ExtResource("3_2rdug")]([])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_tprh4"]
+script = ExtResource("1_s13dw")
+slots = Array[ExtResource("2_4uh71")]([SubResource("Resource_6x6h6"), SubResource("Resource_4uh71")])
+
+[sub_resource type="Resource" id="Resource_2rdug"]
+script = ExtResource("3_2rdug")
+texture = ExtResource("4_4uh71")
+name = "Cyber Loom"
+description = "Cyber Loom"
+max_stack = 1
+price = 300
+metadata/_custom_type_script = "uid://by7jec2ew2vsl"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rd213"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_4uh71")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_4uh71")
+}],
+"loop": true,
+"name": &"se",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("4_rd213")
+sprite_frames = SubResource("SpriteFrames_rd213")
+sprite_offset = Vector2(0, -140)
+sprite_scale_factor = 0.95
+name = "Cyber Loom"
+age = 3
+direction = 0
+description = "Cyber Loom"
+item = SubResource("Resource_2rdug")
+inventory = SubResource("Resource_tprh4")
+produces = true
+inputs = 1
+outputs = 1
+process_time = 1.0
+sound_string = "c loom.wav"
+metadata/_custom_type_script = "uid://diu2pkk76wyyy"

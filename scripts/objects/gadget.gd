@@ -52,7 +52,8 @@ var direction_vector: Array[Vector2i] = [
 ]
 var disabled = false
 var has_power = false
-
+var is_able_to_do_recipe: bool = false
+var is_cyber_generator: bool = false
 var notification:Sprite2D
 
 func get_local_position():
@@ -82,6 +83,7 @@ func _ready() -> void:
 	tile_layers = base_layer.get_parent()
 	age = gadget_stats.age
 	is_generator = "Generator" in gadget_stats.name
+	is_cyber_generator = gadget_stats.name == "Universal Generator"
 	sprite.sprite_frames = gadget_stats.sprite_frames
 	sprite.offset = gadget_stats.sprite_offset
 	direction = gadget_stats.direction
@@ -98,11 +100,15 @@ func _ready() -> void:
 	notification = find_child("Notification")
 	
 func check_for_nearby_generator(delta: float):
+	if GameManager.has_cyber_generator:
+		return true
 	for offset_x in range(-2, 3):
 		for offset_y in range(-2, 3):
 			var target_pos = cell_pos + Vector2i(offset_x, offset_y)
 			if GameManager.room_map[target_pos[0] + 6][target_pos[1] + 5] != null:
 				var gadget_at_target_pos = GameManager.room_map[target_pos[0] + 6][target_pos[1] + 5]
+				if gadget_at_target_pos.is_cyber_generator:
+					return true
 				if gadget_at_target_pos.is_generator and gadget_at_target_pos.has_power:
 					# Deplete power of generator being used
 					if progressing and selected_recipe != null and not GameManager.sleeping:
@@ -120,10 +126,11 @@ func _physics_process(delta: float) -> void:
 	if gadget_stats.age > GameManager.Age.PRIMITIVE and not is_generator:
 		has_power_from_generator = check_for_nearby_generator(delta)
 	if is_generator:
-		has_power = total_power > 0
-		if prev_power != total_power:
+		has_power = total_power > 0 or is_cyber_generator
+		if prev_power != total_power or is_cyber_generator:
 			prev_power = total_power
-			AudioManager.active_gadgets[gadget_stats.sound_string][self] = true
+			if not AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
+				AudioManager.active_gadgets[gadget_stats.sound_string][self] = true
 		else:
 			if AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
 				AudioManager.active_gadgets[gadget_stats.sound_string].erase(self)
@@ -131,7 +138,8 @@ func _physics_process(delta: float) -> void:
 		if gadget_stats.name == "Conveyor Belt":
 			do_transport()
 		elif selected_recipe != null:
-			if is_able_to_recipe():
+			is_able_to_do_recipe = is_able_to_recipe()
+			if is_able_to_do_recipe:
 				disabled = false
 				do_recipe()
 			else:
@@ -162,6 +170,17 @@ func _physics_process(delta: float) -> void:
 		GameManager.change_inventory()
 
 func is_able_to_recipe() -> bool:
+	var recipe_inputs: Array[Slot] = selected_recipe.inputs
+	var input_slots: Array[Slot] = inventory.slots.filter(func(slot): return !slot.locked)
+	var have_enough_inputs: bool = recipe_inputs.all(
+		func(recipe_input_slot):
+			var item = recipe_input_slot.item
+			var required: bool = input_slots.any(
+				func(input_slot):		
+					return input_slot.item.name == item.name and input_slot.quantity >= recipe_input_slot.quantity
+			)
+			return required
+	)
 	var output_slots: Array = inventory.slots.filter(func(slot): return slot.locked)
 	var is_able: bool = output_slots.all(func(slot):
 		var item = slot.item
@@ -172,7 +191,7 @@ func is_able_to_recipe() -> bool:
 		if slot.quantity + selected_recipe.outputs[slot_item_in_recipe].quantity <= item.max_stack:
 			return true
 	)
-	return is_able
+	return is_able and have_enough_inputs
 	
 func rotate_sprite() -> void:
 	match (direction):
@@ -333,9 +352,14 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			cancel_processing()
 			# Remove from masterlist of inventories
 			GameManager.inventories.erase(inventory)
+			if gadget_stats.name == "Universal Generator":
+				GameManager.has_cyber_generator = false
 			for slot in inventory.slots:
 			# Send it all away to any open inventories
 				GameManager.send_to_inventory(slot)
+			if gadget_stats.age > Gadget.Age.PRIMITIVE:
+				if AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
+					(func(): AudioManager.active_gadgets[gadget_stats.sound_string].erase(self)).call_deferred()
 			removing.emit(layer_occupied_name, cell_pos)
 			queue_free()
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.is_pressed():

@@ -7,6 +7,7 @@
 resource_name = "AdvancedPlantCompletion"
 script = ExtResource("1_fanfm")
 sender = ""
+email = ""
 subject = ""
 contents = ""
 category = ""

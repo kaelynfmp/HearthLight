@@ -82,7 +82,6 @@ func _enter_tree() -> void:
 	player.play()
 	# Get the polyphonic playback stream to play sounds
 	playback = player.get_stream_playback()
-
 	get_tree().node_added.connect(_on_node_added)
 
 func _on_node_added(node:Node) -> void:
@@ -97,8 +96,8 @@ func _play_pressed(node:Node) -> void:
 		
 func play_button_sound(index:int, db:float=0, pitch:float=1, pitch_range:float=0.1):
 	playback.play_stream(button_sounds[index], 0, db, randf_range(pitch - pitch_range, pitch + pitch_range))
-
 	
+
 func _process(_delta: float) -> void:
 	if gadget_audio != null:
 		for audio_string:String in active_gadgets:
