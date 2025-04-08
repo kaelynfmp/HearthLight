@@ -8,5 +8,5 @@ text = Array[String](["\"Well well well, look who we have here. You've got a lot
 
 [i]You failed to pay your debts in time. Perhaps in another life, you could have gotten a better chance.[/i]"])
 final_button_text = "Return to Main Menu"
-cutscene_type = 1
+cutscene_type = 2
 metadata/_custom_type_script = "uid://cqmru0quqhglh"

@@ -8,4 +8,5 @@ text = Array[String](["An explosion echoes in the distance, though you're not qu
 
 Locke Steppe, CEO of Heaven Corp.\"", "Your computer pings. You check it hesitantly. There's an email from a familiar, rebellious address.", "\"You'll never believe what we just blew up! It was that place you used to work at! Don't worry, it was a tactical blast, but we managed to take the CEO hostage >:)\"", "You sink to the floor, letting the sounds of the machines envelop your consciousness. ", "Perhaps you can still have a future."])
 final_button_text = "Enter Free-Play"
+cutscene_type = 1
 metadata/_custom_type_script = "uid://cqmru0quqhglh"

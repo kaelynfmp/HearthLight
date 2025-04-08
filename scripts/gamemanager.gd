@@ -508,8 +508,17 @@ func wake_up():
 		print("waking up...")
 
 func pay_debt():
+	if computer_visible:
+		computer_visible = false
+		computer_visibility_changed.emit()
 	paid_off_debt.emit()
 	debt_paid = true
+	if game_time["day"] > debt_days:
+		current_cutscene = load("res://resources/cutscenes/badending.tres")
+	else:
+		current_cutscene = load("res://resources/cutscenes/goodending.tres")
+		
+	cutscene_displayed = true
 
 func conclude_cutscene():
 	cutscene_displayed = false
