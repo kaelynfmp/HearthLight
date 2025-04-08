@@ -1,16 +1,18 @@
-[gd_scene load_steps=71 format=3 uid="uid://bj67g16p1cic7"]
+[gd_scene load_steps=74 format=3 uid="uid://bj67g16p1cic7"]
 
 [ext_resource type="Script" uid="uid://bq36bahokfv2b" path="res://scenes/Computer Scenes/item_buy_popup.gd" id="1_cmwl6"]
 [ext_resource type="Texture2D" uid="uid://b44kbp322i3y" path="res://resources/sprites/testimg.png" id="1_p7i7f"]
+[ext_resource type="Texture2D" uid="uid://chmpjoaggpqur" path="res://resources/sprites/shop/shopOverlay.png" id="2_nticq"]
 [ext_resource type="Script" uid="uid://bha8ro4unkubb" path="res://scripts/gui/bbcode.gd" id="2_ocrdl"]
+[ext_resource type="FontFile" uid="uid://c4bnatv11g13n" path="res://resources/fonts/Conthrax-SemiBold.otf" id="3_3mqyj"]
 [ext_resource type="Texture2D" uid="uid://cwxs2j52xgre8" path="res://resources/sprites/computer/computerAccept.png" id="3_b72uc"]
 [ext_resource type="Texture2D" uid="uid://dph2wxrwua005" path="res://resources/sprites/computer/computerCancel.png" id="4_hi044"]
 [ext_resource type="Script" uid="uid://qijeydguunxc" path="res://scripts/menus/menu_button.gd" id="4_q3mbq"]
+[ext_resource type="FontFile" uid="uid://tn2pvq1qwtx6" path="res://resources/fonts/GiantRobotArmy-Medium.ttf" id="4_qacpl"]
 [ext_resource type="Texture2D" uid="uid://dia3ys8fp0pob" path="res://resources/sprites/shop/shopQuantity.png" id="5_bl36k"]
 [ext_resource type="FontFile" uid="uid://cskltmfvwlc7g" path="res://resources/fonts/Audiowide-Regular.ttf" id="8_hml2d"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a3scx"]
-bg_color = Color(0.336859, 0.193585, 0.420663, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g6yrn"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1g2mv"]
 
@@ -173,7 +175,7 @@ offset_bottom = 297.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.4, 0.4)
-theme_override_styles/panel = SubResource("StyleBoxFlat_a3scx")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_g6yrn")
 script = ExtResource("1_cmwl6")
 item_name = NodePath("Panel/Name")
 item_desc = NodePath("Panel/Description")
@@ -191,29 +193,48 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -895.193
-offset_top = -434.616
-offset_right = 911.807
-offset_bottom = 591.384
+offset_left = -1465.0
+offset_top = -742.0
+offset_right = 1415.0
+offset_bottom = 878.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Background" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -691.0
+offset_top = -773.5
+offset_right = 691.0
+offset_bottom = 773.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_nticq")
+expand_mode = 1
+stretch_mode = 4
+
 [node name="Name" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 1367.31
-offset_top = 492.308
-offset_right = 2430.31
-offset_bottom = 661.308
+offset_left = 1815.5
+offset_top = 747.5
+offset_right = 2987.5
+offset_bottom = 916.5
+theme_override_fonts/font = ExtResource("3_3mqyj")
 theme_override_font_sizes/font_size = 70
 text = "Item Name"
 horizontal_alignment = 1
 
 [node name="Description" type="RichTextLabel" parent="Panel"]
 layout_mode = 0
-offset_left = 977.0
-offset_top = 876.0
-offset_right = 2740.0
-offset_bottom = 1147.0
+offset_left = 1845.0
+offset_top = 1438.5
+offset_right = 2945.0
+offset_bottom = 1672.5
+theme_override_fonts/normal_font = ExtResource("4_qacpl")
 theme_override_font_sizes/bold_italics_font_size = 50
 theme_override_font_sizes/italics_font_size = 50
 theme_override_font_sizes/mono_font_size = 50
@@ -228,31 +249,39 @@ hint_underlined = false
 script = ExtResource("2_ocrdl")
 
 [node name="TextureRect" type="TextureRect" parent="Panel"]
-layout_mode = 0
-offset_left = 1712.0
-offset_top = 618.0
-offset_right = 2002.0
-offset_bottom = 843.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.5
+offset_top = -297.5
+offset_right = 134.5
+offset_bottom = -72.4998
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_p7i7f")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="Cost" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 2051.92
-offset_top = 1198.08
-offset_right = 2459.92
-offset_bottom = 1367.08
+offset_left = 2456.92
+offset_top = 1703.08
+offset_right = 2864.92
+offset_bottom = 1872.08
+theme_override_fonts/font = ExtResource("8_hml2d")
 theme_override_font_sizes/font_size = 70
 text = "Cost"
 horizontal_alignment = 1
 
 [node name="Confirm" type="Button" parent="Panel"]
 layout_mode = 0
-offset_left = 1955.0
-offset_top = 1350.0
-offset_right = 2067.0
-offset_bottom = 1469.0
+offset_left = 2482.5
+offset_top = 1867.5
+offset_right = 2594.5
+offset_bottom = 1986.5
 theme_override_styles/focus = SubResource("StyleBoxEmpty_1g2mv")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_ttfo8")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_llgvx")
@@ -268,10 +297,10 @@ icon = ExtResource("3_b72uc")
 
 [node name="Decline" type="Button" parent="Panel"]
 layout_mode = 0
-offset_left = 1653.0
-offset_top = 1350.0
-offset_right = 1763.0
-offset_bottom = 1469.0
+offset_left = 2180.5
+offset_top = 1867.5
+offset_right = 2290.5
+offset_bottom = 1986.5
 theme_override_styles/focus = SubResource("StyleBoxEmpty_7kxm2")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_81oyx")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_06erm")
@@ -288,7 +317,7 @@ script = ExtResource("4_q3mbq")
 button_sound = 7
 
 [node name="ShopQuantity" type="Sprite2D" parent="Panel"]
-position = Vector2(1590, 1251.62)
+position = Vector2(2155, 1756.62)
 scale = Vector2(1.67039, 1.56579)
 texture = ExtResource("5_bl36k")
 
