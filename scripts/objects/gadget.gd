@@ -357,7 +357,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			for slot in inventory.slots:
 			# Send it all away to any open inventories
 				GameManager.send_to_inventory(slot)
-			if gadget_stats.age > Gadget.Age.PRIMITIVE:
+			if gadget_stats.age > Gadget.Age.PRIMITIVE and not gadget_stats.name in ["Computer", "Conveyor Belt", "Storage", "Teleporter"]:
 				if AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
 					(func(): AudioManager.active_gadgets[gadget_stats.sound_string].erase(self)).call_deferred()
 			removing.emit(layer_occupied_name, cell_pos)
