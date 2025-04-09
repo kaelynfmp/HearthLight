@@ -108,7 +108,7 @@ script = ExtResource("3_qlcc6")
 texture = ExtResource("4_0o3wc")
 name = "Storage"
 description = "Store your items here"
-max_stack = 100
+max_stack = 24
 price = 50
 metadata/_custom_type_script = "uid://by7jec2ew2vsl"
 

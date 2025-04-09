@@ -42,29 +42,15 @@ func check_valid() -> bool:
 		# Prerequisite condition not met, some of the prereq emails are not archived. Checks the archive instead
 		# of completed_order_emails, because the pre-requisite could theoretically be a tutorial or lore email
 		return false
-	if !prereqs_must_fail and !prerequisite_emails.filter(func(_email: Email): return failable and failed).is_empty():
+	if !prereqs_must_fail and prerequisite_emails.any(func(_email: Email): return failable and failed):
 		# not a failure email AND failed prereq emails list is NOT EMPTY
 		# aka not a failure email and prereqs have been failed
 		return false
-	if prereqs_must_fail and prerequisite_emails.filter(func(_email: Email): return failable and failed).is_empty():
+	if prereqs_must_fail and !prerequisite_emails.all(func(_email: Email): return failable and failed):
 		# failure email and prereqs are not failed (if they exist)
 		return false
 	
 	#if self in GameManager.categorized_emails["orders"] or self in GameManager.categorized_emails["main"] or !check_chain(): # if NOT a failure email, check if prereq emails are failed: return false, otw true
 	#	return false
 	
-	return true
-
-func check_chain() -> bool:
-	if !prereqs_must_fail:
-		for email in prerequisite_emails:
-			if !email.attached_order and email.is_read:
-				pass
-			if (email.failable and email.failed) or (email.attached_order and !email.attached_order.is_completed):
-				#print("Chain email invalid")
-				return false
-			if email.failable and email.attached_order and email.attached_order.is_completed:
-				pass
-	#print("Chain email valid")
-	# once all emails are checked, return true
 	return true

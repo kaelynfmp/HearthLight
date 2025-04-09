@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="Email" load_steps=7 format=3 uid="uid://ccpfmonlcinap"]
+[gd_resource type="Resource" script_class="Email" load_steps=8 format=3 uid="uid://ccpfmonlcinap"]
 
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_0ww8n"]
 [ext_resource type="Resource" uid="uid://c72ncnx37h5nj" path="res://resources/gadgets/cyber_sieve.tres" id="1_grj6u"]
 [ext_resource type="Resource" uid="uid://bgmxpne1d7fis" path="res://resources/items/metal.tres" id="1_nv7pv"]
 [ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_q7kf4"]
-[ext_resource type="Resource" uid="uid://bymqmr55efkl0" path="res://resources/emails/cyber_mill_completion.tres" id="4_nv7pv"]
+[ext_resource type="Resource" uid="uid://c6kh7itdfyx78" path="res://resources/emails/cyber_pot_email.tres" id="5_2d37f"]
+[ext_resource type="Resource" uid="uid://be2krtnnujdfy" path="res://resources/emails/cyber_loom_email.tres" id="6_gjudy"]
 
 [sub_resource type="Resource" id="Resource_ui1ip"]
 script = ExtResource("1_q7kf4")
@@ -34,7 +35,7 @@ YOU SHOULD TRY IT.
 
 [res=Metal]METALLLLL[/res]"
 category = "main"
-prerequisite_emails = Array[ExtResource("1_0ww8n")]([ExtResource("4_nv7pv")])
+prerequisite_emails = Array[ExtResource("1_0ww8n")]([ExtResource("5_2d37f"), ExtResource("6_gjudy")])
 day = 0
 hour = 0
 minute = 0

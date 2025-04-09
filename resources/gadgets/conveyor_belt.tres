@@ -32,7 +32,7 @@ script = ExtResource("3_lf8tf")
 texture = ExtResource("6_nmkh0")
 name = "Conveyor Belt"
 description = "A conveyor belt"
-max_stack = 100
+max_stack = 24
 price = 5
 metadata/_custom_type_script = "uid://by7jec2ew2vsl"
 

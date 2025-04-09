@@ -489,7 +489,7 @@ mouse_filter = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("19_h2711")
 theme_override_font_sizes/font_size = 40
-text = "Given Items"
+text = "   Given Items   "
 horizontal_alignment = 1
 
 [node name="GivenItemsScroll" type="ScrollContainer" parent="EmailContainer/OrderContainer/HBoxContainer/GivenItemsContainer"]

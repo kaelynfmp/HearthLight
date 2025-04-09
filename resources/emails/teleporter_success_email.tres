@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://dmtfbxwb3r0c4"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_wt3dc"]
+[ext_resource type="Resource" uid="uid://cdu2k4c4yrhqw" path="res://resources/emails/teleporter_unlock_email.tres" id="2_t5bb7"]
+
+[resource]
+resource_name = "teleporter_success_email"
+script = ExtResource("1_wt3dc")
+sender = "Goodman, PhD"
+email = ""
+subject = "It's enough to make a grown woman cry"
+contents = "It looked as beautiful as the day I invented it. And after uploading the software, worked exquisitely.
+
+Now that we have an agreement, I can explain how to use the [res=Teleporter]teleporter[/res].
+
+Upon interaction with the teleporter, you will see an interface that shows you all other teleporters available to you. By dragging the node of your teleporter onto another, you have now linked those teleporters. Simply face the teleporter such that the [b]input[/b] side faces the gadget you want to interact with. The teleporter will then [b]pull[/b] from the gadget's output, and [b]send[/b] to the teleporter you connected to.
+
+The receiving teleporter will then [b]insert[/b] any received items into the attached gadget. Teleporters can be chained, but bare in mind that a resource must first be inserted into a gadget before being teleported again, so [res=Storage]storage[/res] may be useful if that is your desire. Otherwise, just assume a teleporter will only send resources it takes from gadgets, and always push all resources it receives into gadgets.
+
+Working with you has been beautiful. If you still are working after I return from my sentencing, I will absolutely use your services once more.
+
+Sincerely yours,
+Professor Goodman
+PhD, University of Penumbra"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_wt3dc")]([ExtResource("2_t5bb7")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = false
+lore_only = true
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

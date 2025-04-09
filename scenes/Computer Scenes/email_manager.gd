@@ -349,9 +349,8 @@ func add_valid_lore_emails():
 			#i+=1
 
 func add_valid_tutorial_emails():
-	
 	for email in all_tutorial_emails:
-		if email.check_chain() and email.check_valid() and email not in categorized_emails["main"] and email not in categorized_emails["orders"] and email not in categorized_emails["archive"]:
+		if email.check_valid() and email not in categorized_emails["main"] and email not in categorized_emails["orders"] and email not in categorized_emails["archive"]:
 			categorized_emails["main"].insert(0,email)
 			display_category_emails(current_category)
 

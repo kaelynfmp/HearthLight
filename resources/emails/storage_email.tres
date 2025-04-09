@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="Email" load_steps=7 format=3 uid="uid://qchrhl4tgfle"]
+
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_7bw62"]
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_n3s28"]
+[ext_resource type="Resource" uid="uid://bgmxpne1d7fis" path="res://resources/items/metal.tres" id="1_pqc84"]
+[ext_resource type="Resource" uid="uid://dk4tt2xs7bvxr" path="res://resources/gadgets/storage.tres" id="2_85d3i"]
+[ext_resource type="Resource" uid="uid://be58bgg864c3p" path="res://resources/emails/ConveyorTutorialCompletion.tres" id="3_pqc84"]
+
+[sub_resource type="Resource" id="Resource_85d3i"]
+script = ExtResource("1_7bw62")
+order_id = 0
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
+given_currency = 0
+required_items = Array[Resource]([ExtResource("1_pqc84")])
+required_quantities = Array[int]([20])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 200
+rewards = Array[Resource]([ExtResource("2_85d3i")])
+rewards_quantities = Array[int]([1])
+unlocks = Array[Resource]([ExtResource("2_85d3i")])
+
+[resource]
+resource_name = "storage_email"
+script = ExtResource("1_n3s28")
+sender = "Office of Goodman"
+email = ""
+subject = "From the office of Goodman, PhD"
+contents = "Hello,
+
+This is an automated email about a future research opportunity. We are hoping to test the skills of dedicated engineers to see if they will be up to the future task of assiting with the production of emerging and advanced [b]cybertechnologies[/b]. 
+
+In order to provide their worth, prospective applicants need only submit [res=Metal]metal[/res] of sufficient quality. They will receive a complimentary [res=Storage]storage crate[/res] for their efforts, provided their metal is sufficiently rich.
+
+This storage crate is an invention of Professor Goodman, and should be able to [b]store[/b] arbitrary amounts of [i]resources and gadgets[/i]; they are stored digitized into smaller forms.
+
+We look forward to hearing from you,
+Amanda Richards
+Secretary for Professor Goodman, University of Penumbra"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_n3s28")]([ExtResource("3_pqc84")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_85d3i")
+tutorial = true
+lore_only = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false
