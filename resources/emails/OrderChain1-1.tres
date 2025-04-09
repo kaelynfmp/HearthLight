@@ -10,7 +10,6 @@ script = ExtResource("1_n1hx6")
 order_id = 0
 given_items = Array[Resource]([])
 given_quantities = Array[int]([])
-given_currency = 0
 required_items = Array[Resource]([ExtResource("1_okta4")])
 required_quantities = Array[int]([13])
 day = 0

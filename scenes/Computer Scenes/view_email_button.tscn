@@ -148,6 +148,8 @@ button_sprite_timed = ExtResource("4_tcbn8")
 top_bar_timed = ExtResource("5_3hun1")
 bg_timed = ExtResource("6_jtaea")
 bottom_bar_timed = ExtResource("7_n4bjr")
+unread_button_sprite = ExtResource("2_ncyps")
+unread_top_bar = ExtResource("2_djbhc")
 button_sound = 7
 
 [node name="TopBar" type="TextureRect" parent="."]

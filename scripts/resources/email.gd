@@ -54,5 +54,4 @@ func check_valid() -> bool:
 	
 	#if self in GameManager.categorized_emails["orders"] or self in GameManager.categorized_emails["main"] or !check_chain(): # if NOT a failure email, check if prereq emails are failed: return false, otw true
 	#	return false
-	
 	return true

@@ -11,7 +11,6 @@ script = ExtResource("1_kwldn")
 order_id = 0
 given_items = Array[Resource]([])
 given_quantities = Array[int]([])
-given_currency = 0
 required_items = Array[Resource]([ExtResource("1_qr1to")])
 required_quantities = Array[int]([2])
 day = 0

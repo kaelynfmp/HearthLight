@@ -11,7 +11,6 @@ script = ExtResource("1_3t0ym")
 order_id = 0
 given_items = Array[Resource]([])
 given_quantities = Array[int]([])
-given_currency = 0
 required_items = Array[Resource]([ExtResource("1_uqabr"), ExtResource("2_st5pu")])
 required_quantities = Array[int]([3, 2])
 day = 0
@@ -27,7 +26,7 @@ resource_name = "MiscOrder4"
 script = ExtResource("1_p6aca")
 sender = "Maximus Brodin"
 email = ""
-subject = "[shake]Yo Bro[/shake]"
+subject = "[shake]Help Me Out Kid😹[/shake]"
 contents = "Hey Hey! I Was Wondering If You Could Get Me Some Stuff I Need To Fix Up A Project Of Mine. I Totally Trashed My Couch, And I Need To Do Some Repairs 😹😹😹
 
 I Was Messing Around With Some Buds, And One Of Them Was Like \"duude, you should elbow drop that couch\" And I Was Like \"Hell Yeah Man!\" 😹 And Now We're Here. I Can Get You Some Money For It As Well (Don't Tell My Parents Though 😹😹😹)"
