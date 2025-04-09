@@ -192,7 +192,7 @@ func _process(_delta: float) -> void:
 	elif Input.is_action_just_pressed("rotate_gadget"):
 		if GameManager.cursor != null:
 			var cursor_gadget = get_gadget_from_cursor()
-			if cursor_gadget != null and cursor_gadget.name == "Conveyor Belt":
+			if cursor_gadget != null and cursor_gadget.name in ["Conveyor Belt", "Teleporter"]:
 				cursor_gadget.direction = (cursor_gadget.direction + 1) % 4
 				gadget_rotated.emit(cursor_gadget.direction)
 		

@@ -13,7 +13,7 @@ func _ready() -> void:
 	
 func flip_texture(direction: int) -> void:
 	var gadget = GameManager.get_gadget_from_cursor()
-	if slot.item != null and slot.item.name == "Conveyor Belt":
+	if slot.item != null and slot.item.name in ["Conveyor Belt", "Teleporter"]:
 		match (direction):
 			Direction.SE:
 				item_texture_rect.set_texture(gadget.sprite_frames.get_frame_texture("se", 0))
@@ -27,7 +27,7 @@ func flip_texture(direction: int) -> void:
 func _process(_delta: float) -> void:
 	position = get_global_mouse_position()
 	var gadget = GameManager.get_gadget_from_cursor()
-	if gadget != null and slot.item != null and slot.item.name == "Conveyor Belt":
+	if gadget != null and slot.item != null and slot.item.name in ["Conveyor Belt", "Teleporter"]:
 		var direction = gadget.direction
 		flip_texture(direction)
 		
