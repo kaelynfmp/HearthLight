@@ -118,10 +118,12 @@ var categorized_emails: Dictionary = {
 	"spam": [],
 	"archive": []
 }
-var remaining_order_emails : Array = []
-var completed_order_emails : Array = []
-var all_lore_emails : Array = []
-var all_tutorial_emails : Array = []
+var all_order_emails: Array[Email]
+var all_lore_emails : Array[Email]
+var all_tutorial_emails : Array[Email]
+var all_bankruptcy_emails: Array[Email]
+
+var random_email_amount:int = 2
 
 var pause: bool = true
 

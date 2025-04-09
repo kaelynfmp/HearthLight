@@ -18,7 +18,6 @@ var category: String = "main"
 @export var attached_order: Order
 
 @export var tutorial: bool # Has no time limit. Anything not set to tutorial == true will have a limit of the midnight of the day you found it
-@export var lore_only: bool
 @export var has_start_time: bool
 # WEIRD FAIL CHECKING STUFF WE DISCUSSED AT TOP OF WHITEBOARD
 @export var failable: bool 
@@ -33,6 +32,9 @@ var archived: bool = false
 func check_valid() -> bool:
 	if failable and failed:
 		# This email is not viewable again, as it failed
+		return false
+	if failable and attached_order.is_completed:
+		# Failable emails cannot be viewed again after being completed, to make chains not appear again
 		return false
 	if has_start_time and !GameManager.is_after_date(day, hour, minute):
 		# If it has a start time, and that start time hasn't been met

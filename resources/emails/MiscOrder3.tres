@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_kwldn"]
 [ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="1_qr1to"]
 [ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="2_f8j87"]
-[ext_resource type="Resource" uid="uid://dn1yfys2dr5s3" path="res://resources/emails/Tutorial5.tres" id="3_uc012"]
+[ext_resource type="Resource" uid="uid://c84vnkl1h3lk6" path="res://resources/emails/timed_orders_now_exist.tres" id="5_qr1to"]
 
 [sub_resource type="Resource" id="Resource_qr1to"]
 script = ExtResource("1_kwldn")
@@ -34,14 +34,13 @@ For this reason, I was wondering if you could provide me with some [res=Cotton]c
 
 I am looking forward to your response, and especially to the heightened mood of my wife Greta."
 category = ""
-prerequisite_emails = Array[ExtResource("1_hmxy6")]([ExtResource("3_uc012")])
+prerequisite_emails = Array[ExtResource("1_hmxy6")]([ExtResource("5_qr1to")])
 day = 0
 hour = 0
 minute = 0
 is_read = false
 attached_order = SubResource("Resource_qr1to")
 tutorial = false
-lore_only = false
 has_start_time = false
 failable = false
 failed = false

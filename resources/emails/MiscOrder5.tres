@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_nqeup"]
 [ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="1_ucibn"]
 [ext_resource type="Resource" uid="uid://bgmxpne1d7fis" path="res://resources/items/metal.tres" id="2_sye1g"]
-[ext_resource type="Resource" uid="uid://dn1yfys2dr5s3" path="res://resources/emails/Tutorial5.tres" id="3_01r1f"]
+[ext_resource type="Resource" uid="uid://c84vnkl1h3lk6" path="res://resources/emails/timed_orders_now_exist.tres" id="5_ucibn"]
 
 [sub_resource type="Resource" id="Resource_ucibn"]
 script = ExtResource("1_nqeup")
@@ -37,14 +37,13 @@ Anyways, she really wants to do some sewing to make a teddy bear for our daughte
 I know this is kind of a shot in the dark, but thanks for at least hearing me out,
 Twilight"
 category = ""
-prerequisite_emails = Array[ExtResource("1_1njqs")]([ExtResource("3_01r1f")])
+prerequisite_emails = Array[ExtResource("1_1njqs")]([ExtResource("5_ucibn")])
 day = 0
 hour = 0
 minute = 0
 is_read = false
 attached_order = SubResource("Resource_ucibn")
 tutorial = false
-lore_only = false
 has_start_time = false
 failable = false
 failed = false

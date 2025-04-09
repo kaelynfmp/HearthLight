@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_lhv6p"]
 [ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_n1hx6"]
 [ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="1_okta4"]
-[ext_resource type="Resource" uid="uid://dn1yfys2dr5s3" path="res://resources/emails/Tutorial5.tres" id="3_okta4"]
+[ext_resource type="Resource" uid="uid://c84vnkl1h3lk6" path="res://resources/emails/timed_orders_now_exist.tres" id="4_okta4"]
 
 [sub_resource type="Resource" id="Resource_j7kpp"]
 script = ExtResource("1_n1hx6")
@@ -33,14 +33,13 @@ I [i]need[/i] some [res=Fabric]fabric[/res], and I've heard that the stuff you'v
 
 (*^3^)/~☆"
 category = ""
-prerequisite_emails = Array[ExtResource("1_lhv6p")]([ExtResource("3_okta4")])
+prerequisite_emails = Array[ExtResource("1_lhv6p")]([ExtResource("4_okta4")])
 day = 0
 hour = 0
 minute = 0
 is_read = false
 attached_order = SubResource("Resource_j7kpp")
 tutorial = false
-lore_only = false
 has_start_time = false
 failable = true
 failed = false

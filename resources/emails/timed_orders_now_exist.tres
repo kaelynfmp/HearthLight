@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://c84vnkl1h3lk6"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_jlkyq"]
+[ext_resource type="Resource" uid="uid://dn1yfys2dr5s3" path="res://resources/emails/Tutorial5.tres" id="2_n836s"]
+
+[resource]
+resource_name = "timed_orders_now_exist"
+script = ExtResource("1_jlkyq")
+sender = "Do Not Reply"
+email = ""
+subject = "[wave amp=50.0]You are eligible for more[/wave]"
+contents = "Hello,
+
+By viewing this email you have been automatically accepted into our new Order Matchup program. Prospective clients may now request your assistance with our Quality Drone Service Guarantee.
+
+These orders will be [b]marked in your emails[/b] with a blue banner.
+
+[b]Do keep in mind[/b], orders will be [b]automatically rejected[/b] if they are not completed by [i]the end of the day[/i].
+
+Thank you for your participation,
+
+Order Matchup Program
+DO NOT REPLY"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_jlkyq")]([ExtResource("2_n836s")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

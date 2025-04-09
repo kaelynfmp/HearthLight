@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_8du1s"]
 [ext_resource type="Resource" uid="uid://bgmxpne1d7fis" path="res://resources/items/metal.tres" id="1_emsel"]
 [ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_hbpet"]
-[ext_resource type="Resource" uid="uid://dn1yfys2dr5s3" path="res://resources/emails/Tutorial5.tres" id="3_emsel"]
+[ext_resource type="Resource" uid="uid://c84vnkl1h3lk6" path="res://resources/emails/timed_orders_now_exist.tres" id="4_emsel"]
 
 [sub_resource type="Resource" id="Resource_yosa6"]
 script = ExtResource("1_hbpet")
@@ -31,14 +31,13 @@ contents = "[res=Metal]metal[/res]
 
 I need it. No questions. 5 pieces of raw stock. I can pay well"
 category = ""
-prerequisite_emails = Array[ExtResource("1_8du1s")]([ExtResource("3_emsel")])
+prerequisite_emails = Array[ExtResource("1_8du1s")]([ExtResource("4_emsel")])
 day = 0
 hour = 0
 minute = 0
 is_read = false
 attached_order = SubResource("Resource_yosa6")
 tutorial = false
-lore_only = false
 has_start_time = false
 failable = false
 failed = false
