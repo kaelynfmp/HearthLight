@@ -1,3 +1,4 @@
+
 extends Button
 
 @export var item: Item
@@ -21,7 +22,10 @@ func set_item(new_item: Item):
 	GameManager.buyable_items[item] = self
 	if GameManager.is_debugging or item in GameManager.unlocked_items:
 		set_visible(true)
-		unlocked = true
+		if item in GameManager.unlocked_items:
+			unlocked = true
+	else:
+		set_visible(false)
 
 func set_limited_text(input_text: String, limit: int = 16) -> String:
 	if input_text.length() > limit:

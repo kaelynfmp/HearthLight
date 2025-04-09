@@ -13,28 +13,28 @@
 script = ExtResource("2_8561u")
 locked = false
 item_filter = Array[ExtResource("3_4rwd2")]([ExtResource("4_2tti6"), ExtResource("5_pchjd"), ExtResource("6_2tti6")])
-bypass_stack = false
+bypass_stack = true
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_8561u"]
 script = ExtResource("2_8561u")
 locked = false
 item_filter = Array[ExtResource("3_4rwd2")]([ExtResource("4_2tti6"), ExtResource("5_pchjd"), ExtResource("6_2tti6")])
-bypass_stack = false
+bypass_stack = true
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_pchjd"]
 script = ExtResource("2_8561u")
 locked = false
 item_filter = Array[ExtResource("3_4rwd2")]([ExtResource("4_2tti6"), ExtResource("5_pchjd"), ExtResource("6_2tti6")])
-bypass_stack = false
+bypass_stack = true
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_n0trg"]
 script = ExtResource("2_8561u")
 locked = true
 item_filter = Array[ExtResource("3_4rwd2")]([])
-bypass_stack = false
+bypass_stack = true
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_y5u0h"]

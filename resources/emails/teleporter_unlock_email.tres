@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="Email" load_steps=8 format=3 uid="uid://cdu2k4c4yrhqw"]
+
+[ext_resource type="Resource" uid="uid://bgmxpne1d7fis" path="res://resources/items/metal.tres" id="1_ch1wy"]
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_g2h8u"]
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_k6coh"]
+[ext_resource type="Resource" uid="uid://lxvyxcteq6eq" path="res://resources/items/dust.tres" id="2_5rax1"]
+[ext_resource type="Resource" uid="uid://bkuks7tbfprqt" path="res://resources/gadgets/teleporter.tres" id="3_5rax1"]
+[ext_resource type="Resource" uid="uid://bymqmr55efkl0" path="res://resources/emails/cyber_mill_completion.tres" id="3_f3264"]
+
+[sub_resource type="Resource" id="Resource_ch1wy"]
+script = ExtResource("1_g2h8u")
+order_id = 0
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
+required_items = Array[Resource]([ExtResource("1_ch1wy"), ExtResource("2_5rax1")])
+required_quantities = Array[int]([408, 24])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 1000
+rewards = Array[Resource]([ExtResource("3_5rax1")])
+rewards_quantities = Array[int]([1])
+unlocks = Array[Resource]([ExtResource("3_5rax1")])
+
+[resource]
+resource_name = "teleporter_unlock_email"
+script = ExtResource("1_k6coh")
+sender = "Goodman, PhD"
+email = ""
+subject = "Goodman, PHD"
+contents = "Finest evening to you and yours,
+I personally dug your application to my research program out of our communal, eco-friendly rubbish bin to examine it after hearing rumours of your works. I have recently invented, as part of my numerous research escapades, a device I believe will revolutionize the world as it stands.
+
+Of course, there is but one problem with this: if I send this to a manufactory, the greedy eyes of their workers will no doubt steal the product of my endless labour for their own desires. This cannot do.
+
+Thus, it comes upon me to ask help of an entrepeneur such as yourself. I have attached to this email the schematics to build [res=Teleporter]a device like never before seen[/res]. Simply send the [res=Metal]metal[/res], and some minor amounts of [res=Dust]dust[/res] for chip processing, following the instructions of the schematic, and I will upload the relevant software and send the device, fully functional, back to you.
+
+Sincerely yours,
+Professor Goodman
+PhD, University of Penumbra"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_k6coh")]([ExtResource("3_f3264")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_ch1wy")
+tutorial = true
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

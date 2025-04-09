@@ -148,6 +148,8 @@ button_sprite_timed = ExtResource("4_tcbn8")
 top_bar_timed = ExtResource("5_3hun1")
 bg_timed = ExtResource("6_jtaea")
 bottom_bar_timed = ExtResource("7_n4bjr")
+unread_button_sprite = ExtResource("2_ncyps")
+unread_top_bar = ExtResource("2_djbhc")
 button_sound = 7
 
 [node name="TopBar" type="TextureRect" parent="."]
@@ -318,7 +320,7 @@ script = ExtResource("3_gr1tt")
 layout_mode = 0
 offset_left = 323.0
 offset_top = 139.0
-offset_right = 965.0
+offset_right = 794.0
 offset_bottom = 194.0
 theme_override_fonts/normal_font = ExtResource("11_3hun1")
 theme_override_fonts/mono_font = ExtResource("11_3hun1")

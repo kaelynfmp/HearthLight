@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="Email" load_steps=9 format=3 uid="uid://druwr607cv3ns"]
+
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_f4n8o"]
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_karql"]
+[ext_resource type="Resource" uid="uid://cq5l4dfcn3c5t" path="res://resources/items/rock.tres" id="1_nyex4"]
+[ext_resource type="Resource" uid="uid://lxvyxcteq6eq" path="res://resources/items/dust.tres" id="2_g5mn0"]
+[ext_resource type="Resource" uid="uid://ckuhdwcd6e5ho" path="res://resources/emails/grog_success.tres" id="3_nyex4"]
+[ext_resource type="Resource" uid="uid://c84vnkl1h3lk6" path="res://resources/emails/timed_orders_now_exist.tres" id="4_g5mn0"]
+[ext_resource type="Resource" uid="uid://5km4srx346kn" path="res://resources/emails/quantum_mill_email.tres" id="6_g5mn0"]
+
+[sub_resource type="Resource" id="Resource_7mwcj"]
+script = ExtResource("1_f4n8o")
+order_id = 0
+given_items = Array[Resource]([ExtResource("1_nyex4")])
+given_quantities = Array[int]([60])
+required_items = Array[Resource]([ExtResource("2_g5mn0")])
+required_quantities = Array[int]([360])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 2000
+rewards = Array[Resource]([])
+rewards_quantities = Array[int]([])
+unlocks = Array[Resource]([])
+
+[resource]
+resource_name = "grog_need_more_rock"
+script = ExtResource("1_karql")
+sender = "GROG"
+email = ""
+subject = "GROG NEED MORE ROCK SMASHED"
+contents = "GROG HAS BEEN SO GRATEFUL FOR ALL OF YOUR HELP. GROG NEEDS MORE [res=Rock]ROCKS[/res] SMASHED THAN EVER BEFORE.
+
+THIS IS GOING TO CHANGE THE WORLD.
+
+GROG. WANT. [res=Dust]SMASH[/res]."
+category = "main"
+prerequisite_emails = Array[ExtResource("1_karql")]([ExtResource("3_nyex4"), ExtResource("4_g5mn0"), ExtResource("6_g5mn0")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_7mwcj")
+tutorial = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

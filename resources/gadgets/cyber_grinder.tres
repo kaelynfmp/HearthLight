@@ -11,14 +11,14 @@
 script = ExtResource("2_he1qa")
 locked = false
 item_filter = Array[ExtResource("3_2bq2e")]([ExtResource("4_2bq2e")])
-bypass_stack = false
+bypass_stack = true
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_he1qa"]
 script = ExtResource("2_he1qa")
 locked = true
 item_filter = Array[ExtResource("3_2bq2e")]([])
-bypass_stack = false
+bypass_stack = true
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_t7wrk"]

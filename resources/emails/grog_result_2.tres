@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://woqrhdry843s"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_520t2"]
+[ext_resource type="Resource" uid="uid://druwr607cv3ns" path="res://resources/emails/grog_need_more_rock.tres" id="2_qnqn4"]
+
+[resource]
+resource_name = "grog_result_2"
+script = ExtResource("1_520t2")
+sender = "GROG"
+email = ""
+subject = "GROG FOUND HIS CONFIDENCE"
+contents = "TODAY, GROG LEARNED SOMETHING IMPORTANT. IT DOES NOT MATTER WHO YOU ARE, OR WHAT YOU ARE. YOUR WORTH IS NOT DECIDED BY THE MATTER OF YOUR BIRTH.
+
+GROG WAS BORN WITH WEAK ARMS AND WEAKER HANDS. GROG COULD NEVER HOPE TO CRUSH ROCK. BUT PERHAPS THIS MATTER OF GROG'S BIRTH IS NOT THE ONLY THING IMPORTANT ABOUT GROG. PERHAPS GROG HAS REDEEMABLE PERSONALITY TRAITS AND A SENSE OF HUMOUR. THINGS THAT WERE NOT DECIDED IN THE DELIVERY ROOM. 
+
+GROG REALISES THAT DESPITE GROG'S CLEAR INABILITY TO CRUSH ROCK, GROG CAN RELY ON PEOPLE OF GOOD MORAL CHARACTER SUCH AS YOURSELF. GROG MADE GREAT THINGS. GROG TODAY USES DUST TO MAKE PARTICLE ACCELERATOR. PERHAPS IT MATTERS NOT WHAT GROG WAS BORN WITH. BY SIMPLY REACHING OUT FOR HELP, GROG WENT TO HEIGHTS GROG HAS NEVER SEEN BEFORE.
+
+GROG IS PROUD OF YOU, AND OF GROG. GROG HAS NEWFOUND WHIMSY AND LOVE FOR THIS WORLD. GROG WILL NEVER BE ABLE TO THANK YOU ENOUGH, BUT GROG HOPES THAT REALIZATION THAT YOU TOUCHED A SOUL TODAY WILL BE ENOUGH.
+ALSO ALL THE MONEY GROG GAVE. THAT TOO."
+category = "main"
+prerequisite_emails = Array[ExtResource("1_520t2")]([ExtResource("2_qnqn4")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

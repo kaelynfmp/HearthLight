@@ -29,3 +29,5 @@ func _physics_process(_delta: float) -> void:
 				notification.set_visible(true)
 			else:
 				notification.set_visible(false)
+	else:
+		notification.set_visible(false)

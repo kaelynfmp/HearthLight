@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://drnqn2ewu1gsr"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_4iumy"]
+[ext_resource type="Resource" uid="uid://chnm1tscyfjgf" path="res://resources/emails/cyber_sieve_misc.tres" id="2_3u3tt"]
+
+[resource]
+resource_name = "cyber_cotton_misc_success"
+script = ExtResource("1_4iumy")
+sender = "Z. Ridley"
+email = ""
+subject = "DUDE. HAHAHAHAHAHAHA. DUDE. HAHAHA"
+contents = "HAHAHAHAHAHAHAHAHAHA OH MY GOD. I CANT EVEN BEGIN TO EXPLAIN DUDE
+
+DUDE SHE LITERALLY WAS SO MAD. IT WAS SO GROSS TOO. YOUR FABRIC WAS LITERALLY PERFECT, IT KEPT EVERY DETAIL.
+
+I MADE HER A WHOLE ASS BED SET DUDE. LIKE. BLANKET, PILOW CASES.
+
+LMFAOOOOO DUDE OH MY GODDDDDDDDDDDDDDDDDDDDDDDDDD
+
+Ur welcome,
+Z. Ridley"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_4iumy")]([ExtResource("2_3u3tt")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

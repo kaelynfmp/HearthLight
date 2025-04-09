@@ -4,14 +4,13 @@
 [ext_resource type="Resource" uid="uid://lxvyxcteq6eq" path="res://resources/items/dust.tres" id="1_otcyr"]
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_wl46j"]
 [ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="2_5opfe"]
-[ext_resource type="Resource" uid="uid://dn1yfys2dr5s3" path="res://resources/emails/Tutorial5.tres" id="3_x8vmx"]
+[ext_resource type="Resource" uid="uid://c84vnkl1h3lk6" path="res://resources/emails/timed_orders_now_exist.tres" id="5_otcyr"]
 
 [sub_resource type="Resource" id="Resource_otcyr"]
 script = ExtResource("1_2hvj7")
 order_id = 0
 given_items = Array[Resource]([])
 given_quantities = Array[int]([])
-given_currency = 0
 required_items = Array[Resource]([ExtResource("1_otcyr")])
 required_quantities = Array[int]([5])
 day = 0
@@ -37,14 +36,13 @@ Your cooperation and silence would both be appreciated.
 Kindly,
 Clarence"
 category = ""
-prerequisite_emails = Array[ExtResource("1_wl46j")]([ExtResource("3_x8vmx")])
+prerequisite_emails = Array[ExtResource("1_wl46j")]([ExtResource("5_otcyr")])
 day = 0
 hour = 0
 minute = 0
 is_read = false
 attached_order = SubResource("Resource_otcyr")
 tutorial = false
-lore_only = false
 has_start_time = false
 failable = false
 failed = false

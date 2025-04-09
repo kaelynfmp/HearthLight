@@ -2,7 +2,6 @@ extends Node
 ## For finding an email by the order that exists in it
 var email_by_order:Dictionary[Order, Email]
 var accepted_orders: Array = []
-var rejected_orders: Array = []
 signal order_accepted(order:Order)
 @onready var inventory: Inventory = preload("res://resources/character/inventory.tres")
 @export var order_class : Resource
@@ -16,7 +15,6 @@ func accept_order(order: Order):
 func reject_order(order: Order):
 	order.is_accepted = false
 	order.responded = true
-	rejected_orders.append(order)
 
 func check_due(_order: Order):
 	pass
@@ -59,7 +57,6 @@ func reward_player(order: Order):
 			inventory.insert(item, qty)
 
 func give_player_starting_items(order: Order):
-	GameManager.add_currency(order.given_currency)
 	if len(order.given_items)>0:
 		for i in range(0,len(order.given_items)):
 			var item = order.given_items[i]

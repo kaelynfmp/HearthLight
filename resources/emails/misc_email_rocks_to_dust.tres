@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="Email" load_steps=7 format=3 uid="uid://6jteiqpbm04r"]
+
+[ext_resource type="Resource" uid="uid://cq5l4dfcn3c5t" path="res://resources/items/rock.tres" id="1_3mmrv"]
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_8sevj"]
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_jcvpe"]
+[ext_resource type="Resource" uid="uid://lxvyxcteq6eq" path="res://resources/items/dust.tres" id="2_lh3vp"]
+[ext_resource type="Resource" uid="uid://c84vnkl1h3lk6" path="res://resources/emails/timed_orders_now_exist.tres" id="5_28tfi"]
+
+[sub_resource type="Resource" id="Resource_3mmrv"]
+script = ExtResource("1_jcvpe")
+order_id = 0
+given_items = Array[Resource]([ExtResource("1_3mmrv")])
+given_quantities = Array[int]([12])
+required_items = Array[Resource]([ExtResource("2_lh3vp")])
+required_quantities = Array[int]([24])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 500
+rewards = Array[Resource]([])
+rewards_quantities = Array[int]([])
+unlocks = Array[Resource]([])
+
+[resource]
+resource_name = "misc_email_rocks_to_dust"
+script = ExtResource("1_8sevj")
+sender = "Grog"
+email = ""
+subject = "GROG CANT BREAK [res=Rock]ROCK[/res]. HELP GROG"
+contents = "GROG TRY TO CRUSH PUNY [res=Rock]ROCK[/res] WITH BARE HAND. GROG FAILURE. GROG CANNOT CRUSH ROCK. GROG SEND ROCK. PLEASE CRUSH ROCK.
+
+GROG WILL CONTINUE TO EXPRESS UTMOST FRUSTRATION AT GROG'S SIMPLICITY AND LACK OF INTELLECT UNTIL ROCK IS [res=Dust]CRUSHED[/res]
+
+GROG ALSO GIVE SOME MONEY THAT GROG MADE FROM OPTIONS TRADING"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_8sevj")]([ExtResource("5_28tfi")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_3mmrv")
+tutorial = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

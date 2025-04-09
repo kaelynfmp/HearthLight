@@ -26,7 +26,11 @@ var email: Email
 @export var bg_timed:Texture
 @export var bottom_bar_timed:Texture
 
+@export var unread_button_sprite:Texture
+@export var unread_top_bar:Texture
+
 @export var button_sound: AudioManager.BUTTON
+
 
 var prev_read:bool = false
 
@@ -55,9 +59,10 @@ func set_email(new_email: Email):
 	
 	content.text = email.contents
 	expand_panel.visible = false
+	button_sprite.texture = unread_button_sprite
+	top_bar.texture = unread_top_bar
+	
 	if not email.tutorial and not email.bankruptcy and email.attached_order != null:
-		button_sprite.texture = button_sprite_timed
-		top_bar.texture = top_bar_timed
 		bg.texture = bg_timed
 		bottom_bar.texture = bottom_bar_timed
 		clock.set_visible(true)

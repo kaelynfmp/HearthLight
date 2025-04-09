@@ -391,7 +391,7 @@ script = ExtResource("3_2hvs7")
 layout_mode = 0
 offset_left = 323.0
 offset_top = 139.0
-offset_right = 965.0
+offset_right = 792.0
 offset_bottom = 194.0
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("13_h2711")
@@ -489,7 +489,7 @@ mouse_filter = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("19_h2711")
 theme_override_font_sizes/font_size = 40
-text = "Given Items"
+text = "   Given Items   "
 horizontal_alignment = 1
 
 [node name="GivenItemsScroll" type="ScrollContainer" parent="EmailContainer/OrderContainer/HBoxContainer/GivenItemsContainer"]

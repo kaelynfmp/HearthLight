@@ -29,7 +29,6 @@ var responded: bool = false
 		if given_items.size() != value.size():
 			given_items.resize(value.size())
 		given_quantities = value
-@export var given_currency: int = 0
 @export_category("Order Requirements")
 @export var required_items: Array[Resource] = []:
 	set(value):
@@ -89,14 +88,12 @@ func get_order() -> Array:
 func set_completed(completed: bool) -> void:
 	if completed:
 		is_completed = true
-		print("Order ", order_id, " completed")
 		for unlock in unlocks:
 			GameManager.unlock_item(unlock)
 
 func set_accepted(accepted: bool) -> void:
 	if accepted:
 		is_accepted = true
-		print("Order ", order_id, " accepted")
 
 func is_completable() -> bool:
 	if GameManager.player_inventory_has(required_items, required_quantities):

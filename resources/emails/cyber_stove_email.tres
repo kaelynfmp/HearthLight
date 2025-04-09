@@ -1,17 +1,17 @@
-[gd_resource type="Resource" script_class="Email" load_steps=7 format=3 uid="uid://bnitqv88achkr"]
+[gd_resource type="Resource" script_class="Email" load_steps=8 format=3 uid="uid://bnitqv88achkr"]
 
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_c87kb"]
 [ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_jbs87"]
 [ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="1_t5wi3"]
 [ext_resource type="Resource" uid="uid://027jttcoc2y8" path="res://resources/gadgets/cyber_plant.tres" id="2_2d2e4"]
-[ext_resource type="Resource" uid="uid://bymqmr55efkl0" path="res://resources/emails/cyber_mill_completion.tres" id="5_ff4qa"]
+[ext_resource type="Resource" uid="uid://c6kh7itdfyx78" path="res://resources/emails/cyber_pot_email.tres" id="5_2d2e4"]
+[ext_resource type="Resource" uid="uid://be2krtnnujdfy" path="res://resources/emails/cyber_loom_email.tres" id="6_ff4qa"]
 
 [sub_resource type="Resource" id="Resource_bwh2e"]
 script = ExtResource("1_jbs87")
 order_id = 0
 given_items = Array[Resource]([])
 given_quantities = Array[int]([])
-given_currency = 0
 required_items = Array[Resource]([ExtResource("1_t5wi3")])
 required_quantities = Array[int]([50])
 day = 0
@@ -36,14 +36,13 @@ Dude.
 
 ALIEN TRANSLATOR DISACTIVATED. DEAC. DISa. D. HOW DO YOU SPELL IT."
 category = "main"
-prerequisite_emails = Array[ExtResource("1_c87kb")]([ExtResource("5_ff4qa")])
+prerequisite_emails = Array[ExtResource("1_c87kb")]([ExtResource("5_2d2e4"), ExtResource("6_ff4qa")])
 day = 0
 hour = 0
 minute = 0
 is_read = false
 attached_order = SubResource("Resource_bwh2e")
 tutorial = true
-lore_only = false
 has_start_time = false
 failable = false
 failed = false

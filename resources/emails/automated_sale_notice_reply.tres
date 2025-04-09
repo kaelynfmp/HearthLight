@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Email" load_steps=2 format=3 uid="uid://c15vv2cnq7m2g"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_gbnua"]
+
+[resource]
+resource_name = "automated_sale_notice_reply"
+script = ExtResource("1_gbnua")
+sender = "Do Not Reply"
+email = ""
+subject = "Anonymous Buyer"
+contents = "Your sent resources have been acknowledged.
+
+Your account status has been improved to [color=red][shake level=20]ERROR: QUALITY NOT FOUND[/shake][/color].
+
+Thank you,
+Automated Sale Notice™️ Customer Service Assistant
+Do Not Reply"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_gbnua")]([])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

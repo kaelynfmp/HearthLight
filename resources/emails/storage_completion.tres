@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://bx74h2bphervh"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_efa6r"]
+[ext_resource type="Resource" uid="uid://qchrhl4tgfle" path="res://resources/emails/storage_email.tres" id="2_km0rj"]
+
+[resource]
+resource_name = "storage_completion"
+script = ExtResource("1_efa6r")
+sender = "Office of Goodman"
+email = ""
+subject = "From the office of Goodman, PhD"
+contents = "Hello,
+
+Your offer is being considered. You should hear back within [color=red][shake level=20 connected=1]NaN: INVALID RANDOM PARAMETERS[/shake][/color] business days.
+
+Thank you so much for your participation in our research.
+
+Thanks again,
+Amanda Richards
+Secretary for Professor Goodman, University of Penumbra"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_efa6r")]([ExtResource("2_km0rj")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = false
+lore_only = true
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false
