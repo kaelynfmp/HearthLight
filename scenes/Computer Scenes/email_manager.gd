@@ -347,7 +347,8 @@ func fulfill_order(email: Email):
 func check_email_failed(email: Email) -> bool:
 	if saved_day != GameManager.game_time["day"] and email.failable:
 		email.failed = true
-		email.attached_order.removed.emit()
+		if email.attached_order != null:
+			email.attached_order.removed.emit()
 		order_reject(email)
 		#print("email failed")
 		return true

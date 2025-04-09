@@ -538,8 +538,8 @@ y = -5980
 [sub_resource type="Resource" id="Resource_7en74"]
 script = ExtResource("1_qn33u")
 email = ExtResource("41_1txgy")
-x = 19460
-y = -7180
+x = 19440
+y = -7160
 prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_px2wv")])
 required_item_nodes = Dictionary[Resource, int]({
 SubResource("Resource_pk8ro"): 13
