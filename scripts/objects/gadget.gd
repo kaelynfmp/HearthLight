@@ -127,19 +127,33 @@ func check_for_nearby_generator(delta: float):
 	return false
 	
 func mount_to_inventory():
-	var target_pos: Vector2i = cell_pos + direction_vector[direction]
+	var target_pos: Vector2i = cell_pos + direction_vector[(direction + 2) % 4]
 	if GameManager.room_map[target_pos[0] + 6][target_pos[1] + 5] != null:
 		var target_gadget = GameManager.room_map[target_pos[0] + 6][target_pos[1] + 5]
 		if target_gadget.gadget_stats.name == "Teleporter":
 			mounted_gadget = null
 		else:
 			mounted_gadget = target_gadget
+			
+func push_to_mounted_gadget():
+	if mounted_gadget != null:
+		var slots = inventory.slots
+		var pushed_item = null
+		for slot in slots:
+			if slot.item != null:
+				pushed_item = slot.item
+				mounted_gadget.inventory.insert(pushed_item, 1, false)
+				break
+		if pushed_item != null:
+			inventory.remove_items(pushed_item, 1, false)
 
 func _physics_process(delta: float) -> void:
 	if not gadget_stats.produces:
 		return
 	if GameManager.gadget == null:
 		primitive_selected = false
+	if gadget_stats.name == "Teleporter":
+		push_to_mounted_gadget()
 	check_for_valid_recipe()
 	if gadget_stats.age > GameManager.Age.PRIMITIVE and not is_generator:
 		has_power_from_generator = check_for_nearby_generator(delta)
@@ -167,7 +181,7 @@ func _physics_process(delta: float) -> void:
 			selected_recipe.processing_multiplier if selected_recipe else 1.0)
 		if not GameManager.sleeping and ((recipe_taken or selected_recipe != null) and \
 		((age > GameManager.Age.PRIMITIVE and not is_generator and has_power_from_generator) or \
-		primitive_selected or is_generator)):
+		primitive_selected or is_generator) or gadget_stats.name == "Teleporter"):
 			if is_generator:
 				if total_power < max_power:
 					progress += change_rate
@@ -178,7 +192,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			progress -= change_rate
 		if progress >= 1:
-			if gadget_stats.name != "Conveyor Belt":
+			if not gadget_stats.name in ["Conveyor Belt", "Teleporter"]:
 				finish_recipe()
 			else:
 				finish_transport()
@@ -224,14 +238,20 @@ func rotate_sprite() -> void:
 	
 # TODO: remove this function when there is UI
 func search_for_other_teleporters():
-	pass
+	if cell_pos != Vector2i(0, 0):
+		return
+	for i in range(0, 13):
+		for j in range(0, 13):
+			if GameManager.room_map[i][j] != null:
+				if GameManager.room_map[i][j].gadget_stats.name == "Teleporter":
+					if not GameManager.room_map[i][j] in target_list and (i != 6 and j != 5):
+						target_list.append(GameManager.room_map[i][j])
 	
 func _process(_delta: float) -> void:
 	rotate_sprite()
 	# Test the code
-	search_for_other_teleporters()
-	#
 	if gadget_stats.name == "Teleporter":
+		search_for_other_teleporters()
 		mount_to_inventory()	
 	if hovered:
 		sprite.material.set("shader_parameter/textureScale", Vector2.ONE)
@@ -261,10 +281,13 @@ func do_transport():
 			
 func start_progression_transport():
 	play_sound()
-	pull_inventory()
+	if gadget_stats.name == "Conveyor Belt":
+		pull_inventory()
 	progressing = true
 	
 func finish_transport():
+	if gadget_stats.name == "Teleporter":
+		pull_inventory()
 	cancel_processing()
 	
 
