@@ -25,7 +25,6 @@ hour = 0
 minute = 0
 is_read = false
 tutorial = false
-lore_only = true
 has_start_time = false
 failable = false
 failed = false

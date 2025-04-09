@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Email" load_steps=2 format=3 uid="uid://c15vv2cnq7m2g"]
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://c15vv2cnq7m2g"]
 
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_gbnua"]
+[ext_resource type="Resource" uid="uid://dk1yu62k17da3" path="res://resources/emails/cyber_plant_misc.tres" id="2_luin8"]
 
 [resource]
 resource_name = "automated_sale_notice_reply"
@@ -16,7 +17,7 @@ Thank you,
 Automated Sale Notice™️ Customer Service Assistant
 Do Not Reply"
 category = "main"
-prerequisite_emails = Array[ExtResource("1_gbnua")]([])
+prerequisite_emails = Array[ExtResource("1_gbnua")]([ExtResource("2_luin8")])
 day = 0
 hour = 0
 minute = 0
