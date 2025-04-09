@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="Email" load_steps=8 format=3 uid="uid://chnm1tscyfjgf"]
+
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_87w50"]
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_c4510"]
+[ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="1_d50ic"]
+[ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="2_y5u88"]
+[ext_resource type="Resource" uid="uid://be2krtnnujdfy" path="res://resources/emails/cyber_loom_email.tres" id="3_3whl1"]
+[ext_resource type="Resource" uid="uid://c84vnkl1h3lk6" path="res://resources/emails/timed_orders_now_exist.tres" id="6_1w7w7"]
+
+[sub_resource type="Resource" id="Resource_00is0"]
+script = ExtResource("1_87w50")
+order_id = 0
+given_items = Array[Resource]([ExtResource("1_d50ic")])
+given_quantities = Array[int]([48])
+required_items = Array[Resource]([ExtResource("2_y5u88")])
+required_quantities = Array[int]([384])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 1500
+rewards = Array[Resource]([])
+rewards_quantities = Array[int]([])
+unlocks = Array[Resource]([])
+
+[resource]
+resource_name = "cyber_sieve_misc"
+script = ExtResource("1_c4510")
+sender = "Z. Ridley"
+email = ""
+subject = "I have been collecting cotton swabs for years"
+contents = "My roommate every night literally wipes both ears with cotton swabs, and then leaves those dirty, gross-ass q-tips all over my sink. Well, I decided to collect every single one of those disgusting balls of [res=Cotton]cotton[/res] to one day make a gross-ass sweater with.
+
+Turns out I kind of forgot I was doing this, and I can make. . . like . . . way more than a sweater.
+
+Aaaand it is much above my paygrade, lol
+
+So yeah. I need you to turn all these cotton swabs into [res=Fabric]fabric[/res]. I pay good, trust me, I work for a crypto mining thing
+
+Ur welcome,
+Z. Ridley"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_c4510")]([ExtResource("3_3whl1"), ExtResource("6_1w7w7")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_00is0")
+tutorial = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

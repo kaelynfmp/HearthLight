@@ -12,21 +12,21 @@
 script = ExtResource("2_rtbff")
 locked = false
 item_filter = Array[ExtResource("3_5xxeq")]([ExtResource("4_5xxeq"), ExtResource("5_fqogh")])
-bypass_stack = false
+bypass_stack = true
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_5xxeq"]
 script = ExtResource("2_rtbff")
 locked = false
 item_filter = Array[ExtResource("3_5xxeq")]([ExtResource("4_5xxeq"), ExtResource("5_fqogh")])
-bypass_stack = false
+bypass_stack = true
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_fqogh"]
 script = ExtResource("2_rtbff")
 locked = true
 item_filter = Array[ExtResource("3_5xxeq")]([])
-bypass_stack = false
+bypass_stack = true
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_feoyw"]

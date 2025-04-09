@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://cv63v3twf425h"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_jh4gn"]
+[ext_resource type="Resource" uid="uid://dta6h8iuq1otg" path="res://resources/emails/cyber_stove_misc.tres" id="2_26ynb"]
+
+[resource]
+resource_name = "cotton_alien_success"
+script = ExtResource("1_jh4gn")
+sender = "DEFINITELY HUMAN"
+email = ""
+subject = "DUDE..."
+contents = "DUDE...... THERE ARE STARS IN THE SKY. LIKE. ENDLESS. LIKE... IF YOU JUST LOOK... BUT THEN... IF YOU LOOK DOWN AT YOUR HAND.... THERES JUST AS MANY STARS IN THE SKY... AS IN YOUR HAND.
+
+LIKE. LIKE NOT STARS, LIKE, THERES NOT STARS IN YOUR HAND
+
+BUT LIKE... IF YOU LOOK IN THE SKY... DUDE.... IT'S A LOT OF STARS. AND I WAS THINKING ABOUT STARS. YOU KNOW. I'M FROM A STAR. I MEAN IM NOT FROM A STAR. BECAUSE IM A NORMAL HUMAN. AND SO LIKE, I HAVE CELLS, AND SHIT, RIGHT
+
+AND THE CELLS
+
+AND THERE ARE JUST SO MANY STARS IN THE SKY. AND THEN YOU LOOK AT YOUR HAND AND YOU THINK
+
+YEAH. YOU EVER THINK ABOUT THAT MAN
+
+THANKS FOR THE UHHH. FOR"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_jh4gn")]([ExtResource("2_26ynb")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

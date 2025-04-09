@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="Email" load_steps=7 format=3 uid="uid://dta6h8iuq1otg"]
+
+[ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="1_jpfl6"]
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_jvehd"]
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_ry0mk"]
+[ext_resource type="Resource" uid="uid://bnitqv88achkr" path="res://resources/emails/cyber_stove_email.tres" id="3_8s7n2"]
+[ext_resource type="Resource" uid="uid://c84vnkl1h3lk6" path="res://resources/emails/timed_orders_now_exist.tres" id="4_8s7n2"]
+
+[sub_resource type="Resource" id="Resource_jpfl6"]
+script = ExtResource("1_jvehd")
+order_id = 0
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
+required_items = Array[Resource]([ExtResource("1_jpfl6")])
+required_quantities = Array[int]([144])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 1500
+rewards = Array[Resource]([])
+rewards_quantities = Array[int]([])
+unlocks = Array[Resource]([])
+
+[resource]
+resource_name = "cyber_stove_misc"
+script = ExtResource("1_ry0mk")
+sender = "DEFINITELY HUMAN"
+email = ""
+subject = "HELLO FELLOW HUMAN"
+contents = "IT IS I. HUMAN. AND I AM DEFINITELY A HUMAN.
+
+I NEED SO MUCH [res=Cotton]COTTON[/res] IT WOULD NOT REGISTER AS YOUR HUMAN UNDERSTANDING OF \"HUMOUR\"
+
+PROVIDE AS SUCH OR FACE IMMEDIATE PUNISHMENT.
+
+AND BY PUNISHMENT I MEAN NOTHING. BECAUSE HUMANS DON'T PUNISH OTHER HUMANS.
+
+EXCEPT SOMETIMES THEY DO. SO I'VE HEARD.
+
+[SIGHS WISTFULLY].
+
+CAN YOU TYPE THAT. DID YOU GET IT. I MEANT THAT I WAS SIGHING. IT WAS \"ROLE-PLAY\"
+
+HUMAN FELLOW,
+FELLOW HUMAN"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_ry0mk")]([ExtResource("3_8s7n2"), ExtResource("4_8s7n2")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_jpfl6")
+tutorial = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

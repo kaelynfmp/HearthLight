@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://crm07ehc66sjv"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_ub8dq"]
+[ext_resource type="Resource" uid="uid://ddv7q32up08hg" path="res://resources/emails/cyber_loom_misc.tres" id="2_hdwkh"]
+
+[resource]
+resource_name = "hott_is_gonna_be_very_upset"
+script = ExtResource("1_ub8dq")
+sender = "Hott Leaveau"
+email = ""
+subject = "."
+contents = "
+
+
+
+
+
+
+
+[center]how could you[/center]"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_ub8dq")]([ExtResource("2_hdwkh")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

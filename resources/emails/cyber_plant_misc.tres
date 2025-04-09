@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="Email" load_steps=9 format=3 uid="uid://dk1yu62k17da3"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_2me8k"]
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_c1oac"]
+[ext_resource type="Resource" uid="uid://gw88mo33lg1c" path="res://resources/items/ore.tres" id="1_wdsid"]
+[ext_resource type="Resource" uid="uid://lxvyxcteq6eq" path="res://resources/items/dust.tres" id="2_csjid"]
+[ext_resource type="Resource" uid="uid://ccpfmonlcinap" path="res://resources/emails/cyber_sieve_email.tres" id="3_4vyan"]
+[ext_resource type="Resource" uid="uid://cmrx5n40guwlg" path="res://resources/items/fabric.tres" id="3_xym6i"]
+[ext_resource type="Resource" uid="uid://c84vnkl1h3lk6" path="res://resources/emails/timed_orders_now_exist.tres" id="4_4vyan"]
+
+[sub_resource type="Resource" id="Resource_hcaot"]
+script = ExtResource("1_c1oac")
+order_id = 0
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
+required_items = Array[Resource]([ExtResource("1_wdsid"), ExtResource("2_csjid"), ExtResource("3_xym6i")])
+required_quantities = Array[int]([12, 24, 48])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 2000
+rewards = Array[Resource]([])
+rewards_quantities = Array[int]([])
+unlocks = Array[Resource]([])
+
+[resource]
+resource_name = "cyber_plant_misc"
+script = ExtResource("1_2me8k")
+sender = "Do Not Reply"
+email = ""
+subject = "Anonymous Buyer"
+contents = "Hello,
+
+This is an automated message informing you that your [color=red][shake level=20]ERROR: QUALITY NOT FOUND[/shake][/color] service has been sufficient for a buyer's Automated Sale Notice™ (ASN).
+
+The buyer has automatically requested the following components:
+[b]12[/b] [res=Ore]Ore[/res]
+[b]24[/b] [res=Dust]Dust[/res]
+[b]48[/b] [res=Fabric]Fabric[/res]
+
+The buyer is requesting immediate service. Failure to provide could lead to your account status being reduced to [color=red][shake level=20 connected=1]ERROR: QUALITY NOT FOUND[/shake][/color].
+
+Thank you,
+Automated Sale Notice™️ Customer Service Assistant
+Do Not Reply"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_2me8k")]([ExtResource("3_4vyan"), ExtResource("4_4vyan")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_hcaot")
+tutorial = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

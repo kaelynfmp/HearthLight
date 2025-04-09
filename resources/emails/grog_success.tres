@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://ckuhdwcd6e5ho"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_5ll66"]
+[ext_resource type="Resource" uid="uid://6jteiqpbm04r" path="res://resources/emails/misc_email_rocks_to_dust.tres" id="2_c3oyq"]
+
+[resource]
+resource_name = "grog_success"
+script = ExtResource("1_5ll66")
+sender = "GROG"
+email = ""
+subject = "GROG CANT STOP CRYING"
+contents = "GROG SO HAPPY. YOU FINALLY CRUSHED ROCK. GROG CAN NOW USE DUST FOR HYPER-ACCELERATED QUANTUM SILICON COMPUTER COMPONENTS THAT GROG WAS THEORIZING AS PART OF GROG'S PHD THESIS.
+
+GROG THANK YOU FOR PUTTING UP WITH GROG'S STUPIDITY"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_5ll66")]([ExtResource("2_c3oyq")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+tutorial = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

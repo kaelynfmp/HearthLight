@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="Email" load_steps=8 format=3 uid="uid://ddv7q32up08hg"]
+
+[ext_resource type="Resource" uid="uid://gw88mo33lg1c" path="res://resources/items/ore.tres" id="1_1affd"]
+[ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_apjgs"]
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_rcrph"]
+[ext_resource type="Resource" uid="uid://bgmxpne1d7fis" path="res://resources/items/metal.tres" id="2_gqr73"]
+[ext_resource type="Resource" uid="uid://c6kh7itdfyx78" path="res://resources/emails/cyber_pot_email.tres" id="3_e1fqw"]
+[ext_resource type="Resource" uid="uid://c84vnkl1h3lk6" path="res://resources/emails/timed_orders_now_exist.tres" id="4_e1fqw"]
+
+[sub_resource type="Resource" id="Resource_dlid3"]
+script = ExtResource("1_apjgs")
+order_id = 0
+given_items = Array[Resource]([])
+given_quantities = Array[int]([])
+required_items = Array[Resource]([ExtResource("1_1affd"), ExtResource("2_gqr73")])
+required_quantities = Array[int]([48, 48])
+day = 0
+hour = 0
+minute = 0
+currency_reward = 2000
+rewards = Array[Resource]([])
+rewards_quantities = Array[int]([])
+unlocks = Array[Resource]([])
+
+[resource]
+resource_name = "cyber_loom_misc"
+script = ExtResource("1_rcrph")
+sender = "Hott Leauveau"
+email = ""
+subject = "A Test Of Prwess It Mya Be"
+contents = "Hlelo,
+
+I    I II i I I I hAveeeee A chalenge for YOOU!!!!!
+
+Youve Heard of Metal before . . . Obviously.... Because youe a GENIUS... SO IVE HEARD
+
+Here's the thing.... however...........
+
+I AM THE WORDLS [b]BEST[/b] [shake]METALWORKER TO HAVE EVER BEEN [tornado] BORN[/tornado][/shake]
+
+So . . . . . . A contest it csall be!
+
+The rules are quit simple. You .... MAKE. Some of your silly little [res=Ore]ORES[/res]
+And I will see.......... if your [res=Metal]metal[/res]...... with the SAME ORE.,........ produces reshults better than mine.
+I will give everything up if you win. It will be over for me."
+category = "main"
+prerequisite_emails = Array[ExtResource("1_rcrph")]([ExtResource("3_e1fqw"), ExtResource("4_e1fqw")])
+day = 0
+hour = 0
+minute = 0
+is_read = false
+attached_order = SubResource("Resource_dlid3")
+tutorial = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false
