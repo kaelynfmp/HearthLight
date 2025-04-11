@@ -285,6 +285,11 @@ func show_email_details(email: Email, email_button: Button):
 	if panel.visible:
 		currently_open_emails.append(email)
 		email_button.custom_minimum_size = Vector2(1920,1019)
+		if email.attached_order:
+			var order = email.attached_order
+			email_button.custom_minimum_size = Vector2(1920,1500)
+			if len(order.given_items) > 2 or len(order.required_items) > 2 or len(order.rewards)>2:
+				email_button.custom_minimum_size = Vector2(1920, 1600)
 	else:
 		currently_open_emails.erase(email)
 		email_button.custom_minimum_size = Vector2(1920,300)

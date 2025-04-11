@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://b5r8qyahtr3r1"]
+[gd_scene load_steps=63 format=3 uid="uid://b5r8qyahtr3r1"]
 
 [ext_resource type="Script" uid="uid://25ttm7ow7tts" path="res://scenes/Computer Scenes/emaildisplay.gd" id="1_cc22d"]
 [ext_resource type="Texture2D" uid="uid://buw7lcyvtgstr" path="res://resources/sprites/emails/emailPreviewTopBarUnread.png" id="2_djbhc"]
@@ -18,6 +18,10 @@
 [ext_resource type="Texture2D" uid="uid://brioxpexvl23w" path="res://resources/sprites/emails/emailButton.png" id="6_xo1sp"]
 [ext_resource type="Texture2D" uid="uid://bt4a2gqvr6x73" path="res://resources/sprites/emails/emailBottomBarTimed.png" id="7_n4bjr"]
 [ext_resource type="FontFile" uid="uid://cskltmfvwlc7g" path="res://resources/fonts/Audiowide-Regular.ttf" id="11_3hun1"]
+[ext_resource type="Script" uid="uid://cqlh8jkao6r60" path="res://scenes/Computer Scenes/order_summary.gd" id="19_3hun1"]
+[ext_resource type="PackedScene" uid="uid://dv64lbppurf03" path="res://scenes/Computer Scenes/order_summary_item.tscn" id="20_jtaea"]
+[ext_resource type="Texture2D" uid="uid://cu638rts4nfa2" path="res://resources/sprites/computer/computerBalance.png" id="21_n4bjr"]
+[ext_resource type="Texture2D" uid="uid://c7fttb1au7gvf" path="res://resources/sprites/grinderElectric.png" id="22_sqkxc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_68chq"]
 
@@ -113,6 +117,11 @@ corner_radius_bottom_left = 100
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_esskc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_na4y0"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sqkxc"]
+texture = ExtResource("21_n4bjr")
+texture_margin_left = 55.0
+texture_margin_right = 30.0
 
 [node name="EmailButton" type="Button" node_paths=PackedStringArray("sender_label", "email_label", "subject_label", "sender_dropdown", "email_dropdown", "subject_dropdown", "blurb_label", "content", "expand_panel", "fulfill_button", "button_sprite", "clock", "bg", "top_bar", "bottom_bar")]
 custom_minimum_size = Vector2(1920, 300)
@@ -477,3 +486,102 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_na4y0")
 text = "Fulfill"
 script = ExtResource("6_34x3b")
 button_sound = 12
+
+[node name="Order Summary" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_top = 876.0
+offset_right = 1920.0
+offset_bottom = 1206.0
+script = ExtResource("19_3hun1")
+grid_scene = ExtResource("20_jtaea")
+
+[node name="GivenGrid" type="GridContainer" parent="Panel/Order Summary"]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 101.0
+offset_right = 333.0
+offset_bottom = 293.0
+columns = 2
+
+[node name="NeededGrid" type="GridContainer" parent="Panel/Order Summary"]
+layout_mode = 0
+offset_left = 635.0
+offset_top = 102.0
+offset_right = 862.0
+offset_bottom = 294.0
+columns = 2
+
+[node name="RewardGrid" type="GridContainer" parent="Panel/Order Summary"]
+layout_mode = 0
+offset_left = 1153.0
+offset_top = 102.0
+offset_right = 1380.0
+offset_bottom = 294.0
+columns = 2
+
+[node name="GivenLabel" type="RichTextLabel" parent="Panel/Order Summary"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 39.0
+offset_right = 471.0
+offset_bottom = 90.0
+theme_override_fonts/normal_font = ExtResource("11_3hun1")
+theme_override_font_sizes/normal_font_size = 30
+text = "Given Items:"
+
+[node name="NeededLabel" type="RichTextLabel" parent="Panel/Order Summary"]
+layout_mode = 0
+offset_left = 558.0
+offset_top = 39.0
+offset_right = 971.0
+offset_bottom = 90.0
+theme_override_fonts/normal_font = ExtResource("11_3hun1")
+theme_override_font_sizes/normal_font_size = 30
+text = "Required Items:"
+
+[node name="RewardsLabel" type="RichTextLabel" parent="Panel/Order Summary"]
+layout_mode = 0
+offset_left = 1061.0
+offset_top = 37.0
+offset_right = 1474.0
+offset_bottom = 88.0
+theme_override_fonts/normal_font = ExtResource("11_3hun1")
+theme_override_font_sizes/normal_font_size = 30
+text = "Rewards:"
+
+[node name="CurrencyLabel" type="Label" parent="Panel/Order Summary"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -283.0
+offset_top = -64.0
+offset_right = -48.0
+offset_bottom = -11.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("11_3hun1")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_sqkxc")
+text = "0123456"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="UnlockIcon" type="TextureRect" parent="Panel/Order Summary"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -201.0
+offset_top = 33.0
+offset_right = -117.0
+offset_bottom = 113.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("22_sqkxc")
+expand_mode = 1
+stretch_mode = 5
