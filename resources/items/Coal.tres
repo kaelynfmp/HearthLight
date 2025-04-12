@@ -8,6 +8,6 @@ resource_name = "Coal"
 script = ExtResource("1_2obae")
 texture = ExtResource("2_y1iss")
 name = "Coal"
-description = ""
+description = "A fuel source from days gone by. Leaves behind a powder that's a pain to wash off. It's fine, it's dirty, and it gets everywhere."
 max_stack = 24
 price = 5
