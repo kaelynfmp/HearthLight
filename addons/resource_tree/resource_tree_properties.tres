@@ -1174,7 +1174,7 @@ SubResource("Resource_yg7xy"): 24
 })
 given_item_nodes = Dictionary[Resource, int]({})
 rewards_item_nodes = Dictionary[Resource, int]({
-SubResource("Resource_jhfnn"): 1
+SubResource("Resource_jhfnn"): 2
 })
 unlocks_item_nodes = Dictionary[Resource, int]({
 SubResource("Resource_jhfnn"): 1
