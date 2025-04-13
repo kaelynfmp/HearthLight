@@ -20,10 +20,13 @@ func _init(p_slots: Array[Slot] = []):
 
 ## Attempts to insert [Item]s, going into the earliest available [Slot]s
 func insert(item: Item, amount=1, locked_only=false) -> int:
+	var build_filter:Array[Item]
 	var item_slots: Array = slots.filter(func(slot): return (slot.item == item and (!slot.locked and !locked_only) or (slot.locked and locked_only)))
 	if !item_slots.is_empty():
-		for slot in item_slots:
-			if !locked_only or slot.locked:
+		for slot:Slot in item_slots:
+			if item not in build_filter and (!locked_only or slot.locked):
+				if item in slot.item_filter:
+					build_filter.append(item)
 				var remainder = slot.increment(amount, locked_only)
 				amount = remainder
 				if (amount == 0):
@@ -31,8 +34,10 @@ func insert(item: Item, amount=1, locked_only=false) -> int:
 	if amount > 0:
 		var empty_slots: Array = slots.filter(func(slot): return (slot.item == null and (!slot.locked and !locked_only) or (slot.locked and locked_only)))
 		if !empty_slots.is_empty():
-			for empty_slot in empty_slots:
-				if !locked_only or empty_slot.locked:
+			for empty_slot:Slot in empty_slots:
+				if item not in build_filter and (!locked_only or empty_slot.locked):
+					if item in empty_slot.item_filter:
+						build_filter.append(item)
 					var remainder = empty_slot.initialize(item, amount, locked_only)
 					amount = remainder
 					if (amount == 0):

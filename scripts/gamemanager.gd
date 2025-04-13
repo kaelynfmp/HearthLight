@@ -294,18 +294,6 @@ func send_to_inventory(slot: Slot):
 	slot.decrement(starting_quantity)
 	for search_inventory in inventories:
 		if slot not in search_inventory.slots:
-			# Need to recognized is this inventory belongs to a gadget with item filter on
-			# Better way would be another system, but we don't have time for that
-			if search_inventory.slots.size() <= 4:
-				var slot_has_item = search_inventory.slots.filter(func(s_slot): 
-					return !s_slot.locked and \
-					s_slot.item != null and \
-					temp_slot.item != null and \
-					s_slot.item.name == temp_slot.item.name)
-				if not slot_has_item.is_empty():
-					var t_slot = slot_has_item[0]
-					if t_slot.quantity == temp_slot.item.max_stack:
-						break
 			var remainder = search_inventory.insert(temp_slot.item, temp_slot.quantity)
 			temp_slot.decrement(temp_slot.quantity - remainder)
 			if temp_slot.quantity == 0:

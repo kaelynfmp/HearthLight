@@ -382,7 +382,8 @@ func cancel_processing():
 	progress = 0.0
 	progressing = false
 	audio_player.stop()
-	nearby_cyber_generator.is_cyber_generator_used = false
+	if nearby_cyber_generator != null:
+		nearby_cyber_generator.is_cyber_generator_used = false
 	if not is_generator:
 		if gadget_stats.sound_string != null and gadget_stats.sound_string != "":
 			if AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
