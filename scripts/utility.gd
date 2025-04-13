@@ -60,9 +60,11 @@ func load_path(path:String, strings_list:Array[String] = []) -> Array[String]:
 
 ## Takes a [String] and a [RichTextLabel] and truncates the label to its width, appending '...', while accounting for
 ## BBCode sizing.
-func set_truncated_text(text:String, label:RichTextLabel) -> void:
+func set_truncated_text(text:String, label) -> void:
 	var result:String = ""
 	var visible_width:float = 0.0
+	if label == null:
+		return
 	var width:float = label.get_size().x
 	var tokens:Array[String] = parse_bbcode(text)
 

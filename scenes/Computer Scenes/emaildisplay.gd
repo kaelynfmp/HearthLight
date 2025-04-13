@@ -67,8 +67,8 @@ func set_email(new_email: Email):
 		bottom_bar.texture = bottom_bar_timed
 		clock.set_visible(true)
 	
-func _finished(_text:String, label:RichTextLabel):
-	if !label.initialized:
+func _finished(_text:String, label):
+	if !label.initialized and label != null:
 		label.initialized = true
 		Utility.call_deferred("set_truncated_text", _text, label) # Called deferred to ensure font size is correct
 		

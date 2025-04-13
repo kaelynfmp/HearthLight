@@ -26,6 +26,7 @@ var gadget:StaticBody2D
 var computer_visible:bool = false
 var computer_tab_manager:TabContainer
 var has_cyber_generator = false
+var cyber_generator = null
 var blur:bool = false
 
 # Temp
@@ -285,6 +286,7 @@ func add_inventory(p_inventory: Inventory):
 
 ## Attempts to send a slot to the nearest inventory, and will spread them out among multiple if necessary to send it all
 func send_to_inventory(slot: Slot):
+
 	var home_inventory: Inventory
 	var temp_slot:Slot = slot.duplicate()
 	var starting_quantity = slot.duplicate().quantity

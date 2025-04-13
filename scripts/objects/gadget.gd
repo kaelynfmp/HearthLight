@@ -62,6 +62,8 @@ var disabled = false
 var has_power = false
 var is_able_to_do_recipe: bool = false
 var is_cyber_generator: bool = false
+var is_cyber_generator_used: bool = false
+var nearby_cyber_generator: StaticBody2D
 var notification:Sprite2D
 
 func get_local_position():
@@ -111,6 +113,7 @@ func _ready() -> void:
 	
 func check_for_nearby_generator(delta: float):
 	if GameManager.has_cyber_generator:
+		nearby_cyber_generator = GameManager.cyber_generator
 		return true
 	for offset_x in range(-2, 3):
 		for offset_y in range(-2, 3):
@@ -158,8 +161,8 @@ func _physics_process(delta: float) -> void:
 	if gadget_stats.age > GameManager.Age.PRIMITIVE and not is_generator:
 		has_power_from_generator = check_for_nearby_generator(delta)
 	if is_generator:
-		has_power = total_power > 0 or is_cyber_generator
-		if prev_power != total_power or is_cyber_generator:
+		has_power = total_power > 0 or (is_cyber_generator and is_cyber_generator_used)
+		if prev_power != total_power or (is_cyber_generator and is_cyber_generator_used):
 			prev_power = total_power
 			if not AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
 				AudioManager.active_gadgets[gadget_stats.sound_string][self] = true
@@ -350,6 +353,7 @@ func do_recipe():
 
 func start_progression():
 	recipe_taken = false
+	nearby_cyber_generator.is_cyber_generator_used = true
 	if is_generator:
 		recipe_take()
 	progressing = true
@@ -378,6 +382,8 @@ func cancel_processing():
 	progress = 0.0
 	progressing = false
 	audio_player.stop()
+	if nearby_cyber_generator != null:
+		nearby_cyber_generator.is_cyber_generator_used = false
 	if not is_generator:
 		if gadget_stats.sound_string != null and gadget_stats.sound_string != "":
 			if AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
@@ -420,12 +426,12 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			GameManager.inventories.erase(inventory)
 			if gadget_stats.name == "Universal Generator":
 				GameManager.has_cyber_generator = false
+				GameManager.cyber_generator = null
 			for slot in inventory.slots:
-			# Send it all away to any open inventories
+				# Send it all away to any open inventories
 				GameManager.send_to_inventory(slot)
-			if gadget_stats.age > Gadget.Age.PRIMITIVE and not gadget_stats.name in ["Computer", "Conveyor Belt", "Storage", "Teleporter"]:
-				if AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
-					(func(): AudioManager.active_gadgets[gadget_stats.sound_string].erase(self)).call_deferred()
+			if gadget_stats.age > Gadget.Age.PRIMITIVE and not gadget_stats.name in ["Computer", "Conveyor Belt", "Storage", "Teleporter"]:				
+				AudioManager.call_deferred("remove_audio", gadget_stats.sound_string, self)
 			removing.emit(layer_occupied_name, cell_pos)
 			queue_free()
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.is_pressed():
