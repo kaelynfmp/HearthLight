@@ -170,8 +170,14 @@ func swap_slots_cursor(bypass: bool = false):
 		if slot.can_insert(cursor_slot().item):
 			var temp_item: Item    = cursor_slot().item
 			var temp_quantity: int = cursor_slot().quantity
-			cursor_slot().initialize(slot.item, slot.quantity)
-			slot.initialize(temp_item, temp_quantity)
+			var cursor_remainder = cursor_slot().initialize(slot.item, slot.quantity)
+			if cursor_remainder == 0:
+				slot.initialize(temp_item, temp_quantity)
+			else:
+				if temp_item == null:
+					slot.decrement(cursor_slot().quantity)
+				else:
+					cursor_slot().initialize(temp_item, temp_quantity)
 	else:
 		merge_slots_cursor()
 
@@ -236,7 +242,7 @@ func half_slot_cursor_pickup() -> void:
 		else:
 			var temp_quantity: float = float(slot.quantity)
 			slot.decrement(ceil(temp_quantity/2))
-			# There hopefully shouldn't ever possibly be a remainder condition but, just in case
+			# Remainder condition necessary if cursor can't fit the items
 			var remainder: int = cursor_slot().initialize(slot.item, ceil(temp_quantity/2))
 			slot.increment(remainder)
 	else:

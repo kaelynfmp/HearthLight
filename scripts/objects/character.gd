@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+class_name Character
+
+signal camera_moved
+
 const SPEED:int = 1000
 
 ## The [Inventory] containing all of the players items.
@@ -14,12 +18,14 @@ const SPEED:int = 1000
 
 @onready var footsteps_audio:AudioStreamPlayer2D = get_node("Footsteps")
 
+var prev_camera_position:Vector2
+
 var left:bool = true
 
 func _ready() -> void:
 	GameManager.player_inventory = inventory
 	GameManager.character = self
-
+	
 func _process(_delta: float) -> void:
 	if GameManager.cutscene_displayed:
 		return
@@ -33,9 +39,13 @@ func _process(_delta: float) -> void:
 		camera_edges[3]))
 	if GameManager.gadget != null:
 		# Center on gadget if gadget selected
-		camera_position = GameManager.gadget.position
-		camera_position.x += inventory_camera_offset / 2
-		camera_position.y += 540 - 32 # Buffer to make it look more centered
+		if GameManager.gadget.gadget_stats.name == "Teleporter" and not (GameManager.cursor != null and GameManager.cursor.slot.item != null):
+			camera_position = Vector2(0, 0)
+		else:
+			camera_position = GameManager.gadget.position
+			camera_position.x += inventory_camera_offset / 2
+			camera_position.y = clamp(camera_position.y + 540 - 32, camera_edges[1], camera_edges[3]) # Buffer to make it look more centered
+			# y values are still clamped because of screen edge shenanigans
 	camera.set_global_position(camera_position)
 	for sprite:AnimatedSprite2D in $Sprite.get_children():
 		if velocity == Vector2.ZERO: continue
@@ -67,7 +77,10 @@ func _physics_process(_delta: float) -> void:
 		else:
 			self.velocity = Vector2.ZERO
 	
-		move_and_slide()
+		move_and_slide() 
+	if camera.get_screen_center_position() != prev_camera_position:
+		prev_camera_position = camera.get_screen_center_position()
+		camera_moved.emit()
 	
 ## 'Collects' a given item, placing it into the inventory on the nearest open slot
 func collect(item: Item):
