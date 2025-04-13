@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://dv64lbppurf03"]
+
+[ext_resource type="Texture2D" uid="uid://mbmhxks1ea5v" path="res://resources/sprites/outputslot.png" id="1_60cvm"]
+[ext_resource type="Texture2D" uid="uid://b76x0jq0i4v4y" path="res://resources/sprites/cotton.png" id="2_e28bl"]
+[ext_resource type="FontFile" uid="uid://cskltmfvwlc7g" path="res://resources/fonts/Audiowide-Regular.ttf" id="3_w78t1"]
+
+[node name="OrderSummaryItem" type="TextureRect"]
+z_index = 1
+custom_minimum_size = Vector2(200, 200)
+offset_right = 316.0
+offset_bottom = 311.0
+texture = ExtResource("1_60cvm")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ItemTexture" type="TextureRect" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = 33.0
+offset_right = -33.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_e28bl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ItemQuantityLabel" type="RichTextLabel" parent="."]
+z_index = 3
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -187.0
+offset_top = -42.0
+offset_right = -15.0
+offset_bottom = 2.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("3_w78t1")
+theme_override_font_sizes/normal_font_size = 25
+text = "12345678"
+horizontal_alignment = 2
