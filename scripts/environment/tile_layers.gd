@@ -54,7 +54,16 @@ func _process(_delta: float) -> void:
 		var mouse_pos = get_local_mouse_position()
 		var cell_pos = base_layer.local_to_map(mouse_pos)
 		if (is_base_available(cell_pos)):
-			marker.position = base_layer.map_to_local(cell_pos)
+			marker.is_uni_generator = false
+			marker.is_generator = false
+			if GameManager.get_gadget_from_cursor().name == "Universal Generator":
+				marker.is_uni_generator = true
+				marker.position = Vector2i(0, 0)
+			elif GameManager.get_gadget_from_cursor().name == "Generator":
+				marker.is_generator = true
+				marker.position = base_layer.map_to_local(cell_pos)
+			else:
+				marker.position = base_layer.map_to_local(cell_pos)
 			marker.z_index = 0
 			marker.visible = true
 		else:
