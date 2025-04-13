@@ -53,13 +53,22 @@ func _process(_delta: float) -> void:
 	if GameManager.is_placing_gadget:
 		var mouse_pos = get_local_mouse_position()
 		var cell_pos = base_layer.local_to_map(mouse_pos)
-		if cell_pos:
-			if (is_base_available(cell_pos)):
+		if (is_base_available(cell_pos)):
+			marker.is_uni_generator = false
+			marker.is_generator = false
+			if GameManager.get_gadget_from_cursor().name == "Universal Generator":
+				marker.is_uni_generator = true
+				marker.position = Vector2i(0, 0)
+			elif GameManager.get_gadget_from_cursor().name == "Generator":
+				marker.is_generator = true
 				marker.position = base_layer.map_to_local(cell_pos)
-				marker.z_index = 0
-				marker.visible = true
 			else:
-				marker.visible = false
+				marker.position = base_layer.map_to_local(cell_pos)
+			marker.z_index = 1
+			marker.visible = true
+		else:
+			marker.visible = false
+			
 	else:
 		marker.visible = false
 
@@ -90,8 +99,6 @@ func spawn_object(gadget: Gadget, _cell_pos:Vector2i = Vector2i(-99, -99)) -> bo
 		instance.z_index = 1
 		instance.position = base_layer.map_to_local(cell_pos)
 		instance.gadget_stats = gadget
-		if gadget.name == "Universal Generator":
-			GameManager.has_cyber_generator = true
 		var layer_occupied_name:String = "Layer 1"
 		instance.layer_occupied_name = layer_occupied_name
 		instance.cell_pos = cell_pos
@@ -103,6 +110,9 @@ func spawn_object(gadget: Gadget, _cell_pos:Vector2i = Vector2i(-99, -99)) -> bo
 		# Set to lowest, so items are always above
 		$"Base".move_child(instance, 0)
 		tile_map[layer_occupied_name].append(cell_pos + Vector2i(-1, -1))
+		if gadget.name == "Universal Generator":
+			GameManager.has_cyber_generator = true
+			GameManager.cyber_generator = instance
 		return true
 	return false
 		

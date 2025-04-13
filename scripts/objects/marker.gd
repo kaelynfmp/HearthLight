@@ -1,11 +1,21 @@
 extends Node2D
 
-@export var size := Vector2.ONE * 300.0
-@export var color := Color(1.0, 1.0, 0.0, 0.5)
+@export var is_generator = false
+@export var is_uni_generator = false
 
 var coords : PackedVector2Array = [
 	Vector2(0, -16), Vector2(-32, 0),
 	Vector2(0, 16), Vector2(32, 0),
+]
+
+var generator_coords : PackedVector2Array = [
+	Vector2(0, -84), Vector2(-168, 0),
+	Vector2(0, 84), Vector2(168, 0),
+]
+
+var uni_generator_coords : PackedVector2Array = [
+	Vector2(0, -184), Vector2(-368, 0),
+	Vector2(0, 184), Vector2(368, 0),
 ]
 
 # Called when the node enters the scene tree for the first time.
@@ -18,4 +28,7 @@ func _process(_delta: float) -> void:
 	pass
 			
 func _draw() -> void:
-	draw_polygon(coords, [Color(1.0, 1.0, 1.0, 0.4)])
+	draw_polygon(uni_generator_coords if is_uni_generator else generator_coords if is_generator else coords, 
+	[
+		Color(1., 1., 0.0, 0.4) if is_generator or is_uni_generator else Color(1.0, 1.0, 1.0, 0.4)
+	])

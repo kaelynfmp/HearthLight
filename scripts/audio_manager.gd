@@ -111,6 +111,8 @@ func _play_pressed(node:Node) -> void:
 func play_button_sound(index:int, db:float=0, pitch:float=1, pitch_range:float=0.1):
 	playback.play_stream(button_sounds[index], 0, db, randf_range(pitch - pitch_range, pitch + pitch_range))
 	
+func remove_audio(audio_string, key):
+	active_gadgets[audio_string].erase(key)
 
 func _process(_delta: float) -> void:
 	if gadget_audio != null:

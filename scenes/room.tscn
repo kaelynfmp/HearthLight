@@ -310,6 +310,10 @@ tile_set = ExtResource("1_lwtf6")
 visible = false
 scale = Vector2(9, 9)
 
+[node name="Marker2" parent="Tilemap/TileLayers" instance=ExtResource("4_mnrrm")]
+visible = false
+scale = Vector2(9, 9)
+
 [node name="Character" parent="Tilemap" instance=ExtResource("3_aubfo")]
 
 [node name="Grid" type="Polygon2D" parent="Tilemap"]

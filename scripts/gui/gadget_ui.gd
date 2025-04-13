@@ -77,7 +77,6 @@ func setup_teleporter(gadget: InWorldGadget):
 		
 func setup_generator(gadget: InWorldGadget):
 	var contained = $Background/Contained
-	print(current_gadget.name)
 	# Setup coal slot
 	if current_gadget.name == "Generator":
 		$Background/Contained/EnergyControl.visible = true

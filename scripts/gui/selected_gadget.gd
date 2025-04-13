@@ -1,5 +1,8 @@
 extends AnimatedSprite2D
 
+@onready var marker: Node2D = get_node("/root/Room/Tilemap/TileLayers/Marker2")
+@onready var base_layer: Node2D = get_node("/root/Room/Tilemap/TileLayers/Base")
+
 var teleporter_selected:bool
 
 func _ready() -> void:
@@ -23,6 +26,17 @@ func _process(_delta: float) -> void:
 			$TeleportControl.visible = true
 		else:
 			$TeleportControl.visible = false
+			
+		if GameManager.gadget.gadget_stats.name == "Generator":
+			marker.visible = true
+			marker.is_generator = true
+			marker.is_uni_generator = false
+			marker.position = base_layer.map_to_local(GameManager.gadget.cell_pos)
+		elif GameManager.gadget.gadget_stats.name == "Universal Generator":
+			marker.is_generator = false
+			marker.is_uni_generator = true
+			marker.visible = true
+			marker.position = Vector2i(0, 0)
 			
 	else:
 		sprite_frames = null
