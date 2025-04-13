@@ -16,12 +16,12 @@ bg_color = Color(0, 0, 0, 0.619608)
 
 [sub_resource type="Theme" id="Theme_oymtc"]
 
-[sub_resource type="Resource" id="Resource_dif00"]
+[sub_resource type="Resource" id="Resource_oymtc"]
 script = ExtResource("3_7gu0f")
 locked = false
 item_filter = Array[ExtResource("2_i3wjl")]([])
 bypass_stack = false
-quantity = 1
+quantity = 0
 metadata/_custom_type_script = "uid://cvojb3v6cdain"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovgpi"]
@@ -76,7 +76,7 @@ offset_top = 252.0
 offset_right = 724.0
 offset_bottom = 562.0
 scale = Vector2(0.880001, 0.88)
-slot = SubResource("Resource_dif00")
+slot = SubResource("Resource_oymtc")
 
 [node name="SellButton" type="Button" parent="."]
 layout_mode = 1
@@ -95,6 +95,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_4cddd")
 text = "sell"
 
 [node name="Cost" type="Label" parent="."]
+layout_mode = 0
 offset_left = 497.0
 offset_top = 579.0
 offset_right = 782.0
@@ -104,6 +105,7 @@ theme_override_font_sizes/font_size = 40
 text = "1234567890"
 
 [node name="CostNameLabel" type="Label" parent="Cost"]
+layout_mode = 0
 offset_left = -150.0
 offset_right = -3.0
 offset_bottom = 59.0
