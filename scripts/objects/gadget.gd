@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+class_name InWorldGadget
+
 signal removing(layer_occupied_name:String, cell_pos:Vector2i)
 signal item_at_location(cell_pos: Vector2i, item: Item)
 
@@ -17,10 +19,10 @@ signal item_at_location(cell_pos: Vector2i, item: Item)
 @export var power_per_coal = 10
 
 # Teleporter input
-var mounted_gadget: StaticBody2D
+var mounted_gadget: InWorldGadget
 
 # Array of target teleporters
-var target_list: Array[StaticBody2D]
+var target_list: Array[InWorldGadget]
 # Round-robin distribution, so every second increase this target index to match with target_list
 var target_index = 0
 
@@ -47,8 +49,8 @@ var cell_pos:Vector2i
 var primitive_selected:bool = false
 var hovered:bool = false
 var recipes:Array[Recipe]
-var rear_gadget: StaticBody2D
-var front_gadget: StaticBody2D
+var rear_gadget: InWorldGadget
+var front_gadget: InWorldGadget
 var corresponding_item: RigidBody2D
 enum Direction {SE, SW, NW, NE}
 var direction: int
@@ -97,7 +99,8 @@ func _ready() -> void:
 	direction = gadget_stats.direction
 	sprite.scale *= gadget_stats.sprite_scale_factor
 	if gadget_stats.name == "Teleporter":
-		mount_to_inventory()	
+		mount_to_inventory()
+		GameManager.add_teleporter(self)
 	rotate_sprite()
 	if gadget_stats.name == "Conveyor Belt":
 		collision_layer = 2
@@ -291,7 +294,7 @@ func finish_transport():
 	cancel_processing()
 	
 
-func pull_from_gadget(selected_gadget: StaticBody2D):
+func pull_from_gadget(selected_gadget: InWorldGadget):
 	var selected_inventory: Inventory = selected_gadget.inventory
 	var selected_slots = selected_inventory.slots.filter(func(slot): 
 		return slot.locked)
@@ -420,6 +423,8 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			GameManager.inventories.erase(inventory)
 			if gadget_stats.name == "Universal Generator":
 				GameManager.has_cyber_generator = false
+			elif gadget_stats.name == "Teleporter":
+				GameManager.remove_teleporter(self)
 			for slot in inventory.slots:
 			# Send it all away to any open inventories
 				GameManager.send_to_inventory(slot)

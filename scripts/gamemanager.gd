@@ -11,6 +11,7 @@ signal debug_mode_change
 signal gadget_rotated(direction: int)
 signal awaken
 signal paid_off_debt
+signal teleporter_list_changed
 
 @onready var computer_gadget:Gadget = load("res://resources/gadgets/computer.tres")
 
@@ -21,7 +22,7 @@ var inventory: bool = false:
 		inventory = value
 		if !value:
 			gadget = null
-var gadget:StaticBody2D
+var gadget:InWorldGadget
 
 var computer_visible:bool = false
 var computer_tab_manager:TabContainer
@@ -135,6 +136,8 @@ var items:Array[Item]
 var day_start_sound:AudioStreamPlayer2D
 var day_end_sound:AudioStreamPlayer2D
 
+var teleporters:Array[InWorldGadget]
+
 var room_map = []
 var item_map = []
 
@@ -195,6 +198,9 @@ func _process(_delta: float) -> void:
 			if cursor_gadget != null and cursor_gadget.name in ["Conveyor Belt", "Teleporter"]:
 				cursor_gadget.direction = (cursor_gadget.direction + 1) % 4
 				gadget_rotated.emit(cursor_gadget.direction)
+			elif GameManager.gadget != null and GameManager.gadget.gadget_stats.name in ["Conveyor Belt", "Teleporter"]:
+				GameManager.gadget.direction = (GameManager.gadget.direction + 1) % 4
+				gadget_rotated.emit(GameManager.gadget.direction)
 		
 		
 	blur = inventory
@@ -340,7 +346,7 @@ func distribute_slots() -> void:
 				return
 	
 ## Sets the currently selected gadget
-func set_gadget(p_gadget:StaticBody2D) -> void:
+func set_gadget(p_gadget:InWorldGadget) -> void:
 	if inventory:
 		if gadget != null:
 			inventories.erase(gadget.inventory)
@@ -362,6 +368,16 @@ func get_gadget_from_cursor() -> Gadget:
 			return gadget_items[item]
 	return null
 	
+## Adds a teleporter to the teleporter list and emits a signal that it has been changed
+func add_teleporter(_gadget: InWorldGadget):
+	teleporters.append(_gadget)
+	teleporter_list_changed.emit()
+	
+## Removes a teleporter to the teleporter list and emits a signal that it has been changed
+func remove_teleporter(_gadget: InWorldGadget):
+	teleporters.erase(_gadget)
+	teleporter_list_changed.emit()
+
 ## Clears the slot distributor, which is a list of currently dragged over slots, and will balance out how many items
 ## are in them all
 func clear_slot_distributor():

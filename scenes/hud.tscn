@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://bpie3rt8qmyxr"]
+[gd_scene load_steps=59 format=3 uid="uid://bpie3rt8qmyxr"]
 
 [ext_resource type="PackedScene" uid="uid://c2wlmdehxae41" path="res://scenes/Computer Scenes/computer_interface.tscn" id="1_8kako"]
 [ext_resource type="PackedScene" uid="uid://c6g34by20r0qc" path="res://scenes/inventory/inventory.tscn" id="1_h8ipj"]
@@ -11,15 +11,20 @@
 [ext_resource type="Script" uid="uid://cktmdadtyd66f" path="res://scripts/gui/gadget_ui.gd" id="7_y0wjn"]
 [ext_resource type="Script" uid="uid://d4f5y62ujshdf" path="res://scripts/gui/selected_gadget.gd" id="9_nhxen"]
 [ext_resource type="Shader" uid="uid://cbx8f33etuvq2" path="res://scripts/shaders/gadgetoutline.gdshader" id="9_o8g3w"]
+[ext_resource type="Texture2D" uid="uid://ckyqqet7rsfvh" path="res://resources/sprites/gui/arrows/clockwise_normal.png" id="9_qccye"]
+[ext_resource type="Texture2D" uid="uid://csb3g7qfq7i7v" path="res://resources/sprites/gui/arrows/clockwise_pressed.png" id="10_flipt"]
 [ext_resource type="Texture2D" uid="uid://gi6my3ydg3ke" path="res://resources/sprites/gui/gadget_selection.png" id="10_ivqh4"]
 [ext_resource type="Shader" uid="uid://dsr12xvjlitui" path="res://scripts/shaders/tutorial_outline.gdshader" id="11_frrke"]
+[ext_resource type="Texture2D" uid="uid://dgfk1bs35ds07" path="res://resources/sprites/gui/arrows/clockwise_hover.png" id="11_uorui"]
 [ext_resource type="Script" uid="uid://dhbcadu5yh1g3" path="res://scripts/gui/tutorial_sprite.gd" id="12_vh1iw"]
+[ext_resource type="Texture2D" uid="uid://cep23ykhmnw58" path="res://resources/sprites/gui/arrows/counterclockwise_normal.png" id="12_wi3kw"]
 [ext_resource type="PackedScene" uid="uid://biflar31oita2" path="res://scenes/menu/pause_menu.tscn" id="13_55orh"]
-[ext_resource type="Texture2D" uid="uid://dl2manigelkio" path="res://resources/sprites/gui/gear/normal.png" id="13_uxdf7"]
-[ext_resource type="Texture2D" uid="uid://byd0f2tce32li" path="res://resources/sprites/gui/gear/pressed.png" id="14_5357l"]
+[ext_resource type="Script" uid="uid://vrss7pcr5c64" path="res://scripts/gui/selected_teleporters.gd" id="13_dl6ww"]
+[ext_resource type="Texture2D" uid="uid://6mnoagdl55x3" path="res://resources/sprites/gui/arrows/counterclockwise_pressed.png" id="13_ka0sb"]
+[ext_resource type="Texture2D" uid="uid://b4pek43rcxdvf" path="res://resources/sprites/gui/arrows/counterclockwise_hover.png" id="14_7r3ka"]
+[ext_resource type="PackedScene" uid="uid://b23ttu16g3s4a" path="res://scenes/selected_teleporter.tscn" id="14_8f8xv"]
 [ext_resource type="PackedScene" uid="uid://dnyyt61n7tlkc" path="res://scenes/clock.tscn" id="14_eld54"]
-[ext_resource type="Texture2D" uid="uid://v3mhxuklek42" path="res://resources/sprites/gui/gear/hover.png" id="15_iypfu"]
-[ext_resource type="Texture2D" uid="uid://ca24n44nxd7w1" path="res://resources/sprites/gui/gear/disabled.png" id="16_qpprf"]
+[ext_resource type="Resource" uid="uid://bkuks7tbfprqt" path="res://resources/gadgets/teleporter.tres" id="15_v0qwq"]
 [ext_resource type="Texture2D" uid="uid://br677v2jqsxvc" path="res://resources/sprites/gui/questopen/questopen.png" id="17_kp442"]
 [ext_resource type="Texture2D" uid="uid://rtk7chr66qjo" path="res://resources/sprites/gui/questopen/questopenselect.png" id="18_gltyx"]
 [ext_resource type="Script" uid="uid://djkcgfibs8xbn" path="res://scenes/sleep_canvas.gd" id="19_iypfu"]
@@ -69,6 +74,8 @@ shader_parameter/thickness = 30.0
 shader_parameter/tolerance = 0.0
 shader_parameter/diagonals = true
 shader_parameter/rounded = true
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qccye"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_5357l"]
 
@@ -147,40 +154,57 @@ material = SubResource("ShaderMaterial_dl6ww")
 script = ExtResource("12_vh1iw")
 
 [node name="SelectedGadget" type="AnimatedSprite2D" parent="."]
-visible = false
 top_level = true
 material = SubResource("ShaderMaterial_hoa3s")
 scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_qccye")
 offset = Vector2(0, -218)
 script = ExtResource("9_nhxen")
 
-[node name="Control" type="Control" parent="SelectedGadget"]
+[node name="RotationControl" type="Control" parent="SelectedGadget"]
 layout_mode = 3
 anchors_preset = 0
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SelectedGadget/Control"]
-layout_mode = 0
-offset_left = -623.0
-offset_right = 623.0
-offset_bottom = 351.0
-theme_override_constants/separation = 560
+[node name="RotationController" type="VBoxContainer" parent="SelectedGadget/RotationControl"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -481.429
+offset_top = -544.286
+offset_right = -138.429
+offset_bottom = 357.714
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 200
 alignment = 1
 
-[node name="RotateLeft" type="TextureButton" parent="SelectedGadget/Control/HBoxContainer"]
+[node name="RotateLeft" type="TextureButton" parent="SelectedGadget/RotationControl/RotationController"]
+z_index = 1
 layout_mode = 2
-texture_normal = ExtResource("13_uxdf7")
-texture_pressed = ExtResource("14_5357l")
-texture_hover = ExtResource("15_iypfu")
-texture_disabled = ExtResource("16_qpprf")
+size_flags_horizontal = 4
+texture_normal = ExtResource("9_qccye")
+texture_pressed = ExtResource("10_flipt")
+texture_hover = ExtResource("11_uorui")
 
-[node name="RotateRight" type="TextureButton" parent="SelectedGadget/Control/HBoxContainer"]
+[node name="RotateRight" type="TextureButton" parent="SelectedGadget/RotationControl/RotationController"]
+z_index = 1
 layout_mode = 2
-texture_normal = ExtResource("13_uxdf7")
-texture_pressed = ExtResource("14_5357l")
-texture_hover = ExtResource("15_iypfu")
-texture_disabled = ExtResource("16_qpprf")
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("12_wi3kw")
+texture_pressed = ExtResource("13_ka0sb")
+texture_hover = ExtResource("14_7r3ka")
+
+[node name="SelectedTeleporters" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("13_dl6ww")
+selected_teleporter_scene = ExtResource("14_8f8xv")
+teleporter = ExtResource("15_v0qwq")
 
 [node name="Inventories" type="VBoxContainer" parent="."]
 z_index = 1
@@ -198,6 +222,7 @@ grow_vertical = 2
 scale = Vector2(0.4, 0.4)
 script = ExtResource("4_pacb3")
 slide_in_speed = 10.0
+teleporter = ExtResource("15_v0qwq")
 
 [node name="Inventory" parent="Inventories" instance=ExtResource("1_h8ipj")]
 layout_mode = 2
@@ -321,6 +346,7 @@ offset_bottom = 1092.0
 texture = SubResource("CanvasTexture_5357l")
 
 [node name="CutsceneCanvas" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
@@ -389,7 +415,13 @@ text = "Continue"
 script = ExtResource("35_03o4m")
 button_sound = 7
 
-[connection signal="pressed" from="SelectedGadget/Control/HBoxContainer/RotateLeft" to="SelectedGadget" method="_on_rotate_left_pressed"]
-[connection signal="pressed" from="SelectedGadget/Control/HBoxContainer/RotateRight" to="SelectedGadget" method="_on_rotate_right_pressed"]
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="SelectedGadget/RotationControl/RotationController/RotateLeft" to="SelectedGadget" method="_on_rotate_left_pressed"]
+[connection signal="pressed" from="SelectedGadget/RotationControl/RotationController/RotateRight" to="SelectedGadget" method="_on_rotate_right_pressed"]
 [connection signal="pressed" from="QuestButtonContainer/QuestOpen" to="QuestButtonContainer/QuestOpen" method="_on_pressed"]
 [connection signal="pressed" from="QuestButtonContainer/QuestClose" to="QuestButtonContainer/QuestClose" method="_on_pressed"]

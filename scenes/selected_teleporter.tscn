@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b23ttu16g3s4a"]
+
+[ext_resource type="Script" uid="uid://cttslgu87en2f" path="res://scripts/gui/selected_teleporter.gd" id="1_cpy52"]
+
+[node name="SelectedTeleporter" type="AnimatedSprite2D"]
+script = ExtResource("1_cpy52")

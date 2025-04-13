@@ -11,8 +11,8 @@ var current_gadget:Gadget
 var input_hint_dict: Dictionary = {}
 
 func _process(delta: float) -> void:
-	visible = GameManager.gadget != null and GameManager.gadget.gadget_stats.name != "Conveyor Belt"
-	if GameManager.gadget != null and GameManager.gadget.gadget_stats.name != "Conveyor Belt":
+	visible = GameManager.gadget != null and GameManager.gadget.gadget_stats.name != "Conveyor Belt" and GameManager.gadget.gadget_stats.name != "Teleporter"
+	if GameManager.gadget != null and GameManager.gadget.gadget_stats.name != "Conveyor Belt" and GameManager.gadget.gadget_stats.name != "Teleporter":
 		if current_gadget == null or GameManager.gadget.gadget_stats != current_gadget:
 			input_hint_dict = {}
 			set_gadget(GameManager.gadget)
@@ -44,7 +44,7 @@ func _process(delta: float) -> void:
 	if current_gadget and not current_gadget.name in ["Storage", "Universal Generator", "Teleporter"]:
 		update_hint_visibility()
 		
-func setup_storage(gadget: StaticBody2D):
+func setup_storage(gadget: InWorldGadget):
 	var inputs:Array[Slot] = gadget.inventory.slots.filter(func(slot): return !slot.locked)
 	var contained = $Background/Contained
 	contained.visible = false
@@ -66,10 +66,10 @@ func setup_storage(gadget: StaticBody2D):
 		hflowcontainer.add_child(new_slot) 
 		hflowcontainer.move_child(new_slot, index)
 		
-func setup_teleporter(gadget: StaticBody2D):
+func setup_teleporter(gadget: InWorldGadget):
 	pass
 		
-func setup_generator(gadget: StaticBody2D):
+func setup_generator(gadget: InWorldGadget):
 	var contained = $Background/Contained
 	print(current_gadget.name)
 	# Setup coal slot
@@ -104,7 +104,7 @@ func setup_generator(gadget: StaticBody2D):
 	else:
 		$Background/Contained/EnergyControl.visible = false
 	
-func set_gadget(gadget:StaticBody2D):
+func set_gadget(gadget:InWorldGadget):
 	primitive_button.set_rotation(0)
 	current_gadget = gadget.gadget_stats
 	primitive_button.visible = gadget.gadget_stats.age == GameManager.Age.PRIMITIVE
