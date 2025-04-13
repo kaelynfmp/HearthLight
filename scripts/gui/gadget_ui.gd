@@ -45,7 +45,10 @@ func _process(delta: float) -> void:
 		update_hint_visibility()
 		
 func _reset_gadget():
-	set_gadget(GameManager.gadget)
+	if GameManager.gadget != null:
+		set_gadget(GameManager.gadget)
+	else:
+		set_gadget(null)
 	
 func setup_storage(gadget: InWorldGadget):
 	var inputs:Array[Slot] = gadget.inventory.slots.filter(func(slot): return !slot.locked)
@@ -108,6 +111,9 @@ func setup_generator(gadget: InWorldGadget):
 		$Background/Contained/EnergyControl.visible = false
 	
 func set_gadget(gadget:InWorldGadget):
+	if gadget == null:
+		current_gadget = null
+		return
 	primitive_button.set_rotation(0)
 	current_gadget = gadget.gadget_stats
 	primitive_button.visible = gadget.gadget_stats.age == GameManager.Age.PRIMITIVE
@@ -222,7 +228,8 @@ func update_hint_visibility():
 		quantities.append(current_gadget.inventory.get_item_quantity(recipe_inputs[index].item))
 	var i = 0
 	for texture in input_hint_dict:
-		input_hint_dict[texture] = quantities[i]
+		if i in quantities:
+			input_hint_dict[texture] = quantities[i]
 		i+=1
 		if input_hint_dict[texture] > 0:
 			texture.visible = false

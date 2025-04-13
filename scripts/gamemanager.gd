@@ -231,7 +231,7 @@ func _physics_process(_delta: float) -> void:
 	time_scaled_seconds = seconds_elapsed*time_scale
 	var less_rounded_seconds:int = int(milliseconds_elapsed / 1000.0 * time_scale)
 	time_final = less_rounded_seconds >= max_time_seconds - continue_clock_in_computer # If it is time to start ticking and playing the audio
-	if !pause and !in_computer or (!pause and in_computer and time_final) or (in_computer and game_time["hour"] == start_time and game_time["minute"] == 0):
+	if !pause and (!in_computer or (!pause and in_computer and time_final) or sleeping):
 		current_time = Time.get_ticks_msec()
 		time_difference = current_time - start_time
 		start_time = Time.get_ticks_msec()
@@ -513,6 +513,8 @@ func go_sleep():
 	sleeping = true
 	sleep_start = Time.get_ticks_msec()
 	milliseconds_elapsed = active_time
+	if computer_visible:
+		change_computer_visibility()
 	print("starting sleep...")
 	#TODO: Sleep behavior
 func wake_up():

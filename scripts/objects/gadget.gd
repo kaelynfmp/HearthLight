@@ -9,6 +9,7 @@ signal item_at_location(cell_pos: Vector2i, item: Item)
 @onready var audio_player:AudioStreamPlayer2D = find_child("AudioStreamPlayer")
 @onready var open_audio_player:AudioStreamPlayer2D = find_child("OpenAudioPlayer")
 @onready var close_audio_player:AudioStreamPlayer2D = find_child("CloseAudioPlayer")
+@onready var stop_audio_player:AudioStreamPlayer2D = find_child("StopAudioPlayer")
 @onready var sprite:AnimatedSprite2D = find_child("Sprite")
 @onready var valid_selection:CompressedTexture2D = load("res://scripts/shaders/close_enough_texture.tres")
 @onready var invalid_selection:CompressedTexture2D = load("res://scripts/shaders/not_close_enough_texture.tres")
@@ -106,6 +107,7 @@ func _ready() -> void:
 		collision_layer = 2
 		collision_mask = 2
 	audio_player.set_stream(gadget_stats.ambient_sound)
+	stop_audio_player.set_stream(gadget_stats.stop_sound)
 	open_audio_player.set_stream(gadget_stats.open_sound)
 	close_audio_player.set_stream(gadget_stats.close_sound)
 	update_recipes()
@@ -276,14 +278,14 @@ func do_transport():
 	if gadget_stats.name == "Teleporter":
 		if len(target_list) > 0:
 			start_progression_transport()
-	var rear_gadget_pos: Vector2i = cell_pos + direction_vector[direction]
-	if (GameManager.room_map[rear_gadget_pos[0] + 6][rear_gadget_pos[1] + 5] != null):
-		rear_gadget = GameManager.room_map[rear_gadget_pos[0] + 6][rear_gadget_pos[1] + 5]
-		if rear_gadget != null and rear_gadget.gadget_stats.name != "Conveyor Belt":
-			start_progression_transport()
+	else:
+		var rear_gadget_pos: Vector2i = cell_pos + direction_vector[direction]
+		if (GameManager.room_map[rear_gadget_pos[0] + 6][rear_gadget_pos[1] + 5] != null):
+			rear_gadget = GameManager.room_map[rear_gadget_pos[0] + 6][rear_gadget_pos[1] + 5]
+			if rear_gadget != null and rear_gadget.gadget_stats.name != "Conveyor Belt":
+				start_progression_transport()
 			
 func start_progression_transport():
-	play_sound()
 	if gadget_stats.name == "Conveyor Belt":
 		pull_inventory()
 	progressing = true
@@ -294,7 +296,8 @@ func finish_transport():
 	cancel_processing()
 	
 
-func pull_from_gadget(selected_gadget: InWorldGadget):
+func pull_from_gadget(selected_gadget: InWorldGadget) -> bool:
+	var worked = false
 	var is_conveyer_belt:bool = gadget_stats.name == "Conveyor Belt"
 	var is_teleporter:bool = gadget_stats.name == "Teleporter"
 	var selected_inventory: Inventory = selected_gadget.inventory
@@ -309,6 +312,7 @@ func pull_from_gadget(selected_gadget: InWorldGadget):
 				if selected_gadget.gadget_stats.name != "Conveyor Belt":
 						item_at_location.emit(cell_pos, item)
 				selected_inventory.remove_items(item, 1, slot.locked)
+				worked = true
 				break
 	else:
 		if is_teleporter:
@@ -323,18 +327,27 @@ func pull_from_gadget(selected_gadget: InWorldGadget):
 						if destination_gadget != null and destination_gadget.inventory.can_insert(slot.item) == 0:
 							destination_gadget.inventory.insert(slot.item)
 							slot.decrement()
+							worked = true
 						target_index += 1
 						if target_index >= len(target_list):
 							target_index = 0
 						slot_attempts += 1
 				else:
-					target_list[0].inventory.insert(slot.item, slot.quantity)
+					var remainder = target_list[0].inventory.insert(slot.item, slot.quantity)
+					if remainder < slot.quantity:
+						worked = true
+					slot.decrement(slot.quantity - remainder)
+					
+	return worked
 	
 
 
 func pull_inventory():
-	if gadget_stats.name == "Teleporter" and mounted_gadget != null:
-		pull_from_gadget(mounted_gadget)
+	if gadget_stats.name == "Teleporter" and mounted_gadget != null and not target_list.is_empty():
+		var prev_inventory_slots = mounted_gadget.inventory.slots.duplicate()
+		if pull_from_gadget(mounted_gadget):
+			print("test")
+			stop_audio_player.play()
 	if GameManager.item_map[cell_pos[0] + 6][cell_pos[1] + 5] == null: 
 		if rear_gadget:
 			pull_from_gadget(rear_gadget)
@@ -397,6 +410,8 @@ func cancel_processing():
 	progress = 0.0
 	progressing = false
 	audio_player.stop()
+	if not stop_audio_player.playing and not primitive_selected and gadget_stats.name != "Teleporter":
+		stop_audio_player.play()
 	if not is_generator:
 		if gadget_stats.sound_string != null and gadget_stats.sound_string != "":
 			if AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
