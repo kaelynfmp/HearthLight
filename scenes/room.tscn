@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=4 uid="uid://gfvpt16hdue1"]
+[gd_scene load_steps=56 format=4 uid="uid://gfvpt16hdue1"]
 
 [ext_resource type="Shader" uid="uid://7r383w0xu0ql" path="res://scripts/shaders/rain.gdshader" id="1_1f3ag"]
 [ext_resource type="Texture2D" uid="uid://cvhgtu8uxcmcm" path="res://resources/sprites/backgrounds/backgroundDay/layer0.png" id="1_2cm04"]
@@ -50,6 +50,7 @@
 [ext_resource type="AudioStream" uid="uid://bkca86w1xoib3" path="res://resources/audio/Gadgets/e stove.wav" id="19_c4f3b"]
 [ext_resource type="Texture2D" uid="uid://dx53tvy44tf7d" path="res://resources/sprites/backgrounds/backgroundTransition1/layer4.png" id="19_drrlj"]
 [ext_resource type="Texture2D" uid="uid://duaxdwah4406a" path="res://resources/sprites/backgrounds/backgroundTransition1/layer5.png" id="20_55ugc"]
+[ext_resource type="AudioStream" uid="uid://dcar3k445w0ya" path="res://resources/audio/Gadgets/teleporter loop.wav" id="37_gmm1g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4aq65"]
 shader = ExtResource("1_1f3ag")
@@ -72,7 +73,7 @@ colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0)
 gradient = SubResource("Gradient_crfpw")
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_qtoah"]
-stream_count = 12
+stream_count = 13
 stream_0/stream = ExtResource("9_a5qmg")
 stream_0/volume = -60.0
 stream_1/stream = ExtResource("10_0tws2")
@@ -97,6 +98,8 @@ stream_10/stream = ExtResource("19_c4f3b")
 stream_10/volume = -60.0
 stream_11/stream = ExtResource("11_2ftkj")
 stream_11/volume = -60.0
+stream_12/stream = ExtResource("37_gmm1g")
+stream_12/volume = 0.0
 
 [node name="Room" type="Node" groups=["world_gadgets", "world_items"]]
 

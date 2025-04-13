@@ -1,4 +1,7 @@
 extends StaticBody2D
+
+class_name InWorldItem
+
 @export var item: Item
 @export var move_speed: int = 300
 @export var target_position: Vector2

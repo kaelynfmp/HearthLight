@@ -10,12 +10,12 @@ var rotation_speed:float = 10
 var current_gadget:Gadget
 var input_hint_dict: Dictionary = {}
 
+func _ready() -> void:
+	GameManager.gadget_changed.connect(_reset_gadget)
+
 func _process(delta: float) -> void:
-	visible = GameManager.gadget != null and GameManager.gadget.gadget_stats.name != "Conveyor Belt"
-	if GameManager.gadget != null and GameManager.gadget.gadget_stats.name != "Conveyor Belt":
-		if current_gadget == null or GameManager.gadget.gadget_stats != current_gadget:
-			input_hint_dict = {}
-			set_gadget(GameManager.gadget)
+	visible = GameManager.gadget != null and GameManager.gadget.gadget_stats.name != "Conveyor Belt" and GameManager.gadget.gadget_stats.name != "Teleporter"
+	if GameManager.gadget != null and GameManager.gadget.gadget_stats.name != "Conveyor Belt" and GameManager.gadget.gadget_stats.name != "Teleporter":
 		if GameManager.gadget.progressing:
 			creates_progress.visible = true
 			creates_progress.material.set("shader_parameter/progress", GameManager.gadget.progress)
@@ -44,7 +44,13 @@ func _process(delta: float) -> void:
 	if current_gadget and not current_gadget.name in ["Storage", "Universal Generator", "Teleporter"]:
 		update_hint_visibility()
 		
-func setup_storage(gadget: StaticBody2D):
+func _reset_gadget():
+	if GameManager.gadget != null:
+		set_gadget(GameManager.gadget)
+	else:
+		set_gadget(null)
+	
+func setup_storage(gadget: InWorldGadget):
 	var inputs:Array[Slot] = gadget.inventory.slots.filter(func(slot): return !slot.locked)
 	var contained = $Background/Contained
 	contained.visible = false
@@ -66,10 +72,10 @@ func setup_storage(gadget: StaticBody2D):
 		hflowcontainer.add_child(new_slot) 
 		hflowcontainer.move_child(new_slot, index)
 		
-func setup_teleporter(gadget: StaticBody2D):
+func setup_teleporter(gadget: InWorldGadget):
 	pass
 		
-func setup_generator(gadget: StaticBody2D):
+func setup_generator(gadget: InWorldGadget):
 	var contained = $Background/Contained
 	# Setup coal slot
 	if current_gadget.name == "Generator":
@@ -103,7 +109,10 @@ func setup_generator(gadget: StaticBody2D):
 	else:
 		$Background/Contained/EnergyControl.visible = false
 	
-func set_gadget(gadget:StaticBody2D):
+func set_gadget(gadget:InWorldGadget):
+	if gadget == null:
+		current_gadget = null
+		return
 	primitive_button.set_rotation(0)
 	current_gadget = gadget.gadget_stats
 	primitive_button.visible = gadget.gadget_stats.age == GameManager.Age.PRIMITIVE
@@ -218,7 +227,8 @@ func update_hint_visibility():
 		quantities.append(current_gadget.inventory.get_item_quantity(recipe_inputs[index].item))
 	var i = 0
 	for texture in input_hint_dict:
-		input_hint_dict[texture] = quantities[i]
+		if i in quantities:
+			input_hint_dict[texture] = quantities[i]
 		i+=1
 		if input_hint_dict[texture] > 0:
 			texture.visible = false

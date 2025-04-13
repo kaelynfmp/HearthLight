@@ -7,6 +7,8 @@ var gadget_audio_index:Dictionary[Gadget, int] # Populate dict once ready
 
 var playback:AudioStreamPlaybackPolyphonic
 
+var teleport_player:AudioStreamPlayer
+
 var active_gadgets:Dictionary[String, Dictionary] = {
 	"c grinder.wav": {},
 	"c loom.wav": {},
@@ -19,7 +21,8 @@ var active_gadgets:Dictionary[String, Dictionary] = {
 	"e plant.wav": {},
 	"e sieve.wav": {},
 	"e stove.wav": {},
-	"e generator.wav": {}
+	"e generator.wav": {},
+	"teleporter loop.wav": {}
 }
 
 var sync_stream_indexes:Dictionary[String, int] = {
@@ -34,7 +37,8 @@ var sync_stream_indexes:Dictionary[String, int] = {
 	"e plant.wav": -1,
 	"e sieve.wav": -1,
 	"e stove.wav": -1,
-	"e generator.wav": -1
+	"e generator.wav": -1,
+	"teleporter loop.wav": -1
 }
 
 ## Enum of all possible button sounds
@@ -57,6 +61,8 @@ var button_sounds:Array[AudioStream] = [
 	preload("res://resources/audio/UI Sounds/UI 12 (confirm).wav"),
 	preload("res://resources/audio/UI Sounds/UI 13 (short click).wav")
 	]
+
+var teleport_sound:AudioStream = preload("res://resources/audio/Gadgets/teleporter single.wav")
 
 
 func set_gadget_audio(stream_player:AudioStreamPlayer2D):
@@ -83,6 +89,14 @@ func _enter_tree() -> void:
 	# Get the polyphonic playback stream to play sounds
 	playback = player.get_stream_playback()
 	get_tree().node_added.connect(_on_node_added)
+	
+	# Have an inaudible teleport player that is actually just signalling the loop to be active
+	# This ensures the teleport sounds are longer than 0 seconds, since teleports are instant
+	teleport_player = AudioStreamPlayer.new()
+	teleport_player.set_volume_db(-60) # Make it quiet
+	add_child(teleport_player)
+	
+	teleport_player.stream = teleport_sound
 
 func _on_node_added(node:Node) -> void:
 	if node is Button or node is TextureButton:
@@ -103,9 +117,19 @@ func remove_audio(audio_string, key):
 func _process(_delta: float) -> void:
 	if gadget_audio != null:
 		for audio_string:String in active_gadgets:
-			var gadgets_count = active_gadgets[audio_string].size()
-			if gadgets_count > 0 and not GameManager.sleeping:
-				gadget_audio.stream.set_sync_stream_volume(sync_stream_indexes[audio_string], 0.0)
+			if audio_string == "teleporter loop.wav":
+				if teleport_player.playing:
+					# If the teleport noise is playing, again, since teleports are instant
+					gadget_audio.stream.set_sync_stream_volume(sync_stream_indexes[audio_string], 0.0)
+				else:
+					gadget_audio.stream.set_sync_stream_volume(sync_stream_indexes[audio_string], -60.0)
 			else:
-				gadget_audio.stream.set_sync_stream_volume(sync_stream_indexes[audio_string], -60.0)
+				var gadgets_count = active_gadgets[audio_string].size()
+				if gadgets_count > 0 and not GameManager.sleeping:
+					gadget_audio.stream.set_sync_stream_volume(sync_stream_indexes[audio_string], 0.0)
+				else:
+					gadget_audio.stream.set_sync_stream_volume(sync_stream_indexes[audio_string], -60.0)
 		
+
+func play_teleport_noise(): # Re-up teleport noise
+	teleport_player.play()

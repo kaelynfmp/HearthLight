@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://bpie3rt8qmyxr"]
+[gd_scene load_steps=65 format=3 uid="uid://bpie3rt8qmyxr"]
 
 [ext_resource type="PackedScene" uid="uid://c2wlmdehxae41" path="res://scenes/Computer Scenes/computer_interface.tscn" id="1_8kako"]
 [ext_resource type="PackedScene" uid="uid://c6g34by20r0qc" path="res://scenes/inventory/inventory.tscn" id="1_h8ipj"]
@@ -11,17 +11,24 @@
 [ext_resource type="Script" uid="uid://cktmdadtyd66f" path="res://scripts/gui/gadget_ui.gd" id="7_y0wjn"]
 [ext_resource type="Script" uid="uid://d4f5y62ujshdf" path="res://scripts/gui/selected_gadget.gd" id="9_nhxen"]
 [ext_resource type="Shader" uid="uid://cbx8f33etuvq2" path="res://scripts/shaders/gadgetoutline.gdshader" id="9_o8g3w"]
+[ext_resource type="Texture2D" uid="uid://ckyqqet7rsfvh" path="res://resources/sprites/gui/arrows/clockwise_normal.png" id="9_qccye"]
+[ext_resource type="Texture2D" uid="uid://csb3g7qfq7i7v" path="res://resources/sprites/gui/arrows/clockwise_pressed.png" id="10_flipt"]
 [ext_resource type="Texture2D" uid="uid://gi6my3ydg3ke" path="res://resources/sprites/gui/gadget_selection.png" id="10_ivqh4"]
 [ext_resource type="Shader" uid="uid://dsr12xvjlitui" path="res://scripts/shaders/tutorial_outline.gdshader" id="11_frrke"]
+[ext_resource type="Texture2D" uid="uid://dgfk1bs35ds07" path="res://resources/sprites/gui/arrows/clockwise_hover.png" id="11_uorui"]
 [ext_resource type="Script" uid="uid://dhbcadu5yh1g3" path="res://scripts/gui/tutorial_sprite.gd" id="12_vh1iw"]
+[ext_resource type="Texture2D" uid="uid://cep23ykhmnw58" path="res://resources/sprites/gui/arrows/counterclockwise_normal.png" id="12_wi3kw"]
 [ext_resource type="PackedScene" uid="uid://biflar31oita2" path="res://scenes/menu/pause_menu.tscn" id="13_55orh"]
-[ext_resource type="Texture2D" uid="uid://dl2manigelkio" path="res://resources/sprites/gui/gear/normal.png" id="13_uxdf7"]
-[ext_resource type="Texture2D" uid="uid://byd0f2tce32li" path="res://resources/sprites/gui/gear/pressed.png" id="14_5357l"]
+[ext_resource type="Script" uid="uid://vrss7pcr5c64" path="res://scripts/gui/selected_teleporters.gd" id="13_dl6ww"]
+[ext_resource type="Texture2D" uid="uid://6mnoagdl55x3" path="res://resources/sprites/gui/arrows/counterclockwise_pressed.png" id="13_ka0sb"]
+[ext_resource type="Texture2D" uid="uid://b4pek43rcxdvf" path="res://resources/sprites/gui/arrows/counterclockwise_hover.png" id="14_7r3ka"]
+[ext_resource type="PackedScene" uid="uid://b23ttu16g3s4a" path="res://scenes/selected_teleporter.tscn" id="14_8f8xv"]
 [ext_resource type="PackedScene" uid="uid://dnyyt61n7tlkc" path="res://scenes/clock.tscn" id="14_eld54"]
-[ext_resource type="Texture2D" uid="uid://v3mhxuklek42" path="res://resources/sprites/gui/gear/hover.png" id="15_iypfu"]
-[ext_resource type="Texture2D" uid="uid://ca24n44nxd7w1" path="res://resources/sprites/gui/gear/disabled.png" id="16_qpprf"]
+[ext_resource type="FontFile" uid="uid://c4bnatv11g13n" path="res://resources/fonts/Conthrax-SemiBold.otf" id="15_flipt"]
+[ext_resource type="Resource" uid="uid://bkuks7tbfprqt" path="res://resources/gadgets/teleporter.tres" id="15_v0qwq"]
 [ext_resource type="Texture2D" uid="uid://br677v2jqsxvc" path="res://resources/sprites/gui/questopen/questopen.png" id="17_kp442"]
 [ext_resource type="Texture2D" uid="uid://rtk7chr66qjo" path="res://resources/sprites/gui/questopen/questopenselect.png" id="18_gltyx"]
+[ext_resource type="PackedScene" uid="uid://b648fq173kh8h" path="res://scenes/cable.tscn" id="18_uorui"]
 [ext_resource type="Script" uid="uid://djkcgfibs8xbn" path="res://scenes/sleep_canvas.gd" id="19_iypfu"]
 [ext_resource type="Texture2D" uid="uid://32e6btkil3qi" path="res://resources/sprites/gui/questopen/questopenhovered.png" id="19_mgfyp"]
 [ext_resource type="Script" uid="uid://cbtruwvxi8xxb" path="res://scripts/gui/quests/quest_visibility_button.gd" id="20_mgfyp"]
@@ -69,6 +76,37 @@ shader_parameter/thickness = 30.0
 shader_parameter/tolerance = 0.0
 shader_parameter/diagonals = true
 shader_parameter/rounded = true
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qccye"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wi3kw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uorui"]
+bg_color = Color(1.27065e-05, 0.900368, 0.200536, 1)
+corner_radius_top_left = 99999
+corner_radius_top_right = 99999
+corner_radius_bottom_right = 99999
+corner_radius_bottom_left = 99999
+shadow_color = Color(0, 0.329412, 0.396078, 1)
+shadow_size = 1
+shadow_offset = Vector2(0, 30)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wi3kw"]
+bg_color = Color(0, 0.901961, 0.2, 0)
+corner_radius_top_left = 99999
+corner_radius_top_right = 99999
+corner_radius_bottom_right = 99999
+corner_radius_bottom_left = 99999
+shadow_color = Color(8.90419e-07, 0.331367, 0.395739, 1)
+shadow_size = 1
+shadow_offset = Vector2(0, 30)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ka0sb"]
+bg_color = Color(1.27065e-05, 0.900368, 0.200536, 1)
+corner_radius_top_left = 99999
+corner_radius_top_right = 99999
+corner_radius_bottom_right = 99999
+corner_radius_bottom_left = 99999
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_5357l"]
 
@@ -147,40 +185,98 @@ material = SubResource("ShaderMaterial_dl6ww")
 script = ExtResource("12_vh1iw")
 
 [node name="SelectedGadget" type="AnimatedSprite2D" parent="."]
-visible = false
 top_level = true
 material = SubResource("ShaderMaterial_hoa3s")
 scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_qccye")
 offset = Vector2(0, -218)
 script = ExtResource("9_nhxen")
 
-[node name="Control" type="Control" parent="SelectedGadget"]
+[node name="RotationControl" type="Control" parent="SelectedGadget"]
 layout_mode = 3
 anchors_preset = 0
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SelectedGadget/Control"]
-layout_mode = 0
-offset_left = -623.0
-offset_right = 623.0
-offset_bottom = 351.0
-theme_override_constants/separation = 560
+[node name="RotationController" type="VBoxContainer" parent="SelectedGadget/RotationControl"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -481.429
+offset_top = -544.286
+offset_right = -138.429
+offset_bottom = 357.714
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 200
 alignment = 1
 
-[node name="RotateLeft" type="TextureButton" parent="SelectedGadget/Control/HBoxContainer"]
+[node name="RotateLeft" type="TextureButton" parent="SelectedGadget/RotationControl/RotationController"]
+z_index = 1
 layout_mode = 2
-texture_normal = ExtResource("13_uxdf7")
-texture_pressed = ExtResource("14_5357l")
-texture_hover = ExtResource("15_iypfu")
-texture_disabled = ExtResource("16_qpprf")
+size_flags_horizontal = 4
+texture_normal = ExtResource("9_qccye")
+texture_pressed = ExtResource("10_flipt")
+texture_hover = ExtResource("11_uorui")
 
-[node name="RotateRight" type="TextureButton" parent="SelectedGadget/Control/HBoxContainer"]
+[node name="RotateRight" type="TextureButton" parent="SelectedGadget/RotationControl/RotationController"]
+z_index = 1
 layout_mode = 2
-texture_normal = ExtResource("13_uxdf7")
-texture_pressed = ExtResource("14_5357l")
-texture_hover = ExtResource("15_iypfu")
-texture_disabled = ExtResource("16_qpprf")
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("12_wi3kw")
+texture_pressed = ExtResource("13_ka0sb")
+texture_hover = ExtResource("14_7r3ka")
+
+[node name="TeleportControl" type="Control" parent="SelectedGadget"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="AddTeleport" type="Button" parent="SelectedGadget/TeleportControl"]
+z_index = 3
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -117.0
+offset_top = -246.0
+offset_right = 117.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_fonts/font = ExtResource("15_flipt")
+theme_override_font_sizes/font_size = 200
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wi3kw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uorui")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wi3kw")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ka0sb")
+text = "+"
+
+[node name="SelectedTeleporters" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("13_dl6ww")
+selected_teleporter_scene = ExtResource("14_8f8xv")
+cable_scene = ExtResource("18_uorui")
+teleporter = ExtResource("15_v0qwq")
+output_colour = Color(0.462745, 1, 0.603922, 1)
+input_colour = Color(0.647059, 0.462745, 1, 1)
+
+[node name="Cables" type="Control" parent="SelectedTeleporters"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
 
 [node name="Cursor" parent="." instance=ExtResource("2_wjdba")]
 
@@ -257,6 +353,7 @@ scale = Vector2(0.4, 0.4)
 mouse_filter = 2
 script = ExtResource("4_pacb3")
 slide_in_speed = 10.0
+teleporter = ExtResource("15_v0qwq")
 
 [node name="Inventory" parent="Inventories" instance=ExtResource("1_h8ipj")]
 layout_mode = 2
@@ -322,6 +419,7 @@ offset_bottom = 1092.0
 texture = SubResource("CanvasTexture_5357l")
 
 [node name="CutsceneCanvas" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
@@ -390,7 +488,9 @@ text = "Continue"
 script = ExtResource("35_03o4m")
 button_sound = 7
 
-[connection signal="pressed" from="SelectedGadget/Control/HBoxContainer/RotateLeft" to="SelectedGadget" method="_on_rotate_left_pressed"]
-[connection signal="pressed" from="SelectedGadget/Control/HBoxContainer/RotateRight" to="SelectedGadget" method="_on_rotate_right_pressed"]
+[connection signal="pressed" from="SelectedGadget/RotationControl/RotationController/RotateLeft" to="SelectedGadget" method="_on_rotate_left_pressed"]
+[connection signal="pressed" from="SelectedGadget/RotationControl/RotationController/RotateRight" to="SelectedGadget" method="_on_rotate_right_pressed"]
+[connection signal="pressed" from="SelectedGadget/TeleportControl/AddTeleport" to="SelectedGadget" method="_on_add_teleport_pressed"]
+[connection signal="pressed" from="SelectedGadget/TeleportControl/AddTeleport" to="SelectedTeleporters" method="_on_add_teleport_pressed"]
 [connection signal="pressed" from="QuestButtonContainer/QuestOpen" to="QuestButtonContainer/QuestOpen" method="_on_pressed"]
 [connection signal="pressed" from="QuestButtonContainer/QuestClose" to="QuestButtonContainer/QuestClose" method="_on_pressed"]
