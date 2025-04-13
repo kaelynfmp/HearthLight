@@ -1,0 +1,113 @@
+[gd_scene load_steps=16 format=3 uid="uid://8vasahbxsw4y"]
+
+[ext_resource type="PackedScene" uid="uid://fl3ygsg5b5m6" path="res://scenes/inventory/input_slot.tscn" id="1_epvt2"]
+[ext_resource type="Texture2D" uid="uid://chmpjoaggpqur" path="res://resources/sprites/shop/shopOverlay.png" id="1_i3wjl"]
+[ext_resource type="Script" uid="uid://bkt2gcft6g31r" path="res://scenes/Computer Scenes/sell_panel.gd" id="1_qole2"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="2_i3wjl"]
+[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="3_7gu0f"]
+[ext_resource type="Texture2D" uid="uid://clcmg5me835w8" path="res://resources/sprites/computer/computerClose.png" id="3_dif00"]
+[ext_resource type="FontFile" uid="uid://c4bnatv11g13n" path="res://resources/fonts/Conthrax-SemiBold.otf" id="4_oymtc"]
+[ext_resource type="FontFile" uid="uid://cskltmfvwlc7g" path="res://resources/fonts/Audiowide-Regular.ttf" id="7_7gu0f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3wjl"]
+bg_color = Color(0, 0, 0, 0.619608)
+
+[sub_resource type="Theme" id="Theme_7gu0f"]
+
+[sub_resource type="Theme" id="Theme_oymtc"]
+
+[sub_resource type="Resource" id="Resource_dif00"]
+script = ExtResource("3_7gu0f")
+locked = false
+item_filter = Array[ExtResource("2_i3wjl")]([])
+bypass_stack = false
+quantity = 1
+metadata/_custom_type_script = "uid://cvojb3v6cdain"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovgpi"]
+bg_color = Color(0.32562, 0.110078, 0.400188, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_awgtv"]
+bg_color = Color(0.306252, 0.101423, 0.377084, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4cddd"]
+bg_color = Color(0.572549, 0.239216, 0.690196, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="SellPanel" type="Panel"]
+offset_right = 1922.0
+offset_bottom = 986.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i3wjl")
+script = ExtResource("1_qole2")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 48.0
+offset_right = 1012.0
+offset_bottom = 962.0
+theme = SubResource("Theme_7gu0f")
+texture = ExtResource("1_i3wjl")
+
+[node name="CloseSellPanel" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 842.0
+offset_top = 125.0
+offset_right = 926.0
+offset_bottom = 204.0
+theme = SubResource("Theme_oymtc")
+texture_normal = ExtResource("3_dif00")
+
+[node name="InputSlot" parent="." instance=ExtResource("1_epvt2")]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 252.0
+offset_right = 724.0
+offset_bottom = 562.0
+scale = Vector2(0.880001, 0.88)
+slot = SubResource("Resource_dif00")
+
+[node name="SellButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 422.0
+offset_top = 680.0
+offset_right = -1249.0
+offset_bottom = 743.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("4_oymtc")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_ovgpi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_awgtv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4cddd")
+text = "sell"
+
+[node name="Cost" type="Label" parent="."]
+offset_left = 497.0
+offset_top = 579.0
+offset_right = 782.0
+offset_bottom = 638.0
+theme_override_fonts/font = ExtResource("7_7gu0f")
+theme_override_font_sizes/font_size = 40
+text = "1234567890"
+
+[node name="CostNameLabel" type="Label" parent="Cost"]
+offset_left = -150.0
+offset_right = -3.0
+offset_bottom = 59.0
+theme_override_fonts/font = ExtResource("7_7gu0f")
+theme_override_font_sizes/font_size = 40
+text = "Cost: $"
+horizontal_alignment = 1
