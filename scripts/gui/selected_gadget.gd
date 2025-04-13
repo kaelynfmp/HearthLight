@@ -37,6 +37,8 @@ func _process(_delta: float) -> void:
 			marker.is_uni_generator = true
 			marker.visible = true
 			marker.position = Vector2i(0, 0)
+		else:
+			marker.visible = false
 			
 	else:
 		sprite_frames = null
@@ -44,6 +46,7 @@ func _process(_delta: float) -> void:
 		$RotationControl.visible = false
 		$TeleportControl.visible = false
 		teleporter_selected = false
+		marker.visible = false
 		
 func _on_rotate_left_pressed() -> void:
 	GameManager.gadget.direction = (GameManager.gadget.direction + 1) % 4

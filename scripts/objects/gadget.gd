@@ -83,12 +83,14 @@ func create_new_inventory(num_inputs: int, num_outputs: int) -> void:
 		slot.item = null
 		slot.locked = false
 		slot.item_filter = gadget_stats.inventory.slots[i].item_filter
+		slot.bypass_stack = gadget_stats.inventory.slots[i].bypass_stack
 		inventory.slots.append(slot)
 	for i in range(num_outputs):
 		var slot: Slot = Slot.new()
 		slot.item = null
 		slot.locked = true
 		slot.item_filter = gadget_stats.inventory.slots[num_inputs + i].item_filter
+		slot.bypass_stack = gadget_stats.inventory.slots[num_inputs + i].bypass_stack
 		inventory.slots.append(slot)
 
 # Called when the node enters the scene tree for the first time.
@@ -323,23 +325,37 @@ func pull_from_gadget(selected_gadget: InWorldGadget) -> bool:
 	else:
 		if is_teleporter:
 			# Teleporter insta-clears out an entire inventory
-			var attempts:int = 0;
 			for slot in selected_slots:
+				if slot.item == null: continue
 				if target_list.size() > 1:
 					var slot_attempts:int = 0
+					# Skip while loop if it would not be possible to empty this slot even a little
+					# Expensive, but less expensive than running a failing while loop 100 times
+					var mounted_gadgets:Array[InWorldGadget]
+					for target in target_list:
+						if target.mounted_gadget != null:
+							mounted_gadgets.append(target.mounted_gadget)
+					var mega_inventory:Inventory = Inventory.new()
+					for _mounted_gadget in mounted_gadgets:
+						mega_inventory.slots.append_array(_mounted_gadget.inventory.slots)
+					if mega_inventory.can_insert(slot.item, slot.quantity) == slot.quantity:
+						continue
 					while slot_attempts < 100 and slot.quantity > 0:
 						# Clear out the slot
 						var destination_gadget:InWorldGadget = target_list[target_index]
-						if destination_gadget != null and destination_gadget.inventory.can_insert(slot.item) == 0:
-							destination_gadget.inventory.insert(slot.item)
-							slot.decrement()
-							worked = true
+						if target_list[target_index].mounted_gadget != null:
+							if destination_gadget != null and destination_gadget.mounted_gadget.inventory.can_insert(slot.item) == 0:
+								destination_gadget.inventory.insert(slot.item)
+								slot.decrement()
+								worked = true
 						target_index += 1
 						if target_index >= len(target_list):
 							target_index = 0
 						slot_attempts += 1
 				else:
-					var remainder = target_list[0].inventory.insert(slot.item, slot.quantity)
+					if target_list[0].mounted_gadget == null: continue
+					var remainder:int = target_list[0].mounted_gadget.inventory.can_insert(slot.item, slot.quantity)
+					target_list[0].inventory.insert(slot.item, slot.quantity)
 					if remainder < slot.quantity:
 						worked = true
 					slot.decrement(slot.quantity - remainder)
