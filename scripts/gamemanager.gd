@@ -12,6 +12,7 @@ signal gadget_rotated(direction: int)
 signal awaken
 signal paid_off_debt
 signal teleporter_list_changed
+signal right_click_pressed
 
 @onready var computer_gadget:Gadget = load("res://resources/gadgets/computer.tres")
 
@@ -201,6 +202,9 @@ func _process(_delta: float) -> void:
 			elif GameManager.gadget != null and GameManager.gadget.gadget_stats.name in ["Conveyor Belt", "Teleporter"]:
 				GameManager.gadget.direction = (GameManager.gadget.direction + 1) % 4
 				gadget_rotated.emit(GameManager.gadget.direction)
+	
+	elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		right_click_pressed.emit()
 		
 		
 	blur = inventory
