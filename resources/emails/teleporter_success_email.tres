@@ -13,7 +13,7 @@ contents = "It looked as beautiful as the day I invented it. And after uploading
 
 Now that we have an agreement, I can explain how to use the [res=Teleporter]teleporter[/res].
 
-Upon interaction with the teleporter, you will see an interface that shows you all other teleporters available to you. By dragging the node of your teleporter onto another, you have now linked those teleporters. Simply face the teleporter such that the [b]input[/b] side faces the gadget you want to interact with. The teleporter will then [b]pull[/b] from the gadget's output, and [b]send[/b] to the teleporter you connected to.
+Upon interaction with the teleporter, you will see an interface that shows you all other teleporters available to you. By dragging the node of your teleporter onto another, you have now linked those teleporters. Simply face the teleporter such that the [b]input[/b] side faces the gadget you want to interact with. The teleporter will then [b]pull[/b] from the gadget's output, and [b]send[/b] to the teleporter you connected to. If you are connected to multiple, you brave soul you, it will evenly split the output amongst the teleporters.
 
 The receiving teleporter will then [b]insert[/b] any received items into the attached gadget. Teleporters can be chained, but bare in mind that a resource must first be inserted into a gadget before being teleported again, so [res=Storage]storage[/res] may be useful if that is your desire. Otherwise, just assume a teleporter will only send resources it takes from gadgets, and always push all resources it receives into gadgets.
 
