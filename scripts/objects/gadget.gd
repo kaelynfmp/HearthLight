@@ -110,6 +110,7 @@ func _ready() -> void:
 	close_audio_player.set_stream(gadget_stats.close_sound)
 	update_recipes()
 	GameManager.update_recipes.connect(update_recipes)
+	GameManager.teleporter_removed.connect(remove_teleporter)
 	notification = find_child("Notification")
 	
 func check_for_nearby_generator(delta: float):
@@ -171,7 +172,8 @@ func _physics_process(delta: float) -> void:
 				AudioManager.active_gadgets[gadget_stats.sound_string].erase(self)
 	if !disabled and !progressing or (!progressing and selected_recipe != null) and not GameManager.sleeping:
 		if gadget_stats.name in ["Conveyor Belt", "Teleporter"]:
-			do_transport()
+			if gadget_stats.name != "Teleporter" or has_power_from_generator:
+				do_transport()
 		elif selected_recipe != null:
 			is_able_to_do_recipe = is_able_to_recipe()
 			if is_able_to_do_recipe:
@@ -239,13 +241,15 @@ func rotate_sprite() -> void:
 		Direction.NW:
 			sprite.animation = "nw"
 			
-func add_teleporter(teleporter):
+func add_teleporter(teleporter:InWorldGadget):
 	target_list.append(teleporter)
 	GameManager.gadget_changed.emit()
 	
-func remove_teleporter(teleporter):
+func remove_teleporter(teleporter:InWorldGadget):
+	var temp_list:Array[InWorldGadget] = target_list.duplicate()
 	target_list.erase(teleporter)
-	GameManager.gadget_changed.emit()
+	if temp_list != target_list: # If list was changed, emit the signal
+		GameManager.gadget_changed.emit()
 	
 func _process(_delta: float) -> void:
 	rotate_sprite()
@@ -291,25 +295,41 @@ func finish_transport():
 	
 
 func pull_from_gadget(selected_gadget: InWorldGadget):
+	var is_conveyer_belt:bool = gadget_stats.name == "Conveyor Belt"
+	var is_teleporter:bool = gadget_stats.name == "Teleporter"
 	var selected_inventory: Inventory = selected_gadget.inventory
 	var selected_slots = selected_inventory.slots.filter(func(slot): 
 		return slot.locked)
 	if selected_gadget.gadget_stats.name == "Storage":
 		selected_slots = selected_inventory.slots.filter(func(slot): return !slot.locked)
-	for slot in selected_slots:
-		if slot.item != null:
-			var item: Item = slot.item
-			if selected_gadget.gadget_stats.name != "Conveyor Belt" and gadget_stats.name == "Conveyor Belt":
-					item_at_location.emit(cell_pos, item)
-			selected_inventory.remove_items(item, 1, slot.locked)
-			if gadget_stats.name == "Teleporter":
-				var destination_gadget = target_list[target_index]
-				if destination_gadget != null:
-					destination_gadget.inventory.insert(item, 1, false)
-				target_index += 1
-				if target_index >= len(target_list):
-					target_index = 0
-			break
+	if is_conveyer_belt:
+		for slot in selected_slots:
+			if slot.item != null:
+				var item: Item = slot.item
+				if selected_gadget.gadget_stats.name != "Conveyor Belt":
+						item_at_location.emit(cell_pos, item)
+				selected_inventory.remove_items(item, 1, slot.locked)
+				break
+	else:
+		if is_teleporter:
+			# Teleporter insta-clears out an entire inventory
+			var attempts:int = 0;
+			for slot in selected_slots:
+				if target_list.size() > 1:
+					var slot_attempts:int = 0
+					while slot_attempts < 100 and slot.quantity > 0:
+						# Clear out the slot
+						var destination_gadget:InWorldGadget = target_list[target_index]
+						if destination_gadget != null and destination_gadget.inventory.can_insert(slot.item) == 0:
+							destination_gadget.inventory.insert(slot.item)
+							slot.decrement()
+						target_index += 1
+						if target_index >= len(target_list):
+							target_index = 0
+						slot_attempts += 1
+				else:
+					target_list[0].inventory.insert(slot.item, slot.quantity)
+	
 
 
 func pull_inventory():

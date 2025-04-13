@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://b23ttu16g3s4a"]
+[gd_scene load_steps=14 format=3 uid="uid://b23ttu16g3s4a"]
 
 [ext_resource type="Script" uid="uid://cttslgu87en2f" path="res://scripts/gui/selected_teleporter.gd" id="1_cpy52"]
 [ext_resource type="Texture2D" uid="uid://dbk6mxkwneibe" path="res://scripts/shaders/close_enough_texture.tres" id="2_3cbcy"]
 [ext_resource type="Texture2D" uid="uid://b330eihja1q1c" path="res://resources/sprites/teleportDL.png" id="2_ewqdr"]
 [ext_resource type="Texture2D" uid="uid://c5syp4ayosfa8" path="res://scripts/shaders/not_close_enough_texture.tres" id="3_rruxh"]
+[ext_resource type="FontFile" uid="uid://c4bnatv11g13n" path="res://resources/fonts/Conthrax-SemiBold.otf" id="5_3cbcy"]
 
 [sub_resource type="Shader" id="Shader_rruxh"]
 code = "shader_type canvas_item;
@@ -106,6 +107,35 @@ shader_parameter/tolerance = 0.0
 shader_parameter/diagonals = true
 shader_parameter/rounded = true
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e2lsa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vs1f"]
+bg_color = Color(0.847059, 0, 0.184314, 1)
+corner_radius_top_left = 99999
+corner_radius_top_right = 99999
+corner_radius_bottom_right = 99999
+corner_radius_bottom_left = 99999
+shadow_color = Color(0.334387, 0, 0.114369, 1)
+shadow_size = 1
+shadow_offset = Vector2(0, 30)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5t8u3"]
+bg_color = Color(0, 0.901961, 0.2, 0)
+corner_radius_top_left = 99999
+corner_radius_top_right = 99999
+corner_radius_bottom_right = 99999
+corner_radius_bottom_left = 99999
+shadow_color = Color(0.333333, 0, 0.113725, 1)
+shadow_size = 1
+shadow_offset = Vector2(0, 30)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43si2"]
+bg_color = Color(0.847059, 0, 0.183528, 1)
+corner_radius_top_left = 99999
+corner_radius_top_right = 99999
+corner_radius_bottom_right = 99999
+corner_radius_bottom_left = 99999
+
 [node name="SelectedTeleporter" type="AnimatedSprite2D"]
 material = SubResource("ShaderMaterial_ewqdr")
 script = ExtResource("1_cpy52")
@@ -135,3 +165,38 @@ grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 0
 texture = ExtResource("2_ewqdr")
+
+[node name="RemoveControl" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RemoveTeleport" type="Button" parent="RemoveControl"]
+z_index = 3
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -117.0
+offset_top = -246.0
+offset_right = 117.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_fonts/font = ExtResource("5_3cbcy")
+theme_override_font_sizes/font_size = 200
+theme_override_styles/focus = SubResource("StyleBoxEmpty_e2lsa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7vs1f")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5t8u3")
+theme_override_styles/normal = SubResource("StyleBoxFlat_43si2")
+text = "×"

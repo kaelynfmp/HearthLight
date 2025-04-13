@@ -11,8 +11,11 @@ func _ready() -> void:
 	$ClickableControl/ClickableArea.mouse_entered.connect(_on_clickable_area_mouse_entered)
 	$ClickableControl/ClickableArea.mouse_exited.connect(_on_clickable_area_mouse_exited)
 	$ClickableControl/ClickableArea.gui_input.connect(_on_clickable_area_gui_input)
-	if GameManager.gadget != null and teleporter in GameManager.gadget.target_list:
-		existing_connection = true
+	$RemoveControl/RemoveTeleport.pressed.connect(_on_remove_teleport_pressed)
+	if GameManager.gadget != null and (teleporter in GameManager.gadget.target_list or GameManager.gadget in teleporter.target_list):
+		existing_connection = true	
+		if teleporter in GameManager.gadget.target_list:
+			$RemoveControl.visible = true
 
 func _process(_delta: float) -> void:
 	if GameManager.gadget == null or teleporter == null:
@@ -44,7 +47,9 @@ func _on_clickable_area_mouse_exited() -> void:
 func _on_clickable_area_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		teleporter.initial_click = true
-		if existing_connection:
-			GameManager.gadget.remove_teleporter(teleporter)
-		else:
+		if not existing_connection:
 			GameManager.gadget.add_teleporter(teleporter)
+
+func _on_remove_teleport_pressed():
+	if existing_connection:
+		GameManager.gadget.remove_teleporter(teleporter)

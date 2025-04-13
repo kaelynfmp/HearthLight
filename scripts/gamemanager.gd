@@ -14,10 +14,11 @@ signal paid_off_debt
 signal teleporter_list_changed
 signal right_click_pressed
 signal gadget_changed
+signal teleporter_removed(teleporter: InWorldGadget)
 
 @onready var computer_gadget:Gadget = load("res://resources/gadgets/computer.tres")
 
-var character:CharacterBody2D
+var character:Character
 
 var inventory: bool = false:
 	set(value):
@@ -383,6 +384,7 @@ func add_teleporter(_gadget: InWorldGadget):
 func remove_teleporter(_gadget: InWorldGadget):
 	teleporters.erase(_gadget)
 	teleporter_list_changed.emit()
+	teleporter_removed.emit(_gadget)
 
 ## Clears the slot distributor, which is a list of currently dragged over slots, and will balance out how many items
 ## are in them all

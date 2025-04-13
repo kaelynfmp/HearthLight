@@ -8,6 +8,7 @@ class_name Cable
 @onready var line:Line2D = $Line
 @onready var prev_end_position:Vector2 = Vector2(end.position)
 @export var origin_position:Vector2
+@export var end_position:Vector2
 @export var curve_intensity:int = 300
 @export var max_curve_distance:int = 200
 @export var closeness_factor:float = 2.0
@@ -18,6 +19,7 @@ var curve_y:float = 0
 
 func _ready() -> void:
 	origin.position = origin_position
+	end.position = end_position
 	var origin_texture:GradientTexture1D = origin.texture
 	origin_texture.gradient.colors = PackedColorArray([colour])
 	var end_texture:GradientTexture1D = end.texture

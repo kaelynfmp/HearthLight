@@ -10,12 +10,12 @@ var rotation_speed:float = 10
 var current_gadget:Gadget
 var input_hint_dict: Dictionary = {}
 
+func _ready() -> void:
+	GameManager.gadget_changed.connect(_reset_gadget)
+
 func _process(delta: float) -> void:
 	visible = GameManager.gadget != null and GameManager.gadget.gadget_stats.name != "Conveyor Belt" and GameManager.gadget.gadget_stats.name != "Teleporter"
 	if GameManager.gadget != null and GameManager.gadget.gadget_stats.name != "Conveyor Belt" and GameManager.gadget.gadget_stats.name != "Teleporter":
-		if current_gadget == null or GameManager.gadget.gadget_stats != current_gadget:
-			input_hint_dict = {}
-			set_gadget(GameManager.gadget)
 		if GameManager.gadget.progressing:
 			creates_progress.visible = true
 			creates_progress.material.set("shader_parameter/progress", GameManager.gadget.progress)
@@ -44,6 +44,9 @@ func _process(delta: float) -> void:
 	if current_gadget and not current_gadget.name in ["Storage", "Universal Generator", "Teleporter"]:
 		update_hint_visibility()
 		
+func _reset_gadget():
+	set_gadget(GameManager.gadget)
+	
 func setup_storage(gadget: InWorldGadget):
 	var inputs:Array[Slot] = gadget.inventory.slots.filter(func(slot): return !slot.locked)
 	var contained = $Background/Contained

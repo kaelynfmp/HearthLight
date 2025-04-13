@@ -7,23 +7,28 @@ radius = 15.0
 height = 30.0
 
 [sub_resource type="Gradient" id="Gradient_rj3a4"]
+resource_local_to_scene = true
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_j3i3n"]
+resource_local_to_scene = true
 gradient = SubResource("Gradient_rj3a4")
 
 [sub_resource type="Curve2D" id="Curve2D_ec0h6"]
+resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_mrtv2"]
+resource_local_to_scene = true
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_0nbdv"]
+resource_local_to_scene = true
 gradient = SubResource("Gradient_mrtv2")
 
 [node name="Cable" type="Node2D"]
