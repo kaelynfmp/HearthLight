@@ -158,7 +158,7 @@ func _on_gui_input(event:InputEvent) -> void:
 			if (temp_slot.item != null or temp_cursor_slot.item != null) and \
 				temp_slot.item == slot.item and temp_slot.quantity == slot.quantity\
 				and temp_cursor_slot.item == cursor_slot().item and temp_cursor_slot.quantity == cursor_slot().quantity:
-				if has_node("ErrorSFX"): 						
+				if has_node("ErrorSFX"):
 					if not get_node("ErrorSFX").playing:
 						get_node("ErrorSFX").play()
 			else:
