@@ -53,13 +53,13 @@ func _process(_delta: float) -> void:
 	if GameManager.is_placing_gadget:
 		var mouse_pos = get_local_mouse_position()
 		var cell_pos = base_layer.local_to_map(mouse_pos)
-		if cell_pos:
-			if (is_base_available(cell_pos)):
-				marker.position = base_layer.map_to_local(cell_pos)
-				marker.z_index = 0
-				marker.visible = true
-			else:
-				marker.visible = false
+		if (is_base_available(cell_pos)):
+			marker.position = base_layer.map_to_local(cell_pos)
+			marker.z_index = 0
+			marker.visible = true
+		else:
+			marker.visible = false
+			
 	else:
 		marker.visible = false
 
