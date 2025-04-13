@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dxa0at3wgkq8w"]
+[gd_scene load_steps=21 format=3 uid="uid://dxa0at3wgkq8w"]
 
 [ext_resource type="PackedScene" uid="uid://c88opsp0c7nm" path="res://scenes/ui_base.tscn" id="1_edcws"]
 [ext_resource type="Texture2D" uid="uid://bpk81ck7j3l2c" path="res://resources/sprites/progressbar.png" id="2_1u2kl"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cjlx7vkgtyovb" path="res://resources/sprites/generatorEnergy_empty.png" id="9_2mo8u"]
 [ext_resource type="Texture2D" uid="uid://cwfdegt8yq0jw" path="res://resources/sprites/generatorEnergy_filled.png" id="10_27a66"]
 [ext_resource type="FontFile" uid="uid://c4bnatv11g13n" path="res://resources/fonts/Conthrax-SemiBold.otf" id="11_kxjdw"]
+[ext_resource type="Texture2D" uid="uid://cg671aijb1olp" path="res://resources/sprites/electricity.png" id="12_sub33"]
 
 [sub_resource type="Gradient" id="Gradient_oya0q"]
 colors = PackedColorArray(0.701961, 0.231373, 0.933333, 1, 0.933333, 0.223529, 0.560784, 1)
@@ -247,3 +248,20 @@ theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 16
 alignment = 1
 last_wrap_alignment = 2
+
+[node name="Electricity" type="TextureRect" parent="Background" index="4"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -159.0
+offset_top = -198.0
+offset_right = -60.0
+offset_bottom = -119.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("12_sub33")
+stretch_mode = 5
