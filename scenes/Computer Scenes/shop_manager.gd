@@ -16,11 +16,17 @@ var category_scenes = []
 func _ready():
 	GameManager.debug_mode_change.connect(reload_categories)
 	open_sell_button.pressed.connect(on_sell_button_pressed)
+	open_sell_button.disabled = true
 	sell_panel.visible = false
 	if shop_category_scene:
 		#load_shop_items()
 		create_shop_categories()
-	
+
+func _process(delta: float) -> void:
+	if open_sell_button.disabled:
+		if GameManager.check_core_tutorials_done():
+			open_sell_button.disabled = false
+
 func reload_categories():
 	GameManager.shop_dict = {"resources": [], "gadgets": []}
 	if shop_category_scene:
