@@ -13,6 +13,7 @@ signal awaken
 signal paid_off_debt
 signal teleporter_list_changed
 signal right_click_pressed
+signal gadget_changed
 
 @onready var computer_gadget:Gadget = load("res://resources/gadgets/computer.tres")
 
@@ -357,6 +358,7 @@ func set_gadget(p_gadget:InWorldGadget) -> void:
 			if gadget.gadget_stats.close_sound != null and gadget.gadget_stats.name != p_gadget.gadget_stats.name:
 				gadget.play_close_sound()
 	gadget = p_gadget
+	gadget_changed.emit()
 	if !inventory:
 		change_inventory()
 	inventories.append(p_gadget.inventory)

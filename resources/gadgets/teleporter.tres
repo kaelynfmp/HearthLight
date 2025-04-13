@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_ripor"]
 [ext_resource type="Texture2D" uid="uid://c6dvtp7p0jxhr" path="res://resources/sprites/teleportUR.png" id="6_g0fqm"]
 [ext_resource type="Texture2D" uid="uid://4u86jnud0d1e" path="res://resources/sprites/teleportUL.png" id="7_ttbt3"]
-[ext_resource type="Texture2D" uid="uid://b330eihja1q1c" path="res://resources/sprites/teleportDL.png" id="8_nu0yp"]
+[ext_resource type="Texture2D" path="res://teleportDL.png" id="8_g0fqm"]
 
 [sub_resource type="Resource" id="Resource_g0fqm"]
 script = ExtResource("2_pfq51")
@@ -101,7 +101,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_nu0yp")
+"texture": ExtResource("8_g0fqm")
 }],
 "loop": true,
 "name": &"sw",
@@ -109,7 +109,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_nu0yp")
+"texture": ExtResource("8_g0fqm")
 }],
 "loop": true,
 "name": &"sw_active",

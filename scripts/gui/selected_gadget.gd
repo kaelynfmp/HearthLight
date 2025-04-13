@@ -1,16 +1,13 @@
 extends AnimatedSprite2D
 
-var prev_gadget:InWorldGadget
 var teleporter_selected:bool
 
 func _ready() -> void:
 	GameManager.right_click_pressed.connect(cancel_connector)
+	GameManager.gadget_changed.connect(cancel_connector)
 
 func _process(_delta: float) -> void:
 	if GameManager.gadget != null:
-		if GameManager.gadget != prev_gadget:
-			prev_gadget = GameManager.gadget
-			teleporter_selected = false
 		visible = true
 		var sprite:AnimatedSprite2D = GameManager.gadget.find_child("Sprite")
 		sprite_frames = sprite.sprite_frames

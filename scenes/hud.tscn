@@ -265,6 +265,7 @@ text = "+"
 [node name="SelectedTeleporters" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
+mouse_filter = 2
 script = ExtResource("13_dl6ww")
 selected_teleporter_scene = ExtResource("14_8f8xv")
 cable_scene = ExtResource("18_uorui")
@@ -273,6 +274,7 @@ teleporter = ExtResource("15_v0qwq")
 [node name="Cables" type="Control" parent="SelectedTeleporters"]
 layout_mode = 3
 anchors_preset = 0
+mouse_filter = 2
 
 [node name="Inventories" type="VBoxContainer" parent="."]
 z_index = 1
