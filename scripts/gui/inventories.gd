@@ -13,5 +13,5 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	set_position(Vector2(lerp(position.x, starting_x 
-	if GameManager.inventory and GameManager.gadget != teleporter 
+	if GameManager.inventory and (GameManager.gadget == null or GameManager.gadget.gadget_stats != teleporter)
 	else max_pos, slide_in_speed * delta), position.y))

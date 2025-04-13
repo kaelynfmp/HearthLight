@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://bpie3rt8qmyxr"]
+[gd_scene load_steps=64 format=3 uid="uid://bpie3rt8qmyxr"]
 
 [ext_resource type="PackedScene" uid="uid://c2wlmdehxae41" path="res://scenes/Computer Scenes/computer_interface.tscn" id="1_8kako"]
 [ext_resource type="PackedScene" uid="uid://c6g34by20r0qc" path="res://scenes/inventory/inventory.tscn" id="1_h8ipj"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://b4pek43rcxdvf" path="res://resources/sprites/gui/arrows/counterclockwise_hover.png" id="14_7r3ka"]
 [ext_resource type="PackedScene" uid="uid://b23ttu16g3s4a" path="res://scenes/selected_teleporter.tscn" id="14_8f8xv"]
 [ext_resource type="PackedScene" uid="uid://dnyyt61n7tlkc" path="res://scenes/clock.tscn" id="14_eld54"]
+[ext_resource type="FontFile" uid="uid://c4bnatv11g13n" path="res://resources/fonts/Conthrax-SemiBold.otf" id="15_flipt"]
 [ext_resource type="Resource" uid="uid://bkuks7tbfprqt" path="res://resources/gadgets/teleporter.tres" id="15_v0qwq"]
 [ext_resource type="Texture2D" uid="uid://br677v2jqsxvc" path="res://resources/sprites/gui/questopen/questopen.png" id="17_kp442"]
 [ext_resource type="Texture2D" uid="uid://rtk7chr66qjo" path="res://resources/sprites/gui/questopen/questopenselect.png" id="18_gltyx"]
@@ -76,6 +77,35 @@ shader_parameter/diagonals = true
 shader_parameter/rounded = true
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qccye"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wi3kw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uorui"]
+bg_color = Color(1.27065e-05, 0.900368, 0.200536, 1)
+corner_radius_top_left = 99999
+corner_radius_top_right = 99999
+corner_radius_bottom_right = 99999
+corner_radius_bottom_left = 99999
+shadow_color = Color(0, 0.329412, 0.396078, 1)
+shadow_size = 1
+shadow_offset = Vector2(0, 30)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wi3kw"]
+bg_color = Color(0, 0.901961, 0.2, 0)
+corner_radius_top_left = 99999
+corner_radius_top_right = 99999
+corner_radius_bottom_right = 99999
+corner_radius_bottom_left = 99999
+shadow_color = Color(8.90419e-07, 0.331367, 0.395739, 1)
+shadow_size = 1
+shadow_offset = Vector2(0, 30)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ka0sb"]
+bg_color = Color(1.27065e-05, 0.900368, 0.200536, 1)
+corner_radius_top_left = 99999
+corner_radius_top_right = 99999
+corner_radius_bottom_right = 99999
+corner_radius_bottom_left = 99999
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_5357l"]
 
@@ -198,6 +228,38 @@ size_flags_vertical = 4
 texture_normal = ExtResource("12_wi3kw")
 texture_pressed = ExtResource("13_ka0sb")
 texture_hover = ExtResource("14_7r3ka")
+
+[node name="TeleportControl" type="Control" parent="SelectedGadget"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="AddTeleport" type="Button" parent="SelectedGadget/TeleportControl"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -117.0
+offset_top = -246.0
+offset_right = 117.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_fonts/font = ExtResource("15_flipt")
+theme_override_font_sizes/font_size = 200
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wi3kw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uorui")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wi3kw")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ka0sb")
+text = "+"
 
 [node name="SelectedTeleporters" type="Control" parent="."]
 layout_mode = 3

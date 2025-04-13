@@ -13,11 +13,16 @@ func _process(_delta: float) -> void:
 			$RotationControl.visible = true
 		else:
 			$RotationControl.visible = false
+		if GameManager.gadget.gadget_stats.name == "Teleporter":
+			$TeleportControl.visible = true
+		else:
+			$TeleportControl.visible = false
 			
 	else:
 		sprite_frames = null
 		visible = false
 		$RotationControl.visible = false
+		$TeleportControl.visible = false
 
 
 func _on_rotate_left_pressed() -> void:

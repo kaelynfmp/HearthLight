@@ -19,7 +19,7 @@ hour = 0
 minute = 0
 currency_reward = 1000
 rewards = Array[Resource]([ExtResource("3_5rax1")])
-rewards_quantities = Array[int]([1])
+rewards_quantities = Array[int]([2])
 unlocks = Array[Resource]([ExtResource("3_5rax1")])
 
 [resource]

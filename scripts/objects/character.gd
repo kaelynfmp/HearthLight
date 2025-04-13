@@ -33,9 +33,13 @@ func _process(_delta: float) -> void:
 		camera_edges[3]))
 	if GameManager.gadget != null:
 		# Center on gadget if gadget selected
-		camera_position = GameManager.gadget.position
-		camera_position.x += inventory_camera_offset / 2
-		camera_position.y += 540 - 32 # Buffer to make it look more centered
+		if GameManager.gadget.gadget_stats.name == "Teleporter":
+			camera_position = Vector2(0, 0)
+		else:
+			camera_position = GameManager.gadget.position
+			camera_position.x += inventory_camera_offset / 2
+			camera_position.y = clamp(camera_position.y + 540 - 32, camera_edges[1], camera_edges[3]) # Buffer to make it look more centered
+			# y values are still clamped because of screen edge shenanigans
 	camera.set_global_position(camera_position)
 	for sprite:AnimatedSprite2D in $Sprite.get_children():
 		if velocity == Vector2.ZERO: continue
