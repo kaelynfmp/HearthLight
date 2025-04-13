@@ -71,7 +71,6 @@ func setup_teleporter(gadget: StaticBody2D):
 		
 func setup_generator(gadget: StaticBody2D):
 	var contained = $Background/Contained
-	print(current_gadget.name)
 	# Setup coal slot
 	if current_gadget.name == "Generator":
 		$Background/Contained/EnergyControl.visible = true
