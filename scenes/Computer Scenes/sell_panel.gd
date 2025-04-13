@@ -4,7 +4,8 @@ extends Panel
 @onready var inventory: Inventory = preload("res://resources/character/inventory.tres")
 @onready var input_slot = $InputSlot
 @onready var cost_label = $Cost
-var price = 0
+var price_ratio = 0.5
+var price: int = 0
 var slot_scene = preload("res://scenes/inventory/input_slot.tscn")
 var duplicate_slot
 
@@ -14,16 +15,19 @@ func _ready() -> void:
 	duplicate_slot = input_slot.duplicate()
 
 func _process(delta: float) -> void:
-	if input_slot and input_slot.slot.item:
+	if input_slot and input_slot.slot and input_slot.slot.item:
 		sell_button.disabled = false
 		var slot = input_slot.slot
 		var item = slot.item
-		price = item.price * slot.quantity
+		price = ceil((item.price * price_ratio) * slot.quantity)
 		cost_label.text = str(price)
-	if input_slot and (!input_slot.slot.item or input_slot.slot.quantity == 0):
+		input_slot.update()
+		
+	if input_slot and input_slot.slot and (!input_slot.slot.item or input_slot.slot.quantity == 0):
 		sell_button.disabled = true
 		price = 0
 		cost_label.text = str(price)
+		input_slot.update()
 	if visible and !GameManager.inventory and GameManager.computer_visible:
 		GameManager.change_inventory()
 	if GameManager.computer_tab_manager.current_tab != 1 and visible:
@@ -37,7 +41,7 @@ func on_close_button_pressed():
 	#todo: send item back to inventory
 
 func on_sell_button_pressed() -> void:
-	if input_slot and input_slot.slot.item:
+	if input_slot and input_slot.slot and input_slot.slot.item:
 		print("sold")
 		# add currency
 		GameManager.add_currency(price)

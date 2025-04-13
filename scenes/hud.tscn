@@ -182,34 +182,6 @@ texture_pressed = ExtResource("14_5357l")
 texture_hover = ExtResource("15_iypfu")
 texture_disabled = ExtResource("16_qpprf")
 
-[node name="Inventories" type="VBoxContainer" parent="."]
-z_index = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -1024.0
-offset_top = -495.0
-offset_right = 1536.0
-offset_bottom = 2085.0
-grow_horizontal = 0
-grow_vertical = 2
-scale = Vector2(0.4, 0.4)
-script = ExtResource("4_pacb3")
-slide_in_speed = 10.0
-
-[node name="Inventory" parent="Inventories" instance=ExtResource("1_h8ipj")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-
-[node name="Gadget" parent="Inventories" instance=ExtResource("4_svta0")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-script = ExtResource("7_y0wjn")
-
 [node name="Cursor" parent="." instance=ExtResource("2_wjdba")]
 
 [node name="QuestButtonContainer" type="MarginContainer" parent="."]
@@ -267,6 +239,35 @@ offset_top = 23.0
 offset_right = 48.0
 offset_bottom = 23.0
 scale = Vector2(0.95, 0.95)
+
+[node name="Inventories" type="VBoxContainer" parent="."]
+z_index = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1024.0
+offset_top = -495.0
+offset_right = 1536.0
+offset_bottom = 2085.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+mouse_filter = 2
+script = ExtResource("4_pacb3")
+slide_in_speed = 10.0
+
+[node name="Inventory" parent="Inventories" instance=ExtResource("1_h8ipj")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="Gadget" parent="Inventories" instance=ExtResource("4_svta0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+script = ExtResource("7_y0wjn")
 
 [node name="Clock" parent="." instance=ExtResource("14_eld54")]
 z_index = 2
