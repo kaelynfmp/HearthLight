@@ -13,6 +13,7 @@ func _ready() -> void:
 	spinbox = load("res://addons/resource_tree/spin_box.tscn")
 
 func _process(_delta: float) -> void:
+	if !get_parent_control().visible: return
 	if recipe_node != null:
 		if recipe_node.recipe == null:
 			return
