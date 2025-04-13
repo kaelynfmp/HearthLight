@@ -1183,8 +1183,8 @@ SubResource("Resource_jhfnn"): 1
 [sub_resource type="Resource" id="Resource_pftvr"]
 script = ExtResource("1_qn33u")
 email = ExtResource("82_p6cry")
-x = 55320
-y = -5140
+x = 55480
+y = -4960
 prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_ol06y")])
 required_item_nodes = Dictionary[Resource, int]({})
 given_item_nodes = Dictionary[Resource, int]({})
