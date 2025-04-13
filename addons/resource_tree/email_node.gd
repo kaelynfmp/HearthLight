@@ -68,6 +68,7 @@ func _ready():
 	default_bottom_bar = bottom_bar.texture
 
 func _process(_delta: float) -> void:
+	if !get_parent_control().visible: return
 	if email_node == null or email_node.email == null:
 		return
 	if !email_node.order_currency_changed.is_connected(_order_currency_changed): 
