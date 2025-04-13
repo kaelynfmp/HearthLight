@@ -50,43 +50,46 @@ func insert(item: Item, amount=1, locked_only=false) -> int:
 ## Returns how many [Item]s can be sent to the inventory
 func can_insert(item: Item, amount=1, locked_only=false) -> int:
 	if item == null: return amount
-	var build_filter:Array[Item]
-	var item_slots: Array = slots.filter(func(slot): 
-		return (slot.item == item and (!slot.locked and !locked_only) or (slot.locked and locked_only)))
-	if !item_slots.is_empty():
-		for slot:Slot in item_slots:
-			if item not in build_filter and (!locked_only or slot.locked):
-				if item in slot.item_filter:
-					build_filter.append(item)
-				if slot.bypass_stack:
-					amount = 0
-					break
-				var remainder = max(0, amount - (slot.item.max_stack - slot.quantity))
-				if (remainder == 0):
-					amount = 0
-					break
-				else:
-					amount = remainder
-	if amount > 0:
-		var empty_slots: Array = slots.filter(func(slot):
-			return (slot.item == null and (!slot.locked and !locked_only) or (slot.locked and locked_only)))
-		if !empty_slots.is_empty():
-			for empty_slot:Slot in empty_slots:
-				if item not in build_filter and (!locked_only or empty_slot.locked):
-					if empty_slot.bypass_stack:
-						amount = 0
-						if item in empty_slot.item_filter:
-							build_filter.append(item)
-						break
-					else:
-						var prev_amount:int = amount
-						amount = max(0, amount - item.max_stack)
-						if amount != prev_amount and item in empty_slot.item_filter:
-							build_filter.append(item)
-						if amount == 0:
-							break
-		
+	var temp_inventory:Inventory = self.duplicate()
+	amount = temp_inventory.insert(item, amount, locked_only)
 	return amount
+#	var build_filter:Array[Item]
+#	var item_slots: Array = slots.filter(func(slot): 
+#		return (slot.item == item and (!slot.locked and !locked_only) or (slot.locked and locked_only)))
+#	if !item_slots.is_empty():
+#		for slot:Slot in item_slots:
+#			if item not in build_filter and (!locked_only or slot.locked):
+#				if item in slot.item_filter:
+#					build_filter.append(item)
+#				if slot.bypass_stack:
+#					amount = 0
+#					break
+#				var remainder = max(0, amount - (slot.item.max_stack - slot.quantity))
+#				if (remainder == 0):
+#					amount = 0
+#					break
+#				else:
+#					amount = remainder
+#	if amount > 0:
+#		var empty_slots: Array = slots.filter(func(slot):
+#			return (slot.item == null and (!slot.locked and !locked_only) or (slot.locked and locked_only)))
+#		if !empty_slots.is_empty():
+#			for empty_slot:Slot in empty_slots:
+#				if item not in build_filter and (!locked_only or empty_slot.locked):
+#					if empty_slot.bypass_stack:
+#						amount = 0
+#						if item in empty_slot.item_filter:
+#							build_filter.append(item)
+#						break
+#					else:
+#						var prev_amount:int = amount
+#						amount = max(0, amount - item.max_stack)
+#						if amount != prev_amount and item in empty_slot.item_filter:
+#							build_filter.append(item)
+#						if amount == 0:
+#							break
+#		
+#	return amount
 	
 
 ## Attempts to remove a specified [int] quantity of an [Item] from the inventory, and returns true if it succeeded, false otherwise

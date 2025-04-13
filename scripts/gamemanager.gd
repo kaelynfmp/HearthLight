@@ -298,7 +298,6 @@ func add_inventory(p_inventory: Inventory):
 
 ## Attempts to send a slot to the nearest inventory, and will spread them out among multiple if necessary to send it all
 func send_to_inventory(slot: Slot):
-
 	var home_inventory: Inventory
 	var temp_slot:Slot = slot.duplicate()
 	var starting_quantity = slot.duplicate().quantity
@@ -313,6 +312,9 @@ func send_to_inventory(slot: Slot):
 		else:
 			home_inventory = search_inventory
 
+	if home_inventory == null:
+		home_inventory = player_inventory
+	
 	if temp_slot.quantity > 0:
 		var remainder = home_inventory.insert(temp_slot.item, temp_slot.quantity)
 		temp_slot.decrement(temp_slot.quantity - remainder)
