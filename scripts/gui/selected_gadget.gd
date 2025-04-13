@@ -1,6 +1,6 @@
 extends AnimatedSprite2D
 
-@onready var marker: Node2D = get_node("/root/Room/Tilemap/TileLayers/Marker")
+@onready var marker: Node2D = get_node("/root/Room/Tilemap/TileLayers/Marker2")
 @onready var base_layer: Node2D = get_node("/root/Room/Tilemap/TileLayers/Base")
 
 func _process(_delta: float) -> void:

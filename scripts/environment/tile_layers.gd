@@ -64,7 +64,7 @@ func _process(_delta: float) -> void:
 				marker.position = base_layer.map_to_local(cell_pos)
 			else:
 				marker.position = base_layer.map_to_local(cell_pos)
-			marker.z_index = 0
+			marker.z_index = 1
 			marker.visible = true
 		else:
 			marker.visible = false
