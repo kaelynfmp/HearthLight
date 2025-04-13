@@ -39,13 +39,15 @@ func rebuild_teleporters() -> void:
 		teleporter_scene.teleporter = _teleporter
 		connector_enabled.connect(teleporter_scene._connector_enabled)
 		connector_disabled.connect(teleporter_scene._connector_disabled)
-		add_child(teleporter_scene)
 		if _teleporter in GameManager.gadget.target_list:
 			# Visualize connection
 			create_cable(get_origin(GameManager.gadget), get_origin(_teleporter), output_colour)
+			teleporter_scene.output = true
 		elif GameManager.gadget in _teleporter.target_list:
 			# Visualize connection
 			create_cable(get_origin(_teleporter), get_origin(GameManager.gadget), input_colour)
+			teleporter_scene.input = true
+		add_child(teleporter_scene)
 			
 	if connector:
 		_on_add_teleport_pressed()

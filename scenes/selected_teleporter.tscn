@@ -1,10 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://b23ttu16g3s4a"]
+[gd_scene load_steps=16 format=3 uid="uid://b23ttu16g3s4a"]
 
 [ext_resource type="Script" uid="uid://cttslgu87en2f" path="res://scripts/gui/selected_teleporter.gd" id="1_cpy52"]
 [ext_resource type="Texture2D" uid="uid://dbk6mxkwneibe" path="res://scripts/shaders/close_enough_texture.tres" id="2_3cbcy"]
 [ext_resource type="Texture2D" uid="uid://b330eihja1q1c" path="res://resources/sprites/teleportDL.png" id="2_ewqdr"]
 [ext_resource type="Texture2D" uid="uid://c5syp4ayosfa8" path="res://scripts/shaders/not_close_enough_texture.tres" id="3_rruxh"]
+[ext_resource type="Texture2D" uid="uid://bubjw1twjwgro" path="res://resources/sprites/gui/teleporter_output.png" id="4_7vs1f"]
 [ext_resource type="FontFile" uid="uid://c4bnatv11g13n" path="res://resources/fonts/Conthrax-SemiBold.otf" id="5_3cbcy"]
+[ext_resource type="Texture2D" uid="uid://5u2e8y82xdyk" path="res://resources/sprites/gui/teleporter_input.png" id="5_5t8u3"]
 
 [sub_resource type="Shader" id="Shader_rruxh"]
 code = "shader_type canvas_item;
@@ -142,6 +144,8 @@ script = ExtResource("1_cpy52")
 add_shader_texture = ExtResource("2_3cbcy")
 remove_shader_texture = ExtResource("3_rruxh")
 empty_texture = SubResource("GradientTexture1D_3cbcy")
+output_texture = ExtResource("4_7vs1f")
+input_texture = ExtResource("5_5t8u3")
 
 [node name="ClickableControl" type="Control" parent="."]
 layout_mode = 3
