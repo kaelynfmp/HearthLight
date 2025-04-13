@@ -33,7 +33,7 @@ func _process(_delta: float) -> void:
 		camera_edges[3]))
 	if GameManager.gadget != null:
 		# Center on gadget if gadget selected
-		if GameManager.gadget.gadget_stats.name == "Teleporter":
+		if GameManager.gadget.gadget_stats.name == "Teleporter" and not (GameManager.cursor != null and GameManager.cursor.slot.item != null):
 			camera_position = Vector2(0, 0)
 		else:
 			camera_position = GameManager.gadget.position

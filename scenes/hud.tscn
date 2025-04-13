@@ -270,6 +270,8 @@ script = ExtResource("13_dl6ww")
 selected_teleporter_scene = ExtResource("14_8f8xv")
 cable_scene = ExtResource("18_uorui")
 teleporter = ExtResource("15_v0qwq")
+output_colour = Color(0.462745, 1, 0.603922, 1)
+input_colour = Color(0.647059, 0.462745, 1, 1)
 
 [node name="Cables" type="Control" parent="SelectedTeleporters"]
 layout_mode = 3

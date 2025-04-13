@@ -12,14 +12,19 @@ class_name Cable
 @export var max_curve_distance:int = 200
 @export var closeness_factor:float = 2.0
 @export var locked_to_mouse:bool = false
+@export var colour:Color
 var curve_x:float = 0
 var curve_y:float = 0
 
 func _ready() -> void:
-	pass
+	origin.position = origin_position
+	var origin_texture:GradientTexture1D = origin.texture
+	origin_texture.gradient.colors = PackedColorArray([colour])
+	var end_texture:GradientTexture1D = end.texture
+	end_texture.gradient.colors = PackedColorArray([colour])
+	line.default_color = colour
 	
 func _process(delta: float) -> void:
-	origin.position = origin_position
 	if locked_to_mouse:
 		end.position = get_viewport().get_mouse_position()
 	if (end.position != prev_end_position):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b648fq173kh8h"]
+[gd_scene load_steps=8 format=3 uid="uid://b648fq173kh8h"]
 
 [ext_resource type="Script" uid="uid://d1fr7d8mpycgt" path="res://scripts/gui/cable.gd" id="1_240sm"]
 
@@ -6,18 +6,34 @@
 radius = 15.0
 height = 30.0
 
+[sub_resource type="Gradient" id="Gradient_rj3a4"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_j3i3n"]
+gradient = SubResource("Gradient_rj3a4")
+
 [sub_resource type="Curve2D" id="Curve2D_ec0h6"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 2
 
+[sub_resource type="Gradient" id="Gradient_mrtv2"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0nbdv"]
+gradient = SubResource("Gradient_mrtv2")
+
 [node name="Cable" type="Node2D"]
 script = ExtResource("1_240sm")
+colour = Color(1, 1, 1, 1)
 
 [node name="Origin" type="MeshInstance2D" parent="."]
 position = Vector2(395, 337)
 mesh = SubResource("SphereMesh_6qk32")
+texture = SubResource("GradientTexture1D_j3i3n")
 
 [node name="Curve" type="Path2D" parent="."]
 position = Vector2(0, -1)
@@ -28,3 +44,4 @@ curve = SubResource("Curve2D_ec0h6")
 [node name="End" type="MeshInstance2D" parent="."]
 position = Vector2(534, 421)
 mesh = SubResource("SphereMesh_6qk32")
+texture = SubResource("GradientTexture1D_0nbdv")

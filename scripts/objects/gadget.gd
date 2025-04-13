@@ -238,23 +238,19 @@ func rotate_sprite() -> void:
 			sprite.animation = "ne"
 		Direction.NW:
 			sprite.animation = "nw"
+			
+func add_teleporter(teleporter):
+	target_list.append(teleporter)
+	GameManager.gadget_changed.emit()
 	
-# TODO: remove this function when there is UI
-func search_for_other_teleporters():
-	if cell_pos != Vector2i(0, 0):
-		return
-	for i in range(0, 13):
-		for j in range(0, 13):
-			if GameManager.room_map[i][j] != null:
-				if GameManager.room_map[i][j].gadget_stats.name == "Teleporter":
-					if not GameManager.room_map[i][j] in target_list and (i != 6 and j != 5):
-						target_list.append(GameManager.room_map[i][j])
+func remove_teleporter(teleporter):
+	target_list.erase(teleporter)
+	GameManager.gadget_changed.emit()
 	
 func _process(_delta: float) -> void:
 	rotate_sprite()
 	# Test the code
 	if gadget_stats.name == "Teleporter":
-		search_for_other_teleporters()
 		mount_to_inventory()	
 	if hovered:
 		sprite.material.set("shader_parameter/textureScale", Vector2.ONE)

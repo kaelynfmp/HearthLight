@@ -6,6 +6,8 @@ signal connector_disabled
 @export var selected_teleporter_scene:PackedScene
 @export var cable_scene:PackedScene
 @export var teleporter:Gadget
+@export var output_colour:Color
+@export var input_colour:Color
 
 func _ready() -> void:
 	GameManager.teleporter_list_changed.connect(rebuild_teleporters)
@@ -24,7 +26,7 @@ func rebuild_teleporters():
 			node.queue_free()
 		else:
 			for node2 in node.get_children():
-				node.remove_child(node)
+				node.remove_child(node2)
 				node2.queue_free()
 	
 	for _teleporter:InWorldGadget in GameManager.teleporters:
@@ -40,6 +42,7 @@ func _on_add_teleport_pressed() -> void:
 	var cable:Cable = cable_scene.instantiate()
 	cable.locked_to_mouse = true
 	cable.origin_position = GameManager.gadget.find_child("Sprite").get_global_transform_with_canvas().get_origin() - Vector2(0, 18)
+	cable.colour = output_colour
 	cable.z_index += 2
 	cable.set_name("CursorConnector")
 	$Cables.add_child(cable)
