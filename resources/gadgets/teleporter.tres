@@ -14,14 +14,14 @@
 script = ExtResource("2_pfq51")
 locked = false
 item_filter = Array[ExtResource("3_ksb6m")]([])
-bypass_stack = false
+bypass_stack = true
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_pfq51"]
 script = ExtResource("2_pfq51")
 locked = true
 item_filter = Array[ExtResource("3_ksb6m")]([])
-bypass_stack = false
+bypass_stack = true
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_ttbt3"]

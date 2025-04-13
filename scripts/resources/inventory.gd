@@ -50,8 +50,12 @@ func insert(item: Item, amount=1, locked_only=false) -> int:
 ## Returns how many [Item]s can be sent to the inventory
 func can_insert(item: Item, amount=1, locked_only=false) -> int:
 	if item == null: return amount
-	var temp_inventory:Inventory = self.duplicate()
+	# Duplicate inventory
+	var temp_inventory:Inventory = Inventory.new()
+	for slot:Slot in slots:
+		temp_inventory.slots.append(slot.duplicate())
 	amount = temp_inventory.insert(item, amount, locked_only)
+	print(amount)
 	return amount
 #	var build_filter:Array[Item]
 #	var item_slots: Array = slots.filter(func(slot): 

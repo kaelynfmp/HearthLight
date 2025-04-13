@@ -325,19 +325,18 @@ func pull_from_gadget(selected_gadget: InWorldGadget) -> bool:
 	else:
 		if is_teleporter:
 			# Teleporter insta-clears out an entire inventory
+			# Sends directly to the mounted gadget to avoid race conditions
+			# If something is somehow in the teleporter, however, it will still push properly
 			for slot in selected_slots:
 				if slot.item == null: continue
 				if target_list.size() > 1:
 					var slot_attempts:int = 0
 					# Skip while loop if it would not be possible to empty this slot even a little
 					# Expensive, but less expensive than running a failing while loop 100 times
-					var mounted_gadgets:Array[InWorldGadget]
+					var mega_inventory:Inventory = Inventory.new()
 					for target in target_list:
 						if target.mounted_gadget != null:
-							mounted_gadgets.append(target.mounted_gadget)
-					var mega_inventory:Inventory = Inventory.new()
-					for _mounted_gadget in mounted_gadgets:
-						mega_inventory.slots.append_array(_mounted_gadget.inventory.slots)
+							mega_inventory.slots.append_array(target.mounted_gadget.inventory.slots)
 					if mega_inventory.can_insert(slot.item, slot.quantity) == slot.quantity:
 						continue
 					while slot_attempts < 100 and slot.quantity > 0:
@@ -345,7 +344,7 @@ func pull_from_gadget(selected_gadget: InWorldGadget) -> bool:
 						var destination_gadget:InWorldGadget = target_list[target_index]
 						if target_list[target_index].mounted_gadget != null:
 							if destination_gadget != null and destination_gadget.mounted_gadget.inventory.can_insert(slot.item) == 0:
-								destination_gadget.inventory.insert(slot.item)
+								destination_gadget.mounted_gadget.inventory.insert(slot.item)
 								slot.decrement()
 								worked = true
 						target_index += 1
@@ -355,7 +354,7 @@ func pull_from_gadget(selected_gadget: InWorldGadget) -> bool:
 				else:
 					if target_list[0].mounted_gadget == null: continue
 					var remainder:int = target_list[0].mounted_gadget.inventory.can_insert(slot.item, slot.quantity)
-					target_list[0].inventory.insert(slot.item, slot.quantity)
+					target_list[0].mounted_gadget.inventory.insert(slot.item, slot.quantity)
 					if remainder < slot.quantity:
 						worked = true
 					slot.decrement(slot.quantity - remainder)
