@@ -346,8 +346,7 @@ func pull_inventory():
 	if gadget_stats.name == "Teleporter" and mounted_gadget != null and not target_list.is_empty():
 		var prev_inventory_slots = mounted_gadget.inventory.slots.duplicate()
 		if pull_from_gadget(mounted_gadget):
-			print("test")
-			stop_audio_player.play()
+			AudioManager.play_teleport_noise()
 	if GameManager.item_map[cell_pos[0] + 6][cell_pos[1] + 5] == null: 
 		if rear_gadget:
 			pull_from_gadget(rear_gadget)

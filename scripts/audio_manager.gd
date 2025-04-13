@@ -7,6 +7,8 @@ var gadget_audio_index:Dictionary[Gadget, int] # Populate dict once ready
 
 var playback:AudioStreamPlaybackPolyphonic
 
+var teleport_player:AudioStreamPlayer
+
 var active_gadgets:Dictionary[String, Dictionary] = {
 	"c grinder.wav": {},
 	"c loom.wav": {},
@@ -58,6 +60,8 @@ var button_sounds:Array[AudioStream] = [
 	preload("res://resources/audio/UI Sounds/UI 13 (short click).wav")
 	]
 
+var teleport_sound:AudioStream = preload("res://resources/audio/Gadgets/teleporter loop.wav")
+
 
 func set_gadget_audio(stream_player:AudioStreamPlayer2D):
 	gadget_audio = stream_player
@@ -83,6 +87,11 @@ func _enter_tree() -> void:
 	# Get the polyphonic playback stream to play sounds
 	playback = player.get_stream_playback()
 	get_tree().node_added.connect(_on_node_added)
+	
+	teleport_player = AudioStreamPlayer.new()
+	add_child(teleport_player)
+	
+	teleport_player.stream = teleport_sound
 
 func _on_node_added(node:Node) -> void:
 	if node is Button or node is TextureButton:
@@ -107,3 +116,7 @@ func _process(_delta: float) -> void:
 			else:
 				gadget_audio.stream.set_sync_stream_volume(sync_stream_indexes[audio_string], -60.0)
 		
+
+func play_teleport_noise():
+	if not teleport_player.playing:
+		teleport_player.play()
