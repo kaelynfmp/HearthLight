@@ -28,7 +28,7 @@
 [ext_resource type="Resource" uid="uid://bkuks7tbfprqt" path="res://resources/gadgets/teleporter.tres" id="15_v0qwq"]
 [ext_resource type="Texture2D" uid="uid://br677v2jqsxvc" path="res://resources/sprites/gui/questopen/questopen.png" id="17_kp442"]
 [ext_resource type="Texture2D" uid="uid://rtk7chr66qjo" path="res://resources/sprites/gui/questopen/questopenselect.png" id="18_gltyx"]
-[ext_resource type="PackedScene" uid="uid://bpgllt54k68mw" path="res://scenes/cable.tscn" id="18_uorui"]
+[ext_resource type="PackedScene" uid="uid://b648fq173kh8h" path="res://scenes/cable.tscn" id="18_uorui"]
 [ext_resource type="Script" uid="uid://djkcgfibs8xbn" path="res://scenes/sleep_canvas.gd" id="19_iypfu"]
 [ext_resource type="Texture2D" uid="uid://32e6btkil3qi" path="res://resources/sprites/gui/questopen/questopenhovered.png" id="19_mgfyp"]
 [ext_resource type="Script" uid="uid://cbtruwvxi8xxb" path="res://scripts/gui/quests/quest_visibility_button.gd" id="20_mgfyp"]
@@ -276,35 +276,6 @@ layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
 
-[node name="Inventories" type="VBoxContainer" parent="."]
-z_index = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -1024.0
-offset_top = -495.0
-offset_right = 1536.0
-offset_bottom = 2085.0
-grow_horizontal = 0
-grow_vertical = 2
-scale = Vector2(0.4, 0.4)
-script = ExtResource("4_pacb3")
-slide_in_speed = 10.0
-teleporter = ExtResource("15_v0qwq")
-
-[node name="Inventory" parent="Inventories" instance=ExtResource("1_h8ipj")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-
-[node name="Gadget" parent="Inventories" instance=ExtResource("4_svta0")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-script = ExtResource("7_y0wjn")
-
 [node name="Cursor" parent="." instance=ExtResource("2_wjdba")]
 
 [node name="QuestButtonContainer" type="MarginContainer" parent="."]
@@ -362,6 +333,36 @@ offset_top = 23.0
 offset_right = 48.0
 offset_bottom = 23.0
 scale = Vector2(0.95, 0.95)
+
+[node name="Inventories" type="VBoxContainer" parent="."]
+z_index = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1024.0
+offset_top = -495.0
+offset_right = 1536.0
+offset_bottom = 2085.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+mouse_filter = 2
+script = ExtResource("4_pacb3")
+slide_in_speed = 10.0
+teleporter = ExtResource("15_v0qwq")
+
+[node name="Inventory" parent="Inventories" instance=ExtResource("1_h8ipj")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="Gadget" parent="Inventories" instance=ExtResource("4_svta0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+script = ExtResource("7_y0wjn")
 
 [node name="Clock" parent="." instance=ExtResource("14_eld54")]
 z_index = 2

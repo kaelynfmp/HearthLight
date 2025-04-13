@@ -18,6 +18,11 @@ func update_slots():
 		slots[i].set_slot(inventory.slots[i])
 	
 func on_inventory_open_state_changed():
+	if GameManager.in_computer or GameManager.computer_visible:
+		z_index = 250
+	else:
+		z_index = 0
+		
 	is_open = !is_open
 	if is_open:
 		close_audio.play()

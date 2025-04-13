@@ -551,5 +551,8 @@ func conclude_cutscene():
 		get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
 		
 		
-		
-		
+func check_core_tutorials_done():
+	for item in unlocked_items:
+		if item.name == "Wood Fire Stove":
+			return true
+	return false

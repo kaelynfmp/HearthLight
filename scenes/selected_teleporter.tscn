@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cttslgu87en2f" path="res://scripts/gui/selected_teleporter.gd" id="1_cpy52"]
 [ext_resource type="Texture2D" uid="uid://dbk6mxkwneibe" path="res://scripts/shaders/close_enough_texture.tres" id="2_3cbcy"]
-[ext_resource type="Texture2D" path="res://teleportDL.png" id="2_ewqdr"]
+[ext_resource type="Texture2D" uid="uid://b330eihja1q1c" path="res://resources/sprites/teleportDL.png" id="2_ewqdr"]
 [ext_resource type="Texture2D" uid="uid://c5syp4ayosfa8" path="res://scripts/shaders/not_close_enough_texture.tres" id="3_rruxh"]
 
 [sub_resource type="Shader" id="Shader_rruxh"]

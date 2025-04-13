@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpgllt54k68mw"]
+[gd_scene load_steps=4 format=3 uid="uid://b648fq173kh8h"]
 
 [ext_resource type="Script" uid="uid://d1fr7d8mpycgt" path="res://scripts/gui/cable.gd" id="1_240sm"]
 
