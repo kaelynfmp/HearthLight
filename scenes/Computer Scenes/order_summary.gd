@@ -48,6 +48,8 @@ func populate_order_hint(grid: GridContainer, item_list: Array, item_quantities:
 
 func show_currency_reward():
 	currency_label.text = str(order.currency_reward)
+	if order.currency_reward <= 0:
+		currency_label.modulate.a = 0.2
 
 func show_unlock_icon():
 	if len(order.unlocks)>0:
