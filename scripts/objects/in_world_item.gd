@@ -20,8 +20,11 @@ func _ready() -> void:
 	path = [global_position] 
 	GameManager.item_map[cell_pos[0] + 6][cell_pos[1] + 5] = self
 	
-func check_for_one_stack(_item: Item, inventory: Inventory):
-	var slots: Array[Slot] = inventory.slots.filter(func(slot): return !slot.locked)
+func check_for_one_stack(_item: Item, _gadget):
+	var slots: Array[Slot] = _gadget.inventory.slots.filter(func(slot): return !slot.locked)
+	if _gadget.gadget_stats.name == "Storage":
+		return slots.any(func(slot): return slot.item == null or (slot.item.name == _item.name and slot.quantity < _item.max_stack))
+		
 	var found_slot = null
 	for slot in slots:
 		if slot.item != null and slot.item.name == _item.name:
@@ -43,7 +46,7 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 		return
 	if current_gadget.gadget_stats.name != "Conveyor Belt":
-		if check_for_one_stack(item, current_gadget.inventory):
+		if check_for_one_stack(item, current_gadget):
 			current_gadget.inventory.insert(item, 1)
 			queue_free()
 		return
@@ -52,7 +55,7 @@ func _physics_process(delta: float) -> void:
 	var next_gadget = GameManager.room_map[target_cell_pos[0] + 6][target_cell_pos[1] + 5]
 	if next_gadget != null:
 		if next_gadget.gadget_stats.name != "Conveyor Belt":
-			next_gadget_available = check_for_one_stack(item, next_gadget.inventory)
+			next_gadget_available = check_for_one_stack(item, next_gadget)
 		if next_gadget_available or next_gadget.gadget_stats.name == "Conveyor Belt":
 			var target_pos = tile_layer.map_to_local(target_cell_pos)
 			var next_item =  GameManager.item_map[target_cell_pos[0] + 6][target_cell_pos[1] + 5]
