@@ -353,7 +353,8 @@ func do_recipe():
 
 func start_progression():
 	recipe_taken = false
-	nearby_cyber_generator.is_cyber_generator_used = true
+	if nearby_cyber_generator != null:
+		nearby_cyber_generator.is_cyber_generator_used = true
 	if is_generator:
 		recipe_take()
 	progressing = true

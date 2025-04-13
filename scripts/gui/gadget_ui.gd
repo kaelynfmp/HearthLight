@@ -39,6 +39,14 @@ func _process(delta: float) -> void:
 		else:
 			$Background/Contained/CreatesControl.visible = true
 			$Background/Contained/InfinitePower.visible = false
+		if current_gadget.age > Gadget.Age.PRIMITIVE and not current_gadget.name in ["Storage", "Generator", "Universal Generator", "Teleporter"]:
+			$Background/Electricity.visible = true
+			if GameManager.gadget.has_power_from_generator:
+				$Background/Electricity.texture = load("res://resources/sprites/electricity_powered.png")
+			else:
+				$Background/Electricity.texture = load("res://resources/sprites/electricity.png")
+		else:
+			$Background/Electricity.visible = false
 	else:
 		current_gadget = null
 	if current_gadget and not current_gadget.name in ["Storage", "Universal Generator", "Teleporter"]:
