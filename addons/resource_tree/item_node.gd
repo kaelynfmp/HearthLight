@@ -14,6 +14,7 @@ func _ready() -> void:
 	close_node.pressed.connect(close_pressed)
 
 func _process(_delta: float) -> void:
+	if !get_parent_control().visible: return
 	if item_node == null: return
 	if item_node.item == null: return
 	if $ItemImage.texture != item_node.item.texture:

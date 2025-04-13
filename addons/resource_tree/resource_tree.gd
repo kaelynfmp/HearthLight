@@ -72,7 +72,7 @@ func _ready() -> void:
 	gadget_menu.index_pressed.connect(gadget_menu_pressed)
 	load_recipes()
 	EditorInterface.get_resource_filesystem().filesystem_changed.connect(load_recipes)
-
+	
 func _has_main_screen() -> bool:
 	return true
 	
@@ -315,6 +315,7 @@ func _on_disconnect_request(from, from_port, to, to_port) -> void:
 	
 
 func _process(_delta:float) -> void:
+	if (!control.visible): return
 	populate_nodes("recipe_node", properties.recipe_nodes, recipe_node)
 	populate_nodes("gadget_node", properties.gadget_nodes, gadget_node)
 	populate_nodes("item_node", properties.item_nodes, item_node)
