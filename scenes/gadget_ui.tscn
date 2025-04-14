@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dxa0at3wgkq8w"]
+[gd_scene load_steps=26 format=3 uid="uid://dxa0at3wgkq8w"]
 
 [ext_resource type="PackedScene" uid="uid://c88opsp0c7nm" path="res://scenes/ui_base.tscn" id="1_edcws"]
 [ext_resource type="Texture2D" uid="uid://bpk81ck7j3l2c" path="res://resources/sprites/progressbar.png" id="2_1u2kl"]
@@ -9,9 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://v3mhxuklek42" path="res://resources/sprites/gui/gear/hover.png" id="4_vb1co"]
 [ext_resource type="Texture2D" uid="uid://ca24n44nxd7w1" path="res://resources/sprites/gui/gear/disabled.png" id="5_hu7k0"]
 [ext_resource type="Texture2D" uid="uid://cjlx7vkgtyovb" path="res://resources/sprites/generatorEnergy_empty.png" id="9_2mo8u"]
+[ext_resource type="Script" uid="uid://chxk5ychc6y8g" path="res://scripts/gui/infinite_power.gd" id="9_25a0o"]
 [ext_resource type="Texture2D" uid="uid://cwfdegt8yq0jw" path="res://resources/sprites/generatorEnergy_filled.png" id="10_27a66"]
 [ext_resource type="Texture2D" uid="uid://bg882ij3sxhhx" path="res://resources/sprites/generatoruibolt.png" id="10_sub33"]
-[ext_resource type="FontFile" uid="uid://c4bnatv11g13n" path="res://resources/fonts/Conthrax-SemiBold.otf" id="11_kxjdw"]
+[ext_resource type="Shader" uid="uid://3htgnlua3esk" path="res://scripts/shaders/infinite_power.gdshader" id="11_b7xyu"]
 [ext_resource type="Texture2D" uid="uid://cg671aijb1olp" path="res://resources/sprites/electricity.png" id="12_sub33"]
 
 [sub_resource type="Gradient" id="Gradient_oya0q"]
@@ -42,6 +43,24 @@ shader_parameter/particle_amount = 15
 shader_parameter/image_dimension = Vector2(512, 512)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7bgkg"]
+
+[sub_resource type="Curve2D" id="Curve2D_5ectr"]
+_data = {
+"points": PackedVector2Array(0, 0, 200, 0, -300, -150, -200, 0, 200, 0, 300, 150, 200, 0, -200, 0, 300, -150, 200, 0, -200, 0, -300, 150, -200, 0, 0, 0, -300, -150)
+}
+point_count = 5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qviw3"]
+shader = ExtResource("11_b7xyu")
+shader_parameter/speed = 0.25
+
+[sub_resource type="Gradient" id="Gradient_b7xyu"]
+offsets = PackedFloat32Array(0, 0.167, 0.333, 0.5, 0.667, 0.833, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.647059, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0.294118, 0, 0.509804, 1, 0.501961, 0, 0.501961, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qviw3"]
+gradient = SubResource("Gradient_b7xyu")
+width = 200
 
 [sub_resource type="Gradient" id="Gradient_kxjdw"]
 colors = PackedColorArray(1, 0.872, 0.36, 1, 1, 0.979667, 0.39, 1)
@@ -109,6 +128,7 @@ size_flags_horizontal = 3
 mouse_filter = 2
 
 [node name="CreatesControl" type="Control" parent="Background/Contained" index="1"]
+visible = false
 custom_minimum_size = Vector2(173, 514)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -166,33 +186,52 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("PlaceholderTexture2D_7bgkg")
 
-[node name="InfinitePower" type="Control" parent="Background/Contained" index="2"]
-visible = false
+[node name="InfinitePower" type="Control" parent="Background/Contained" index="2" node_paths=PackedStringArray("curve", "line")]
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("9_25a0o")
+curve = NodePath("Line/Path2D")
+line = NodePath("Line/Line2D")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Background/Contained/InfinitePower" index="0"]
-clip_contents = false
-custom_minimum_size = Vector2(450, 250)
+[node name="Lightning Bolt" type="TextureRect" parent="Background/Contained/InfinitePower" index="0"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 48.0
+offset_right = 20.0
+offset_bottom = 122.444
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("10_sub33")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Line" type="Control" parent="Background/Contained/InfinitePower" index="1"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -0.5
-offset_top = -58.5
-offset_right = 0.5
-offset_bottom = 58.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/normal_font = ExtResource("11_kxjdw")
-theme_override_font_sizes/normal_font_size = 96
-bbcode_enabled = true
-text = "Infinite Power"
-fit_content = true
-horizontal_alignment = 1
-vertical_alignment = 1
+
+[node name="Path2D" type="Path2D" parent="Background/Contained/InfinitePower/Line" index="0"]
+curve = SubResource("Curve2D_5ectr")
+
+[node name="Line2D" type="Line2D" parent="Background/Contained/InfinitePower/Line" index="1"]
+material = SubResource("ShaderMaterial_qviw3")
+points = PackedVector2Array(0, 0)
+width = 100.0
+default_color = Color(0.207843, 1, 0.964706, 1)
+texture = SubResource("GradientTexture1D_qviw3")
+texture_mode = 1
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="EndingCreatesGap" type="Control" parent="Background/Contained" index="3"]
 layout_mode = 2
