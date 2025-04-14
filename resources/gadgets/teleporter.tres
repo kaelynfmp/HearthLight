@@ -34,7 +34,7 @@ texture = ExtResource("4_pfq51")
 name = "Teleporter"
 description = "\"Upon connection of the [b]in[/b] side of this teleporter, it is fully mounted onto any gadget you'd like. Through state of the art dubiously scientific matter quantization systems, it will then teleport resources from the mounted gadget to other linked teleporters. Teleporters will push received resources into gadgets, and pull resources to send to other linked teleporters [i]from[/i] gadgets.\" (a quote from the manual that his has for some reason)"
 max_stack = 100
-price = 50
+price = 300
 metadata/_custom_type_script = "uid://by7jec2ew2vsl"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ripor"]
