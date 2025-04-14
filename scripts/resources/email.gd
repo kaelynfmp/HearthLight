@@ -40,7 +40,7 @@ func check_valid() -> bool:
 		# If it has a start time, and that start time hasn't been met
 		return false
 	if !prerequisite_emails.all(func(_email: Email): \
-		return (_email.attached_order and (_email.attached_order.is_completed or (prereqs_must_fail and _email.failable and _email.failed))) or (!_email.attached_order and _email.is_read)):
+		return (_email.attached_order and ((_email.attached_order.is_completed and !_email.failed) or (prereqs_must_fail and _email.failable and _email.failed))) or (!_email.attached_order and _email.is_read)):
 		# Prereq not met
 		# Prerequisite condition not met, some of the prereq emails are not archived. Checks the archive instead
 		# of completed_order_emails, because the pre-requisite could theoretically be a tutorial or lore email
