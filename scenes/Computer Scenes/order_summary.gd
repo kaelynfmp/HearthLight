@@ -1,12 +1,16 @@
 extends Panel
-@onready var given_grid: GridContainer = $GivenGrid
-@onready var given_label: RichTextLabel = $GivenLabel
-@onready var needed_grid: GridContainer = $NeededGrid
-@onready var needed_label: RichTextLabel = $NeededLabel
-@onready var reward_grid: GridContainer = $RewardGrid
-@onready var rewards_label: RichTextLabel = $RewardsLabel
-@onready var currency_label: Label = $CurrencyLabel
-@onready var unlock_icon: TextureRect = $UnlockIcon
+@export var given_container:VBoxContainer
+@export var given_grid: HFlowContainer
+@export var given_label: RichTextLabel
+@export var needed_container:VBoxContainer
+@export var needed_grid: HFlowContainer
+@export var needed_label: RichTextLabel
+@export var reward_container:VBoxContainer
+@export var reward_grid: HFlowContainer
+@export var rewards_label: RichTextLabel
+@export var currency_container:VBoxContainer
+@export var currency_label: Label
+@export var unlock_icon: TextureRect
 @export var grid_scene: PackedScene
 
 @export var given_grid_bg: Texture2D
@@ -22,11 +26,12 @@ func _ready() -> void:
 	if email and email.attached_order:
 		order = email.attached_order
 		adjust_size()
-		populate_order_hint(given_grid, order.given_items, order.given_quantities)
-		populate_order_hint(needed_grid, order.required_items, order.required_quantities)
-		populate_order_hint(reward_grid, order.rewards, order.rewards_quantities)
-		show_currency_reward()
-		show_unlock_icon()
+		populate_order_hint(given_container, given_grid, order.given_items, order.given_quantities)
+		populate_order_hint(needed_container, needed_grid, order.required_items, order.required_quantities)
+		populate_order_hint(reward_container, reward_grid, order.rewards, order.rewards_quantities)
+		if not order.unlocks.is_empty() or order.currency_reward > 0:
+			show_currency_reward()
+			show_unlock_icon()
 	else:
 		visible = false
 
@@ -37,7 +42,9 @@ func adjust_size():
 	if len(order.given_items) > 2 or len(order.required_items) > 2 or len(order.rewards)>2:
 		custom_minimum_size =Vector2(1920, 525)
 
-func populate_order_hint(grid: GridContainer, item_list: Array, item_quantities: Array):
+func populate_order_hint(container: VBoxContainer, grid: HFlowContainer, item_list: Array, item_quantities: Array):
+	if item_list.is_empty():
+		container.visible = false
 	for item in item_list:
 		if item is Gadget:
 			item = item.item # if item is a gadget, get its corresponding item

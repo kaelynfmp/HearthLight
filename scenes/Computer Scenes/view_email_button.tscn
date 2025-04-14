@@ -128,8 +128,10 @@ texture = ExtResource("19_jk764")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sqkxc"]
 texture = ExtResource("25_jk764")
-texture_margin_left = 55.0
-texture_margin_right = 30.0
+texture_margin_left = 49.0
+texture_margin_right = 54.0
+expand_margin_top = 12.0
+expand_margin_bottom = 12.0
 
 [node name="EmailButton" type="Button" node_paths=PackedStringArray("sender_label", "email_label", "subject_label", "sender_dropdown", "email_dropdown", "subject_dropdown", "blurb_label", "content", "expand_panel", "fulfill_button", "button_sprite", "clock", "bg", "top_bar", "bottom_bar")]
 custom_minimum_size = Vector2(1920, 300)
@@ -496,7 +498,7 @@ text = "Fulfill"
 script = ExtResource("6_34x3b")
 button_sound = 12
 
-[node name="Order Summary" type="Panel" parent="Panel"]
+[node name="Order Summary" type="Panel" parent="Panel" node_paths=PackedStringArray("given_container", "given_grid", "given_label", "needed_container", "needed_grid", "needed_label", "reward_container", "reward_grid", "rewards_label", "currency_container", "currency_label", "unlock_icon")]
 layout_mode = 0
 offset_left = -5.0
 offset_top = 876.0
@@ -504,96 +506,140 @@ offset_right = 1929.0
 offset_bottom = 1389.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_lusd0")
 script = ExtResource("19_3hun1")
+given_container = NodePath("HBoxContainer/GivenContainer")
+given_grid = NodePath("HBoxContainer/GivenContainer/ScrollContainer/GivenGrid")
+given_label = NodePath("HBoxContainer/GivenContainer/GivenLabel")
+needed_container = NodePath("HBoxContainer/NeededContainer")
+needed_grid = NodePath("HBoxContainer/NeededContainer/ScrollContainer/NeededGrid")
+needed_label = NodePath("HBoxContainer/NeededContainer/NeededLabel")
+reward_container = NodePath("HBoxContainer/RewardsContainer")
+reward_grid = NodePath("HBoxContainer/RewardsContainer/ScrollContainer/RewardsGrid")
+rewards_label = NodePath("HBoxContainer/RewardsContainer/RewardsLabel")
+currency_container = NodePath("HBoxContainer/Currency Unlock")
+currency_label = NodePath("HBoxContainer/Currency Unlock/CurrencyLabel")
+unlock_icon = NodePath("HBoxContainer/Currency Unlock/UnlockIcon")
 grid_scene = ExtResource("20_jtaea")
 given_grid_bg = ExtResource("21_acxke")
 needed_grid_bg = ExtResource("21_tyy4i")
 rewarded_grid_bg = ExtResource("22_acxke")
 
-[node name="GivenGrid" type="GridContainer" parent="Panel/Order Summary"]
-layout_mode = 0
-offset_left = 163.0
-offset_top = 130.0
-offset_right = 390.0
-offset_bottom = 322.0
-scale = Vector2(0.9, 0.9)
-columns = 2
-
-[node name="NeededGrid" type="GridContainer" parent="Panel/Order Summary"]
-layout_mode = 0
-offset_left = 621.0
-offset_top = 130.0
-offset_right = 848.0
-offset_bottom = 322.0
-scale = Vector2(0.9, 0.9)
-columns = 2
-
-[node name="RewardGrid" type="GridContainer" parent="Panel/Order Summary"]
-layout_mode = 0
-offset_left = 1177.0
-offset_top = 130.0
-offset_right = 1404.0
-offset_bottom = 322.0
-scale = Vector2(0.9, 0.9)
-columns = 2
-
-[node name="GivenLabel" type="RichTextLabel" parent="Panel/Order Summary"]
-layout_mode = 0
-offset_left = 131.0
-offset_top = 54.0
-offset_right = 544.0
-offset_bottom = 105.0
-theme_override_fonts/normal_font = ExtResource("11_3hun1")
-theme_override_font_sizes/normal_font_size = 30
-text = "Given Items:"
-horizontal_alignment = 1
-
-[node name="NeededLabel" type="RichTextLabel" parent="Panel/Order Summary"]
-layout_mode = 0
-offset_left = 568.0
-offset_top = 54.0
-offset_right = 981.0
-offset_bottom = 105.0
-theme_override_fonts/normal_font = ExtResource("11_3hun1")
-theme_override_font_sizes/normal_font_size = 30
-text = "Required Items:"
-horizontal_alignment = 1
-
-[node name="RewardsLabel" type="RichTextLabel" parent="Panel/Order Summary"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/Order Summary"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.00930714
-anchor_right = 0.00930714
-offset_left = 1165.0
-offset_top = 53.0
-offset_right = 1578.0
-offset_bottom = 104.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 94.0
+offset_top = 19.0
+offset_right = -41.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GivenContainer" type="VBoxContainer" parent="Panel/Order Summary/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GivenLabel" type="RichTextLabel" parent="Panel/Order Summary/HBoxContainer/GivenContainer"]
+layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("11_3hun1")
 theme_override_font_sizes/normal_font_size = 30
-text = "Rewards:"
+text = "Given Items"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/Order Summary/HBoxContainer/GivenContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="GivenGrid" type="HFlowContainer" parent="Panel/Order Summary/HBoxContainer/GivenContainer/ScrollContainer"]
+custom_minimum_size = Vector2(407, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+alignment = 1
+
+[node name="NeededContainer" type="VBoxContainer" parent="Panel/Order Summary/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NeededLabel" type="RichTextLabel" parent="Panel/Order Summary/HBoxContainer/NeededContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("11_3hun1")
+theme_override_font_sizes/normal_font_size = 30
+text = "Required Items"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/Order Summary/HBoxContainer/NeededContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="NeededGrid" type="HFlowContainer" parent="Panel/Order Summary/HBoxContainer/NeededContainer/ScrollContainer"]
+custom_minimum_size = Vector2(407, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+alignment = 1
+
+[node name="SummaryArrow" type="TextureRect" parent="Panel/Order Summary/HBoxContainer"]
+self_modulate = Color(100.812, 0.745098, 0.756863, 1)
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("27_lusd0")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="RewardsContainer" type="VBoxContainer" parent="Panel/Order Summary/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RewardsLabel" type="RichTextLabel" parent="Panel/Order Summary/HBoxContainer/RewardsContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("11_3hun1")
+theme_override_font_sizes/normal_font_size = 30
+text = "Rewards"
+fit_content = true
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="CurrencyLabel" type="Label" parent="Panel/Order Summary"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -370.0
-offset_top = -79.5
-offset_right = -66.0
-offset_bottom = 2.5
-grow_horizontal = 0
-grow_vertical = 2
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/Order Summary/HBoxContainer/RewardsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="RewardsGrid" type="HFlowContainer" parent="Panel/Order Summary/HBoxContainer/RewardsContainer/ScrollContainer"]
+custom_minimum_size = Vector2(407, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+alignment = 1
+
+[node name="Currency Unlock" type="VBoxContainer" parent="Panel/Order Summary/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Control" type="Control" parent="Panel/Order Summary/HBoxContainer/Currency Unlock"]
+custom_minimum_size = Vector2(0, 43.08)
+layout_mode = 2
+
+[node name="CurrencyLabel" type="Label" parent="Panel/Order Summary/HBoxContainer/Currency Unlock"]
+custom_minimum_size = Vector2(251, 52)
+layout_mode = 2
+size_flags_horizontal = 6
 theme_override_fonts/font = ExtResource("11_3hun1")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxTexture_sqkxc")
-text = "0123456"
+text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="DollarSign" type="Label" parent="Panel/Order Summary/CurrencyLabel"]
+[node name="DollarSign" type="Label" parent="Panel/Order Summary/HBoxContainer/Currency Unlock/CurrencyLabel"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -608,29 +654,11 @@ theme_override_font_sizes/font_size = 40
 text = "$"
 vertical_alignment = 1
 
-[node name="UnlockIcon" type="TextureRect" parent="Panel/Order Summary"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -307.0
-offset_top = 39.5
-offset_right = -106.0
-offset_bottom = 162.5
-grow_horizontal = 0
-grow_vertical = 2
+[node name="UnlockIcon" type="TextureRect" parent="Panel/Order Summary/HBoxContainer/Currency Unlock"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
 texture = ExtResource("26_jk764")
-expand_mode = 1
+expand_mode = 3
 stretch_mode = 5
-
-[node name="SummaryArrow" type="TextureRect" parent="Panel/Order Summary"]
-self_modulate = Color(100.812, 0.745098, 0.756863, 1)
-layout_mode = 0
-offset_left = 1051.0
-offset_top = 246.0
-offset_right = 1224.0
-offset_bottom = 409.0
-scale = Vector2(0.6, 0.6)
-texture = ExtResource("27_lusd0")
