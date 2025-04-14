@@ -10,7 +10,7 @@ email = ""
 subject = "Departures"
 contents = "We at Heaven Corp. are sad to see you go. We're sorry that you felt that we were a bad fit for you. We wish you the best of luck in finding new employment, and hope that this won't be too much of a setback for either of us.
 
-As per company policy, due to your premature departure you will be required to pay all outstanding medical fees for your use of company pharmaceuticals. Your outstanding debt is [ERROR].
+As per company policy, due to your premature departure you will be required to pay all outstanding medical fees for your use of company pharmaceuticals. Your outstanding debt is [color=red][shake level=20 connected=1][ERROR][/shake][/color] .
 
 We wish you the best in your future endeavors.
 
