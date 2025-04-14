@@ -1,34 +1,34 @@
 [gd_resource type="Resource" script_class="Gadget" load_steps=13 format=3 uid="uid://bmylw6g0ukbxm"]
 
-[ext_resource type="AudioStream" uid="uid://bdr8s62cq4yp4" path="res://resources/audio/Gadgets/p loom.wav" id="1_5sdsw"]
-[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_8iuif"]
-[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="1_s808j"]
-[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_myy7m"]
-[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_cf36v"]
-[ext_resource type="Texture2D" uid="uid://djy1gmqklb5bc" path="res://resources/sprites/loomPrimitive.png" id="5_58b7f"]
-[ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="5_xfrvj"]
+[ext_resource type="AudioStream" uid="uid://bdr8s62cq4yp4" path="res://resources/audio/Gadgets/p loom.wav" id="1_1v8cy"]
+[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="2_ajh5c"]
+[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="3_f4bjo"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="4_7s5ln"]
+[ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="5_sjtal"]
+[ext_resource type="Texture2D" uid="uid://djy1gmqklb5bc" path="res://resources/sprites/loomPrimitive.png" id="6_n2251"]
+[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="7_kakwe"]
 
 [sub_resource type="Resource" id="Resource_mns7h"]
-script = ExtResource("2_myy7m")
+script = ExtResource("3_f4bjo")
 locked = false
-item_filter = Array[ExtResource("3_cf36v")]([ExtResource("5_xfrvj")])
+item_filter = Array[ExtResource("4_7s5ln")]([ExtResource("5_sjtal")])
 bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_7k3h2"]
-script = ExtResource("2_myy7m")
+script = ExtResource("3_f4bjo")
 locked = true
-item_filter = Array[ExtResource("3_cf36v")]([])
+item_filter = Array[ExtResource("4_7s5ln")]([])
 bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_btxp5"]
-script = ExtResource("1_8iuif")
-slots = Array[ExtResource("2_myy7m")]([SubResource("Resource_mns7h"), SubResource("Resource_7k3h2")])
+script = ExtResource("2_ajh5c")
+slots = Array[ExtResource("3_f4bjo")]([SubResource("Resource_mns7h"), SubResource("Resource_7k3h2")])
 
 [sub_resource type="Resource" id="Resource_sgo1y"]
-script = ExtResource("3_cf36v")
-texture = ExtResource("5_58b7f")
+script = ExtResource("4_7s5ln")
+texture = ExtResource("6_n2251")
 name = "Ancient Loom"
 description = "An old antique that most would consider useless. Knowledge on how to use it is all but lost to most people, but you managed to find an esoteric video guide with pulsating electronic music that explained how to use it."
 max_stack = 1
@@ -38,7 +38,7 @@ price = 50
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_58b7f")
+"texture": ExtResource("6_n2251")
 }],
 "loop": true,
 "name": &"active",
@@ -46,7 +46,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_58b7f")
+"texture": ExtResource("6_n2251")
 }],
 "loop": true,
 "name": &"default",
@@ -54,7 +54,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_58b7f")
+"texture": ExtResource("6_n2251")
 }],
 "loop": true,
 "name": &"se",
@@ -62,7 +62,7 @@ animations = [{
 }]
 
 [resource]
-script = ExtResource("1_s808j")
+script = ExtResource("7_kakwe")
 sprite_frames = SubResource("SpriteFrames_5sdsw")
 sprite_offset = Vector2(0, -140)
 sprite_scale_factor = 0.95
@@ -76,5 +76,5 @@ produces = true
 inputs = 1
 outputs = 1
 process_time = 3.0
-ambient_sound = ExtResource("1_5sdsw")
+ambient_sound = ExtResource("1_1v8cy")
 sound_string = ""

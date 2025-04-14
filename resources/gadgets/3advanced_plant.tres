@@ -1,41 +1,41 @@
 [gd_resource type="Resource" script_class="Gadget" load_steps=14 format=3 uid="uid://7oikt5vc44v0"]
 
-[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_sknle"]
-[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_4878v"]
-[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_tt38c"]
-[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_fia4e"]
-[ext_resource type="Resource" uid="uid://bjux8vbxnqlf8" path="res://resources/items/seed.tres" id="5_1tbgm"]
-[ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="5_fia4e"]
-[ext_resource type="Texture2D" uid="uid://57ncmkhvtt8m" path="res://resources/sprites/plantIndustrial.png" id="8_1tbgm"]
+[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_7ywvj"]
+[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_h6o5s"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_82kv8"]
+[ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="4_2inii"]
+[ext_resource type="Resource" uid="uid://bjux8vbxnqlf8" path="res://resources/items/seed.tres" id="5_6sw32"]
+[ext_resource type="Texture2D" uid="uid://57ncmkhvtt8m" path="res://resources/sprites/plantIndustrial.png" id="6_k6rsj"]
+[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="7_f2kvy"]
 
 [sub_resource type="Resource" id="Resource_1tbgm"]
-script = ExtResource("2_4878v")
+script = ExtResource("2_h6o5s")
 locked = false
-item_filter = Array[ExtResource("3_tt38c")]([ExtResource("5_fia4e"), ExtResource("5_1tbgm")])
+item_filter = Array[ExtResource("3_82kv8")]([ExtResource("4_2inii"), ExtResource("5_6sw32")])
 bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_tt38c"]
-script = ExtResource("2_4878v")
+script = ExtResource("2_h6o5s")
 locked = false
-item_filter = Array[ExtResource("3_tt38c")]([ExtResource("5_fia4e"), ExtResource("5_1tbgm")])
+item_filter = Array[ExtResource("3_82kv8")]([ExtResource("4_2inii"), ExtResource("5_6sw32")])
 bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_4878v"]
-script = ExtResource("2_4878v")
+script = ExtResource("2_h6o5s")
 locked = true
-item_filter = Array[ExtResource("3_tt38c")]([])
+item_filter = Array[ExtResource("3_82kv8")]([])
 bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_q6wf6"]
-script = ExtResource("1_sknle")
-slots = Array[ExtResource("2_4878v")]([SubResource("Resource_1tbgm"), SubResource("Resource_tt38c"), SubResource("Resource_4878v")])
+script = ExtResource("1_7ywvj")
+slots = Array[ExtResource("2_h6o5s")]([SubResource("Resource_1tbgm"), SubResource("Resource_tt38c"), SubResource("Resource_4878v")])
 
 [sub_resource type="Resource" id="Resource_fia4e"]
-script = ExtResource("3_tt38c")
-texture = ExtResource("8_1tbgm")
+script = ExtResource("3_82kv8")
+texture = ExtResource("6_k6rsj")
 name = "Nutrient-dense Pot"
 description = "Long ago, it was thought that plants needed both a healthy balance of nutrients and a lot of time in order to grow. Modern research has shown this to be cowardice."
 max_stack = 1
@@ -46,7 +46,7 @@ metadata/_custom_type_script = "uid://by7jec2ew2vsl"
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_1tbgm")
+"texture": ExtResource("6_k6rsj")
 }],
 "loop": true,
 "name": &"default",
@@ -54,7 +54,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_1tbgm")
+"texture": ExtResource("6_k6rsj")
 }],
 "loop": true,
 "name": &"se",
@@ -62,7 +62,7 @@ animations = [{
 }]
 
 [resource]
-script = ExtResource("4_fia4e")
+script = ExtResource("7_f2kvy")
 sprite_frames = SubResource("SpriteFrames_1tbgm")
 sprite_offset = Vector2(0, -243)
 sprite_scale_factor = 0.9

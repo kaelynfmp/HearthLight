@@ -1,33 +1,33 @@
 [gd_resource type="Resource" script_class="Gadget" load_steps=12 format=3 uid="uid://d2khmgxs20bw2"]
 
-[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_7agyg"]
-[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_k1ud4"]
-[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_57x6j"]
-[ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="4_57x6j"]
-[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_bay8m"]
-[ext_resource type="Texture2D" uid="uid://twsfx8g8r54" path="res://resources/sprites/loomElectrical.png" id="7_ubw0m"]
+[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_nvoyh"]
+[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_is3v8"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_7h33x"]
+[ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="4_0xan1"]
+[ext_resource type="Texture2D" uid="uid://twsfx8g8r54" path="res://resources/sprites/loomElectrical.png" id="5_3csp8"]
+[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="6_oe6y5"]
 
 [sub_resource type="Resource" id="Resource_ubw0m"]
-script = ExtResource("2_k1ud4")
+script = ExtResource("2_is3v8")
 locked = false
-item_filter = Array[ExtResource("3_57x6j")]([ExtResource("4_57x6j")])
+item_filter = Array[ExtResource("3_7h33x")]([ExtResource("4_0xan1")])
 bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_7agyg"]
-script = ExtResource("2_k1ud4")
+script = ExtResource("2_is3v8")
 locked = true
-item_filter = Array[ExtResource("3_57x6j")]([])
+item_filter = Array[ExtResource("3_7h33x")]([])
 bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_m0yaq"]
-script = ExtResource("1_7agyg")
-slots = Array[ExtResource("2_k1ud4")]([SubResource("Resource_ubw0m"), SubResource("Resource_7agyg")])
+script = ExtResource("1_nvoyh")
+slots = Array[ExtResource("2_is3v8")]([SubResource("Resource_ubw0m"), SubResource("Resource_7agyg")])
 
 [sub_resource type="Resource" id="Resource_y6jnr"]
-script = ExtResource("3_57x6j")
-texture = ExtResource("7_ubw0m")
+script = ExtResource("3_7h33x")
+texture = ExtResource("5_3csp8")
 name = "Motorized Loom"
 description = "A cornerstone in any industrilization process."
 max_stack = 1
@@ -37,7 +37,7 @@ price = 100
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_ubw0m")
+"texture": ExtResource("5_3csp8")
 }],
 "loop": true,
 "name": &"default",
@@ -45,7 +45,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_ubw0m")
+"texture": ExtResource("5_3csp8")
 }],
 "loop": true,
 "name": &"se",
@@ -54,7 +54,7 @@ animations = [{
 
 [resource]
 resource_name = "Advanced Loom"
-script = ExtResource("4_bay8m")
+script = ExtResource("6_oe6y5")
 sprite_frames = SubResource("SpriteFrames_57x6j")
 sprite_offset = Vector2(0, -140)
 sprite_scale_factor = 0.95

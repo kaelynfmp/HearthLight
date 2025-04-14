@@ -1,0 +1,82 @@
+[gd_resource type="Resource" script_class="Gadget" load_steps=14 format=3 uid="uid://dospruqxgfufk"]
+
+[ext_resource type="AudioStream" uid="uid://bl3swuycvduo8" path="res://resources/audio/Gadgets/p stove.wav" id="1_ku1vl"]
+[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="2_hwhjv"]
+[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="3_r8uhx"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="4_yj01a"]
+[ext_resource type="Resource" uid="uid://gw88mo33lg1c" path="res://resources/items/ore.tres" id="5_qsopy"]
+[ext_resource type="Texture2D" uid="uid://dvqlsoydwm5ek" path="res://resources/sprites/stovePrimitive.png" id="6_6ikh7"]
+[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="7_tk6ja"]
+[ext_resource type="AudioStream" uid="uid://b0pxjy4j263lb" path="res://resources/audio/Gadgets/p stove stop.mp3" id="8_wt7fa"]
+
+[sub_resource type="Resource" id="Resource_ggt87"]
+script = ExtResource("3_r8uhx")
+locked = false
+item_filter = Array[ExtResource("4_yj01a")]([ExtResource("5_qsopy")])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_cqwqe"]
+script = ExtResource("3_r8uhx")
+locked = true
+item_filter = Array[ExtResource("4_yj01a")]([ExtResource("5_qsopy")])
+bypass_stack = false
+quantity = 0
+
+[sub_resource type="Resource" id="Resource_abta4"]
+script = ExtResource("2_hwhjv")
+slots = Array[ExtResource("3_r8uhx")]([SubResource("Resource_ggt87"), SubResource("Resource_cqwqe")])
+
+[sub_resource type="Resource" id="Resource_3ujm2"]
+script = ExtResource("4_yj01a")
+texture = ExtResource("6_6ikh7")
+name = "Wood Fire Stove"
+description = "This thing would be a fire hazard if buildings were made of flammable materials. It's a good thing that hasn't been the case for decades."
+max_stack = 1
+price = 300
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5j4jr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_6ikh7")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_6ikh7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_6ikh7")
+}],
+"loop": true,
+"name": &"se",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("7_tk6ja")
+sprite_frames = SubResource("SpriteFrames_5j4jr")
+sprite_offset = Vector2(0, -140)
+sprite_scale_factor = 0.95
+name = "Wood Fire Stove"
+age = 0
+direction = 0
+description = "This thing would be a fire hazard if buildings were made of flammable materials. It's a good thing that hasn't been the case for decades."
+item = SubResource("Resource_3ujm2")
+inventory = SubResource("Resource_abta4")
+produces = true
+inputs = 1
+outputs = 1
+process_time = 6.0
+ambient_sound = ExtResource("1_ku1vl")
+stop_sound = ExtResource("8_wt7fa")
+sound_string = ""

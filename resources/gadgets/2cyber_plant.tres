@@ -1,41 +1,41 @@
 [gd_resource type="Resource" script_class="Gadget" load_steps=14 format=3 uid="uid://027jttcoc2y8"]
 
-[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_5arwy"]
-[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_rtbff"]
-[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_5xxeq"]
-[ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="4_5xxeq"]
-[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_fqogh"]
-[ext_resource type="Texture2D" uid="uid://dn11bwl7rlnqw" path="res://resources/sprites/plantCyber.png" id="4_rtbff"]
-[ext_resource type="Resource" uid="uid://bjux8vbxnqlf8" path="res://resources/items/seed.tres" id="5_fqogh"]
+[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_jtq6x"]
+[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_ns86w"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_vrksb"]
+[ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="4_862vq"]
+[ext_resource type="Resource" uid="uid://bjux8vbxnqlf8" path="res://resources/items/seed.tres" id="5_jp65t"]
+[ext_resource type="Texture2D" uid="uid://dn11bwl7rlnqw" path="res://resources/sprites/plantCyber.png" id="6_swwa3"]
+[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="7_asyr2"]
 
 [sub_resource type="Resource" id="Resource_5qaho"]
-script = ExtResource("2_rtbff")
+script = ExtResource("2_ns86w")
 locked = false
-item_filter = Array[ExtResource("3_5xxeq")]([ExtResource("4_5xxeq"), ExtResource("5_fqogh")])
+item_filter = Array[ExtResource("3_vrksb")]([ExtResource("4_862vq"), ExtResource("5_jp65t")])
 bypass_stack = true
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_5xxeq"]
-script = ExtResource("2_rtbff")
+script = ExtResource("2_ns86w")
 locked = false
-item_filter = Array[ExtResource("3_5xxeq")]([ExtResource("4_5xxeq"), ExtResource("5_fqogh")])
+item_filter = Array[ExtResource("3_vrksb")]([ExtResource("4_862vq"), ExtResource("5_jp65t")])
 bypass_stack = true
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_fqogh"]
-script = ExtResource("2_rtbff")
+script = ExtResource("2_ns86w")
 locked = true
-item_filter = Array[ExtResource("3_5xxeq")]([])
+item_filter = Array[ExtResource("3_vrksb")]([])
 bypass_stack = true
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_feoyw"]
-script = ExtResource("1_5arwy")
-slots = Array[ExtResource("2_rtbff")]([SubResource("Resource_5qaho"), SubResource("Resource_5xxeq"), SubResource("Resource_fqogh")])
+script = ExtResource("1_jtq6x")
+slots = Array[ExtResource("2_ns86w")]([SubResource("Resource_5qaho"), SubResource("Resource_5xxeq"), SubResource("Resource_fqogh")])
 
 [sub_resource type="Resource" id="Resource_42lq6"]
-script = ExtResource("3_5xxeq")
-texture = ExtResource("4_rtbff")
+script = ExtResource("3_vrksb")
+texture = ExtResource("6_swwa3")
 name = "Irradiated Pot"
 description = "Using radiation to simply change the genetic structure of a plant is so passé. Why not use it to directly speed up growth instead?"
 max_stack = 1
@@ -46,7 +46,7 @@ metadata/_custom_type_script = "uid://by7jec2ew2vsl"
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_rtbff")
+"texture": ExtResource("6_swwa3")
 }],
 "loop": true,
 "name": &"default",
@@ -54,7 +54,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_rtbff")
+"texture": ExtResource("6_swwa3")
 }],
 "loop": true,
 "name": &"se",
@@ -62,7 +62,7 @@ animations = [{
 }]
 
 [resource]
-script = ExtResource("4_fqogh")
+script = ExtResource("7_asyr2")
 sprite_frames = SubResource("SpriteFrames_o0ex7")
 sprite_offset = Vector2(0, -243)
 sprite_scale_factor = 0.9

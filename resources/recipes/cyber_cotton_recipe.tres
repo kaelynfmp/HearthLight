@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Recipe" load_steps=11 format=3 uid="uid://dhn18hnhkpiao"]
 
-[ext_resource type="Resource" uid="uid://027jttcoc2y8" path="res://resources/gadgets/cyber_plant.tres" id="1_kl4v6"]
+[ext_resource type="Resource" uid="uid://027jttcoc2y8" path="res://resources/gadgets/2cyber_plant.tres" id="1_kl4v6"]
 [ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_kubb5"]
 [ext_resource type="Resource" uid="uid://ksn672of5whf" path="res://resources/items/water.tres" id="3_xrh3l"]
 [ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="4_ytuld"]

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Recipe" load_steps=9 format=3 uid="uid://koh6ginjmej1"]
 
-[ext_resource type="Resource" uid="uid://d2khmgxs20bw2" path="res://resources/gadgets/Advanced Loom.tres" id="1_pbm3q"]
+[ext_resource type="Resource" uid="uid://d2khmgxs20bw2" path="res://resources/gadgets/3Advanced Loom.tres" id="1_5ooaa"]
 [ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="1_scqf5"]
 [ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="2_15bk5"]
 [ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="2_pbm3q"]
@@ -26,7 +26,7 @@ quantity = 6
 [resource]
 resource_name = "advanced_fabric_recipe"
 script = ExtResource("3_pbm3q")
-gadget = ExtResource("1_pbm3q")
+gadget = ExtResource("1_5ooaa")
 inputs = Array[ExtResource("1_scqf5")]([SubResource("Resource_5ooaa")])
 outputs = Array[ExtResource("1_scqf5")]([SubResource("Resource_gmxoh")])
 processing_multiplier = 1.0

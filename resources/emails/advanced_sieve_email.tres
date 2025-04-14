@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Email" load_steps=8 format=3 uid="uid://ccvnu27rje38v"]
 
-[ext_resource type="Resource" uid="uid://duvphdqh8tjm0" path="res://resources/gadgets/advanced_sieve.tres" id="1_d5gvy"]
+[ext_resource type="Resource" uid="uid://duvphdqh8tjm0" path="res://resources/gadgets/3advanced_sieve.tres" id="1_d5gvy"]
 [ext_resource type="Resource" uid="uid://bgmxpne1d7fis" path="res://resources/items/metal.tres" id="1_iuwyd"]
 [ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_kphg2"]
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_rx7d1"]

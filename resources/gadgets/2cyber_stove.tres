@@ -1,33 +1,33 @@
 [gd_resource type="Resource" script_class="Gadget" load_steps=12 format=3 uid="uid://ceqny8kv6mlda"]
 
-[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_8ulmx"]
-[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_0og7f"]
-[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_ktapf"]
-[ext_resource type="Texture2D" uid="uid://bw7krreqoccwk" path="res://resources/sprites/stoveCyber.png" id="4_0og7f"]
-[ext_resource type="Resource" uid="uid://gw88mo33lg1c" path="res://resources/items/ore.tres" id="4_ktapf"]
-[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_qvnt0"]
+[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_miu7p"]
+[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_2ugan"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_4pugv"]
+[ext_resource type="Resource" uid="uid://gw88mo33lg1c" path="res://resources/items/ore.tres" id="4_48ber"]
+[ext_resource type="Texture2D" uid="uid://bw7krreqoccwk" path="res://resources/sprites/stoveCyber.png" id="5_2kaga"]
+[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="6_lb4n7"]
 
 [sub_resource type="Resource" id="Resource_ovf07"]
-script = ExtResource("2_0og7f")
+script = ExtResource("2_2ugan")
 locked = false
-item_filter = Array[ExtResource("3_ktapf")]([ExtResource("4_ktapf")])
+item_filter = Array[ExtResource("3_4pugv")]([ExtResource("4_48ber")])
 bypass_stack = true
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_0og7f"]
-script = ExtResource("2_0og7f")
+script = ExtResource("2_2ugan")
 locked = true
-item_filter = Array[ExtResource("3_ktapf")]([])
+item_filter = Array[ExtResource("3_4pugv")]([])
 bypass_stack = true
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_sty8k"]
-script = ExtResource("1_8ulmx")
-slots = Array[ExtResource("2_0og7f")]([SubResource("Resource_ovf07"), SubResource("Resource_0og7f")])
+script = ExtResource("1_miu7p")
+slots = Array[ExtResource("2_2ugan")]([SubResource("Resource_ovf07"), SubResource("Resource_0og7f")])
 
 [sub_resource type="Resource" id="Resource_ktapf"]
-script = ExtResource("3_ktapf")
-texture = ExtResource("4_0og7f")
+script = ExtResource("3_4pugv")
+texture = ExtResource("5_2kaga")
 name = "Cyber Stove"
 description = "You can feel the gravitational field of the miniature neutron star inside this thing. It's annoying."
 max_stack = 1
@@ -38,7 +38,7 @@ metadata/_custom_type_script = "uid://by7jec2ew2vsl"
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_0og7f")
+"texture": ExtResource("5_2kaga")
 }],
 "loop": true,
 "name": &"default",
@@ -46,7 +46,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_0og7f")
+"texture": ExtResource("5_2kaga")
 }],
 "loop": true,
 "name": &"se",
@@ -54,7 +54,7 @@ animations = [{
 }]
 
 [resource]
-script = ExtResource("4_qvnt0")
+script = ExtResource("6_lb4n7")
 sprite_frames = SubResource("SpriteFrames_qvnt0")
 sprite_offset = Vector2(0, -140)
 sprite_scale_factor = 0.95

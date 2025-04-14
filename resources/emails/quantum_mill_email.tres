@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Email" load_steps=7 format=3 uid="uid://5km4srx346kn"]
 
-[ext_resource type="Resource" uid="uid://dfkx5yhjr7sjm" path="res://resources/gadgets/cyber_grinder.tres" id="1_113kq"]
+[ext_resource type="Resource" uid="uid://dfkx5yhjr7sjm" path="res://resources/gadgets/2cyber_grinder.tres" id="1_113kq"]
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_et7us"]
 [ext_resource type="Resource" uid="uid://bgmxpne1d7fis" path="res://resources/items/metal.tres" id="1_ol7wh"]
 [ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_qwwdq"]

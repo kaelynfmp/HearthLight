@@ -1,36 +1,36 @@
 [gd_resource type="Resource" script_class="Gadget" load_steps=15 format=3 uid="uid://bkuks7tbfprqt"]
 
-[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_66ifb"]
-[ext_resource type="AudioStream" uid="uid://tgo12aeivrf" path="res://resources/audio/Gadgets/teleporter single.wav" id="1_ttbt3"]
-[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_pfq51"]
-[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_ksb6m"]
-[ext_resource type="Texture2D" uid="uid://1htm0iluudsp" path="res://resources/sprites/teleportDR.png" id="4_pfq51"]
-[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_ripor"]
-[ext_resource type="Texture2D" uid="uid://c6dvtp7p0jxhr" path="res://resources/sprites/teleportUR.png" id="6_g0fqm"]
-[ext_resource type="Texture2D" uid="uid://4u86jnud0d1e" path="res://resources/sprites/teleportUL.png" id="7_ttbt3"]
-[ext_resource type="Texture2D" uid="uid://b330eihja1q1c" path="res://resources/sprites/teleportDL.png" id="8_g0fqm"]
+[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_3ayb5"]
+[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_1bb32"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_kxe4x"]
+[ext_resource type="Texture2D" uid="uid://1htm0iluudsp" path="res://resources/sprites/teleportDR.png" id="4_i0t87"]
+[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="5_ekl5e"]
+[ext_resource type="Texture2D" uid="uid://c6dvtp7p0jxhr" path="res://resources/sprites/teleportUR.png" id="6_1tvik"]
+[ext_resource type="Texture2D" uid="uid://4u86jnud0d1e" path="res://resources/sprites/teleportUL.png" id="7_srnjb"]
+[ext_resource type="Texture2D" uid="uid://b330eihja1q1c" path="res://resources/sprites/teleportDL.png" id="8_lifpg"]
+[ext_resource type="AudioStream" uid="uid://tgo12aeivrf" path="res://resources/audio/Gadgets/teleporter single.wav" id="9_6remj"]
 
 [sub_resource type="Resource" id="Resource_g0fqm"]
-script = ExtResource("2_pfq51")
+script = ExtResource("2_1bb32")
 locked = false
-item_filter = Array[ExtResource("3_ksb6m")]([])
+item_filter = Array[ExtResource("3_kxe4x")]([])
 bypass_stack = true
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_pfq51"]
-script = ExtResource("2_pfq51")
+script = ExtResource("2_1bb32")
 locked = true
-item_filter = Array[ExtResource("3_ksb6m")]([])
+item_filter = Array[ExtResource("3_kxe4x")]([])
 bypass_stack = true
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_ttbt3"]
-script = ExtResource("1_66ifb")
-slots = Array[ExtResource("2_pfq51")]([SubResource("Resource_g0fqm"), SubResource("Resource_pfq51")])
+script = ExtResource("1_3ayb5")
+slots = Array[ExtResource("2_1bb32")]([SubResource("Resource_g0fqm"), SubResource("Resource_pfq51")])
 
 [sub_resource type="Resource" id="Resource_ksb6m"]
-script = ExtResource("3_ksb6m")
-texture = ExtResource("4_pfq51")
+script = ExtResource("3_kxe4x")
+texture = ExtResource("4_i0t87")
 name = "Teleporter"
 description = "\"Upon connection of the [b]in[/b] side of this teleporter, it is fully mounted onto any gadget you'd like. Through state of the art dubiously scientific matter quantization systems, it will then teleport resources from the mounted gadget to other linked teleporters. Teleporters will push received resources into gadgets, and pull resources to send to other linked teleporters [i]from[/i] gadgets.\" (a quote from the manual that his has for some reason)"
 max_stack = 100
@@ -46,7 +46,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_pfq51")
+"texture": ExtResource("4_i0t87")
 }],
 "loop": true,
 "name": &"default",
@@ -54,7 +54,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_g0fqm")
+"texture": ExtResource("6_1tvik")
 }],
 "loop": true,
 "name": &"ne",
@@ -62,7 +62,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_g0fqm")
+"texture": ExtResource("6_1tvik")
 }],
 "loop": true,
 "name": &"ne_active",
@@ -70,7 +70,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_ttbt3")
+"texture": ExtResource("7_srnjb")
 }],
 "loop": true,
 "name": &"nw",
@@ -78,7 +78,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_ttbt3")
+"texture": ExtResource("7_srnjb")
 }],
 "loop": true,
 "name": &"nw_active",
@@ -86,7 +86,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_pfq51")
+"texture": ExtResource("4_i0t87")
 }],
 "loop": true,
 "name": &"se",
@@ -94,7 +94,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_pfq51")
+"texture": ExtResource("4_i0t87")
 }],
 "loop": true,
 "name": &"se_active",
@@ -102,7 +102,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_g0fqm")
+"texture": ExtResource("8_lifpg")
 }],
 "loop": true,
 "name": &"sw",
@@ -110,7 +110,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_g0fqm")
+"texture": ExtResource("8_lifpg")
 }],
 "loop": true,
 "name": &"sw_active",
@@ -118,7 +118,7 @@ animations = [{
 }]
 
 [resource]
-script = ExtResource("4_ripor")
+script = ExtResource("5_ekl5e")
 sprite_frames = SubResource("SpriteFrames_ripor")
 sprite_offset = Vector2(0, -140)
 sprite_scale_factor = 0.95
@@ -132,6 +132,6 @@ produces = true
 inputs = 1
 outputs = 1
 process_time = 0.5
-stop_sound = ExtResource("1_ttbt3")
+stop_sound = ExtResource("9_6remj")
 sound_string = ""
 metadata/_custom_type_script = "uid://diu2pkk76wyyy"
