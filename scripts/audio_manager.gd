@@ -4,7 +4,7 @@ extends Node
 var gadget_audio:AudioStreamPlayer2D
 ## A dictionary that connects a gadget to it's audio index in the synchronized stream
 var gadget_audio_index:Dictionary[Gadget, int] # Populate dict once ready
-
+var is_good: bool = false
 var playback:AudioStreamPlaybackPolyphonic
 
 var teleport_player:AudioStreamPlayer
@@ -12,7 +12,7 @@ var ambient_audio: AudioStreamPlayer2D
 var intro_ambient_audio: AudioStreamPlayer2D
 var rain_audio: AudioStreamPlayer2D
 var already_stop: bool = false
-var good_ending_audio: AudioStreamPlayer2D
+var ending_audio: AudioStreamPlayer2D
 
 var active_gadgets:Dictionary[String, Dictionary] = {
 	"c grinder.wav": {},
@@ -75,8 +75,8 @@ func set_ambient_audio(stream_player:AudioStreamPlayer2D):
 func set_intro_ambient_audio(stream_player:AudioStreamPlayer2D):
 	intro_ambient_audio = stream_player
 	
-func set_good_ending_audio(stream_player:AudioStreamPlayer2D):
-	good_ending_audio = stream_player
+func set_ending_audio(stream_player:AudioStreamPlayer2D):
+	ending_audio = stream_player
 
 func set_gadget_audio(stream_player:AudioStreamPlayer2D):
 	gadget_audio = stream_player
@@ -160,12 +160,25 @@ func transition_good_ending():
 		ambient_audio.loop = false
 		ambient_audio.stop()
 	playback.play_stream(load("res://resources/audio/explosion.wav"), 0, -6)
-	good_ending_audio.play()
-	#good_ending_audio.finished.connect(restart_ambient)
+	ending_audio.play()
+	#ending_audio.finished.connect(restart_ambient)
 	
-func transition_free_play():
-	good_ending_audio.stop()
-	restart_ambient()
+func transition_bad_ending():
+	if intro_ambient_audio.playing:
+		intro_ambient_audio.stop()
+	if ambient_audio.playing:
+		ambient_audio.loop = false
+		ambient_audio.stop()
+	gadget_audio.loop = false
+	gadget_audio.stop()
+	ending_audio.stream = load("res://resources/audio/bad end.wav")
+	ending_audio.play()
+	
+func transition_after_ending():
+	ending_audio.loop = false
+	ending_audio.stop()
+	if is_good:
+		restart_ambient()
 	
 func restart_ambient():
 	ambient_audio.seek(0)

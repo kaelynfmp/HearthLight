@@ -56,7 +56,7 @@
 [ext_resource type="Script" uid="uid://b3lbgj2bg1bya" path="res://scripts/audio/ambient_audio.gd" id="49_jr8j8"]
 [ext_resource type="Script" uid="uid://d2nb6vcauoiaa" path="res://scripts/audio/ambient_intro.gd" id="49_pyvr3"]
 [ext_resource type="AudioStream" uid="uid://bmvdurbo6k6oi" path="res://resources/audio/good end.wav" id="56_014nw"]
-[ext_resource type="Script" uid="uid://bipggkkl5k7kj" path="res://scripts/audio/ambient_good_ending.gd" id="57_ki8oc"]
+[ext_resource type="Script" uid="uid://bipggkkl5k7kj" path="res://scripts/audio/ambient_ending.gd" id="57_ki8oc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4aq65"]
 shader = ExtResource("1_1f3ag")
@@ -374,7 +374,7 @@ max_distance = 12570.0
 attenuation = 1e-05
 script = ExtResource("14_3j2fx")
 
-[node name="AmbientGoodEnding" type="AudioStreamPlayer2D" parent="Audio"]
+[node name="AmbientEnding" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("56_014nw")
 volume_db = 6.0
 script = ExtResource("57_ki8oc")
@@ -385,8 +385,8 @@ script = ExtResource("57_ki8oc")
 [connection signal="finished" from="Audio/AmbientIntro" to="Audio/AmbientIntro" method="_on_finished"]
 [connection signal="ready" from="Audio/AmbientIntro" to="Audio/AmbientIntro" method="_on_ready"]
 [connection signal="finished" from="Audio/Ambient" to="Audio/Ambient" method="_on_finished"]
-[connection signal="finished" from="Audio/AmbientGoodEnding" to="Audio/AmbientGoodEnding" method="_on_finished"]
-[connection signal="ready" from="Audio/AmbientGoodEnding" to="Audio/AmbientGoodEnding" method="_on_ready"]
+[connection signal="finished" from="Audio/AmbientEnding" to="Audio/AmbientEnding" method="_on_finished"]
+[connection signal="ready" from="Audio/AmbientEnding" to="Audio/AmbientEnding" method="_on_ready"]
 
 [editable path="Backgrounds/Transition2Background"]
 [editable path="Backgrounds/SunsetBackground"]
