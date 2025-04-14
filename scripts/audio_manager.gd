@@ -8,7 +8,7 @@ var gadget_audio_index:Dictionary[Gadget, int] # Populate dict once ready
 var playback:AudioStreamPlaybackPolyphonic
 
 var teleport_player:AudioStreamPlayer
-var music_player
+var ambient_audio: AudioStreamPlayer2D
 
 var active_gadgets:Dictionary[String, Dictionary] = {
 	"c grinder.wav": {},
@@ -65,6 +65,8 @@ var button_sounds:Array[AudioStream] = [
 
 var teleport_sound:AudioStream = preload("res://resources/audio/Gadgets/teleporter single.wav")
 
+func set_ambient_audio(stream_player:AudioStreamPlayer2D):
+	ambient_audio = stream_player
 
 func set_gadget_audio(stream_player:AudioStreamPlayer2D):
 	gadget_audio = stream_player
@@ -136,4 +138,6 @@ func play_teleport_noise(): # Re-up teleport noise
 	teleport_player.play()
 
 func reset_audio():
+	ambient_audio.seek(0)
+	ambient_audio.play()
 	gadget_audio.seek(0)

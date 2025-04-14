@@ -243,6 +243,7 @@ func _physics_process(_delta: float) -> void:
 			update_time(time_scaled_seconds)
 			if (time_final):
 				if not day_end_sound.playing:
+					
 					day_end_sound.play()
 		elif sleeping: # TODO: whatever animations, etc
 			#await get_tree().create_timer(3).timeout
@@ -515,6 +516,7 @@ func is_after_date(day: int, hour: int, minute: int) -> bool:
 
 func go_sleep():
 	sleeping = true
+	AudioManager.ambient_audio.stop()
 	sleep_start = Time.get_ticks_msec()
 	milliseconds_elapsed = active_time
 	if computer_visible:
@@ -556,6 +558,8 @@ func pay_debt():
 func conclude_cutscene():
 	cutscene_displayed = false
 	start_time = Time.get_ticks_msec()
+	if not AudioManager.ambient_audio.playing:
+		AudioManager.reset_audio()
 	if current_cutscene.cutscene_type == CUTSCENE_TYPE.MAIN_MENU:
 		get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
 		
