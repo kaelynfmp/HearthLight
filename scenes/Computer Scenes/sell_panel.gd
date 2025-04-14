@@ -23,10 +23,7 @@ func _process(delta: float) -> void:
 		sell_button.disabled = false
 		var slot = input_slot.slot
 		var item = slot.item
-		if item.name in ["Coal", "Water", "Seed", "Rock"]:
-			price = ceil((item.price * base_price_ratio) * slot.quantity)
-		else:
-			price = ceil((10) * slot.quantity)
+		price = ceil((item.price * base_price_ratio) * slot.quantity)
 		cost_label.text = "+$"+str(price)
 		input_slot.update()
 		
