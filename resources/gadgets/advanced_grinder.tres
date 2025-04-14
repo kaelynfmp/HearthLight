@@ -31,7 +31,7 @@ texture = ExtResource("7_s4wwq")
 name = "Motorized Crusher"
 description = "If this whole manufacturing gig does south you could probably pawn these off on an innocent fool that wants to make \"world's most satisfying clips\" videos (or be that fool yourself)"
 max_stack = 1
-price = 100
+price = 200
 metadata/_custom_type_script = "uid://by7jec2ew2vsl"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s4wwq"]

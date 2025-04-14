@@ -405,7 +405,7 @@ x = 28240
 y = -3000
 prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_ugx5x")])
 required_item_nodes = Dictionary[Resource, int]({
-SubResource("Resource_j8aen"): 40
+SubResource("Resource_j8aen"): 48
 })
 given_item_nodes = Dictionary[Resource, int]({})
 rewards_item_nodes = Dictionary[Resource, int]({
@@ -618,8 +618,8 @@ x = 31040
 y = -4060
 prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_8pp3x")])
 required_item_nodes = Dictionary[Resource, int]({
-SubResource("Resource_bk5ib"): 30,
-SubResource("Resource_wp2vv"): 20
+SubResource("Resource_bk5ib"): 32,
+SubResource("Resource_wp2vv"): 6
 })
 given_item_nodes = Dictionary[Resource, int]({})
 rewards_item_nodes = Dictionary[Resource, int]({
@@ -807,7 +807,7 @@ y = -620
 prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_p6cry")])
 required_item_nodes = Dictionary[Resource, int]({
 SubResource("Resource_7x8l1"): 15,
-SubResource("Resource_fjetg"): 15
+SubResource("Resource_fjetg"): 5
 })
 given_item_nodes = Dictionary[Resource, int]({
 SubResource("Resource_gxpfn"): 1
@@ -842,7 +842,7 @@ x = 35520
 y = -3940
 prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_p6cry")])
 required_item_nodes = Dictionary[Resource, int]({
-SubResource("Resource_4nvll"): 48
+SubResource("Resource_4nvll"): 64
 })
 given_item_nodes = Dictionary[Resource, int]({
 SubResource("Resource_tbt5y"): 1,
@@ -929,7 +929,7 @@ x = 41220
 y = -2700
 prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_lehca")])
 required_item_nodes = Dictionary[Resource, int]({
-SubResource("Resource_01mod"): 32,
+SubResource("Resource_01mod"): 48,
 SubResource("Resource_lw2v5"): 64
 })
 given_item_nodes = Dictionary[Resource, int]({})
@@ -1209,7 +1209,7 @@ x = 30880
 y = -1440
 prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_8pp3x")])
 required_item_nodes = Dictionary[Resource, int]({
-SubResource("Resource_vrc2l"): 20
+SubResource("Resource_vrc2l"): 6
 })
 given_item_nodes = Dictionary[Resource, int]({})
 rewards_item_nodes = Dictionary[Resource, int]({

@@ -39,7 +39,7 @@ texture = ExtResource("8_1tbgm")
 name = "Nutrient-dense Pot"
 description = "Long ago, it was thought that plants needed both a healthy balance of nutrients and a lot of time in order to grow. Modern research has shown this to be cowardice."
 max_stack = 1
-price = 100
+price = 50
 metadata/_custom_type_script = "uid://by7jec2ew2vsl"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1tbgm"]
