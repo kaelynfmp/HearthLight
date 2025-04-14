@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Recipe" load_steps=8 format=3 uid="uid://dwiaejoescb15"]
 
 [ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="1_b67ax"]
-[ext_resource type="Resource" uid="uid://dh7knqcysban1" path="res://resources/gadgets/3Generator.tres" id="1_vp8o5"]
+[ext_resource type="Resource" uid="uid://dh7knqcysban1" path="res://resources/gadgets/3advanced_generator.tres" id="1_vp8o5"]
 [ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="2_228iq"]
 [ext_resource type="Resource" uid="uid://badopsm2qs26e" path="res://resources/items/Coal.tres" id="2_vp8o5"]
 [ext_resource type="Script" uid="uid://nu8khenfb28n" path="res://scripts/resources/recipe.gd" id="3_vp8o5"]

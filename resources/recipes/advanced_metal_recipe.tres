@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Recipe" load_steps=9 format=3 uid="uid://dsqtielp3afg2"]
 
 [ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="1_0ry3c"]
-[ext_resource type="Resource" uid="uid://esvaq5jc2w7h" path="res://resources/gadgets/3advanced_stove.tres" id="1_lbyv6"]
+[ext_resource type="Resource" uid="uid://esvaq5jc2w7h" path="res://resources/gadgets/3advanced_stove.tres" id="1_ba2yi"]
 [ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="2_lbyv6"]
 [ext_resource type="Script" uid="uid://nu8khenfb28n" path="res://scripts/resources/recipe.gd" id="3_0i28q"]
 [ext_resource type="Resource" uid="uid://gw88mo33lg1c" path="res://resources/items/ore.tres" id="3_q1cf5"]
@@ -26,7 +26,7 @@ quantity = 2
 [resource]
 resource_name = "advanced_metal_recipe"
 script = ExtResource("3_0i28q")
-gadget = ExtResource("1_lbyv6")
+gadget = ExtResource("1_ba2yi")
 inputs = Array[ExtResource("1_0ry3c")]([SubResource("Resource_ba2yi")])
 outputs = Array[ExtResource("1_0ry3c")]([SubResource("Resource_831t6")])
 processing_multiplier = 1.0

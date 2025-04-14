@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="1_rjd1k"]
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_shk4p"]
-[ext_resource type="Resource" uid="uid://ckrgha87ltstr" path="res://resources/gadgets/4hand_grinder.tres" id="2_8t6yv"]
+[ext_resource type="Resource" uid="uid://ckrgha87ltstr" path="res://resources/gadgets/4grinder.tres" id="2_8t6yv"]
 [ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="3_1kf00"]
 [ext_resource type="Resource" uid="uid://c222by5ulftln" path="res://resources/gadgets/4plant.tres" id="4_1kf00"]
 [ext_resource type="Resource" uid="uid://cof21obwyvl4v" path="res://resources/emails/introemail.tres" id="5_8t6yv"]
