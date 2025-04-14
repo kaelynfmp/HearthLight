@@ -257,8 +257,8 @@ func update_hint_visibility():
 	var quantities = []
 	var recipe_inputs = get_inputs_for_hint()
 	var inputs:Array[Slot] = GameManager.gadget.inventory.slots.filter(func(slot): return !slot.locked)
-	for index in range(inputs.size()):
-		quantities.append(GameManager.gadget.inventory.get_item_quantity(recipe_inputs[index].item))
+	#for index in range(inputs.size()):
+		#quantities.append(GameManager.gadget.inventory.get_item_quantity(recipe_inputs[index].item))
 	var i = 0
 	var contained = $Background/Contained
 	var marked_item = []
@@ -272,6 +272,7 @@ func update_hint_visibility():
 			
 			if input_hint.texture != current_item_in_the_slot.texture:
 				input_hint.texture = current_item_in_the_slot.texture
+				#input_hint.visible = false
 		else:
 			input_hint.texture = null
 			missing_texture.append(count)
@@ -283,3 +284,12 @@ func update_hint_visibility():
 			var input_slot_scene = contained.get_child(first_miss)
 			var input_hint:TextureRect = input_slot_scene.find_child("ImgHintInput", true)
 			input_hint.texture = recipe_item.texture
+			
+	for count in range(0, len(inputs)):
+		var input_slot_scene = contained.get_child(count)
+		var current_item_in_the_slot = inputs[count].item
+		var input_hint:TextureRect = input_slot_scene.find_child("ImgHintInput", true)
+		if current_item_in_the_slot != null:
+			input_hint.visible = false 
+		else:
+			input_hint.visible = true
