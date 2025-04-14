@@ -563,4 +563,6 @@ func check_core_tutorials_done():
 	for item in unlocked_items:
 		if item.name == "Wood Fire Stove":
 			return true
+	if is_debugging:
+		return true
 	return false

@@ -99,19 +99,16 @@ func can_insert(item: Item, amount=1, locked_only=false) -> int:
 func remove_items(item: Item, quantity:int, locked_only=false) -> bool:
 	if get_item_quantity(item) < quantity:
 		return false
-
-	var temp_quantity:int = 0
+	var temp_quantity: int = quantity
 	for slot in slots:
 		if slot.item == item and (!locked_only or slot.locked):
-			var item_quantity:int = slot.quantity
-			var remaining:int = quantity - temp_quantity
-			if remaining <= item_quantity:
-				item_quantity = remaining
-			if slot.decrement(item_quantity):
-				temp_quantity += item_quantity
-				if temp_quantity == quantity:
-					return true
-	return false	
+			var to_remove = min(slot.quantity, temp_quantity)
+			slot.decrement(to_remove) 
+			temp_quantity -= to_remove
+			if temp_quantity <= 0:
+				return true
+
+	return false 
 
 ## Returns the [int] quantity of an [Item] in the entire inventory, cumulative, with an optional parameter to check 
 ## if the [Slot] is locked before pooling it
