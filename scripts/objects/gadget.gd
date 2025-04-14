@@ -176,10 +176,14 @@ func _physics_process(delta: float) -> void:
 		if prev_power != total_power or (is_cyber_generator and is_cyber_generator_used):
 			prev_power = total_power
 			if not AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
+				print("Added sound ", gadget_stats.name)
+				print(AudioManager.active_gadgets[gadget_stats.sound_string],"---", self)
 				AudioManager.active_gadgets[gadget_stats.sound_string][self] = true
 		else:
 			if AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
-				AudioManager.active_gadgets[gadget_stats.sound_string].erase(self)
+				if gadget_stats.name != "Universal Generator" or \
+					(gadget_stats.name == "Universal Generator" and not is_cyber_generator and not is_cyber_generator_used):
+					AudioManager.active_gadgets[gadget_stats.sound_string].erase(self)
 	if !disabled and !progressing or (!progressing and selected_recipe != null) and not GameManager.sleeping:
 		if gadget_stats.name in ["Conveyor Belt", "Teleporter"]:
 			if gadget_stats.name != "Teleporter" or has_power_from_generator:

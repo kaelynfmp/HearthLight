@@ -8,6 +8,7 @@ var gadget_audio_index:Dictionary[Gadget, int] # Populate dict once ready
 var playback:AudioStreamPlaybackPolyphonic
 
 var teleport_player:AudioStreamPlayer
+var music_player
 
 var active_gadgets:Dictionary[String, Dictionary] = {
 	"c grinder.wav": {},
@@ -133,3 +134,6 @@ func _process(_delta: float) -> void:
 
 func play_teleport_noise(): # Re-up teleport noise
 	teleport_player.play()
+
+func reset_audio():
+	gadget_audio.seek(0)

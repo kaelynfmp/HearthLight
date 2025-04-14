@@ -537,6 +537,7 @@ func wake_up():
 		game_time["minute"] = 0
 		game_time["second"] = 0
 		sleeping = false
+		AudioManager.reset_audio()
 		print("waking up...")
 
 func pay_debt():
