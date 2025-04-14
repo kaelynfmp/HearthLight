@@ -47,7 +47,7 @@ texture = ExtResource("4_4rwd2")
 name = "Laser Sieve"
 description = "This thing doesn't even have a mesh in it. Lasers just zap away all the unwanted material. It still needs water to cool it though, and for some reason it's grown accustomed to the taste of fabric."
 max_stack = 1
-price = 300
+price = 600
 metadata/_custom_type_script = "uid://by7jec2ew2vsl"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pchjd"]

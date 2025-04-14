@@ -48,7 +48,7 @@ texture = ExtResource("7_bwxyx")
 name = "Sieve"
 description = "You never thought you'd see one of these. This one probably belongs in a museum it's so old, but it'll get the job done."
 max_stack = 1
-price = 500
+price = 200
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fxx6p"]
 animations = [{

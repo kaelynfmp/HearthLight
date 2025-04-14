@@ -30,7 +30,7 @@ var target_list: Array[InWorldGadget]
 # Round-robin distribution, so every second increase this target index to match with target_list
 var target_index = 0
 
-var max_power:int = 1000
+var max_power:int = 100
 # With 6 gadgets, this means 1 coal can power 6 recipes. I.e. 6 simultaneous gadgets can be powered by 
 # one generator.
 var power_depletion_rate:float = 0.2
@@ -162,6 +162,7 @@ func push_to_mounted_gadget():
 			inventory.remove_items(pushed_item, 1, false)
 
 func _physics_process(delta: float) -> void:
+	if GameManager.computer_visible and not GameManager.time_final: return
 	if not gadget_stats.produces:
 		return
 	if GameManager.gadget == null:
@@ -239,6 +240,8 @@ func is_able_to_recipe() -> bool:
 			return true
 		var slot_item_in_recipe = selected_recipe.outputs.find_custom(func(output): 
 			return output.item.name == item.name)
+		if slot.bypass_stack:
+			return true
 		if slot.quantity + selected_recipe.outputs[slot_item_in_recipe].quantity <= item.max_stack:
 			return true
 	)
@@ -383,6 +386,10 @@ func update_recipes():
 			recipes.append(recipe)
 		
 func check_for_valid_recipe() -> void:
+	if is_generator and total_power >= max_power:
+		total_power = max_power
+		selected_recipe = null
+		return
 	if age > GameManager.Age.PRIMITIVE and not is_generator and not has_power_from_generator:
 		selected_recipe = null
 		return
@@ -404,7 +411,8 @@ func do_recipe():
 	if age > GameManager.Age.PRIMITIVE or primitive_selected:
 		start_progression()
 
-func start_progression():
+func start_progression() -> void:
+	if GameManager.sleeping: return
 	recipe_taken = false
 	if nearby_cyber_generator != null:
 		nearby_cyber_generator.is_cyber_generator_used = true
@@ -417,7 +425,8 @@ func start_progression():
 			# 'True' is arbitrary value, this is a dictionary only to preserve uniqueness
 			AudioManager.active_gadgets[gadget_stats.sound_string][self] = true
 	
-func recipe_take():
+func recipe_take() -> void:
+	if GameManager.sleeping: return
 	for input in selected_recipe.inputs:
 		# We know that the recipe is valid, so we can just remove willy nilly
 		for slot in inventory.slots.filter(func(slot): return !slot.locked):
@@ -425,14 +434,16 @@ func recipe_take():
 				inventory.remove_items(slot.item, input.quantity)
 	recipe_taken = true
 
-func finish_recipe():
+func finish_recipe() -> void:
+	if GameManager.sleeping: return
 	if not is_generator:
 		recipe_take()
 		for output in selected_recipe.outputs:
 			inventory.insert(output.item, output.quantity, true)
 	cancel_processing()
 	
-func cancel_processing():
+func cancel_processing() -> void:
+	if GameManager.sleeping: return
 	progress = 0.0
 	progressing = false
 	audio_player.stop()

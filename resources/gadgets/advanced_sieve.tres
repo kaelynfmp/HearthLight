@@ -47,7 +47,7 @@ texture = ExtResource("7_a7w3c")
 name = "Pump and Sieve"
 description = "Just pump the water through. That's how sieves work, right?"
 max_stack = 1
-price = 100
+price = 400
 metadata/_custom_type_script = "uid://by7jec2ew2vsl"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_a7w3c"]

@@ -31,7 +31,7 @@ texture = ExtResource("7_rjvo2")
 name = "Induction Stove"
 description = "A stove that works through the manipulation of the unbridled power of magnets. Best not to get near it with cybernetics..."
 max_stack = 1
-price = 100
+price = 500
 metadata/_custom_type_script = "uid://by7jec2ew2vsl"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rjvo2"]

@@ -10,4 +10,4 @@ name = "Fabric"
 description = "Quality fabric, unsullied by corpo hands.
 Made from [res=Cotton]Cotton[/res]"
 max_stack = 24
-price = 75
+price = 5
