@@ -401,7 +401,6 @@ z_as_relative = false
 size_flags_horizontal = 4
 
 [node name="SleepCanvas" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -420,7 +419,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_fonts/normal_font = ExtResource("20_qpprf")
 theme_override_font_sizes/normal_font_size = 60
-text = "The power has went out.
+text = "The power has gone out.
 You have no choice but to sleep."
 horizontal_alignment = 1
 vertical_alignment = 1
