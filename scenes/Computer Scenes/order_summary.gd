@@ -6,6 +6,9 @@ extends Panel
 @onready var unlock_icon: TextureRect = $UnlockIcon
 @export var grid_scene: PackedScene
 
+@export var given_grid_bg: Texture2D
+@export var needed_grid_bg: Texture2D
+@export var rewarded_grid_bg: Texture2D
 var order: Order
 
 #var email = email_button.email
@@ -43,6 +46,13 @@ func populate_order_hint(grid: GridContainer, item_list: Array, item_quantities:
 			var item_quantity_label = item_display.get_node("ItemQuantityLabel")
 			var index = item_list.find(item)
 			item_quantity_label.text = str(item_quantities[index])
+			
+			# default is given grid bg
+			if grid == needed_grid:
+				item_display.texture = needed_grid_bg
+			elif grid == reward_grid:
+				item_display.texture = rewarded_grid_bg
+				
 			
 			grid.add_child(item_display)
 

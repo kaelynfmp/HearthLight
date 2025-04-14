@@ -20,13 +20,13 @@ func _process(delta: float) -> void:
 		var slot = input_slot.slot
 		var item = slot.item
 		price = ceil((item.price * price_ratio) * slot.quantity)
-		cost_label.text = str(price)
+		cost_label.text = "+$"+str(price)
 		input_slot.update()
 		
 	if input_slot and input_slot.slot and (!input_slot.slot.item or input_slot.slot.quantity == 0):
 		sell_button.disabled = true
 		price = 0
-		cost_label.text = str(price)
+		cost_label.text = "$"+str(price)
 		input_slot.update()
 	if visible and !GameManager.inventory and GameManager.computer_visible:
 		GameManager.change_inventory()
@@ -45,6 +45,7 @@ func on_sell_button_pressed() -> void:
 		print("sold")
 		# add currency
 		GameManager.add_currency(price)
+		AudioManager.play_button_sound(AudioManager.BUTTON.BUY)
 		
 		input_slot.slot.item = null
 		input_slot.slot.quantity = 0
