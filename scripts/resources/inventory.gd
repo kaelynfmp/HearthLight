@@ -118,7 +118,7 @@ func remove_items(item: Item, quantity:int, locked_only=false) -> bool:
 func get_item_quantity(item: Item, locked_check=false) -> int:
 	var quantity:int = 0
 	for slot in slots:
-		if slot.item == item and (!locked_check or !slot.locked):
+		if slot.item != null and slot.item.name == item.name and (!locked_check or !slot.locked):
 			quantity += slot.quantity
 
 	return quantity
