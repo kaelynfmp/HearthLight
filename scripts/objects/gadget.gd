@@ -30,7 +30,7 @@ var target_list: Array[InWorldGadget]
 # Round-robin distribution, so every second increase this target index to match with target_list
 var target_index = 0
 
-var max_power:int = 1000
+var max_power:int = 100
 # With 6 gadgets, this means 1 coal can power 6 recipes. I.e. 6 simultaneous gadgets can be powered by 
 # one generator.
 var power_depletion_rate:float = 0.2
