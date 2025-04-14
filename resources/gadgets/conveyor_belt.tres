@@ -33,7 +33,7 @@ texture = ExtResource("6_nmkh0")
 name = "Conveyor Belt"
 description = "It's incredible how handy these things are considering how few hands they have."
 max_stack = 24
-price = 5
+price = 25
 metadata/_custom_type_script = "uid://by7jec2ew2vsl"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lf8tf"]

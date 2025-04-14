@@ -109,7 +109,7 @@ texture = ExtResource("4_0o3wc")
 name = "Storage"
 description = "It's a box. Not everything needs to be complicated."
 max_stack = 24
-price = 50
+price = 100
 metadata/_custom_type_script = "uid://by7jec2ew2vsl"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cn3ik"]

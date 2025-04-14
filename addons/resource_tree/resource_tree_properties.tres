@@ -126,7 +126,7 @@
 [ext_resource type="Resource" uid="uid://butrsb6v2wfri" path="res://resources/emails/Story7.tres" id="106_ob3jn"]
 [ext_resource type="Resource" uid="uid://bnbc0ortpqhus" path="res://resources/emails/Story8.tres" id="107_4fbq8"]
 [ext_resource type="Resource" uid="uid://dx7m8lptxpgw0" path="res://resources/emails/Story9.tres" id="108_c4koa"]
-[ext_resource type="Resource" path="res://resources/emails/OrderChain1-3Success.tres" id="108_g6p2u"]
+[ext_resource type="Resource" uid="uid://cadfyj4i1rggq" path="res://resources/emails/OrderChain1-3Success.tres" id="108_g6p2u"]
 
 [sub_resource type="Resource" id="Resource_mniym"]
 script = ExtResource("1_5e5y2")
