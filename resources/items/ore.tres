@@ -9,4 +9,4 @@ texture = ExtResource("2_nk6t8")
 name = "Ore"
 description = "Small amounts of raw metal that still need to be melted down into something useable."
 max_stack = 24
-price = 20
+price = 30
