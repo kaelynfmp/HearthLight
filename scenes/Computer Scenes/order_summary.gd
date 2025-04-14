@@ -1,7 +1,10 @@
 extends Panel
 @onready var given_grid: GridContainer = $GivenGrid
+@onready var given_label: RichTextLabel = $GivenLabel
 @onready var needed_grid: GridContainer = $NeededGrid
+@onready var needed_label: RichTextLabel = $NeededLabel
 @onready var reward_grid: GridContainer = $RewardGrid
+@onready var rewards_label: RichTextLabel = $RewardsLabel
 @onready var currency_label: Label = $CurrencyLabel
 @onready var unlock_icon: TextureRect = $UnlockIcon
 @export var grid_scene: PackedScene
@@ -48,11 +51,14 @@ func populate_order_hint(grid: GridContainer, item_list: Array, item_quantities:
 			item_quantity_label.text = str(item_quantities[index])
 			
 			# default is given grid bg
+			var center_x = grid.position.x #+ grid.size.x / 2
 			if grid == needed_grid:
 				item_display.texture = needed_grid_bg
+				needed_label.position.x = center_x
 			elif grid == reward_grid:
 				item_display.texture = rewarded_grid_bg
-				
+			else:
+				given_label.position.x = center_x
 			#if len(item_list) == 3:
 				#var blank_tile := Control.new()
 				#blank_tile.custom_minimum_size = Vector2(0,0)
