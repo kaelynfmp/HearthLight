@@ -123,6 +123,7 @@ func select_random_emails(random_amount: int = GameManager.random_email_amount) 
 		#eachemail.attached_order.is_completed = false
 		eachemail.attached_order.is_accepted = false
 		eachemail.attached_order.responded = false
+		eachemail.is_read = false
 	return random_emails
 
 func create_inbox_buttons():
@@ -252,8 +253,7 @@ func display_email_button(email: Email):
 		fulfill_texture.visible = false
 		accept_button.visible = false
 		reject_button.visible = false
-	# order accept/reject
-	if email.attached_order and !email.attached_order.responded:
+	if email.attached_order != null and !email.attached_order.responded:
 		if accept_button:
 			accept_button.pressed.connect(func(): order_accept(email, accept_button, reject_button))
 		if reject_button:
@@ -265,6 +265,8 @@ func display_email_button(email: Email):
 		fulfill_button.button_sound = AudioManager.BUTTON.CLICK
 		fulfill_button.text = "Archive"
 		fulfill_button.pressed.connect(func(): fulfill_order(email))
+		accept_button.visible = false
+		reject_button.visible = false
 	if email.attached_order != null and email.attached_order.responded and email.attached_order.is_accepted and not email.attached_order.is_completed:
 		fulfill_texture.visible = true
 		accept_button.visible = false
@@ -272,17 +274,12 @@ func display_email_button(email: Email):
 		fulfill_button.pressed.connect(func(): fulfill_order(email))
 		#change_email_category(email, "orders")
 		#display_category_emails(current_category)
-	if email.attached_order != null and email.attached_order.is_completed:
+	if email.attached_order != null and email.archived:
 		change_email_category(email, "archive")
 		#display_category_emails(current_category)
 		fulfill_texture.visible = false
 		accept_button.visible = false
 		reject_button.visible = false
-	if !email.attached_order or (email.attached_order.responded and email in categorized_emails["archive"]): #  no order or order has been responded to
-		accept_button.visible = false
-		reject_button.visible = false
-		# if email.attached_order.responded:
-			#TODO: maybe add "you rejected" or "you accepted+fulfilled"
 		
 # Shows expanded email
 func show_email_details(email: Email, email_button: Button):
@@ -364,7 +361,6 @@ func check_email_failed(email: Email) -> bool:
 		email.failed = true
 		if email.attached_order != null:
 			email.attached_order.removed.emit()
-		email.attached_order.is_completed = true
 		order_reject(email)
 		#print("email failed")
 		return true

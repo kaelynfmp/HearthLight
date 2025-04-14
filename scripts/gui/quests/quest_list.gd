@@ -12,6 +12,8 @@ func order_accepted(order:Order):
 	var new_quest:VBoxContainer = quest_scene.instantiate()
 	new_quest.order = order
 	add_child(new_quest)
+	order.completed.disconnect(order_completed)
+	order.removed.disconnect(order_completed)
 	order.completed.connect(order_completed.bind(new_quest))
 	order.removed.connect(order_completed.bind(new_quest))
 	
