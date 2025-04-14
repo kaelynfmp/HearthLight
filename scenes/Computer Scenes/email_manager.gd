@@ -253,7 +253,7 @@ func display_email_button(email: Email):
 		accept_button.visible = false
 		reject_button.visible = false
 	# order accept/reject
-	if email.attached_order != null and !email.attached_order.responded:
+	if email.attached_order and !email.attached_order.responded:
 		if accept_button:
 			accept_button.pressed.connect(func(): order_accept(email, accept_button, reject_button))
 		if reject_button:
@@ -278,7 +278,7 @@ func display_email_button(email: Email):
 		fulfill_texture.visible = false
 		accept_button.visible = false
 		reject_button.visible = false
-	if !email.attached_order or email.attached_order.responded: #  no order or order has been responded to
+	if !email.attached_order or (email.attached_order.responded and email in categorized_emails["archive"]): #  no order or order has been responded to
 		accept_button.visible = false
 		reject_button.visible = false
 		# if email.attached_order.responded:
@@ -364,6 +364,7 @@ func check_email_failed(email: Email) -> bool:
 		email.failed = true
 		if email.attached_order != null:
 			email.attached_order.removed.emit()
+		email.attached_order.is_completed = true
 		order_reject(email)
 		#print("email failed")
 		return true
