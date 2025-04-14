@@ -44,14 +44,20 @@ func update():
 	var item_sprite:TextureRect = find_child("Item", true)
 	var stack_number:Label = find_child("Stack", true)
 	if slot != null:
-		if !slot.item:
+		if slot.item == null:
 			item_sprite.visible = false
 			stack_number.visible = false
 			
 		else:
-			tooltip_image.set_texture(slot.item.texture)
-			tooltip.set_text_with_bbcode(slot.item.description)
-			title.set_text_with_bbcode(slot.item.name)
+			tooltip_image = find_child("TooltipImage", true)
+			tooltip = find_child("Tooltip", true)
+			title = find_child("Title", true)
+			if tooltip_image != null:
+				tooltip_image.set_texture(slot.item.texture)
+			if tooltip != null:
+				tooltip.set_text_with_bbcode(slot.item.description)
+			if title != null:
+				title.set_text_with_bbcode(slot.item.name)
 			item_sprite.visible = true
 			item_sprite.set_texture(slot.item.texture)
 			if slot.quantity > 1:
