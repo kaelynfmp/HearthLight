@@ -1699,7 +1699,7 @@ y = 4900
 [sub_resource type="Resource" id="Resource_o22c4"]
 script = ExtResource("3_xi7dl")
 item = ExtResource("5_pyano")
-x = -660
+x = -640
 y = 240
 
 [sub_resource type="Resource" id="Resource_lxf7n"]

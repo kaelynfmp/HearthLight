@@ -466,6 +466,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_kgkpj")
 text = "sell"
 
 [node name="SellPanel" parent="Sites/Botsy" instance=ExtResource("20_uu7um")]
+z_index = 10
 layout_mode = 0
 offset_top = 7.0
 offset_bottom = 987.0

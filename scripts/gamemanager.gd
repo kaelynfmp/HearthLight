@@ -75,6 +75,8 @@ var debt:int = 10000
 var debt_days:int = 31
 var debt_paid:bool = false
 
+var sell_slot:Slot
+
 var cutscene_displayed:bool = true
 @onready var current_cutscene:Cutscene = load("res://resources/cutscenes/intro.tres")
 
@@ -303,18 +305,26 @@ func send_to_inventory(slot: Slot):
 	var starting_quantity = slot.duplicate().quantity
 	var starting_item = slot.duplicate().item
 	slot.decrement(starting_quantity)
-	for search_inventory in inventories:
-		if slot not in search_inventory.slots:
-			var remainder = search_inventory.insert(temp_slot.item, temp_slot.quantity)
-			temp_slot.decrement(temp_slot.quantity - remainder)
-			if temp_slot.quantity == 0:
-				break
+	if computer_visible and inventories.size() == 1 and sell_slot != null and sell_slot != slot and (sell_slot.item == temp_slot.item or sell_slot.item == null):
+		var remainder:int
+		if sell_slot.item == null:
+			remainder = sell_slot.initialize(temp_slot.item, temp_slot.quantity)
 		else:
-			home_inventory = search_inventory
-
+			remainder = sell_slot.increment(temp_slot.quantity)
+		temp_slot.decrement(temp_slot.quantity - remainder)
+	else:
+		for search_inventory in inventories:
+			if slot not in search_inventory.slots:
+				var remainder = search_inventory.insert(temp_slot.item, temp_slot.quantity)
+				temp_slot.decrement(temp_slot.quantity - remainder)
+				if temp_slot.quantity == 0:
+					break
+			else:
+				home_inventory = search_inventory
+	
 	if home_inventory == null:
 		home_inventory = player_inventory
-	
+		
 	if temp_slot.quantity > 0:
 		var remainder = home_inventory.insert(temp_slot.item, temp_slot.quantity)
 		temp_slot.decrement(temp_slot.quantity - remainder)

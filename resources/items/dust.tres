@@ -9,4 +9,4 @@ texture = ExtResource("2_chlvf")
 name = "Dust"
 description = "Powdered stone. It's easier to make out the reflective specks now that it's been ground up."
 max_stack = 24
-price = 50
+price = 10

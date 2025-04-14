@@ -13,6 +13,7 @@ func _ready() -> void:
 	close_button.pressed.connect(on_close_button_pressed)
 	sell_button.pressed.connect(on_sell_button_pressed)
 	duplicate_slot = input_slot.duplicate()
+	GameManager.sell_slot = input_slot.slot
 
 func _process(delta: float) -> void:
 	if input_slot and input_slot.slot and input_slot.slot.item:
