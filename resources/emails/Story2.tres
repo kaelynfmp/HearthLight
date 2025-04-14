@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://j0ke03575dlx"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_cgr2m"]
+[ext_resource type="Resource" uid="uid://jfte660mq4rn" path="res://resources/emails/Story1.tres" id="2_moljy"]
+
+[resource]
+resource_name = "Story2"
+script = ExtResource("1_cgr2m")
+sender = "Heaven Corp."
+email = ""
+subject = "Disappointment"
+contents = "Dear Valued Ex-Employee,
+
+Due to your lack of communication, we are left with no choice but the ensure that your debts are paid. You will be receiving no further correspondence from us.
+
+Good Day,
+Heaven Corp."
+category = "main"
+prerequisite_emails = Array[ExtResource("1_cgr2m")]([ExtResource("2_moljy")])
+day = 2
+hour = 0
+minute = 0
+is_read = false
+tutorial = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false
