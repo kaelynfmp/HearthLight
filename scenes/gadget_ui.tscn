@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ca24n44nxd7w1" path="res://resources/sprites/gui/gear/disabled.png" id="5_hu7k0"]
 [ext_resource type="Texture2D" uid="uid://cjlx7vkgtyovb" path="res://resources/sprites/generatorEnergy_empty.png" id="9_2mo8u"]
 [ext_resource type="Texture2D" uid="uid://cwfdegt8yq0jw" path="res://resources/sprites/generatorEnergy_filled.png" id="10_27a66"]
-[ext_resource type="Texture2D" uid="uid://5rt0yglbpaps" path="res://resources/sprites/generatoruibolt.png" id="10_sub33"]
+[ext_resource type="Texture2D" uid="uid://bg882ij3sxhhx" path="res://resources/sprites/generatoruibolt.png" id="10_sub33"]
 [ext_resource type="FontFile" uid="uid://c4bnatv11g13n" path="res://resources/fonts/Conthrax-SemiBold.otf" id="11_kxjdw"]
 [ext_resource type="Texture2D" uid="uid://cg671aijb1olp" path="res://resources/sprites/electricity.png" id="12_sub33"]
 

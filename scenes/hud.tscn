@@ -43,13 +43,13 @@
 [ext_resource type="Script" uid="uid://ccoraw5tcjrlm" path="res://scripts/cutscene_text.gd" id="34_03o4m"]
 [ext_resource type="Script" uid="uid://bnf7fgs3grdh8" path="res://scripts/continue_button.gd" id="35_03o4m"]
 [ext_resource type="Texture2D" uid="uid://bj7v3g2xr7vbt" path="res://resources/sprites/uitileset.png" id="36_fr0ct"]
-[ext_resource type="Texture2D" uid="uid://c6j4o5hfl543m" path="res://resources/sprites/generatorUItileset.png" id="37_bp320"]
+[ext_resource type="Texture2D" uid="uid://b52sdtyud3ylb" path="res://resources/sprites/generatorUItileset.png" id="37_bp320"]
 [ext_resource type="Texture2D" uid="uid://ds8bitw2mcmaj" path="res://resources/sprites/uitilesettopbar.png" id="38_rmale"]
 [ext_resource type="Texture2D" uid="uid://dbusy7s3toyc" path="res://resources/sprites/uitilesetbottombar.png" id="39_ocxo2"]
-[ext_resource type="Texture2D" uid="uid://srope2c3qyjb" path="res://resources/sprites/generatoruitop.png" id="40_x6b1a"]
-[ext_resource type="Texture2D" uid="uid://cuxaqiymrm3mt" path="res://resources/sprites/generatoruibottom.png" id="41_fmi02"]
+[ext_resource type="Texture2D" uid="uid://dv31hsj77sabm" path="res://resources/sprites/generatoruitop.png" id="40_x6b1a"]
+[ext_resource type="Texture2D" uid="uid://bdr013ryc44ma" path="res://resources/sprites/generatoruibottom.png" id="41_fmi02"]
 [ext_resource type="Texture2D" uid="uid://bpk81ck7j3l2c" path="res://resources/sprites/progressbar.png" id="42_rmale"]
-[ext_resource type="Texture2D" uid="uid://bijd8am4bfwmf" path="res://resources/sprites/generatoruiarrow.png" id="43_ocxo2"]
+[ext_resource type="Texture2D" uid="uid://bplps2tburcqb" path="res://resources/sprites/generatoruiarrow.png" id="43_ocxo2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_drira"]
 shader = ExtResource("2_0gell")

@@ -1,9 +1,9 @@
-﻿[gd_scene load_steps=3 format=3 uid="uid://b5c3taqt2yjin"]
+[gd_scene load_steps=3 format=3 uid="uid://bp2v07wmkdt0"]
 
 [ext_resource type="PackedScene" uid="uid://c5605c3ehaw25" path="res://scenes/inventory/slot.tscn" id="1_4f3af"]
-[ext_resource type="Texture2D" uid="uid://bkmlteh1isg4y" path="res://resources/sprites/generatorslot.png" id="2_4f3af"]
+[ext_resource type="Texture2D" uid="uid://ct202opvhrecs" path="res://resources/sprites/generatorslot.png" id="2_4f3af"]
 
-[node name="GeneratorSlot" instance=ExtResource("1_4f3af")]
+[node name="InputSlot" instance=ExtResource("1_4f3af")]
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
