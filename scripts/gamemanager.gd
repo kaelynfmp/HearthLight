@@ -243,6 +243,7 @@ func _physics_process(_delta: float) -> void:
 			update_time(time_scaled_seconds)
 			if (time_final):
 				if not day_end_sound.playing:
+					
 					day_end_sound.play()
 		elif sleeping: # TODO: whatever animations, etc
 			#await get_tree().create_timer(3).timeout
@@ -515,6 +516,7 @@ func is_after_date(day: int, hour: int, minute: int) -> bool:
 
 func go_sleep():
 	sleeping = true
+	AudioManager.ambient_audio.stop()
 	sleep_start = Time.get_ticks_msec()
 	milliseconds_elapsed = active_time
 	if computer_visible:
@@ -537,6 +539,7 @@ func wake_up():
 		game_time["minute"] = 0
 		game_time["second"] = 0
 		sleeping = false
+		AudioManager.reset_audio()
 		print("waking up...")
 
 func pay_debt():
@@ -547,14 +550,21 @@ func pay_debt():
 	debt_paid = true
 	if game_time["day"] > debt_days:
 		current_cutscene = load("res://resources/cutscenes/badending.tres")
+		AudioManager.transition_bad_ending()
 	else:
 		current_cutscene = load("res://resources/cutscenes/goodending.tres")
-		
+		AudioManager.is_good = true
+		AudioManager.transition_good_ending()
+	
 	cutscene_displayed = true
 
 func conclude_cutscene():
 	cutscene_displayed = false
 	start_time = Time.get_ticks_msec()
+	if not AudioManager.ambient_audio.playing:
+		AudioManager.stop_intro()
+	if AudioManager.ending_audio.playing:
+		AudioManager.transition_after_ending()
 	if current_cutscene.cutscene_type == CUTSCENE_TYPE.MAIN_MENU:
 		get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
 		

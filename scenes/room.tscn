@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=4 uid="uid://gfvpt16hdue1"]
+[gd_scene load_steps=62 format=4 uid="uid://gfvpt16hdue1"]
 
 [ext_resource type="Shader" uid="uid://7r383w0xu0ql" path="res://scripts/shaders/rain.gdshader" id="1_1f3ag"]
 [ext_resource type="Texture2D" uid="uid://cvhgtu8uxcmcm" path="res://resources/sprites/backgrounds/backgroundDay/layer0.png" id="1_2cm04"]
@@ -51,6 +51,12 @@
 [ext_resource type="Texture2D" uid="uid://dx53tvy44tf7d" path="res://resources/sprites/backgrounds/backgroundTransition1/layer4.png" id="19_drrlj"]
 [ext_resource type="Texture2D" uid="uid://duaxdwah4406a" path="res://resources/sprites/backgrounds/backgroundTransition1/layer5.png" id="20_55ugc"]
 [ext_resource type="AudioStream" uid="uid://dcar3k445w0ya" path="res://resources/audio/Gadgets/teleporter loop.wav" id="37_gmm1g"]
+[ext_resource type="AudioStream" uid="uid://cadjwjfukfmh1" path="res://resources/audio/intro loop.wav" id="48_lxjld"]
+[ext_resource type="AudioStream" uid="uid://841im32vq7di" path="res://resources/audio/main loop.wav" id="48_rhbk5"]
+[ext_resource type="Script" uid="uid://b3lbgj2bg1bya" path="res://scripts/audio/ambient_audio.gd" id="49_jr8j8"]
+[ext_resource type="Script" uid="uid://d2nb6vcauoiaa" path="res://scripts/audio/ambient_intro.gd" id="49_pyvr3"]
+[ext_resource type="AudioStream" uid="uid://bmvdurbo6k6oi" path="res://resources/audio/good end.wav" id="56_014nw"]
+[ext_resource type="Script" uid="uid://bipggkkl5k7kj" path="res://scripts/audio/ambient_ending.gd" id="57_ki8oc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4aq65"]
 shader = ExtResource("1_1f3ag")
@@ -341,11 +347,20 @@ attenuation = 1e-05
 script = ExtResource("9_ybpoa")
 
 [node name="AmbientRain" type="AudioStreamPlayer2D" parent="Audio"]
+visible = false
 stream = ExtResource("10_qtoah")
-volume_db = -9.0
-autoplay = true
+volume_db = -80.0
 max_distance = 8560.0
 attenuation = 1e-05
+
+[node name="AmbientIntro" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("48_lxjld")
+autoplay = true
+script = ExtResource("49_pyvr3")
+
+[node name="Ambient" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("48_rhbk5")
+script = ExtResource("49_jr8j8")
 
 [node name="DayStart" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("11_eom3m")
@@ -359,7 +374,19 @@ max_distance = 12570.0
 attenuation = 1e-05
 script = ExtResource("14_3j2fx")
 
+[node name="AmbientEnding" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("56_014nw")
+volume_db = 6.0
+script = ExtResource("57_ki8oc")
+
+[node name="Explosion" type="AudioStreamPlayer2D" parent="Audio"]
+
 [connection signal="finished" from="Audio/GadgetAudio" to="Audio/GadgetAudio" method="_on_finished"]
+[connection signal="finished" from="Audio/AmbientIntro" to="Audio/AmbientIntro" method="_on_finished"]
+[connection signal="ready" from="Audio/AmbientIntro" to="Audio/AmbientIntro" method="_on_ready"]
+[connection signal="finished" from="Audio/Ambient" to="Audio/Ambient" method="_on_finished"]
+[connection signal="finished" from="Audio/AmbientEnding" to="Audio/AmbientEnding" method="_on_finished"]
+[connection signal="ready" from="Audio/AmbientEnding" to="Audio/AmbientEnding" method="_on_ready"]
 
 [editable path="Backgrounds/Transition2Background"]
 [editable path="Backgrounds/SunsetBackground"]
