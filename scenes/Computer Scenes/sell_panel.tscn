@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://8vasahbxsw4y"]
+[gd_scene load_steps=20 format=3 uid="uid://8vasahbxsw4y"]
 
 [ext_resource type="PackedScene" uid="uid://fl3ygsg5b5m6" path="res://scenes/inventory/input_slot.tscn" id="1_epvt2"]
 [ext_resource type="Script" uid="uid://bkt2gcft6g31r" path="res://scenes/Computer Scenes/sell_panel.gd" id="1_qole2"]
@@ -26,33 +26,20 @@ bypass_stack = false
 quantity = 0
 metadata/_custom_type_script = "uid://cvojb3v6cdain"
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dif00"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ovgpi"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dif00"]
-bg_color = Color(0.529412, 0.196078, 0.305882, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+bg_color = Color(0.912632, 0.219776, 0.467129, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovgpi"]
-bg_color = Color(0.752227, 0.12219, 0.361344, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4cddd"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_awgtv"]
-bg_color = Color(0.602356, 0.0772683, 0.283984, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4cddd"]
-bg_color = Color(0.751684, 0.121638, 0.365923, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j3oo1"]
 
 [node name="SellPanel" type="Panel"]
 offset_right = 1922.0
@@ -93,25 +80,26 @@ slot = SubResource("Resource_oymtc")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 482.0
-offset_top = 736.0
-offset_right = -1189.0
-offset_bottom = 799.0
+offset_left = 475.0
+offset_top = 723.0
+offset_right = -1184.0
+offset_bottom = 813.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("4_oymtc")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/disabled = SubResource("StyleBoxFlat_dif00")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ovgpi")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_awgtv")
-theme_override_styles/normal = SubResource("StyleBoxFlat_4cddd")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dif00")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ovgpi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dif00")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_4cddd")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j3oo1")
 text = "sell"
 
 [node name="Cost" type="Label" parent="."]
 layout_mode = 0
 offset_left = 436.0
-offset_top = 197.0
+offset_top = 181.0
 offset_right = 763.0
-offset_bottom = 256.0
+offset_bottom = 240.0
 theme_override_fonts/font = ExtResource("7_7gu0f")
 theme_override_font_sizes/font_size = 40
 text = "+$1234567890"
