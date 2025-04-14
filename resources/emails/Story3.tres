@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://cxrecv86ynbaf"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_jmamv"]
+[ext_resource type="Resource" uid="uid://j0ke03575dlx" path="res://resources/emails/Story2.tres" id="2_j5nhf"]
+
+[resource]
+resource_name = "Story3"
+script = ExtResource("1_jmamv")
+sender = "Lo-Anne S. Hark"
+email = ""
+subject = "I [b]will[/b] find you"
+contents = "I thought this would be an easy job, but [i]nooo[/i], you had to go and make trouble for me. Now Heaven Corp. is gonna be on my ass, and it's all your fault.
+
+I don't know where you are, but wherever it is, I [b]will[/b] find you. I'm at your place right now. Shame what happened to it, really. Terrible burglary. For some reason your debt's gone down though, so I guess you can't really complain.
+
+See you around,
+Lo-Anne
+
+[center][$10000][/center]"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_jmamv")]([ExtResource("2_j5nhf")])
+day = 2
+hour = 16
+minute = 0
+is_read = false
+tutorial = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false
