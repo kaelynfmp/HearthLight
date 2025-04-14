@@ -1,26 +1,27 @@
-[gd_resource type="Resource" script_class="Gadget" load_steps=14 format=3 uid="uid://bkuks7tbfprqt"]
+[gd_resource type="Resource" script_class="Gadget" load_steps=15 format=3 uid="uid://bkuks7tbfprqt"]
 
 [ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_66ifb"]
+[ext_resource type="AudioStream" uid="uid://tgo12aeivrf" path="res://resources/audio/Gadgets/teleporter single.wav" id="1_ttbt3"]
 [ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_pfq51"]
 [ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_ksb6m"]
 [ext_resource type="Texture2D" uid="uid://1htm0iluudsp" path="res://resources/sprites/teleportDR.png" id="4_pfq51"]
 [ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_ripor"]
 [ext_resource type="Texture2D" uid="uid://c6dvtp7p0jxhr" path="res://resources/sprites/teleportUR.png" id="6_g0fqm"]
 [ext_resource type="Texture2D" uid="uid://4u86jnud0d1e" path="res://resources/sprites/teleportUL.png" id="7_ttbt3"]
-[ext_resource type="Texture2D" uid="uid://b330eihja1q1c" path="res://resources/sprites/teleportDL.png" id="8_nu0yp"]
+[ext_resource type="Texture2D" uid="uid://b330eihja1q1c" path="res://resources/sprites/teleportDL.png" id="8_g0fqm"]
 
 [sub_resource type="Resource" id="Resource_g0fqm"]
 script = ExtResource("2_pfq51")
 locked = false
 item_filter = Array[ExtResource("3_ksb6m")]([])
-bypass_stack = false
+bypass_stack = true
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_pfq51"]
 script = ExtResource("2_pfq51")
 locked = true
 item_filter = Array[ExtResource("3_ksb6m")]([])
-bypass_stack = false
+bypass_stack = true
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_ttbt3"]
@@ -31,7 +32,7 @@ slots = Array[ExtResource("2_pfq51")]([SubResource("Resource_g0fqm"), SubResourc
 script = ExtResource("3_ksb6m")
 texture = ExtResource("4_pfq51")
 name = "Teleporter"
-description = "This teleports your item into any gadget that you want!"
+description = "Upon connection of the [b]in[/b] side of this teleporter, it is fully mounted onto any gadget you'd like. Through state of the art dubiously scientific matter quantization systems, it will then teleport resources from the mounted gadget to other linked teleporters. Teleporters will push received resources into gadgets, and pull resources to send to other linked teleporters [i]from[/i] gadgets."
 max_stack = 100
 price = 50
 metadata/_custom_type_script = "uid://by7jec2ew2vsl"
@@ -101,7 +102,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_nu0yp")
+"texture": ExtResource("8_g0fqm")
 }],
 "loop": true,
 "name": &"sw",
@@ -109,7 +110,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_nu0yp")
+"texture": ExtResource("8_g0fqm")
 }],
 "loop": true,
 "name": &"sw_active",
@@ -124,12 +125,13 @@ sprite_scale_factor = 0.95
 name = "Teleporter"
 age = 3
 direction = 0
-description = "This teleports your item into any gadget that you want!"
+description = "Upon connection of the [b]in[/b] side of this teleporter, it is fully mounted onto any gadget you'd like. Through state of the art dubiously scientific matter quantization systems, it will then teleport resources from the mounted gadget to other linked teleporters. Teleporters will push received resources into gadgets, and pull resources to send to other linked teleporters [i]from[/i] gadgets."
 item = SubResource("Resource_ksb6m")
 inventory = SubResource("Resource_ttbt3")
 produces = true
 inputs = 1
 outputs = 1
 process_time = 0.5
+stop_sound = ExtResource("1_ttbt3")
 sound_string = ""
 metadata/_custom_type_script = "uid://diu2pkk76wyyy"

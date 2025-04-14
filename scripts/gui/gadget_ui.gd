@@ -10,12 +10,12 @@ var rotation_speed:float = 10
 var current_gadget:Gadget
 var input_hint_dict: Dictionary = {}
 
+func _ready() -> void:
+	GameManager.gadget_changed.connect(_reset_gadget)
+
 func _process(delta: float) -> void:
-	visible = GameManager.gadget != null and GameManager.gadget.gadget_stats.name != "Conveyor Belt"
-	if GameManager.gadget != null and GameManager.gadget.gadget_stats.name != "Conveyor Belt":
-		if current_gadget == null or GameManager.gadget.gadget_stats != current_gadget:
-			input_hint_dict = {}
-			set_gadget(GameManager.gadget)
+	visible = GameManager.gadget != null and GameManager.gadget.gadget_stats.name != "Conveyor Belt" and GameManager.gadget.gadget_stats.name != "Teleporter"
+	if GameManager.gadget != null and GameManager.gadget.gadget_stats.name != "Conveyor Belt" and GameManager.gadget.gadget_stats.name != "Teleporter":
 		if GameManager.gadget.progressing:
 			creates_progress.visible = true
 			creates_progress.material.set("shader_parameter/progress", GameManager.gadget.progress)
@@ -39,12 +39,26 @@ func _process(delta: float) -> void:
 		else:
 			$Background/Contained/CreatesControl.visible = true
 			$Background/Contained/InfinitePower.visible = false
+		if current_gadget.age > Gadget.Age.PRIMITIVE and not current_gadget.name in ["Storage", "Generator", "Universal Generator", "Teleporter"]:
+			$Background/Electricity.visible = true
+			if GameManager.gadget.has_power_from_generator:
+				$Background/Electricity.texture = load("res://resources/sprites/electricity_powered.png")
+			else:
+				$Background/Electricity.texture = load("res://resources/sprites/electricity.png")
+		else:
+			$Background/Electricity.visible = false
 	else:
 		current_gadget = null
 	if current_gadget and not current_gadget.name in ["Storage", "Universal Generator", "Teleporter"]:
 		update_hint_visibility()
 		
-func setup_storage(gadget: StaticBody2D):
+func _reset_gadget():
+	if GameManager.gadget != null:
+		set_gadget(GameManager.gadget)
+	else:
+		set_gadget(null)
+	
+func setup_storage(gadget: InWorldGadget):
 	var inputs:Array[Slot] = gadget.inventory.slots.filter(func(slot): return !slot.locked)
 	var contained = $Background/Contained
 	contained.visible = false
@@ -66,10 +80,10 @@ func setup_storage(gadget: StaticBody2D):
 		hflowcontainer.add_child(new_slot) 
 		hflowcontainer.move_child(new_slot, index)
 		
-func setup_teleporter(gadget: StaticBody2D):
+func setup_teleporter(gadget: InWorldGadget):
 	pass
 		
-func setup_generator(gadget: StaticBody2D):
+func setup_generator(gadget: InWorldGadget):
 	var contained = $Background/Contained
 	# Setup coal slot
 	if current_gadget.name == "Generator":
@@ -103,7 +117,10 @@ func setup_generator(gadget: StaticBody2D):
 	else:
 		$Background/Contained/EnergyControl.visible = false
 	
-func set_gadget(gadget:StaticBody2D):
+func set_gadget(gadget:InWorldGadget):
+	if gadget == null:
+		current_gadget = null
+		return
 	primitive_button.set_rotation(0)
 	current_gadget = gadget.gadget_stats
 	primitive_button.visible = gadget.gadget_stats.age == GameManager.Age.PRIMITIVE
@@ -213,14 +230,30 @@ func get_outputs_for_hint():
 func update_hint_visibility():
 	var quantities = []
 	var recipe_inputs = get_inputs_for_hint()
-	var inputs:Array[Slot] = current_gadget.inventory.slots.filter(func(slot): return !slot.locked)
+	var inputs:Array[Slot] = GameManager.gadget.inventory.slots.filter(func(slot): return !slot.locked)
 	for index in range(inputs.size()):
-		quantities.append(current_gadget.inventory.get_item_quantity(recipe_inputs[index].item))
+		quantities.append(GameManager.gadget.inventory.get_item_quantity(recipe_inputs[index].item))
 	var i = 0
-	for texture in input_hint_dict:
-		input_hint_dict[texture] = quantities[i]
-		i+=1
-		if input_hint_dict[texture] > 0:
-			texture.visible = false
+	var contained = $Background/Contained
+	var marked_item = []
+	var missing_texture = []
+	for count in range(0, len(inputs)):
+		var input_slot_scene = contained.get_child(count)
+		var current_item_in_the_slot = inputs[count].item
+		var input_hint:TextureRect = input_slot_scene.find_child("ImgHintInput", true)
+		if current_item_in_the_slot != null:
+			marked_item.append(current_item_in_the_slot)
+			
+			if input_hint.texture != current_item_in_the_slot.texture:
+				input_hint.texture = current_item_in_the_slot.texture
 		else:
-			texture.visible = true
+			input_hint.texture = null
+			missing_texture.append(count)
+				
+	for count in range(0, len(recipe_inputs)):
+		var recipe_item = recipe_inputs[count].item
+		if not recipe_item in marked_item:
+			var first_miss = missing_texture.pop_front()
+			var input_slot_scene = contained.get_child(first_miss)
+			var input_hint:TextureRect = input_slot_scene.find_child("ImgHintInput", true)
+			input_hint.texture = recipe_item.texture

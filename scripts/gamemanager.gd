@@ -11,17 +11,21 @@ signal debug_mode_change
 signal gadget_rotated(direction: int)
 signal awaken
 signal paid_off_debt
+signal teleporter_list_changed
+signal right_click_pressed
+signal gadget_changed
+signal teleporter_removed(teleporter: InWorldGadget)
 
 @onready var computer_gadget:Gadget = load("res://resources/gadgets/computer.tres")
 
-var character:CharacterBody2D
+var character:Character
 
 var inventory: bool = false:
 	set(value):
 		inventory = value
 		if !value:
 			gadget = null
-var gadget:StaticBody2D
+var gadget:InWorldGadget
 
 var computer_visible:bool = false
 var computer_tab_manager:TabContainer
@@ -136,6 +140,8 @@ var items:Array[Item]
 var day_start_sound:AudioStreamPlayer2D
 var day_end_sound:AudioStreamPlayer2D
 
+var teleporters:Array[InWorldGadget]
+
 var room_map = []
 var item_map = []
 
@@ -196,6 +202,12 @@ func _process(_delta: float) -> void:
 			if cursor_gadget != null and cursor_gadget.name in ["Conveyor Belt", "Teleporter"]:
 				cursor_gadget.direction = (cursor_gadget.direction + 1) % 4
 				gadget_rotated.emit(cursor_gadget.direction)
+			elif GameManager.gadget != null and GameManager.gadget.gadget_stats.name in ["Conveyor Belt", "Teleporter"]:
+				GameManager.gadget.direction = (GameManager.gadget.direction + 1) % 4
+				gadget_rotated.emit(GameManager.gadget.direction)
+	
+	elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		right_click_pressed.emit()
 		
 		
 	blur = inventory
@@ -220,7 +232,7 @@ func _physics_process(_delta: float) -> void:
 	time_scaled_seconds = seconds_elapsed*time_scale
 	var less_rounded_seconds:int = int(milliseconds_elapsed / 1000.0 * time_scale)
 	time_final = less_rounded_seconds >= max_time_seconds - continue_clock_in_computer # If it is time to start ticking and playing the audio
-	if !pause and !in_computer or (!pause and in_computer and time_final) or (in_computer and game_time["hour"] == start_time and game_time["minute"] == 0):
+	if !pause and (!in_computer or (!pause and in_computer and time_final) or sleeping):
 		current_time = Time.get_ticks_msec()
 		time_difference = current_time - start_time
 		start_time = Time.get_ticks_msec()
@@ -286,7 +298,6 @@ func add_inventory(p_inventory: Inventory):
 
 ## Attempts to send a slot to the nearest inventory, and will spread them out among multiple if necessary to send it all
 func send_to_inventory(slot: Slot):
-
 	var home_inventory: Inventory
 	var temp_slot:Slot = slot.duplicate()
 	var starting_quantity = slot.duplicate().quantity
@@ -301,6 +312,9 @@ func send_to_inventory(slot: Slot):
 		else:
 			home_inventory = search_inventory
 
+	if home_inventory == null:
+		home_inventory = player_inventory
+	
 	if temp_slot.quantity > 0:
 		var remainder = home_inventory.insert(temp_slot.item, temp_slot.quantity)
 		temp_slot.decrement(temp_slot.quantity - remainder)
@@ -342,13 +356,14 @@ func distribute_slots() -> void:
 				return
 	
 ## Sets the currently selected gadget
-func set_gadget(p_gadget:StaticBody2D) -> void:
+func set_gadget(p_gadget:InWorldGadget) -> void:
 	if inventory:
 		if gadget != null:
 			inventories.erase(gadget.inventory)
 			if gadget.gadget_stats.close_sound != null and gadget.gadget_stats.name != p_gadget.gadget_stats.name:
 				gadget.play_close_sound()
 	gadget = p_gadget
+	gadget_changed.emit()
 	if !inventory:
 		change_inventory()
 	inventories.append(p_gadget.inventory)
@@ -364,6 +379,17 @@ func get_gadget_from_cursor() -> Gadget:
 			return gadget_items[item]
 	return null
 	
+## Adds a teleporter to the teleporter list and emits a signal that it has been changed
+func add_teleporter(_gadget: InWorldGadget):
+	teleporters.append(_gadget)
+	teleporter_list_changed.emit()
+	
+## Removes a teleporter to the teleporter list and emits a signal that it has been changed
+func remove_teleporter(_gadget: InWorldGadget):
+	teleporters.erase(_gadget)
+	teleporter_list_changed.emit()
+	teleporter_removed.emit(_gadget)
+
 ## Clears the slot distributor, which is a list of currently dragged over slots, and will balance out how many items
 ## are in them all
 func clear_slot_distributor():
@@ -491,6 +517,8 @@ func go_sleep():
 	sleeping = true
 	sleep_start = Time.get_ticks_msec()
 	milliseconds_elapsed = active_time
+	if computer_visible:
+		change_computer_visibility()
 	print("starting sleep...")
 	#TODO: Sleep behavior
 func wake_up():

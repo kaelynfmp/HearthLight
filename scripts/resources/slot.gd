@@ -74,8 +74,8 @@ func increment(amount: int = 1, bypass: bool = false) -> int:
 		var starting_value: int = quantity
 		if item == null:
 			return amount # nothing was put in
-		var remainder: int = starting_value + amount - item.max_stack
 		quantity += amount
+		var remainder: int = (starting_value + amount) - quantity
 		
 		changed.emit()
 		return max(remainder, 0)

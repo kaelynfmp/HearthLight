@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+class_name InWorldGadget
+
 signal removing(layer_occupied_name:String, cell_pos:Vector2i)
 signal item_at_location(cell_pos: Vector2i, item: Item)
 
@@ -7,6 +9,7 @@ signal item_at_location(cell_pos: Vector2i, item: Item)
 @onready var audio_player:AudioStreamPlayer2D = find_child("AudioStreamPlayer")
 @onready var open_audio_player:AudioStreamPlayer2D = find_child("OpenAudioPlayer")
 @onready var close_audio_player:AudioStreamPlayer2D = find_child("CloseAudioPlayer")
+@onready var stop_audio_player:AudioStreamPlayer2D = find_child("StopAudioPlayer")
 @onready var sprite:AnimatedSprite2D = find_child("Sprite")
 @onready var valid_selection:CompressedTexture2D = load("res://scripts/shaders/close_enough_texture.tres")
 @onready var invalid_selection:CompressedTexture2D = load("res://scripts/shaders/not_close_enough_texture.tres")
@@ -16,11 +19,14 @@ signal item_at_location(cell_pos: Vector2i, item: Item)
 @export var total_power:float = 0.0
 @export var power_per_coal = 10
 
+# Marker to remove when gadget picked up
+@onready var marker: Node2D = get_node("/root/Room/Tilemap/TileLayers/Marker2")
+
 # Teleporter input
-var mounted_gadget: StaticBody2D
+var mounted_gadget: InWorldGadget
 
 # Array of target teleporters
-var target_list: Array[StaticBody2D]
+var target_list: Array[InWorldGadget]
 # Round-robin distribution, so every second increase this target index to match with target_list
 var target_index = 0
 
@@ -47,8 +53,8 @@ var cell_pos:Vector2i
 var primitive_selected:bool = false
 var hovered:bool = false
 var recipes:Array[Recipe]
-var rear_gadget: StaticBody2D
-var front_gadget: StaticBody2D
+var rear_gadget: InWorldGadget
+var front_gadget: InWorldGadget
 var corresponding_item: RigidBody2D
 enum Direction {SE, SW, NW, NE}
 var direction: int
@@ -77,12 +83,14 @@ func create_new_inventory(num_inputs: int, num_outputs: int) -> void:
 		slot.item = null
 		slot.locked = false
 		slot.item_filter = gadget_stats.inventory.slots[i].item_filter
+		slot.bypass_stack = gadget_stats.inventory.slots[i].bypass_stack
 		inventory.slots.append(slot)
 	for i in range(num_outputs):
 		var slot: Slot = Slot.new()
 		slot.item = null
 		slot.locked = true
 		slot.item_filter = gadget_stats.inventory.slots[num_inputs + i].item_filter
+		slot.bypass_stack = gadget_stats.inventory.slots[num_inputs + i].bypass_stack
 		inventory.slots.append(slot)
 
 # Called when the node enters the scene tree for the first time.
@@ -99,16 +107,19 @@ func _ready() -> void:
 	direction = gadget_stats.direction
 	sprite.scale *= gadget_stats.sprite_scale_factor
 	if gadget_stats.name == "Teleporter":
-		mount_to_inventory()	
+		mount_to_inventory()
+		GameManager.add_teleporter(self)
 	rotate_sprite()
 	if gadget_stats.name == "Conveyor Belt":
 		collision_layer = 2
 		collision_mask = 2
 	audio_player.set_stream(gadget_stats.ambient_sound)
+	stop_audio_player.set_stream(gadget_stats.stop_sound)
 	open_audio_player.set_stream(gadget_stats.open_sound)
 	close_audio_player.set_stream(gadget_stats.close_sound)
 	update_recipes()
 	GameManager.update_recipes.connect(update_recipes)
+	GameManager.teleporter_removed.connect(remove_teleporter)
 	notification = find_child("Notification")
 	
 func check_for_nearby_generator(delta: float):
@@ -171,7 +182,8 @@ func _physics_process(delta: float) -> void:
 				AudioManager.active_gadgets[gadget_stats.sound_string].erase(self)
 	if !disabled and !progressing or (!progressing and selected_recipe != null) and not GameManager.sleeping:
 		if gadget_stats.name in ["Conveyor Belt", "Teleporter"]:
-			do_transport()
+			if gadget_stats.name != "Teleporter" or has_power_from_generator:
+				do_transport()
 		elif selected_recipe != null:
 			is_able_to_do_recipe = is_able_to_recipe()
 			if is_able_to_do_recipe:
@@ -238,23 +250,21 @@ func rotate_sprite() -> void:
 			sprite.animation = "ne"
 		Direction.NW:
 			sprite.animation = "nw"
+			
+func add_teleporter(teleporter:InWorldGadget):
+	target_list.append(teleporter)
+	GameManager.gadget_changed.emit()
 	
-# TODO: remove this function when there is UI
-func search_for_other_teleporters():
-	if cell_pos != Vector2i(0, 0):
-		return
-	for i in range(0, 13):
-		for j in range(0, 13):
-			if GameManager.room_map[i][j] != null:
-				if GameManager.room_map[i][j].gadget_stats.name == "Teleporter":
-					if not GameManager.room_map[i][j] in target_list and (i != 6 and j != 5):
-						target_list.append(GameManager.room_map[i][j])
+func remove_teleporter(teleporter:InWorldGadget):
+	var temp_list:Array[InWorldGadget] = target_list.duplicate()
+	target_list.erase(teleporter)
+	if temp_list != target_list: # If list was changed, emit the signal
+		GameManager.gadget_changed.emit()
 	
 func _process(_delta: float) -> void:
 	rotate_sprite()
 	# Test the code
 	if gadget_stats.name == "Teleporter":
-		search_for_other_teleporters()
 		mount_to_inventory()	
 	if hovered:
 		sprite.material.set("shader_parameter/textureScale", Vector2.ONE)
@@ -276,14 +286,14 @@ func do_transport():
 	if gadget_stats.name == "Teleporter":
 		if len(target_list) > 0:
 			start_progression_transport()
-	var rear_gadget_pos: Vector2i = cell_pos + direction_vector[direction]
-	if (GameManager.room_map[rear_gadget_pos[0] + 6][rear_gadget_pos[1] + 5] != null):
-		rear_gadget = GameManager.room_map[rear_gadget_pos[0] + 6][rear_gadget_pos[1] + 5]
-		if rear_gadget != null and rear_gadget.gadget_stats.name != "Conveyor Belt":
-			start_progression_transport()
+	else:
+		var rear_gadget_pos: Vector2i = cell_pos + direction_vector[direction]
+		if (GameManager.room_map[rear_gadget_pos[0] + 6][rear_gadget_pos[1] + 5] != null):
+			rear_gadget = GameManager.room_map[rear_gadget_pos[0] + 6][rear_gadget_pos[1] + 5]
+			if rear_gadget != null and rear_gadget.gadget_stats.name != "Conveyor Belt":
+				start_progression_transport()
 			
 func start_progression_transport():
-	play_sound()
 	if gadget_stats.name == "Conveyor Belt":
 		pull_inventory()
 	progressing = true
@@ -294,31 +304,70 @@ func finish_transport():
 	cancel_processing()
 	
 
-func pull_from_gadget(selected_gadget: StaticBody2D):
+func pull_from_gadget(selected_gadget: InWorldGadget) -> bool:
+	var worked = false
+	var is_conveyer_belt:bool = gadget_stats.name == "Conveyor Belt"
+	var is_teleporter:bool = gadget_stats.name == "Teleporter"
 	var selected_inventory: Inventory = selected_gadget.inventory
 	var selected_slots = selected_inventory.slots.filter(func(slot): 
 		return slot.locked)
 	if selected_gadget.gadget_stats.name == "Storage":
 		selected_slots = selected_inventory.slots.filter(func(slot): return !slot.locked)
-	for slot in selected_slots:
-		if slot.item != null:
-			var item: Item = slot.item
-			if selected_gadget.gadget_stats.name != "Conveyor Belt" and gadget_stats.name == "Conveyor Belt":
-					item_at_location.emit(cell_pos, item)
-			selected_inventory.remove_items(item, 1, slot.locked)
-			if gadget_stats.name == "Teleporter":
-				var destination_gadget = target_list[target_index]
-				if destination_gadget != null:
-					destination_gadget.inventory.insert(item, 1, false)
-				target_index += 1
-				if target_index >= len(target_list):
-					target_index = 0
-			break
+	if is_conveyer_belt:
+		for slot in selected_slots:
+			if slot.item != null:
+				var item: Item = slot.item
+				if selected_gadget.gadget_stats.name != "Conveyor Belt":
+						item_at_location.emit(cell_pos, item)
+				selected_inventory.remove_items(item, 1, slot.locked)
+				worked = true
+				break
+	else:
+		if is_teleporter:
+			# Teleporter insta-clears out an entire inventory
+			# Sends directly to the mounted gadget to avoid race conditions
+			# If something is somehow in the teleporter, however, it will still push properly
+			for slot in selected_slots:
+				if slot.item == null: continue
+				if target_list.size() > 1:
+					var slot_attempts:int = 0
+					# Skip while loop if it would not be possible to empty this slot even a little
+					# Expensive, but less expensive than running a failing while loop 100 times
+					var mega_inventory:Inventory = Inventory.new()
+					for target in target_list:
+						if target.mounted_gadget != null:
+							mega_inventory.slots.append_array(target.mounted_gadget.inventory.slots)
+					if mega_inventory.can_insert(slot.item, slot.quantity) == slot.quantity:
+						continue
+					while slot_attempts < 100 and slot.quantity > 0:
+						# Clear out the slot
+						var destination_gadget:InWorldGadget = target_list[target_index]
+						if target_list[target_index].mounted_gadget != null:
+							if destination_gadget != null and destination_gadget.mounted_gadget.inventory.can_insert(slot.item) == 0:
+								destination_gadget.mounted_gadget.inventory.insert(slot.item)
+								slot.decrement()
+								worked = true
+						target_index += 1
+						if target_index >= len(target_list):
+							target_index = 0
+						slot_attempts += 1
+				else:
+					if target_list[0].mounted_gadget == null: continue
+					var remainder:int = target_list[0].mounted_gadget.inventory.can_insert(slot.item, slot.quantity)
+					target_list[0].mounted_gadget.inventory.insert(slot.item, slot.quantity)
+					if remainder < slot.quantity:
+						worked = true
+					slot.decrement(slot.quantity - remainder)
+					
+	return worked
+	
 
 
 func pull_inventory():
-	if gadget_stats.name == "Teleporter" and mounted_gadget != null:
-		pull_from_gadget(mounted_gadget)
+	if gadget_stats.name == "Teleporter" and mounted_gadget != null and not target_list.is_empty():
+		var prev_inventory_slots = mounted_gadget.inventory.slots.duplicate()
+		if pull_from_gadget(mounted_gadget):
+			AudioManager.play_teleport_noise()
 	if GameManager.item_map[cell_pos[0] + 6][cell_pos[1] + 5] == null: 
 		if rear_gadget:
 			pull_from_gadget(rear_gadget)
@@ -353,7 +402,8 @@ func do_recipe():
 
 func start_progression():
 	recipe_taken = false
-	nearby_cyber_generator.is_cyber_generator_used = true
+	if nearby_cyber_generator != null:
+		nearby_cyber_generator.is_cyber_generator_used = true
 	if is_generator:
 		recipe_take()
 	progressing = true
@@ -382,6 +432,8 @@ func cancel_processing():
 	progress = 0.0
 	progressing = false
 	audio_player.stop()
+	if not stop_audio_player.playing and not primitive_selected and gadget_stats.name != "Teleporter":
+		stop_audio_player.play()
 	if nearby_cyber_generator != null:
 		nearby_cyber_generator.is_cyber_generator_used = false
 	if not is_generator:
@@ -424,9 +476,13 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			cancel_processing()
 			# Remove from masterlist of inventories
 			GameManager.inventories.erase(inventory)
+			if gadget_stats.name in ["Generator", "Universal Generator"]:
+				marker.visible = false
 			if gadget_stats.name == "Universal Generator":
 				GameManager.has_cyber_generator = false
 				GameManager.cyber_generator = null
+			elif gadget_stats.name == "Teleporter":
+				GameManager.remove_teleporter(self)
 			for slot in inventory.slots:
 				# Send it all away to any open inventories
 				GameManager.send_to_inventory(slot)
