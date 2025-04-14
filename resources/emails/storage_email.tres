@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_7bw62"]
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_n3s28"]
 [ext_resource type="Resource" uid="uid://bgmxpne1d7fis" path="res://resources/items/metal.tres" id="1_pqc84"]
-[ext_resource type="Resource" uid="uid://dk4tt2xs7bvxr" path="res://resources/gadgets/storage.tres" id="2_85d3i"]
+[ext_resource type="Resource" uid="uid://dk4tt2xs7bvxr" path="res://resources/gadgets/0storage.tres" id="2_85d3i"]
 [ext_resource type="Resource" uid="uid://be58bgg864c3p" path="res://resources/emails/ConveyorTutorialCompletion.tres" id="3_pqc84"]
 
 [sub_resource type="Resource" id="Resource_85d3i"]

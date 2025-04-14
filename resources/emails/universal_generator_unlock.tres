@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://bgmxpne1d7fis" path="res://resources/items/metal.tres" id="1_csokc"]
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_y7mu0"]
 [ext_resource type="Resource" uid="uid://c82decsqfayei" path="res://resources/items/cotton.tres" id="2_ewc3s"]
-[ext_resource type="Resource" uid="uid://dm264rb6ttr13" path="res://resources/gadgets/cyber_generator.tres" id="2_tdlms"]
+[ext_resource type="Resource" uid="uid://dm264rb6ttr13" path="res://resources/gadgets/2cyber_generator.tres" id="2_tdlms"]
 [ext_resource type="Resource" uid="uid://bcqfc48lbx4di" path="res://resources/emails/advanced_sieve_completion.tres" id="3_gx8dj"]
 
 [sub_resource type="Resource" id="Resource_csokc"]

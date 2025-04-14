@@ -25,7 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://b23ttu16g3s4a" path="res://scenes/selected_teleporter.tscn" id="14_8f8xv"]
 [ext_resource type="PackedScene" uid="uid://dnyyt61n7tlkc" path="res://scenes/clock.tscn" id="14_eld54"]
 [ext_resource type="FontFile" uid="uid://c4bnatv11g13n" path="res://resources/fonts/Conthrax-SemiBold.otf" id="15_flipt"]
-[ext_resource type="Resource" uid="uid://bkuks7tbfprqt" path="res://resources/gadgets/teleporter.tres" id="15_v0qwq"]
+[ext_resource type="Resource" uid="uid://bkuks7tbfprqt" path="res://resources/gadgets/0teleporter.tres" id="15_v0qwq"]
 [ext_resource type="Texture2D" uid="uid://br677v2jqsxvc" path="res://resources/sprites/gui/questopen/questopen.png" id="17_kp442"]
 [ext_resource type="Texture2D" uid="uid://rtk7chr66qjo" path="res://resources/sprites/gui/questopen/questopenselect.png" id="18_gltyx"]
 [ext_resource type="PackedScene" uid="uid://b648fq173kh8h" path="res://scenes/cable.tscn" id="18_uorui"]

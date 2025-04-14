@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_jvolh"]
 [ext_resource type="Resource" uid="uid://cq5l4dfcn3c5t" path="res://resources/items/rock.tres" id="1_q4d58"]
 [ext_resource type="Resource" uid="uid://lxvyxcteq6eq" path="res://resources/items/dust.tres" id="2_q4d58"]
-[ext_resource type="Resource" uid="uid://bmylw6g0ukbxm" path="res://resources/gadgets/wheel.tres" id="3_47hgc"]
+[ext_resource type="Resource" uid="uid://bmylw6g0ukbxm" path="res://resources/gadgets/4wheel.tres" id="3_47hgc"]
 [ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="3_q4d58"]
-[ext_resource type="Resource" uid="uid://ckrgha87ltstr" path="res://resources/gadgets/hand_grinder.tres" id="5_47hgc"]
+[ext_resource type="Resource" uid="uid://ckrgha87ltstr" path="res://resources/gadgets/4hand_grinder.tres" id="5_47hgc"]
 [ext_resource type="Resource" uid="uid://m1df6r382dc" path="res://resources/emails/Tutorial1Completion.tres" id="6_q4d58"]
 
 [sub_resource type="Resource" id="Resource_47hgc"]

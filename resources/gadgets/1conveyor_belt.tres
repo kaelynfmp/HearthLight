@@ -1,35 +1,35 @@
 [gd_resource type="Resource" script_class="Gadget" load_steps=14 format=3 uid="uid://cksgqh7imb27s"]
 
-[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_inqyl"]
-[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_nmkh0"]
-[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_lf8tf"]
-[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="5_owrvj"]
-[ext_resource type="Texture2D" uid="uid://c3d0xu44diter" path="res://resources/sprites/conveyorRightDown.png" id="6_nmkh0"]
-[ext_resource type="Texture2D" uid="uid://be3ekjx37l1mf" path="res://resources/sprites/conveyorLeftDown.png" id="7_lf8tf"]
-[ext_resource type="Texture2D" uid="uid://br8fm2xpt1bek" path="res://resources/sprites/conveyorRightUp.png" id="7_owrvj"]
-[ext_resource type="Texture2D" uid="uid://6m6c0kro2jjy" path="res://resources/sprites/conveyorLeftUp.png" id="7_rcdnk"]
+[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_ux7pc"]
+[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_gcix1"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_bd0ih"]
+[ext_resource type="Texture2D" uid="uid://c3d0xu44diter" path="res://resources/sprites/conveyorRightDown.png" id="4_lnkcw"]
+[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="5_6tm73"]
+[ext_resource type="Texture2D" uid="uid://br8fm2xpt1bek" path="res://resources/sprites/conveyorRightUp.png" id="6_miijj"]
+[ext_resource type="Texture2D" uid="uid://6m6c0kro2jjy" path="res://resources/sprites/conveyorLeftUp.png" id="7_q52ks"]
+[ext_resource type="Texture2D" uid="uid://be3ekjx37l1mf" path="res://resources/sprites/conveyorLeftDown.png" id="8_trtmh"]
 
 [sub_resource type="Resource" id="Resource_n21an"]
-script = ExtResource("2_nmkh0")
+script = ExtResource("2_gcix1")
 locked = false
-item_filter = Array[ExtResource("3_lf8tf")]([])
+item_filter = Array[ExtResource("3_bd0ih")]([])
 bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_inqyl"]
-script = ExtResource("2_nmkh0")
+script = ExtResource("2_gcix1")
 locked = true
-item_filter = Array[ExtResource("3_lf8tf")]([])
+item_filter = Array[ExtResource("3_bd0ih")]([])
 bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_ggxxm"]
-script = ExtResource("1_inqyl")
-slots = Array[ExtResource("2_nmkh0")]([SubResource("Resource_n21an"), SubResource("Resource_inqyl")])
+script = ExtResource("1_ux7pc")
+slots = Array[ExtResource("2_gcix1")]([SubResource("Resource_n21an"), SubResource("Resource_inqyl")])
 
 [sub_resource type="Resource" id="Resource_nmkh0"]
-script = ExtResource("3_lf8tf")
-texture = ExtResource("6_nmkh0")
+script = ExtResource("3_bd0ih")
+texture = ExtResource("4_lnkcw")
 name = "Conveyor Belt"
 description = "It's incredible how handy these things are considering how few hands they have."
 max_stack = 24
@@ -40,7 +40,7 @@ metadata/_custom_type_script = "uid://by7jec2ew2vsl"
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_nmkh0")
+"texture": ExtResource("4_lnkcw")
 }],
 "loop": true,
 "name": &"active",
@@ -48,7 +48,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_nmkh0")
+"texture": ExtResource("4_lnkcw")
 }],
 "loop": true,
 "name": &"default",
@@ -56,7 +56,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_owrvj")
+"texture": ExtResource("6_miijj")
 }],
 "loop": true,
 "name": &"ne",
@@ -64,7 +64,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_owrvj")
+"texture": ExtResource("6_miijj")
 }],
 "loop": true,
 "name": &"ne_active",
@@ -72,7 +72,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_rcdnk")
+"texture": ExtResource("7_q52ks")
 }],
 "loop": true,
 "name": &"nw",
@@ -80,7 +80,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_rcdnk")
+"texture": ExtResource("7_q52ks")
 }],
 "loop": true,
 "name": &"nw_active",
@@ -88,7 +88,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_nmkh0")
+"texture": ExtResource("4_lnkcw")
 }],
 "loop": true,
 "name": &"se",
@@ -96,7 +96,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_nmkh0")
+"texture": ExtResource("4_lnkcw")
 }],
 "loop": true,
 "name": &"se_active",
@@ -104,7 +104,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_lf8tf")
+"texture": ExtResource("8_trtmh")
 }],
 "loop": true,
 "name": &"sw",
@@ -112,7 +112,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_lf8tf")
+"texture": ExtResource("8_trtmh")
 }],
 "loop": true,
 "name": &"sw_active",
@@ -120,7 +120,7 @@ animations = [{
 }]
 
 [resource]
-script = ExtResource("5_owrvj")
+script = ExtResource("5_6tm73")
 sprite_frames = SubResource("SpriteFrames_lf8tf")
 sprite_offset = Vector2(0, -80)
 sprite_scale_factor = 0.95

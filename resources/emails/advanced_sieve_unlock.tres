@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_pjl87"]
 [ext_resource type="Script" uid="uid://cdrlcp2hcoi4m" path="res://scripts/resources/order.gd" id="1_rxwgj"]
 [ext_resource type="Resource" uid="uid://bgmxpne1d7fis" path="res://resources/items/metal.tres" id="1_tdwcl"]
-[ext_resource type="Resource" uid="uid://clcbxlv3y06k4" path="res://resources/gadgets/advanced_grinder.tres" id="2_4iy77"]
+[ext_resource type="Resource" uid="uid://clcbxlv3y06k4" path="res://resources/gadgets/3advanced_grinder.tres" id="2_4iy77"]
 [ext_resource type="Resource" uid="uid://cjm5ssafts5ap" path="res://resources/emails/AdvancedPlantAcquisition.tres" id="3_bngj4"]
 [ext_resource type="Resource" uid="uid://bdcnnmnkvf33h" path="res://resources/emails/AdvancedStoveAcquisition.tres" id="4_tdwcl"]
 

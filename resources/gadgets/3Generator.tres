@@ -1,33 +1,33 @@
 [gd_resource type="Resource" script_class="Gadget" load_steps=12 format=3 uid="uid://dh7knqcysban1"]
 
-[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_exgi4"]
-[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_cn647"]
-[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_fk4tt"]
-[ext_resource type="Texture2D" uid="uid://dymvu7tgvxht5" path="res://resources/sprites/generatorCoal.png" id="4_cn647"]
-[ext_resource type="Resource" uid="uid://badopsm2qs26e" path="res://resources/items/Coal.tres" id="4_fk4tt"]
-[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_i23j1"]
+[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_srkou"]
+[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_jif5m"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_1mest"]
+[ext_resource type="Resource" uid="uid://badopsm2qs26e" path="res://resources/items/Coal.tres" id="4_gcjto"]
+[ext_resource type="Texture2D" uid="uid://dymvu7tgvxht5" path="res://resources/sprites/generatorCoal.png" id="5_rn4fu"]
+[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="6_40ty8"]
 
 [sub_resource type="Resource" id="Resource_8srds"]
-script = ExtResource("2_cn647")
+script = ExtResource("2_jif5m")
 locked = false
-item_filter = Array[ExtResource("3_fk4tt")]([ExtResource("4_fk4tt")])
+item_filter = Array[ExtResource("3_1mest")]([ExtResource("4_gcjto")])
 bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_exgi4"]
-script = ExtResource("2_cn647")
+script = ExtResource("2_jif5m")
 locked = true
-item_filter = Array[ExtResource("3_fk4tt")]([])
+item_filter = Array[ExtResource("3_1mest")]([])
 bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_ur5ct"]
-script = ExtResource("1_exgi4")
-slots = Array[ExtResource("2_cn647")]([SubResource("Resource_8srds"), SubResource("Resource_exgi4")])
+script = ExtResource("1_srkou")
+slots = Array[ExtResource("2_jif5m")]([SubResource("Resource_8srds"), SubResource("Resource_exgi4")])
 
 [sub_resource type="Resource" id="Resource_nmhtb"]
-script = ExtResource("3_fk4tt")
-texture = ExtResource("4_cn647")
+script = ExtResource("3_1mest")
+texture = ExtResource("5_rn4fu")
 name = "Generator"
 description = "This cool contraption combusts coal to power nearby machines."
 max_stack = 1
@@ -37,7 +37,7 @@ price = 100
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_cn647")
+"texture": ExtResource("5_rn4fu")
 }],
 "loop": true,
 "name": &"default",
@@ -45,7 +45,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_cn647")
+"texture": ExtResource("5_rn4fu")
 }],
 "loop": true,
 "name": &"se",
@@ -54,7 +54,7 @@ animations = [{
 
 [resource]
 resource_name = "Generator"
-script = ExtResource("4_i23j1")
+script = ExtResource("6_40ty8")
 sprite_frames = SubResource("SpriteFrames_cn647")
 sprite_offset = Vector2(0, -140)
 sprite_scale_factor = 0.95

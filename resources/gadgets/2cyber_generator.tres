@@ -1,32 +1,32 @@
 [gd_resource type="Resource" script_class="Gadget" load_steps=11 format=3 uid="uid://dm264rb6ttr13"]
 
-[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_wi0xr"]
-[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_llmds"]
-[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_r3bhi"]
-[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="4_l2yjn"]
-[ext_resource type="Texture2D" uid="uid://5bk3beumimel" path="res://resources/sprites/generatorUniversal.png" id="4_llmds"]
+[ext_resource type="Script" uid="uid://cobts5ljktocr" path="res://scripts/resources/inventory.gd" id="1_p34en"]
+[ext_resource type="Script" uid="uid://cvojb3v6cdain" path="res://scripts/resources/slot.gd" id="2_lrnky"]
+[ext_resource type="Script" uid="uid://by7jec2ew2vsl" path="res://scripts/resources/item.gd" id="3_hwlgt"]
+[ext_resource type="Texture2D" uid="uid://5bk3beumimel" path="res://resources/sprites/generatorUniversal.png" id="4_fsee3"]
+[ext_resource type="Script" uid="uid://diu2pkk76wyyy" path="res://scripts/resources/gadget.gd" id="5_kyw4e"]
 
 [sub_resource type="Resource" id="Resource_ebhqi"]
-script = ExtResource("2_llmds")
+script = ExtResource("2_lrnky")
 locked = false
-item_filter = Array[ExtResource("3_r3bhi")]([])
+item_filter = Array[ExtResource("3_hwlgt")]([])
 bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_llmds"]
-script = ExtResource("2_llmds")
+script = ExtResource("2_lrnky")
 locked = true
-item_filter = Array[ExtResource("3_r3bhi")]([])
+item_filter = Array[ExtResource("3_hwlgt")]([])
 bypass_stack = false
 quantity = 0
 
 [sub_resource type="Resource" id="Resource_1mchb"]
-script = ExtResource("1_wi0xr")
-slots = Array[ExtResource("2_llmds")]([SubResource("Resource_ebhqi"), SubResource("Resource_llmds")])
+script = ExtResource("1_p34en")
+slots = Array[ExtResource("2_lrnky")]([SubResource("Resource_ebhqi"), SubResource("Resource_llmds")])
 
 [sub_resource type="Resource" id="Resource_r3bhi"]
-script = ExtResource("3_r3bhi")
-texture = ExtResource("4_llmds")
+script = ExtResource("3_hwlgt")
+texture = ExtResource("4_fsee3")
 name = "Universal Generator"
 description = "You have no idea how the hell this thing generates the power that it does, and you're not going to think too hard about it. It also powers the whole room through magnets or something. Probably."
 max_stack = 1
@@ -37,7 +37,7 @@ metadata/_custom_type_script = "uid://by7jec2ew2vsl"
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_llmds")
+"texture": ExtResource("4_fsee3")
 }],
 "loop": true,
 "name": &"default",
@@ -45,7 +45,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_llmds")
+"texture": ExtResource("4_fsee3")
 }],
 "loop": true,
 "name": &"se",
@@ -53,7 +53,7 @@ animations = [{
 }]
 
 [resource]
-script = ExtResource("4_l2yjn")
+script = ExtResource("5_kyw4e")
 sprite_frames = SubResource("SpriteFrames_l2yjn")
 sprite_offset = Vector2(0, -140)
 sprite_scale_factor = 0.95
