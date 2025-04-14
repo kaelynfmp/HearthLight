@@ -18,7 +18,7 @@ you stupid, worthless, sniveling little r
 [center][color=red][shake level=20 connected][USER'S VITAL SIGNS NO LONGER FUNCTIONING. SENDING ALL EMAIL DRAFTS]"
 category = "main"
 prerequisite_emails = Array[ExtResource("1_wah72")]([ExtResource("2_8ap1x")])
-day = 20
+day = 27
 hour = 16
 minute = 0
 is_read = false

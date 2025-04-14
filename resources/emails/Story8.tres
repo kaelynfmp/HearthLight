@@ -16,7 +16,7 @@ Please.
 I don't want them to get hurt."
 category = "main"
 prerequisite_emails = Array[ExtResource("1_7xegr")]([ExtResource("2_vbx84")])
-day = 15
+day = 20
 hour = 20
 minute = 0
 is_read = false

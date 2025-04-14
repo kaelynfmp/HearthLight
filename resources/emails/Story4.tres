@@ -18,7 +18,7 @@ Truly, this is a tragedy that will be remembered for days.
 For more insightful news stories, be sure to check out [REDACTED]"
 category = "main"
 prerequisite_emails = Array[ExtResource("1_da6ak")]([ExtResource("2_eruto")])
-day = 4
+day = 6
 hour = 12
 minute = 0
 is_read = false
