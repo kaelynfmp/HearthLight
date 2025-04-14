@@ -44,7 +44,10 @@ func _process(delta: float) -> void:
 	
 	# upon valid, insert lore email
 	add_valid_lore_emails()
-
+	
+	for email in categorized_emails["main"]:
+		if email.attached_order:
+			email.attached_order.is_completed = false
 	# new randomly selected orders every day
 	if saved_day != GameManager.game_time["day"]: # new day
 		# Duplicate so that we don't erase the array we're actively working on
@@ -63,7 +66,9 @@ func _process(delta: float) -> void:
 			else:
 				categorized_emails["main"].insert(0,eachemail)
 		# check due dates BEFORE updating saved day
-		for eachemail:Email in categorized_emails["orders"]:
+		#print("Senders in orders:\n")
+		for eachemail:Email in categorized_emails["orders"].duplicate():
+			#print(eachemail.sender)
 			check_email_failed(eachemail)
 			
 		display_nearest_category(current_category)
@@ -115,7 +120,7 @@ func select_random_emails(random_amount: int = GameManager.random_email_amount) 
 	random_emails.shuffle()
 	prev_random_emails = random_emails.duplicate()
 	for eachemail in random_emails:
-		eachemail.attached_order.is_completed = false
+		#eachemail.attached_order.is_completed = false
 		eachemail.attached_order.is_accepted = false
 		eachemail.attached_order.responded = false
 	return random_emails
@@ -311,6 +316,7 @@ func display_nearest_category(category: String):
 
 func order_accept(email: Email, accept_button: Button = null, reject_button: Button = null):
 	var order = email.attached_order
+	order.is_completed = false
 	if accept_button and reject_button:
 		accept_button.visible = false
 		reject_button.visible = false
@@ -354,7 +360,7 @@ func fulfill_order(email: Email):
 			display_nearest_category(current_category)
 
 func check_email_failed(email: Email) -> bool:
-	if saved_day != GameManager.game_time["day"] and email.failable:
+	if saved_day != GameManager.game_time["day"] and !email.tutorial:
 		email.failed = true
 		if email.attached_order != null:
 			email.attached_order.removed.emit()
