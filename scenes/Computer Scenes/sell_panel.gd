@@ -16,6 +16,8 @@ func _ready() -> void:
 	close_button.pressed.connect(on_close_button_pressed)
 	sell_button.pressed.connect(on_sell_button_pressed)
 	duplicate_slot = input_slot.duplicate()
+	if input_slot.slot:
+		input_slot.slot.bypass_stack = true
 	GameManager.sell_slot = input_slot.slot
 
 func _process(delta: float) -> void:
