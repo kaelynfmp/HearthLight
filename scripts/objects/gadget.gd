@@ -174,15 +174,30 @@ func _physics_process(delta: float) -> void:
 		has_power_from_generator = check_for_nearby_generator(delta)
 	if is_generator:
 		has_power = total_power > 0 or (is_cyber_generator and is_cyber_generator_used)
-		if prev_power != total_power or (is_cyber_generator and is_cyber_generator_used):
-			prev_power = total_power
-			if not AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
-				AudioManager.active_gadgets[gadget_stats.sound_string][self] = true
-		else:
-			if AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
-				if gadget_stats.name != "Universal Generator" or \
-					(gadget_stats.name == "Universal Generator" and not is_cyber_generator_used):
+		if not is_cyber_generator:
+			if prev_power != total_power:
+				prev_power = total_power
+				if not AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
+					AudioManager.active_gadgets[gadget_stats.sound_string][self] = true
+			else:
+				if AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
 					AudioManager.active_gadgets[gadget_stats.sound_string].erase(self)
+		else:
+			if is_cyber_generator_used:
+				if not AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
+					AudioManager.active_gadgets[gadget_stats.sound_string][self] = true
+			else:
+				if AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
+					AudioManager.active_gadgets[gadget_stats.sound_string].erase(self)
+		#if prev_power != total_power or (is_cyber_generator and is_cyber_generator_used):
+			#prev_power = total_power
+			#if not AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
+				#AudioManager.active_gadgets[gadget_stats.sound_string][self] = true
+		#else:
+			#if AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
+				#if gadget_stats.name != "Universal Generator" or \
+					#(is_cyber_generator and not is_cyber_generator_used):
+					#AudioManager.active_gadgets[gadget_stats.sound_string].erase(self)
 	if !disabled and !progressing or (!progressing and selected_recipe != null) and not GameManager.sleeping:
 		if gadget_stats.name in ["Conveyor Belt", "Teleporter"]:
 			if gadget_stats.name != "Teleporter" or has_power_from_generator:
