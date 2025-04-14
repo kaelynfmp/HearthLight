@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://c2wlmdehxae41"]
+[gd_scene load_steps=58 format=3 uid="uid://c2wlmdehxae41"]
 
 [ext_resource type="Script" uid="uid://cgcfc52ecvpnu" path="res://scenes/Computer Scenes/computer_manager.gd" id="1_1cjce"]
 [ext_resource type="PackedScene" uid="uid://b5r8qyahtr3r1" path="res://scenes/Computer Scenes/view_email_button.tscn" id="1_ip337"]
@@ -101,6 +101,13 @@ corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w44m7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d1ro5"]
+bg_color = Color(0.470588, 0.176471, 0.6, 0.380392)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5c0xc"]
 bg_color = Color(0.32562, 0.110078, 0.400188, 1)
@@ -463,6 +470,7 @@ grow_horizontal = 2
 theme_override_fonts/font = ExtResource("18_uu7um")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/focus = SubResource("StyleBoxEmpty_w44m7")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_d1ro5")
 theme_override_styles/hover = SubResource("StyleBoxFlat_5c0xc")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_w44m7")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kgkpj")

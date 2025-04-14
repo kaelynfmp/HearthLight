@@ -8,8 +8,10 @@ var price_ratio = 0.5
 var price: int = 0
 var slot_scene = preload("res://scenes/inventory/input_slot.tscn")
 var duplicate_slot
-
+var slot_bg
 func _ready() -> void:
+	slot_bg = input_slot.find_child("InputBG")
+	slot_bg.modulate.a = 0
 	close_button.pressed.connect(on_close_button_pressed)
 	sell_button.pressed.connect(on_sell_button_pressed)
 	duplicate_slot = input_slot.duplicate()

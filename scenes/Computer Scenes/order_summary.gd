@@ -53,7 +53,10 @@ func populate_order_hint(grid: GridContainer, item_list: Array, item_quantities:
 			elif grid == reward_grid:
 				item_display.texture = rewarded_grid_bg
 				
-			
+			#if len(item_list) == 3:
+				#var blank_tile := Control.new()
+				#blank_tile.custom_minimum_size = Vector2(0,0)
+				#grid.add_child(blank_tile)
 			grid.add_child(item_display)
 
 func show_currency_reward():
