@@ -49,7 +49,7 @@ func _process(delta: float) -> void:
 			$Background/Electricity.visible = false
 	else:
 		current_gadget = null
-	if current_gadget and not current_gadget.name in ["Storage", "Universal Generator", "Teleporter"]:
+	if current_gadget and not current_gadget.name in ["Conveyor Belt", "Storage", "Universal Generator", "Teleporter"]:
 		update_hint_visibility()
 		
 func _reset_gadget():
@@ -154,6 +154,9 @@ func set_gadget(gadget:InWorldGadget):
 		
 	if current_gadget.name == "Teleporter":
 		setup_teleporter(gadget)
+		return
+		
+	if current_gadget.name == "Conveyor Belt":
 		return
 		
 	for index in range(inputs.size()):
