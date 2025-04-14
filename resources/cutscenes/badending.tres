@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource("1_rprjj")
-text = Array[String](["\"Well well well, look who we have here. You've got a lotta nerve, putting me on a wild goose chase like that.\"", "\"And I'm gonna make sure you pay for every second of it, that's a Hark family guarantee.\"
+text = Array[String](["The tension in your shoulders slowly releases. It's done.", "But if it's done, then...", "What's that rumbling?", "The door to your room, which had protected you for so long, is blown off its hinges with a crash, throwing up a cloud of dust.", "Out of that cloud steps a man, immaculately dressed in a three-piece suit so white it practically glowed. His hair was slicked back, and he pushed up the round glasses that rested on his blocky nose with a finger.", "On his lapel, a small pin. A cloud and golden gates. Heaven Corp.", "\"Ah, it's an honour to finally meet you in person.\"", "\"You gave us quite the runaround, didn't you? We even had to dispose of one of our most trustworthy debt collectors due to poor performance.\"", "\"At that point it was easier to just do the work ourselves.\"", "\"But I'm afraid the clock has run out for you. You've been a fun toy, but I think I'm done with you now. Gentlemen!\"", "He gestures, and large, muscled men surge into the room, taking hold of you.", "You're dragged unceremoniously out of your one safe haven, to be returned to a hell of corporate drudgery.", "You're blindfolded and feel a prick in your arm. Your consciousness wavers and you can just barely make out one last thing before you lose consciousness:", "\"Yeah. The interest repayment camps. Now's the time to invest. I'm telling you, productivity is about to skyrocket.\"", "Your vision goes dark.
 
-[i]You failed to pay your debts in time. Perhaps in another life, you could have gotten a better chance.[/i]"])
-final_button_text = "Return to Main Menu"
+[i]You failed to pay your debts in time and are bound for the interest repayment camps. Perhaps in another life, you could have gotten a better chance.[/i]"])
+final_button_text = "GAME OVER"
 cutscene_type = 2
 metadata/_custom_type_script = "uid://cqmru0quqhglh"
