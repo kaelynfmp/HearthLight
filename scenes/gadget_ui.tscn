@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ca24n44nxd7w1" path="res://resources/sprites/gui/gear/disabled.png" id="5_hu7k0"]
 [ext_resource type="Texture2D" uid="uid://cjlx7vkgtyovb" path="res://resources/sprites/generatorEnergy_empty.png" id="9_2mo8u"]
 [ext_resource type="Texture2D" uid="uid://cwfdegt8yq0jw" path="res://resources/sprites/generatorEnergy_filled.png" id="10_27a66"]
+[ext_resource type="Texture2D" uid="uid://5rt0yglbpaps" path="res://resources/sprites/generatoruibolt.png" id="10_sub33"]
 [ext_resource type="FontFile" uid="uid://c4bnatv11g13n" path="res://resources/fonts/Conthrax-SemiBold.otf" id="11_kxjdw"]
 [ext_resource type="Texture2D" uid="uid://cg671aijb1olp" path="res://resources/sprites/electricity.png" id="12_sub33"]
 
@@ -43,7 +44,7 @@ shader_parameter/image_dimension = Vector2(512, 512)
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7bgkg"]
 
 [sub_resource type="Gradient" id="Gradient_kxjdw"]
-colors = PackedColorArray(0.701961, 0.231373, 0.933333, 1, 0.933333, 0.223529, 0.560784, 1)
+colors = PackedColorArray(1, 0.872, 0.36, 1, 1, 0.979667, 0.39, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_sub33"]
 gradient = SubResource("Gradient_kxjdw")
@@ -68,8 +69,6 @@ shader_parameter/particle_end_scale = Vector2(0.01, 0.01)
 shader_parameter/particle_scale_randomness = 0.5
 shader_parameter/particle_amount = 20
 shader_parameter/image_dimension = Vector2(200, 200)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2mo8u"]
 
 [node name="Gadget" instance=ExtResource("1_edcws")]
 
@@ -206,33 +205,37 @@ custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Energy" type="TextureRect" parent="Background/Contained/EnergyControl" index="0"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -257.0
-offset_right = 100.0
-offset_bottom = 257.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("9_2mo8u")
-stretch_mode = 3
-
-[node name="EnergyProgress" type="TextureRect" parent="Background/Contained/EnergyControl" index="1"]
-texture_filter = 1
-material = SubResource("ShaderMaterial_2mo8u")
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/Contained/EnergyControl" index="0"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 59.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("PlaceholderTexture2D_2mo8u")
+theme_override_constants/separation = 17
+
+[node name="Lightning Bolt" type="TextureRect" parent="Background/Contained/EnergyControl/VBoxContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("10_sub33")
+stretch_mode = 5
+
+[node name="Control" type="MarginContainer" parent="Background/Contained/EnergyControl/VBoxContainer" index="1"]
+layout_mode = 2
+
+[node name="Energy" type="TextureRect" parent="Background/Contained/EnergyControl/VBoxContainer/Control" index="0"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("9_2mo8u")
+stretch_mode = 3
+
+[node name="EnergyProgress" type="TextureRect" parent="Background/Contained/EnergyControl/VBoxContainer/Control" index="1"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_2mo8u")
+layout_mode = 2
+texture = ExtResource("10_27a66")
 expand_mode = 4
 stretch_mode = 5
 
