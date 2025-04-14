@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://cne4bppflpgi0"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_da6ak"]
+[ext_resource type="Resource" uid="uid://cxrecv86ynbaf" path="res://resources/emails/Story3.tres" id="2_eruto"]
+
+[resource]
+resource_name = "Story4"
+script = ExtResource("1_da6ak")
+sender = "The Daily News' Times"
+email = ""
+subject = "This just in! Local apartment block torched in arson attack!"
+contents = "Breaking News! Residential arson attack leaves authorities and corporations alike reeling. CEOs all around have condemned this attack, calling on the government to more strictly police prominent areas of business. Locke Steppe, CEO of Heaven Corp. said the following when asked for comment:
+
+[indent][indent]This display of wanton cruelty is heinous, and our government needs to do more to stop individual bad actors from pouring gasoline all over unsuspecting residents' furniture before surreptitiously leaving a rube-goldberg machine that sets off a lighter with just enough time for the perpetrators to leave the scene of the crime. It's unthinkable to imagine that this could happen under the supposedly watchful eye of the government, and I shudder to imagine what night happen if this kind of thing were to happen in a busy office building. Disgraceful.[/indent][/indent]
+
+Truly, this is a tragedy that will be remembered for days.
+
+For more insightful news stories, be sure to check out [REDACTED]"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_da6ak")]([ExtResource("2_eruto")])
+day = 4
+hour = 12
+minute = 0
+is_read = false
+tutorial = false
+has_start_time = false
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false
