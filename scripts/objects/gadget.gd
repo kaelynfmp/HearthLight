@@ -162,7 +162,7 @@ func push_to_mounted_gadget():
 			inventory.remove_items(pushed_item, 1, false)
 
 func _physics_process(delta: float) -> void:
-	if GameManager.computer_visible: return
+	if GameManager.computer_visible and not GameManager.time_final: return
 	if not gadget_stats.produces:
 		return
 	if GameManager.gadget == null:

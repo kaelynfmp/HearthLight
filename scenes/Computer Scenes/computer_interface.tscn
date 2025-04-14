@@ -261,11 +261,10 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_gp3as")
 theme_override_styles/tab_selected = SubResource("StyleBoxFlat_4yp1e")
 theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_uu7um")
 theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_am2my")
-current_tab = 1
+current_tab = 0
 script = ExtResource("2_ob7fn")
 
 [node name="Emails" type="TabBar" parent="Sites"]
-visible = false
 layout_mode = 2
 drag_to_rearrange_enabled = true
 script = ExtResource("1_stx68")
@@ -373,6 +372,7 @@ text = "   email.com"
 vertical_alignment = 1
 
 [node name="Botsy" type="TabBar" parent="Sites"]
+visible = false
 layout_mode = 2
 script = ExtResource("5_tq53l")
 item_button_scene = ExtResource("6_q6ffq")
@@ -477,7 +477,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_kgkpj")
 text = "sell"
 
 [node name="SellPanel" parent="Sites/Botsy" instance=ExtResource("20_uu7um")]
-z_index = 10
 layout_mode = 0
 offset_top = 7.0
 offset_bottom = 987.0
