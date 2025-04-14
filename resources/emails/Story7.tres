@@ -16,7 +16,7 @@ Now that that's out of the way, I want you to know that you've been personally r
 go die in a ditch."
 category = "main"
 prerequisite_emails = Array[ExtResource("1_tvoic")]([ExtResource("2_5ywec")])
-day = 12
+day = 15
 hour = 18
 minute = 0
 is_read = false

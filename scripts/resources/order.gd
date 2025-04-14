@@ -85,8 +85,8 @@ func _process(_delta: float) -> void:
 func get_order() -> Array:
 	return [required_items, required_quantities]
 	
-func set_completed(completed: bool) -> void:
-	if completed:
+func set_completed(_completed: bool) -> void:
+	if _completed:
 		is_completed = true
 		for unlock in unlocks:
 			GameManager.unlock_item(unlock)

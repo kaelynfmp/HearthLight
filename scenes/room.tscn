@@ -53,10 +53,10 @@
 [ext_resource type="AudioStream" uid="uid://dcar3k445w0ya" path="res://resources/audio/Gadgets/teleporter loop.wav" id="37_gmm1g"]
 [ext_resource type="AudioStream" uid="uid://cadjwjfukfmh1" path="res://resources/audio/intro loop.wav" id="48_lxjld"]
 [ext_resource type="AudioStream" uid="uid://841im32vq7di" path="res://resources/audio/main loop.wav" id="48_rhbk5"]
-[ext_resource type="Script" uid="uid://b3lbgj2bg1bya" path="res://scripts/audio/ambient_audio.gd" id="49_jr8j8"]
-[ext_resource type="Script" uid="uid://d2nb6vcauoiaa" path="res://scripts/audio/ambient_intro.gd" id="49_pyvr3"]
+[ext_resource type="Script" path="res://scripts/audio/ambient_audio.gd" id="49_jr8j8"]
+[ext_resource type="Script" path="res://scripts/audio/ambient_intro.gd" id="49_pyvr3"]
 [ext_resource type="AudioStream" uid="uid://bmvdurbo6k6oi" path="res://resources/audio/good end.wav" id="56_014nw"]
-[ext_resource type="Script" uid="uid://bipggkkl5k7kj" path="res://scripts/audio/ambient_ending.gd" id="57_ki8oc"]
+[ext_resource type="Script" path="res://scripts/audio/ambient_ending.gd" id="57_ki8oc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4aq65"]
 shader = ExtResource("1_1f3ag")
