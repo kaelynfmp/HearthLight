@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://v3mhxuklek42" path="res://resources/sprites/gui/gear/hover.png" id="4_vb1co"]
 [ext_resource type="Texture2D" uid="uid://ca24n44nxd7w1" path="res://resources/sprites/gui/gear/disabled.png" id="5_hu7k0"]
 [ext_resource type="Texture2D" uid="uid://cjlx7vkgtyovb" path="res://resources/sprites/generatorEnergy_empty.png" id="9_2mo8u"]
-[ext_resource type="Script" path="res://scripts/gui/infinite_power.gd" id="9_25a0o"]
+[ext_resource type="Script" uid="uid://chxk5ychc6y8g" path="res://scripts/gui/infinite_power.gd" id="9_25a0o"]
 [ext_resource type="Texture2D" uid="uid://cwfdegt8yq0jw" path="res://resources/sprites/generatorEnergy_filled.png" id="10_27a66"]
 [ext_resource type="Texture2D" uid="uid://bg882ij3sxhhx" path="res://resources/sprites/generatoruibolt.png" id="10_sub33"]
 [ext_resource type="Shader" uid="uid://3htgnlua3esk" path="res://scripts/shaders/infinite_power.gdshader" id="11_b7xyu"]

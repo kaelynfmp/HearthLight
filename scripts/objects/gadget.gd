@@ -68,7 +68,7 @@ var disabled = false
 var has_power = false
 var is_able_to_do_recipe: bool = false
 var is_cyber_generator: bool = false
-var is_cyber_generator_used: bool = false
+var gadgets_used_this_generator = []
 var nearby_cyber_generator: StaticBody2D
 var notification:Sprite2D
 
@@ -173,17 +173,21 @@ func _physics_process(delta: float) -> void:
 	if gadget_stats.age > GameManager.Age.PRIMITIVE and not is_generator:
 		has_power_from_generator = check_for_nearby_generator(delta)
 	if is_generator:
-		has_power = total_power > 0 or (is_cyber_generator and is_cyber_generator_used)
-		if prev_power != total_power or (is_cyber_generator and is_cyber_generator_used):
-			prev_power = total_power
-			if not AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
-				print("Added sound ", gadget_stats.name)
-				print(AudioManager.active_gadgets[gadget_stats.sound_string],"---", self)
-				AudioManager.active_gadgets[gadget_stats.sound_string][self] = true
+		has_power = total_power > 0 or (is_cyber_generator)
+		if not is_cyber_generator:
+			if prev_power != total_power:
+				prev_power = total_power
+				if not AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
+					AudioManager.active_gadgets[gadget_stats.sound_string][self] = true
+			else:
+				if AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
+					AudioManager.active_gadgets[gadget_stats.sound_string].erase(self)
 		else:
-			if AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
-				if gadget_stats.name != "Universal Generator" or \
-					(gadget_stats.name == "Universal Generator" and not is_cyber_generator and not is_cyber_generator_used):
+			if gadgets_used_this_generator.size() > 0:
+				if not AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
+					AudioManager.active_gadgets[gadget_stats.sound_string][self] = true
+			else:
+				if AudioManager.active_gadgets[gadget_stats.sound_string].has(self):
 					AudioManager.active_gadgets[gadget_stats.sound_string].erase(self)
 	if !disabled and !progressing or (!progressing and selected_recipe != null) and not GameManager.sleeping:
 		if gadget_stats.name in ["Conveyor Belt", "Teleporter"]:
@@ -415,7 +419,7 @@ func start_progression() -> void:
 	if GameManager.sleeping: return
 	recipe_taken = false
 	if nearby_cyber_generator != null:
-		nearby_cyber_generator.is_cyber_generator_used = true
+		nearby_cyber_generator.gadgets_used_this_generator.append(self)
 	if is_generator:
 		recipe_take()
 	progressing = true
@@ -450,7 +454,7 @@ func cancel_processing() -> void:
 	if not stop_audio_player.playing and not primitive_selected and gadget_stats.name != "Teleporter":
 		stop_audio_player.play()
 	if nearby_cyber_generator != null:
-		nearby_cyber_generator.is_cyber_generator_used = false
+		nearby_cyber_generator.gadgets_used_this_generator.erase(self)
 	if not is_generator:
 		if gadget_stats.sound_string != null and gadget_stats.sound_string != "":
 			if AudioManager.active_gadgets[gadget_stats.sound_string].has(self):

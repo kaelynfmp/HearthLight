@@ -28,7 +28,7 @@ func _process(_delta: float) -> void:
 	pass
 			
 func _draw() -> void:
-	draw_polygon(uni_generator_coords if is_uni_generator else generator_coords if is_generator else coords, 
+	draw_polygon(uni_generator_coords if is_uni_generator else (generator_coords if is_generator else coords), 
 	[
-		Color(1., 1., 0.0, 0.4) if is_generator or is_uni_generator else Color(1.0, 1.0, 1.0, 0.4)
+		Color(0.4, 0.929, 0.761, 0.5) if is_generator or is_uni_generator else Color(1.0, 1.0, 1.0, 0.4)
 	])
