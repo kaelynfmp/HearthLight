@@ -559,7 +559,7 @@ func conclude_cutscene():
 	cutscene_displayed = false
 	start_time = Time.get_ticks_msec()
 	if not AudioManager.ambient_audio.playing:
-		AudioManager.reset_audio()
+		AudioManager.stop_intro()
 	if current_cutscene.cutscene_type == CUTSCENE_TYPE.MAIN_MENU:
 		get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
 		

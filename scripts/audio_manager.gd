@@ -9,6 +9,9 @@ var playback:AudioStreamPlaybackPolyphonic
 
 var teleport_player:AudioStreamPlayer
 var ambient_audio: AudioStreamPlayer2D
+var intro_ambient_audio: AudioStreamPlayer2D
+var rain_audio: AudioStreamPlayer2D
+var already_stop: bool = false
 
 var active_gadgets:Dictionary[String, Dictionary] = {
 	"c grinder.wav": {},
@@ -67,6 +70,9 @@ var teleport_sound:AudioStream = preload("res://resources/audio/Gadgets/teleport
 
 func set_ambient_audio(stream_player:AudioStreamPlayer2D):
 	ambient_audio = stream_player
+	
+func set_intro_ambient_audio(stream_player:AudioStreamPlayer2D):
+	intro_ambient_audio = stream_player
 
 func set_gadget_audio(stream_player:AudioStreamPlayer2D):
 	gadget_audio = stream_player
@@ -83,7 +89,12 @@ func _enter_tree() -> void:
 	# Create an audio player
 	var player = AudioStreamPlayer.new()
 	add_child(player)
-
+	rain_audio = AudioStreamPlayer2D.new()
+	add_child(rain_audio)
+	
+	rain_audio.stream = load("res://resources/audio/Background Rain.mp3")
+	rain_audio.volume_db = -6.0
+	rain_audio.play()
 	# Create a polyphonic stream so we can play sounds directly from it
 	var stream = AudioStreamPolyphonic.new()
 	stream.polyphony = 32
@@ -136,6 +147,16 @@ func _process(_delta: float) -> void:
 
 func play_teleport_noise(): # Re-up teleport noise
 	teleport_player.play()
+	
+func stop_intro():
+	if not already_stop:
+		already_stop = true
+		intro_ambient_audio.stop()
+		intro_ambient_audio.stream = load("res://resources/audio/intro transition.wav")
+		intro_ambient_audio.loop = false
+		intro_ambient_audio.play()
+		intro_ambient_audio.autoplay = false
+		intro_ambient_audio.finished.connect(reset_audio)
 
 func reset_audio():
 	ambient_audio.seek(0)
