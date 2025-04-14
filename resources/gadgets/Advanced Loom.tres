@@ -28,8 +28,8 @@ slots = Array[ExtResource("2_k1ud4")]([SubResource("Resource_ubw0m"), SubResourc
 [sub_resource type="Resource" id="Resource_y6jnr"]
 script = ExtResource("3_57x6j")
 texture = ExtResource("7_ubw0m")
-name = "Advanced Loom"
-description = ""
+name = "Motorized Loom"
+description = "A cornerstone in any industrilization process."
 max_stack = 1
 price = 100
 
@@ -58,10 +58,10 @@ script = ExtResource("4_bay8m")
 sprite_frames = SubResource("SpriteFrames_57x6j")
 sprite_offset = Vector2(0, -140)
 sprite_scale_factor = 0.95
-name = "Advanced Loom"
+name = "Motorized Loom"
 age = 1
 direction = 0
-description = ""
+description = "A cornerstone in any industrilization process."
 item = SubResource("Resource_y6jnr")
 inventory = SubResource("Resource_m0yaq")
 produces = true

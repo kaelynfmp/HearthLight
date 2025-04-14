@@ -1,8 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://dpji2u13pgk3n"]
+[gd_scene load_steps=23 format=3 uid="uid://dpji2u13pgk3n"]
 
 [ext_resource type="Script" uid="uid://pje3fqm6wipx" path="res://scripts/menus/main_menu.gd" id="1_6dukm"]
 [ext_resource type="FontFile" uid="uid://cskltmfvwlc7g" path="res://resources/fonts/Audiowide-Regular.ttf" id="1_ujjk6"]
-[ext_resource type="Texture2D" uid="uid://bfxpsbyx7evh3" path="res://resources/sprites/mmBackground.png" id="2_gdhp0"]
+[ext_resource type="Texture2D" uid="uid://dib6u1m2lcdw4" path="res://resources/sprites/mmBackground.png" id="2_gdhp0"]
 [ext_resource type="Texture2D" uid="uid://ctwoucooh4nfp" path="res://resources/sprites/mmTitle.png" id="3_pstia"]
 [ext_resource type="Texture2D" uid="uid://cswo3qd3b4kwk" path="res://resources/sprites/mmButton1.png" id="4_41tvm"]
 [ext_resource type="Texture2D" uid="uid://dhe7ll3t5mntv" path="res://resources/sprites/mmButton1Select.png" id="5_vxdmp"]
@@ -14,9 +14,134 @@
 [ext_resource type="Texture2D" uid="uid://bo4ag8n8p3p7x" path="res://resources/sprites/mmButton4.png" id="11_do53f"]
 [ext_resource type="Texture2D" uid="uid://fcuilu60akbx" path="res://resources/sprites/mmButton4Select.png" id="12_1bw8o"]
 [ext_resource type="Texture2D" uid="uid://bc5vsboiynor7" path="res://resources/sprites/mmButton4Hover.png" id="13_q78k2"]
+[ext_resource type="Texture2D" uid="uid://it20slcw2t4s" path="res://resources/sprites/HearthLight.png" id="15_41tvm"]
 [ext_resource type="Texture2D" uid="uid://dqawuua68c2yw" path="res://resources/sprites/mmButton3.png" id="15_pstia"]
 [ext_resource type="Texture2D" uid="uid://cmkyia11ih6wj" path="res://resources/sprites/mmButton3Select.png" id="16_41tvm"]
 [ext_resource type="Texture2D" uid="uid://bdr1buk4dhwgt" path="res://resources/sprites/mmButton3Hover.png" id="17_vxdmp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vxdmp"]
+bg_color = Color(1, 0.270588, 0.6, 0.403922)
+skew = Vector2(0.1, 0)
+border_width_left = 10
+border_width_top = 10
+border_color = Color(1, 0.270588, 0.6, 0.568627)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 20.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="Animation" id="Animation_vxdmp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BG:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Title:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainMenuButtonContainers:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CreditContainers:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_41tvm"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BG:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Title:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainMenuButtonContainers:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CreditContainers:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3h20m"]
+_data = {
+&"RESET": SubResource("Animation_vxdmp"),
+&"fade": SubResource("Animation_41tvm")
+}
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -27,6 +152,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6dukm")
 metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0901961, 0.113725, 0.207843, 1)
 
 [node name="BG" type="TextureRect" parent="."]
 layout_mode = 1
@@ -167,12 +301,26 @@ text = "HearthLight Studios"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GridContainer" type="GridContainer" parent="CreditContainers"]
+[node name="PanelContainer" type="PanelContainer" parent="CreditContainers"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vxdmp")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CreditContainers/PanelContainer"]
+layout_mode = 2
+
+[node name="HearthLight" type="TextureRect" parent="CreditContainers/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+texture = ExtResource("15_41tvm")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="GridContainer" type="GridContainer" parent="CreditContainers/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 columns = 2
 
-[node name="Producer" type="Label" parent="CreditContainers/GridContainer"]
+[node name="Producer" type="Label" parent="CreditContainers/PanelContainer/HBoxContainer/GridContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_ujjk6")
 theme_override_font_sizes/font_size = 36
@@ -181,7 +329,7 @@ Kaelyn"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LeadDesigner" type="Label" parent="CreditContainers/GridContainer"]
+[node name="LeadDesigner" type="Label" parent="CreditContainers/PanelContainer/HBoxContainer/GridContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_ujjk6")
 theme_override_font_sizes/font_size = 36
@@ -190,7 +338,7 @@ ravyn"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Writer" type="Label" parent="CreditContainers/GridContainer"]
+[node name="Writer" type="Label" parent="CreditContainers/PanelContainer/HBoxContainer/GridContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_ujjk6")
 theme_override_font_sizes/font_size = 36
@@ -199,7 +347,7 @@ Everett"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Audio" type="Label" parent="CreditContainers/GridContainer"]
+[node name="Audio" type="Label" parent="CreditContainers/PanelContainer/HBoxContainer/GridContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_ujjk6")
 theme_override_font_sizes/font_size = 36
@@ -208,7 +356,7 @@ Ash"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VisualArtist" type="Label" parent="CreditContainers/GridContainer"]
+[node name="VisualArtist" type="Label" parent="CreditContainers/PanelContainer/HBoxContainer/GridContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_ujjk6")
 theme_override_font_sizes/font_size = 36
@@ -217,7 +365,7 @@ Kaelyn"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Programmers" type="Label" parent="CreditContainers/GridContainer"]
+[node name="Programmers" type="Label" parent="CreditContainers/PanelContainer/HBoxContainer/GridContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_ujjk6")
 theme_override_font_sizes/font_size = 36
@@ -255,6 +403,13 @@ theme_override_font_sizes/font_size = 80
 text = "Back"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3h20m")
+}
+autoplay = "fade"
+speed_scale = 0.33
 
 [connection signal="pressed" from="MainMenuButtonContainers/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="MainMenuButtonContainers/Credits" to="." method="_on_credit_pressed"]

@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://et2k5hdxxqka"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_8qvv4"]
+[ext_resource type="Resource" uid="uid://bb2c1js4elcx2" path="res://resources/emails/Story5.tres" id="2_diyhs"]
+
+[resource]
+resource_name = "Story6"
+script = ExtResource("1_8qvv4")
+sender = "Locke Steppe"
+email = ""
+subject = "I must say, I'm impressed"
+contents = "Hey, I just wanted to drop in and let you know that I'm really impressed. Lo-Anne is a serious professional, and the fact that you've been able to evade her for so long is worth of some serious praise. Hell, I'd almost say I'm rooting for you at this point. I want to see how far you'll get. Don't get me wrong, I won't be [i]helping[/i] you, god forbid, but I'll definitely be rooting for you from my corner. Something this interesting hasn't happened in [i]years[/i].
+
+Good luck,
+Locke Steppe, Heaven Corp. CEO"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_8qvv4")]([ExtResource("2_diyhs")])
+day = 7
+hour = 13
+minute = 0
+is_read = false
+tutorial = false
+has_start_time = true
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

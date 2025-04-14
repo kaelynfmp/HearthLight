@@ -113,9 +113,10 @@ func remove_items(item: Item, quantity:int, locked_only=false) -> bool:
 ## Returns the [int] quantity of an [Item] in the entire inventory, cumulative, with an optional parameter to check 
 ## if the [Slot] is locked before pooling it
 func get_item_quantity(item: Item, locked_check=false) -> int:
+	if item == null: return 0
 	var quantity:int = 0
 	for slot in slots:
-		if slot.item == item and (!locked_check or !slot.locked):
+		if slot.item != null and slot.item.name == item.name and (!locked_check or !slot.locked):
 			quantity += slot.quantity
 
 	return quantity

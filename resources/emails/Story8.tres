@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://bnbc0ortpqhus"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_7xegr"]
+[ext_resource type="Resource" uid="uid://butrsb6v2wfri" path="res://resources/emails/Story7.tres" id="2_vbx84"]
+
+[resource]
+resource_name = "Story8"
+script = ExtResource("1_7xegr")
+sender = "Lo-Anne S. Hark"
+email = ""
+subject = "Please I'm begging you they have my family"
+contents = "I don't know if I can keep doing this. They have my family, and the only way for me to get out is to find you. I'm begging you please, I have a husband and seven children. They're severely malnourished because of my crippling gambling addiction. I don't visit them because I know I'm a bad influence, but I'm worried that I'll never see them again. The last thing I said to my eldest is that I wish he's never been born because then at least life would be bearable. I don't want that to be the last thing I ever said to him. 
+
+Please.
+
+I don't want them to get hurt."
+category = "main"
+prerequisite_emails = Array[ExtResource("1_7xegr")]([ExtResource("2_vbx84")])
+day = 15
+hour = 20
+minute = 0
+is_read = false
+tutorial = false
+has_start_time = true
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

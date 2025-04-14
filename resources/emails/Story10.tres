@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://b8f2xh2fiidyd"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_wah72"]
+[ext_resource type="Resource" uid="uid://dx7m8lptxpgw0" path="res://resources/emails/Story9.tres" id="2_8ap1x"]
+
+[resource]
+resource_name = "Story10"
+script = ExtResource("1_wah72")
+sender = "Lo-Anne S. Hark"
+email = ""
+subject = "ok seriously, i think it's over for me"
+contents = "and it's all your fault.
+
+you stupid, worthless, sniveling little r
+
+
+
+[center][USER'S VITAL SIGNS NO LONGER FUNCTIONING. SENDING ALL EMAIL DRAFTS]"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_wah72")]([ExtResource("2_8ap1x")])
+day = 20
+hour = 16
+minute = 0
+is_read = false
+tutorial = false
+has_start_time = true
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

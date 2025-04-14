@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://bb2c1js4elcx2"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_lo18n"]
+[ext_resource type="Resource" uid="uid://cne4bppflpgi0" path="res://resources/emails/Story4.tres" id="2_wyp7k"]
+
+[resource]
+resource_name = "Story5"
+script = ExtResource("1_lo18n")
+sender = "Lo-Anne S. Hark"
+email = ""
+subject = "When I get you..."
+contents = "You saw what happened on the news yesterday. Your ass is MINE when I find you"
+category = "main"
+prerequisite_emails = Array[ExtResource("1_lo18n")]([ExtResource("2_wyp7k")])
+day = 5
+hour = 0
+minute = 0
+is_read = false
+tutorial = false
+has_start_time = true
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Email" load_steps=3 format=3 uid="uid://butrsb6v2wfri"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_tvoic"]
+[ext_resource type="Resource" uid="uid://et2k5hdxxqka" path="res://resources/emails/Story6.tres" id="2_5ywec"]
+
+[resource]
+resource_name = "Story7"
+script = ExtResource("1_tvoic")
+sender = "Lo-Anne S. Hark"
+email = ""
+subject = "ok seriously where are you"
+contents = "First off, I hate you.
+
+Now that that's out of the way, I want you to know that you've been personally responsible for the worst time of my life. I don't know who's backing you, but I've busted no less than [i]seven[/i] of your goddamned fake safehouses. I really thought that torching your apartment would have you skittering out of the woodwork, but instead it seems like you're digging in your heels. At this point I'm spending all my time chasing leads that go nowhere, getting harassed by Heaven Corp., and drinking.
+
+go die in a ditch."
+category = "main"
+prerequisite_emails = Array[ExtResource("1_tvoic")]([ExtResource("2_5ywec")])
+day = 12
+hour = 18
+minute = 0
+is_read = false
+tutorial = false
+has_start_time = true
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false

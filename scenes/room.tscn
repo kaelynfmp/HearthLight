@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=4 uid="uid://gfvpt16hdue1"]
+[gd_scene load_steps=62 format=4 uid="uid://gfvpt16hdue1"]
 
 [ext_resource type="Shader" uid="uid://7r383w0xu0ql" path="res://scripts/shaders/rain.gdshader" id="1_1f3ag"]
 [ext_resource type="Texture2D" uid="uid://cvhgtu8uxcmcm" path="res://resources/sprites/backgrounds/backgroundDay/layer0.png" id="1_2cm04"]
@@ -51,6 +51,12 @@
 [ext_resource type="Texture2D" uid="uid://dx53tvy44tf7d" path="res://resources/sprites/backgrounds/backgroundTransition1/layer4.png" id="19_drrlj"]
 [ext_resource type="Texture2D" uid="uid://duaxdwah4406a" path="res://resources/sprites/backgrounds/backgroundTransition1/layer5.png" id="20_55ugc"]
 [ext_resource type="AudioStream" uid="uid://dcar3k445w0ya" path="res://resources/audio/Gadgets/teleporter loop.wav" id="37_gmm1g"]
+[ext_resource type="AudioStream" uid="uid://cadjwjfukfmh1" path="res://resources/audio/intro loop.wav" id="48_lxjld"]
+[ext_resource type="AudioStream" uid="uid://841im32vq7di" path="res://resources/audio/main loop.wav" id="48_rhbk5"]
+[ext_resource type="Script" uid="uid://b3lbgj2bg1bya" path="res://scripts/audio/ambient_audio.gd" id="49_jr8j8"]
+[ext_resource type="Script" uid="uid://d2nb6vcauoiaa" path="res://scripts/audio/ambient_intro.gd" id="49_pyvr3"]
+[ext_resource type="AudioStream" uid="uid://bmvdurbo6k6oi" path="res://resources/audio/good end.wav" id="56_014nw"]
+[ext_resource type="Script" uid="uid://bipggkkl5k7kj" path="res://scripts/audio/ambient_ending.gd" id="57_ki8oc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4aq65"]
 shader = ExtResource("1_1f3ag")
@@ -210,7 +216,7 @@ z_index = 10
 y_sort_enabled = true
 texture_filter = 1
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD6//D/AAACAAEAAAD5//D/AAAAAAEAAAD4//D/AAAAAAEAAAD3//D/AAAAAAEAAADv//D/AAABAAEAAADw//D/AAACAAEAAADx//D/AAAAAAEAAADy//D/AAAAAAEAAADz//D/AAAAAAEAAAD0//D/AAAAAAEAAAD1//D/AAAAAAEAAAD2//D/AAAAAAEAAADv//H/AAAAAAEAAADv//L/AAACAAEAAADv//P/AAACAAEAAADv//T/AAACAAEAAADv//X/AAACAAEAAADv//b/AAACAAEAAADv//f/AAACAAEAAADv//j/AAACAAEAAADv//n/AAACAAEAAADv//r/AAACAAEAAADv//v/AAACAAEAAAA=")
+tile_map_data = PackedByteArray("AAD6//D/AAABAAEAAAD5//D/AAAEAAEAAAD4//D/AAAAAAEAAAD3//D/AAAAAAEAAADv//D/AAABAAEAAADx//D/AAACAAEAAADy//D/AAABAAEAAADz//D/AAAEAAEAAAD0//D/AAACAAEAAAD1//D/AAABAAEAAAD2//D/AAAAAAEAAADv//H/AAACAAEAAADv//L/AAABAAEAAADv//P/AAAAAAEAAADv//T/AAAFAAEAAADv//X/AAACAAEAAADv//b/AAACAAEAAADv//f/AAAEAAEAAADv//j/AAACAAEAAADv//n/AAABAAEAAADv//r/AAAAAAEAAADv//v/AAACAAEAAADw//D/AAAEAAEAAAA=")
 tile_set = ExtResource("1_lwtf6")
 y_sort_origin = 9
 
@@ -219,7 +225,7 @@ z_index = 9
 y_sort_enabled = true
 texture_filter = 1
 use_parent_material = true
-tile_map_data = PackedByteArray("AADw//z/AAACAAEAAADw//v/AAACAAEAAADw//r/AAACAAEAAADw//n/AAACAAEAAADw//j/AAACAAEAAADw//f/AAACAAEAAADw//b/AAACAAEAAADw//X/AAACAAEAAADw//T/AAACAAEAAADw//P/AAACAAEAAADw//L/AAAAAAEAAADw//H/AAABAAEAAADx//H/AAACAAEAAADy//H/AAAAAAEAAADz//H/AAAAAAEAAAD0//H/AAAAAAEAAAD1//H/AAAAAAEAAAD2//H/AAAAAAEAAAD3//H/AAAAAAEAAAD4//H/AAAAAAEAAAD5//H/AAAAAAEAAAD6//H/AAAAAAEAAAD7//H/AAACAAEAAAA=")
+tile_map_data = PackedByteArray("AADw//z/AAAFAAEAAADw//v/AAACAAEAAADw//r/AAABAAEAAADw//n/AAACAAEAAADw//j/AAAAAAEAAADw//f/AAACAAEAAADw//b/AAACAAEAAADw//X/AAABAAEAAADw//T/AAACAAEAAADw//P/AAABAAEAAADw//L/AAACAAEAAADw//H/AAABAAEAAADx//H/AAAAAAEAAADy//H/AAAEAAEAAADz//H/AAACAAEAAAD0//H/AAAFAAEAAAD1//H/AAAEAAEAAAD2//H/AAACAAEAAAD3//H/AAACAAEAAAD4//H/AAABAAEAAAD5//H/AAAEAAEAAAD6//H/AAACAAEAAAD7//H/AAAAAAEAAAA=")
 tile_set = ExtResource("1_lwtf6")
 y_sort_origin = 8
 x_draw_order_reversed = true
@@ -229,7 +235,7 @@ z_index = 8
 y_sort_enabled = true
 texture_filter = 1
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD8//L/AAACAAEAAAD7//L/AAAAAAEAAAD6//L/AAAAAAEAAAD5//L/AAAAAAEAAAD4//L/AAAAAAEAAAD3//L/AAAAAAEAAAD2//L/AAAAAAEAAADz//L/AAAAAAEAAADy//L/AAAAAAEAAADx//L/AAABAAEAAAD0//L/AAAAAAEAAAD1//L/AAAAAAEAAADx//P/AAAAAAEAAADx//T/AAACAAEAAADx//X/AAACAAEAAADx//b/AAACAAEAAADx//f/AAACAAEAAADx//j/AAACAAEAAADx//n/AAACAAEAAADx//r/AAACAAEAAADx//v/AAACAAEAAADx//3/AAACAAEAAADx//z/AAACAAEAAAA=")
+tile_map_data = PackedByteArray("AAD8//L/AAAEAAEAAAD7//L/AAABAAEAAAD6//L/AAACAAEAAAD5//L/AAACAAEAAAD4//L/AAAEAAEAAAD3//L/AAABAAEAAAD2//L/AAAFAAEAAADz//L/AAACAAEAAADy//L/AAABAAEAAADx//L/AAABAAEAAAD0//L/AAACAAEAAAD1//L/AAACAAEAAADx//P/AAAFAAEAAADx//T/AAAEAAEAAADx//X/AAACAAEAAADx//b/AAACAAEAAADx//f/AAAEAAEAAADx//j/AAACAAEAAADx//n/AAACAAEAAADx//r/AAACAAEAAADx//v/AAAEAAEAAADx//3/AAABAAEAAADx//z/AAACAAEAAAA=")
 tile_set = ExtResource("1_lwtf6")
 y_sort_origin = 7
 
@@ -238,7 +244,7 @@ z_index = 7
 y_sort_enabled = true
 texture_filter = 1
 use_parent_material = true
-tile_map_data = PackedByteArray("AADy//7/AAACAAEAAADy//3/AAACAAEAAADy//z/AAACAAEAAADy//v/AAACAAEAAADy//r/AAACAAEAAADy//b/AAACAAEAAADy//X/AAACAAEAAADy//T/AAAAAAEAAADy//j/AAACAAEAAADy//f/AAACAAEAAADy//n/AAACAAEAAADy//P/AAABAAEAAADz//P/AAACAAEAAAD0//P/AAAAAAEAAAD1//P/AAAAAAEAAAD2//P/AAAAAAEAAAD3//P/AAAAAAEAAAD4//P/AAAAAAEAAAD5//P/AAAAAAEAAAD6//P/AAAAAAEAAAD7//P/AAAAAAEAAAD8//P/AAAAAAEAAAD9//P/AAACAAEAAAA=")
+tile_map_data = PackedByteArray("AADy//7/AAAAAAEAAADy//3/AAACAAEAAADy//z/AAABAAEAAADy//v/AAACAAEAAADy//r/AAACAAEAAADy//b/AAACAAEAAADy//X/AAAAAAEAAADy//T/AAABAAEAAADy//j/AAACAAEAAADy//f/AAACAAEAAADy//n/AAAFAAEAAADy//P/AAABAAEAAADz//P/AAAFAAEAAAD0//P/AAAEAAEAAAD1//P/AAABAAEAAAD2//P/AAAEAAEAAAD3//P/AAABAAEAAAD4//P/AAAAAAEAAAD5//P/AAAAAAEAAAD6//P/AAACAAEAAAD7//P/AAAEAAEAAAD8//P/AAAFAAEAAAD9//P/AAAAAAEAAAA=")
 tile_set = ExtResource("1_lwtf6")
 y_sort_origin = 6
 
@@ -247,7 +253,7 @@ z_index = 6
 y_sort_enabled = true
 texture_filter = 1
 use_parent_material = true
-tile_map_data = PackedByteArray("AADz////AAACAAEAAADz//7/AAACAAEAAADz//3/AAACAAEAAADz//z/AAACAAEAAADz//v/AAACAAEAAADz//r/AAACAAEAAADz//n/AAACAAEAAADz//j/AAACAAEAAADz//f/AAACAAEAAADz//b/AAACAAEAAADz//X/AAAAAAEAAADz//T/AAABAAEAAAD0//T/AAACAAEAAAD1//T/AAABAAEAAAD2//T/AAAAAAEAAAD3//T/AAAAAAEAAAD4//T/AAAAAAEAAAD5//T/AAAEAAEAAAD6//T/AAAAAAEAAAD7//T/AAAAAAEAAAD8//T/AAAAAAEAAAD9//T/AAAAAAEAAAD+//T/AAACAAEAAAA=")
+tile_map_data = PackedByteArray("AADz////AAACAAEAAADz//7/AAAFAAEAAADz//3/AAAAAAEAAADz//z/AAAEAAEAAADz//v/AAACAAEAAADz//r/AAAAAAEAAADz//n/AAACAAEAAADz//j/AAAFAAEAAADz//f/AAACAAEAAADz//b/AAAEAAEAAADz//X/AAAAAAEAAADz//T/AAABAAEAAAD0//T/AAABAAEAAAD1//T/AAAAAAEAAAD2//T/AAAFAAEAAAD3//T/AAAAAAEAAAD4//T/AAACAAEAAAD5//T/AAACAAEAAAD6//T/AAAEAAEAAAD7//T/AAABAAEAAAD8//T/AAACAAEAAAD9//T/AAABAAEAAAD+//T/AAAEAAEAAAA=")
 tile_set = ExtResource("1_lwtf6")
 y_sort_origin = 5
 
@@ -256,7 +262,7 @@ z_index = 5
 y_sort_enabled = true
 texture_filter = 1
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD0/wAAAAACAAEAAAD0////AAACAAEAAAD0//7/AAACAAEAAAD0//3/AAACAAEAAAD0//z/AAACAAEAAAD0//v/AAACAAEAAAD0//r/AAACAAEAAAD0//n/AAACAAEAAAD0//j/AAABAAEAAAD0//f/AAAFAAEAAAD0//b/AAAAAAEAAAD0//X/AAABAAEAAAD1//X/AAACAAEAAAD2//X/AAAAAAEAAAD7//X/AAAAAAEAAAD8//X/AAAAAAEAAAD9//X/AAAAAAEAAAD+//X/AAAAAAEAAAD///X/AAACAAEAAAD6//X/AAAAAAEAAAA=")
+tile_map_data = PackedByteArray("AAD0/wAAAAAAAAEAAAD0////AAABAAEAAAD0//7/AAAEAAEAAAD0//3/AAACAAEAAAD0//z/AAACAAEAAAD0//v/AAAFAAEAAAD0//r/AAACAAEAAAD0//n/AAAEAAEAAAD0//j/AAAAAAEAAAD0//f/AAABAAEAAAD0//b/AAACAAEAAAD0//X/AAABAAEAAAD1//X/AAAAAAEAAAD2//X/AAAEAAEAAAD7//X/AAAAAAEAAAD8//X/AAACAAEAAAD9//X/AAAFAAEAAAD+//X/AAAAAAEAAAD///X/AAAAAAEAAAD6//X/AAABAAEAAAA=")
 tile_set = ExtResource("1_lwtf6")
 y_sort_origin = 4
 
@@ -265,7 +271,7 @@ z_index = 4
 y_sort_enabled = true
 texture_filter = 1
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD1/wEAAAACAAEAAAD1/wAAAAACAAEAAAD1////AAACAAEAAAD1//7/AAACAAEAAAD1//3/AAACAAEAAAD1//z/AAACAAEAAAD1//j/AAAEAAEAAAD1//f/AAAAAAEAAAD1//b/AAABAAEAAAD2//b/AAACAAEAAAD3//b/AAAAAAEAAAD7//b/AAAAAAEAAAD8//b/AAAAAAEAAAD9//b/AAAAAAEAAAD+//b/AAAAAAEAAAD///b/AAABAAEAAAAAAPb/AAACAAEAAAA=")
+tile_map_data = PackedByteArray("AAD1/wEAAAAAAAEAAAD1/wAAAAAFAAEAAAD1////AAACAAEAAAD1//7/AAACAAEAAAD1//3/AAAFAAEAAAD1//z/AAAAAAEAAAD1//j/AAAAAAEAAAD1//f/AAACAAEAAAD1//b/AAABAAEAAAD2//b/AAAEAAEAAAD3//b/AAACAAEAAAD7//b/AAAAAAEAAAD8//b/AAACAAEAAAD9//b/AAAEAAEAAAD+//b/AAABAAEAAAD///b/AAAEAAEAAAAAAPb/AAACAAEAAAA=")
 tile_set = ExtResource("1_lwtf6")
 y_sort_origin = 3
 
@@ -274,7 +280,7 @@ z_index = 3
 y_sort_enabled = true
 texture_filter = 1
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD2/wIAAAACAAEAAAD2/wEAAAACAAEAAAD2/wAAAAACAAEAAAD2////AAACAAEAAAD2//7/AAACAAEAAAD2//3/AAACAAEAAAD2//n/AAAEAAEAAAD2//j/AAAAAAEAAAD2//f/AAABAAEAAAD3//f/AAACAAEAAAD4//f/AAAAAAEAAAD8//f/AAAAAAEAAAD9//f/AAAAAAEAAAD+//f/AAAAAAEAAAD///f/AAAAAAEAAAAAAPf/AAAAAAEAAAABAPf/AAACAAEAAAA=")
+tile_map_data = PackedByteArray("AAD2/wIAAAACAAEAAAD2/wEAAAACAAEAAAD2/wAAAAACAAEAAAD2////AAAEAAEAAAD2//7/AAABAAEAAAD2//3/AAACAAEAAAD2//n/AAAFAAEAAAD2//j/AAAAAAEAAAD2//f/AAABAAEAAAD3//f/AAAAAAEAAAD4//f/AAAEAAEAAAD8//f/AAACAAEAAAD9//f/AAABAAEAAAD+//f/AAAAAAEAAAD///f/AAAFAAEAAAAAAPf/AAACAAEAAAABAPf/AAAEAAEAAAA=")
 tile_set = ExtResource("1_lwtf6")
 y_sort_origin = -1
 
@@ -283,7 +289,7 @@ z_index = 2
 y_sort_enabled = true
 texture_filter = 1
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD6//j/AAACAAEAAAD7//j/AAACAAEAAAD8//j/AAACAAEAAAD8//f/AAACAAEAAAD7//f/AAACAAEAAAD6//f/AAACAAEAAAD3//r/AAAEAAEAAAD3//n/AAAAAAEAAAD3//j/AAABAAEAAAD4//j/AAACAAEAAAD5//j/AAAAAAEAAAD3//7/AAACAAEAAAD3/wMAAAACAAEAAAD3/wIAAAACAAEAAAD3/wEAAAACAAEAAAD3/wAAAAACAAEAAAD3////AAACAAEAAAD9//j/AAAFAAEAAAD+//j/AAAAAAEAAAD///j/AAAAAAEAAAAAAPj/AAAAAAEAAAABAPj/AAABAAEAAAACAPj/AAACAAEAAAA=")
+tile_map_data = PackedByteArray("AAD6//j/AAAAAAEAAAD7//j/AAAAAAEAAAD8//j/AAAEAAEAAAD8//f/AAACAAEAAAD7//f/AAACAAEAAAD6//f/AAACAAEAAAD3//r/AAAAAAEAAAD3//n/AAAEAAEAAAD3//j/AAABAAEAAAD4//j/AAACAAEAAAD5//j/AAAFAAEAAAD3//7/AAACAAEAAAD3/wMAAAAAAAEAAAD3/wIAAAACAAEAAAD3/wEAAAACAAEAAAD3/wAAAAABAAEAAAD3////AAACAAEAAAD9//j/AAACAAEAAAD+//j/AAAFAAEAAAD///j/AAAEAAEAAAAAAPj/AAABAAEAAAABAPj/AAAFAAEAAAACAPj/AAAAAAEAAAA=")
 tile_set = ExtResource("1_lwtf6")
 y_sort_origin = 2
 x_draw_order_reversed = true
@@ -294,7 +300,7 @@ y_sort_enabled = true
 texture_filter = 1
 use_parent_material = true
 position = Vector2(0, -3)
-tile_map_data = PackedByteArray("AAADAPn/AAACAAEAAAACAPn/AAAAAAEAAAABAPn/AAAAAAEAAAAAAPn/AAAAAAEAAAD///n/AAAAAAEAAAD+//n/AAAAAAEAAAD9//n/AAAAAAEAAAD8//n/AAAAAAEAAAD7//n/AAAAAAEAAAD6//n/AAAAAAEAAAD5//n/AAACAAEAAAD4//n/AAABAAEAAAD4//r/AAAAAAEAAAD4//v/AAACAAEAAAD4//z/AAACAAEAAAD4//3/AAACAAEAAAD4//7/AAACAAEAAAD4////AAACAAEAAAD4/wAAAAACAAEAAAD4/wEAAAACAAEAAAD4/wIAAAACAAEAAAD4/wMAAAACAAEAAAD4/wQAAAACAAEAAAA=")
+tile_map_data = PackedByteArray("AAADAPn/AAACAAEAAAACAPn/AAAEAAEAAAABAPn/AAAAAAEAAAAAAPn/AAABAAEAAAD///n/AAACAAEAAAD+//n/AAAAAAEAAAD9//n/AAAFAAEAAAD8//n/AAABAAEAAAD7//n/AAAEAAEAAAD6//n/AAABAAEAAAD5//n/AAACAAEAAAD4//n/AAABAAEAAAD4//r/AAABAAEAAAD4//v/AAACAAEAAAD4//z/AAAEAAEAAAD4//3/AAACAAEAAAD4//7/AAAFAAEAAAD4////AAACAAEAAAD4/wAAAAAAAAEAAAD4/wEAAAAEAAEAAAD4/wIAAAABAAEAAAD4/wMAAAACAAEAAAD4/wQAAAAAAAEAAAA=")
 tile_set = ExtResource("1_lwtf6")
 y_sort_origin = 1
 x_draw_order_reversed = true
@@ -341,11 +347,20 @@ attenuation = 1e-05
 script = ExtResource("9_ybpoa")
 
 [node name="AmbientRain" type="AudioStreamPlayer2D" parent="Audio"]
+visible = false
 stream = ExtResource("10_qtoah")
-volume_db = -9.0
-autoplay = true
+volume_db = -80.0
 max_distance = 8560.0
 attenuation = 1e-05
+
+[node name="AmbientIntro" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("48_lxjld")
+autoplay = true
+script = ExtResource("49_pyvr3")
+
+[node name="Ambient" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("48_rhbk5")
+script = ExtResource("49_jr8j8")
 
 [node name="DayStart" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("11_eom3m")
@@ -359,7 +374,19 @@ max_distance = 12570.0
 attenuation = 1e-05
 script = ExtResource("14_3j2fx")
 
+[node name="AmbientEnding" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("56_014nw")
+volume_db = 6.0
+script = ExtResource("57_ki8oc")
+
+[node name="Explosion" type="AudioStreamPlayer2D" parent="Audio"]
+
 [connection signal="finished" from="Audio/GadgetAudio" to="Audio/GadgetAudio" method="_on_finished"]
+[connection signal="finished" from="Audio/AmbientIntro" to="Audio/AmbientIntro" method="_on_finished"]
+[connection signal="ready" from="Audio/AmbientIntro" to="Audio/AmbientIntro" method="_on_ready"]
+[connection signal="finished" from="Audio/Ambient" to="Audio/Ambient" method="_on_finished"]
+[connection signal="finished" from="Audio/AmbientEnding" to="Audio/AmbientEnding" method="_on_finished"]
+[connection signal="ready" from="Audio/AmbientEnding" to="Audio/AmbientEnding" method="_on_ready"]
 
 [editable path="Backgrounds/Transition2Background"]
 [editable path="Backgrounds/SunsetBackground"]

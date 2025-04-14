@@ -1,12 +1,25 @@
 extends Control
 
 var rotation_speed:float = 10
+@onready var generator_slot_scene:PackedScene = preload("res://scenes/inventory/generator_slot.tscn")
 @onready var input_slot_scene:PackedScene = preload("res://scenes/inventory/input_slot.tscn")
 @onready var output_slot_scene:PackedScene = preload("res://scenes/inventory/output_slot.tscn")
 @onready var slot_scene:PackedScene = preload("res://scenes/inventory/storage_slot.tscn")
 @onready var creates_progress:TextureRect = find_child("CreatesProgress", true)
 @onready var primitive_button:TextureButton = find_child("PrimitiveButton", true)
 @onready var energy_progress:TextureRect = find_child("EnergyProgress", true)
+@onready var bg:NinePatchRect = find_child("Background")
+@onready var top:TextureRect = find_child("TopBar", true)
+@onready var bot:TextureRect = find_child("BottomBar", true)
+@onready var creates:TextureRect = find_child("Creates", true)
+@export var normal_bg:Texture
+@export var generator_bg:Texture
+@export var normal_top:Texture
+@export var normal_bot:Texture
+@export var generator_top:Texture
+@export var generator_bot:Texture
+@export var normal_progress_bar:Texture
+@export var generator_progress_bar:Texture
 var current_gadget:Gadget
 var input_hint_dict: Dictionary = {}
 
@@ -39,9 +52,17 @@ func _process(delta: float) -> void:
 		else:
 			$Background/Contained/CreatesControl.visible = true
 			$Background/Contained/InfinitePower.visible = false
+		if current_gadget.age > Gadget.Age.PRIMITIVE and not current_gadget.name in ["Storage", "Generator", "Universal Generator", "Teleporter"]:
+			$Background/Electricity.visible = true
+			if GameManager.gadget.has_power_from_generator:
+				$Background/Electricity.texture = load("res://resources/sprites/electricity_powered.png")
+			else:
+				$Background/Electricity.texture = load("res://resources/sprites/electricity.png")
+		else:
+			$Background/Electricity.visible = false
 	else:
 		current_gadget = null
-	if current_gadget and not current_gadget.name in ["Storage", "Universal Generator", "Teleporter"]:
+	if current_gadget and not current_gadget.name in ["Conveyor Belt", "Storage", "Universal Generator", "Teleporter"]:
 		update_hint_visibility()
 		
 func _reset_gadget():
@@ -76,6 +97,10 @@ func setup_teleporter(gadget: InWorldGadget):
 	pass
 		
 func setup_generator(gadget: InWorldGadget):
+	bg.texture = generator_bg
+	top.texture = generator_top
+	bot.texture = generator_bot
+	creates.texture = generator_progress_bar
 	var contained = $Background/Contained
 	# Setup coal slot
 	if current_gadget.name == "Generator":
@@ -83,7 +108,7 @@ func setup_generator(gadget: InWorldGadget):
 		var inputs:Array[Slot] = gadget.inventory.slots.filter(func(slot): return !slot.locked)
 		for index in range(inputs.size()):
 			var input:Slot = gadget.inventory.slots[gadget.inventory.slots.find(inputs[index])]
-			var new_slot: PanelContainer = input_slot_scene.instantiate()
+			var new_slot: PanelContainer = generator_slot_scene.instantiate()
 			
 			# VISUAL INPUT HINTS ON GADGETS
 			var input_hint: TextureRect = new_slot.find_child("ImgHintInput", true)
@@ -113,6 +138,12 @@ func set_gadget(gadget:InWorldGadget):
 	if gadget == null:
 		current_gadget = null
 		return
+		
+	bg.texture = normal_bg
+	top.texture = normal_top
+	bot.texture = normal_bot
+	creates.texture = normal_progress_bar
+	
 	primitive_button.set_rotation(0)
 	current_gadget = gadget.gadget_stats
 	primitive_button.visible = gadget.gadget_stats.age == GameManager.Age.PRIMITIVE
@@ -146,6 +177,9 @@ func set_gadget(gadget:InWorldGadget):
 		
 	if current_gadget.name == "Teleporter":
 		setup_teleporter(gadget)
+		return
+		
+	if current_gadget.name == "Conveyor Belt":
 		return
 		
 	for index in range(inputs.size()):
@@ -222,15 +256,30 @@ func get_outputs_for_hint():
 func update_hint_visibility():
 	var quantities = []
 	var recipe_inputs = get_inputs_for_hint()
-	var inputs:Array[Slot] = current_gadget.inventory.slots.filter(func(slot): return !slot.locked)
+	var inputs:Array[Slot] = GameManager.gadget.inventory.slots.filter(func(slot): return !slot.locked)
 	for index in range(inputs.size()):
-		quantities.append(current_gadget.inventory.get_item_quantity(recipe_inputs[index].item))
+		quantities.append(GameManager.gadget.inventory.get_item_quantity(recipe_inputs[index].item))
 	var i = 0
-	for texture in input_hint_dict:
-		if i in quantities:
-			input_hint_dict[texture] = quantities[i]
-		i+=1
-		if input_hint_dict[texture] > 0:
-			texture.visible = false
+	var contained = $Background/Contained
+	var marked_item = []
+	var missing_texture = []
+	for count in range(0, len(inputs)):
+		var input_slot_scene = contained.get_child(count)
+		var current_item_in_the_slot = inputs[count].item
+		var input_hint:TextureRect = input_slot_scene.find_child("ImgHintInput", true)
+		if current_item_in_the_slot != null:
+			marked_item.append(current_item_in_the_slot)
+			
+			if input_hint.texture != current_item_in_the_slot.texture:
+				input_hint.texture = current_item_in_the_slot.texture
 		else:
-			texture.visible = true
+			input_hint.texture = null
+			missing_texture.append(count)
+				
+	for count in range(0, len(recipe_inputs)):
+		var recipe_item = recipe_inputs[count].item
+		if not recipe_item in marked_item:
+			var first_miss = missing_texture.pop_front()
+			var input_slot_scene = contained.get_child(first_miss)
+			var input_hint:TextureRect = input_slot_scene.find_child("ImgHintInput", true)
+			input_hint.texture = recipe_item.texture

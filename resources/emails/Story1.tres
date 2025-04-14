@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Email" load_steps=2 format=3 uid="uid://jfte660mq4rn"]
+
+[ext_resource type="Script" uid="uid://f4g73stblggw" path="res://scripts/resources/email.gd" id="1_7fgdl"]
+
+[resource]
+resource_name = "Story1"
+script = ExtResource("1_7fgdl")
+sender = "Heaven Corp."
+email = ""
+subject = "Departures"
+contents = "We at Heaven Corp. are sad to see you go. We're sorry that you felt that we were a bad fit for you. We wish you the best of luck in finding new employment, and hope that this won't be too much of a setback for either of us.
+
+As per company policy, due to your premature departure you will be required to pay all outstanding medical fees for your use of company pharmaceuticals. Your outstanding debt is [ERROR].
+
+We wish you the best in your future endeavors.
+
+Cheers,
+Heaven Corp."
+category = "main"
+prerequisite_emails = Array[ExtResource("1_7fgdl")]([])
+day = 1
+hour = 0
+minute = 0
+is_read = false
+tutorial = false
+has_start_time = true
+failable = false
+failed = false
+prereqs_must_fail = false
+bankruptcy = false
