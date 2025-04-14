@@ -27,7 +27,7 @@ script = ExtResource("1_et7us")
 sender = "Rob Elion"
 email = ""
 subject = "We've got a neat little machine you might like"
-contents = "We might have no idea how you got your whole deal started, but you've certainly come a long way! We managed to liberate a [b]neat little piece of tech[/b], and we've reverse-engineered how it works (or at least the gist of it), but we don't really have the [res=Metal]resources[/res] to mass-produce something like this, so I had the wonderful idea of sending you the original so you could improve your setup and help us out more in the future!
+contents = "We might have no idea how you got your whole deal started, but you've certainly come a long way! We managed to liberate a [res=Molecular Bond Destabilizer]neat little piece of tech[/res], and we've reverse-engineered how it works (or at least the gist of it), but we don't really have the [res=Metal]resources[/res] to mass-produce something like this, so I had the wonderful idea of sending you the original so you could improve your setup and help us out more in the future!
 
 c'mon, whaddaya think~"
 category = "main"
