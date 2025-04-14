@@ -46,7 +46,7 @@ shader_parameter/image_dimension = Vector2(512, 512)
 
 [sub_resource type="Curve2D" id="Curve2D_5ectr"]
 _data = {
-"points": PackedVector2Array(0, 0, 200, 0, -300, -150, -200, 0, 200, 0, 300, 150, 200, 0, -200, 0, 300, -150, 200, 0, -200, 0, -300, 150, -200, 0, 0, 0, -300, -150)
+"points": PackedVector2Array(0, 0, 200, 0, -301, -150, -200, 0, 200, 0, 300, 150, 200, 0, -200, 0, 300, -150, 200, 0, -200, 0, -300, 150, -200, 0, 0, 0, -300, -150)
 }
 point_count = 5
 
@@ -55,15 +55,16 @@ shader = ExtResource("11_b7xyu")
 shader_parameter/speed = 0.25
 
 [sub_resource type="Gradient" id="Gradient_b7xyu"]
-offsets = PackedFloat32Array(0, 0.167, 0.333, 0.5, 0.667, 0.833, 1)
-colors = PackedColorArray(1, 0, 0, 1, 1, 0.647059, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0.294118, 0, 0.509804, 1, 0.501961, 0, 0.501961, 1)
+offsets = PackedFloat32Array(0, 0.143, 0.286, 0.429, 0.572, 0.715, 0.858, 1.001)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.647059, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0.294118, 0, 0.509804, 1, 0.501961, 0, 0.501961, 1, 1, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_qviw3"]
 gradient = SubResource("Gradient_b7xyu")
-width = 200
+width = 16384
 
 [sub_resource type="Gradient" id="Gradient_kxjdw"]
-colors = PackedColorArray(1, 0.872, 0.36, 1, 1, 0.979667, 0.39, 1)
+offsets = PackedFloat32Array(0, 0.998299)
+colors = PackedColorArray(1, 0.872, 0.36, 1, 0.729412, 0.980392, 0.388235, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_sub33"]
 gradient = SubResource("Gradient_kxjdw")
@@ -228,10 +229,8 @@ points = PackedVector2Array(0, 0)
 width = 100.0
 default_color = Color(0.207843, 1, 0.964706, 1)
 texture = SubResource("GradientTexture1D_qviw3")
-texture_mode = 1
+texture_mode = 2
 joint_mode = 2
-begin_cap_mode = 2
-end_cap_mode = 2
 
 [node name="EndingCreatesGap" type="Control" parent="Background/Contained" index="3"]
 layout_mode = 2
