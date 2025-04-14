@@ -26,11 +26,11 @@ func _process(_delta: float) -> void:
 			$TeleportControl.visible = true
 		else:
 			$TeleportControl.visible = false
-			
+		marker.visible = false
 		if GameManager.gadget.gadget_stats.name == "Generator":
-			marker.visible = true
 			marker.is_generator = true
 			marker.is_uni_generator = false
+			marker.visible = true
 			marker.position = base_layer.map_to_local(GameManager.gadget.cell_pos)
 		elif GameManager.gadget.gadget_stats.name == "Universal Generator":
 			marker.is_generator = false

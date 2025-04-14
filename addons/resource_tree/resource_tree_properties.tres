@@ -1513,8 +1513,8 @@ unlocks_item_nodes = Dictionary[Resource, int]({})
 [sub_resource type="Resource" id="Resource_c6inx"]
 script = ExtResource("1_qn33u")
 email = ExtResource("105_q8b8f")
-x = 13140
-y = 11040
+x = 13240
+y = 11060
 prerequisite_email_nodes = Array[ExtResource("1_qn33u")]([SubResource("Resource_wplh4")])
 required_item_nodes = Dictionary[Resource, int]({})
 given_item_nodes = Dictionary[Resource, int]({})

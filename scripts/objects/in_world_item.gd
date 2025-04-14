@@ -33,9 +33,13 @@ func check_for_one_stack(_item: Item, _gadget):
 		if slot.item != null and slot.item.name == _item.name:
 			found_slot = slot
 			break
+	var filtered = false
+	for slot in slots:
+		if _item in slot.item_filter:
+			filtered = true
 	if found_slot != null:
 		return found_slot.quantity < _item.max_stack
-	return true
+	return filtered
 		
 
 func _physics_process(delta: float) -> void:
