@@ -556,6 +556,9 @@ func pay_debt():
 	if computer_visible:
 		computer_visible = false
 		computer_visibility_changed.emit()
+	if inventory:
+		change_inventory()
+		inventory_open_state_changed.emit()
 	paid_off_debt.emit()
 	debt_paid = true
 	if game_time["day"] > debt_days:

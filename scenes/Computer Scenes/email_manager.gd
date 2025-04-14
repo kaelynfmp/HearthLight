@@ -114,6 +114,10 @@ func select_random_emails(random_amount: int = GameManager.random_email_amount) 
 
 	random_emails.shuffle()
 	prev_random_emails = random_emails.duplicate()
+	for eachemail in random_emails:
+		eachemail.attached_order.is_completed = false
+		eachemail.attached_order.is_accepted = false
+		eachemail.attached_order.responded = false
 	return random_emails
 
 func create_inbox_buttons():
