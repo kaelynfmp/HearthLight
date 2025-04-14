@@ -6,10 +6,16 @@
 [resource]
 resource_name = "OrderChain1-3Success"
 script = ExtResource("1_ed37u")
-sender = "the writer"
+sender = "Vivian Brisket"
 email = ""
-subject = "placeholder"
-contents = "i didn't think you'd get this far. congrats on getting through that mini story though!"
+subject = "We did it! (つ≧▽≦)つ"
+contents = "We did it, and it's all thanks to you ^w^
+
+You seems pretty chill, wanna hang out sometime? :3
+
+Sorry, I'm a bit scatterbrained right now, still running off of adrenaline. It also doesn't help that I'm literally messaging theperson that saved our asses >///< Like, we might've had the plans, but actually getting the materials? kind of a shot in the dark ngl. But now we've shown those bastards in blue what for! >:)
+
+see you around!"
 category = ""
 prerequisite_emails = Array[ExtResource("1_ed37u")]([ExtResource("2_bw541")])
 day = 0
