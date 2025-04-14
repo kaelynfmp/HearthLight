@@ -71,7 +71,7 @@ var currency: int = 20
 signal currency_updated(new_amount)
 
 
-var debt:int = 10000
+var debt:int = 20000
 var debt_days:int = 31
 var debt_paid:bool = false
 

@@ -386,6 +386,10 @@ func update_recipes():
 			recipes.append(recipe)
 		
 func check_for_valid_recipe() -> void:
+	if is_generator and total_power >= max_power:
+		total_power = max_power
+		selected_recipe = null
+		return
 	if age > GameManager.Age.PRIMITIVE and not is_generator and not has_power_from_generator:
 		selected_recipe = null
 		return
@@ -407,7 +411,8 @@ func do_recipe():
 	if age > GameManager.Age.PRIMITIVE or primitive_selected:
 		start_progression()
 
-func start_progression():
+func start_progression() -> void:
+	if GameManager.sleeping: return
 	recipe_taken = false
 	if nearby_cyber_generator != null:
 		nearby_cyber_generator.is_cyber_generator_used = true
@@ -420,7 +425,8 @@ func start_progression():
 			# 'True' is arbitrary value, this is a dictionary only to preserve uniqueness
 			AudioManager.active_gadgets[gadget_stats.sound_string][self] = true
 	
-func recipe_take():
+func recipe_take() -> void:
+	if GameManager.sleeping: return
 	for input in selected_recipe.inputs:
 		# We know that the recipe is valid, so we can just remove willy nilly
 		for slot in inventory.slots.filter(func(slot): return !slot.locked):
@@ -428,14 +434,16 @@ func recipe_take():
 				inventory.remove_items(slot.item, input.quantity)
 	recipe_taken = true
 
-func finish_recipe():
+func finish_recipe() -> void:
+	if GameManager.sleeping: return
 	if not is_generator:
 		recipe_take()
 		for output in selected_recipe.outputs:
 			inventory.insert(output.item, output.quantity, true)
 	cancel_processing()
 	
-func cancel_processing():
+func cancel_processing() -> void:
+	if GameManager.sleeping: return
 	progress = 0.0
 	progressing = false
 	audio_player.stop()
