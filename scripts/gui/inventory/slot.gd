@@ -30,10 +30,6 @@ func _process(delta: float) -> void:
 	if slot != null:
 		tooltip_control.visible = slot.item != null
 		tooltip_control.set_position(get_local_mouse_position() + Vector2(50, 50))
-		if slot.item != null:
-			tooltip_image.set_texture(slot.item.texture)
-			tooltip.set_text(slot.item.description)
-			title.set_text(slot.item.name)
 		if mouse_over and slot.item != null:
 			var change_rate:float = delta / hover_time
 			hover_timer += change_rate
@@ -53,6 +49,9 @@ func update():
 			stack_number.visible = false
 			
 		else:
+			tooltip_image.set_texture(slot.item.texture)
+			tooltip.set_text_with_bbcode(slot.item.description)
+			title.set_text_with_bbcode(slot.item.name)
 			item_sprite.visible = true
 			item_sprite.set_texture(slot.item.texture)
 			if slot.quantity > 1:

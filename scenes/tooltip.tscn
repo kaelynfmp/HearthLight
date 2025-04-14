@@ -88,7 +88,7 @@ script = SubResource("GDScript_wliv2")
 metadata/_custom_type_script = "uid://dy75013g7jven"
 
 [node name="TooltipControl" type="Control"]
-z_index = 99
+z_index = 350
 z_as_relative = false
 layout_mode = 3
 anchors_preset = 0
