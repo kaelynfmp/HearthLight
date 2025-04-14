@@ -12,6 +12,7 @@ var ambient_audio: AudioStreamPlayer2D
 var intro_ambient_audio: AudioStreamPlayer2D
 var rain_audio: AudioStreamPlayer2D
 var already_stop: bool = false
+var good_ending_audio: AudioStreamPlayer2D
 
 var active_gadgets:Dictionary[String, Dictionary] = {
 	"c grinder.wav": {},
@@ -73,6 +74,9 @@ func set_ambient_audio(stream_player:AudioStreamPlayer2D):
 	
 func set_intro_ambient_audio(stream_player:AudioStreamPlayer2D):
 	intro_ambient_audio = stream_player
+	
+func set_good_ending_audio(stream_player:AudioStreamPlayer2D):
+	good_ending_audio = stream_player
 
 func set_gadget_audio(stream_player:AudioStreamPlayer2D):
 	gadget_audio = stream_player
@@ -148,6 +152,26 @@ func _process(_delta: float) -> void:
 func play_teleport_noise(): # Re-up teleport noise
 	teleport_player.play()
 	
+
+func transition_good_ending():
+	if intro_ambient_audio.playing:
+		intro_ambient_audio.stop()
+	if ambient_audio.playing:
+		ambient_audio.loop = false
+		ambient_audio.stop()
+	playback.play_stream(load("res://resources/audio/explosion.wav"), 0, -6)
+	good_ending_audio.play()
+	#good_ending_audio.finished.connect(restart_ambient)
+	
+func transition_free_play():
+	good_ending_audio.stop()
+	restart_ambient()
+	
+func restart_ambient():
+	ambient_audio.seek(0)
+	ambient_audio.loop = true
+	ambient_audio.play()
+
 func stop_intro():
 	if not already_stop:
 		already_stop = true

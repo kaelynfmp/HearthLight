@@ -552,7 +552,8 @@ func pay_debt():
 		current_cutscene = load("res://resources/cutscenes/badending.tres")
 	else:
 		current_cutscene = load("res://resources/cutscenes/goodending.tres")
-		
+		AudioManager.transition_good_ending()
+	
 	cutscene_displayed = true
 
 func conclude_cutscene():
@@ -560,6 +561,8 @@ func conclude_cutscene():
 	start_time = Time.get_ticks_msec()
 	if not AudioManager.ambient_audio.playing:
 		AudioManager.stop_intro()
+	if AudioManager.good_ending_audio.playing:
+		AudioManager.transition_free_play()
 	if current_cutscene.cutscene_type == CUTSCENE_TYPE.MAIN_MENU:
 		get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
 		
