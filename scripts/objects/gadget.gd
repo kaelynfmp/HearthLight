@@ -235,6 +235,8 @@ func is_able_to_recipe() -> bool:
 			return true
 		var slot_item_in_recipe = selected_recipe.outputs.find_custom(func(output): 
 			return output.item.name == item.name)
+		if slot.bypass_stack:
+			return true
 		if slot.quantity + selected_recipe.outputs[slot_item_in_recipe].quantity <= item.max_stack:
 			return true
 	)
