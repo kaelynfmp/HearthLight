@@ -421,6 +421,8 @@ func start_progression() -> void:
 	if nearby_cyber_generator != null:
 		nearby_cyber_generator.gadgets_used_this_generator.append(self)
 	if is_generator:
+		if total_power >= max_power:
+			return
 		recipe_take()
 	progressing = true
 	play_sound()
